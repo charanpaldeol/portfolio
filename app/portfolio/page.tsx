@@ -1,6 +1,4 @@
 import { motion } from "framer-motion"
-import Link from "next/link"
-
 import { Button } from "../../components/Button/Button"
 import { AnimatedGradientText } from "../../components/magicui/animated-gradient-text"
 import { BlurFade } from "../../components/magicui/blur-fade"
@@ -73,8 +71,8 @@ export default function PortfolioOverviewPage() {
               <h2 className="text-base font-semibold text-slate-900">{card.title}</h2>
               <p className="mt-1 text-sm text-slate-600">{card.description}</p>
               <div className="mt-auto pt-3">
-                <Button asChild size="sm" className="mt-2">
-                  <Link href={card.href}>View {card.title.toLowerCase()}</Link>
+                <Button href={card.href} size="sm" className="mt-2">
+                  View {card.title.toLowerCase()}
                 </Button>
               </div>
             </div>
