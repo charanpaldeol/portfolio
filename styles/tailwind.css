@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+@utility animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
