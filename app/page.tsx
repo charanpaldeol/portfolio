@@ -1,4 +1,8 @@
 import { Metadata } from "next"
+import { AnimatedGradientText } from "../components/magicui/animated-gradient-text"
+import { BlurFade } from "../components/magicui/blur-fade"
+import { ShimmerButton } from "../components/magicui/shimmer-button"
+import { Button } from "../components/Button/Button"
 
 export const metadata: Metadata = {
   title: "Coming Soon",
@@ -19,17 +23,40 @@ export const metadata: Metadata = {
 
 export default function Web() {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center px-4">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Coming Soon
-        </h1>
-        <p className="mb-2 text-lg md:text-xl text-gray-600 dark:text-gray-300">
-          I&apos;m working on something new for this space.
-        </p>
-        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">
-          Check back shortly to see the full portfolio.
-        </p>
+    <main className="flex min-h-screen items-center justify-center bg-white px-4 dark:bg-gray-900">
+      <div className="mx-auto max-w-2xl text-center">
+        <AnimatedGradientText className="mb-4">
+          Portfolio in progress
+        </AnimatedGradientText>
+
+        <BlurFade>
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-5xl xl:text-6xl">
+            Coming Soon
+          </h1>
+        </BlurFade>
+
+        <BlurFade delay={0.05}>
+          <p className="mb-2 text-lg text-gray-600 dark:text-gray-300 md:text-xl">
+            I&apos;m working on something new for this space.
+          </p>
+        </BlurFade>
+
+        <BlurFade delay={0.1}>
+          <p className="text-sm text-gray-500 dark:text-gray-400 md:text-base">
+            Check back shortly to see the full portfolio.
+          </p>
+        </BlurFade>
+
+        <BlurFade delay={0.18}>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <ShimmerButton href="#notify">
+              Get notified
+            </ShimmerButton>
+            <Button intent="secondary" href="mailto:hello@cpdeol.com">
+              Contact me
+            </Button>
+          </div>
+        </BlurFade>
       </div>
     </main>
   )
