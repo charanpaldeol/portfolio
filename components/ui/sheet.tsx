@@ -110,9 +110,10 @@ export function SheetDescription({ children }: SheetDescriptionProps) {
 
 export interface SheetCloseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
+  asChild?: boolean
 }
 
-export function SheetClose({ children, ...props }: SheetCloseProps) {
+export function SheetClose({ children, asChild, ...props }: SheetCloseProps) {
   const context = React.useContext(SheetContext)
 
   if (!context) {
@@ -120,6 +121,18 @@ export function SheetClose({ children, ...props }: SheetCloseProps) {
   }
 
   const { setOpen } = context
+
+  if (asChild) {
+    return (
+      <span
+        onClick={() => setOpen(false)}
+        className={props.className}
+        {...props}
+      >
+        {children}
+      </span>
+    )
+  }
 
   return (
     <button
