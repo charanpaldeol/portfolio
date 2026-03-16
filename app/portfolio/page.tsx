@@ -68,7 +68,7 @@ export default function PortfolioOverviewPage() {
                 mobile.
               </p>
               <div className="pt-1">
-                <Button href="/portfolio/projects" size="sm" variant="secondary" className="bg-slate-50 text-slate-900">
+                <Button href="/portfolio/projects" size="sm" intent="secondary" className="bg-slate-50 text-slate-900">
                   View selected projects
                 </Button>
               </div>
