@@ -1,7 +1,6 @@
-import { motion } from "framer-motion"
-import type { HTMLAttributes } from "react"
+import { motion, type HTMLMotionProps } from "framer-motion"
 
-type AnimatedGradientTextProps = HTMLAttributes<HTMLSpanElement>
+type AnimatedGradientTextProps = HTMLMotionProps<"span">
 
 export function AnimatedGradientText({ className = "", children, ...props }: AnimatedGradientTextProps) {
   return (
