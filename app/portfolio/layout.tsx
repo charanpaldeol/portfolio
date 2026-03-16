@@ -1,5 +1,9 @@
+/* eslint-disable react/jsx-no-bind */
+"use client"
+
 import Link from "next/link"
-import { ReactNode } from "react"
+import { usePathname } from "next/navigation"
+import type { ReactNode } from "react"
 
 const sections = [
   { href: "/portfolio", label: "Overview", value: "overview" },
@@ -9,8 +13,14 @@ const sections = [
   { href: "/portfolio/experience", label: "Experience", value: "experience" },
   { href: "/portfolio/contact", label: "Contact", value: "contact" },
 ] as const
-
 export default function PortfolioLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === "/portfolio") return pathname === "/portfolio"
+    return pathname.startsWith(href)
+  }
+
   return (
     <main className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl flex-col gap-6 px-4 py-8 md:px-6 md:py-10">
       {/* Desktop side navigation */}
@@ -21,7 +31,12 @@ export default function PortfolioLayout({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center rounded-lg px-3 py-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                className={[
+                  "flex items-center rounded-lg px-3 py-2 text-sm transition-colors",
+                  isActive(item.href)
+                    ? "border-l-2 border-slate-900 bg-slate-900/5 font-medium text-slate-900"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                ].join(" ")}
               >
                 {item.label}
               </Link>
@@ -38,7 +53,12 @@ export default function PortfolioLayout({ children }: { children: ReactNode }) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-slate-900"
+                    className={[
+                      "whitespace-nowrap rounded-full px-3 py-1.5 text-xs transition-colors",
+                      isActive(item.href)
+                        ? "bg-slate-900 text-white"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                    ].join(" ")}
                   >
                     {item.label}
                   </Link>

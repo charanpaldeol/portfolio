@@ -1,15 +1,27 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { ShimmerButton } from '../magicui/shimmer-button'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink } from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 
 export function Navbar() {
+  const pathname = usePathname()
+  const isPortfolioRoute = pathname.startsWith('/portfolio')
+
   return (
-    <header className="border-b border-slate-200 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
+    <header
+      className={`border-b bg-white/80 backdrop-blur ${
+        isPortfolioRoute ? 'border-slate-100/80' : 'border-slate-200'
+      }`}
+    >
+      <div
+        className={`mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6 ${
+          isPortfolioRoute ? 'py-2 text-slate-500' : 'py-3'
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
@@ -46,7 +58,6 @@ export function Navbar() {
         <div className="flex items-center md:hidden">
           <Sheet>
             <SheetTrigger aria-label="Open navigation menu">
-              <span className="sr-only">Open navigation menu</span>
               <svg
                 aria-hidden="true"
                 className="h-5 w-5 text-slate-900"

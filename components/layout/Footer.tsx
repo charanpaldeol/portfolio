@@ -32,7 +32,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/projects" className="transition-colors hover:text-slate-900">
                   Projects
                 </Link>
               </li>
@@ -72,11 +72,6 @@ export function Footer() {
                 <a href="mailto:hello@cpdeol.com" className="transition-colors hover:text-slate-900">
                   hello@cpdeol.com
                 </a>
-              </li>
-              <li>
-                <Link href="/portfolio/contact" className="transition-colors hover:text-slate-900">
-                  Book a call
-                </Link>
               </li>
             </ul>
           </div>
