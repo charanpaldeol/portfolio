@@ -1,8 +1,8 @@
 import { Metadata } from "next"
-import { Button } from "../components/Button/Button"
-import { AnimatedGradientText } from "../components/magicui/animated-gradient-text"
-import { BlurFade } from "../components/magicui/blur-fade"
-import { ShimmerButton } from "../components/magicui/shimmer-button"
+import { Button } from "components/Button/Button"
+import { AnimatedGradientText } from "components/magicui/animated-gradient-text"
+import { BlurFade } from "components/magicui/blur-fade"
+import { ShimmerButton } from "components/magicui/shimmer-button"
 
 export const metadata: Metadata = {
   title: "Coming Soon",
@@ -49,8 +49,8 @@ export default function Web() {
 
         <BlurFade delay={0.18}>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <ShimmerButton href="#notify">
-              Get notified
+            <ShimmerButton href="/contact">
+              Get in touch
             </ShimmerButton>
             <Button intent="secondary" href="mailto:hello@cpdeol.com">
               Contact me

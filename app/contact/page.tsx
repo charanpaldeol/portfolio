@@ -2,9 +2,9 @@
 
 import { FormEvent, useState } from "react"
 
-import { AnimatedGradientText } from "../../components/magicui/animated-gradient-text"
-import { BlurFade } from "../../components/magicui/blur-fade"
-import { ShimmerButton } from "../../components/magicui/shimmer-button"
+import { AnimatedGradientText } from "components/magicui/animated-gradient-text"
+import { BlurFade } from "components/magicui/blur-fade"
+import { ShimmerButton } from "components/magicui/shimmer-button"
 
 export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false)
