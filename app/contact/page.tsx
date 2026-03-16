@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, FormEvent } from "react"
+import { FormEvent, useState } from "react"
 
 import { AnimatedGradientText } from "../../components/magicui/animated-gradient-text"
 import { BlurFade } from "../../components/magicui/blur-fade"
@@ -66,62 +66,64 @@ export default function ContactPage() {
           </BlurFade>
         </div>
 
-        <BlurFade delay={0.12} className="w-full max-w-md">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <label htmlFor="name" className="text-sm font-medium text-slate-900">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                autoComplete="name"
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
-              />
-            </div>
+        <div className="w-full max-w-md">
+          <BlurFade delay={0.12}>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label htmlFor="name" className="text-sm font-medium text-slate-900">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                />
+              </div>
 
-            <div className="space-y-1.5">
-              <label htmlFor="email" className="text-sm font-medium text-slate-900">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
-              />
-            </div>
+              <div className="space-y-1.5">
+                <label htmlFor="email" className="text-sm font-medium text-slate-900">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                />
+              </div>
 
-            <div className="space-y-1.5">
-              <label htmlFor="message" className="text-sm font-medium text-slate-900">
-                Project details
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                required
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
-                placeholder="What are you working on? What does success look like for you?"
-              />
-            </div>
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="text-sm font-medium text-slate-900">
+                  Project details
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                  placeholder="What are you working on? What does success look like for you?"
+                />
+              </div>
 
-            <div className="pt-2">
-              <ShimmerButton
-                as="button"
-                type="submit"
-                className="w-full justify-center rounded-xl px-4 py-2.5 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-60"
-                aria-disabled={submitting}
-              >
-                {submitting ? "Preparing email…" : "Send message"}
-              </ShimmerButton>
-            </div>
-          </form>
-        </BlurFade>
+              <div className="pt-2">
+                <ShimmerButton
+                  as="button"
+                  type="submit"
+                  className="w-full justify-center rounded-xl px-4 py-2.5 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-60"
+                  aria-disabled={submitting}
+                >
+                  {submitting ? "Preparing email…" : "Send message"}
+                </ShimmerButton>
+              </div>
+            </form>
+          </BlurFade>
+        </div>
       </div>
     </main>
   )

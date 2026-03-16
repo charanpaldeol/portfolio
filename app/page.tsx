@@ -1,8 +1,8 @@
 import { Metadata } from "next"
+import { Button } from "../components/Button/Button"
 import { AnimatedGradientText } from "../components/magicui/animated-gradient-text"
 import { BlurFade } from "../components/magicui/blur-fade"
 import { ShimmerButton } from "../components/magicui/shimmer-button"
-import { Button } from "../components/Button/Button"
 
 export const metadata: Metadata = {
   title: "Coming Soon",

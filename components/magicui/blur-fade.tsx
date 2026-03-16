@@ -6,6 +6,8 @@ type BlurFadeProps = {
   children: ReactNode
   /** Delay in seconds before the animation starts */
   delay?: number
+  /** Optional className forwarded to the motion div */
+  className?: string
 } & MotionProps
 
 export function BlurFade({ children, delay = 0, ...motionProps }: BlurFadeProps) {
