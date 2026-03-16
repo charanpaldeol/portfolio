@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-no-bind */
-"use client"
+ "use client"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
