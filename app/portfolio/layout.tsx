@@ -1,9 +1,6 @@
 import Link from "next/link"
 import { ReactNode } from "react"
 
-import { ScrollArea } from "../../components/ui/sheet"
-import { Tabs, TabsList, TabsTrigger } from "../../components/ui/navigation-menu"
-
 const sections = [
   { href: "/portfolio", label: "Overview", value: "overview" },
   { href: "/portfolio/about", label: "About", value: "about" },
@@ -24,11 +21,7 @@ export default function PortfolioLayout({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={cn(
-                  "flex items-center rounded-lg px-3 py-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900",
-                  "data-[active=true]:bg-slate-900 data-[active=true]:text-slate-50"
-                )}
-                data-active={false}
+                className="flex items-center rounded-lg px-3 py-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
               >
                 {item.label}
               </Link>

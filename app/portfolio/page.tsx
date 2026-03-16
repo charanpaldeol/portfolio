@@ -1,5 +1,5 @@
-import Link from "next/link"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 import { Button } from "../../components/Button/Button"
 import { AnimatedGradientText } from "../../components/magicui/animated-gradient-text"
