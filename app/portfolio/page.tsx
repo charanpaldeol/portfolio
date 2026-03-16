@@ -66,20 +66,18 @@ export default function PortfolioOverviewPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 * index, duration: 0.25, ease: "easeOut" }}
           >
-            <Card className="flex h-full flex-col border-slate-200 transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-md">
-              <CardHeader>
-                <div className="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-lg">
-                  <span aria-hidden="true">{card.icon}</span>
-                </div>
-                <CardTitle className="text-base font-semibold text-slate-900">{card.title}</CardTitle>
-                <CardDescription className="text-sm text-slate-600">{card.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto pt-0">
+            <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-md">
+              <div className="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/5 text-lg">
+                <span aria-hidden="true">{card.icon}</span>
+              </div>
+              <h2 className="text-base font-semibold text-slate-900">{card.title}</h2>
+              <p className="mt-1 text-sm text-slate-600">{card.description}</p>
+              <div className="mt-auto pt-3">
                 <Button asChild size="sm" className="mt-2">
                   <Link href={card.href}>View {card.title.toLowerCase()}</Link>
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </motion.div>
         ))}
       </section>
