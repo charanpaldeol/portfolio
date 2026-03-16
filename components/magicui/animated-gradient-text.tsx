@@ -1,4 +1,6 @@
-import { motion, type HTMLMotionProps } from "framer-motion"
+"use client"
+
+import { type HTMLMotionProps, motion } from "framer-motion"
 
 type AnimatedGradientTextProps = HTMLMotionProps<"span">
 
