@@ -2,7 +2,6 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 
 import { Button } from "../../components/Button/Button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
 import { AnimatedGradientText } from "../../components/magicui/animated-gradient-text"
 import { BlurFade } from "../../components/magicui/blur-fade"
 

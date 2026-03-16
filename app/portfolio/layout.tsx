@@ -1,9 +1,8 @@
 import Link from "next/link"
 import { ReactNode } from "react"
 
-import { cn } from "../../lib/utils"
-import { ScrollArea } from "../../components/ui/scroll-area"
-import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs"
+import { ScrollArea } from "../../components/ui/sheet"
+import { Tabs, TabsList, TabsTrigger } from "../../components/ui/navigation-menu"
 
 const sections = [
   { href: "/portfolio", label: "Overview", value: "overview" },
@@ -40,22 +39,19 @@ export default function PortfolioLayout({ children }: { children: ReactNode }) {
         <section className="space-y-6">
           {/* Mobile horizontal tab bar */}
           <div className="md:hidden">
-            <ScrollArea className="w-full whitespace-nowrap rounded-xl border border-slate-200 bg-white/80">
-              <Tabs defaultValue="overview" className="w-max min-w-full px-1 py-1">
-                <TabsList className="inline-flex h-9 bg-transparent">
-                  {sections.map((item) => (
-                    <TabsTrigger
-                      key={item.href}
-                      value={item.value}
-                      asChild
-                      className="px-3 text-xs font-medium text-slate-600 data-[state=active]:text-slate-900"
-                    >
-                      <Link href={item.href}>{item.label}</Link>
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            </ScrollArea>
+            <div className="w-full overflow-x-auto rounded-xl border border-slate-200 bg-white/80">
+              <div className="flex min-w-full gap-1 px-2 py-1.5 text-xs font-medium text-slate-600">
+                {sections.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-slate-900"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-sm md:p-8">{children}</div>
