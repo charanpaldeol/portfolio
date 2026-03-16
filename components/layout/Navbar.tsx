@@ -24,10 +24,10 @@ export function Navbar() {
               <NavigationMenuLink href="/">Home</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/about">About</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio">Portfolio</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/services">Services</NavigationMenuLink>
+              <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink href="/contact">Contact</NavigationMenuLink>
@@ -74,18 +74,18 @@ export function Navbar() {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href="/about"
+                    href="/portfolio"
                     className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
                   >
-                    About
+                    Portfolio
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href="/services"
+                    href="/blog"
                     className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
                   >
-                    Services
+                    Blog
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>

@@ -22,7 +22,7 @@ export function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Company</h3>
             <ul className="mt-3 space-y-2">
               <li>
-                <Link href="/about" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/about" className="transition-colors hover:text-slate-900">
                   About
                 </Link>
               </li>
@@ -43,17 +43,17 @@ export function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Services</h3>
             <ul className="mt-3 space-y-2">
               <li>
-                <Link href="/services" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/services" className="transition-colors hover:text-slate-900">
                   Consulting
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/services" className="transition-colors hover:text-slate-900">
                   Product design
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/services" className="transition-colors hover:text-slate-900">
                   Engineering
                 </Link>
               </li>
@@ -74,7 +74,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/contact" className="transition-colors hover:text-slate-900">
+                <Link href="/portfolio/contact" className="transition-colors hover:text-slate-900">
                   Book a call
                 </Link>
               </li>
