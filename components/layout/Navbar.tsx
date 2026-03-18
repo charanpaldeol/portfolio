@@ -47,8 +47,38 @@ export function Navbar() {
           </NavigationMenu>
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex">
+        {/* Desktop CTA + Social */}
+        <div className="hidden items-center gap-4 md:flex">
+          <a
+            href="https://www.linkedin.com/in/cdeol"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="transition-colors hover:text-slate-600"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-5 w-5 text-slate-600"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" />
+              <path
+                d="M8.25 9.75V16.5"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <circle cx="8.25" cy="7.25" r="1.1" fill="white" />
+              <path
+                d="M11.5 16.5V9.75H13.75L13.9 10.9C14.2 10.35 14.9 9.75 16 9.75C17.55 9.75 18.5 10.75 18.5 12.6V16.5"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </a>
           <ShimmerButton href="/contact" className="rounded-full px-5 py-2 text-sm font-medium">
             Let&apos;s talk
           </ShimmerButton>

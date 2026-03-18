@@ -73,6 +73,11 @@ export function Footer() {
                   hello@cpdeol.com
                 </a>
               </li>
+              <li>
+                <a href="https://www.linkedin.com/in/cdeol" target="_blank" rel="noreferrer" className="transition-colors hover:text-slate-900">
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
         </div>
