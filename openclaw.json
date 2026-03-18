@@ -1,0 +1,227 @@
+{
+  "$schema": "https://docs.openclaw.ai/schema/openclaw.json",
+  "version": "1.0",
+  "workspace": "cpdeol-portfolio",
+
+  "models": {
+    "default": "claude-sonnet-4-20250514",
+    "heavy": "claude-opus-4-20250514"
+  },
+
+  "agents": {
+
+    "solution-architect": {
+      "skill": "./agents/SKILL-solution-architect.md",
+      "model": "heavy",
+      "description": "Daily architecture review. Runs first. Classifies backlog items and writes ADRs.",
+      "session": "isolated",
+      "tools": ["github", "web_fetch"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["backlog.md", "docs/adr/**"]
+      },
+      "timeout_seconds": 120
+    },
+
+    "product-owner": {
+      "skill": "./agents/SKILL-product-owner.md",
+      "model": "default",
+      "description": "Sprint planning. Runs after solution-architect. Writes user stories.",
+      "session": "isolated",
+      "tools": ["github", "web_fetch"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["backlog.md", "docs/stories/**"]
+      },
+      "timeout_seconds": 90
+    },
+
+    "design-researcher": {
+      "skill": "./agents/SKILL-design-researcher.md",
+      "model": "default",
+      "description": "Finds Dribbble/Awwwards references for each in-sprint story. Runs parallel with designer.",
+      "session": "isolated",
+      "tools": ["github", "web_search", "web_fetch"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["docs/research/**"]
+      },
+      "timeout_seconds": 120
+    },
+
+    "designer": {
+      "skill": "./agents/SKILL-designer.md",
+      "model": "heavy",
+      "description": "Writes component specs from research brief + story + ADR. No code.",
+      "session": "isolated",
+      "tools": ["github", "web_fetch"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["docs/specs/**"]
+      },
+      "timeout_seconds": 120
+    },
+
+    "developer": {
+      "skill": "./agents/SKILL-developer.md",
+      "model": "heavy",
+      "description": "Implements Next.js components from spec. Commits to feature branch. Opens PR.",
+      "session": "isolated",
+      "tools": ["github", "bash"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["app/**", "components/**", "e2e/**", "docs/**"],
+        "allow_branch_create": true,
+        "allow_pr_create": true
+      },
+      "timeout_seconds": 300
+    },
+
+    "tester": {
+      "skill": "./agents/SKILL-tester.md",
+      "model": "default",
+      "description": "Runs Vitest + Playwright on the feature branch. Posts QA report to PR. Triggers auto-merge on pass.",
+      "session": "isolated",
+      "tools": ["github", "bash"],
+      "github": {
+        "repo": "charanpaldeol/portfolio",
+        "write_paths": ["e2e/**"],
+        "allow_pr_comment": true,
+        "allow_pr_merge": true
+      },
+      "timeout_seconds": 180
+    }
+
+  },
+
+  "pipelines": {
+
+    "daily-heartbeat": {
+      "description": "Full autonomous pipeline. Runs every day at 9am. Builds and ships one sprint.",
+      "trigger": {
+        "type": "cron",
+        "schedule": "0 9 * * *"
+      },
+      "steps": [
+        {
+          "agent": "solution-architect",
+          "description": "Classify backlog, write ADRs"
+        },
+        {
+          "agent": "product-owner",
+          "description": "Select sprint, write stories",
+          "depends_on": ["solution-architect"]
+        },
+        {
+          "parallel": [
+            {
+              "agent": "design-researcher",
+              "description": "Find design references",
+              "depends_on": ["product-owner"]
+            },
+            {
+              "agent": "designer",
+              "description": "Wait for research, write specs",
+              "depends_on": ["product-owner", "design-researcher"]
+            }
+          ]
+        },
+        {
+          "agent": "developer",
+          "description": "Implement from spec, open PR",
+          "depends_on": ["designer"]
+        },
+        {
+          "agent": "tester",
+          "description": "Test PR, approve or block",
+          "depends_on": ["developer"]
+        }
+      ],
+      "on_failure": {
+        "notify": "telegram",
+        "message": "Pipeline failed at {step}. Branch: {branch}. Error: {error}"
+      }
+    },
+
+    "human-request": {
+      "description": "Triggered manually via Telegram. Runs the full pipeline for a specific instruction.",
+      "trigger": {
+        "type": "telegram",
+        "command": "/build"
+      },
+      "steps": [
+        {
+          "agent": "solution-architect",
+          "input": "{{telegram_message}}"
+        },
+        {
+          "agent": "product-owner",
+          "depends_on": ["solution-architect"]
+        },
+        {
+          "parallel": [
+            {
+              "agent": "design-researcher",
+              "depends_on": ["product-owner"]
+            },
+            {
+              "agent": "designer",
+              "depends_on": ["product-owner", "design-researcher"]
+            }
+          ]
+        },
+        {
+          "agent": "developer",
+          "depends_on": ["designer"]
+        },
+        {
+          "agent": "tester",
+          "depends_on": ["developer"]
+        }
+      ],
+      "on_complete": {
+        "notify": "telegram",
+        "message": "Done. PR #{pr_number} opened. {pr_url}"
+      },
+      "on_failure": {
+        "notify": "telegram",
+        "message": "Failed at {step}. Check {pr_url} for details."
+      }
+    },
+
+    "architect-only": {
+      "description": "Run just the solution-architect. Useful for reviewing a batch of new backlog ideas.",
+      "trigger": {
+        "type": "telegram",
+        "command": "/review-backlog"
+      },
+      "steps": [
+        {
+          "agent": "solution-architect"
+        }
+      ],
+      "on_complete": {
+        "notify": "telegram",
+        "message": "Backlog reviewed. ADRs written. Check docs/adr/ in repo."
+      }
+    }
+
+  },
+
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "notify_on": ["pipeline_failure", "pr_opened", "pr_merged", "pr_blocked"]
+    }
+  },
+
+  "github": {
+    "repo": "charanpaldeol/portfolio",
+    "default_branch": "main",
+    "auto_merge": {
+      "enabled": true,
+      "method": "squash",
+      "require_passing_checks": true
+    }
+  }
+}
