@@ -1,0 +1,155 @@
+# .cursorrules
+# ─────────────────────────────────────────────────────────────────
+# cpdeol.com — Cursor Agent Standing Instructions
+# Read this ENTIRE file before every action.
+# These rules are permanent and override all stylistic defaults.
+# ─────────────────────────────────────────────────────────────────
+
+
+## ARCHITECTURE — read this first
+
+This site has a deliberate TWO-ZONE layout system.
+Do not merge these zones. Do not move components between them.
+
+  ZONE A — Homepage ("/") — self-contained
+  ┌─────────────────────────────────────────────────────┐
+  │  components/home/Navbar.tsx    ← homepage nav only  │
+  │  app/page.tsx                  ← homepage page      │
+  │  components/home/*.tsx         ← all page sections  │
+  │  components/home/Footer.tsx    ← homepage footer    │
+  └─────────────────────────────────────────────────────┘
+  GlobalChrome returns null on "/" so homepage is fully self-contained.
+  The homepage renders its OWN Navbar and Footer. This is intentional.
+
+  ZONE B — All other routes (/blog, /portfolio/*, /contact, etc.)
+  ┌─────────────────────────────────────────────────────┐
+  │  components/layout/Navbar.tsx   ← shared nav        │
+  │  components/layout/Footer.tsx   ← shared footer     │
+  │  components/layout/GlobalChrome.tsx  ← the wrapper  │
+  └─────────────────────────────────────────────────────┘
+  GlobalChrome injects layout/Navbar + layout/Footer on all non-"/" routes.
+  app/layout.tsx mounts GlobalChrome — it has ONE export default (RootLayout).
+
+  WHICH NAVBAR TO EDIT:
+  → Changing homepage nav?      edit components/home/Navbar.tsx
+  → Changing all-routes nav?    edit components/layout/Navbar.tsx
+  → Never touch both unless the prompt explicitly says to.
+  Same rule applies to Footer.
+
+
+## 1. FROZEN FILES
+
+Never modify these without the prompt explicitly naming them.
+If a required change touches a frozen file, STOP and ask the user.
+
+  Layout (frozen):
+  - app/layout.tsx                         ← ONE export default only (RootLayout)
+  - components/layout/GlobalChrome.tsx
+  - components/layout/Navbar.tsx
+  - components/layout/Footer.tsx
+
+  Homepage chrome (frozen):
+  - components/home/Navbar.tsx
+  - components/home/Footer.tsx
+
+  Design system (frozen):
+  - design-system.ts
+  - styles/tailwind.css
+
+  Animation library — NEVER auto-import, opt-in only:
+  - components/magicui/animated-gradient-text.tsx
+  - components/magicui/blur-fade.tsx
+  - components/magicui/marquee.tsx
+  - components/magicui/number-ticker.tsx
+  - components/magicui/shimmer-button.tsx
+
+  Tests (frozen):
+  - playwright.config.ts
+  - vitest.config.ts
+  - vitest.setup.ts
+  - e2e/*
+
+
+## 2. DESIGN SYSTEM — import tokens, never hardcode
+
+  ✅ DO:   import { DS } from '@/design-system'
+           className={DS.card.default}
+           className={DS.pills.purple}
+
+  ❌ DON'T: hardcode hex: className="bg-[#EEEDFE] text-[#534AB7]"
+  ❌ DON'T: inline styles: style={{ color: '#534AB7' }}
+  ❌ DON'T: Tailwind color names: className="bg-purple-100 text-purple-700"
+
+  If a token doesn't exist in design-system.ts, add it there first.
+  Never hardcode inline.
+
+
+## 3. SCOPE — only touch what the prompt names
+
+  ✅ Only edit files listed under "Files to edit" in the prompt
+  ❌ Do not clean up, improve, or refactor surrounding code
+  ❌ Do not rename variables or reorganize imports
+  ❌ Do not reorder or add sections in app/page.tsx unless told to
+  ❌ Do not change component prop interfaces unless required by the task
+
+
+## 4. STYLE — never change without explicit instruction
+
+  - Border radius: use existing Tailwind classes only
+  - Font sizes: use DS.text tokens — do not introduce new sizes
+  - Spacing: do not adjust padding/margin/gap unless layout is mentioned
+  - Animations: never add transitions, keyframes, or motion effects
+    unless explicitly requested — never auto-import from magicui/
+  - No gradients, shadows, blobs, or background images unless asked
+  - No dark: variants unless explicitly asked
+
+
+## 5. COPY — text content is sacred
+
+  - Never rephrase, rewrite, shorten, or "improve" copy
+  - Never change headlines, descriptions, or button labels unless
+    the prompt provides the exact replacement text
+  - Numbers in ProofMetrics.tsx (60%, 4→1, 83%) are placeholders —
+    do not change unless new values are given
+
+
+## 6. CONTENT DATA — one source of truth
+
+  Landing page content: components/lp-items.tsx
+  Do not create a second content file. Do not duplicate content.
+
+
+## 7. BEFORE COMMITTING — check every time
+
+  - [ ] pnpm build passes, zero TypeScript errors
+  - [ ] pnpm lint passes
+  - [ ] app/layout.tsx has exactly ONE export default (RootLayout)
+  - [ ] No hardcoded hex colors introduced
+  - [ ] No frozen files modified (unless explicitly permitted in prompt)
+  - [ ] Only files named in the prompt were changed
+  - [ ] No magicui components auto-imported
+
+
+## 8. PROMPT TEMPLATE — use this for every task
+
+  ## Task
+  [Exact change — be specific]
+
+  ## Zone
+  [ ] Homepage ("/")  →  components/home/* only
+  [ ] All routes      →  components/layout/* only
+  [ ] Both            →  list files explicitly
+
+  ## Files to edit
+  - components/[path]/[Component].tsx ONLY
+
+  ## Do NOT touch
+  - [list frozen files relevant to this task]
+  - Any styling, layout, or spacing not mentioned above
+  - Any copy not provided below
+
+  ## New content (if applicable)
+  [Exact replacement text — do not leave to interpretation]
+
+  ## Definition of done
+  [One sentence describing the expected result]
