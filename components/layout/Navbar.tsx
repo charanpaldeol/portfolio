@@ -36,13 +36,10 @@ export function Navbar() {
               <NavigationMenuLink href="/">Home</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/portfolio">Portfolio</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio/about">Portfolio</NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/contact">Contact</NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenu>
         </div>
@@ -106,7 +103,7 @@ export function Navbar() {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href="/portfolio"
+                    href="/portfolio/about"
                     className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
                   >
                     Portfolio

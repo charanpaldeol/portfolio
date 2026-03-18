@@ -84,31 +84,46 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 + i * 0.06, duration: 0.25, ease: "easeOut" }}
             className={[
-              "rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md transition-all duration-200",
+              "group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-lg transition-all duration-300",
               svc.hoverBorder,
             ].join(" ")}
           >
-            <div className="mb-3 text-3xl">{svc.icon}</div>
-            <span className={["inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold mb-2", svc.taglineColor].join(" ")}>
-              {svc.tagline}
-            </span>
-            <h3 className="text-base font-semibold text-slate-900">{svc.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{svc.description}</p>
-            <ul className="mt-3 space-y-1.5">
-              {svc.deliverables.map((d) => (
-                <li key={d} className="flex items-start gap-2 text-sm text-slate-600">
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-slate-400" />
-                  {d}
-                </li>
-              ))}
-            </ul>
+            {/* Gradient background on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+                 style={{
+                   background: `linear-gradient(135deg, ${svc.taglineColor.match(/(?:text-|border|bg-)(\w+-\d+)/)?.[1] || 'violet'}-50 0%, transparent 100%)`,
+                 }} 
+            />
+            
+            <div className="relative">
+              <div className="mb-4 text-3xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 inline-block">{svc.icon}</div>
+              
+              <span className={["inline-block rounded-full px-3 py-1 text-[11px] font-semibold mb-3", svc.taglineColor].join(" ")}>
+                {svc.tagline}
+              </span>
+              
+              <h3 className="text-base font-semibold text-slate-900 mb-2">{svc.title}</h3>
+              <p className="text-sm leading-relaxed text-slate-600 mb-4">{svc.description}</p>
+              
+              <ul className="space-y-2">
+                {svc.deliverables.map((d) => (
+                  <li key={d} className="flex items-start gap-2.5 text-xs font-medium text-slate-600">
+                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300 transition-colors duration-200 group-hover:bg-slate-500" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         ))}
       </div>
 
       {/* Process strip */}
       <div className="space-y-4">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">How I work</h2>
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">How I work</h2>
+          <p className="text-xs text-slate-400">4-step process</p>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <motion.div
@@ -116,11 +131,18 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.06, duration: 0.25, ease: "easeOut" }}
-              className="rounded-xl border border-slate-200 bg-white p-4 hover:shadow-md transition-all duration-200"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg transition-all duration-300"
             >
-              <div className="text-2xl font-bold text-slate-200 mb-1">{step.number}</div>
-              <h3 className="text-sm font-semibold text-slate-900">{step.label}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-slate-500">{step.description}</p>
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-slate-400 to-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative">
+                <div className="text-3xl font-bold bg-gradient-to-r from-slate-300 to-slate-200 bg-clip-text text-transparent mb-2 group-hover:from-blue-400 group-hover:to-blue-300 transition-all duration-300">
+                  {step.number}
+                </div>
+                <h3 className="text-sm font-semibold text-slate-900">{step.label}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">{step.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -128,14 +150,25 @@ export default function ServicesPage() {
 
       {/* CTA block */}
       <BlurFade delay={0.35}>
-        <div className="rounded-xl bg-slate-900 px-6 py-8 text-center space-y-4">
-          <h2 className="text-xl font-semibold text-white">Ready to talk scope?</h2>
-          <p className="text-sm text-slate-400 max-w-sm mx-auto">
-            I take on a small number of engagements at a time. Let's see if there's a fit.
-          </p>
-          <ShimmerButton href="/portfolio/contact">
-            Get in touch
-          </ShimmerButton>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-8 py-10 text-center space-y-5 shadow-lg hover:shadow-xl transition-all duration-300 group">
+          {/* Animated gradient overlay */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+               style={{
+                 background: 'radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.1), transparent)',
+               }}
+          />
+          
+          <div className="relative">
+            <h2 className="text-2xl font-semibold text-white">Ready to talk scope?</h2>
+            <p className="text-sm text-slate-400 max-w-md mx-auto mt-2">
+              I take on a small number of engagements at a time. Let's explore if there's a great fit for your project.
+            </p>
+            <div className="pt-3">
+              <ShimmerButton href="/portfolio/contact">
+                Get in touch
+              </ShimmerButton>
+            </div>
+          </div>
         </div>
       </BlurFade>
     </section>
