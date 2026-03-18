@@ -54,28 +54,19 @@ export function Navbar() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="transition-colors hover:text-slate-600"
+            className="group relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-50 transition-all duration-300 hover:bg-[#0A66C2] hover:shadow-md"
           >
             <svg
               aria-hidden="true"
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-slate-600"
-              fill="none"
+              className="h-5 w-5 transition-colors duration-300 group-hover:text-white"
+              fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" />
+              {/* LinkedIn official icon */}
               <path
-                d="M8.25 9.75V16.5"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <circle cx="8.25" cy="7.25" r="1.1" fill="white" />
-              <path
-                d="M11.5 16.5V9.75H13.75L13.9 10.9C14.2 10.35 14.9 9.75 16 9.75C17.55 9.75 18.5 10.75 18.5 12.6V16.5"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
+                className="fill-slate-700 group-hover:fill-white"
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
               />
             </svg>
           </a>
