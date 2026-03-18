@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+@theme {
+  /* Phase 1 homepage tokens */
+  --color-background: #ffffff;
+  --color-foreground: #2c2c2a;
+  --color-muted: #f3f2fb;
+  --color-muted-foreground: #5f5f66;
+  --color-border: #e5e4f2;
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% - var(--gap))); }

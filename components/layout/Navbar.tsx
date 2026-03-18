@@ -47,6 +47,26 @@ export function Navbar() {
         {/* Desktop CTA + Social */}
         <div className="hidden items-center gap-4 md:flex">
           <a
+            href="https://github.com/charanpaldeol"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            className="group relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-50 transition-all duration-300 hover:bg-[#0A66C2] hover:shadow-md"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-5 w-5 transition-colors duration-300 group-hover:text-white"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                className="fill-slate-700 group-hover:fill-white"
+                d="M12 .5C5.73.5.5 5.85.5 12.25c0 5.2 3.28 9.6 7.82 11.16.57.11.78-.25.78-.56v-2.05c-3.18.7-3.84-1.58-3.84-1.58-.52-1.33-1.27-1.68-1.27-1.68-1.04-.73.08-.72.08-.72 1.14.08 1.73 1.2 1.73 1.2 1.01 1.76 2.66 1.25 3.31.96.1-.76.39-1.25.7-1.54-2.54-.3-5.21-1.31-5.21-5.82 0-1.29.45-2.35 1.19-3.18-.12-.31-.52-1.58.11-3.29 0 0 .97-.32 3.18 1.21.92-.27 1.9-.41 2.88-.41.98 0 1.96.14 2.88.41 2.21-1.53 3.18-1.21 3.18-1.21.63 1.71.23 2.98.11 3.29.74.83 1.19 1.89 1.19 3.18 0 4.52-2.67 5.52-5.22 5.82.41.37.77 1.1.77 2.21v3.27c0 .31.21.67.79.56 4.54-1.56 7.82-5.96 7.82-11.16C23.5 5.85 18.27.5 12 .5Z"
+              />
+            </svg>
+          </a>
+          <a
             href="https://www.linkedin.com/in/cdeol"
             target="_blank"
             rel="noreferrer"
