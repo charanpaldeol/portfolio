@@ -1,3 +1,7 @@
+"use client"
+
+import { BorderBeam } from "@/registry/magicui/border-beam"
+
 export default function WhatIBring() {
   const cards = [
     {
@@ -31,7 +35,8 @@ export default function WhatIBring() {
       <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">What I bring</div>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
         {cards.map((card) => (
-          <div key={card.title} className="bg-background border border-border rounded-xl p-5">
+          <div key={card.title} className="relative bg-background border border-border rounded-xl p-5 overflow-hidden">
+            <BorderBeam size={250} duration={8} borderWidth={1.5} />
             <div
               className={[
                 "text-[10px] font-medium px-2 py-0.5 rounded-full inline-block mb-2",
