@@ -47,7 +47,11 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error("Resend error:", error)
-    return Response.json({ error: error.message }, { status: 500 })
+    const debug = `[from=${FROM_EMAIL}, envSet=${!!env.RESEND_FROM_EMAIL}]`
+    return Response.json(
+      { error: `${error.message} ${debug}` },
+      { status: 500 }
+    )
   }
 
   return Response.json({ id: data?.id })
