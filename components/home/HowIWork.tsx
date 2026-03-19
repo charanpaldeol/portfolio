@@ -1,96 +1,393 @@
+"use client"
+
+import { forwardRef, type ReactNode, useRef } from "react"
+import { twMerge } from "tailwind-merge"
+import { AnimatedBeam } from "@/registry/magicui/animated-beam"
+
+/* ── colour tokens per group ─────────────────────────────── */
+
+const palette = {
+  purple: {
+    border: "border-[#534AB7]/20",
+    bg: "bg-[#EEEDFE]",
+    text: "text-[#534AB7]",
+    start: "#c4b5fd",
+    stop: "#534AB7",
+  },
+  green: {
+    border: "border-[#085041]/20",
+    bg: "bg-[#E1F5EE]",
+    text: "text-[#085041]",
+    start: "#6ee7b7",
+    stop: "#085041",
+  },
+  amber: {
+    border: "border-[#854F0B]/20",
+    bg: "bg-[#FAEEDA]",
+    text: "text-[#854F0B]",
+    start: "#fcd34d",
+    stop: "#854F0B",
+  },
+} as const
+
+type ColorGroup = keyof typeof palette
+
+/* ── tiny SVG icon shell ─────────────────────────────────── */
+
+function Svg({ className, children }: { className?: string; children: ReactNode }) {
+  return (
+    <svg
+      className={twMerge("size-full", className)}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {children}
+    </svg>
+  )
+}
+
+/* ── icons (Lucide-style paths) ──────────────────────────── */
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.35-4.35" />
+    </Svg>
+  )
+}
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </Svg>
+  )
+}
+
+function PackageIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
+    </Svg>
+  )
+}
+
+function RefreshIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+      <path d="M3 3v5h5" />
+      <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+      <path d="M16 16h5v5" />
+    </Svg>
+  )
+}
+
+function TargetIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </Svg>
+  )
+}
+
+function UsersIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </Svg>
+  )
+}
+
+function LayersIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 17 12 22 22 17" />
+      <polyline points="2 12 12 17 22 12" />
+    </Svg>
+  )
+}
+
+function TerminalIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <polyline points="4 17 10 11 4 5" />
+      <line x1="12" x2="20" y1="19" y2="19" />
+    </Svg>
+  )
+}
+
+function UserIcon({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </Svg>
+  )
+}
+
+/* ── circle (beam endpoint) ──────────────────────────────── */
+
+const Circle = forwardRef<
+  HTMLDivElement,
+  { className?: string; children: ReactNode }
+>(({ className, children }, ref) => (
+  <div
+    ref={ref}
+    className={twMerge(
+      "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-white p-2.5 shadow-[0_0_20px_-8px_rgba(0,0,0,0.15)]",
+      className,
+    )}
+  >
+    {children}
+  </div>
+))
+Circle.displayName = "Circle"
+
+/* ── labelled node (circle + text below) ─────────────────── */
+
+const Node = forwardRef<
+  HTMLDivElement,
+  {
+    icon: ReactNode
+    label: string
+    sub?: string
+    group: ColorGroup
+  }
+>(({ icon, label, sub, group }, ref) => {
+  const c = palette[group]
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <Circle ref={ref} className={`${c.border} ${c.bg}`}>
+        <span className={c.text}>{icon}</span>
+      </Circle>
+      <span
+        className={twMerge(
+          "text-[11px] font-medium leading-tight text-center max-w-[100px]",
+          c.text,
+        )}
+      >
+        {label}
+      </span>
+      {sub && (
+        <span className="text-[9px] text-muted-foreground leading-tight text-center max-w-[90px]">
+          {sub}
+        </span>
+      )}
+    </div>
+  )
+})
+Node.displayName = "Node"
+
+/* ── main component ──────────────────────────────────────── */
+
 export default function HowIWork() {
-  const nodes = [
-    {
-      label: "Discover",
-      sub: "Pain points & opportunities",
-      colorClass: "text-[#534AB7]",
-    },
-    {
-      label: "Business case",
-      sub: "Build vs buy, ROI",
-      colorClass: "text-[#534AB7]",
-    },
-    {
-      label: "Deliver",
-      sub: "Build or implement",
-      colorClass: "text-[#085041]",
-    },
-    {
-      label: "Change mgmt",
-      sub: "Adoption & training",
-      colorClass: "text-[#633806]",
-    },
-    {
-      label: "Value realized",
-      sub: "Measured outcomes",
-      colorClass: "text-[#085041]",
-    },
+  const containerRef = useRef<HTMLDivElement>(null)
+  const centerRef = useRef<HTMLDivElement>(null)
+
+  const discoverRef = useRef<HTMLDivElement>(null)
+  const bizCaseRef = useRef<HTMLDivElement>(null)
+  const deliverRef = useRef<HTMLDivElement>(null)
+  const changeRef = useRef<HTMLDivElement>(null)
+
+  const valueRef = useRef<HTMLDivElement>(null)
+  const bizTeamsRef = useRef<HTMLDivElement>(null)
+  const archRef = useRef<HTMLDivElement>(null)
+  const devRef = useRef<HTMLDivElement>(null)
+
+  const leftNodes = [
+    { ref: discoverRef, icon: <SearchIcon />, label: "Discover", sub: "Pain points & opportunities", group: "purple" as const },
+    { ref: bizCaseRef, icon: <BriefcaseIcon />, label: "Business case", sub: "Build vs buy, ROI", group: "purple" as const },
+    { ref: deliverRef, icon: <PackageIcon />, label: "Deliver", sub: "Build or implement", group: "green" as const },
+    { ref: changeRef, icon: <RefreshIcon />, label: "Change mgmt", sub: "Adoption & training", group: "amber" as const },
   ]
+
+  const rightNodes = [
+    { ref: valueRef, icon: <TargetIcon />, label: "Value realized", sub: "Measured outcomes", group: "green" as const },
+    { ref: bizTeamsRef, icon: <UsersIcon />, label: "Business teams", group: "purple" as const },
+    { ref: archRef, icon: <LayersIcon />, label: "Architects & tech leads", group: "green" as const },
+    { ref: devRef, icon: <TerminalIcon />, label: "Dev & delivery teams", group: "green" as const },
+  ]
+
+  const curvatures = [70, 24, -24, -70]
+  const staggerLeft = [30, 6, -4, 24]
+  const staggerRight = [-30, -6, 4, -24]
 
   return (
     <section>
       <header>
-        <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">How I work</div>
-        <h2 className="mt-2 text-xl font-medium text-foreground">End-to-end, every time</h2>
+        <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+          How I work
+        </div>
+        <h2 className="mt-2 text-xl font-medium text-foreground">
+          End-to-end, every time
+        </h2>
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
-          I don't hand off when the interesting part is done. I cover the full arc — from first conversation to
-          realized value.
+          I don&apos;t hand off when the interesting part is done. I cover the full arc — from first
+          conversation to realized value.
         </p>
       </header>
 
-      {/* Arc diagram */}
-      <div className="mt-8 overflow-x-auto">
-        <div className="flex items-start min-w-max">
-          {nodes.map((node, idx) => (
-            <div key={node.label} className="flex items-start">
-              <div className="flex flex-col items-center">
-                <div
-                  className={[
-                    "w-12 h-12 rounded-full flex items-center justify-center text-[10px] font-medium text-center leading-tight border border-current/20",
-                    node.colorClass,
-                  ].join(" ")}
-                >
-                  {node.label}
-                </div>
-                <div className="text-[10px] text-muted-foreground text-center mt-1.5 leading-tight max-w-[72px]">
-                  {node.sub}
-                </div>
-              </div>
-              {idx < nodes.length - 1 ? (
-                <span className="text-muted-foreground text-sm pb-5 flex-shrink-0 mx-1" aria-hidden="true">
-                  →
-                </span>
-              ) : null}
+      <div
+        ref={containerRef}
+        className="relative mx-auto mt-10 hidden h-[420px] w-full max-w-[1344px] items-stretch justify-between md:flex"
+      >
+        {/* Left column — 4 nodes (staggered) */}
+        <div className="flex flex-col items-start justify-between py-4">
+          {leftNodes.map((n, i) => (
+            <div key={n.label} style={{ transform: `translateX(${staggerLeft[i]}px)` }}>
+              <Node
+                ref={n.ref}
+                icon={n.icon}
+                label={n.label}
+                sub={n.sub}
+                group={n.group}
+              />
             </div>
           ))}
         </div>
+
+        {/* Center — Me */}
+        <div className="flex items-center justify-center">
+          <Circle
+            ref={centerRef}
+            className="size-[72px] border-[#534AB7]/30 bg-[#EEEDFE] shadow-[0_0_30px_-6px_rgba(83,74,183,0.3)]"
+          >
+            <UserIcon className="text-[#534AB7]" />
+          </Circle>
+        </div>
+
+        {/* Right column — 4 nodes (staggered) */}
+        <div className="flex flex-col items-end justify-between py-4">
+          {rightNodes.map((n, i) => (
+            <div key={n.label} style={{ transform: `translateX(${staggerRight[i]}px)` }}>
+              <Node
+                ref={n.ref}
+                icon={n.icon}
+                label={n.label}
+                sub={n.sub}
+                group={n.group}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Beams: left → center (bidirectional) */}
+        {leftNodes.map((n, i) => {
+          const c = palette[n.group]
+          const durations = [4.5, 5.2, 4.8, 5.6] as const
+          const delays = [0, 0.6, 0.3, 0.9] as const
+          const dur = durations[i as 0 | 1 | 2 | 3]
+          const del = delays[i as 0 | 1 | 2 | 3]
+          return (
+            <span key={`left-${n.label}`}>
+              <AnimatedBeam
+                containerRef={containerRef}
+                fromRef={n.ref}
+                toRef={centerRef}
+                curvature={curvatures[i]}
+                gradientStartColor={c.start}
+                gradientStopColor={c.stop}
+                pathOpacity={0.15}
+                duration={dur}
+                delay={del}
+              />
+              <AnimatedBeam
+                containerRef={containerRef}
+                fromRef={n.ref}
+                toRef={centerRef}
+                curvature={curvatures[i]}
+                gradientStartColor={c.start}
+                gradientStopColor={c.stop}
+                pathOpacity={0.15}
+                duration={dur}
+                delay={del + 2.2}
+                reverse
+              />
+            </span>
+          )
+        })}
+
+        {/* Beams: center → right (bidirectional) */}
+        {rightNodes.map((n, i) => {
+          const c = palette[n.group]
+          const durations = [5.0, 4.6, 5.4, 4.9] as const
+          const delays = [0.4, 1.0, 0.7, 1.3] as const
+          const dur = durations[i as 0 | 1 | 2 | 3]
+          const del = delays[i as 0 | 1 | 2 | 3]
+          return (
+            <span key={`right-${n.label}`}>
+              <AnimatedBeam
+                containerRef={containerRef}
+                fromRef={centerRef}
+                toRef={n.ref}
+                curvature={curvatures[i]}
+                gradientStartColor={c.start}
+                gradientStopColor={c.stop}
+                pathOpacity={0.15}
+                duration={dur}
+                delay={del}
+              />
+              <AnimatedBeam
+                containerRef={containerRef}
+                fromRef={centerRef}
+                toRef={n.ref}
+                curvature={curvatures[i]}
+                gradientStartColor={c.start}
+                gradientStopColor={c.stop}
+                pathOpacity={0.15}
+                duration={dur}
+                delay={del + 2.5}
+                reverse
+              />
+            </span>
+          )
+        })}
       </div>
 
-      {/* Stakeholder cards */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div className="border border-border rounded-lg p-4">
-          <h3 className="text-sm font-medium text-foreground mb-1">Business teams</h3>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Translate pain into requirements — workshops, process mapping, making sure the solution solves the right
-            problem.
-          </p>
-        </div>
-        <div className="border border-border rounded-lg p-4">
-          <h3 className="text-sm font-medium text-foreground mb-1">Architects & tech leads</h3>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Solution design, technical tradeoffs, and bridging what's technically possible with what the business
-            actually needs.
-          </p>
-        </div>
-        <div className="border border-border rounded-lg p-4">
-          <h3 className="text-sm font-medium text-foreground mb-1">Dev & delivery teams</h3>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Lead delivery — clearing blockers, keeping scope honest, connecting daily work back to the business
-            outcome.
-          </p>
-        </div>
+      {/* Mobile fallback — simple two-column grid */}
+      <div className="mt-8 grid grid-cols-2 gap-4 md:hidden">
+        {[...leftNodes, ...rightNodes].map((n) => {
+          const c = palette[n.group]
+          return (
+            <div key={n.label} className="flex items-start gap-3">
+              <div
+                className={twMerge(
+                  "flex size-10 shrink-0 items-center justify-center rounded-full border-2 p-2",
+                  c.border,
+                  c.bg,
+                )}
+              >
+                <span className={c.text}>{n.icon}</span>
+              </div>
+              <div className="min-w-0">
+                <span className={twMerge("text-xs font-medium", c.text)}>
+                  {n.label}
+                </span>
+                {n.sub && (
+                  <span className="block text-[10px] text-muted-foreground leading-tight">
+                    {n.sub}
+                  </span>
+                )}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </section>
   )
 }
-

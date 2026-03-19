@@ -1,6 +1,5 @@
 import Link from "next/link"
-
-import { RainbowButton } from "@/registry/magicui/rainbow-button"
+import { TypingAnimation } from "@/registry/magicui/typing-animation"
 
 export default function Hero() {
   return (
@@ -17,7 +16,13 @@ export default function Hero() {
       </div>
 
       {/* Name */}
-      <h1 className="mt-3 text-4xl font-medium text-foreground">Hi, I'm Charan Deol</h1>
+      <TypingAnimation
+        as="h1"
+        className="mt-3 text-4xl font-medium text-foreground"
+        duration={80}
+      >
+        Hi, I&apos;m Charan Deol
+      </TypingAnimation>
 
       {/* Headline */}
       <div className="mt-4 text-xl font-medium text-foreground max-w-xl leading-snug">
@@ -44,7 +49,6 @@ export default function Hero() {
         >
           See my work →
         </Link>
-        <RainbowButton href="/contact">Let's talk →</RainbowButton>
       </div>
 
       {/* Industry pills */}

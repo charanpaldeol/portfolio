@@ -3,9 +3,23 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { ShimmerButton } from '../magicui/shimmer-button'
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '../ui/navigation-menu'
+import { RainbowButton } from '@/registry/magicui/rainbow-button'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
+
+const portfolioLinks = [
+  { href: '/portfolio/about', label: 'About' },
+  { href: '/portfolio/services', label: 'Services' },
+  { href: '/portfolio/projects', label: 'Projects' },
+  { href: '/portfolio/experience', label: 'Experience' },
+]
 
 export function Navbar() {
   const pathname = usePathname()
@@ -37,7 +51,27 @@ export function Navbar() {
                 <NavigationMenuLink href="/" exact>Home</NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink href="/portfolio/about">Portfolio</NavigationMenuLink>
+                <NavigationMenuTrigger
+                  className={
+                    isPortfolioRoute ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
+                  }
+                >
+                  Portfolio
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="w-44 p-2">
+                    {portfolioLinks.map((link) => (
+                      <li key={link.href}>
+                        <NavigationMenuLink
+                          href={link.href}
+                          className="block rounded-md px-3 py-2 text-sm"
+                        >
+                          {link.label}
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
@@ -89,9 +123,7 @@ export function Navbar() {
               />
             </svg>
           </a>
-          <ShimmerButton href="/contact" className="rounded-full px-5 py-2 text-sm font-medium">
-            Let&apos;s talk
-          </ShimmerButton>
+          <RainbowButton href="/contact">Let&apos;s talk</RainbowButton>
         </div>
 
         {/* Mobile menu */}
@@ -123,14 +155,19 @@ export function Navbar() {
                     Home
                   </Link>
                 </SheetClose>
-                <SheetClose asChild>
-                  <Link
-                    href="/portfolio/about"
-                    className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
-                  >
-                    Portfolio
-                  </Link>
-                </SheetClose>
+                <p className="px-2 pt-1 text-xs font-semibold uppercase tracking-widest text-slate-400">
+                  Portfolio
+                </p>
+                {portfolioLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <Link
+                      href={link.href}
+                      className="rounded-md px-4 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
                 <SheetClose asChild>
                   <Link
                     href="/blog"
