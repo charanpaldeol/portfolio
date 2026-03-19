@@ -8,24 +8,36 @@ import { ShimmerButton } from "components/magicui/shimmer-button"
 
 export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setSubmitting(true)
+    setError(null)
 
     const formData = new FormData(event.currentTarget)
     const name = formData.get("name")?.toString() ?? ""
     const email = formData.get("email")?.toString() ?? ""
     const message = formData.get("message")?.toString() ?? ""
 
-    const subject = encodeURIComponent(`Contact from cpdeol.com – ${name || "New inquiry"}`)
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
+    })
 
-    window.location.href = `mailto:hello@cpdeol.com?subject=${subject}&body=${body}`
+    const data = (await res.json().catch(() => ({}))) as { error?: string }
 
-    setTimeout(() => {
+    if (!res.ok) {
+      setError(data.error ?? "Something went wrong. Please try again.")
       setSubmitting(false)
-    }, 800)
+      return
+    }
+
+    setSuccess(true)
+    setSubmitting(false)
+    ;(event.target as HTMLFormElement).reset()
   }
 
   return (
@@ -110,6 +122,16 @@ export default function ContactPage() {
                 />
               </div>
 
+              {error && (
+                <p className="text-sm text-red-600" role="alert">
+                  {error}
+                </p>
+              )}
+              {success && (
+                <p className="text-sm text-green-600" role="status">
+                  Message sent! I&apos;ll get back to you soon.
+                </p>
+              )}
               <div className="pt-2">
                 <ShimmerButton
                   as="button"
@@ -117,7 +139,7 @@ export default function ContactPage() {
                   className="w-full justify-center rounded-xl px-4 py-2.5 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-60"
                   aria-disabled={submitting}
                 >
-                  {submitting ? "Preparing email…" : "Send message"}
+                  {submitting ? "Sending…" : "Send message"}
                 </ShimmerButton>
               </div>
             </form>
