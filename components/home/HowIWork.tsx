@@ -1,36 +1,8 @@
 "use client"
 
-import { forwardRef, type ReactNode, useRef } from "react"
+import React, { forwardRef, type ReactNode, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 import { AnimatedBeam } from "@/registry/magicui/animated-beam"
-
-/* ── colour tokens per group ─────────────────────────────── */
-
-const palette = {
-  purple: {
-    border: "border-[#534AB7]/20",
-    bg: "bg-[#EEEDFE]",
-    text: "text-[#534AB7]",
-    start: "#c4b5fd",
-    stop: "#534AB7",
-  },
-  green: {
-    border: "border-[#085041]/20",
-    bg: "bg-[#E1F5EE]",
-    text: "text-[#085041]",
-    start: "#6ee7b7",
-    stop: "#085041",
-  },
-  amber: {
-    border: "border-[#854F0B]/20",
-    bg: "bg-[#FAEEDA]",
-    text: "text-[#854F0B]",
-    start: "#fcd34d",
-    stop: "#854F0B",
-  },
-} as const
-
-type ColorGroup = keyof typeof palette
 
 /* ── tiny SVG icon shell ─────────────────────────────────── */
 
@@ -149,7 +121,7 @@ const Circle = forwardRef<
   <div
     ref={ref}
     className={twMerge(
-      "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-white p-2.5 shadow-[0_0_20px_-8px_rgba(0,0,0,0.15)]",
+      "relative z-20 flex size-13 items-center justify-center rounded-full border-2 border-border bg-background p-3 shadow-sm",
       className,
     )}
   >
@@ -166,25 +138,18 @@ const Node = forwardRef<
     icon: ReactNode
     label: string
     sub?: string
-    group: ColorGroup
   }
->(({ icon, label, sub, group }, ref) => {
-  const c = palette[group]
+>(({ icon, label, sub }, ref) => {
   return (
-    <div className="flex flex-col items-center gap-1">
-      <Circle ref={ref} className={`${c.border} ${c.bg}`}>
-        <span className={c.text}>{icon}</span>
+    <div className="flex w-28 flex-col items-center gap-1">
+      <Circle ref={ref}>
+        <span className="text-muted-foreground">{icon}</span>
       </Circle>
-      <span
-        className={twMerge(
-          "text-[11px] font-medium leading-tight text-center max-w-[100px]",
-          c.text,
-        )}
-      >
+      <span className="text-xs font-medium leading-tight text-center max-w-28 text-foreground">
         {label}
       </span>
       {sub && (
-        <span className="text-[9px] text-muted-foreground leading-tight text-center max-w-[90px]">
+        <span className="text-[10px] text-muted-foreground leading-tight text-center max-w-24">
           {sub}
         </span>
       )}
@@ -210,22 +175,19 @@ export default function HowIWork() {
   const devRef = useRef<HTMLDivElement>(null)
 
   const leftNodes = [
-    { ref: discoverRef, icon: <SearchIcon />, label: "Discover", sub: "Pain points & opportunities", group: "purple" as const },
-    { ref: bizCaseRef, icon: <BriefcaseIcon />, label: "Business case", sub: "Build vs buy, ROI", group: "purple" as const },
-    { ref: deliverRef, icon: <PackageIcon />, label: "Deliver", sub: "Build or implement", group: "green" as const },
-    { ref: changeRef, icon: <RefreshIcon />, label: "Change mgmt", sub: "Adoption & training", group: "amber" as const },
+    { ref: discoverRef, icon: <SearchIcon />, label: "Discover" },
+    { ref: bizCaseRef, icon: <BriefcaseIcon />, label: "Business case" },
+    { ref: deliverRef, icon: <PackageIcon />, label: "Deliver" },
+    { ref: changeRef, icon: <RefreshIcon />, label: "Change mgmt" },
   ]
 
   const rightNodes = [
-    { ref: valueRef, icon: <TargetIcon />, label: "Value realized", sub: "Measured outcomes", group: "green" as const },
-    { ref: bizTeamsRef, icon: <UsersIcon />, label: "Business teams", group: "purple" as const },
-    { ref: archRef, icon: <LayersIcon />, label: "Architects & tech leads", group: "green" as const },
-    { ref: devRef, icon: <TerminalIcon />, label: "Dev & delivery teams", group: "green" as const },
+    { ref: valueRef, icon: <TargetIcon />, label: "Value realized" },
+    { ref: bizTeamsRef, icon: <UsersIcon />, label: "Business teams" },
+    { ref: archRef, icon: <LayersIcon />, label: "Architects & tech leads" },
+    { ref: devRef, icon: <TerminalIcon />, label: "Dev & delivery teams" },
   ]
 
-  const curvatures = [70, 24, -24, -70]
-  const staggerLeft = [30, 6, -4, 24]
-  const staggerRight = [-30, -6, 4, -24]
 
   return (
     <section>
@@ -244,20 +206,18 @@ export default function HowIWork() {
 
       <div
         ref={containerRef}
-        className="relative mx-auto mt-10 hidden h-[420px] w-full max-w-[1344px] items-stretch justify-between md:flex"
+        className="relative mt-8 hidden h-[420px] w-full items-stretch justify-between md:flex"
+        aria-hidden="true"
       >
-        {/* Left column — 4 nodes (staggered) */}
-        <div className="flex flex-col items-start justify-between py-4">
-          {leftNodes.map((n, i) => (
-            <div key={n.label} style={{ transform: `translateX(${staggerLeft[i]}px)` }}>
-              <Node
-                ref={n.ref}
-                icon={n.icon}
-                label={n.label}
-                sub={n.sub}
-                group={n.group}
-              />
-            </div>
+        {/* Left column — 4 nodes */}
+        <div className="flex flex-col items-center justify-between py-4">
+          {leftNodes.map((n) => (
+            <Node
+              key={n.label}
+              ref={n.ref}
+              icon={n.icon}
+              label={n.label}
+            />
           ))}
         </div>
 
@@ -265,128 +225,94 @@ export default function HowIWork() {
         <div className="flex items-center justify-center">
           <Circle
             ref={centerRef}
-            className="size-[72px] border-[#534AB7]/30 bg-[#EEEDFE] shadow-[0_0_30px_-6px_rgba(83,74,183,0.3)]"
+            className="size-18"
           >
-            <UserIcon className="text-[#534AB7]" />
+            <UserIcon className="text-muted-foreground" />
           </Circle>
         </div>
 
-        {/* Right column — 4 nodes (staggered) */}
-        <div className="flex flex-col items-end justify-between py-4">
-          {rightNodes.map((n, i) => (
-            <div key={n.label} style={{ transform: `translateX(${staggerRight[i]}px)` }}>
-              <Node
-                ref={n.ref}
-                icon={n.icon}
-                label={n.label}
-                sub={n.sub}
-                group={n.group}
-              />
-            </div>
+        {/* Right column — 4 nodes */}
+        <div className="flex flex-col items-center justify-between py-4">
+          {rightNodes.map((n) => (
+            <Node
+              key={n.label}
+              ref={n.ref}
+              icon={n.icon}
+              label={n.label}
+            />
           ))}
         </div>
 
-        {/* Beams: left → center (bidirectional) */}
-        {leftNodes.map((n, i) => {
-          const c = palette[n.group]
-          const durations = [4.5, 5.2, 4.8, 5.6] as const
-          const delays = [0, 0.6, 0.3, 0.9] as const
-          const dur = durations[i as 0 | 1 | 2 | 3]
-          const del = delays[i as 0 | 1 | 2 | 3]
-          return (
-            <span key={`left-${n.label}`}>
-              <AnimatedBeam
-                containerRef={containerRef}
-                fromRef={n.ref}
-                toRef={centerRef}
-                curvature={curvatures[i]}
-                gradientStartColor={c.start}
-                gradientStopColor={c.stop}
-                pathOpacity={0.15}
-                duration={dur}
-                delay={del}
-              />
-              <AnimatedBeam
-                containerRef={containerRef}
-                fromRef={n.ref}
-                toRef={centerRef}
-                curvature={curvatures[i]}
-                gradientStartColor={c.start}
-                gradientStopColor={c.stop}
-                pathOpacity={0.15}
-                duration={dur}
-                delay={del + 2.2}
-                reverse
-              />
-            </span>
-          )
-        })}
+        {/* Beams — absolutely positioned so they don't participate in flex layout */}
+        <div className="absolute inset-0">
+          {leftNodes.map((n, i) => {
+            const durations = [4.5, 5.2, 4.8, 5.6] as const
+            const delays = [0, 0.6, 0.3, 0.9] as const
+            const dur = durations[i as 0 | 1 | 2 | 3]
+            const del = delays[i as 0 | 1 | 2 | 3]
+            return (
+              <React.Fragment key={`left-${n.label}`}>
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={n.ref}
+                  toRef={centerRef}
+                  duration={dur}
+                  delay={del}
+                />
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={n.ref}
+                  toRef={centerRef}
+                  duration={dur}
+                  delay={del + 2.2}
+                  reverse
+                />
+              </React.Fragment>
+            )
+          })}
 
-        {/* Beams: center → right (bidirectional) */}
-        {rightNodes.map((n, i) => {
-          const c = palette[n.group]
-          const durations = [5.0, 4.6, 5.4, 4.9] as const
-          const delays = [0.4, 1.0, 0.7, 1.3] as const
-          const dur = durations[i as 0 | 1 | 2 | 3]
-          const del = delays[i as 0 | 1 | 2 | 3]
-          return (
-            <span key={`right-${n.label}`}>
-              <AnimatedBeam
-                containerRef={containerRef}
-                fromRef={centerRef}
-                toRef={n.ref}
-                curvature={curvatures[i]}
-                gradientStartColor={c.start}
-                gradientStopColor={c.stop}
-                pathOpacity={0.15}
-                duration={dur}
-                delay={del}
-              />
-              <AnimatedBeam
-                containerRef={containerRef}
-                fromRef={centerRef}
-                toRef={n.ref}
-                curvature={curvatures[i]}
-                gradientStartColor={c.start}
-                gradientStopColor={c.stop}
-                pathOpacity={0.15}
-                duration={dur}
-                delay={del + 2.5}
-                reverse
-              />
-            </span>
-          )
-        })}
+          {rightNodes.map((n, i) => {
+            const durations = [5.0, 4.6, 5.4, 4.9] as const
+            const delays = [0.4, 1.0, 0.7, 1.3] as const
+            const dur = durations[i as 0 | 1 | 2 | 3]
+            const del = delays[i as 0 | 1 | 2 | 3]
+            return (
+              <React.Fragment key={`right-${n.label}`}>
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={n.ref}
+                  toRef={centerRef}
+                  duration={dur}
+                  delay={del}
+                  reverse
+                />
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={n.ref}
+                  toRef={centerRef}
+                  duration={dur}
+                  delay={del + 2.5}
+                />
+              </React.Fragment>
+            )
+          })}
+        </div>
       </div>
 
       {/* Mobile fallback — simple two-column grid */}
       <div className="mt-8 grid grid-cols-2 gap-4 md:hidden">
-        {[...leftNodes, ...rightNodes].map((n) => {
-          const c = palette[n.group]
-          return (
-            <div key={n.label} className="flex items-start gap-3">
-              <div
-                className={twMerge(
-                  "flex size-10 shrink-0 items-center justify-center rounded-full border-2 p-2",
-                  c.border,
-                  c.bg,
-                )}
-              >
-                <span className={c.text}>{n.icon}</span>
-              </div>
-              <div className="min-w-0">
-                <span className={twMerge("text-xs font-medium", c.text)}>
-                  {n.label}
-                </span>
-                {n.sub && (
-                  <span className="block text-[10px] text-muted-foreground leading-tight">
-                    {n.sub}
-                  </span>
-                )}
-              </div>
+        {[...leftNodes, ...rightNodes].map((n) => (
+          <div key={n.label} className="flex items-center gap-3">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-border bg-background p-2">
+              <span className="text-muted-foreground">{n.icon}</span>
             </div>
-          )
-        })}
+            <div className="min-w-0">
+              <span className="text-xs font-medium text-foreground">
+                {n.label}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )
