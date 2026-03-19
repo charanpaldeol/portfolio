@@ -2,6 +2,7 @@ import "styles/tailwind.css"
 
 import { Inter } from "next/font/google"
 
+import { Footer } from "components/layout/Footer"
 import GlobalChrome from "components/layout/GlobalChrome"
 import PortfolioShell from "components/layout/PortfolioShell"
 
@@ -20,9 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body
+        className={`${inter.className} flex min-h-screen flex-col bg-background text-foreground`}
+      >
         <GlobalChrome />
         <PortfolioShell>{children}</PortfolioShell>
+        <Footer />
       </body>
     </html>
   )

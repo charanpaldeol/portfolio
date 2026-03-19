@@ -21,7 +21,7 @@ export default function PortfolioShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl flex-col gap-4 px-4 py-6 md:px-6 md:py-8">
+    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 px-4 py-6 md:px-6 md:py-8">
       <nav className="w-full border-b border-slate-200 bg-white/80 text-sm">
         <div className="mx-auto flex max-w-6xl items-center overflow-x-auto px-1 py-2 md:px-0">
           <span className="hidden pr-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 md:inline">

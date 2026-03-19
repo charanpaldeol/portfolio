@@ -12,8 +12,9 @@ Single layout stack for every route (same shell as the former /portfolio/* pages
 
   ┌─────────────────────────────────────────────────────┐
   │  app/layout.tsx — RootLayout                        │
-  │  components/layout/GlobalChrome.tsx → Navbar+Footer │
+  │  components/layout/GlobalChrome.tsx → Navbar only   │
   │  components/layout/PortfolioShell.tsx               │
+  │  components/layout/Footer.tsx (after main content)  │
   │    → sub-nav pills (Home, About, Services, …)       │
   │    → white card wrapper                             │
   │  {children} — page content                         │
