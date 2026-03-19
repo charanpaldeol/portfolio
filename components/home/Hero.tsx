@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+import { RainbowButton } from "@/registry/magicui/rainbow-button"
+
 export default function Hero() {
   return (
     <section className="max-w-2xl pt-8">
@@ -42,9 +44,7 @@ export default function Hero() {
         >
           See my work →
         </Link>
-        <Link href="/contact" className="text-sm text-muted-foreground">
-          Let's talk →
-        </Link>
+        <RainbowButton href="/contact">Let's talk →</RainbowButton>
       </div>
 
       {/* Industry pills */}

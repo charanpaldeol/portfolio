@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { ShimmerButton } from '../magicui/shimmer-button'
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink } from '../ui/navigation-menu'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 
 export function Navbar() {
@@ -32,15 +32,17 @@ export function Navbar() {
         {/* Desktop navigation */}
         <div className="hidden flex-1 items-center justify-center md:flex">
           <NavigationMenu>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/">Home</NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/portfolio/about">Portfolio</NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
-            </NavigationMenuItem>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/" exact>Home</NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/portfolio/about">Portfolio</NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
           </NavigationMenu>
         </div>
 

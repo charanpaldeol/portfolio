@@ -1,0 +1,26 @@
+@keyframes rainbowSpin {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rainbowButton {
+  background: linear-gradient(
+    90deg,
+    hsl(0, 100%, 63%),
+    hsl(35, 100%, 63%),
+    hsl(60, 100%, 55%),
+    hsl(130, 100%, 53%),
+    hsl(200, 100%, 60%),
+    hsl(265, 100%, 65%),
+    hsl(0, 100%, 63%)
+  );
+  background-size: 300% 300%;
+  animation: rainbowSpin 4s linear infinite;
+}
