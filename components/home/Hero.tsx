@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Highlighter } from "@/registry/magicui/highlighter"
 import { TypingAnimation } from "@/registry/magicui/typing-animation"
 
 export default function Hero() {
@@ -26,7 +27,15 @@ export default function Hero() {
 
       {/* Headline */}
       <div className="mt-4 text-xl font-medium text-foreground max-w-xl leading-snug">
-        I turn complex problems into clear decisions and delivered solutions.
+        I turn complex problems into{" "}
+        <Highlighter action="underline" color="#FF9800">
+          clear decisions
+        </Highlighter>{" "}
+        and{" "}
+        <Highlighter action="highlight" color="#87CEFA">
+          delivered solutions
+        </Highlighter>
+        .
       </div>
 
       {/* Subtext */}
