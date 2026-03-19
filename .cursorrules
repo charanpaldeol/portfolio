@@ -8,33 +8,22 @@
 
 ## ARCHITECTURE — read this first
 
-This site has a deliberate TWO-ZONE layout system.
-Do not merge these zones. Do not move components between them.
+Single layout stack for every route (same shell as the former /portfolio/* pages).
 
-  ZONE A — Homepage ("/") — self-contained
   ┌─────────────────────────────────────────────────────┐
-  │  components/home/Navbar.tsx    ← homepage nav only  │
-  │  app/page.tsx                  ← homepage page      │
-  │  components/home/*.tsx         ← all page sections  │
-  │  components/home/Footer.tsx    ← homepage footer    │
+  │  app/layout.tsx — RootLayout                        │
+  │  components/layout/GlobalChrome.tsx → Navbar+Footer │
+  │  components/layout/PortfolioShell.tsx               │
+  │    → sub-nav pills (Home, About, Services, …)       │
+  │    → white card wrapper                             │
+  │  {children} — page content                         │
   └─────────────────────────────────────────────────────┘
-  GlobalChrome returns null on "/" so homepage is fully self-contained.
-  The homepage renders its OWN Navbar and Footer. This is intentional.
 
-  ZONE B — All other routes (/blog, /portfolio/*, /contact, etc.)
-  ┌─────────────────────────────────────────────────────┐
-  │  components/layout/Navbar.tsx   ← shared nav        │
-  │  components/layout/Footer.tsx   ← shared footer     │
-  │  components/layout/GlobalChrome.tsx  ← the wrapper  │
-  └─────────────────────────────────────────────────────┘
-  GlobalChrome injects layout/Navbar + layout/Footer on all non-"/" routes.
-  app/layout.tsx mounts GlobalChrome — it has ONE export default (RootLayout).
+  Top nav / footer:   components/layout/Navbar.tsx, Footer.tsx
+  Sub-nav + card:     components/layout/PortfolioShell.tsx
+  Homepage sections:  components/home/*.tsx (no Navbar/Footer there)
 
-  WHICH NAVBAR TO EDIT:
-  → Changing homepage nav?      edit components/home/Navbar.tsx
-  → Changing all-routes nav?    edit components/layout/Navbar.tsx
-  → Never touch both unless the prompt explicitly says to.
-  Same rule applies to Footer.
+  Legacy (unused on render): components/home/Navbar.tsx, Footer.tsx
 
 
 ## 1. FROZEN FILES
@@ -45,10 +34,11 @@ If a required change touches a frozen file, STOP and ask the user.
   Layout (frozen):
   - app/layout.tsx                         ← ONE export default only (RootLayout)
   - components/layout/GlobalChrome.tsx
+  - components/layout/PortfolioShell.tsx
   - components/layout/Navbar.tsx
   - components/layout/Footer.tsx
 
-  Homepage chrome (frozen):
+  Legacy homepage chrome (avoid unless migrating away):
   - components/home/Navbar.tsx
   - components/home/Footer.tsx
 
@@ -123,7 +113,7 @@ If a required change touches a frozen file, STOP and ask the user.
 
   - [ ] pnpm build passes, zero TypeScript errors
   - [ ] pnpm lint passes
-  - [ ] app/layout.tsx has exactly ONE export default (RootLayout)
+  - [ ] app/layout.tsx has exactly ONE export default (RootLayout); PortfolioShell wraps page content
   - [ ] No hardcoded hex colors introduced
   - [ ] No frozen files modified (unless explicitly permitted in prompt)
   - [ ] Only files named in the prompt were changed

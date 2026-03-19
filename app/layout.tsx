@@ -3,6 +3,7 @@ import "styles/tailwind.css"
 import { Inter } from "next/font/google"
 
 import GlobalChrome from "components/layout/GlobalChrome"
+import PortfolioShell from "components/layout/PortfolioShell"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,13 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-background text-foreground`}>
-        {/*
-         * GlobalChrome renders null on "/" — the homepage manages
-         * its own Navbar + Footer via components/home/*.
-         * All other routes get layout/Navbar + layout/Footer here.
-         */}
         <GlobalChrome />
-        <div className="min-h-[calc(100vh-5rem)]">{children}</div>
+        <PortfolioShell>{children}</PortfolioShell>
       </body>
     </html>
   )

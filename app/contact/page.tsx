@@ -29,8 +29,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-slate-50 px-4 py-10">
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 rounded-2xl bg-white/90 p-6 shadow-sm ring-1 ring-slate-100 backdrop-blur md:p-10 lg:flex-row lg:items-start lg:gap-16">
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
         <div className="flex-1">
           <AnimatedGradientText className="mb-3">
             Contact
@@ -125,7 +124,6 @@ export default function ContactPage() {
           </BlurFade>
         </div>
       </div>
-    </main>
   )
 }
 

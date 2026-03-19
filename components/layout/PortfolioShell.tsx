@@ -5,26 +5,27 @@ import { usePathname } from "next/navigation"
 import type { ReactNode } from "react"
 
 const sections = [
-  { href: "/portfolio/about", label: "About", value: "about", icon: "👤" },
-  { href: "/portfolio/services", label: "Services", value: "services", icon: "🛠️" },
-  { href: "/portfolio/projects", label: "Projects", value: "projects", icon: "📁" },
-  { href: "/portfolio/experience", label: "Experience", value: "experience", icon: "📈" },
+  { href: "/", label: "Home", icon: "🏠" },
+  { href: "/portfolio/about", label: "About", icon: "👤" },
+  { href: "/portfolio/services", label: "Services", icon: "🛠️" },
+  { href: "/portfolio/projects", label: "Projects", icon: "📁" },
+  { href: "/portfolio/experience", label: "Experience", icon: "📈" },
 ] as const
 
-export default function PortfolioLayout({ children }: { children: ReactNode }) {
+export default function PortfolioShell({ children }: { children: ReactNode }) {
   const pathname = usePathname()
 
   const isActive = (href: string) => {
+    if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
   }
 
   return (
     <main className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl flex-col gap-4 px-4 py-6 md:px-6 md:py-8">
-      {/* Horizontal sub navigation under main navbar */}
       <nav className="w-full border-b border-slate-200 bg-white/80 text-sm">
         <div className="mx-auto flex max-w-6xl items-center overflow-x-auto px-1 py-2 md:px-0">
           <span className="hidden pr-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 md:inline">
-            Portfolio
+            Site
           </span>
           <div className="flex gap-1 text-xs font-medium text-slate-600 md:text-sm">
             {sections.map((item) => (
