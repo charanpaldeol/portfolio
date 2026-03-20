@@ -2,17 +2,34 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { RainbowButton } from '@/registry/magicui/rainbow-button'
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '../ui/navigation-menu'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
+import { NavigationMenuLink, navigationMenuTriggerStyle } from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
+
+const triggerChevron = (
+  <svg
+    aria-hidden="true"
+    className="relative top-px ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+)
 
 const portfolioLinks = [
   { href: '/portfolio/about', label: 'About' },
@@ -21,9 +38,97 @@ const portfolioLinks = [
   { href: '/portfolio/experience', label: 'Experience' },
 ]
 
+const toolsLinks = [{ href: '/eye-break', label: 'Eye Break Timer' }]
+
+const HOVER_CLOSE_MS = 150
+
+type NavDropdownLink = { href: string; label: string }
+
+function HoverNavDropdown({
+  label,
+  links,
+  sectionActive,
+}: {
+  label: string
+  links: NavDropdownLink[]
+  sectionActive: boolean
+}) {
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const cancelScheduledClose = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }, [])
+
+  const scheduleClose = useCallback(() => {
+    cancelScheduledClose()
+    closeTimerRef.current = setTimeout(() => setOpen(false), HOVER_CLOSE_MS)
+  }, [cancelScheduledClose])
+
+  const handlePointerEnterOpen = useCallback(() => {
+    cancelScheduledClose()
+    setOpen(true)
+  }, [cancelScheduledClose])
+
+  useEffect(() => () => cancelScheduledClose(), [cancelScheduledClose])
+
+  return (
+    <DropdownMenu
+      open={open}
+      onOpenChange={(next) => {
+        if (next) cancelScheduledClose()
+        setOpen(next)
+      }}
+      modal={false}
+    >
+      <DropdownMenuTrigger
+        className={twMerge(
+          navigationMenuTriggerStyle(),
+          'group',
+          sectionActive ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
+        )}
+        onPointerEnter={handlePointerEnterOpen}
+        onPointerLeave={scheduleClose}
+      >
+        {label}
+        {triggerChevron}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="start"
+        className="w-44 p-2"
+        onPointerEnter={handlePointerEnterOpen}
+        onPointerLeave={scheduleClose}
+        onCloseAutoFocus={(e) => e.preventDefault()}
+      >
+        {links.map((link) => {
+          const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
+          return (
+            <DropdownMenuItem key={link.href} asChild className="p-0 focus:bg-transparent">
+              <Link
+                href={link.href}
+                className={twMerge(
+                  'block w-full rounded-md px-3 py-2 text-sm',
+                  isActive ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
+                )}
+              >
+                {link.label}
+              </Link>
+            </DropdownMenuItem>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
 export function Navbar() {
   const pathname = usePathname()
   const isPortfolioRoute = pathname.startsWith('/portfolio')
+  const isToolsRoute = pathname.startsWith('/eye-break')
 
   return (
     <header
@@ -45,39 +150,20 @@ export function Navbar() {
 
         {/* Desktop navigation */}
         <div className="hidden flex-1 items-center justify-center md:flex">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink href="/" exact>Home</NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  className={
-                    isPortfolioRoute ? 'font-semibold text-slate-950' : 'text-slate-600 hover:text-slate-900'
-                  }
-                >
-                  Portfolio
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="w-44 p-2">
-                    {portfolioLinks.map((link) => (
-                      <li key={link.href}>
-                        <NavigationMenuLink
-                          href={link.href}
-                          className="block rounded-md px-3 py-2 text-sm"
-                        >
-                          {link.label}
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <ul className="flex list-none items-center justify-center gap-1">
+            <li>
+              <NavigationMenuLink href="/" exact>Home</NavigationMenuLink>
+            </li>
+            <li>
+              <HoverNavDropdown label="Portfolio" links={portfolioLinks} sectionActive={isPortfolioRoute} />
+            </li>
+            <li>
+              <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
+            </li>
+            <li>
+              <HoverNavDropdown label="Tools" links={toolsLinks} sectionActive={isToolsRoute} />
+            </li>
+          </ul>
         </div>
 
         {/* Desktop CTA + Social */}
@@ -176,6 +262,19 @@ export function Navbar() {
                     Blog
                   </Link>
                 </SheetClose>
+                <p className="px-2 pt-1 text-xs font-semibold uppercase tracking-widest text-slate-400">
+                  Tools
+                </p>
+                {toolsLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <Link
+                      href={link.href}
+                      className="rounded-md px-4 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
                 <SheetClose asChild>
                   <Link
                     href="/contact"

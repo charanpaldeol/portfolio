@@ -1,5 +1,6 @@
 import BlogTeaser from "@/components/home/BlogTeaser"
 import CTABand from "@/components/home/CTABand"
+import EyeBreakTeaser from "@/components/home/EyeBreakTeaser"
 import Hero from "@/components/home/Hero"
 import HowIThink from "@/components/home/HowIThink"
 import HowIWork from "@/components/home/HowIWork"
@@ -23,6 +24,8 @@ export default function Home() {
       <ToolsAndMethods />
       <div className="my-12 border-t border-slate-200" />
       <BlogTeaser />
+      <div className="my-12 border-t border-slate-200" />
+      <EyeBreakTeaser />
       <div className="my-12 border-t border-slate-200" />
       <CTABand />
     </div>
