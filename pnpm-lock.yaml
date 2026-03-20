@@ -50,6 +50,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       framer-motion:
         specifier: ^12.37.0
         version: 12.37.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
