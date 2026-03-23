@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env FORCE_COLOR=1 next dev --hostname 127.0.0.1",
-    "dev:turbo": "cross-env FORCE_COLOR=1 next dev --turbo --hostname 127.0.0.1",
+    "dev": "cross-env FORCE_COLOR=1 next dev",
+    "dev:free3000": "bash -c 'lsof -ti :3000 | xargs kill -9 2>/dev/null || true'",
+    "dev:turbo": "cross-env FORCE_COLOR=1 next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -52,6 +53,7 @@
     "rough-notation": "^0.5.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^2.6.0",
+    "vanilla-tilt": "^1.8.1",
     "zod": "^3.24.4"
   },
   "devDependencies": {

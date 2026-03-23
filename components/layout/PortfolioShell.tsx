@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { ShellContentSurface } from "./ShellContentSurface"
 import { FlickeringGrid } from "../../registry/magicui/flickering-grid"
 
 export default function PortfolioShell({ children }: { children: ReactNode }) {
@@ -12,9 +13,7 @@ export default function PortfolioShell({ children }: { children: ReactNode }) {
         maxOpacity={0.5}
         flickerChance={0.1}
       />
-      <section className="relative z-10 mx-auto w-full max-w-6xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        {children}
-      </section>
+      <ShellContentSurface>{children}</ShellContentSurface>
     </main>
   )
 }
