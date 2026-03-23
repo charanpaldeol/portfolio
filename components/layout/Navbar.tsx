@@ -42,6 +42,34 @@ const toolsLinks = [{ href: '/eye-break', label: 'Eye Break Timer' }]
 
 const HOVER_CLOSE_MS = 150
 
+const brandMark = (
+  <svg width="32" height="32" viewBox="0 0 80 80" aria-hidden="true">
+    <circle cx="40" cy="40" r="38" fill="rgb(5,46,22)" stroke="rgb(16,185,129)" strokeWidth="3" />
+    <circle
+      cx="40"
+      cy="40"
+      r="27"
+      fill="none"
+      stroke="rgb(16,185,129)"
+      strokeWidth="1"
+      strokeDasharray="3 4"
+      opacity="0.5"
+    />
+    <text
+      x="40"
+      y="43"
+      textAnchor="middle"
+      fontFamily="Space Mono, monospace"
+      fontSize="22"
+      fontWeight="700"
+      fill="rgb(16,185,129)"
+      dominantBaseline="central"
+    >
+      CP
+    </text>
+  </svg>
+)
+
 type NavDropdownLink = { href: string; label: string }
 
 function HoverNavDropdown({
@@ -129,6 +157,7 @@ export function Navbar() {
   const pathname = usePathname()
   const isPortfolioRoute = pathname.startsWith('/portfolio')
   const isToolsRoute = pathname.startsWith('/eye-break')
+  const isHomeRoute = pathname === '/'
 
   return (
     <header
@@ -136,6 +165,15 @@ export function Navbar() {
         isPortfolioRoute ? 'border-slate-100/80' : 'border-slate-200'
       }`}
     >
+      <style>{`
+        @keyframes cpdeolBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        .cpdeol-blink-cursor {
+          animation: cpdeolBlink 1.1s step-end infinite;
+        }
+      `}</style>
       <div
         className={`mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6 ${
           isPortfolioRoute ? 'py-2 text-slate-500' : 'py-3'
@@ -143,8 +181,28 @@ export function Navbar() {
       >
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
-            cpdeol.com
+          <Link href="/" className="flex items-center gap-2">
+            <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center">
+              {brandMark}
+            </span>
+            <span
+              className={twMerge(
+                'flex items-center leading-none text-sm',
+                isHomeRoute ? 'font-semibold' : 'font-medium',
+                'text-[rgb(5,46,22)]'
+              )}
+            >
+              cpdeol
+              <span
+                aria-hidden="true"
+                className={twMerge(
+                  'ml-1 text-emerald-600 cpdeol-blink-cursor text-sm leading-none',
+                  isHomeRoute ? 'font-semibold' : 'font-medium'
+                )}
+              >
+                _
+              </span>
+            </span>
           </Link>
         </div>
 
@@ -230,7 +288,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="left">
               <SheetHeader>
-                <SheetTitle>cpdeol.com</SheetTitle>
+                <SheetTitle>cpdeol</SheetTitle>
               </SheetHeader>
               <nav className="mt-4 flex flex-col gap-3">
                 <SheetClose asChild>

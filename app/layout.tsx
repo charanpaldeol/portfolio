@@ -12,6 +12,10 @@ export const metadata = {
   title: "Charan Deol",
   description:
     "I turn complex problems into clear decisions and delivered solutions.",
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({

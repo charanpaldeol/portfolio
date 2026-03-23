@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="38" fill="rgb(13,17,23)" stroke="rgb(16,185,129)" stroke-width="2" />
+  <circle
+    cx="40"
+    cy="40"
+    r="28"
+    fill="none"
+    stroke="rgb(16,185,129)"
+    stroke-width="1"
+    stroke-dasharray="3 4"
+    opacity="0.4"
+  />
+  <circle cx="40" cy="40" r="18" fill="rgb(16,185,129)" opacity="0.08" />
+  <text
+    x="40"
+    y="37"
+    text-anchor="middle"
+    font-family="monospace"
+    font-size="13"
+    font-weight="700"
+    fill="rgb(16,185,129)"
+    dominant-baseline="central"
+  >
+    CP
+  </text>
+  <text
+    x="40"
+    y="52"
+    text-anchor="middle"
+    font-family="monospace"
+    font-size="7"
+    fill="rgb(16,185,129)"
+    opacity="0.6"
+    letter-spacing="2"
+  >
+    DEOL
+  </text>
+</svg>
+
