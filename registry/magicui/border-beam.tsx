@@ -42,7 +42,7 @@ export const BorderBeam = ({
       }}
     >
       <motion.div
-        className={["absolute aspect-square", className]
+        className={["pointer-events-none absolute aspect-square", className]
           .filter(Boolean)
           .join(" ")}
         style={

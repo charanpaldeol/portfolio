@@ -3,25 +3,40 @@ import Link from "next/link"
 
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
-export const metadata: Metadata = { title: "Blog" }
+export const metadata: Metadata = { title: "Blogs" }
 
 export default function BlogPage() {
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">Blog</h1>
-      <ul className="flex flex-col gap-4 list-none p-0 m-0">
-        {whatIBringCards.map((card) => (
-          <li key={card.slug}>
-            <Link
-              href={`/blog/${card.slug}`}
-              className="block rounded-lg border border-slate-200 p-4 no-underline transition-colors hover:border-slate-300 hover:bg-slate-50/80"
-            >
-              <span className="text-xs font-medium text-slate-500">{card.badge}</span>
-              <span className="mt-1 block text-base font-semibold text-slate-900">{card.title}</span>
-              <span className="mt-2 block text-sm text-slate-600 leading-relaxed">{card.body}</span>
-            </Link>
-          </li>
-        ))}
+      <header className="rounded-2xl border-2 border-border bg-background px-5 py-6 md:px-6">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">Blogs</h1>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Ideas, frameworks, and practical thinking for building better technology outcomes.
+        </p>
+      </header>
+
+      <ul className="m-0 grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 md:gap-4">
+        {whatIBringCards.map((card) => {
+          const excerpt = card.body.length > 145 ? `${card.body.slice(0, 145)}...` : card.body
+
+          return (
+            <li key={card.slug} className="h-full">
+              <Link
+                href={`/blog/${card.slug}`}
+                className="group flex h-full flex-col rounded-xl border-2 border-border bg-background p-4 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <span className={`inline-flex w-fit rounded-full px-2 py-0.5 text-[10px] font-medium ${card.badgeClass}`}>
+                  {card.badge}
+                </span>
+                <span className="mt-2 block text-base font-semibold tracking-tight text-foreground">{card.title}</span>
+                <span className="mt-1 block flex-1 text-xs leading-relaxed text-muted-foreground">{excerpt}</span>
+                <span className="mt-3 inline-flex items-center border-t border-border pt-2 text-[11px] font-medium uppercase tracking-wider text-foreground">
+                  Read article
+                </span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
