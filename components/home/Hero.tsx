@@ -52,7 +52,7 @@ export default function Hero() {
 
         {/* Role line */}
         <div className="mt-4 text-xs font-medium tracking-widest text-muted-foreground uppercase">
-          Problem solver · Critical thinker · Delivery lead · Change leader
+          End-to-end delivery lead · Understands engineering
         </div>
 
         {/* Name */}
@@ -66,27 +66,27 @@ export default function Hero() {
 
         {/* Headline */}
         <div className="mt-4 text-xl font-medium text-foreground max-w-xl leading-snug">
-          I turn complex problems into{" "}
-          <Highlighter action="underline" color="#FF9800">
-            clear decisions
+          I bridge {" "}
+          <Highlighter action="underline" color="orange">
+            business
           </Highlighter>{" "}
           and{" "}
-          <Highlighter action="highlight" color="#87CEFA">
-            delivered solutions
+          <Highlighter action="highlight" color="lightskyblue">
+            engineering
           </Highlighter>
           .
         </div>
 
         {/* Subtext */}
         <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl">
-          I work with business teams to understand what's actually broken, build the case for change, and lead
-          delivery — whether that's an in-house build or a SaaS implementation. Then I make sure it sticks through
-          structured change management.
+          Most people do one or the other. Business side stops at requirements. Engineering side stops at deployment. Nobody owns the full arc.
         </p>
 
         <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl">
-          I've done this across finance, healthcare, retail, and tech — working alongside architects, leading dev
-          teams, and sitting across the table from C-suite stakeholders.
+          That's the job. Sit with the business, find the real problem — not the one on the brief. Build the case. Get into system design with engineers — architecture, where logic lives, what belongs in the backend vs the database. Ship it. Measure whether it actually worked.
+        </p>
+        <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl">
+          Building with AI now. Agents, model integration, AI-powered tech stack. The tooling is new. The problem is the same — business needs something, engineering builds something, and someone needs to make sure those are the same thing.
         </p>
 
         {/* CTAs */}
