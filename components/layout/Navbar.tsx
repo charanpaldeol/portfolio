@@ -157,6 +157,7 @@ export function Navbar() {
   const pathname = usePathname()
   const isPortfolioRoute = pathname.startsWith('/portfolio')
   const isToolsRoute = pathname.startsWith('/eye-break')
+  const isInternetOwnedRoute = pathname.startsWith('/internet-owned')
   const isHomeRoute = pathname === '/'
 
   return (
@@ -217,6 +218,14 @@ export function Navbar() {
             </li>
             <li>
               <NavigationMenuLink href="/blog">Blog</NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink
+                href="/internet-owned"
+                className={isInternetOwnedRoute ? 'font-semibold text-slate-950' : undefined}
+              >
+                Internet Owned
+              </NavigationMenuLink>
             </li>
             <li>
               <HoverNavDropdown label="Tools" links={toolsLinks} sectionActive={isToolsRoute} />
@@ -318,6 +327,14 @@ export function Navbar() {
                     className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
                   >
                     Blog
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href="/internet-owned"
+                    className="rounded-md px-2 py-2 text-base font-medium text-slate-50 hover:bg-slate-800"
+                  >
+                    Internet Owned
                   </Link>
                 </SheetClose>
                 <p className="px-2 pt-1 text-xs font-semibold uppercase tracking-widest text-slate-400">
