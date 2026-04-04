@@ -364,7 +364,7 @@ export default function InternetOwnedPage() {
         </p>
         <div className="pt-1">
           <Link
-            href="https://discord.gg/cpdeol"
+            href="https://discord.gg/wRJTpGfApZ"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-800"
