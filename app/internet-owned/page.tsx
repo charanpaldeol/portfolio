@@ -6,6 +6,20 @@ export const metadata: Metadata = {
   title: "Internet Owned, Not Rented",
   description:
     "A practical look at community mesh networking where people own their internet hardware, share bandwidth, and keep control local.",
+  alternates: { canonical: "https://cpdeol.com/internet-owned" },
+  openGraph: {
+    title: "Internet Owned, Not Rented — Charan Deol",
+    description:
+      "A practical look at community mesh networking where people own their internet hardware, share bandwidth, and keep control local.",
+    url: "https://cpdeol.com/internet-owned",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Internet Owned, Not Rented — Charan Deol",
+    description:
+      "A practical look at community mesh networking where people own their internet hardware, share bandwidth, and keep control local.",
+  },
 }
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {

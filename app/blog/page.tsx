@@ -3,7 +3,25 @@ import Link from "next/link"
 
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
-export const metadata: Metadata = { title: "Blogs" }
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
+  alternates: { canonical: "https://cpdeol.com/blog" },
+  openGraph: {
+    title: "Blog — Charan Deol",
+    description:
+      "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
+    url: "https://cpdeol.com/blog",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — Charan Deol",
+    description:
+      "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
+  },
+}
 
 export default function BlogPage() {
   return (

@@ -1,6 +1,24 @@
 import { Metadata } from "next"
 
-export const metadata: Metadata = { title: "Projects" }
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+  alternates: { canonical: "https://cpdeol.com/projects" },
+  openGraph: {
+    title: "Projects — Charan Deol",
+    description:
+      "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+    url: "https://cpdeol.com/projects",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects — Charan Deol",
+    description:
+      "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+  },
+}
 
 export default function ProjectsPage() {
   return (

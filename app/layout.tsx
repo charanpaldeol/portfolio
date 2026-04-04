@@ -1,6 +1,7 @@
 import "styles/tailwind.css"
 
 import { Inter } from "next/font/google"
+import type { Metadata } from "next"
 
 import { Footer } from "components/layout/Footer"
 import GlobalChrome from "components/layout/GlobalChrome"
@@ -8,13 +9,34 @@ import PortfolioShell from "components/layout/PortfolioShell"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "Charan Deol",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://cpdeol.com"),
+  title: {
+    default: "Charan Deol",
+    template: "%s — Charan Deol",
+  },
   description:
     "I turn complex problems into clear decisions and delivered solutions.",
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Charan Deol",
+    title: "Charan Deol",
+    description:
+      "I turn complex problems into clear decisions and delivered solutions.",
+    url: "https://cpdeol.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Charan Deol",
+    description:
+      "I turn complex problems into clear decisions and delivered solutions.",
+  },
+  alternates: {
+    canonical: "https://cpdeol.com",
   },
 }
 
