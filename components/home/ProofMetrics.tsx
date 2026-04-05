@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { NumberTicker } from "@/components/magicui/number-ticker"
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

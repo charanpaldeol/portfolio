@@ -9,8 +9,8 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuList,
   NavigationMenuLink,
+  NavigationMenuList,
   NavigationMenuTrigger,
 } from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
@@ -141,9 +141,6 @@ export function Navbar() {
   const isWorkRoute = pathname.startsWith('/portfolio')
   const isIdeasRoute = ideasLinks.some((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))
   const isHomeRoute = pathname === '/'
-
-  // Ideas: direct link when there's only one destination, dropdown when there are multiple
-  const ideasIsSingleLink = ideasLinks.length === 1
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">

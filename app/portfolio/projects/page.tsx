@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { AnimatedGradientText } from "components/magicui/animated-gradient-text"
 import { BlurFade } from "components/magicui/blur-fade"
 

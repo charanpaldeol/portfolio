@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useRef } from "react"
 import { useInView, useMotionValue, useSpring } from "framer-motion"
+import { useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 
 type NumberTickerProps = {
