@@ -44,13 +44,15 @@ export function IconCloud({ icons, images }: IconCloudProps) {
   useEffect(() => {
     if (!icons && !images) return
 
+    const dpr = window.devicePixelRatio || 1
+    const iconSize = Math.round(40 * dpr)
     const items = icons ?? images ?? []
     imagesLoadedRef.current = new Array(items.length).fill(false)
 
     const newIconCanvases = items.map((item, index) => {
       const offscreen = document.createElement("canvas")
-      offscreen.width = 40
-      offscreen.height = 40
+      offscreen.width = iconSize
+      offscreen.height = iconSize
       const offCtx = offscreen.getContext("2d")
 
       if (offCtx) {
@@ -59,21 +61,21 @@ export function IconCloud({ icons, images }: IconCloudProps) {
           img.crossOrigin = "anonymous"
           img.src = items[index] as string
           img.onload = () => {
-            offCtx.clearRect(0, 0, offscreen.width, offscreen.height)
+            offCtx.clearRect(0, 0, iconSize, iconSize)
             offCtx.beginPath()
-            offCtx.arc(20, 20, 20, 0, Math.PI * 2)
+            offCtx.arc(iconSize / 2, iconSize / 2, iconSize / 2, 0, Math.PI * 2)
             offCtx.closePath()
             offCtx.clip()
-            offCtx.drawImage(img, 0, 0, 40, 40)
+            offCtx.drawImage(img, 0, 0, iconSize, iconSize)
             imagesLoadedRef.current[index] = true
           }
         } else {
-          offCtx.scale(0.4, 0.4)
+          offCtx.scale(0.4 * dpr, 0.4 * dpr)
           const svgString = renderToString(item as React.ReactElement)
           const img = new Image()
           img.src = "data:image/svg+xml;base64," + btoa(svgString)
           img.onload = () => {
-            offCtx.clearRect(0, 0, offscreen.width, offscreen.height)
+            offCtx.clearRect(0, 0, iconSize, iconSize)
             offCtx.drawImage(img, 0, 0)
             imagesLoadedRef.current[index] = true
           }
@@ -133,8 +135,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
       const rotatedZ = icon.x * sinY + icon.z * cosY
       const rotatedY = icon.y * cosX + rotatedZ * sinX
 
-      const screenX = canvasRef.current!.width / 2 + rotatedX
-      const screenY = canvasRef.current!.height / 2 + rotatedY
+      const screenX = 200 + rotatedX
+      const screenY = 200 + rotatedY
 
       const scale = (rotatedZ + 200) / 300
       const radius = 20 * scale
@@ -198,15 +200,34 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     setIsDragging(false)
   }
 
+  // Set canvas dimensions once on mount — never reassign inside the animation loop
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const dpr = window.devicePixelRatio || 1
+    const logicalWidth = 400
+    const logicalHeight = 400
+    canvas.width = logicalWidth * dpr
+    canvas.height = logicalHeight * dpr
+    canvas.style.width = `${logicalWidth}px`
+    canvas.style.height = `${logicalHeight}px`
+  }, [])
+
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas?.getContext("2d")
     if (canvas && ctx) {
-      const animate = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const dpr = window.devicePixelRatio || 1
+      const logicalWidth = 400
+      const logicalHeight = 400
 
-        const centerX = canvas.width / 2
-        const centerY = canvas.height / 2
+      const animate = () => {
+        // Reset to a clean DPR-scaled transform each frame — prevents accumulation
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        ctx.clearRect(0, 0, logicalWidth, logicalHeight)
+
+        const centerX = logicalWidth / 2
+        const centerY = logicalHeight / 2
         const maxDistance = Math.sqrt(centerX * centerX + centerY * centerY)
         const dx = mousePos.x - centerX
         const dy = mousePos.y - centerY
@@ -232,8 +253,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
           }
         } else if (!isDragging) {
           rotationRef.current = {
-            x: rotationRef.current.x + (dy / canvas.height) * speed,
-            y: rotationRef.current.y + (dx / canvas.width) * speed,
+            x: rotationRef.current.x + (dy / logicalHeight) * speed,
+            y: rotationRef.current.y + (dx / logicalWidth) * speed,
           }
         }
 
@@ -252,8 +273,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
 
           ctx.save()
           ctx.translate(
-            canvas.width / 2 + rotatedX,
-            canvas.height / 2 + rotatedY
+            centerX + rotatedX,
+            centerY + rotatedY
           )
           ctx.scale(scale, scale)
           ctx.globalAlpha = opacity
@@ -295,8 +316,6 @@ export function IconCloud({ icons, images }: IconCloudProps) {
   return (
     <canvas
       ref={canvasRef}
-      width={400}
-      height={400}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
