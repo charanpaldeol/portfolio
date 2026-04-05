@@ -123,8 +123,8 @@ export function NavigationMenuLink({ href, exact = false, className, children, .
       data-active={isActive || undefined}
       className={twMerge(
         navigationMenuTriggerStyle(),
-        'text-slate-600 hover:text-slate-900',
-        isActive && 'font-semibold text-slate-950',
+        'text-muted-foreground hover:text-foreground',
+        isActive && 'font-semibold text-foreground',
         className
       )}
       {...props}
@@ -144,7 +144,7 @@ export const NavigationMenuViewport = React.forwardRef<
     <NavigationMenuPrimitive.Viewport
       className={twMerge(
         'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)]',
-        'w-full overflow-hidden rounded-md border border-slate-200 bg-white text-slate-950 shadow',
+        'w-full overflow-hidden rounded-md border border-border bg-background text-foreground shadow-lg',
         'md:w-[var(--radix-navigation-menu-viewport-width)]',
         'data-[state=open]:animate-in data-[state=closed]:animate-out',
         'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90',
@@ -173,7 +173,7 @@ export const NavigationMenuIndicator = React.forwardRef<
     )}
     {...props}
   >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-200 shadow-md" />
+    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
   </NavigationMenuPrimitive.Indicator>
 ))
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName

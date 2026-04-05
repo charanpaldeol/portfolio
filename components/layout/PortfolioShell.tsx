@@ -10,8 +10,8 @@ export default function PortfolioShell({ children }: { children: ReactNode }) {
         squareSize={4}
         gridGap={6}
         color="#6B7280"
-        maxOpacity={0.5}
-        flickerChance={0.1}
+        maxOpacity={0.15}
+        flickerChance={0.05}
       />
       <ShellContentSurface>{children}</ShellContentSurface>
     </main>

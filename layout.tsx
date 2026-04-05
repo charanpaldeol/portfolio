@@ -11,10 +11,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "Portfolio",
-    template: "%s | Portfolio",
+    default: "Charan Deol — Product Engineer & Consultant",
+    template: "%s — Charan Deol",
   },
-  description: "Portfolio site",
+  description:
+    "Independent consultant bridging business and engineering. Product strategy, full-stack development, and technical leadership.",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
