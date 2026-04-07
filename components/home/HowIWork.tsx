@@ -1,318 +1,624 @@
 "use client"
 
-import React, { forwardRef, type ReactNode, useRef } from "react"
-import { twMerge } from "tailwind-merge"
-import { AnimatedBeam } from "@/registry/magicui/animated-beam"
-
-/* ── tiny SVG icon shell ─────────────────────────────────── */
-
-function Svg({ className, children }: { className?: string; children: ReactNode }) {
-  return (
-    <svg
-      className={twMerge("size-full", className)}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {children}
-    </svg>
-  )
-}
-
-/* ── icons (Lucide-style paths) ──────────────────────────── */
-
-function SearchIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.35-4.35" />
-    </Svg>
-  )
-}
-
-function BriefcaseIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
-      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-    </Svg>
-  )
-}
-
-function PackageIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-      <path d="m3.3 7 8.7 5 8.7-5" />
-      <path d="M12 22V12" />
-    </Svg>
-  )
-}
-
-function RefreshIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-      <path d="M3 3v5h5" />
-      <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-      <path d="M16 16h5v5" />
-    </Svg>
-  )
-}
-
-function TargetIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </Svg>
-  )
-}
-
-function UsersIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </Svg>
-  )
-}
-
-function LayersIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <polygon points="12 2 2 7 12 12 22 7 12 2" />
-      <polyline points="2 17 12 22 22 17" />
-      <polyline points="2 12 12 17 22 12" />
-    </Svg>
-  )
-}
-
-function TerminalIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <polyline points="4 17 10 11 4 5" />
-      <line x1="12" x2="20" y1="19" y2="19" />
-    </Svg>
-  )
-}
-
-function UserIcon({ className }: { className?: string }) {
-  return (
-    <Svg className={className}>
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </Svg>
-  )
-}
-
-/* ── circle (beam endpoint) ──────────────────────────────── */
-
-const Circle = forwardRef<
-  HTMLDivElement,
-  { className?: string; children: ReactNode }
->(({ className, children }, ref) => (
-  <div
-    ref={ref}
-    className={twMerge(
-      "relative z-20 flex size-13 items-center justify-center rounded-full border-2 border-border bg-background p-3 shadow-sm",
-      className,
-    )}
-  >
-    {children}
-  </div>
-))
-Circle.displayName = "Circle"
-
-/* ── labelled node (circle + text below) ─────────────────── */
-
-const Node = forwardRef<
-  HTMLDivElement,
-  {
-    icon: ReactNode
-    label: string
-    sub?: string
-  }
->(({ icon, label, sub }, ref) => {
-  return (
-    <div className="flex w-28 flex-col items-center gap-1">
-      <Circle ref={ref}>
-        <span className="text-muted-foreground">{icon}</span>
-      </Circle>
-      <span className="text-xs font-medium leading-tight text-center max-w-28 text-foreground">
-        {label}
-      </span>
-      {sub && (
-        <span className="text-[10px] text-muted-foreground leading-tight text-center max-w-24">
-          {sub}
-        </span>
-      )}
-    </div>
-  )
-})
-Node.displayName = "Node"
-
-/* ── main component ──────────────────────────────────────── */
-
 export default function HowIWork() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const centerRef = useRef<HTMLDivElement>(null)
-
-  const discoverRef = useRef<HTMLDivElement>(null)
-  const bizCaseRef = useRef<HTMLDivElement>(null)
-  const deliverRef = useRef<HTMLDivElement>(null)
-  const changeRef = useRef<HTMLDivElement>(null)
-
-  const valueRef = useRef<HTMLDivElement>(null)
-  const bizTeamsRef = useRef<HTMLDivElement>(null)
-  const archRef = useRef<HTMLDivElement>(null)
-  const devRef = useRef<HTMLDivElement>(null)
-
-  const leftNodes = [
-    { ref: discoverRef, icon: <SearchIcon />, label: "Discover" },
-    { ref: bizCaseRef, icon: <BriefcaseIcon />, label: "Business case" },
-    { ref: deliverRef, icon: <PackageIcon />, label: "Deliver" },
-    { ref: changeRef, icon: <RefreshIcon />, label: "Change mgmt" },
-  ]
-
-  const rightNodes = [
-    { ref: valueRef, icon: <TargetIcon />, label: "Value realized" },
-    { ref: bizTeamsRef, icon: <UsersIcon />, label: "Business teams" },
-    { ref: archRef, icon: <LayersIcon />, label: "Architects & tech leads" },
-    { ref: devRef, icon: <TerminalIcon />, label: "Dev & delivery teams" },
-  ]
-
-
   return (
-    <section>
-      <header>
-        <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-          How I work
+    <section className="hiw" aria-labelledby="hiw-heading">
+      <style jsx>{`
+        .hiw {
+          /* Page-level dividers handle vertical rhythm; keep section padding minimal */
+          padding: 0;
+          font-family: var(--font-sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
+          --hiw-cycle: 5.2s;
+        }
+        .hiw-eyebrow {
+          font-size: 0.75rem; /* ~text-xs */
+          letter-spacing: 0.12em; /* closer to tracking-widest */
+          color: var(--color-muted-foreground, #5f5f66);
+          text-transform: uppercase;
+          margin: 0 0 0.6rem;
+          opacity: 0.9;
+        }
+        .hiw-heading {
+          font-size: 1.25rem; /* ~text-xl (matches rest of site sections) */
+          font-weight: 500;
+          color: var(--color-foreground, #2c2c2a);
+          margin: 0 0 0.6rem;
+          line-height: 1.25;
+        }
+        .hiw-sub {
+          font-size: 0.875rem; /* ~text-sm */
+          color: var(--color-muted-foreground, #5f5f66);
+          margin: 0 0 3.25rem;
+          max-width: 520px;
+          line-height: 1.65;
+        }
+
+        .pipeline {
+          display: flex;
+          align-items: flex-start;
+          position: relative;
+          margin: 0 0 2.75rem;
+        }
+        .track {
+          position: absolute;
+          top: 21px;
+          left: 21px;
+          right: 21px;
+          height: 1px;
+          background: var(--color-border-tertiary, #e5e5e5);
+          z-index: 0;
+          overflow: hidden;
+        }
+        /* Animated "beam" that runs along the track */
+        .track::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -25%;
+          height: 2px;
+          width: 240px;
+          transform: translateY(-50%);
+          background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-text-primary, #111),
+            transparent
+          );
+          opacity: 0.38;
+          filter: blur(0.35px);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
+          animation: hiw-beam var(--hiw-cycle) linear infinite;
+        }
+        .track::before {
+          content: "";
+          position: absolute;
+          inset: -10px 0;
+          background: radial-gradient(
+            180px 16px at 50% 50%,
+            rgba(0, 0, 0, 0.08),
+            transparent 70%
+          );
+          pointer-events: none;
+          opacity: 0.35;
+          mix-blend-mode: multiply;
+        }
+
+        @keyframes hiw-beam {
+          0% {
+            left: -25%;
+            opacity: 0;
+          }
+          8% {
+            opacity: 0.38;
+          }
+          92% {
+            opacity: 0.38;
+          }
+          100% {
+            left: 110%;
+            opacity: 0;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .track::after {
+            animation: none;
+            opacity: 0.14;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+          }
+          .pipeline > .phase .phase-node,
+          .pipeline > .phase .phase-name {
+            animation: none;
+          }
+        }
+
+        .phase {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          z-index: 1;
+          cursor: default;
+        }
+
+        /* Beam-synced depth cue (a subtle "hover" as the beam passes) */
+        .phase-node {
+          position: relative;
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          transform: translateY(0);
+          will-change: transform, box-shadow, background;
+        }
+        .phase-node::after {
+          content: "";
+          position: absolute;
+          inset: -10px;
+          border-radius: 999px;
+          background: radial-gradient(
+            20px 20px at 50% 50%,
+            rgba(0, 0, 0, 0.12),
+            transparent 70%
+          );
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.15s ease;
+        }
+        .phase-name {
+          transform: translateY(0);
+          will-change: transform, color, opacity;
+        }
+
+        @keyframes hiw-phase-pulse {
+          0% {
+            transform: translateY(-2px);
+            box-shadow:
+              0 6px 12px -8px rgba(0, 0, 0, 0.22),
+              0 2px 6px -6px rgba(0, 0, 0, 0.18);
+          }
+          18% {
+            transform: translateY(0);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          }
+          100% {
+            transform: translateY(0);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+          }
+        }
+        @keyframes hiw-phase-text-pulse {
+          0% {
+            transform: translateY(-1px);
+            opacity: 1;
+          }
+          18% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        /* Stagger pulses across phases (track is the first child) */
+        .pipeline > .phase:nth-child(2) .phase-node,
+        .pipeline > .phase:nth-child(3) .phase-node,
+        .pipeline > .phase:nth-child(4) .phase-node,
+        .pipeline > .phase:nth-child(5) .phase-node,
+        .pipeline > .phase:nth-child(6) .phase-node,
+        .pipeline > .phase:nth-child(7) .phase-node {
+          animation: hiw-phase-pulse var(--hiw-cycle) linear infinite;
+        }
+        .pipeline > .phase:nth-child(2) .phase-name,
+        .pipeline > .phase:nth-child(3) .phase-name,
+        .pipeline > .phase:nth-child(4) .phase-name,
+        .pipeline > .phase:nth-child(5) .phase-name,
+        .pipeline > .phase:nth-child(6) .phase-name,
+        .pipeline > .phase:nth-child(7) .phase-name {
+          animation: hiw-phase-text-pulse var(--hiw-cycle) linear infinite;
+        }
+        /* Delays tuned so each phase pulses as the beam reaches it */
+        .pipeline > .phase:nth-child(2) .phase-node,
+        .pipeline > .phase:nth-child(2) .phase-name {
+          animation-delay: 0.4s;
+        }
+        .pipeline > .phase:nth-child(3) .phase-node,
+        .pipeline > .phase:nth-child(3) .phase-name {
+          animation-delay: 1.25s;
+        }
+        .pipeline > .phase:nth-child(4) .phase-node,
+        .pipeline > .phase:nth-child(4) .phase-name {
+          animation-delay: 2.1s;
+        }
+        .pipeline > .phase:nth-child(5) .phase-node,
+        .pipeline > .phase:nth-child(5) .phase-name {
+          animation-delay: 2.95s;
+        }
+        .pipeline > .phase:nth-child(6) .phase-node,
+        .pipeline > .phase:nth-child(6) .phase-name {
+          animation-delay: 3.8s;
+        }
+        .pipeline > .phase:nth-child(7) .phase-node,
+        .pipeline > .phase:nth-child(7) .phase-name {
+          animation-delay: 4.65s;
+        }
+
+        /* Also show the same depth cue on hover */
+        .phase:hover .phase-node::after {
+          opacity: 0.55;
+        }
+        .phase:hover .phase-node {
+          border-color: var(--color-border-primary, #aaa);
+          background: var(--color-background-secondary, #f9f9f9);
+        }
+        .phase:hover .phase-name {
+          color: var(--color-foreground, #2c2c2a);
+        }
+
+        .phase-node {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          border: 0.5px solid var(--color-border-secondary, #ddd);
+          background: var(--color-background-primary, #fff);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition:
+            border-color 0.15s,
+            background 0.15s;
+          margin-bottom: 12px;
+          /* Make SVGs reliable even if design tokens are missing */
+          color: var(--color-muted-foreground, #5f5f66);
+        }
+        .phase-node.final {
+          border-color: var(--color-border-primary, #999);
+          width: 46px;
+          height: 46px;
+          margin-top: -2px;
+          color: var(--color-foreground, #2c2c2a);
+        }
+        .phase-node :global(svg) {
+          width: 16px;
+          height: 16px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 1.5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .phase-node.final :global(svg) {
+          width: 18px;
+          height: 18px;
+        }
+        .phase-name {
+          font-size: 11px;
+          font-weight: 500;
+          color: var(--color-muted-foreground, #5f5f66);
+          text-align: center;
+          margin-bottom: 6px;
+          letter-spacing: 0.02em;
+          transition: color 0.15s;
+        }
+        .phase-desc {
+          font-size: 10.5px;
+          color: var(--color-muted-foreground, #5f5f66);
+          text-align: center;
+          line-height: 1.5;
+          padding: 0 6px;
+          opacity: 0.85;
+        }
+
+        .sep {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: 2.75rem 0 1.75rem;
+        }
+        .sep-line {
+          flex: 1;
+          height: 0.5px;
+          background: var(--color-border-tertiary, #ebebeb);
+        }
+        .sep-text {
+          font-size: 10.5px;
+          color: var(--color-muted-foreground, #5f5f66);
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          white-space: nowrap;
+          opacity: 0.9;
+        }
+
+        .teams-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 16px;
+        }
+        .team-card {
+          padding: 1.25rem 1.25rem; /* close to Tailwind p-5, less tight than before */
+          border: 1px solid var(--color-border, #e5e4f2);
+          border-radius: 12px; /* matches Tailwind rounded-xl */
+          background: var(--color-background, #fff);
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          transition:
+            border-color 0.12s,
+            box-shadow 0.3s ease;
+          cursor: default;
+        }
+        .team-card:hover {
+          border-color: var(--color-border, #e5e4f2);
+          box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.08),
+            0 2px 4px -2px rgba(0, 0, 0, 0.08); /* close to Tailwind shadow-md */
+        }
+        .team-icon {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0;
+          color: var(--color-muted-foreground, #5f5f66);
+          opacity: 0.9;
+        }
+        .team-icon :global(svg) {
+          width: 14px;
+          height: 14px;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 1.5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .team-name {
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--color-foreground, #2c2c2a);
+        }
+        .team-detail {
+          font-size: 11px;
+          color: var(--color-muted-foreground, #5f5f66);
+          line-height: 1.4;
+          opacity: 0.95;
+        }
+
+        .closer {
+          margin-top: 2.75rem;
+          padding: 1.5rem 1.5rem;
+          border: 1px solid var(--color-border, #e5e4f2);
+          border-radius: 12px;
+          background: var(--color-background, #fff);
+        }
+        .closer-body {
+          font-size: 14px;
+          color: var(--color-muted-foreground, #5f5f66);
+          line-height: 1.75;
+          margin: 0 0 0.8rem;
+        }
+        .closer-body :global(strong) {
+          color: var(--color-foreground, #2c2c2a);
+          font-weight: 500;
+        }
+        .closer-tags {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        .tag {
+          font-size: 11px;
+          padding: 2px 8px;
+          border: 1px solid var(--color-border, #e5e4f2);
+          border-radius: 100px;
+          color: var(--color-muted-foreground, #5f5f66);
+          background: var(--color-muted, #f3f2fb);
+        }
+
+        /* Small responsive tightening (keeps the design, avoids squish) */
+        @media (max-width: 900px) {
+          .pipeline {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px 10px;
+          }
+          .track {
+            display: none;
+          }
+          .phase {
+            align-items: flex-start;
+          }
+          .phase-name,
+          .phase-desc {
+            text-align: left;
+            width: 100%;
+          }
+        }
+        @media (max-width: 720px) {
+          .teams-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @media (max-width: 420px) {
+          .teams-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <p className="hiw-eyebrow">How I work</p>
+      <h2 className="hiw-heading" id="hiw-heading">
+        End-to-end, every time
+      </h2>
+      <p className="hiw-sub">
+        I don&apos;t hand off when the interesting part is done. From first stakeholder conversation
+        to live system — I own the arc, lead the teams, and stay accountable for outcomes.
+      </p>
+
+      <div className="pipeline" aria-label="Delivery pipeline">
+        <div className="track" aria-hidden="true" />
+
+        <div className="phase">
+          <div className="phase-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.5" y1="16.5" x2="21" y2="21" />
+            </svg>
+          </div>
+          <div className="phase-name">Discover</div>
+          <div className="phase-desc">Stakeholder interviews, process mapping, problem framing</div>
         </div>
-        <h2 className="mt-2 text-xl font-medium text-foreground">
-          End-to-end, every time
-        </h2>
-        <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
-          I don&apos;t hand off when the interesting part is done. I cover the full arc — from first
-          conversation to realized value.
-        </p>
-      </header>
 
-      <div
-        ref={containerRef}
-        className="relative mt-8 hidden h-[420px] w-full items-stretch justify-between md:flex"
-        aria-hidden="true"
-      >
-        {/* Left column — 4 nodes */}
-        <div className="flex flex-col items-center justify-between py-4">
-          {leftNodes.map((n) => (
-            <Node
-              key={n.label}
-              ref={n.ref}
-              icon={n.icon}
-              label={n.label}
-            />
-          ))}
+        <div className="phase">
+          <div className="phase-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div className="phase-name">Define</div>
+          <div className="phase-desc">BRDs, user stories, acceptance criteria, business case</div>
         </div>
 
-        {/* Center — Me */}
-        <div className="flex items-center justify-center">
-          <Circle
-            ref={centerRef}
-            className="size-18"
-          >
-            <UserIcon className="text-muted-foreground" />
-          </Circle>
+        <div className="phase">
+          <div className="phase-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+          </div>
+          <div className="phase-name">Solution design</div>
+          <div className="phase-desc">
+            Architecture, data models, API contracts, integration specs
+          </div>
         </div>
 
-        {/* Right column — 4 nodes */}
-        <div className="flex flex-col items-center justify-between py-4">
-          {rightNodes.map((n) => (
-            <Node
-              key={n.label}
-              ref={n.ref}
-              icon={n.icon}
-              label={n.label}
-            />
-          ))}
+        <div className="phase">
+          <div className="phase-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <div className="phase-name">Deliver</div>
+          <div className="phase-desc">Agile execution, backlog ownership, UAT, defect triage</div>
         </div>
 
-        {/* Beams — absolutely positioned so they don't participate in flex layout */}
-        <div className="absolute inset-0">
-          {leftNodes.map((n, i) => {
-            const durations = [4.5, 5.2, 4.8, 5.6] as const
-            const delays = [0, 0.6, 0.3, 0.9] as const
-            const dur = durations[i as 0 | 1 | 2 | 3]
-            const del = delays[i as 0 | 1 | 2 | 3]
-            return (
-              <React.Fragment key={`left-${n.label}`}>
-                <AnimatedBeam
-                  containerRef={containerRef}
-                  fromRef={n.ref}
-                  toRef={centerRef}
-                  duration={dur}
-                  delay={del}
-                />
-                <AnimatedBeam
-                  containerRef={containerRef}
-                  fromRef={n.ref}
-                  toRef={centerRef}
-                  duration={dur}
-                  delay={del + 2.2}
-                  reverse
-                />
-              </React.Fragment>
-            )
-          })}
+        <div className="phase">
+          <div className="phase-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div className="phase-name">Change &amp; adoption</div>
+          <div className="phase-desc">Training, comms, rollout, post-launch support</div>
+        </div>
 
-          {rightNodes.map((n, i) => {
-            const durations = [5.0, 4.6, 5.4, 4.9] as const
-            const delays = [0.4, 1.0, 0.7, 1.3] as const
-            const dur = durations[i as 0 | 1 | 2 | 3]
-            const del = delays[i as 0 | 1 | 2 | 3]
-            return (
-              <React.Fragment key={`right-${n.label}`}>
-                <AnimatedBeam
-                  containerRef={containerRef}
-                  fromRef={n.ref}
-                  toRef={centerRef}
-                  duration={dur}
-                  delay={del}
-                  reverse
-                />
-                <AnimatedBeam
-                  containerRef={containerRef}
-                  fromRef={n.ref}
-                  toRef={centerRef}
-                  duration={dur}
-                  delay={del + 2.5}
-                />
-              </React.Fragment>
-            )
-          })}
+        <div className="phase">
+          <div className="phase-node final" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+          </div>
+          <div className="phase-name" style={{ color: "var(--color-foreground, #2c2c2a)" }}>
+            Value realized
+          </div>
+          <div className="phase-desc">KPIs tracked, outcomes measured, platform scales</div>
         </div>
       </div>
 
-      {/* Mobile fallback — simple two-column grid */}
-      <div className="mt-8 grid grid-cols-2 gap-4 md:hidden">
-        {[...leftNodes, ...rightNodes].map((n) => (
-          <div key={n.label} className="flex items-center gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-border bg-background p-2">
-              <span className="text-muted-foreground">{n.icon}</span>
-            </div>
-            <div className="min-w-0">
-              <span className="text-xs font-medium text-foreground">
-                {n.label}
-              </span>
-            </div>
+      <div className="sep" aria-hidden="true">
+        <div className="sep-line" />
+        <span className="sep-text">Teams I lead across every phase</span>
+        <div className="sep-line" />
+      </div>
+
+      <div className="teams-grid">
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
           </div>
-        ))}
+          <div className="team-name">Business stakeholders</div>
+          <div className="team-detail">Executives, operations, domain SMEs</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <div className="team-name">Engineering teams</div>
+          <div className="team-detail">Dev, QA, DevOps, release</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+          </div>
+          <div className="team-name">Architects &amp; tech leads</div>
+          <div className="team-detail">Solution, enterprise, integration</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+          </div>
+          <div className="team-name">Product owners</div>
+          <div className="team-detail">Roadmap, backlog, prioritization</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+          </div>
+          <div className="team-name">UX &amp; design</div>
+          <div className="team-detail">Flows, prototypes, research</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+            </svg>
+          </div>
+          <div className="team-name">Data &amp; AI teams</div>
+          <div className="team-detail">Data science, LLMs, agentic workflows</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div className="team-name">Compliance &amp; vendors</div>
+          <div className="team-detail">Regulatory, procurement, 3rd parties</div>
+        </div>
+
+        <div className="team-card">
+          <div className="team-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </div>
+          <div className="team-name">QA &amp; operations</div>
+          <div className="team-detail">Testing, incident support, handoff</div>
+        </div>
+      </div>
+
+      <div className="closer">
+        <p className="closer-body">
+          Most PMs stop at the roadmap. Most BAs stop at the requirements doc.{" "}
+          <strong>I stay in the room until the outcome is real</strong> — technically sound,
+          business-justified, delivered, adopted, and measurable. That&apos;s not a common combination.
+          It&apos;s the only one I know how to do.
+        </p>
+        <div className="closer-tags">
+          <span className="tag">Business + Technical + Delivery + AI-Native</span>
+        </div>
       </div>
     </section>
   )
