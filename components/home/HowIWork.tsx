@@ -10,8 +10,8 @@ export default function HowIWork() {
     const el = pipelineRef.current
     if (!el) return
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
           setIsVisible(true)
           observer.disconnect()
         }

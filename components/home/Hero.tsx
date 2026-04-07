@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Highlighter } from "@/registry/magicui/highlighter"
 import { IconCloud } from "@/registry/magicui/icon-cloud"
 import { TypingAnimation } from "@/registry/magicui/typing-animation"
 
