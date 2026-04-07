@@ -9,6 +9,7 @@ export default function HowIWork() {
           padding: 0;
           font-family: var(--font-sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
           --hiw-cycle: 5.2s;
+          --hiw-beam: #10b981; /* bright emerald accent */
         }
         .hiw-eyebrow {
           font-size: 0.75rem; /* ~text-xs */
@@ -61,12 +62,14 @@ export default function HowIWork() {
           background: linear-gradient(
             90deg,
             transparent,
-            var(--color-text-primary, #111),
+            var(--hiw-beam),
             transparent
           );
-          opacity: 0.38;
-          filter: blur(0.35px);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
+          opacity: 0.55;
+          filter: blur(0.2px);
+          box-shadow:
+            0 0 18px rgba(16, 185, 129, 0.45),
+            0 0 36px rgba(16, 185, 129, 0.22);
           animation: hiw-beam var(--hiw-cycle) linear infinite;
         }
         .track::before {
@@ -89,10 +92,10 @@ export default function HowIWork() {
             opacity: 0;
           }
           8% {
-            opacity: 0.38;
+            opacity: 0.55;
           }
           92% {
-            opacity: 0.38;
+            opacity: 0.55;
           }
           100% {
             left: 110%;
@@ -273,7 +276,7 @@ export default function HowIWork() {
           height: 18px;
         }
         .phase-name {
-          font-size: 11px;
+          font-size: 0.75rem; /* readable: ~text-xs */
           font-weight: 500;
           color: var(--color-muted-foreground, #5f5f66);
           text-align: center;
@@ -282,10 +285,10 @@ export default function HowIWork() {
           transition: color 0.15s;
         }
         .phase-desc {
-          font-size: 10.5px;
+          font-size: 0.75rem; /* readable: ~text-xs */
           color: var(--color-muted-foreground, #5f5f66);
           text-align: center;
-          line-height: 1.5;
+          line-height: 1.45;
           padding: 0 6px;
           opacity: 0.85;
         }
@@ -302,7 +305,7 @@ export default function HowIWork() {
           background: var(--color-border-tertiary, #ebebeb);
         }
         .sep-text {
-          font-size: 10.5px;
+          font-size: 0.75rem; /* match eyebrow / text-xs rhythm */
           color: var(--color-muted-foreground, #5f5f66);
           letter-spacing: 0.07em;
           text-transform: uppercase;
@@ -351,12 +354,12 @@ export default function HowIWork() {
           stroke-linejoin: round;
         }
         .team-name {
-          font-size: 12px;
+          font-size: 0.875rem; /* ~text-sm */
           font-weight: 500;
           color: var(--color-foreground, #2c2c2a);
         }
         .team-detail {
-          font-size: 11px;
+          font-size: 0.75rem; /* ~text-xs */
           color: var(--color-muted-foreground, #5f5f66);
           line-height: 1.4;
           opacity: 0.95;
@@ -370,7 +373,7 @@ export default function HowIWork() {
           background: var(--color-background, #fff);
         }
         .closer-body {
-          font-size: 14px;
+          font-size: 0.875rem; /* match site text-sm */
           color: var(--color-muted-foreground, #5f5f66);
           line-height: 1.75;
           margin: 0 0 0.8rem;
@@ -385,8 +388,8 @@ export default function HowIWork() {
           flex-wrap: wrap;
         }
         .tag {
-          font-size: 11px;
-          padding: 2px 8px;
+          font-size: 0.75rem; /* text-xs */
+          padding: 0.25rem 0.625rem; /* closer to Tailwind px-2.5 py-1 */
           border: 1px solid var(--color-border, #e5e4f2);
           border-radius: 100px;
           color: var(--color-muted-foreground, #5f5f66);
