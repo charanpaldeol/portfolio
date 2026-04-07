@@ -1,6 +1,27 @@
 "use client"
 
+import { useRef, useEffect, useState } from "react"
+
 export default function HowIWork() {
+  const pipelineRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const el = pipelineRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.3 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className="hiw" aria-labelledby="hiw-heading">
       <style jsx>{`
@@ -29,7 +50,7 @@ export default function HowIWork() {
         .hiw-sub {
           font-size: 0.875rem; /* ~text-sm */
           color: var(--color-muted-foreground, #5f5f66);
-          margin: 0 0 3.25rem;
+          margin: 0 0 2.5rem;
           max-width: 520px;
           line-height: 1.65;
         }
@@ -38,7 +59,7 @@ export default function HowIWork() {
           display: flex;
           align-items: flex-start;
           position: relative;
-          margin: 0 0 2.75rem;
+          margin: 0 0 2.25rem;
         }
         .track {
           position: absolute;
@@ -56,20 +77,22 @@ export default function HowIWork() {
           position: absolute;
           top: 50%;
           left: -25%;
-          height: 2px;
-          width: 240px;
+          height: 3px;
+          width: 300px;
           transform: translateY(-50%);
           background: linear-gradient(
             90deg,
-            transparent,
-            var(--hiw-beam),
-            transparent
+            transparent 0%,
+            var(--hiw-beam) 30%,
+            var(--hiw-beam) 70%,
+            transparent 100%
           );
-          opacity: 0.55;
-          filter: blur(0.2px);
+          opacity: 0.85;
+          filter: blur(0.3px);
           box-shadow:
-            0 0 18px rgba(16, 185, 129, 0.45),
-            0 0 36px rgba(16, 185, 129, 0.22);
+            0 0 24px rgba(16, 185, 129, 0.6),
+            0 0 48px rgba(16, 185, 129, 0.35),
+            0 0 8px rgba(16, 185, 129, 0.9);
           animation: hiw-beam var(--hiw-cycle) linear infinite;
         }
         .track::before {
@@ -227,6 +250,13 @@ export default function HowIWork() {
           animation-delay: 4.65s;
         }
 
+        /* Pause all pipeline animations until section scrolls into view */
+        .pipeline:not(.is-visible) .track::after,
+        .pipeline:not(.is-visible) .phase-node,
+        .pipeline:not(.is-visible) .phase-name {
+          animation-play-state: paused;
+        }
+
         /* Also show the same depth cue on hover */
         .phase:hover .phase-node::after {
           opacity: 0.55;
@@ -237,6 +267,9 @@ export default function HowIWork() {
         }
         .phase:hover .phase-name {
           color: var(--color-foreground, #2c2c2a);
+        }
+        .phase:hover .phase-desc {
+          opacity: 1;
         }
 
         .phase-node {
@@ -256,11 +289,13 @@ export default function HowIWork() {
           color: var(--color-muted-foreground, #5f5f66);
         }
         .phase-node.final {
-          border-color: var(--color-border-primary, #999);
+          border-color: var(--hiw-beam);
+          outline: 3px solid rgba(16, 185, 129, 0.12);
+          outline-offset: -1px;
           width: 46px;
           height: 46px;
           margin-top: -2px;
-          color: var(--color-foreground, #2c2c2a);
+          color: var(--hiw-beam);
         }
         .phase-node :global(svg) {
           width: 16px;
@@ -290,14 +325,15 @@ export default function HowIWork() {
           text-align: center;
           line-height: 1.45;
           padding: 0 6px;
-          opacity: 0.85;
+          opacity: 0.6;
+          transition: opacity 0.15s;
         }
 
         .sep {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin: 2.75rem 0 1.75rem;
+          margin: 2.25rem 0 1.5rem;
         }
         .sep-line {
           flex: 1;
@@ -315,7 +351,7 @@ export default function HowIWork() {
 
         .teams-grid {
           display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 16px;
         }
         .team-card {
@@ -366,11 +402,11 @@ export default function HowIWork() {
         }
 
         .closer {
-          margin-top: 2.75rem;
+          margin-top: 2.25rem;
           padding: 1.5rem 1.5rem;
           border: 1px solid var(--color-border, #e5e4f2);
           border-radius: 12px;
-          background: var(--color-background, #fff);
+          background: var(--color-muted, #f8f8fa);
         }
         .closer-body {
           font-size: 0.875rem; /* match site text-sm */
@@ -425,6 +461,20 @@ export default function HowIWork() {
             grid-template-columns: 1fr;
           }
         }
+
+        @media (prefers-color-scheme: dark) {
+          .hiw { --hiw-beam: #34d399; }
+          .hiw-eyebrow, .hiw-sub, .phase-desc, .team-detail, .sep-text { color: #a1a1aa; }
+          .hiw-heading, .phase-name, .team-name { color: #e4e4e7; }
+          .closer-body :global(strong) { color: #e4e4e7; }
+          .phase-node { background: #1c1c1e; border-color: #3f3f46; }
+          .phase-node.final { border-color: var(--hiw-beam); }
+          .team-card { background: #1c1c1e; border-color: #3f3f46; }
+          .closer { background: #27272a; border-color: #3f3f46; }
+          .tag { background: #27272a; border-color: #3f3f46; color: #a1a1aa; }
+          .track { background: #3f3f46; }
+          .closer-body { color: #a1a1aa; }
+        }
       `}</style>
 
       <p className="hiw-eyebrow">How I work</p>
@@ -436,7 +486,7 @@ export default function HowIWork() {
         to live system — I own the arc, lead the teams, and stay accountable for outcomes.
       </p>
 
-      <div className="pipeline" aria-label="Delivery pipeline">
+      <div ref={pipelineRef} className={`pipeline${isVisible ? " is-visible" : ""}`} aria-label="Delivery pipeline">
         <div className="track" aria-hidden="true" />
 
         <div className="phase">
@@ -530,8 +580,8 @@ export default function HowIWork() {
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
-          <div className="team-name">Business stakeholders</div>
-          <div className="team-detail">Executives, operations, domain SMEs</div>
+          <div className="team-name">Business &amp; product</div>
+          <div className="team-detail">Executives, product owners, domain SMEs</div>
         </div>
 
         <div className="team-card">
@@ -541,8 +591,8 @@ export default function HowIWork() {
               <polyline points="8 6 2 12 8 18" />
             </svg>
           </div>
-          <div className="team-name">Engineering teams</div>
-          <div className="team-detail">Dev, QA, DevOps, release</div>
+          <div className="team-name">Engineering &amp; QA</div>
+          <div className="team-detail">Dev, QA, DevOps, testing, release</div>
         </div>
 
         <div className="team-card">
@@ -554,17 +604,6 @@ export default function HowIWork() {
           </div>
           <div className="team-name">Architects &amp; tech leads</div>
           <div className="team-detail">Solution, enterprise, integration</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-          </div>
-          <div className="team-name">Product owners</div>
-          <div className="team-detail">Roadmap, backlog, prioritization</div>
         </div>
 
         <div className="team-card">
@@ -599,17 +638,6 @@ export default function HowIWork() {
           <div className="team-name">Compliance &amp; vendors</div>
           <div className="team-detail">Regulatory, procurement, 3rd parties</div>
         </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <polyline points="9 11 12 14 22 4" />
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-            </svg>
-          </div>
-          <div className="team-name">QA &amp; operations</div>
-          <div className="team-detail">Testing, incident support, handoff</div>
-        </div>
       </div>
 
       <div className="closer">
@@ -620,7 +648,10 @@ export default function HowIWork() {
           It&apos;s the only one I know how to do.
         </p>
         <div className="closer-tags">
-          <span className="tag">Business + Technical + Delivery + AI-Native</span>
+          <span className="tag">Business</span>
+          <span className="tag">Technical</span>
+          <span className="tag">Delivery</span>
+          <span className="tag">AI-Native</span>
         </div>
       </div>
     </section>
