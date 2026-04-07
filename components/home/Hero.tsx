@@ -47,7 +47,7 @@ export default function Hero() {
         {/* Availability badge */}
         <div className="bg-[#E1F5EE] text-[#085041] text-xs font-medium px-3 py-1 rounded-full inline-flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#1D9E75]" aria-hidden="true" />
-          Available remotely · Worldwide
+          Toronto, Ontario · Remote Worldwide
         </div>
 
         {/* Name */}
@@ -61,32 +61,25 @@ export default function Hero() {
 
         {/* Headline */}
         <div className="mt-4 text-2xl font-semibold text-foreground max-w-xl leading-snug">
-          I bridge {" "}
-          <Highlighter action="underline" color="orange">
-            business
-          </Highlighter>{" "}
-          and{" "}
-          <Highlighter action="highlight" color="lightskyblue">
-            engineering
-          </Highlighter>
-          .
+          Senior Product Manager · Business Systems · Solution Architecture ·
+          AI-Native Delivery
         </div>
 
         {/* Subtext */}
         <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-xl">
-          Independent consultant who finds the real problem, works through system design with engineers, ships it, and measures whether it worked. Now building with AI — agents, model integration, and AI-powered stacks.
+          Most product leaders think in features. Most analysts think in
+          requirements. I think in systems, outcomes, and what it actually takes
+          to ship — from discovery through to value realized, including building
+          the AI agents that make it stick.
         </p>
 
         {/* Industry pills */}
         <div className="mt-5 flex flex-wrap gap-2">
           <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
-            Finance & banking
+            Finance & Banking
           </span>
           <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
-            Healthcare
-          </span>
-          <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
-            Retail & e-commerce
+            Insurance
           </span>
           <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
             Tech & SaaS
