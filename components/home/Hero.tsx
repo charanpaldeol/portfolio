@@ -61,7 +61,7 @@ export default function Hero() {
 
         {/* Headline */}
         <div className="mt-4 text-2xl font-semibold text-foreground max-w-xl leading-snug">
-          Senior Product Manager · Business Systems · Solution Architecture ·
+          Product Management · Business Systems · Solution Architecture ·
           AI-Native Delivery
         </div>
 
