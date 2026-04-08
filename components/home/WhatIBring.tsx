@@ -2,31 +2,154 @@ import Link from "next/link"
 
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
+/* ── Icons (Lucide-style) ── */
+const cardIcons = [
+  /* 0 — Problem Framing: compass */
+  <svg key="i0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>,
+  /* 1 — Solution Design: layers */
+  <svg key="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>,
+  /* 2 — AI-Native Delivery: zap */
+  <svg key="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
+  /* 3 — Engineering Depth: terminal */
+  <svg key="i3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5" /><line x1="12" y1="19" x2="20" y2="19" /></svg>,
+  /* 4 — Value Realization: target */
+  <svg key="i4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+]
+
+/* ── Per-card visual config ── */
+const cardStyles = [
+  { bg: "bg-background",   iconBg: "bg-[#eeedfe]", iconColor: "text-[#534AB7]", hoverShadow: "hover:shadow-md"    },
+  { bg: "bg-[#f8f7ff]",    iconBg: "bg-[#dddafc]", iconColor: "text-[#534AB7]", hoverShadow: "hover:shadow-lg"    },
+  { bg: "bg-[#f0fdf4]",    iconBg: "bg-[#d1fae5]", iconColor: "text-[#065f46]", hoverShadow: "hover:shadow-lg"    },
+  { bg: "bg-[#fffbeb]",    iconBg: "bg-[#fef3c7]", iconColor: "text-[#92400e]", hoverShadow: "hover:shadow-md"    },
+  { bg: "bg-foreground",   iconBg: "bg-background/10", iconColor: "text-background/80", hoverShadow: "hover:shadow-2xl", dark: true },
+]
+
+/* ── Row layout: cards grouped into flex rows ── */
+const rows = [
+  [{ i: 0, w: "md:w-5/12" }, { i: 1, w: "md:w-7/12" }],
+  [{ i: 2, w: "md:w-7/12" }, { i: 3, w: "md:w-5/12" }],
+  [{ i: 4, w: "w-full" }],
+]
+
 export default function WhatIBring() {
   return (
     <section>
-      <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">What I bring</div>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {whatIBringCards.map((card) => (
-          <Link
-            key={card.slug}
-            href={`/blog/${card.slug}`}
-            className={[
-              "group flex h-full flex-col rounded-xl border border-border bg-background p-5 text-left no-underline",
-              "sm:last:col-span-2 sm:last:max-w-[calc(50%-0.375rem)] sm:last:justify-self-center",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            ].join(" ")}
-          >
-            <h3 className="mb-2 text-sm font-medium text-foreground">{`${card.badge} - ${card.title}`}</h3>
-            <p className="text-xs leading-relaxed text-muted-foreground">{card.body}</p>
-            <div className="mt-auto pt-4">
-              <div className="flex justify-end border-t border-border pt-3">
-                <span className="text-xs font-medium tracking-wide text-muted-foreground group-hover:text-foreground">
-                  Read more
-                </span>
-              </div>
-            </div>
-          </Link>
+      <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
+        What I bring
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3 md:gap-4">
+        {rows.map((row, ri) => (
+          <div key={ri} className="flex flex-col md:flex-row gap-3 md:gap-4">
+            {row.map(({ i: idx, w: width }) => {
+              const card = whatIBringCards[idx]
+              const style = cardStyles[idx]
+              const icon = cardIcons[idx]
+              if (!card || !style || !icon) {
+                return null
+              }
+              const isDark = !!style.dark
+
+              return (
+                <Link
+                  key={card.slug}
+                  href={`/blog/${card.slug}`}
+                  className={[
+                    "group relative flex overflow-hidden rounded-2xl border p-5 md:p-6 text-left no-underline transition-shadow duration-300",
+                    width,
+                    style.bg,
+                    style.hoverShadow,
+                    isDark
+                      ? "border-foreground/15 text-background"
+                      : "border-border/70",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    /* Dark card: horizontal on desktop */
+                    isDark ? "flex-col md:flex-row md:items-center md:gap-10" : "flex-col",
+                  ].join(" ")}
+                >
+                  {/* Decorative corner glow */}
+                  <div
+                    className={[
+                      "pointer-events-none absolute -right-16 -bottom-16 h-48 w-48 rounded-full blur-2xl transition-transform duration-300 group-hover:scale-110",
+                      isDark ? "bg-background/5" : "bg-muted/50",
+                    ].join(" ")}
+                  />
+
+                  {/* Main content */}
+                  <div className={["relative z-10 flex flex-col gap-3", isDark ? "md:flex-1" : ""].join(" ")}>
+                    {/* Icon */}
+                    <div
+                      className={[
+                        "flex h-10 w-10 items-center justify-center rounded-xl",
+                        style.iconBg,
+                      ].join(" ")}
+                    >
+                      <span className={["block h-5 w-5", style.iconColor].join(" ")}>
+                        {icon}
+                      </span>
+                    </div>
+
+                    {/* Badge */}
+                    <span
+                      className={[
+                        "w-fit rounded-full px-3 py-1 text-[11px] font-medium tracking-wide uppercase",
+                        isDark ? "bg-background/10 text-background" : card.badgeClass,
+                      ].join(" ")}
+                    >
+                      {card.badge}
+                    </span>
+
+                    {/* Title */}
+                    <h3
+                      className={[
+                        "font-medium tracking-tight",
+                        isDark
+                          ? "text-xl md:text-2xl text-background"
+                          : "text-lg md:text-xl text-foreground",
+                      ].join(" ")}
+                    >
+                      {card.title}
+                    </h3>
+
+                    {/* Body */}
+                    <p
+                      className={[
+                        "text-sm leading-relaxed",
+                        isDark ? "text-background/75" : "text-muted-foreground",
+                      ].join(" ")}
+                    >
+                      {card.body}
+                    </p>
+
+                    {/* CTA — only on non-dark cards */}
+                    {!isDark && (
+                      <div className="pt-2">
+                        <span className="inline-flex items-center gap-2 text-xs font-medium tracking-wide text-foreground transition-transform duration-200 group-hover:translate-x-1">
+                          Read more <span aria-hidden>→</span>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Dark card: right-side highlight + CTA */}
+                  {isDark && (
+                    <div className="relative z-10 mt-4 flex flex-col gap-3 md:mt-0 md:shrink-0 md:items-end">
+                      <div className="rounded-xl bg-background/10 px-5 py-4">
+                        <div className="text-lg font-semibold text-background">Discovery → Value</div>
+                        <div className="mt-1 text-xs uppercase tracking-wider text-background/50">
+                          End-to-end ownership
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-2 text-xs font-medium tracking-wide text-background transition-transform duration-200 group-hover:translate-x-1">
+                        Read more <span aria-hidden>→</span>
+                      </span>
+                    </div>
+                  )}
+                </Link>
+              )
+            })}
+          </div>
         ))}
       </div>
     </section>
