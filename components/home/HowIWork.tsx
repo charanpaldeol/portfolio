@@ -276,8 +276,9 @@ export default function HowIWork() {
           width: 42px;
           height: 42px;
           border-radius: 50%;
-          border: 0.5px solid var(--color-border-secondary, #ddd);
-          background: var(--color-background-primary, #fff);
+          border: none;
+          box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-foreground, #1b1c1a) 12%, transparent);
+          background: var(--color-background-primary, #fcf9f5);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -356,22 +357,18 @@ export default function HowIWork() {
         }
         .team-card {
           padding: 1.25rem 1.25rem; /* close to Tailwind p-5, less tight than before */
-          border: 1px solid var(--color-border, #e5e4f2);
+          border: none;
           border-radius: 12px; /* matches Tailwind rounded-xl */
-          background: var(--color-background, #fff);
+          background: var(--color-surface-container-lowest, #eeeae3);
           display: flex;
           flex-direction: column;
           gap: 10px;
-          transition:
-            border-color 0.12s,
-            box-shadow 0.3s ease;
+          transition: box-shadow 0.3s ease;
+          box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--color-foreground, #1b1c1a) 5%, transparent);
           cursor: default;
         }
         .team-card:hover {
-          border-color: var(--color-border, #e5e4f2);
-          box-shadow:
-            0 4px 6px -1px rgba(0, 0, 0, 0.08),
-            0 2px 4px -2px rgba(0, 0, 0, 0.08); /* close to Tailwind shadow-md */
+          box-shadow: 0 40px 72px -16px color-mix(in srgb, var(--color-foreground, #1b1c1a) 7%, transparent);
         }
         .team-icon {
           display: flex;
@@ -404,9 +401,10 @@ export default function HowIWork() {
         .closer {
           margin-top: 2.25rem;
           padding: 1.5rem 1.5rem;
-          border: 1px solid var(--color-border, #e5e4f2);
+          border: none;
           border-radius: 12px;
-          background: var(--color-muted, #f8f8fa);
+          background: var(--color-surface-container-low, #f5f2ec);
+          box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--color-foreground, #1b1c1a) 5%, transparent);
         }
         .closer-body {
           font-size: 0.875rem; /* match site text-sm */
@@ -426,10 +424,10 @@ export default function HowIWork() {
         .tag {
           font-size: 0.75rem; /* text-xs */
           padding: 0.25rem 0.625rem; /* closer to Tailwind px-2.5 py-1 */
-          border: 1px solid var(--color-border, #e5e4f2);
+          border: none;
           border-radius: 100px;
-          color: var(--color-muted-foreground, #5f5f66);
-          background: var(--color-muted, #f3f2fb);
+          color: var(--color-muted-foreground, #5c5d59);
+          background: var(--color-surface-container-high, #e5e1d8);
         }
 
         /* Small responsive tightening (keeps the design, avoids squish) */

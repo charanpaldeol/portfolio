@@ -7,7 +7,7 @@ export default function EyeBreakTeaser() {
 
       <Link
         href="/eye-break"
-        className="mt-6 flex cursor-pointer items-start justify-between gap-4 rounded-xl border border-border p-5 transition-colors hover:bg-muted"
+        className="mt-6 flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-card p-5 shadow-editorial-float transition-shadow hover:shadow-editorial"
       >
         <div>
           <h3 className="mb-1 text-sm font-medium text-foreground">Eye Break Timer</h3>

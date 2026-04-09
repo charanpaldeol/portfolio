@@ -1,13 +1,18 @@
 import "styles/tailwind.css"
 
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Manrope } from "next/font/google"
 
 import { Footer } from "components/layout/Footer"
 import GlobalChrome from "components/layout/GlobalChrome"
 import PortfolioShell from "components/layout/PortfolioShell"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  weight: ["500", "600", "700", "800"],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cpdeol.com"),
@@ -46,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-background text-foreground`}
       >

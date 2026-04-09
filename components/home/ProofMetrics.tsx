@@ -53,24 +53,24 @@ const metrics: Metric[] = [
 
 const tagStyles: Record<TagColor, { pill: string; accent: string }> = {
   emerald: {
-    pill: "bg-emerald-50 text-emerald-700 border-emerald-100",
-    accent: "bg-emerald-500",
+    pill: "bg-primary-fixed text-on-primary-fixed",
+    accent: "bg-primary",
   },
   violet: {
-    pill: "bg-violet-50 text-violet-700 border-violet-100",
-    accent: "bg-violet-500",
+    pill: "bg-secondary-fixed text-on-secondary-fixed",
+    accent: "bg-secondary",
   },
   amber: {
-    pill: "bg-amber-50 text-amber-700 border-amber-100",
-    accent: "bg-amber-500",
+    pill: "bg-tertiary-fixed text-on-tertiary-fixed",
+    accent: "bg-tertiary",
   },
   sky: {
-    pill: "bg-sky-50 text-sky-700 border-sky-100",
-    accent: "bg-sky-500",
+    pill: "bg-secondary-fixed/80 text-on-secondary-fixed",
+    accent: "bg-secondary",
   },
   rose: {
-    pill: "bg-rose-50 text-rose-700 border-rose-100",
-    accent: "bg-rose-500",
+    pill: "bg-primary-fixed/90 text-on-primary-fixed",
+    accent: "bg-primary",
   },
 }
 
@@ -85,7 +85,7 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.1 }}
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-background transition-shadow duration-300 hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-xl bg-card shadow-editorial-float transition-shadow duration-300 hover:shadow-editorial"
     >
       {/* Colored accent bar */}
       <div className={`h-1 w-full shrink-0 ${accent}`} />
@@ -111,9 +111,9 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
         </p>
 
         {/* Tag */}
-        <div className="border-t border-border pt-4">
+        <div className="mt-auto pt-4">
           <span
-            className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${pill}`}
+            className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide uppercase ${pill}`}
           >
             {metric.tag}
           </span>

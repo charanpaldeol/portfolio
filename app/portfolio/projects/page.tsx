@@ -13,7 +13,7 @@ const projects = [
       "Rebuilt a legacy reporting tool into a real-time dashboard for a 50-person ops team. Reduced time-to-insight from 2 days to under 10 minutes.",
     outcome: "3× faster reporting",
     category: "Web",
-    color: "bg-sky-500",
+    color: "bg-secondary",
     icon: "📊",
   },
   {
@@ -23,7 +23,7 @@ const projects = [
       "Built a 60-component design system from scratch, adopted across 3 product teams. Reduced design-to-dev handoff friction by standardizing tokens and patterns.",
     outcome: "60 components shipped",
     category: "Design Systems",
-    color: "bg-violet-500",
+    color: "bg-tertiary",
     icon: "🎨",
   },
   {
@@ -33,7 +33,7 @@ const projects = [
       "Led product and engineering for a consumer wellness app from 0 to launch. 10k+ downloads in first 90 days, 4.6★ App Store rating.",
     outcome: "10k+ downloads",
     category: "Mobile",
-    color: "bg-emerald-500",
+    color: "bg-primary",
     icon: "📱",
   },
 ]
@@ -49,16 +49,16 @@ export default function ProjectsPage() {
   return (
     <section className="space-y-8">
       <header className="space-y-3">
-        <AnimatedGradientText className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+        <AnimatedGradientText className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
           Projects
         </AnimatedGradientText>
         <BlurFade>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+          <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
             Selected projects
           </h1>
         </BlurFade>
         <BlurFade delay={0.05}>
-          <p className="max-w-xl text-sm text-slate-600 md:text-base">
+          <p className="max-w-xl text-sm text-muted-foreground md:text-base">
             A curated selection of projects highlighting product decisions, technical depth, and outcomes across
             different teams and problem spaces.
           </p>
@@ -75,8 +75,8 @@ export default function ProjectsPage() {
               className={[
                 "rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-150",
                 active === f
-                  ? "bg-slate-900 text-white"
-                  : "border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                  ? "bg-primary text-primary-foreground shadow-editorial-float"
+                  : "bg-surface-container-high text-muted-foreground hover:bg-surface-container hover:text-foreground",
               ].join(" ")}
             >
               {f}
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 + i * 0.06, duration: 0.25, ease: "easeOut" }}
-            className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md transition-all duration-200 sm:flex-row sm:items-start"
+            className="flex flex-col gap-4 rounded-xl bg-card p-5 shadow-editorial-float transition-all duration-200 hover:shadow-editorial sm:flex-row sm:items-start"
           >
             {/* Icon / color block */}
             <div
@@ -108,8 +108,8 @@ export default function ProjectsPage() {
             {/* Content */}
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-start justify-between gap-2">
-                <h3 className="text-base font-semibold text-slate-900">{project.title}</h3>
-                <span className="inline-flex items-center rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+                <h3 className="text-base font-semibold text-foreground">{project.title}</h3>
+                <span className="inline-flex items-center rounded-full bg-primary-fixed px-2.5 py-0.5 text-xs font-semibold tracking-wide text-on-primary-fixed uppercase">
                   {project.outcome}
                 </span>
               </div>
@@ -117,13 +117,13 @@ export default function ProjectsPage() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-slate-100 bg-slate-50 px-2.5 py-0.5 text-xs text-slate-600"
+                    className="rounded-full bg-surface-container-high px-2.5 py-0.5 text-xs text-muted-foreground"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="text-sm leading-relaxed text-slate-600">{project.description}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
             </div>
           </motion.div>
         ))}

@@ -7,10 +7,10 @@ export default function BlogTeaser() {
 
       <Link
         href="/blog"
-        className="mt-6 border border-border rounded-xl p-5 flex items-start justify-between gap-4 hover:bg-muted transition-colors cursor-pointer"
+        className="mt-6 flex cursor-pointer items-start justify-between gap-4 rounded-xl bg-card p-5 shadow-editorial-float transition-shadow hover:shadow-editorial"
       >
         <div>
-          <div className="text-[10px] font-medium bg-[#EEEDFE] text-[#534AB7] px-2 py-0.5 rounded-full inline-block mb-2">
+          <div className="mb-2 inline-block rounded-full bg-secondary-fixed px-2 py-0.5 text-[10px] font-semibold tracking-wide text-on-secondary-fixed uppercase">
             Critical thinking
           </div>
           <h3 className="text-sm font-medium text-foreground mb-1">Why the problem on the brief is never the real problem</h3>

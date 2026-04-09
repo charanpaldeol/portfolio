@@ -1,26 +1,13 @@
-@keyframes rainbowSpin {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Editorial primary CTA — gradient per design system (no rainbow animation) */
+.editorialCta {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, #00694c) 0%,
+    var(--color-primary-container, #0d8c6c) 100%
+  );
+  box-shadow: var(--shadow-editorial-float, 0 24px 48px -8px color-mix(in srgb, #1b1c1a 5%, transparent));
 }
 
-.rainbowButton {
-  background: linear-gradient(
-    90deg,
-    hsl(0, 100%, 63%),
-    hsl(35, 100%, 63%),
-    hsl(60, 100%, 55%),
-    hsl(130, 100%, 53%),
-    hsl(200, 100%, 60%),
-    hsl(265, 100%, 65%),
-    hsl(0, 100%, 63%)
-  );
-  background-size: 300% 300%;
-  animation: rainbowSpin 4s linear infinite;
+.editorialCta:hover {
+  filter: brightness(1.03);
 }

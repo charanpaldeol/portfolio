@@ -36,7 +36,7 @@ export function SheetTrigger({ children, ...props }: SheetTriggerProps) {
     <button
       type="button"
       onClick={() => setOpen(true)}
-      className="inline-flex items-center justify-center rounded-md border border-transparent bg-slate-950 px-3 py-2 text-sm font-medium text-slate-50 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      className="inline-flex items-center justify-center rounded-xl border border-transparent bg-foreground px-3 py-2 text-sm font-medium text-background hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       {...props}
     >
       {children}
@@ -72,11 +72,11 @@ export function SheetContent({ side = 'left', children }: SheetContentProps) {
       <button
         type="button"
         aria-label="Close navigation menu"
-        className="fixed inset-0 h-full w-full bg-black/40"
+        className="fixed inset-0 h-full w-full bg-on-surface/25 backdrop-blur-sm"
         onClick={() => setOpen(false)}
       />
       <div
-        className={`fixed bg-slate-950 p-6 text-slate-50 shadow-lg transition-transform ${sideClasses[side]}`}
+        className={`fixed bg-foreground p-6 text-background shadow-editorial-lg backdrop-blur-xl transition-transform ${sideClasses[side]}`}
       >
         {children}
       </div>
@@ -97,7 +97,7 @@ export interface SheetTitleProps {
 }
 
 export function SheetTitle({ children }: SheetTitleProps) {
-  return <h2 className="text-lg font-semibold text-slate-50">{children}</h2>
+  return <h2 className="font-display text-lg font-bold text-background">{children}</h2>
 }
 
 export interface SheetDescriptionProps {
@@ -105,7 +105,7 @@ export interface SheetDescriptionProps {
 }
 
 export function SheetDescription({ children }: SheetDescriptionProps) {
-  return <p className="text-sm text-slate-300">{children}</p>
+  return <p className="text-sm text-background/75">{children}</p>
 }
 
 export interface SheetCloseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -138,7 +138,7 @@ export function SheetClose({ children, asChild, ...props }: SheetCloseProps) {
     <button
       type="button"
       onClick={() => setOpen(false)}
-      className="inline-flex items-center justify-center rounded-md border border-slate-700 bg-transparent px-3 py-2 text-sm font-medium text-slate-50 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      className="inline-flex items-center justify-center rounded-xl border border-background/20 bg-transparent px-3 py-2 text-sm font-medium text-background hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
       {...props}
     >
       {children}

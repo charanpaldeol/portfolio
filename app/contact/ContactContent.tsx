@@ -48,15 +48,15 @@ export default function ContactPage() {
           </AnimatedGradientText>
 
           <BlurFade>
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+            <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
               Let&apos;s build something great together
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.05}>
-            <p className="mt-3 text-sm text-slate-600 md:text-base">
+            <p className="mt-3 text-sm text-muted-foreground md:text-base">
               Tell me a bit about your project, team, or idea. I&apos;ll get back to you at{" "}
-              <a href="mailto:hello@cpdeol.com" className="font-medium text-slate-900 underline underline-offset-4">
+              <a href="mailto:hello@cpdeol.com" className="font-medium text-foreground underline decoration-tertiary/35 underline-offset-4 transition hover:decoration-tertiary">
                 hello@cpdeol.com
               </a>{" "}
               as soon as I can.
@@ -64,13 +64,13 @@ export default function ContactPage() {
           </BlurFade>
 
           <BlurFade delay={0.1}>
-            <dl className="mt-6 space-y-3 text-sm text-slate-600">
+            <dl className="mt-6 space-y-3 text-sm text-muted-foreground">
               <div>
-                <dt className="font-medium text-slate-900">Typical projects</dt>
+                <dt className="font-medium text-foreground">Typical projects</dt>
                 <dd>Product strategy, design systems, full-stack engineering, and technical leadership.</dd>
               </div>
               <div>
-                <dt className="font-medium text-slate-900">Availability</dt>
+                <dt className="font-medium text-foreground">Availability</dt>
                 <dd>Limited consulting and advisory capacity for 2026.</dd>
               </div>
             </dl>
@@ -81,7 +81,7 @@ export default function ContactPage() {
           <BlurFade delay={0.12}>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label htmlFor="name" className="text-sm font-medium text-slate-900">
+                <label htmlFor="name" className="text-sm font-medium text-foreground">
                   Name
                 </label>
                 <input
@@ -90,12 +90,12 @@ export default function ContactPage() {
                   type="text"
                   required
                   autoComplete="name"
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                  className="w-full border-0 border-b-2 border-input bg-surface-container-low/40 px-0 py-2 text-sm text-foreground outline-none transition focus:border-primary focus:ring-0"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="email" className="text-sm font-medium text-slate-900">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
                   Email
                 </label>
                 <input
@@ -104,12 +104,12 @@ export default function ContactPage() {
                   type="email"
                   required
                   autoComplete="email"
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                  className="w-full border-0 border-b-2 border-input bg-surface-container-low/40 px-0 py-2 text-sm text-foreground outline-none transition focus:border-primary focus:ring-0"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-slate-900">
+                <label htmlFor="message" className="text-sm font-medium text-foreground">
                   Project details
                 </label>
                 <textarea
@@ -117,7 +117,7 @@ export default function ContactPage() {
                   name="message"
                   rows={4}
                   required
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-offset-2 ring-offset-white transition focus:border-slate-400 focus:ring-2 focus:ring-slate-900/10"
+                  className="w-full rounded-md border-0 bg-surface-container-low/50 px-3 py-2 text-sm text-foreground outline-none ring-0 transition focus:ring-2 focus:ring-primary"
                   placeholder="What are you working on? What does success look like for you?"
                 />
               </div>

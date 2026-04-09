@@ -26,8 +26,8 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="flex flex-col gap-6">
-      <header className="rounded-2xl border-2 border-border bg-background px-5 py-6 md:px-6">
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">Blogs</h1>
+      <header className="rounded-2xl bg-surface-container-low px-5 py-6 shadow-editorial md:px-6">
+        <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">Blogs</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Ideas, frameworks, and practical thinking for building better technology outcomes.
         </p>
@@ -41,14 +41,14 @@ export default function BlogPage() {
             <li key={card.slug} className="h-full">
               <Link
                 href={`/blog/${card.slug}`}
-                className="group flex h-full flex-col rounded-xl border-2 border-border bg-background p-4 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="group flex h-full flex-col rounded-xl bg-card p-4 no-underline shadow-editorial-float transition-shadow hover:shadow-editorial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className={`inline-flex w-fit rounded-full px-2 py-0.5 text-[10px] font-medium ${card.badgeClass}`}>
                   {card.badge}
                 </span>
                 <span className="mt-2 block text-base font-semibold tracking-tight text-foreground">{card.title}</span>
                 <span className="mt-1 block flex-1 text-xs leading-relaxed text-muted-foreground">{excerpt}</span>
-                <span className="mt-3 inline-flex items-center border-t border-border pt-2 text-[11px] font-medium uppercase tracking-wider text-foreground">
+                <span className="mt-3 inline-flex items-center pt-2 text-[11px] font-semibold tracking-wider text-foreground uppercase">
                   Read article
                 </span>
               </Link>

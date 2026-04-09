@@ -9,8 +9,8 @@ export default function PortfolioShell({ children }: { children: ReactNode }) {
         className="pointer-events-none fixed inset-0 -z-10 size-full min-h-screen"
         squareSize={4}
         gridGap={6}
-        color="#6B7280"
-        maxOpacity={0.15}
+        color="#8a8680"
+        maxOpacity={0.1}
         flickerChance={0.05}
       />
       <ShellContentSurface>{children}</ShellContentSurface>

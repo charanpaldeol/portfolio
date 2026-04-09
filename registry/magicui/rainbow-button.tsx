@@ -17,8 +17,8 @@ type RainbowButtonProps =
 
 export function RainbowButton({ children, className, as = "a", ...props }: RainbowButtonProps) {
   const cls = twMerge(
-    styles.rainbowButton,
-    "inline-flex items-center justify-center rounded-xl px-6 py-2.5 text-sm font-medium text-white",
+    styles.editorialCta,
+    "inline-flex items-center justify-center rounded-xl px-6 py-2.5 text-sm font-medium text-primary-foreground transition-[filter]",
     className
   )
 

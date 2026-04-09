@@ -7,7 +7,7 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border bg-background text-muted-foreground">
+    <footer className="bg-surface-container-low text-muted-foreground">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 md:flex-row md:justify-between md:px-6">
         {/* Logo and tagline */}
         <div className="max-w-sm">
@@ -92,7 +92,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border">
+      <div className="bg-surface-container">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:px-6">
           <p>© {year} cpdeol.com. All rights reserved.</p>
 

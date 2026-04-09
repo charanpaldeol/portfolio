@@ -24,16 +24,16 @@ export const metadata: Metadata = {
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <section id={id} className="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
-      <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{title}</h2>
-      <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-700 md:text-base">{children}</div>
+    <section id={id} className="rounded-2xl bg-card p-5 shadow-editorial md:p-6">
+      <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">{title}</h2>
+      <div className="mt-4 space-y-4 text-sm leading-relaxed text-foreground md:text-base">{children}</div>
     </section>
   )
 }
 
 function DiagramFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 md:p-5">
+    <div className="mt-5 overflow-hidden rounded-xl bg-gradient-to-b from-surface-container-low to-surface p-4 shadow-editorial-float md:p-5">
       {children}
     </div>
   )
@@ -55,13 +55,13 @@ function MeshStagesDiagram() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">Network Growth Stages</p>
-        <div className="flex items-center gap-3 text-xs text-slate-600">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Network growth stages</p>
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> Mesh link
+            <span className="h-2.5 w-2.5 rounded-full bg-primary" /> Mesh link
           </span>
           <span className="inline-flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-full bg-sky-600" /> Gateway link
+            <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Gateway link
           </span>
         </div>
       </div>
@@ -152,13 +152,13 @@ function PayoffChart() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">Cost Comparison Timeline</p>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Cost comparison timeline</p>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-full bg-sky-600" /> Traditional monthly bill
+            <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Traditional monthly bill
           </span>
           <span className="inline-flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-600" /> One-time hardware purchase
+            <span className="h-2.5 w-2.5 rounded-full bg-primary" /> One-time hardware purchase
           </span>
         </div>
       </div>
@@ -204,7 +204,7 @@ function PayoffChart() {
           ~3.8 years
         </text>
       </svg>
-      <p className="mt-3 text-xs text-slate-500">
+      <p className="mt-3 text-xs text-muted-foreground">
         Assumes $50/month baseline internet spend and one-time hardware example in the middle of the estimated
         $1,500-$3,000 range.
       </p>
@@ -233,8 +233,8 @@ function EarningsDiagram() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">Monthly Earning Scenario</p>
-        <p className="text-xs text-slate-600">Micropayment model: ~$0.02 per GB routed</p>
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Monthly earning scenario</p>
+        <p className="text-xs text-muted-foreground">Micropayment model: ~$0.02 per GB routed</p>
       </div>
       <svg viewBox="0 0 900 280" role="img" aria-label="Five-neighbor usage chart showing monthly mesh routing income" className="w-full">
         <rect x="74" y="38" width="420" height="186" rx="10" fill="#F8FAFC" stroke="#E2E8F0" />
@@ -297,12 +297,12 @@ function EarningsDiagram() {
 export default function InternetOwnedPage() {
   return (
     <div className="mx-auto w-full max-w-5xl space-y-6">
-      <header className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Community Internet</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+      <header className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-8">
+        <p className="text-xs font-semibold tracking-[0.18em] text-primary uppercase">Community Internet</p>
+        <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
           Internet Owned, Not Rented
         </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700 md:text-lg">
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-lg">
           You&apos;ve been paying your internet provider month after month for years. But you don&apos;t own anything.
           The moment you stop paying, you lose access. What if there was another way?
         </p>
@@ -381,7 +381,7 @@ export default function InternetOwnedPage() {
             href="https://discord.gg/wRJTpGfApZ"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-800"
+            className="inline-flex items-center rounded-full bg-gradient-to-br from-primary to-primary-container px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-editorial-float transition hover:brightness-[1.03]"
           >
             Join Discord Community
           </Link>

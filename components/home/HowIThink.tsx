@@ -22,7 +22,7 @@ export default function HowIThink() {
     <section>
       <header>
         <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">How I think</div>
-        <h2 className="mt-2 text-xl font-medium text-foreground">Principles I bring to every problem</h2>
+        <h2 className="mt-2 font-display text-xl font-bold text-foreground">Principles I bring to every problem</h2>
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
           Critical thinking isn't a skill you list — it's how you operate under pressure and ambiguity.
         </p>
@@ -30,7 +30,7 @@ export default function HowIThink() {
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
         {principles.map((p) => (
-          <div key={p.title} className="border-l-2 border-border pl-4 py-1">
+          <div key={p.title} className="border-l-4 border-tertiary py-1 pl-4">
             <h3 className="text-sm font-medium text-foreground mb-1">{p.title}</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">{p.body}</p>
           </div>

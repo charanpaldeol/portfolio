@@ -39,16 +39,16 @@ export default function AboutPage() {
   return (
     <section className="space-y-10">
       <header className="space-y-3">
-        <AnimatedGradientText className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+        <AnimatedGradientText className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
           About
         </AnimatedGradientText>
         <BlurFade>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+          <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
             Background &amp; approach
           </h1>
         </BlurFade>
         <BlurFade delay={0.05}>
-          <p className="max-w-xl text-sm text-slate-600 md:text-base">
+          <p className="max-w-xl text-sm text-muted-foreground md:text-base">
             Designer, engineer, and product thinker. I sit at the intersection of code and craft.
           </p>
         </BlurFade>
@@ -56,29 +56,29 @@ export default function AboutPage() {
 
       {/* Bio card */}
       <BlurFade delay={0.1}>
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 p-6 sm:p-8 hover:shadow-lg hover:border-slate-300 transition-all duration-300">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-low to-surface-container-lowest p-6 shadow-editorial transition-all duration-300 hover:shadow-editorial-lg sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
             {/* Avatar section */}
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-5xl shadow-md">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-container text-5xl text-primary-foreground shadow-editorial-float">
               👤
             </div>
             
             {/* Bio content */}
             <div className="flex-1 space-y-3">
               <div>
-                <p className="text-base leading-relaxed text-slate-800 font-medium">
+                <p className="text-base leading-relaxed font-medium text-foreground">
                   I'm an independent consultant with 8+ years building digital products across B2B SaaS, fintech, and
                   consumer apps. I've worked across the full stack—from shaping product strategy and UX to writing the
                   code that ships it.
                 </p>
               </div>
               
-              <p className="text-sm leading-relaxed text-slate-600">
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 I care deeply about the space between design and engineering where most product quality is made or lost. Before going independent, I led frontend architecture and design systems at a B2B data platform and spent time at agencies designing and building for clients across healthcare, retail, and fintech.
               </p>
               
-              <div className="pt-2 flex items-center gap-2 text-xs font-medium text-slate-400">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-slate-400" />
+              <div className="flex items-center gap-2 pt-2 text-xs font-medium text-muted-foreground">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary/50" />
                 Based in Toronto, CA · Available globally (remote-first)
               </div>
             </div>
@@ -89,8 +89,8 @@ export default function AboutPage() {
       {/* How I work */}
       <div className="space-y-4">
         <div className="flex items-baseline justify-between">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">How I work</h2>
-          <p className="text-xs text-slate-400">Core principles</p>
+          <h2 className="text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase">How I work</h2>
+          <p className="text-xs text-muted-foreground/80">Core principles</p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {values.map((v, i) => (
@@ -99,14 +99,13 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 + i * 0.06, duration: 0.25, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl bg-card p-5 shadow-editorial-float transition-all duration-300 hover:shadow-editorial-lg"
             >
-              {/* Accent line */}
-              <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-violet-500 to-blue-500 transition-all duration-300 group-hover:w-full" />
-              
+              <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-secondary to-primary transition-all duration-300 group-hover:w-full" />
+
               <div className="mb-3 text-2xl">{v.icon}</div>
-              <h3 className="text-sm font-semibold text-slate-900">{v.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{v.description}</p>
+              <h3 className="text-sm font-semibold text-foreground">{v.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.description}</p>
             </motion.div>
           ))}
         </div>
@@ -115,21 +114,24 @@ export default function AboutPage() {
       {/* Tech stack */}
       <div className="space-y-4">
         <div className="flex items-baseline justify-between">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Tech stack</h2>
-          <p className="text-xs text-slate-400">Tools & frameworks</p>
+          <h2 className="text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase">Tech stack</h2>
+          <p className="text-xs text-muted-foreground/80">Tools & frameworks</p>
         </div>
-        <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300">
+        <div className="overflow-hidden rounded-2xl bg-card shadow-editorial-float transition-all duration-300 hover:shadow-editorial">
           <table className="w-full text-sm">
-            <tbody className="divide-y divide-slate-100">
+            <tbody>
               {stack.map((row, i) => (
-                <tr key={row.category} className={[
-                  "transition-all duration-200",
-                  i % 2 === 0 ? "bg-white hover:bg-slate-50" : "bg-slate-50/30 hover:bg-slate-50",
-                ].join(" ")}>
-                  <td className="w-32 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 whitespace-nowrap">
+                <tr
+                  key={row.category}
+                  className={[
+                    "transition-all duration-200",
+                    i % 2 === 0 ? "bg-surface-container-lowest/80 hover:bg-surface-container-low" : "bg-surface-container-low/50 hover:bg-surface-container",
+                  ].join(" ")}
+                >
+                  <td className="w-32 px-5 py-4 text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase whitespace-nowrap">
                     {row.category}
                   </td>
-                  <td className="px-5 py-4 text-slate-700 font-medium">{row.items}</td>
+                  <td className="px-5 py-4 font-medium text-foreground">{row.items}</td>
                 </tr>
               ))}
             </tbody>

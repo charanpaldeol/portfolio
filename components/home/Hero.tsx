@@ -44,28 +44,28 @@ export default function Hero() {
     <section className="flex w-full flex-col gap-8 pt-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
       <div className="max-w-2xl">
         {/* Availability badge */}
-        <div className="bg-[#E1F5EE] text-[#085041] text-xs font-medium px-3 py-1 rounded-full inline-flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#1D9E75]" aria-hidden="true" />
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-primary-fixed px-3 py-1 text-xs font-semibold tracking-wide text-on-primary-fixed uppercase">
+          <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
           Toronto, Ontario · Remote Worldwide
         </div>
 
         {/* Name */}
         <TypingAnimation
           as="h1"
-          className="mt-4 text-5xl font-bold text-foreground leading-tight"
+          className="mt-4 text-5xl font-bold leading-tight text-foreground"
           duration={80}
         >
           Charan Deol
         </TypingAnimation>
 
         {/* Headline */}
-        <div className="mt-4 text-2xl font-semibold text-foreground max-w-xl leading-snug">
+        <div className="mt-4 max-w-xl font-display text-2xl font-bold leading-snug tracking-tight text-foreground">
           Product Management · Business Systems · Solution Architecture ·
           AI-Native Delivery
         </div>
 
         {/* Subtext */}
-        <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-xl">
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
           Most product leaders think in features. Most analysts think in
           requirements. I think in systems, outcomes, and what it actually takes
           to ship — from discovery through to value realized, including building
@@ -74,13 +74,13 @@ export default function Hero() {
 
         {/* Industry pills */}
         <div className="mt-5 flex flex-wrap gap-2">
-          <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
+          <span className="rounded-full bg-surface-container-high px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
             Finance & Banking
           </span>
-          <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
+          <span className="rounded-full bg-surface-container-high px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
             Insurance
           </span>
-          <span className="text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-full">
+          <span className="rounded-full bg-surface-container-high px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
             Tech & SaaS
           </span>
         </div>
@@ -89,7 +89,7 @@ export default function Hero() {
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <Link
             href="/portfolio/projects"
-            className="bg-foreground text-background rounded-md px-5 py-2.5 text-sm font-medium"
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-editorial-float transition-[filter] hover:brightness-[1.03]"
           >
             See my work →
           </Link>

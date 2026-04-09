@@ -16,7 +16,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     slug: "problem-framing",
     badge: "Discovery",
-    badgeClass: "bg-[#EEEDFE] text-[#534AB7]",
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Problem Framing",
     body:
       "The most expensive decision in any tech program is choosing the wrong problem. Strong teams slow down just enough to define the decision, the constraints, and the measurable business outcome before writing a single line of code.",
@@ -54,7 +54,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     slug: "solution-design",
     badge: "Design",
-    badgeClass: "bg-[#EEEDFE] text-[#534AB7]",
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Solution Design",
     body:
       "Solution design is capital allocation in technical form. Great design choices reduce future cost, increase speed of change, and keep strategic options open as the business evolves.",
@@ -92,7 +92,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     slug: "ai-native-delivery",
     badge: "Delivery",
-    badgeClass: "bg-[#E1F5EE] text-[#085041]",
+    badgeClass: "bg-primary-fixed text-on-primary-fixed",
     title: "AI-Native Delivery",
     body:
       "AI-native delivery is not a faster sprint cadence. It is a different operating model: shorter feedback loops, stricter risk controls, and measurable value at each release boundary.",
@@ -130,7 +130,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     slug: "engineering-depth",
     badge: "Engineering",
-    badgeClass: "bg-[#FAEEDA] text-[#854F0B]",
+    badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed",
     title: "Engineering Depth",
     body:
       "Executive decisions become expensive when technical consequences are invisible. Engineering depth at leadership level turns architecture choices into clear business trade-offs.",
@@ -168,7 +168,7 @@ export const whatIBringCards: WhatIBringCard[] = [
   {
     slug: "value-realization",
     badge: "Adoption",
-    badgeClass: "bg-[#EEEDFE] text-[#534AB7]",
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Value Realization",
     body:
       "Deployment is a milestone, not the outcome. Value realization is the discipline of turning shipped capability into measurable business performance and sustained adoption.",

@@ -18,11 +18,11 @@ const cardIcons = [
 
 /* ── Per-card visual config ── */
 const cardStyles = [
-  { bg: "bg-background",   iconBg: "bg-[#eeedfe]", iconColor: "text-[#534AB7]", hoverShadow: "hover:shadow-md"    },
-  { bg: "bg-[#f8f7ff]",    iconBg: "bg-[#dddafc]", iconColor: "text-[#534AB7]", hoverShadow: "hover:shadow-lg"    },
-  { bg: "bg-[#f0fdf4]",    iconBg: "bg-[#d1fae5]", iconColor: "text-[#065f46]", hoverShadow: "hover:shadow-lg"    },
-  { bg: "bg-[#fffbeb]",    iconBg: "bg-[#fef3c7]", iconColor: "text-[#92400e]", hoverShadow: "hover:shadow-md"    },
-  { bg: "bg-foreground",   iconBg: "bg-background/10", iconColor: "text-background/80", hoverShadow: "hover:shadow-2xl", dark: true },
+  { bg: "bg-surface-container-lowest", iconBg: "bg-secondary-fixed", iconColor: "text-on-secondary-fixed", hoverShadow: "hover:shadow-editorial" },
+  { bg: "bg-secondary-fixed/35", iconBg: "bg-secondary/20", iconColor: "text-secondary", hoverShadow: "hover:shadow-editorial-lg" },
+  { bg: "bg-primary-fixed/50", iconBg: "bg-primary/15", iconColor: "text-primary", hoverShadow: "hover:shadow-editorial-lg" },
+  { bg: "bg-tertiary-fixed/45", iconBg: "bg-tertiary/15", iconColor: "text-tertiary", hoverShadow: "hover:shadow-editorial" },
+  { bg: "bg-foreground", iconBg: "bg-background/10", iconColor: "text-background/80", hoverShadow: "hover:shadow-editorial-lg", dark: true },
 ]
 
 /* ── Row layout: cards grouped into flex rows ── */
@@ -56,14 +56,12 @@ export default function WhatIBring() {
                   key={card.slug}
                   href={`/blog/${card.slug}`}
                   className={[
-                    "group relative flex overflow-hidden rounded-2xl border p-5 md:p-6 text-left no-underline transition-shadow duration-300",
+                    "group relative flex overflow-hidden rounded-2xl p-5 text-left no-underline shadow-editorial-float transition-shadow duration-300 md:p-6",
                     width,
                     style.bg,
                     style.hoverShadow,
-                    isDark
-                      ? "border-foreground/15 text-background"
-                      : "border-border/70",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    isDark ? "text-background" : "",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     /* Dark card: horizontal on desktop */
                     isDark ? "flex-col md:flex-row md:items-center md:gap-10" : "flex-col",
                   ].join(" ")}

@@ -4,7 +4,7 @@ function Chip({ children, bold }: { children: ReactNode; bold?: boolean }) {
   return (
     <span
       className={[
-        "text-xs text-muted-foreground bg-muted border border-border px-3 py-1 rounded-md",
+        "rounded-md bg-surface-container-high px-3 py-1 text-xs font-medium text-muted-foreground",
         bold ? "font-medium text-foreground" : "",
       ].join(" ")}
     >
