@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
 import HowIWork from "@/components/home/HowIWork"
+import { PageShell } from "@/components/layout/PageShell"
 
 function PageHero() {
   return (
@@ -68,15 +69,13 @@ function CTA() {
 
 export default function HowIWorkPage() {
   return (
-    <div className="min-h-screen bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-      <main className="mx-auto w-full max-w-7xl px-6 md:px-8 py-10 md:py-14">
-        <PageHero />
-        <section className="rounded-2xl bg-surface-container-low p-6 md:p-10 shadow-editorial">
-          <HowIWork />
-        </section>
-        <CTA />
-      </main>
-    </div>
+    <PageShell>
+      <PageHero />
+      <section className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-10">
+        <HowIWork />
+      </section>
+      <CTA />
+    </PageShell>
   )
 }
 

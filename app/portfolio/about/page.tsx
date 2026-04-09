@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import AboutContent from "./AboutContent"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
-  return <AboutContent />
+  return (
+    <PageShell>
+      <AboutContent />
+    </PageShell>
+  )
 }

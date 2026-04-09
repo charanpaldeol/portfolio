@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import ContactContent from "../../contact/ContactContent"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 }
 
 export default function PortfolioContactPage() {
-  return <ContactContent />
+  return (
+    <PageShell>
+      <ContactContent />
+    </PageShell>
+  )
 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 
 import { BlogTopicArticle } from "@/components/blog/BlogTopicArticle"
+import { PageShell } from "@/components/layout/PageShell"
 import { requireWhatIBringCard } from "@/lib/what-i-bring-cards"
 
 interface Props {
@@ -41,5 +42,9 @@ export function generateStaticParams() {
 export default async function BlogSlugPage({ params }: Props) {
   const { slug } = await params
   const card = requireWhatIBringCard(slug)
-  return <BlogTopicArticle card={card} />
+  return (
+    <PageShell>
+      <BlogTopicArticle card={card} />
+    </PageShell>
+  )
 }

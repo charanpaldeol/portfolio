@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import type { ReactNode } from "react"
 
+import { PageShell } from "@/components/layout/PageShell"
+
 export const metadata: Metadata = {
   title: "Internet Owned, Not Rented",
   description:
@@ -296,97 +298,99 @@ function EarningsDiagram() {
 
 export default function InternetOwnedPage() {
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-6">
-      <header className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-8">
-        <p className="text-xs font-semibold tracking-[0.18em] text-primary uppercase">Community Internet</p>
-        <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
-          Internet Owned, Not Rented
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-lg">
-          You&apos;ve been paying your internet provider month after month for years. But you don&apos;t own anything.
-          The moment you stop paying, you lose access. What if there was another way?
-        </p>
-      </header>
+    <PageShell containerClassName="max-w-5xl">
+      <div className="space-y-6">
+        <header className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-8">
+          <p className="text-xs font-semibold tracking-[0.18em] text-primary uppercase">Community Internet</p>
+          <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
+            Internet Owned, Not Rented
+          </h1>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-lg">
+            You&apos;ve been paying your internet provider month after month for years. But you don&apos;t own anything.
+            The moment you stop paying, you lose access. What if there was another way?
+          </p>
+        </header>
 
-      <Section id="how-it-works" title="How It Works">
-        <p>
-          Mesh networks are simple in concept. Each home has a small hardware node, and nodes connect to nearby homes.
-          Data moves hop by hop across neighbors, so there is no single company acting as the only route.
-        </p>
-        <p>
-          In the early phase, a few homes keep traditional internet as backup gateways while the neighborhood mesh
-          grows.
-        </p>
-        <MeshStagesDiagram />
-      </Section>
+        <Section id="how-it-works" title="How It Works">
+          <p>
+            Mesh networks are simple in concept. Each home has a small hardware node, and nodes connect to nearby homes.
+            Data moves hop by hop across neighbors, so there is no single company acting as the only route.
+          </p>
+          <p>
+            In the early phase, a few homes keep traditional internet as backup gateways while the neighborhood mesh
+            grows.
+          </p>
+          <MeshStagesDiagram />
+        </Section>
 
-      <Section id="ownership" title="Own Your Hardware, Own Your Freedom">
-        <p>
-          Based on current mesh technology, we estimate hardware costs between <strong>$1,500 and $3,000</strong>.
-          Once paid, the system is yours outright. At roughly $50/month for traditional internet, that investment can
-          break even in about <strong>3 to 4 years</strong> through savings alone.
-        </p>
-        <p>
-          Over a 7 to 10 year window, ownership becomes even more meaningful. The biggest advantage is not just cost:
-          if life gets hard financially, your connection does not disappear because a bill was missed. In many cases,
-          the hardware can keep operating for 15 to 20 years.
-        </p>
-        <PayoffChart />
-      </Section>
+        <Section id="ownership" title="Own Your Hardware, Own Your Freedom">
+          <p>
+            Based on current mesh technology, we estimate hardware costs between <strong>$1,500 and $3,000</strong>.
+            Once paid, the system is yours outright. At roughly $50/month for traditional internet, that investment can
+            break even in about <strong>3 to 4 years</strong> through savings alone.
+          </p>
+          <p>
+            Over a 7 to 10 year window, ownership becomes even more meaningful. The biggest advantage is not just cost:
+            if life gets hard financially, your connection does not disappear because a bill was missed. In many cases,
+            the hardware can keep operating for 15 to 20 years.
+          </p>
+          <PayoffChart />
+        </Section>
 
-      <Section id="earn-sharing" title="Earn Money by Sharing Your Network">
-        <p>
-          When neighbors route data through your node, you can earn micropayments (around 2 cents per GB). With five
-          nearby households, an estimated <strong>$15 to $20 per month</strong> can help offset power and maintenance.
-        </p>
-        <p>
-          You can tune how your node behaves: maximize earnings, provide free community access, or use a hybrid model
-          with fair cost-sharing.
-        </p>
-        <EarningsDiagram />
-      </Section>
+        <Section id="earn-sharing" title="Earn Money by Sharing Your Network">
+          <p>
+            When neighbors route data through your node, you can earn micropayments (around 2 cents per GB). With five
+            nearby households, an estimated <strong>$15 to $20 per month</strong> can help offset power and maintenance.
+          </p>
+          <p>
+            You can tune how your node behaves: maximize earnings, provide free community access, or use a hybrid model
+            with fair cost-sharing.
+          </p>
+          <EarningsDiagram />
+        </Section>
 
-      <Section id="privacy" title="Your Data Stays Private and Secure">
-        <p>
-          Traffic is encrypted end-to-end, so intermediate routers relay packets without being able to read messages or
-          inspect activity. Access decisions are made by local community consensus, not a centralized platform.
-        </p>
-        <p>
-          The result is a truly peer-to-peer network where trust and governance remain close to the people using it.
-        </p>
-      </Section>
+        <Section id="privacy" title="Your Data Stays Private and Secure">
+          <p>
+            Traffic is encrypted end-to-end, so intermediate routers relay packets without being able to read messages or
+            inspect activity. Access decisions are made by local community consensus, not a centralized platform.
+          </p>
+          <p>
+            The result is a truly peer-to-peer network where trust and governance remain close to the people using it.
+          </p>
+        </Section>
 
-      <Section id="adoption" title="How We Get There">
-        <p>
-          Adoption is gradual. A small number of homes act as gateway nodes by keeping traditional internet lines and
-          routing traffic for the mesh. Those homes can earn more for carrying external traffic.
-        </p>
-        <p>
-          As participation increases, local routing covers more community needs and dependency on centralized providers
-          naturally shrinks.
-        </p>
-      </Section>
+        <Section id="adoption" title="How We Get There">
+          <p>
+            Adoption is gradual. A small number of homes act as gateway nodes by keeping traditional internet lines and
+            routing traffic for the mesh. Those homes can earn more for carrying external traffic.
+          </p>
+          <p>
+            As participation increases, local routing covers more community needs and dependency on centralized providers
+            naturally shrinks.
+          </p>
+        </Section>
 
-      <Section id="join" title="Join the Conversation">
-        <p>
-          This is an open idea we are exploring together. We do not have every answer yet, and your perspective helps
-          shape what is practical, fair, and resilient.
-        </p>
-        <p>
-          Join the Discord community to discuss technical challenges, ask questions, and help design how this can work
-          in the real world.
-        </p>
-        <div className="pt-1">
-          <Link
-            href="https://discord.gg/wRJTpGfApZ"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full bg-gradient-to-br from-primary to-primary-container px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-editorial-float transition hover:brightness-[1.03]"
-          >
-            Join Discord Community
-          </Link>
-        </div>
-      </Section>
-    </div>
+        <Section id="join" title="Join the Conversation">
+          <p>
+            This is an open idea we are exploring together. We do not have every answer yet, and your perspective helps
+            shape what is practical, fair, and resilient.
+          </p>
+          <p>
+            Join the Discord community to discuss technical challenges, ask questions, and help design how this can work
+            in the real world.
+          </p>
+          <div className="pt-1">
+            <Link
+              href="https://discord.gg/wRJTpGfApZ"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full bg-gradient-to-br from-primary to-primary-container px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-editorial-float transition hover:brightness-[1.03]"
+            >
+              Join Discord Community
+            </Link>
+          </div>
+        </Section>
+      </div>
+    </PageShell>
   )
 }

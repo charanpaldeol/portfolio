@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import ExperienceContent from "./ExperienceContent"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 }
 
 export default function ExperiencePage() {
-  return <ExperienceContent />
+  return (
+    <PageShell>
+      <ExperienceContent />
+    </PageShell>
+  )
 }

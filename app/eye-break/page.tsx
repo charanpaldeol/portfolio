@@ -1,4 +1,5 @@
 import { EyeBreakTimer } from "./components/EyeBreakTimer"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata = {
   title: "Eye Break Timer",
@@ -21,6 +22,10 @@ export const metadata = {
 }
 
 export default function EyeBreakPage() {
-  return <EyeBreakTimer />
+  return (
+    <PageShell containerClassName="max-w-4xl">
+      <EyeBreakTimer />
+    </PageShell>
+  )
 }
 

@@ -17,6 +17,7 @@ import {
 import { motion } from "framer-motion"
 
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
+import { PageShell } from "@/components/layout/PageShell"
 
 function Hero() {
   return (
@@ -271,14 +272,12 @@ function CTA() {
 
 export default function WhatIBringPage() {
   return (
-    <div className="min-h-screen bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-      <main className="pt-10 pb-20 px-6 md:px-8 max-w-7xl mx-auto">
-        <Hero />
-        <ServicesGrid />
-        <Manifesto />
-        <CTA />
-      </main>
-    </div>
+    <PageShell>
+      <Hero />
+      <ServicesGrid />
+      <Manifesto />
+      <CTA />
+    </PageShell>
   )
 }
 

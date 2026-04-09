@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import ServicesContent from "./ServicesContent"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
   title: "Services",
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 }
 
 export default function ServicesPage() {
-  return <ServicesContent />
+  return (
+    <PageShell>
+      <ServicesContent />
+    </PageShell>
+  )
 }

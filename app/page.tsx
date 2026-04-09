@@ -4,6 +4,7 @@ import CTABand from "@/components/home/CTABand"
 import EyeBreakTeaser from "@/components/home/EyeBreakTeaser"
 import Hero from "@/components/home/Hero"
 import ProofMetrics from "@/components/home/ProofMetrics"
+import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
   title: "Charan Deol — Product Engineer & Consultant",
@@ -57,13 +58,15 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <div className="space-y-14 md:space-y-20">
-        <Hero />
-        <ProofMetrics />
-        <BlogTeaser />
-        <EyeBreakTeaser />
-        <CTABand />
-      </div>
+      <PageShell>
+        <div className="space-y-14 md:space-y-20">
+          <Hero />
+          <ProofMetrics />
+          <BlogTeaser />
+          <EyeBreakTeaser />
+          <CTABand />
+        </div>
+      </PageShell>
     </>
   )
 }

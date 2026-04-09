@@ -1,5 +1,7 @@
 import { Metadata } from "next"
 
+import { PageShell } from "@/components/layout/PageShell"
+
 export const metadata: Metadata = {
   title: "Projects",
   description:
@@ -22,12 +24,14 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-        Projects
-      </h1>
-      <p className="text-sm text-muted-foreground md:text-base">Coming soon.</p>
-    </div>
+    <PageShell>
+      <div className="flex flex-col gap-6">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          Projects
+        </h1>
+        <p className="text-sm text-muted-foreground md:text-base">Coming soon.</p>
+      </div>
+    </PageShell>
   )
 }
 
