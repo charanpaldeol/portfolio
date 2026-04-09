@@ -26,16 +26,18 @@ export const metadata: Metadata = {
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <section id={id} className="rounded-2xl bg-card p-5 shadow-editorial md:p-6">
-      <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">{title}</h2>
-      <div className="mt-4 space-y-4 text-sm leading-relaxed text-foreground md:text-base">{children}</div>
+    <section id={id} className="rounded-2xl bg-surface-container-low p-6 md:p-8 lg:p-10">
+      <h2 className="font-display text-2xl font-bold tracking-tight text-on-surface md:text-3xl">{title}</h2>
+      <div className="mt-6 space-y-4 text-base leading-relaxed text-on-surface-variant md:text-lg [&_strong]:font-semibold [&_strong]:text-on-surface">
+        {children}
+      </div>
     </section>
   )
 }
 
 function DiagramFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-5 overflow-hidden rounded-xl bg-gradient-to-b from-surface-container-low to-surface p-4 shadow-editorial-float md:p-5">
+    <div className="mt-6 overflow-hidden rounded-xl bg-surface-container-lowest p-4 md:p-6">
       {children}
     </div>
   )
@@ -57,8 +59,8 @@ function MeshStagesDiagram() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Network growth stages</p>
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Network growth stages</p>
+        <div className="flex items-center gap-3 text-xs text-on-surface-variant">
           <span className="inline-flex items-center gap-1">
             <span className="h-2.5 w-2.5 rounded-full bg-primary" /> Mesh link
           </span>
@@ -154,8 +156,8 @@ function PayoffChart() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Cost comparison timeline</p>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Cost comparison timeline</p>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-on-surface-variant">
           <span className="inline-flex items-center gap-1">
             <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Traditional monthly bill
           </span>
@@ -206,7 +208,7 @@ function PayoffChart() {
           ~3.8 years
         </text>
       </svg>
-      <p className="mt-3 text-xs text-muted-foreground">
+      <p className="mt-3 text-xs leading-relaxed text-on-surface-variant">
         Assumes $50/month baseline internet spend and one-time hardware example in the middle of the estimated
         $1,500-$3,000 range.
       </p>
@@ -235,8 +237,8 @@ function EarningsDiagram() {
   return (
     <DiagramFrame>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Monthly earning scenario</p>
-        <p className="text-xs text-muted-foreground">Micropayment model: ~$0.02 per GB routed</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Monthly earning scenario</p>
+        <p className="text-xs text-on-surface-variant">Micropayment model: ~$0.02 per GB routed</p>
       </div>
       <svg viewBox="0 0 900 280" role="img" aria-label="Five-neighbor usage chart showing monthly mesh routing income" className="w-full">
         <rect x="74" y="38" width="420" height="186" rx="10" fill="#F8FAFC" stroke="#E2E8F0" />
@@ -299,17 +301,29 @@ function EarningsDiagram() {
 export default function InternetOwnedPage() {
   return (
     <PageShell containerClassName="max-w-5xl">
-      <div className="space-y-6">
-        <header className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-8">
-          <p className="text-xs font-semibold tracking-[0.18em] text-primary uppercase">Community Internet</p>
-          <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
-            Internet Owned, Not Rented
+      <div className="space-y-10 md:space-y-14">
+        <header className="max-w-4xl">
+          <div className="mb-6 flex items-center gap-4">
+            <div className="h-px w-12 bg-primary" />
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Community internet</span>
+          </div>
+          <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-6xl lg:text-7xl">
+            Internet owned,{" "}
+            <span className="text-editorial-gradient">not rented.</span>
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-lg">
-            You&apos;ve been paying your internet provider month after month for years. But you don&apos;t own anything.
-            The moment you stop paying, you lose access. What if there was another way?
+          <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl">
+            You&apos;ve been paying your provider month after month for years — but you don&apos;t own anything. The
+            moment you stop paying, you lose access. What if there was another way?
           </p>
         </header>
+
+        <section className="border-l-4 border-tertiary py-1 pl-6 md:pl-10">
+          <p className="font-display text-xl font-extrabold italic leading-snug text-on-surface-variant md:text-2xl">
+            &quot;Ownership shifts the question from monthly rent to long-term resilience — for households and
+            neighborhoods alike.&quot;
+          </p>
+          <p className="mt-3 text-xs font-semibold tracking-widest text-tertiary uppercase">Editorial frame</p>
+        </section>
 
         <Section id="how-it-works" title="How It Works">
           <p>
@@ -379,14 +393,14 @@ export default function InternetOwnedPage() {
             Join the Discord community to discuss technical challenges, ask questions, and help design how this can work
             in the real world.
           </p>
-          <div className="pt-1">
+          <div className="pt-2">
             <Link
               href="https://discord.gg/wRJTpGfApZ"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-full bg-gradient-to-br from-primary to-primary-container px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-editorial-float transition hover:brightness-[1.03]"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-8 py-4 text-sm font-semibold text-primary-foreground shadow-editorial transition hover:brightness-[1.03]"
             >
-              Join Discord Community
+              Join Discord community
             </Link>
           </div>
         </Section>

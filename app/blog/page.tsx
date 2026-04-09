@@ -1,8 +1,8 @@
 import { Metadata } from "next"
 import Link from "next/link"
 
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
 import { PageShell } from "@/components/layout/PageShell"
+import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -24,34 +24,57 @@ export const metadata: Metadata = {
   },
 }
 
+/** Bento spans for five cards: 7+5, 5+7, full — editorial asymmetry */
+const bentoSpans = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-12"] as const
+
 export default function BlogPage() {
   return (
     <PageShell>
-      <div className="flex flex-col gap-6">
-        <header className="rounded-2xl bg-surface-container-low px-5 py-6 shadow-editorial md:px-6">
-          <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">Blogs</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Ideas, frameworks, and practical thinking for building better technology outcomes.
+      <div className="space-y-12 md:space-y-16">
+        <header className="max-w-4xl">
+          <div className="mb-6 flex items-center gap-4">
+            <div className="h-px w-12 bg-primary" />
+            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Blog</span>
+          </div>
+          <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl">
+            Ideas that <span className="text-editorial-gradient">ship.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl">
+            Frameworks and practical thinking on problem framing, solution design, AI-native delivery, engineering
+            depth, and value realization.
           </p>
         </header>
 
-        <ul className="m-0 grid list-none grid-cols-1 gap-3 p-0 md:grid-cols-2 md:gap-4">
-          {whatIBringCards.map((card) => {
-            const excerpt = card.body.length > 145 ? `${card.body.slice(0, 145)}...` : card.body
+        <ul className="m-0 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-12 md:gap-6">
+          {whatIBringCards.map((card, index) => {
+            const excerpt = card.body.length > 160 ? `${card.body.slice(0, 160)}…` : card.body
+            const span = bentoSpans[index] ?? "md:col-span-6"
 
             return (
-              <li key={card.slug} className="h-full">
+              <li key={card.slug} className={["h-full", span].join(" ")}>
                 <Link
                   href={`/blog/${card.slug}`}
-                  className="group flex h-full flex-col rounded-xl bg-card p-4 no-underline shadow-editorial-float transition-shadow hover:shadow-editorial focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="group flex h-full min-h-[200px] flex-col rounded-xl bg-surface-container-low p-6 no-underline transition-colors duration-300 hover:bg-surface-container md:min-h-[220px] md:p-8"
                 >
-                  <span className={`inline-flex w-fit rounded-full px-2 py-0.5 text-[10px] font-medium ${card.badgeClass}`}>
+                  <span
+                    className={[
+                      "inline-flex w-fit rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide uppercase",
+                      card.badgeClass,
+                    ].join(" ")}
+                  >
                     {card.badge}
                   </span>
-                  <span className="mt-2 block text-base font-semibold tracking-tight text-foreground">{card.title}</span>
-                  <span className="mt-1 block flex-1 text-xs leading-relaxed text-muted-foreground">{excerpt}</span>
-                  <span className="mt-3 inline-flex items-center pt-2 text-[11px] font-semibold tracking-wider text-foreground uppercase">
-                    Read article
+                  <span className="mt-4 block font-display text-xl font-bold tracking-tight text-on-surface md:text-2xl">
+                    {card.title}
+                  </span>
+                  <span className="mt-2 block flex-1 text-sm leading-relaxed text-on-surface-variant md:text-base">
+                    {excerpt}
+                  </span>
+                  <span className="mt-5 inline-flex items-center text-xs font-semibold tracking-wider text-primary uppercase transition group-hover:gap-2">
+                    <span>Read article</span>
+                    <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
+                      →
+                    </span>
                   </span>
                 </Link>
               </li>
@@ -62,4 +85,3 @@ export default function BlogPage() {
     </PageShell>
   )
 }
-
