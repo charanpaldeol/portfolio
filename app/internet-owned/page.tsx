@@ -24,22 +24,27 @@ export const metadata: Metadata = {
   },
 }
 
-function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+/** Long-form section: rhythm from whitespace and type only — no outer “card” wrapper (DESIGN.md). */
+function ArticleSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <section id={id} className="rounded-2xl bg-surface-container-low p-6 md:p-8 lg:p-10">
-      <h2 className="font-display text-2xl font-bold tracking-tight text-on-surface md:text-3xl">{title}</h2>
-      <div className="mt-6 space-y-4 text-base leading-relaxed text-on-surface-variant md:text-lg [&_strong]:font-semibold [&_strong]:text-on-surface">
+    <section id={id} className="scroll-mt-24 space-y-6 md:space-y-8 md:scroll-mt-28">
+      <h2 className="font-display text-2xl font-bold tracking-tight text-on-surface md:text-3xl lg:text-4xl">{title}</h2>
+      <div className="space-y-4 text-base leading-relaxed text-on-surface-variant md:text-lg [&_strong]:font-semibold [&_strong]:text-on-surface">
         {children}
       </div>
     </section>
   )
 }
 
-function DiagramFrame({ children }: { children: ReactNode }) {
+/** Single tonal lift for figures: lowest on surface (nesting), optional ghost edge only. */
+function DiagramFigure({ children, "aria-label": ariaLabel }: { children: ReactNode; "aria-label"?: string }) {
   return (
-    <div className="mt-6 overflow-hidden rounded-xl bg-surface-container-lowest p-4 md:p-6">
+    <figure
+      aria-label={ariaLabel}
+      className="mt-8 overflow-hidden rounded-2xl bg-surface-container-low p-5 shadow-editorial outline outline-1 outline-outline-variant/10 md:mt-10 md:p-8"
+    >
       {children}
-    </div>
+    </figure>
   )
 }
 
@@ -57,35 +62,35 @@ function House({ x, y, label, active = false }: { x: number; y: number; label: s
 
 function MeshStagesDiagram() {
   return (
-    <DiagramFrame>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Network growth stages</p>
+    <DiagramFigure aria-label="Mesh network diagram">
+      <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Network growth stages</span>
         <div className="flex items-center gap-3 text-xs text-on-surface-variant">
-          <span className="inline-flex items-center gap-1">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-primary" /> Mesh link
           </span>
-          <span className="inline-flex items-center gap-1">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Gateway link
           </span>
         </div>
-      </div>
+      </figcaption>
       <svg viewBox="0 0 1140 320" role="img" aria-label="Mesh network growth from one house to a connected neighborhood with gateways" className="w-full">
         <defs>
-          <linearGradient id="stageBg" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="io-stageBg" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#FFFFFF" />
             <stop offset="100%" stopColor="#F8FAFC" />
           </linearGradient>
-          <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <marker id="io-flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 z" fill="#10B981" />
           </marker>
-          <marker id="gatewayArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <marker id="io-gatewayArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 z" fill="#0369A1" />
           </marker>
         </defs>
 
-        <rect x="16" y="18" width="350" height="286" rx="16" fill="url(#stageBg)" stroke="#CBD5E1" />
-        <rect x="394" y="18" width="350" height="286" rx="16" fill="url(#stageBg)" stroke="#CBD5E1" />
-        <rect x="772" y="18" width="350" height="286" rx="16" fill="url(#stageBg)" stroke="#CBD5E1" />
+        <rect x="16" y="18" width="350" height="286" rx="16" fill="url(#io-stageBg)" stroke="#CBD5E1" />
+        <rect x="394" y="18" width="350" height="286" rx="16" fill="url(#io-stageBg)" stroke="#CBD5E1" />
+        <rect x="772" y="18" width="350" height="286" rx="16" fill="url(#io-stageBg)" stroke="#CBD5E1" />
 
         <text x="36" y="48" fontSize="15" fontWeight="700" fill="#0F172A">
           Stage 1: A single house starts
@@ -104,11 +109,11 @@ function MeshStagesDiagram() {
         <House x={678} y={120} label="C" />
         <House x={512} y={202} label="D" />
         <House x={632} y={208} label="E" />
-        <line x1="483" y1="112" x2="552" y2="92" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="588" y1="92" x2="660" y2="118" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="570" y1="104" x2="523" y2="188" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="531" y1="202" x2="613" y2="208" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="660" y1="136" x2="632" y2="190" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
+        <line x1="483" y1="112" x2="552" y2="92" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="588" y1="92" x2="660" y2="118" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="570" y1="104" x2="523" y2="188" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="531" y1="202" x2="613" y2="208" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="660" y1="136" x2="632" y2="190" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
 
         <text x="792" y="48" fontSize="15" fontWeight="700" fill="#0F172A">
           Stage 3: Gateway houses add backup internet
@@ -118,19 +123,19 @@ function MeshStagesDiagram() {
         <House x={1044} y={124} label="N2" />
         <House x={912} y={206} label="N3" />
         <House x={1024} y={206} label="G2" active />
-        <line x1="862" y1="106" x2="927" y2="94" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="964" y1="96" x2="1026" y2="121" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="946" y1="106" x2="915" y2="190" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
-        <line x1="928" y1="206" x2="1006" y2="206" stroke="#10B981" strokeWidth="3" markerEnd="url(#flowArrow)" />
+        <line x1="862" y1="106" x2="927" y2="94" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="964" y1="96" x2="1026" y2="121" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="946" y1="106" x2="915" y2="190" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
+        <line x1="928" y1="206" x2="1006" y2="206" stroke="#10B981" strokeWidth="3" markerEnd="url(#io-flowArrow)" />
 
         <circle cx="1090" cy="86" r="10" fill="#0369A1" />
         <text x="1043" y="68" fontSize="11" fill="#0C4A6E">
           Traditional internet
         </text>
-        <line x1="1038" y1="206" x2="1088" y2="96" stroke="#0369A1" strokeWidth="3" markerEnd="url(#gatewayArrow)" />
-        <line x1="850" y1="108" x2="1084" y2="86" stroke="#0369A1" strokeWidth="2.5" strokeDasharray="6 5" markerEnd="url(#gatewayArrow)" />
+        <line x1="1038" y1="206" x2="1088" y2="96" stroke="#0369A1" strokeWidth="3" markerEnd="url(#io-gatewayArrow)" />
+        <line x1="850" y1="108" x2="1084" y2="86" stroke="#0369A1" strokeWidth="2.5" strokeDasharray="6 5" markerEnd="url(#io-gatewayArrow)" />
       </svg>
-    </DiagramFrame>
+    </DiagramFigure>
   )
 }
 
@@ -154,18 +159,18 @@ function PayoffChart() {
   const breakEvenYear = investment / annualCost
 
   return (
-    <DiagramFrame>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Cost comparison timeline</p>
+    <DiagramFigure aria-label="Cost payoff chart">
+      <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Cost comparison timeline</span>
         <div className="flex flex-wrap items-center gap-3 text-xs text-on-surface-variant">
-          <span className="inline-flex items-center gap-1">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Traditional monthly bill
           </span>
-          <span className="inline-flex items-center gap-1">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-primary" /> One-time hardware purchase
           </span>
         </div>
-      </div>
+      </figcaption>
       <svg viewBox="0 0 900 300" role="img" aria-label="Payoff timeline comparing cumulative monthly internet cost and one-time mesh hardware cost" className="w-full">
         <rect x={chartLeft} y={chartTop} width={chartWidth} height={chartHeight} fill="#F8FAFC" stroke="#E2E8F0" />
 
@@ -208,11 +213,11 @@ function PayoffChart() {
           ~3.8 years
         </text>
       </svg>
-      <p className="mt-3 text-xs leading-relaxed text-on-surface-variant">
+      <p className="mt-4 text-xs leading-relaxed text-on-surface-variant md:text-sm">
         Assumes $50/month baseline internet spend and one-time hardware example in the middle of the estimated
-        $1,500-$3,000 range.
+        $1,500–$3,000 range.
       </p>
-    </DiagramFrame>
+    </DiagramFigure>
   )
 }
 
@@ -235,11 +240,11 @@ function EarningsDiagram() {
   const maxHeight = 120
 
   return (
-    <DiagramFrame>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Monthly earning scenario</p>
-        <p className="text-xs text-on-surface-variant">Micropayment model: ~$0.02 per GB routed</p>
-      </div>
+    <DiagramFigure aria-label="Earnings scenario chart">
+      <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Monthly earning scenario</span>
+        <span className="text-xs text-on-surface-variant">Micropayment model: ~$0.02 per GB routed</span>
+      </figcaption>
       <svg viewBox="0 0 900 280" role="img" aria-label="Five-neighbor usage chart showing monthly mesh routing income" className="w-full">
         <rect x="74" y="38" width="420" height="186" rx="10" fill="#F8FAFC" stroke="#E2E8F0" />
         <line x1="98" y1={baseY} x2="470" y2={baseY} stroke="#94A3B8" />
@@ -291,18 +296,18 @@ function EarningsDiagram() {
           ${projected.toFixed(2)} / month
         </text>
         <text x="654" y="194" fontSize="11" fill="#64748B">
-          Typical target range: $15-$20 with small usage fluctuations
+          Typical target range: $15–$20 with small usage fluctuations
         </text>
       </svg>
-    </DiagramFrame>
+    </DiagramFigure>
   )
 }
 
 export default function InternetOwnedPage() {
   return (
-    <PageShell containerClassName="max-w-5xl">
-      <div className="space-y-10 md:space-y-14">
-        <header className="max-w-4xl">
+    <PageShell>
+      <article className="flex flex-col gap-16 md:gap-24 lg:gap-28">
+        <header className="max-w-5xl lg:max-w-6xl">
           <div className="mb-6 flex items-center gap-4">
             <div className="h-px w-12 bg-primary" />
             <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Community internet</span>
@@ -317,15 +322,15 @@ export default function InternetOwnedPage() {
           </p>
         </header>
 
-        <section className="border-l-4 border-tertiary py-1 pl-6 md:pl-10">
+        <aside className="border-l-4 border-tertiary py-1 pl-6 md:pl-10">
           <p className="font-display text-xl font-extrabold italic leading-snug text-on-surface-variant md:text-2xl">
             &quot;Ownership shifts the question from monthly rent to long-term resilience — for households and
             neighborhoods alike.&quot;
           </p>
-          <p className="mt-3 text-xs font-semibold tracking-widest text-tertiary uppercase">Editorial frame</p>
-        </section>
+          <p className="mt-4 text-xs font-semibold tracking-widest text-tertiary uppercase">Expert highlight</p>
+        </aside>
 
-        <Section id="how-it-works" title="How It Works">
+        <ArticleSection id="how-it-works" title="How it works">
           <p>
             Mesh networks are simple in concept. Each home has a small hardware node, and nodes connect to nearby homes.
             Data moves hop by hop across neighbors, so there is no single company acting as the only route.
@@ -335,9 +340,9 @@ export default function InternetOwnedPage() {
             grows.
           </p>
           <MeshStagesDiagram />
-        </Section>
+        </ArticleSection>
 
-        <Section id="ownership" title="Own Your Hardware, Own Your Freedom">
+        <ArticleSection id="ownership" title="Own your hardware, own your freedom">
           <p>
             Based on current mesh technology, we estimate hardware costs between <strong>$1,500 and $3,000</strong>.
             Once paid, the system is yours outright. At roughly $50/month for traditional internet, that investment can
@@ -349,9 +354,9 @@ export default function InternetOwnedPage() {
             the hardware can keep operating for 15 to 20 years.
           </p>
           <PayoffChart />
-        </Section>
+        </ArticleSection>
 
-        <Section id="earn-sharing" title="Earn Money by Sharing Your Network">
+        <ArticleSection id="earn-sharing" title="Earn money by sharing your network">
           <p>
             When neighbors route data through your node, you can earn micropayments (around 2 cents per GB). With five
             nearby households, an estimated <strong>$15 to $20 per month</strong> can help offset power and maintenance.
@@ -361,9 +366,9 @@ export default function InternetOwnedPage() {
             with fair cost-sharing.
           </p>
           <EarningsDiagram />
-        </Section>
+        </ArticleSection>
 
-        <Section id="privacy" title="Your Data Stays Private and Secure">
+        <ArticleSection id="privacy" title="Your data stays private and secure">
           <p>
             Traffic is encrypted end-to-end, so intermediate routers relay packets without being able to read messages or
             inspect activity. Access decisions are made by local community consensus, not a centralized platform.
@@ -371,9 +376,9 @@ export default function InternetOwnedPage() {
           <p>
             The result is a truly peer-to-peer network where trust and governance remain close to the people using it.
           </p>
-        </Section>
+        </ArticleSection>
 
-        <Section id="adoption" title="How We Get There">
+        <ArticleSection id="adoption" title="How we get there">
           <p>
             Adoption is gradual. A small number of homes act as gateway nodes by keeping traditional internet lines and
             routing traffic for the mesh. Those homes can earn more for carrying external traffic.
@@ -382,29 +387,32 @@ export default function InternetOwnedPage() {
             As participation increases, local routing covers more community needs and dependency on centralized providers
             naturally shrinks.
           </p>
-        </Section>
+        </ArticleSection>
 
-        <Section id="join" title="Join the Conversation">
-          <p>
-            This is an open idea we are exploring together. We do not have every answer yet, and your perspective helps
-            shape what is practical, fair, and resilient.
-          </p>
-          <p>
-            Join the Discord community to discuss technical challenges, ask questions, and help design how this can work
-            in the real world.
-          </p>
-          <div className="pt-2">
-            <Link
-              href="https://discord.gg/wRJTpGfApZ"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-8 py-4 text-sm font-semibold text-primary-foreground shadow-editorial transition hover:brightness-[1.03]"
-            >
-              Join Discord community
-            </Link>
+        <section
+          id="join"
+          className="relative overflow-hidden rounded-2xl bg-primary px-8 py-12 text-on-primary shadow-editorial md:px-12 md:py-14"
+        >
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
+          <div className="relative z-10 max-w-2xl space-y-4">
+            <h2 className="font-display text-2xl font-bold md:text-3xl">Join the conversation</h2>
+            <p className="text-sm leading-relaxed opacity-90 md:text-base">
+              This is an open idea we&apos;re exploring together. Join the Discord to discuss technical challenges, ask
+              questions, and help design how this can work in the real world.
+            </p>
+            <div className="pt-2">
+              <Link
+                href="https://discord.gg/wRJTpGfApZ"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-xl bg-primary-fixed px-8 py-4 text-sm font-extrabold text-on-primary-fixed shadow-editorial transition hover:brightness-[1.03] md:px-10 md:text-base"
+              >
+                Join Discord community
+              </Link>
+            </div>
           </div>
-        </Section>
-      </div>
+        </section>
+      </article>
     </PageShell>
   )
 }
