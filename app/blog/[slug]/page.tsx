@@ -43,7 +43,7 @@ export default async function BlogSlugPage({ params }: Props) {
   const { slug } = await params
   const card = requireWhatIBringCard(slug)
   return (
-    <PageShell containerClassName="max-w-3xl">
+    <PageShell>
       <BlogTopicArticle card={card} />
     </PageShell>
   )

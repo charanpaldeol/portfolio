@@ -33,13 +33,13 @@ export default function BlogPage() {
       <div className="space-y-12 md:space-y-16">
         <header className="max-w-4xl">
           <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-12 bg-primary" />
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Blog</span>
+            <div className="h-px w-14 bg-primary" aria-hidden />
+            <span className="font-sans text-xs font-semibold tracking-[0.22em] text-primary uppercase">Blog</span>
           </div>
           <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl">
             Ideas that <span className="text-editorial-gradient">ship.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl">
+          <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl md:leading-relaxed">
             Frameworks and practical thinking on problem framing, solution design, AI-native delivery, engineering
             depth, and value realization.
           </p>
@@ -54,23 +54,24 @@ export default function BlogPage() {
               <li key={card.slug} className={["h-full", span].join(" ")}>
                 <Link
                   href={`/blog/${card.slug}`}
-                  className="group flex h-full min-h-[200px] flex-col rounded-xl bg-surface-container-low p-6 no-underline transition-colors duration-300 hover:bg-surface-container md:min-h-[220px] md:p-8"
+                  className="group flex h-full min-h-[200px] flex-col rounded-2xl bg-surface-container-low p-7 no-underline transition-colors duration-300 hover:bg-surface-container md:min-h-[220px] md:p-9"
                 >
                   <span
                     className={[
-                      "inline-flex w-fit rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide uppercase",
+                      "inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase",
                       card.badgeClass,
                     ].join(" ")}
                   >
                     {card.badge}
                   </span>
-                  <span className="mt-4 block font-display text-xl font-bold tracking-tight text-on-surface md:text-2xl">
+                  {/* Title scale: Inter Medium per DESIGN.md (card / sidebar headers) */}
+                  <span className="mt-5 block font-sans text-xl font-medium tracking-tight text-on-surface md:text-2xl">
                     {card.title}
                   </span>
-                  <span className="mt-2 block flex-1 text-sm leading-relaxed text-on-surface-variant md:text-base">
+                  <span className="mt-3 block flex-1 font-sans text-sm font-normal leading-relaxed text-on-surface-variant md:text-base md:leading-relaxed">
                     {excerpt}
                   </span>
-                  <span className="mt-5 inline-flex items-center text-xs font-semibold tracking-wider text-primary uppercase transition group-hover:gap-2">
+                  <span className="mt-6 inline-flex items-center font-sans text-xs font-semibold tracking-wider text-primary uppercase transition group-hover:gap-2">
                     <span>Read article</span>
                     <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
                       →
