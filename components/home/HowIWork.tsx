@@ -1,6 +1,95 @@
 "use client"
 
+import type { LucideIcon } from "lucide-react"
+import {
+  Box,
+  Briefcase,
+  Building2,
+  CheckCircle2,
+  Code2,
+  Database,
+  FileText,
+  PenLine,
+  Search,
+  Shield,
+  Users,
+  Zap,
+} from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+
+import { cn } from "@/lib/utils"
+
+const phases: {
+  title: string
+  description: string
+  Icon: LucideIcon
+  emphasized?: boolean
+}[] = [
+  {
+    title: "Discover",
+    description: "Stakeholder interviews, process mapping, problem framing",
+    Icon: Search,
+  },
+  {
+    title: "Define",
+    description: "BRDs, user stories, acceptance criteria, business case",
+    Icon: FileText,
+  },
+  {
+    title: "Design",
+    description: "Architecture, data models, API contracts, integration specs",
+    Icon: Box,
+  },
+  {
+    title: "Deliver",
+    description: "Agile execution, backlog ownership, UAT, defect triage",
+    Icon: Zap,
+  },
+  {
+    title: "Adopt",
+    description: "Training, comms, rollout, post-launch support",
+    Icon: Users,
+  },
+  {
+    title: "Value",
+    description: "KPIs tracked, outcomes measured, platform scales",
+    Icon: CheckCircle2,
+    emphasized: true,
+  },
+]
+
+const expertise: { title: string; body: string; Icon: LucideIcon }[] = [
+  {
+    title: "Business & product",
+    body: "Executives, product owners, domain SMEs",
+    Icon: Briefcase,
+  },
+  {
+    title: "Engineering & QA",
+    body: "Dev, QA, DevOps, testing, release",
+    Icon: Code2,
+  },
+  {
+    title: "Architects & tech leads",
+    body: "Solution, enterprise, integration",
+    Icon: Building2,
+  },
+  {
+    title: "UX & design",
+    body: "Flows, prototypes, research",
+    Icon: PenLine,
+  },
+  {
+    title: "Data & AI teams",
+    body: "Data science, LLMs, agentic workflows",
+    Icon: Database,
+  },
+  {
+    title: "Compliance & vendors",
+    body: "Regulatory, procurement, 3rd parties",
+    Icon: Shield,
+  },
+]
 
 export default function HowIWork() {
   const pipelineRef = useRef<HTMLDivElement>(null)
@@ -16,640 +105,434 @@ export default function HowIWork() {
           observer.disconnect()
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section className="hiw" aria-labelledby="hiw-heading">
+    <section className="mx-auto w-full max-w-5xl" aria-labelledby="hiw-expertise-heading">
       <style jsx>{`
-        .hiw {
-          /* Page-level dividers handle vertical rhythm; keep section padding minimal */
-          padding: 0;
-          font-family: var(--font-sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
+        .hiw-pipeline {
           --hiw-cycle: 5.2s;
-          --hiw-beam: #10b981; /* bright emerald accent */
-        }
-        .hiw-eyebrow {
-          font-size: 0.75rem; /* ~text-xs */
-          letter-spacing: 0.12em; /* closer to tracking-widest */
-          color: var(--color-muted-foreground, #5f5f66);
-          text-transform: uppercase;
-          margin: 0 0 0.6rem;
-          opacity: 0.9;
-        }
-        .hiw-heading {
-          font-size: 1.25rem; /* ~text-xl (matches rest of site sections) */
-          font-weight: 500;
-          color: var(--color-foreground, #2c2c2a);
-          margin: 0 0 0.6rem;
-          line-height: 1.25;
-        }
-        .hiw-sub {
-          font-size: 0.875rem; /* ~text-sm */
-          color: var(--color-muted-foreground, #5f5f66);
-          margin: 0 0 2.5rem;
-          max-width: 520px;
-          line-height: 1.65;
+          /* DESIGN.md: primary #00694c → primary_container #0d8c6c */
+          --hiw-beam-core: var(--color-primary-container);
+          --hiw-beam-edge: var(--color-primary);
+          --hiw-beam-glow: color-mix(in srgb, var(--color-primary-container) 55%, transparent);
+          --hiw-beam-aura: color-mix(in srgb, var(--color-primary) 40%, transparent);
+          --hiw-beam-soft: color-mix(in srgb, var(--color-primary) 35%, transparent);
+          position: relative;
+          isolation: isolate;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 1.25rem 0.75rem;
         }
 
-        .pipeline {
+        .hiw-track {
+          display: none;
+        }
+
+        .hiw-phase {
           display: flex;
+          flex-direction: column;
           align-items: flex-start;
           position: relative;
-          margin: 0 0 2.25rem;
-        }
-        .track {
-          position: absolute;
-          top: 21px;
-          left: 21px;
-          right: 21px;
-          height: 1px;
-          background: var(--color-border-tertiary, #e5e5e5);
-          z-index: 0;
-          overflow: hidden;
-        }
-        /* Animated "beam" that runs along the track */
-        .track::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: -25%;
-          height: 3px;
-          width: 300px;
-          transform: translateY(-50%);
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            var(--hiw-beam) 30%,
-            var(--hiw-beam) 70%,
-            transparent 100%
-          );
-          opacity: 0.85;
-          filter: blur(0.3px);
-          box-shadow:
-            0 0 24px rgba(16, 185, 129, 0.6),
-            0 0 48px rgba(16, 185, 129, 0.35),
-            0 0 8px rgba(16, 185, 129, 0.9);
-          animation: hiw-beam var(--hiw-cycle) linear infinite;
-        }
-        .track::before {
-          content: "";
-          position: absolute;
-          inset: -10px 0;
-          background: radial-gradient(
-            180px 16px at 50% 50%,
-            rgba(0, 0, 0, 0.08),
-            transparent 70%
-          );
-          pointer-events: none;
-          opacity: 0.35;
-          mix-blend-mode: multiply;
+          z-index: 1;
         }
 
+        .hiw-phase-title {
+          font-family: var(--font-manrope, ui-sans-serif), system-ui, sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: var(--color-on-surface);
+          text-align: left;
+          width: 100%;
+        }
+
+        .hiw-phase-desc {
+          font-family: var(--font-inter, ui-sans-serif), system-ui, sans-serif;
+          font-size: 0.75rem;
+          font-weight: 400;
+          line-height: 1.6;
+          color: var(--color-on-surface-variant);
+          text-align: left;
+          width: 100%;
+        }
+
+        .hiw-phase-title--primary {
+          color: var(--color-primary);
+        }
+
+        @media (min-width: 768px) {
+          .hiw-pipeline {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0;
+            margin-bottom: 0;
+          }
+
+          /* Track joins circle centers: col centers at 1/12 … 11/12 of row */
+          .hiw-track {
+            display: block;
+            position: absolute;
+            top: calc(3rem - 1.5px);
+            left: calc(100% / 12);
+            width: calc(100% * 10 / 12);
+            right: auto;
+            height: 3px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--color-on-surface) 9%, transparent);
+            z-index: 0;
+            overflow: visible;
+            pointer-events: none;
+          }
+
+          .hiw-track::before {
+            content: "";
+            position: absolute;
+            inset: -12px -4px;
+            background: radial-gradient(
+              closest-side at 50% 50%,
+              color-mix(in srgb, var(--color-on-surface) 10%, transparent),
+              transparent 75%
+            );
+            opacity: 0.45;
+            pointer-events: none;
+          }
+
+          /* Brighter beam: primary → primary_container (signature gradient) */
+          .hiw-track::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            /* Track starts at Discover center; +3rem = right edge of md:size-24 circle */
+            left: 3rem;
+            height: 5px;
+            width: min(420px, 38vw);
+            transform: translateY(-50%) scaleX(0.06);
+            transform-origin: left center;
+            border-radius: 999px;
+            /* Shooting star: soft tail (left) → bright head (right, direction of travel) */
+            background: linear-gradient(
+              90deg,
+              transparent 0%,
+              color-mix(in srgb, var(--color-primary) 6%, transparent) 6%,
+              color-mix(in srgb, var(--color-primary) 22%, transparent) 22%,
+              var(--hiw-beam-edge) 48%,
+              var(--hiw-beam-core) 72%,
+              color-mix(in srgb, var(--color-primary-container) 88%, var(--hiw-beam-core)) 88%,
+              color-mix(in srgb, var(--color-primary-container) 55%, transparent) 96%,
+              transparent 100%
+            );
+            opacity: 1;
+            filter: blur(0.45px);
+            box-shadow:
+              0 0 20px var(--hiw-beam-glow),
+              0 0 40px var(--hiw-beam-aura),
+              0 0 64px color-mix(in srgb, var(--color-primary-container) 28%, transparent),
+              0 0 8px var(--hiw-beam-core);
+            animation: hiw-beam var(--hiw-cycle) linear infinite;
+          }
+
+          /* Same easing + cycle as beam so keyframe % = same moment in time */
+          .hiw-pipeline[data-pipeline-visible="true"] .hiw-node--value {
+            animation: hiw-value-lit var(--hiw-cycle) linear infinite;
+          }
+
+          .hiw-phase {
+            flex: 1;
+            align-items: center;
+          }
+
+          .hiw-phase-title,
+          .hiw-phase-desc {
+            text-align: center;
+          }
+
+          .hiw-pipeline:not([data-pipeline-visible="true"]) .hiw-track::after,
+          .hiw-pipeline:not([data-pipeline-visible="true"]) .hiw-node--value {
+            animation-play-state: paused;
+          }
+        }
+
+        /*
+         * 0–15%: Emerge from Discover’s RIGHT edge (left: 3rem = radius past track start); scaleX = tail grows.
+         * 15–42%: Cruise (3rem → 44%). 46–100%: Value ending untouched.
+         */
         @keyframes hiw-beam {
           0% {
-            left: -25%;
+            left: 3rem;
             opacity: 0;
+            transform: translateY(-50%) scaleX(0.06);
+            filter: blur(0.35px);
+            box-shadow:
+              0 0 6px var(--hiw-beam-soft),
+              0 0 10px color-mix(in srgb, var(--color-primary) 18%, transparent);
           }
-          8% {
-            opacity: 0.55;
+          3% {
+            left: 3rem;
+            opacity: 0.22;
+            transform: translateY(-50%) scaleX(0.14);
+            filter: blur(0.38px);
+            box-shadow:
+              0 0 10px var(--hiw-beam-glow),
+              0 0 18px var(--hiw-beam-aura);
           }
-          92% {
+          7% {
+            left: 3rem;
             opacity: 0.55;
+            transform: translateY(-50%) scaleX(0.38);
+            filter: blur(0.4px);
+            box-shadow:
+              0 0 14px var(--hiw-beam-glow),
+              0 0 28px var(--hiw-beam-aura),
+              0 0 36px color-mix(in srgb, var(--color-primary-container) 18%, transparent);
+          }
+          11% {
+            left: 3rem;
+            opacity: 0.88;
+            transform: translateY(-50%) scaleX(0.72);
+            filter: blur(0.42px);
+            box-shadow:
+              0 0 18px var(--hiw-beam-glow),
+              0 0 34px var(--hiw-beam-aura),
+              0 0 50px color-mix(in srgb, var(--color-primary-container) 24%, transparent),
+              0 0 6px var(--hiw-beam-core);
+          }
+          15% {
+            left: 3rem;
+            opacity: 1;
+            transform: translateY(-50%) scaleX(1);
+            filter: blur(0.45px);
+            box-shadow:
+              0 0 20px var(--hiw-beam-glow),
+              0 0 40px var(--hiw-beam-aura),
+              0 0 64px color-mix(in srgb, var(--color-primary-container) 28%, transparent),
+              0 0 8px var(--hiw-beam-core);
+          }
+          42% {
+            left: 44%;
+            opacity: 1;
+            transform: translateY(-50%) scaleX(1);
+            filter: blur(0.45px);
+            box-shadow:
+              0 0 20px var(--hiw-beam-glow),
+              0 0 40px var(--hiw-beam-aura),
+              0 0 64px color-mix(in srgb, var(--color-primary-container) 28%, transparent),
+              0 0 8px var(--hiw-beam-core);
+          }
+          /* Leading edge touches Value circle (sync with hiw-value-lit 46%) */
+          46% {
+            left: 51%;
+            opacity: 1;
+            transform: translateY(-50%) scaleX(0.98);
+            filter: blur(0.5px);
+            box-shadow:
+              0 0 20px var(--hiw-beam-glow),
+              0 0 38px var(--hiw-beam-aura),
+              0 0 56px color-mix(in srgb, var(--color-primary-container) 26%, transparent),
+              0 0 8px var(--hiw-beam-core);
+          }
+          /* Compress + dim — energy into the circle */
+          50% {
+            left: 56%;
+            opacity: 0.85;
+            transform: translateY(-50%) scaleX(0.88);
+            filter: blur(0.95px);
+            box-shadow:
+              0 0 14px var(--hiw-beam-glow),
+              0 0 26px var(--hiw-beam-aura);
+          }
+          58% {
+            left: 64%;
+            opacity: 0.42;
+            transform: translateY(-50%) scaleX(0.72);
+            filter: blur(1.35px);
+            box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary-container) 32%, transparent);
+          }
+          /* Tail entering — almost gone */
+          68% {
+            left: 74%;
+            opacity: 0.12;
+            transform: translateY(-50%) scaleX(0.52);
+            filter: blur(1.85px);
+            box-shadow: none;
+          }
+          /* Fully swallowed; slide off dead */
+          76% {
+            left: 88%;
+            opacity: 0;
+            transform: translateY(-50%) scaleX(0.38);
+            filter: blur(0.45px);
+            box-shadow: none;
           }
           100% {
-            left: 110%;
+            left: 102%;
             opacity: 0;
+            transform: translateY(-50%) scaleX(1);
+            filter: blur(0.45px);
+            box-shadow: none;
+          }
+        }
+
+        @keyframes hiw-value-lit {
+          0%,
+          45% {
+            background: var(--color-surface);
+            box-shadow:
+              0 0 0 1px color-mix(in srgb, var(--color-on-surface) 12%, transparent),
+              0 1px 2px color-mix(in srgb, var(--color-on-surface) 6%, transparent);
+            color: var(--color-primary);
+          }
+          /* Same instant as beam wall hit (48% on beam = contact) */
+          46% {
+            background: color-mix(in srgb, var(--color-primary-fixed) 14%, var(--color-surface));
+            box-shadow:
+              0 0 0 1px color-mix(in srgb, var(--color-primary) 28%, transparent),
+              0 0 14px color-mix(in srgb, var(--color-primary-container) 26%, transparent);
+            color: var(--color-primary);
+          }
+          /* Peak absorption while beam collapses */
+          52%,
+          64% {
+            background: color-mix(in srgb, var(--color-primary-fixed) 64%, var(--color-surface));
+            box-shadow:
+              0 0 0 2px color-mix(in srgb, var(--color-primary) 55%, transparent),
+              0 0 40px color-mix(in srgb, var(--color-primary-container) 60%, transparent),
+              0 0 70px color-mix(in srgb, var(--color-primary) 42%, transparent),
+              0 0 100px color-mix(in srgb, var(--color-primary-container) 32%, transparent);
+            color: var(--color-primary);
+          }
+          /* Tail absorbed — cool down */
+          72% {
+            background: color-mix(in srgb, var(--color-primary-fixed) 18%, var(--color-surface));
+            box-shadow:
+              0 0 0 1px color-mix(in srgb, var(--color-primary) 26%, transparent),
+              0 0 14px color-mix(in srgb, var(--color-primary-container) 22%, transparent);
+            color: var(--color-primary);
+          }
+          /* Normal before next beam spawns at Discover */
+          80%,
+          100% {
+            background: var(--color-surface);
+            box-shadow:
+              0 0 0 1px color-mix(in srgb, var(--color-on-surface) 12%, transparent),
+              0 1px 2px color-mix(in srgb, var(--color-on-surface) 6%, transparent);
+            color: var(--color-primary);
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .track::after {
-            animation: none;
-            opacity: 0.14;
-            left: 0;
-            transform: translateY(-50%);
-            width: 100%;
+          .hiw-track::after {
+            animation: none !important;
+            opacity: 0.2 !important;
+            left: 0 !important;
+            width: 100% !important;
+            transform: translateY(-50%) scaleX(1) !important;
           }
-          .pipeline > .phase .phase-node,
-          .pipeline > .phase .phase-name {
-            animation: none;
+          .hiw-node--value {
+            animation: none !important;
           }
-        }
-
-        .phase {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-          z-index: 1;
-          cursor: default;
-        }
-
-        /* Beam-synced depth cue (a subtle "hover" as the beam passes) */
-        .phase-node {
-          position: relative;
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-          transform: translateY(0);
-          will-change: transform, box-shadow, background;
-        }
-        .phase-node::after {
-          content: "";
-          position: absolute;
-          inset: -10px;
-          border-radius: 999px;
-          background: radial-gradient(
-            20px 20px at 50% 50%,
-            rgba(0, 0, 0, 0.12),
-            transparent 70%
-          );
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.15s ease;
-        }
-        .phase-name {
-          transform: translateY(0);
-          will-change: transform, color, opacity;
-        }
-
-        @keyframes hiw-phase-pulse {
-          0% {
-            transform: translateY(-2px);
-            box-shadow:
-              0 6px 12px -8px rgba(0, 0, 0, 0.22),
-              0 2px 6px -6px rgba(0, 0, 0, 0.18);
-          }
-          18% {
-            transform: translateY(0);
-            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-          }
-          100% {
-            transform: translateY(0);
-            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-          }
-        }
-        @keyframes hiw-phase-text-pulse {
-          0% {
-            transform: translateY(-1px);
-            opacity: 1;
-          }
-          18% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        /* Stagger pulses across phases (track is the first child) */
-        .pipeline > .phase:nth-child(2) .phase-node,
-        .pipeline > .phase:nth-child(3) .phase-node,
-        .pipeline > .phase:nth-child(4) .phase-node,
-        .pipeline > .phase:nth-child(5) .phase-node,
-        .pipeline > .phase:nth-child(6) .phase-node,
-        .pipeline > .phase:nth-child(7) .phase-node {
-          animation: hiw-phase-pulse var(--hiw-cycle) linear infinite;
-        }
-        .pipeline > .phase:nth-child(2) .phase-name,
-        .pipeline > .phase:nth-child(3) .phase-name,
-        .pipeline > .phase:nth-child(4) .phase-name,
-        .pipeline > .phase:nth-child(5) .phase-name,
-        .pipeline > .phase:nth-child(6) .phase-name,
-        .pipeline > .phase:nth-child(7) .phase-name {
-          animation: hiw-phase-text-pulse var(--hiw-cycle) linear infinite;
-        }
-        /* Delays tuned so each phase pulses as the beam reaches it */
-        .pipeline > .phase:nth-child(2) .phase-node,
-        .pipeline > .phase:nth-child(2) .phase-name {
-          animation-delay: 0.4s;
-        }
-        .pipeline > .phase:nth-child(3) .phase-node,
-        .pipeline > .phase:nth-child(3) .phase-name {
-          animation-delay: 1.25s;
-        }
-        .pipeline > .phase:nth-child(4) .phase-node,
-        .pipeline > .phase:nth-child(4) .phase-name {
-          animation-delay: 2.1s;
-        }
-        .pipeline > .phase:nth-child(5) .phase-node,
-        .pipeline > .phase:nth-child(5) .phase-name {
-          animation-delay: 2.95s;
-        }
-        .pipeline > .phase:nth-child(6) .phase-node,
-        .pipeline > .phase:nth-child(6) .phase-name {
-          animation-delay: 3.8s;
-        }
-        .pipeline > .phase:nth-child(7) .phase-node,
-        .pipeline > .phase:nth-child(7) .phase-name {
-          animation-delay: 4.65s;
-        }
-
-        /* Pause all pipeline animations until section scrolls into view */
-        .pipeline:not(.is-visible) .track::after,
-        .pipeline:not(.is-visible) .phase-node,
-        .pipeline:not(.is-visible) .phase-name {
-          animation-play-state: paused;
-        }
-
-        /* Also show the same depth cue on hover */
-        .phase:hover .phase-node::after {
-          opacity: 0.55;
-        }
-        .phase:hover .phase-node {
-          border-color: var(--color-border-primary, #aaa);
-          background: var(--color-background-secondary, #f9f9f9);
-        }
-        .phase:hover .phase-name {
-          color: var(--color-foreground, #2c2c2a);
-        }
-        .phase:hover .phase-desc {
-          opacity: 1;
-        }
-
-        .phase-node {
-          width: 42px;
-          height: 42px;
-          border-radius: 50%;
-          border: none;
-          box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-foreground, #1b1c1a) 12%, transparent);
-          background: var(--color-background-primary, #fcf9f5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition:
-            border-color 0.15s,
-            background 0.15s;
-          margin-bottom: 12px;
-          /* Make SVGs reliable even if design tokens are missing */
-          color: var(--color-muted-foreground, #5f5f66);
-        }
-        .phase-node.final {
-          border-color: var(--hiw-beam);
-          outline: 3px solid rgba(16, 185, 129, 0.12);
-          outline-offset: -1px;
-          width: 46px;
-          height: 46px;
-          margin-top: -2px;
-          color: var(--hiw-beam);
-        }
-        .phase-node :global(svg) {
-          width: 16px;
-          height: 16px;
-          stroke: currentColor;
-          fill: none;
-          stroke-width: 1.5;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
-        .phase-node.final :global(svg) {
-          width: 18px;
-          height: 18px;
-        }
-        .phase-name {
-          font-size: 0.75rem; /* readable: ~text-xs */
-          font-weight: 500;
-          color: var(--color-muted-foreground, #5f5f66);
-          text-align: center;
-          margin-bottom: 6px;
-          letter-spacing: 0.02em;
-          transition: color 0.15s;
-        }
-        .phase-desc {
-          font-size: 0.75rem; /* readable: ~text-xs */
-          color: var(--color-muted-foreground, #5f5f66);
-          text-align: center;
-          line-height: 1.45;
-          padding: 0 6px;
-          opacity: 0.6;
-          transition: opacity 0.15s;
-        }
-
-        .sep {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin: 2.25rem 0 1.5rem;
-        }
-        .sep-line {
-          flex: 1;
-          height: 0.5px;
-          background: var(--color-border-tertiary, #ebebeb);
-        }
-        .sep-text {
-          font-size: 0.75rem; /* match eyebrow / text-xs rhythm */
-          color: var(--color-muted-foreground, #5f5f66);
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
-          white-space: nowrap;
-          opacity: 0.9;
-        }
-
-        .teams-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 16px;
-        }
-        .team-card {
-          padding: 1.25rem 1.25rem; /* close to Tailwind p-5, less tight than before */
-          border: none;
-          border-radius: 12px; /* matches Tailwind rounded-xl */
-          background: var(--color-surface-container-lowest, #eeeae3);
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          transition: box-shadow 0.3s ease;
-          box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--color-foreground, #1b1c1a) 5%, transparent);
-          cursor: default;
-        }
-        .team-card:hover {
-          box-shadow: 0 40px 72px -16px color-mix(in srgb, var(--color-foreground, #1b1c1a) 7%, transparent);
-        }
-        .team-icon {
-          display: flex;
-          align-items: center;
-          margin-bottom: 0;
-          color: var(--color-muted-foreground, #5f5f66);
-          opacity: 0.9;
-        }
-        .team-icon :global(svg) {
-          width: 14px;
-          height: 14px;
-          stroke: currentColor;
-          fill: none;
-          stroke-width: 1.5;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
-        .team-name {
-          font-size: 0.875rem; /* ~text-sm */
-          font-weight: 500;
-          color: var(--color-foreground, #2c2c2a);
-        }
-        .team-detail {
-          font-size: 0.75rem; /* ~text-xs */
-          color: var(--color-muted-foreground, #5f5f66);
-          line-height: 1.4;
-          opacity: 0.95;
-        }
-
-        .closer {
-          margin-top: 2.25rem;
-          padding: 1.5rem 1.5rem;
-          border: none;
-          border-radius: 12px;
-          background: var(--color-surface-container-low, #f5f2ec);
-          box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--color-foreground, #1b1c1a) 5%, transparent);
-        }
-        .closer-body {
-          font-size: 0.875rem; /* match site text-sm */
-          color: var(--color-muted-foreground, #5f5f66);
-          line-height: 1.75;
-          margin: 0 0 0.8rem;
-        }
-        .closer-body :global(strong) {
-          color: var(--color-foreground, #2c2c2a);
-          font-weight: 500;
-        }
-        .closer-tags {
-          display: flex;
-          gap: 6px;
-          flex-wrap: wrap;
-        }
-        .tag {
-          font-size: 0.75rem; /* text-xs */
-          padding: 0.25rem 0.625rem; /* closer to Tailwind px-2.5 py-1 */
-          border: none;
-          border-radius: 100px;
-          color: var(--color-muted-foreground, #5c5d59);
-          background: var(--color-surface-container-high, #e5e1d8);
-        }
-
-        /* Small responsive tightening (keeps the design, avoids squish) */
-        @media (max-width: 900px) {
-          .pipeline {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px 10px;
-          }
-          .track {
-            display: none;
-          }
-          .phase {
-            align-items: flex-start;
-          }
-          .phase-name,
-          .phase-desc {
-            text-align: left;
-            width: 100%;
-          }
-        }
-        @media (max-width: 720px) {
-          .teams-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-        }
-        @media (max-width: 420px) {
-          .teams-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (prefers-color-scheme: dark) {
-          .hiw { --hiw-beam: #34d399; }
-          .hiw-eyebrow, .hiw-sub, .phase-desc, .team-detail, .sep-text { color: #a1a1aa; }
-          .hiw-heading, .phase-name, .team-name { color: #e4e4e7; }
-          .closer-body :global(strong) { color: #e4e4e7; }
-          .phase-node { background: #1c1c1e; border-color: #3f3f46; }
-          .phase-node.final { border-color: var(--hiw-beam); }
-          .team-card { background: #1c1c1e; border-color: #3f3f46; }
-          .closer { background: #27272a; border-color: #3f3f46; }
-          .tag { background: #27272a; border-color: #3f3f46; color: #a1a1aa; }
-          .track { background: #3f3f46; }
-          .closer-body { color: #a1a1aa; }
         }
       `}</style>
 
-      <p className="hiw-eyebrow">How I work</p>
-      <h2 className="hiw-heading" id="hiw-heading">
-        End-to-end, every time
+      <div
+        ref={pipelineRef}
+        className="hiw-pipeline"
+        data-pipeline-visible={isVisible ? "true" : "false"}
+        role="list"
+        aria-label="Delivery phases"
+      >
+        <div className="hiw-track" aria-hidden />
+        {phases.map(({ title, description, Icon, emphasized }) => (
+          <div key={title} className="hiw-phase" role="listitem">
+            <div
+              className={cn(
+                "mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-outline-variant/20 transition-colors md:size-24",
+                "hover:bg-surface-container-low",
+                emphasized && "hiw-node--value ring-2 ring-primary/35 text-primary"
+              )}
+              aria-hidden
+            >
+              <Icon className="size-7 stroke-[1.5] md:size-8" strokeLinecap="round" strokeLinejoin="round" />
+            </div>
+            <span
+              className={cn(
+                "hiw-phase-title text-base tracking-tight md:text-lg",
+                emphasized && "hiw-phase-title--primary"
+              )}
+            >
+              {title}
+            </span>
+            <span className="hiw-phase-desc mt-2 md:mt-2 md:px-1 md:text-[0.8125rem] md:leading-relaxed">
+              {description}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <h2
+        id="hiw-expertise-heading"
+        className="font-display mt-14 text-2xl font-bold tracking-tight text-on-surface md:mt-16 md:text-3xl"
+      >
+        Expertise
       </h2>
-      <p className="hiw-sub">
-        I don&apos;t hand off when the interesting part is done. From first stakeholder conversation
-        to live system — I own the arc, lead the teams, and stay accountable for outcomes.
+      <p className="mt-2 max-w-2xl font-sans text-sm text-on-surface-variant md:text-base">
+        Teams I lead across every phase.
       </p>
 
-      <div ref={pipelineRef} className={`pipeline${isVisible ? " is-visible" : ""}`} aria-label="Delivery pipeline">
-        <div className="track" aria-hidden="true" />
+      <ul className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        {expertise.map(({ title, body, Icon }) => (
+          <li key={title}>
+            <div className="flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 transition-colors duration-200 hover:bg-surface-container md:p-8">
+              <Icon
+                className="mb-4 size-8 text-on-surface-variant"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              />
+              <h3 className="font-display text-lg font-bold text-on-surface md:text-xl">{title}</h3>
+              <p className="mt-2 font-sans text-sm font-normal leading-relaxed text-on-surface-variant md:text-base">
+                {body}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
 
-        <div className="phase">
-          <div className="phase-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="7" />
-              <line x1="16.5" y1="16.5" x2="21" y2="21" />
-            </svg>
-          </div>
-          <div className="phase-name">Discover</div>
-          <div className="phase-desc">Stakeholder interviews, process mapping, problem framing</div>
-        </div>
-
-        <div className="phase">
-          <div className="phase-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
-          </div>
-          <div className="phase-name">Define</div>
-          <div className="phase-desc">BRDs, user stories, acceptance criteria, business case</div>
-        </div>
-
-        <div className="phase">
-          <div className="phase-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <polygon points="12 2 2 7 12 12 22 7 12 2" />
-              <polyline points="2 17 12 22 22 17" />
-              <polyline points="2 12 12 17 22 12" />
-            </svg>
-          </div>
-          <div className="phase-name">Solution design</div>
-          <div className="phase-desc">
-            Architecture, data models, API contracts, integration specs
-          </div>
-        </div>
-
-        <div className="phase">
-          <div className="phase-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-          </div>
-          <div className="phase-name">Deliver</div>
-          <div className="phase-desc">Agile execution, backlog ownership, UAT, defect triage</div>
-        </div>
-
-        <div className="phase">
-          <div className="phase-node" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <div className="phase-name">Change &amp; adoption</div>
-          <div className="phase-desc">Training, comms, rollout, post-launch support</div>
-        </div>
-
-        <div className="phase">
-          <div className="phase-node final" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="3" />
-              <circle cx="12" cy="12" r="9" />
-            </svg>
-          </div>
-          <div className="phase-name" style={{ color: "var(--color-foreground, #2c2c2a)" }}>
-            Value realized
-          </div>
-          <div className="phase-desc">KPIs tracked, outcomes measured, platform scales</div>
-        </div>
-      </div>
-
-      <div className="sep" aria-hidden="true">
-        <div className="sep-line" />
-        <span className="sep-text">Teams I lead across every phase</span>
-        <div className="sep-line" />
-      </div>
-
-      <div className="teams-grid">
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <div className="team-name">Business &amp; product</div>
-          <div className="team-detail">Executives, product owners, domain SMEs</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <div className="team-name">Engineering &amp; QA</div>
-          <div className="team-detail">Dev, QA, DevOps, testing, release</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <polygon points="12 2 2 7 12 12 22 7 12 2" />
-              <polyline points="2 12 12 17 22 12" />
-            </svg>
-          </div>
-          <div className="team-name">Architects &amp; tech leads</div>
-          <div className="team-detail">Solution, enterprise, integration</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 20h9" />
-              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-            </svg>
-          </div>
-          <div className="team-name">UX &amp; design</div>
-          <div className="team-detail">Flows, prototypes, research</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <ellipse cx="12" cy="5" rx="9" ry="3" />
-              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-            </svg>
-          </div>
-          <div className="team-name">Data &amp; AI teams</div>
-          <div className="team-detail">Data science, LLMs, agentic workflows</div>
-        </div>
-
-        <div className="team-card">
-          <div className="team-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <div className="team-name">Compliance &amp; vendors</div>
-          <div className="team-detail">Regulatory, procurement, 3rd parties</div>
-        </div>
-      </div>
-
-      <div className="closer">
-        <p className="closer-body">
-          Most PMs stop at the roadmap. Most BAs stop at the requirements doc.{" "}
-          <strong>I stay in the room until the outcome is real</strong> — technically sound,
-          business-justified, delivered, adopted, and measurable. That&apos;s not a common combination.
-          It&apos;s the only one I know how to do.
+      <div className="mt-10 rounded-2xl bg-surface-container-low p-6 shadow-editorial md:mt-12 md:p-8">
+        <p className="font-sans text-[0.9375rem] font-normal leading-relaxed text-on-surface-variant">
+          Most PMs stop at the roadmap. Most BAs stop at the requirements doc.
         </p>
-        <div className="closer-tags">
-          <span className="tag">Business</span>
-          <span className="tag">Technical</span>
-          <span className="tag">Delivery</span>
-          <span className="tag">AI-Native</span>
+        <blockquote className="my-5 border-l-4 border-tertiary py-1 pl-5">
+          <p className="font-display text-lg font-bold leading-snug tracking-tight text-on-surface md:text-xl">
+            I stay in the room until the outcome is real
+          </p>
+        </blockquote>
+        <p className="font-sans text-[0.9375rem] font-normal leading-relaxed text-on-surface-variant">
+          — Technically sound, business-justified, delivered, adopted, and measurable. That&apos;s not a
+          common combination. It&apos;s the only one I know how to do.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          <span className="rounded-full bg-primary-fixed px-3 py-1.5 font-sans text-[11px] font-semibold tracking-wide text-on-primary-fixed uppercase">
+            Business
+          </span>
+          <span className="rounded-full bg-secondary-fixed px-3 py-1.5 font-sans text-[11px] font-semibold tracking-wide text-on-secondary-fixed uppercase">
+            Technical
+          </span>
+          <span className="rounded-full bg-secondary-fixed px-3 py-1.5 font-sans text-[11px] font-semibold tracking-wide text-on-secondary-fixed uppercase">
+            Delivery
+          </span>
+          <span className="rounded-full bg-primary-fixed px-3 py-1.5 font-sans text-[11px] font-semibold tracking-wide text-on-primary-fixed uppercase">
+            AI-Native
+          </span>
         </div>
       </div>
     </section>
