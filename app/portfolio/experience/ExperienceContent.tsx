@@ -1,8 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { AnimatedGradientText } from "components/magicui/animated-gradient-text"
-import { BlurFade } from "components/magicui/blur-fade"
 
 const timeline = [
   {
@@ -46,87 +44,95 @@ const education = [
   { label: "Focus", value: "Human-Computer Interaction, Distributed Systems" },
 ]
 
+function PageHero() {
+  return (
+    <header className="mb-14 max-w-4xl md:mb-20">
+      <motion.div
+        initial={{ opacity: 0, x: -18 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.55 }}
+        className="mb-6 flex items-center gap-4"
+      >
+        <div className="h-px w-12 bg-primary" />
+        <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Experience</span>
+      </motion.div>
+      <motion.h1
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.75, delay: 0.1 }}
+        className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl"
+      >
+        Career <span className="text-editorial-gradient">timeline.</span>
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.75, delay: 0.22 }}
+        className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl"
+      >
+        Roles and chapters that shaped how I think about product, design systems, and shipping with teams at scale.
+      </motion.p>
+    </header>
+  )
+}
+
 export default function ExperiencePage() {
   return (
-    <section className="space-y-10">
-      <header className="space-y-3">
-        <AnimatedGradientText className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
-          Experience
-        </AnimatedGradientText>
-        <BlurFade>
-          <h1 className="font-display text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
-            Career timeline
-          </h1>
-        </BlurFade>
-        <BlurFade delay={0.05}>
-          <p className="max-w-xl text-sm text-muted-foreground md:text-base">
-            An overview of the roles, teams, and responsibilities that have shaped my experience across product,
-            design, and engineering.
-          </p>
-        </BlurFade>
-      </header>
+    <div className="space-y-16 md:space-y-20">
+      <PageHero />
 
-      {/* Timeline */}
-      <div className="relative space-y-0 border-l-4 border-primary/20 pl-6">
+      {/* Each chapter: Expert Highlight–style tertiary accent, no timeline border + dot chrome */}
+      <section className="space-y-5 md:space-y-6">
         {timeline.map((entry, i) => (
-          <motion.div
+          <motion.article
             key={entry.role}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 + i * 0.06, duration: 0.25, ease: "easeOut" }}
-            className="relative pb-8 last:pb-0"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 + i * 0.06, duration: 0.4 }}
+            className="border-l-4 border-tertiary py-1 pl-6 md:pl-10"
           >
-            {/* Timeline dot */}
-            <span
-              className={[
-                "absolute top-1 h-2.5 w-2.5 rounded-full border-2 border-background -left-[1.3125rem]",
-                entry.current ? "bg-primary" : "bg-surface-container-highest",
-              ].join(" ")}
-            />
-
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-sm font-semibold text-foreground">{entry.role}</h3>
-                {entry.current && (
-                  <span className="rounded-full bg-primary-fixed px-2 py-0.5 text-[10px] font-semibold tracking-wide text-on-primary-fixed uppercase">
-                    Current
-                  </span>
-                )}
-              </div>
-              <p className="text-xs text-muted-foreground">
-                {entry.company} · {entry.period}
-              </p>
-              <p className="text-sm leading-relaxed text-muted-foreground">{entry.description}</p>
+            <div className="flex flex-wrap items-center gap-2 gap-y-1">
+              <h2 className="font-display text-lg font-bold tracking-tight text-on-surface md:text-xl">{entry.role}</h2>
+              {entry.current ? (
+                <span className="rounded-full bg-primary-fixed px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-on-primary-fixed uppercase">
+                  Current
+                </span>
+              ) : null}
             </div>
-          </motion.div>
+            <p className="mt-1 text-xs font-medium tracking-wide text-on-surface-variant uppercase">
+              {entry.company} · {entry.period}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant md:text-base">{entry.description}</p>
+          </motion.article>
         ))}
-      </div>
+      </section>
 
-      {/* Education */}
-      <div className="space-y-4">
-        <h2 className="text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase">Education</h2>
-        <div className="overflow-hidden rounded-xl bg-card shadow-editorial-float">
-          <table className="w-full text-sm">
-            <tbody>
-              {education.map((row, i) => (
-                <tr
-                  key={row.label}
-                  className={[
-                    "transition-colors duration-150",
-                    i % 2 === 0 ? "bg-surface-container-lowest/80" : "bg-surface-container-low/60",
-                    "hover:bg-surface-container",
-                  ].join(" ")}
-                >
-                  <td className="w-28 px-4 py-3 text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase whitespace-nowrap">
-                    {row.label}
-                  </td>
-                  <td className="px-4 py-3 text-foreground">{row.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Education — tonal list, no table / rules */}
+      <section className="space-y-6">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="font-display text-xl font-bold tracking-tight text-on-surface md:text-2xl">Education</h2>
+          <span className="text-xs font-semibold tracking-[0.18em] text-on-surface-variant uppercase">Credentials</span>
         </div>
-      </div>
-    </section>
+        <div className="overflow-hidden rounded-2xl bg-surface-container-low">
+          <ul className="flex flex-col">
+            {education.map((row, i) => (
+              <li
+                key={row.label}
+                className={[
+                  "flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-8 sm:py-5 md:px-8",
+                  i % 2 === 0 ? "bg-surface-container-lowest/80" : "bg-surface-container-low",
+                ].join(" ")}
+              >
+                <span className="w-28 shrink-0 text-xs font-semibold tracking-[0.12em] text-on-surface-variant uppercase">
+                  {row.label}
+                </span>
+                <span className="text-sm text-on-surface md:text-base">{row.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </div>
   )
 }
