@@ -68,7 +68,7 @@ export function SheetContent({ side = 'left', children }: SheetContentProps) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex">
+    <div className="fixed inset-0 z-[200] flex">
       <button
         type="button"
         aria-label="Close navigation menu"

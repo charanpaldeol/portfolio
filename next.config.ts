@@ -11,6 +11,15 @@ const allowedDevOrigins = (process.env.NEXT_DEV_ALLOWED_ORIGINS ?? "")
 
 const config: NextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
+    ],
+  },
   ...(allowedDevOrigins.length > 0 ? { allowedDevOrigins } : {}),
   logging: {
     fetches: {

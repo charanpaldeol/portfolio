@@ -228,7 +228,7 @@ export function Navbar() {
   const isHomeRoute = pathname === '/'
 
   return (
-    <header className="sticky top-0 z-50 bg-surface/75 shadow-editorial-float backdrop-blur-xl backdrop-saturate-150">
+    <header className="sticky top-0 z-[100] w-full shrink-0 border-b border-outline-variant/10 bg-surface/90 shadow-editorial-float backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-surface/80">
       <style>{`
         @keyframes cpdeolBlink {
           0%, 100% { opacity: 1; }

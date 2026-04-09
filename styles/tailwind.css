@@ -139,6 +139,11 @@
 
   /* Legacy vars used by HowIWork and other inline styles */
   :root {
+    /* Main sticky header height — keep in sync with `Navbar` vertical padding + row (~py-3 + h-9). */
+    --site-header-offset: 3.75rem;
+    /* Internet Owned desktop “Lens” strip under the navbar */
+    --io-lens-bar-height: 3rem;
+
     --color-background-primary: var(--color-surface);
     --color-background-secondary: var(--color-surface-container-low);
     --color-surface-container-lowest: #eeeae3;
