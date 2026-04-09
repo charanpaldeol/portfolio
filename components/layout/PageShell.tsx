@@ -14,11 +14,11 @@ export function PageShell({ children, className, containerClassName }: Props) {
   return (
     <div
       className={cn(
-        "min-h-screen bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed",
+        "flex min-h-0 min-h-screen w-full min-w-0 flex-1 flex-col bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed",
         className
       )}
     >
-      <div className={cn("mx-auto max-w-7xl px-6 pt-10 pb-20 md:px-8", containerClassName)}>
+      <div className={cn("mx-auto w-full max-w-7xl flex-1 px-6 pt-10 pb-20 md:px-8", containerClassName)}>
         {children}
       </div>
     </div>

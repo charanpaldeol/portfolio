@@ -5,7 +5,7 @@ function DiagramFigure({ children, "aria-label": ariaLabel }: { children: ReactN
   return (
     <figure
       aria-label={ariaLabel}
-      className="mt-8 overflow-hidden rounded-2xl bg-surface-container-low p-5 shadow-editorial outline outline-1 outline-outline-variant/10 md:mt-10 md:p-8"
+      className="mt-8 overflow-hidden rounded-2xl bg-surface-container-low p-5 shadow-editorial outline outline-1 outline-outline-variant/15 md:mt-10 md:p-8"
     >
       {children}
     </figure>
@@ -28,8 +28,8 @@ export function MeshStagesDiagram() {
   return (
     <DiagramFigure aria-label="Mesh network diagram">
       <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Network growth stages</span>
-        <div className="flex items-center gap-3 text-xs text-on-surface-variant">
+        <span className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Network growth stages</span>
+        <div className="flex items-center gap-3 font-sans text-xs font-normal text-on-surface-variant">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-primary" /> Mesh link
           </span>
@@ -125,8 +125,8 @@ export function PayoffChart() {
   return (
     <DiagramFigure aria-label="Cost payoff chart">
       <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Cost comparison timeline</span>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-on-surface-variant">
+        <span className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Cost comparison timeline</span>
+        <div className="flex flex-wrap items-center gap-3 font-sans text-xs font-normal text-on-surface-variant">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-secondary" /> Traditional monthly bill
           </span>
@@ -170,7 +170,7 @@ export function PayoffChart() {
           ~3.8 years
         </text>
       </svg>
-      <p className="mt-4 text-xs leading-relaxed text-on-surface-variant md:text-sm">
+      <p className="mt-4 font-sans text-xs font-normal leading-relaxed text-on-surface-variant md:text-sm">
         Assumes $50/month baseline internet spend and one-time hardware example in the middle of the estimated $1,500–$3,000 range.
       </p>
     </DiagramFigure>
@@ -198,8 +198,8 @@ export function EarningsDiagram() {
   return (
     <DiagramFigure aria-label="Earnings scenario chart">
       <figcaption className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Monthly earning scenario</span>
-        <span className="text-xs text-on-surface-variant">Micropayment model: ~$0.02 per GB routed</span>
+        <span className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">Monthly earning scenario</span>
+        <span className="font-sans text-xs font-normal text-on-surface-variant">Micropayment model: ~$0.02 per GB routed</span>
       </figcaption>
       <svg viewBox="0 0 900 280" role="img" aria-label="Five-neighbor usage chart showing monthly mesh routing income" className="w-full">
         <rect x="74" y="38" width="420" height="186" rx="10" fill="#F8FAFC" stroke="#E2E8F0" />

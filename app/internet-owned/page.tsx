@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { PageShell } from "@/components/layout/PageShell"
+
 import { EarningsDiagram, MeshStagesDiagram, PayoffChart } from "./diagrams"
 import { InternetOwnedEditorial } from "./InternetOwnedEditorial"
 
@@ -23,15 +25,15 @@ export const metadata: Metadata = {
   },
 }
 
-/** Full-bleed under `PortfolioShell` horizontal padding so editorial sidebar can reach the viewport edge. */
+/** Same outer shell as other marketing pages (`max-w-7xl`, horizontal padding). */
 export default function InternetOwnedPage() {
   return (
-    <div className="-mx-4 max-w-none min-w-0 w-[calc(100%+2rem)] overflow-x-clip md:-mx-6 md:w-[calc(100%+3rem)]">
+    <PageShell>
       <InternetOwnedEditorial
         meshDiagram={<MeshStagesDiagram />}
         payoffDiagram={<PayoffChart />}
         earningsDiagram={<EarningsDiagram />}
       />
-    </div>
+    </PageShell>
   )
 }
