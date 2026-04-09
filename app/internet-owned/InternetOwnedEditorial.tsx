@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { LayoutGroup, motion } from "framer-motion"
 import {
   ArrowRight,
   Check,
@@ -19,7 +19,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { type ReactNode, useEffect, useState } from "react"
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import { twMerge } from "tailwind-merge"
 
 import { IO_EDITORIAL_HERO_IMAGE } from "./editorial-assets"
@@ -27,6 +27,58 @@ import { IO_EDITORIAL_HERO_IMAGE } from "./editorial-assets"
 const SECTION_IDS = ["io-hero", "io-how-it-works", "io-impact", "io-incentives", "io-privacy", "io-adoption", "io-join"] as const
 
 type SectionId = (typeof SECTION_IDS)[number]
+
+/** Sections that appear in the sticky sidebar (subset of SECTION_IDS, document order). */
+const SIDEBAR_NAV_IDS = ["io-hero", "io-how-it-works", "io-impact", "io-incentives"] as const
+
+type SidebarNavId = (typeof SIDEBAR_NAV_IDS)[number]
+
+function parseHeaderOffsetPx(): number {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--site-header-offset").trim()
+  const rootFs = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+  if (raw.endsWith("rem")) return parseFloat(raw) * rootFs
+  if (raw.endsWith("px")) return parseFloat(raw)
+  return 3.75 * 16
+}
+
+/** Reading line (viewport px from top): last section whose top is ≤ this line is active — stable for short sections like “How it works”. */
+function getActivationViewportY(): number {
+  if (typeof window === "undefined") return 96
+  const band = Math.min(56, Math.max(28, Math.round(window.innerHeight * 0.12)))
+  return parseHeaderOffsetPx() + band
+}
+
+function computeActiveSectionFromScroll(): SectionId {
+  const y = getActivationViewportY()
+  let active: SectionId = SECTION_IDS[0]
+  for (const id of SECTION_IDS) {
+    const el = document.getElementById(id)
+    if (!el) continue
+    const top = el.getBoundingClientRect().top
+    if (top <= y) active = id
+  }
+
+  const doc = document.documentElement
+  const scrollBottom = window.scrollY + window.innerHeight
+  const maxScroll = doc.scrollHeight - window.innerHeight
+  const lastId = SECTION_IDS[SECTION_IDS.length - 1]
+  if (lastId && maxScroll > 0 && scrollBottom >= maxScroll - 48) {
+    active = lastId
+  }
+
+  return active
+}
+
+function toSidebarHighlight(scrollActive: SectionId): SidebarNavId {
+  const nav = new Set<string>(SIDEBAR_NAV_IDS)
+  if (nav.has(scrollActive)) return scrollActive as SidebarNavId
+  const idx = SECTION_IDS.indexOf(scrollActive)
+  for (let i = idx; i >= 0; i--) {
+    const id = SECTION_IDS[i]!
+    if (nav.has(id)) return id as SidebarNavId
+  }
+  return "io-hero"
+}
 
 type Props = {
   meshDiagram: ReactNode
@@ -49,12 +101,19 @@ function SidebarLink({
     <a
       href={href}
       className={twMerge(
-        "group flex items-center gap-3 rounded-2xl px-3 py-2.5 font-sans text-sm transition-all",
-        active ? "bg-primary/10 font-semibold text-primary" : "font-normal text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+        "group relative flex items-center gap-3 overflow-hidden rounded-2xl px-3 py-2.5 font-sans text-sm transition-colors duration-200",
+        active ? "z-[1] font-semibold text-primary" : "font-normal text-on-surface-variant hover:bg-surface-container-low/80 hover:text-on-surface"
       )}
     >
-      <span className="shrink-0 transition-transform group-hover:scale-110">{icon}</span>
-      <span className="min-w-0 break-words">{label}</span>
+      {active ? (
+        <motion.span
+          layoutId="io-editorial-nav-pill"
+          className="absolute inset-0 rounded-2xl bg-primary/10 ring-1 ring-primary/15"
+          transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.72 }}
+        />
+      ) : null}
+      <span className="relative shrink-0 transition-transform group-hover:scale-110">{icon}</span>
+      <span className="relative min-w-0 break-words">{label}</span>
     </a>
   )
 }
@@ -92,44 +151,56 @@ function IncentiveCard({ icon, title, description, bgColor }: { icon: ReactNode;
 }
 
 export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDiagram }: Props) {
-  const [activeId, setActiveId] = useState<SectionId>("io-hero")
+  const [scrollSectionId, setScrollSectionId] = useState<SectionId>("io-hero")
+  const rafRef = useRef<number | null>(null)
 
   useEffect(() => {
-    const elements = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
-    if (elements.length === 0) return
+    const tick = () => {
+      rafRef.current = null
+      const next = computeActiveSectionFromScroll()
+      setScrollSectionId((prev) => (prev === next ? prev : next))
+    }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible[0]?.target.id) setActiveId(visible[0].target.id as SectionId)
-      },
-      { rootMargin: "-20% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-    )
+    const schedule = () => {
+      if (rafRef.current != null) return
+      rafRef.current = requestAnimationFrame(tick)
+    }
 
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    tick()
+    requestAnimationFrame(() => tick())
+    window.addEventListener("scroll", schedule, { passive: true })
+    window.addEventListener("resize", schedule, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", schedule)
+      window.removeEventListener("resize", schedule)
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
+    }
   }, [])
 
-  const isActive = (id: SectionId) => activeId === id
+  const sidebarActiveId = useMemo(() => toSidebarHighlight(scrollSectionId), [scrollSectionId])
+
+  const isNavActive = (id: SidebarNavId) => sidebarActiveId === id
 
   return (
     <div className="internet-owned-editorial relative min-w-0 text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
       <div className="grid min-h-0 grid-cols-1 gap-0 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         {/* Tall grid cell + inner sticky aside so the rail scrolls with the document, then pins under the site header */}
-        <div className="relative z-10 hidden min-h-0 min-w-0 self-stretch border-r border-outline-variant/15 bg-surface/95 shadow-editorial-float backdrop-blur-[18px] supports-[backdrop-filter]:bg-surface/88 lg:block">
-          <aside className="sticky top-[var(--site-header-offset)] z-30 flex w-full min-w-0 flex-col overflow-y-auto py-10 pl-1 pr-5 lg:max-h-[calc(100dvh-var(--site-header-offset))]">
+        <div className="relative z-10 hidden min-h-0 min-w-0 self-stretch border-r border-outline-variant/15 bg-surface shadow-editorial-float lg:block">
+          <aside className="sticky top-[var(--site-header-offset)] z-30 flex w-full min-w-0 flex-col py-10 pl-1 pr-5 [backface-visibility:hidden]">
             <div className="mb-10 px-1">
               <h2 className="font-sans text-lg font-medium tracking-normal text-on-surface">Editorial portal</h2>
               <p className="mt-2 font-sans text-xs font-semibold tracking-[0.2em] text-on-surface-variant uppercase">
                 Decentralized insights
               </p>
             </div>
-            <nav className="flex flex-col gap-1.5 pb-3">
-              <SidebarLink icon={<Info size={18} />} label="Overview" href="#io-hero" active={isActive("io-hero")} />
-              <SidebarLink icon={<Network size={18} />} label="How it works" href="#io-how-it-works" active={isActive("io-how-it-works")} />
-              <SidebarLink icon={<CreditCard size={18} />} label="Cost comparison" href="#io-impact" active={isActive("io-impact")} />
-              <SidebarLink icon={<TrendingUp size={18} />} label="Earning potential" href="#io-incentives" active={isActive("io-incentives")} />
-            </nav>
+            <LayoutGroup id="io-editorial-sidebar-nav">
+              <nav className="flex flex-col gap-1.5 pb-3">
+                <SidebarLink icon={<Info size={18} />} label="Overview" href="#io-hero" active={isNavActive("io-hero")} />
+                <SidebarLink icon={<Network size={18} />} label="How it works" href="#io-how-it-works" active={isNavActive("io-how-it-works")} />
+                <SidebarLink icon={<CreditCard size={18} />} label="Cost comparison" href="#io-impact" active={isNavActive("io-impact")} />
+                <SidebarLink icon={<TrendingUp size={18} />} label="Earning potential" href="#io-incentives" active={isNavActive("io-incentives")} />
+              </nav>
+            </LayoutGroup>
           </aside>
         </div>
 
