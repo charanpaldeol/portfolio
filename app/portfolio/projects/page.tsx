@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { cn } from "@/lib/utils"
 
 const projects = [
   {
@@ -100,12 +101,12 @@ export default function ProjectsPage() {
               key={f}
               type="button"
               onClick={() => setActive(f)}
-              className={[
+              className={cn(
                 "rounded-full px-4 py-2 text-xs font-semibold tracking-wide uppercase transition-colors duration-200",
                 active === f
                   ? "bg-primary-fixed text-on-primary-fixed"
                   : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface",
-              ].join(" ")}
+              )}
             >
               {f}
             </button>
@@ -120,18 +121,18 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.06 + i * 0.07, duration: 0.35 }}
-              className={[
+              className={cn(
                 "flex flex-col rounded-xl bg-surface-container-low p-6 md:p-8 lg:p-10",
                 project.span,
                 project.minH,
-              ].join(" ")}
+              )}
             >
               <div className="flex flex-1 flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
                 <div
-                  className={[
+                  className={cn(
                     "flex h-16 w-16 shrink-0 items-center justify-center rounded-xl text-3xl sm:h-[4.5rem] sm:w-[4.5rem]",
                     project.accent,
-                  ].join(" ")}
+                  )}
                   aria-hidden
                 >
                   {project.icon}

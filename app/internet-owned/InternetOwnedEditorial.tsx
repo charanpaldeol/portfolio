@@ -20,7 +20,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react"
-import { twMerge } from "tailwind-merge"
+import { cn } from "@/lib/utils"
 
 import { IO_EDITORIAL_HERO_IMAGE } from "./editorial-assets"
 
@@ -100,7 +100,7 @@ function SidebarLink({
   return (
     <a
       href={href}
-      className={twMerge(
+      className={cn(
         "group relative flex items-center gap-3 overflow-hidden rounded-2xl px-3 py-2.5 font-sans text-sm transition-colors duration-200",
         active ? "z-[1] font-semibold text-primary" : "font-normal text-on-surface-variant hover:bg-surface-container-low/80 hover:text-on-surface"
       )}
@@ -121,7 +121,7 @@ function SidebarLink({
 function FeatureItem({ color, title, description }: { color: string; title: string; description: string }) {
   return (
     <div className="relative pl-9">
-      <div className={twMerge("absolute top-0.5 bottom-0.5 left-0 w-1 rounded-full", color)} aria-hidden />
+      <div className={cn("absolute top-0.5 bottom-0.5 left-0 w-1 rounded-full", color)} aria-hidden />
       <h3 className="mb-3 font-sans text-xl font-medium tracking-normal text-on-surface">{title}</h3>
       <p className="font-sans font-normal leading-[1.7] text-on-surface-variant">{description}</p>
     </div>
@@ -143,7 +143,7 @@ function IncentiveCard({ icon, title, description, bgColor }: { icon: ReactNode;
       whileHover={{ y: -4 }}
       className="rounded-2xl bg-surface-container-low p-9 shadow-editorial md:p-10"
     >
-      <div className={twMerge("mb-6 flex h-12 w-12 items-center justify-center rounded-xl", bgColor)}>{icon}</div>
+      <div className={cn("mb-6 flex h-12 w-12 items-center justify-center rounded-xl", bgColor)}>{icon}</div>
       <h3 className="mb-2 font-sans text-lg font-medium tracking-normal text-on-surface">{title}</h3>
       <p className="font-sans text-sm font-normal leading-[1.7] text-on-surface-variant">{description}</p>
     </motion.div>
@@ -469,7 +469,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
                 },
               ].map(({ num, accent, title, desc }) => (
                 <div key={num} className="rounded-2xl bg-surface-container-lowest p-9 shadow-editorial md:p-10">
-                  <div className={twMerge("mb-6 h-1 w-10 rounded-full", accent)} />
+                  <div className={cn("mb-6 h-1 w-10 rounded-full", accent)} />
                   <p className="mb-4 font-sans text-xs font-semibold tracking-[0.15em] text-on-surface-variant uppercase">{num}</p>
                   <h3 className="mb-4 font-sans text-xl font-medium tracking-normal text-on-surface">{title}</h3>
                   <p className="font-sans text-sm font-normal leading-[1.7] text-on-surface-variant">{desc}</p>

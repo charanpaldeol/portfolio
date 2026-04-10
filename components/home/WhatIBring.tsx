@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 /* ── Icons (Lucide-style) ── */
@@ -55,68 +56,55 @@ export default function WhatIBring() {
                 <Link
                   key={card.slug}
                   href={`/blog/${card.slug}`}
-                  className={[
+                  className={cn(
                     "group relative flex overflow-hidden rounded-2xl p-5 text-left no-underline shadow-editorial-float transition-shadow duration-300 md:p-6",
                     width,
                     style.bg,
                     style.hoverShadow,
                     isDark ? "text-background" : "",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                    /* Dark card: horizontal on desktop */
                     isDark ? "flex-col md:flex-row md:items-center md:gap-10" : "flex-col",
-                  ].join(" ")}
+                  )}
                 >
                   {/* Decorative corner glow */}
                   <div
-                    className={[
+                    className={cn(
                       "pointer-events-none absolute -right-16 -bottom-16 h-48 w-48 rounded-full blur-2xl transition-transform duration-300 group-hover:scale-110",
                       isDark ? "bg-background/5" : "bg-muted/50",
-                    ].join(" ")}
+                    )}
                   />
 
                   {/* Main content */}
-                  <div className={["relative z-10 flex flex-col gap-3", isDark ? "md:flex-1" : ""].join(" ")}>
+                  <div className={cn("relative z-10 flex flex-col gap-3", isDark && "md:flex-1")}>
                     {/* Icon */}
-                    <div
-                      className={[
-                        "flex h-10 w-10 items-center justify-center rounded-xl",
-                        style.iconBg,
-                      ].join(" ")}
-                    >
-                      <span className={["block h-5 w-5", style.iconColor].join(" ")}>
+                    <div className={cn("flex h-10 w-10 items-center justify-center rounded-xl", style.iconBg)}>
+                      <span className={cn("block h-5 w-5", style.iconColor)}>
                         {icon}
                       </span>
                     </div>
 
                     {/* Badge */}
                     <span
-                      className={[
+                      className={cn(
                         "w-fit rounded-full px-3 py-1 text-[11px] font-medium tracking-wide uppercase",
                         isDark ? "bg-background/10 text-background" : card.badgeClass,
-                      ].join(" ")}
+                      )}
                     >
                       {card.badge}
                     </span>
 
                     {/* Title */}
                     <h3
-                      className={[
+                      className={cn(
                         "font-medium tracking-tight",
-                        isDark
-                          ? "text-xl md:text-2xl text-background"
-                          : "text-lg md:text-xl text-foreground",
-                      ].join(" ")}
+                        isDark ? "text-xl md:text-2xl text-background" : "text-lg md:text-xl text-foreground",
+                      )}
                     >
                       {card.title}
                     </h3>
 
                     {/* Body */}
-                    <p
-                      className={[
-                        "text-sm leading-relaxed",
-                        isDark ? "text-background/75" : "text-muted-foreground",
-                      ].join(" ")}
-                    >
+                    <p className={cn("text-sm leading-relaxed", isDark ? "text-background/75" : "text-muted-foreground")}>
                       {card.body}
                     </p>
 

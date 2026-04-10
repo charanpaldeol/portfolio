@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { cn } from "@/lib/utils"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 export const metadata: Metadata = {
@@ -51,17 +52,12 @@ export default function BlogPage() {
             const span = bentoSpans[index] ?? "md:col-span-6"
 
             return (
-              <li key={card.slug} className={["h-full", span].join(" ")}>
+              <li key={card.slug} className={cn("h-full", span)}>
                 <Link
                   href={`/blog/${card.slug}`}
                   className="group flex h-full min-h-[200px] flex-col rounded-2xl bg-surface-container-low p-7 no-underline transition-colors duration-300 hover:bg-surface-container md:min-h-[220px] md:p-9"
                 >
-                  <span
-                    className={[
-                      "inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase",
-                      card.badgeClass,
-                    ].join(" ")}
-                  >
+                  <span className={cn("inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase", card.badgeClass)}>
                     {card.badge}
                   </span>
                   {/* Title scale: Inter Medium per DESIGN.md (card / sidebar headers) */}

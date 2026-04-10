@@ -3,7 +3,7 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip"
 import { cva, type VariantProps } from "class-variance-authority"
 import React from "react"
-import { twMerge } from "tailwind-merge"
+import { cn } from "@/lib/utils"
 
 const tooltipContent = cva([], {
   variants: {
@@ -63,10 +63,10 @@ export function Tooltip({
           <RadixTooltip.Content
             side={side}
             sideOffset={5}
-            className={twMerge(tooltipContent({ intent, size, className }))}
+            className={cn(tooltipContent({ intent, size, className }))}
           >
             {explainer}
-            {withArrow ? <RadixTooltip.Arrow className={twMerge(tooltipArrow({ intent, size, className }))} /> : null}
+            {withArrow ? <RadixTooltip.Arrow className={cn(tooltipArrow({ intent, size, className }))} /> : null}
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
       </RadixTooltip.Root>

@@ -156,3 +156,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Navbar — cursor blink for the brand wordmark */
+@keyframes cpdeolBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@utility cpdeol-blink-cursor {
+  animation: cpdeolBlink 1.1s step-end infinite;
+}

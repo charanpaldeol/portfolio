@@ -1,9 +1,16 @@
 import { Resend } from "resend"
+import { z } from "zod"
 
 import { env } from "@/env.mjs"
 
 const FROM_EMAIL = env.RESEND_FROM_EMAIL ?? "Contact <onboarding@resend.dev>"
 const TO_EMAIL = env.RESEND_TO_EMAIL ?? "hello@cpdeol.com"
+
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required").max(100),
+  email: z.string().email("Invalid email address").max(255),
+  message: z.string().min(1, "Message is required").max(5000),
+})
 
 export async function POST(request: Request) {
   try {
@@ -17,44 +24,41 @@ export async function POST(request: Request) {
 
     const resend = new Resend(apiKey)
 
-    const body = (await request.json()) as { name?: unknown; email?: unknown; message?: unknown }
-  const name = String(body.name ?? "").trim()
-  const email = String(body.email ?? "").trim()
-  const message = String(body.message ?? "").trim()
+    const body: unknown = await request.json()
+    const parsed = contactSchema.safeParse(body)
 
-  if (!name || !email || !message) {
-    return Response.json(
-      { error: "Name, email, and message are required" },
-      { status: 400 }
-    )
-  }
+    if (!parsed.success) {
+      const firstError = parsed.error.errors[0]?.message ?? "Invalid request"
+      return Response.json({ error: firstError }, { status: 400 })
+    }
 
-  const subject = `Contact from cpdeol.com – ${name}`
-  const html = `
+    const { name, email, message } = parsed.data
+
+    const subject = `Contact from cpdeol.com – ${name}`
+    const html = `
     <p><strong>Name:</strong> ${escapeHtml(name)}</p>
     <p><strong>Email:</strong> ${escapeHtml(email)}</p>
     <p><strong>Message:</strong></p>
     <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
   `.trim()
 
-  const { data, error } = await resend.emails.send({
-    from: FROM_EMAIL,
-    to: [TO_EMAIL],
-    replyTo: [email],
-    subject,
-    html,
-  })
+    const { data, error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [TO_EMAIL],
+      replyTo: [email],
+      subject,
+      html,
+    })
 
-  if (error) {
-    console.error("Resend error:", error)
-    return Response.json({ error: error.message }, { status: 500 })
-  }
+    if (error) {
+      console.error("Resend error:", error)
+      return Response.json({ error: "Failed to send message. Please try again." }, { status: 500 })
+    }
 
-  return Response.json({ id: data?.id })
+    return Response.json({ id: data?.id })
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error"
     console.error("Contact API error:", err)
-    return Response.json({ error: message }, { status: 500 })
+    return Response.json({ error: "Something went wrong. Please try again." }, { status: 500 })
   }
 }
 
@@ -64,4 +68,5 @@ function escapeHtml(text: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
 }

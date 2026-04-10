@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
 import type { WhatIBringCard } from "@/lib/what-i-bring-cards"
 
 type Props = { card: WhatIBringCard }
@@ -25,12 +26,7 @@ export function BlogTopicArticle({ card }: Props) {
           </Link>
         </div>
 
-        <div
-          className={[
-            "inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase",
-            card.badgeClass,
-          ].join(" ")}
-        >
+        <div className={cn("inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase", card.badgeClass)}>
           {card.badge}
         </div>
 

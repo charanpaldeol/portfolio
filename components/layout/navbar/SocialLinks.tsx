@@ -1,0 +1,55 @@
+import { RainbowButton } from '@/registry/magicui/rainbow-button'
+import { GITHUB_URL, LINKEDIN_URL } from '@/config/navigation'
+
+// Desktop-only social icon buttons + CTA.
+// LinkedIn hover colour (#0A66C2) is LinkedIn's official brand colour —
+// intentionally not a theme token since it is an external brand value.
+export function SocialLinks() {
+  return (
+    <div className="hidden items-center gap-4 md:flex">
+      <a
+        href={GITHUB_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="GitHub"
+        className="group relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-surface-container-low transition-all duration-300 hover:bg-foreground hover:shadow-editorial"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="fill-muted-foreground group-hover:fill-background"
+            d="M12 .5C5.73.5.5 5.85.5 12.25c0 5.2 3.28 9.6 7.82 11.16.57.11.78-.25.78-.56v-2.05c-3.18.7-3.84-1.58-3.84-1.58-.52-1.33-1.27-1.68-1.27-1.68-1.04-.73.08-.72.08-.72 1.14.08 1.73 1.2 1.73 1.2 1.01 1.76 2.66 1.25 3.31.96.1-.76.39-1.25.7-1.54-2.54-.3-5.21-1.31-5.21-5.82 0-1.29.45-2.35 1.19-3.18-.12-.31-.52-1.58.11-3.29 0 0 .97-.32 3.18 1.21.92-.27 1.9-.41 2.88-.41.98 0 1.96.14 2.88.41 2.21-1.53 3.18-1.21 3.18-1.21.63 1.71.23 2.98.11 3.29.74.83 1.19 1.89 1.19 3.18 0 4.52-2.67 5.52-5.22 5.82.41.37.77 1.1.77 2.21v3.27c0 .31.21.67.79.56 4.54-1.56 7.82-5.96 7.82-11.16C23.5 5.85 18.27.5 12 .5Z"
+          />
+        </svg>
+      </a>
+
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="LinkedIn"
+        className="group relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-surface-container-low transition-all duration-300 hover:bg-[#0A66C2] hover:shadow-editorial"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="fill-muted-foreground group-hover:fill-white"
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+          />
+        </svg>
+      </a>
+
+      <RainbowButton href="/contact">Let&apos;s talk</RainbowButton>
+    </div>
+  )
+}

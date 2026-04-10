@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 
+import { cn } from "@/lib/utils"
+
 const values = [
   {
     icon: "✦",
@@ -148,10 +150,10 @@ export default function AboutPage() {
             {stack.map((row, i) => (
               <li
                 key={row.category}
-                className={[
+                className={cn(
                   "flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-baseline sm:gap-8 sm:py-5 md:px-8",
                   i % 2 === 0 ? "bg-surface-container-lowest/80" : "bg-surface-container-low",
-                ].join(" ")}
+                )}
               >
                 <span className="w-32 shrink-0 text-xs font-semibold tracking-[0.12em] text-on-surface-variant uppercase">
                   {row.category}

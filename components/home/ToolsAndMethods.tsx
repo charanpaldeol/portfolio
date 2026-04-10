@@ -1,12 +1,14 @@
 import type { ReactNode } from "react"
 
+import { cn } from "@/lib/utils"
+
 function Chip({ children, bold }: { children: ReactNode; bold?: boolean }) {
   return (
     <span
-      className={[
+      className={cn(
         "rounded-md bg-surface-container-high px-3 py-1 text-xs font-medium text-muted-foreground",
-        bold ? "font-medium text-foreground" : "",
-      ].join(" ")}
+        bold && "text-foreground",
+      )}
     >
       {children}
     </span>

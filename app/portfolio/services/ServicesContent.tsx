@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
+
 const services = [
   {
     icon: "🗺️",
@@ -113,20 +115,15 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.06 + i * 0.05, duration: 0.4 }}
-            className={[
+            className={cn(
               "flex min-h-[280px] flex-col justify-between rounded-xl p-8 md:min-h-[320px] md:p-10",
               svc.span,
               svc.surface,
-            ].join(" ")}
+            )}
           >
             <div>
               <div className="mb-6 text-3xl">{svc.icon}</div>
-              <span
-                className={[
-                  "mb-4 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase",
-                  svc.taglineClass,
-                ].join(" ")}
-              >
+              <span className={cn("mb-4 inline-flex rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide uppercase", svc.taglineClass)}>
                 {svc.tagline}
               </span>
               <h2 className="font-display text-2xl font-bold tracking-tight text-on-surface md:text-3xl">{svc.title}</h2>
