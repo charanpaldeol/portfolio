@@ -36,6 +36,10 @@
   --color-on-surface-variant: #5c5d59;
   --color-outline-variant: color-mix(in srgb, #1b1c1a 14%, transparent);
 
+  /* Dark “inverse” canvas (CTAs, contrast bands) */
+  --color-inverse-surface: #30302e;
+  --color-inverse-on-surface: #f3f0ed;
+
   /* shadcn / app aliases */
   --color-background: var(--color-surface);
   --color-foreground: var(--color-on-surface);

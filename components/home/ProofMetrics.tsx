@@ -155,7 +155,7 @@ export default function ProofMetrics() {
           More detail available on request — timelines, team size, constraints.
         </p>
         <Link
-          href="/portfolio/contact"
+          href="/contact"
           className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
         >
           Let&apos;s discuss your problem →

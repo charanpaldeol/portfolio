@@ -2,16 +2,17 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { projects } from "@/lib/projects-data"
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+    "Selected case studies by Charan Deol — AI/ML, real-time systems, compliance, cloud architecture, and measurable engineering outcomes.",
   alternates: { canonical: "https://cpdeol.com/projects" },
   openGraph: {
     title: "Projects — Charan Deol",
     description:
-      "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+      "Selected case studies — AI/ML, real-time systems, compliance, and cloud-native architecture with quantified results.",
     url: "https://cpdeol.com/projects",
     type: "website",
   },
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Projects — Charan Deol",
     description:
-      "Selected projects by Charan Deol — product strategy, design systems, and full-stack engineering work. Coming soon.",
+      "Selected case studies — AI/ML, real-time systems, compliance, and cloud-native architecture with quantified results.",
   },
 }
 
@@ -42,7 +43,9 @@ export default function ProjectsPage() {
 
         <div className="space-y-6 rounded-xl bg-surface-container-low p-8 md:p-10">
           <div>
-            <h2 className="text-lg font-semibold text-on-surface">9 Detailed Case Studies</h2>
+            <h2 className="text-lg font-semibold text-on-surface">
+              {projects.length} detailed case studies
+            </h2>
             <p className="mt-3 text-base leading-relaxed text-on-surface-variant">
               Each project includes a problem statement, solution approach, quantified results, and the tech stack used. Click any project to dive deep into the decisions and outcomes.
             </p>
@@ -58,7 +61,7 @@ export default function ProjectsPage() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-surface-container-high bg-transparent px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
             >
-              Let's Discuss
+              Let&apos;s discuss
             </Link>
           </div>
         </div>
