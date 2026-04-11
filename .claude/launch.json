@@ -1,8 +1,8 @@
 {
-  "version": "0.0.1",
+  "version": "0.2.0",
   "configurations": [
     {
-      "name": "Next dev (repo root = portfolio/)",
+      "name": "portfolio (cwd = workspace)",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
@@ -12,7 +12,7 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Next dev (repo root = parent of portfolio/)",
+      "name": "portfolio (cwd = workspace/portfolio)",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",

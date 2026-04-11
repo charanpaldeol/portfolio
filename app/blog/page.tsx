@@ -1,3 +1,4 @@
+import { Code2, Crosshair, Layers, type LucideIcon, TrendingUp, Zap } from "lucide-react"
 import { Metadata } from "next"
 import Link from "next/link"
 
@@ -25,14 +26,31 @@ export const metadata: Metadata = {
   },
 }
 
-/** Bento spans for five cards: 7+5, 5+7, full — editorial asymmetry */
-const bentoSpans = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-12"] as const
+/** Thumbnail accent config per slug — tonal surface shifts, no borders */
+const thumbConfig: Record<string, { bg: string; text: string; icon: LucideIcon }> = {
+  "problem-framing":    { bg: "bg-secondary-fixed", text: "text-on-secondary-fixed", icon: Crosshair   },
+  "solution-design":    { bg: "bg-primary-fixed",   text: "text-on-primary-fixed",   icon: Layers      },
+  "ai-native-delivery": { bg: "bg-tertiary-fixed",  text: "text-on-tertiary-fixed",  icon: Zap         },
+  "engineering-depth":  { bg: "bg-secondary-fixed", text: "text-on-secondary-fixed", icon: Code2       },
+  "value-realization":  { bg: "bg-primary-fixed",   text: "text-on-primary-fixed",   icon: TrendingUp  },
+}
+
+/** Approximate read time (words / 200 wpm) per slug */
+const readMin: Record<string, number> = {
+  "problem-framing":    5,
+  "solution-design":    5,
+  "ai-native-delivery": 6,
+  "engineering-depth":  5,
+  "value-realization":  6,
+}
 
 export default function BlogPage() {
   return (
     <PageShell>
-      <div className="space-y-12 md:space-y-16">
-        <header className="max-w-4xl">
+      <div className="space-y-14 md:space-y-20">
+
+        {/* ── Header ─────────────────────────────────────────────────── */}
+        <header className="max-w-3xl">
           <div className="mb-6 flex items-center gap-4">
             <div className="h-px w-14 bg-primary" aria-hidden />
             <span className="font-sans text-xs font-semibold tracking-[0.22em] text-primary uppercase">Blog</span>
@@ -40,44 +58,78 @@ export default function BlogPage() {
           <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl">
             Ideas that <span className="text-editorial-gradient">ship.</span>
           </h1>
-          <p className="mt-8 max-w-2xl font-sans text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl md:leading-relaxed">
-            Frameworks and practical thinking on problem framing, solution design, AI-native delivery, engineering
+          <p className="mt-6 max-w-xl font-sans text-lg font-light leading-relaxed text-on-surface-variant md:text-xl">
+            Frameworks and practical thinking on problem framing, solution design, AI&#8209;native delivery, engineering
             depth, and value realization.
           </p>
         </header>
 
-        <ul className="m-0 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-12 md:gap-6">
-          {whatIBringCards.map((card, index) => {
+        {/* ── Article list ───────────────────────────────────────────── */}
+        <ul className="m-0 list-none space-y-3 p-0">
+          {whatIBringCards.map((card) => {
+            const thumb = thumbConfig[card.slug] ?? { bg: "bg-surface-container", text: "text-on-surface", icon: Crosshair }
+            const mins  = readMin[card.slug] ?? 5
             const excerpt = card.body.length > 160 ? `${card.body.slice(0, 160)}…` : card.body
-            const span = bentoSpans[index] ?? "md:col-span-6"
 
             return (
-              <li key={card.slug} className={cn("h-full", span)}>
+              <li key={card.slug}>
                 <Link
                   href={`/blog/${card.slug}`}
-                  className="group flex h-full min-h-[200px] flex-col rounded-2xl bg-surface-container-low p-7 no-underline transition-colors duration-300 hover:bg-surface-container md:min-h-[220px] md:p-9"
+                  className="group flex items-center gap-5 rounded-2xl bg-surface-container-low px-6 py-5 no-underline transition-colors duration-200 hover:bg-surface-container md:gap-7 md:px-8 md:py-6"
                 >
-                  <span className={cn("inline-flex w-fit rounded-full px-3 py-1 font-sans text-[11px] font-semibold tracking-wide uppercase", card.badgeClass)}>
-                    {card.badge}
-                  </span>
-                  {/* Title scale: Inter Medium per DESIGN.md (card / sidebar headers) */}
-                  <span className="mt-5 block font-sans text-xl font-medium tracking-tight text-on-surface md:text-2xl">
-                    {card.title}
-                  </span>
-                  <span className="mt-3 block flex-1 font-sans text-sm font-normal leading-relaxed text-on-surface-variant md:text-base md:leading-relaxed">
-                    {excerpt}
-                  </span>
-                  <span className="mt-6 inline-flex items-center font-sans text-xs font-semibold tracking-wider text-primary uppercase transition group-hover:gap-2">
-                    <span>Read article</span>
-                    <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">
-                      →
+                  {/* Thumbnail — contextual icon block */}
+                  <div
+                    className={cn(
+                      "shrink-0 rounded-xl flex items-center justify-center",
+                      "w-16 h-16 md:w-20 md:h-20",
+                      thumb.bg,
+                    )}
+                    aria-hidden
+                  >
+                    <thumb.icon className={cn("w-7 h-7 md:w-8 md:h-8", thumb.text)} strokeWidth={1.75} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="min-w-0 flex-1">
+                    {/* Badge */}
+                    <span
+                      className={cn(
+                        "inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-[11px] font-semibold tracking-wide uppercase",
+                        card.badgeClass,
+                      )}
+                    >
+                      {card.badge}
                     </span>
+
+                    {/* Title */}
+                    <p className="mt-2 font-sans text-base font-medium tracking-tight text-on-surface md:text-lg">
+                      {card.title}
+                    </p>
+
+                    {/* Excerpt — hidden on smallest screens */}
+                    <p className="mt-1 hidden truncate font-sans text-sm font-normal leading-relaxed text-on-surface-variant sm:block">
+                      {excerpt}
+                    </p>
+
+                    {/* Metadata */}
+                    <p className="mt-2 font-sans text-xs font-semibold tracking-wider text-on-surface-variant uppercase">
+                      {mins}&nbsp;min read
+                    </p>
+                  </div>
+
+                  {/* Arrow — nudges on hover */}
+                  <span
+                    aria-hidden
+                    className="shrink-0 font-sans text-sm text-primary transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
                   </span>
                 </Link>
               </li>
             )
           })}
         </ul>
+
       </div>
     </PageShell>
   )
