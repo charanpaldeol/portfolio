@@ -1,6 +1,5 @@
 "use client"
 
-import { createContext, useContext, type ReactNode } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import {
   ArrowRight,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { createContext, type ReactNode, useContext } from "react"
 
 import { cn } from "@/lib/utils"
 
