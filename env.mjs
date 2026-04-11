@@ -1,6 +1,25 @@
 import { createEnv } from "@t3-oss/env-nextjs"
 import { z } from "zod"
 
+/** Resend `from` accepts a plain RFC email or `Display Name <email@domain>`. */
+function isResendFromAddress(value) {
+  const trimmed = value.trim()
+  if (z.string().email().safeParse(trimmed).success) return true
+  const angle = /^[\s\S]*?<([^>]+)>$/.exec(trimmed)
+  if (angle?.[1]) {
+    return z.string().email().safeParse(angle[1].trim()).success
+  }
+  return false
+}
+
+const optionalResendFrom = z
+  .string()
+  .optional()
+  .refine(
+    (val) => val === undefined || val.trim() === "" || isResendFromAddress(val),
+    "Invalid RESEND_FROM_EMAIL (plain email or Name <email>)",
+  )
+
 export const env = createEnv({
   server: {
     ANALYZE: z
@@ -8,7 +27,7 @@ export const env = createEnv({
       .optional()
       .transform((value) => value === "true"),
     RESEND_API_KEY: z.string().optional(),
-    RESEND_FROM_EMAIL: z.string().email().optional(),
+    RESEND_FROM_EMAIL: optionalResendFrom,
     RESEND_TO_EMAIL: z.string().email().optional(),
   },
   client: {},
