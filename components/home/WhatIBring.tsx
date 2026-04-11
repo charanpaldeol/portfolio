@@ -56,6 +56,7 @@ export default function WhatIBring() {
                 <Link
                   key={card.slug}
                   href={`/blog/${card.slug}`}
+                  aria-label={`Read: ${card.title}`}
                   className={cn(
                     "group relative flex overflow-hidden rounded-2xl p-5 text-left no-underline shadow-editorial-float transition-shadow duration-300 md:p-6",
                     width,

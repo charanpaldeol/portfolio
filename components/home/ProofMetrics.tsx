@@ -142,7 +142,10 @@ export default function ProofMetrics() {
 
       <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
         {metrics.map((metric, i) => (
-          <MetricCard key={metric.tag} metric={metric} index={i} />
+          <div key={metric.tag}>
+            <h3 className="sr-only">{metric.tag}</h3>
+            <MetricCard metric={metric} index={i} />
+          </div>
         ))}
       </div>
 

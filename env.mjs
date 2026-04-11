@@ -8,8 +8,8 @@ export const env = createEnv({
       .optional()
       .transform((value) => value === "true"),
     RESEND_API_KEY: z.string().optional(),
-    RESEND_FROM_EMAIL: z.string().optional(),
-    RESEND_TO_EMAIL: z.string().optional(),
+    RESEND_FROM_EMAIL: z.string().email().optional(),
+    RESEND_TO_EMAIL: z.string().email().optional(),
   },
   client: {},
   runtimeEnv: {
