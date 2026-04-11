@@ -1,5 +1,5 @@
-import { RainbowButton } from '@/registry/magicui/rainbow-button'
 import { GITHUB_URL, LINKEDIN_URL } from '@/config/navigation'
+import { RainbowButton } from '@/registry/magicui/rainbow-button'
 
 // Desktop-only social icon buttons + CTA.
 // LinkedIn hover colour (#0A66C2) is LinkedIn's official brand colour —

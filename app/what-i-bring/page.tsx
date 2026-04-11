@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { motion } from "framer-motion"
 import {
   Activity,
   ArrowRight,
@@ -14,10 +14,10 @@ import {
   PenTool,
   TrendingUp,
 } from "lucide-react"
-import { motion } from "framer-motion"
+import Link from "next/link"
 
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
 import { PageShell } from "@/components/layout/PageShell"
+import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 function Hero() {
   return (

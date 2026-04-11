@@ -1,5 +1,6 @@
-import { EyeBreakTimer } from "./components/EyeBreakTimer"
 import { PageShell } from "@/components/layout/PageShell"
+
+import { EyeBreakTimer } from "./components/EyeBreakTimer"
 
 export const metadata = {
   title: "Eye Break Timer",

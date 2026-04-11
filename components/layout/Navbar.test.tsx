@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { usePathname } from "next/navigation"
-import { describe, it, expect, vi, beforeEach } from "vitest"
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react"
+import { beforeEach, describe, expect, it, vi } from "vitest"
+
 import { Navbar } from "./Navbar"
 
 // Mock next/navigation
@@ -32,15 +34,23 @@ vi.mock("../ui/navigation-menu", () => ({
   NavigationMenuItem: ({ children }: { children: React.ReactNode }) => (
     <li data-testid="navigation-item">{children}</li>
   ),
-  NavigationMenuTrigger: ({ children, ...props }: any) => (
-    <button data-testid="navigation-trigger" {...props}>
+  NavigationMenuTrigger: ({
+    children,
+    ...props
+  }: { children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button data-testid="navigation-trigger" type="button" {...props}>
       {children}
     </button>
   ),
   NavigationMenuContent: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="navigation-content">{children}</div>
   ),
-  NavigationMenuLink: ({ children, href, exact, ...props }: any) => (
+  NavigationMenuLink: ({
+    children,
+    href,
+    exact: _exact,
+    ...props
+  }: { children: ReactNode; href: string; exact?: boolean } & AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a href={href} data-testid={`nav-link-${href}`} {...props}>
       {children}
     </a>
@@ -51,8 +61,11 @@ vi.mock("../ui/sheet", () => ({
   Sheet: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="sheet">{children}</div>
   ),
-  SheetTrigger: ({ children, ...props }: any) => (
-    <button data-testid="sheet-trigger" {...props}>
+  SheetTrigger: ({
+    children,
+    ...props
+  }: { children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button data-testid="sheet-trigger" type="button" {...props}>
       {children}
     </button>
   ),
@@ -65,8 +78,11 @@ vi.mock("../ui/sheet", () => ({
   SheetTitle: ({ children }: { children: React.ReactNode }) => (
     <h2 data-testid="sheet-title">{children}</h2>
   ),
-  SheetClose: ({ children, ...props }: any) => (
-    <button data-testid="sheet-close" {...props}>
+  SheetClose: ({
+    children,
+    ...props
+  }: { children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>) => (
+    <button data-testid="sheet-close" type="button" {...props}>
       {children}
     </button>
   ),

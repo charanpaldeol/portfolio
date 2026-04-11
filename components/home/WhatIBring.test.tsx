@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import { describe, it, expect, vi, beforeEach } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
+
 import WhatIBring from "./WhatIBring"
 
 // Mock the data import
@@ -147,7 +148,6 @@ describe("WhatIBring", () => {
     it("applies icon background colors", () => {
       const { container } = render(<WhatIBring />)
 
-      const iconBackgrounds = container.querySelectorAll("[class*='iconBg']")
       // Since we're mocking, check for background color classes
       const bgElements = container.querySelectorAll("[class*='bg-']")
       expect(bgElements.length).toBeGreaterThan(0)
@@ -172,7 +172,7 @@ describe("WhatIBring", () => {
 
   describe("Typography", () => {
     it("renders titles with appropriate styling", () => {
-      const { container } = render(<WhatIBring />)
+      render(<WhatIBring />)
 
       const titles = [
         "Problem Framing",

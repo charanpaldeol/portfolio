@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 
-import ContactContent from "./ContactContent"
 import { PageShell } from "@/components/layout/PageShell"
+
+import ContactContent from "./ContactContent"
 
 export const metadata: Metadata = {
   title: "Contact",

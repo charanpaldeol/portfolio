@@ -1,6 +1,8 @@
-import { render, screen, fireEvent, waitFor, within } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import type { ButtonHTMLAttributes, ReactNode } from "react"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+
 import ContactContent from "./ContactContent"
 
 // Mock the fetch API
@@ -13,8 +15,13 @@ vi.mock("@/components/magicui/blur-fade", () => ({
 
 // Mock RainbowButton component
 vi.mock("@/registry/magicui/rainbow-button", () => ({
-  RainbowButton: ({ children, ...props }: any) => (
-    <button {...props}>{children}</button>
+  RainbowButton: ({
+    children,
+    ...props
+  }: ButtonHTMLAttributes<HTMLButtonElement> & { children?: ReactNode }) => (
+    <button type="button" {...props}>
+      {children}
+    </button>
   ),
 }))
 
@@ -298,15 +305,13 @@ describe("ContactContent", () => {
       const mockFetch = vi.fn()
       global.fetch = mockFetch
 
-      const user = userEvent.setup()
       render(<ContactContent />)
-
-      const submitButton = screen.getByRole("button", { name: /send message/i })
 
       // Try to submit without filling form (HTML validation should prevent)
       // This test documents the behavior with required fields
       const nameInput = screen.getByLabelText(/name/i) as HTMLInputElement
       expect(nameInput.required).toBe(true)
+      expect(mockFetch).not.toHaveBeenCalled()
     })
   })
 

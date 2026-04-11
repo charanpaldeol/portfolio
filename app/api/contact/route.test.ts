@@ -1,5 +1,12 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+
 import { POST } from "./route"
+
+function mockResendWithSend(send: ReturnType<typeof vi.fn>) {
+  return () => ({
+    emails: { send },
+  })
+}
 
 // Mock Resend
 vi.mock("resend", () => ({
@@ -38,9 +45,7 @@ describe("POST /api/contact", () => {
         error: null,
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const request = new Request("http://localhost/api/contact", {
         method: "POST",
@@ -71,9 +76,7 @@ describe("POST /api/contact", () => {
         error: null,
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const request = new Request("http://localhost/api/contact", {
         method: "POST",
@@ -99,9 +102,7 @@ describe("POST /api/contact", () => {
         error: null,
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const request = new Request("http://localhost/api/contact", {
         method: "POST",
@@ -279,9 +280,7 @@ describe("POST /api/contact", () => {
         error: { message: "Invalid API key" },
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const request = new Request("http://localhost/api/contact", {
         method: "POST",
@@ -332,9 +331,7 @@ describe("POST /api/contact", () => {
         error: null,
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const maxName = "a".repeat(100)
       const request = new Request("http://localhost/api/contact", {
@@ -356,9 +353,7 @@ describe("POST /api/contact", () => {
         error: null,
       })
 
-      mockResend.mockImplementation(() => ({
-        emails: { send: mockSend },
-      } as any))
+      mockResend.mockImplementation(mockResendWithSend(mockSend))
 
       const maxMessage = "a".repeat(5000)
       const request = new Request("http://localhost/api/contact", {

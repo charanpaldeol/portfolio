@@ -5,6 +5,9 @@ import { usePathname } from 'next/navigation'
 
 import { ideasLinks, workLinks } from '@/config/navigation'
 import { cn } from '@/lib/utils'
+import { BrandMark } from './navbar/BrandMark'
+import { SocialLinks } from './navbar/SocialLinks'
+import { WorkPanel } from './navbar/WorkPanel'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,9 +17,6 @@ import {
   NavigationMenuTrigger,
 } from '../ui/navigation-menu'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
-import { BrandMark } from './navbar/BrandMark'
-import { SocialLinks } from './navbar/SocialLinks'
-import { WorkPanel } from './navbar/WorkPanel'
 
 export function Navbar() {
   const pathname = usePathname()

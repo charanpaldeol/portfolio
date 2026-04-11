@@ -1,8 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 import HowIThink from "@/components/home/HowIThink"
 import { PageShell } from "@/components/layout/PageShell"

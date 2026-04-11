@@ -1,5 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react"
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { render, screen } from "@testing-library/react"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+
 import HowIWork from "./HowIWork"
 
 // Mock Lucide icons
@@ -21,9 +22,9 @@ vi.mock("lucide-react", () => ({
 describe("HowIWork", () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    // Reset IntersectionObserver if mocked
-    if (window.IntersectionObserver) {
-      delete (window as any).IntersectionObserver
+    const win = window as Window & { IntersectionObserver?: typeof IntersectionObserver }
+    if (win.IntersectionObserver) {
+      delete win.IntersectionObserver
     }
   })
 
@@ -82,7 +83,7 @@ describe("HowIWork", () => {
     })
 
     it("renders phase titles with appropriate styling", () => {
-      const { container } = render(<HowIWork />)
+      render(<HowIWork />)
 
       const titles = ["Discover", "Define", "Design", "Deliver", "DevOps"]
       titles.forEach((title) => {
@@ -164,7 +165,7 @@ describe("HowIWork", () => {
     })
 
     it("uses appropriate heading levels", () => {
-      const { container } = render(<HowIWork />)
+      render(<HowIWork />)
 
       // Should have text content for phases
       expect(screen.getByText(/discover/i)).toBeInTheDocument()

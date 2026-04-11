@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 
-import ExperienceContent from "./ExperienceContent"
 import { PageShell } from "@/components/layout/PageShell"
+
+import ExperienceContent from "./ExperienceContent"
 
 export const metadata: Metadata = {
   title: "Experience",
