@@ -19,6 +19,35 @@ export interface SimpleNavLink {
 export const GITHUB_URL = 'https://github.com/charanpaldeol'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/cdeol'
 
+// ─── Top-level portfolio links (Navbar, not inside Work dropdown) ─────────────
+
+export const portfolioNavLinks: NavLink[] = [
+  {
+    href: '/portfolio/services',
+    label: 'Services',
+    description: 'What I offer and how I engage',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <rect x="1" y="4.5" width="14" height="9" rx="1.5" />
+        <path d="M5 4.5V3.5A1.5 1.5 0 0 1 6.5 2h3A1.5 1.5 0 0 1 11 3.5v1" />
+      </svg>
+    ),
+  },
+  {
+    href: '/portfolio/projects',
+    label: 'Projects',
+    description: 'Selected work across sectors',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1" />
+        <rect x="9.5" y="1" width="5.5" height="5.5" rx="1" />
+        <rect x="1" y="9.5" width="5.5" height="5.5" rx="1" />
+        <rect x="9.5" y="9.5" width="5.5" height="5.5" rx="1" />
+      </svg>
+    ),
+  },
+]
+
 // ─── Work links ───────────────────────────────────────────────────────────────
 // Each entry appears in both the desktop dropdown (WorkPanel) and mobile Sheet.
 // Add new pages here — the nav updates automatically.
@@ -81,30 +110,6 @@ export const workLinks: NavLink[] = [
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <circle cx="8" cy="5.5" r="2.5" />
         <path d="M2.5 13.5v-.667C2.5 11.26 4.067 10 6 10h4c1.933 0 3.5 1.26 3.5 2.833v.667" />
-      </svg>
-    ),
-  },
-  {
-    href: '/portfolio/services',
-    label: 'Services',
-    description: 'What I offer and how I engage',
-    icon: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-        <rect x="1" y="4.5" width="14" height="9" rx="1.5" />
-        <path d="M5 4.5V3.5A1.5 1.5 0 0 1 6.5 2h3A1.5 1.5 0 0 1 11 3.5v1" />
-      </svg>
-    ),
-  },
-  {
-    href: '/portfolio/projects',
-    label: 'Projects',
-    description: 'Selected work across sectors',
-    icon: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-        <rect x="1" y="1" width="5.5" height="5.5" rx="1" />
-        <rect x="9.5" y="1" width="5.5" height="5.5" rx="1" />
-        <rect x="1" y="9.5" width="5.5" height="5.5" rx="1" />
-        <rect x="9.5" y="9.5" width="5.5" height="5.5" rx="1" />
       </svg>
     ),
   },

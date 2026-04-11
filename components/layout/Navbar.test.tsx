@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, within } from "@testing-library/react"
 import { usePathname } from "next/navigation"
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
@@ -112,8 +112,9 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       expect(screen.getByTestId("brand-mark")).toBeInTheDocument()
-      expect(screen.getByText("cpdeol")).toBeInTheDocument()
-      expect(screen.getByText("_")).toBeInTheDocument() // Blink cursor
+      const logoLink = screen.getByRole("link", { name: /cpdeol home/i })
+      expect(within(logoLink).getByText("cpdeol")).toBeInTheDocument()
+      expect(within(logoLink).getByText("_")).toBeInTheDocument() // Blink cursor
     })
 
     it("renders desktop navigation", () => {
@@ -147,26 +148,23 @@ describe("Navbar", () => {
     it("applies bold styling to home text when on home route", () => {
       mockUsePathname.mockReturnValue("/")
 
-      const { container } = render(<Navbar />)
+      render(<Navbar />)
 
-      // Check the cpdeol text has semibold font on home route
-      const logoText = Array.from(container.querySelectorAll("span")).find(
-        (span) => span.textContent === "cpdeol"
-      )
-
-      expect(logoText).toHaveClass("font-semibold")
+      const logoLink = screen.getByRole("link", { name: /cpdeol home/i })
+      const nameRow = logoLink.querySelector("span.font-display")
+      expect(nameRow).toBeTruthy()
+      expect(nameRow).toHaveClass("font-semibold")
     })
 
     it("applies normal styling to home text when not on home route", () => {
       mockUsePathname.mockReturnValue("/portfolio/project")
 
-      const { container } = render(<Navbar />)
+      render(<Navbar />)
 
-      const logoText = Array.from(container.querySelectorAll("span")).find(
-        (span) => span.textContent === "cpdeol"
-      )
-
-      expect(logoText).toHaveClass("font-medium")
+      const logoLink = screen.getByRole("link", { name: /cpdeol home/i })
+      const nameRow = logoLink.querySelector("span.font-display")
+      expect(nameRow).toBeTruthy()
+      expect(nameRow).toHaveClass("font-medium")
     })
 
     it("applies bold styling to Work menu when on work route", () => {
@@ -215,6 +213,15 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       expect(screen.getByTestId("nav-link-/")).toHaveTextContent("Home")
+    })
+
+    it("renders Services and Projects as top-level desktop links", () => {
+      mockUsePathname.mockReturnValue("/")
+
+      render(<Navbar />)
+
+      expect(screen.getByTestId("nav-link-/portfolio/services")).toHaveTextContent("Services")
+      expect(screen.getByTestId("nav-link-/portfolio/projects")).toHaveTextContent("Projects")
     })
 
     it("renders Work dropdown trigger", () => {

@@ -1,4 +1,7 @@
 import * as fs from "fs"
+import { createRequire } from "node:module"
+
+const require = createRequire(import.meta.url)
 
 // https://github.com/francoismassart/eslint-plugin-tailwindcss/pull/381
 // import eslintPluginTailwindcss from "eslint-plugin-tailwindcss"
@@ -17,11 +20,40 @@ const eslintIgnore = [
   "*.min.js",
   "*.config.js",
   "*.d.ts",
+  // CJS rule implementations use require(); excluded from TS flat recommended
+  "lib/eslint-rules/**",
 ]
+
+/** @see docs/GOVERNANCE.md — local rules from lib/eslint-rules/index.js */
+const portfolioPlugin = require("./lib/eslint-rules/index.js")
 
 const config = typescriptEslint.config(
   {
     ignores: eslintIgnore,
+  },
+  {
+    plugins: {
+      portfolio: {
+        rules: portfolioPlugin.rules,
+      },
+    },
+    rules: {
+      // Stricter gates (low existing violation count)
+      "portfolio/no-fetch-in-components": "error",
+      "portfolio/api-routes-require-zod": "error",
+      // Design / class-style debt — warn until audit backlog is cleared
+      "portfolio/no-hardcoded-colors": "warn",
+      "portfolio/no-1px-borders": "warn",
+      "portfolio/enforce-cn-utility": "warn",
+      "portfolio/component-size-limit": "warn",
+    },
+  },
+  {
+    files: ["lib/utils.ts"],
+    rules: {
+      // cn() is implemented with twMerge + clsx; rule targets call sites, not this file
+      "portfolio/enforce-cn-utility": "off",
+    },
   },
   ...eslintPluginStorybook.configs["flat/recommended"],
   //  https://github.com/francoismassart/eslint-plugin-tailwindcss/pull/381

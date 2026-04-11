@@ -1,3 +1,9 @@
+import { z } from "zod"
+
+const healthJson = z.object({ status: z.literal("ok") })
+
 export async function GET() {
-  return Response.json({ status: "ok" })
+  const body = { status: "ok" as const }
+  healthJson.parse(body)
+  return Response.json(body)
 }

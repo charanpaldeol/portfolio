@@ -18,6 +18,11 @@ const config: NextConfig = {
         hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
     ],
   },
   ...(allowedDevOrigins.length > 0 ? { allowedDevOrigins } : {}),

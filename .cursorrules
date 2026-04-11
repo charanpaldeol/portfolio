@@ -121,7 +121,48 @@ If a required change touches a frozen file, STOP and ask the user.
   - [ ] No magicui components auto-imported
 
 
-## 8. PROMPT TEMPLATE — use this for every task
+## 8. AI-AGENT AUTONOMOUS DEVELOPMENT
+
+  This project must be buildable and maintainable by AI agents
+  with zero human intervention. Every change must follow these rules.
+
+  Standards enforced by code (see docs/GOVERNANCE.md for details):
+  - lib/eslint-rules/   → 6 custom ESLint rules
+  - scripts/audit.js    → design + architecture compliance scanner
+  - .husky/pre-commit   → blocks commits that violate rules
+
+  ### Data Architecture
+  - All feature data lives in /lib/[feature]-data.ts (single source of truth)
+  - Components accept data as props — never fetch internally
+  - TypeScript interfaces define every data shape
+  - Dynamic routes require generateStaticParams()
+
+  ### Design System Enforcement (docs/DESIGN.md)
+  - No hardcoded hex colors → ESLint blocks commits
+  - No 1px borders → use surface-container color shifts
+  - Only cn() for class construction → no twMerge/clsx/literals
+  - All colors from design tokens in /styles/tailwind.css
+
+  ### Architecture Enforcement (docs/code-architecture-review.md)
+  - Components ≤ 300 lines → ESLint blocks if exceeded
+  - API routes must use Zod → ESLint blocks if missing
+  - No fetch/axios in /components/ → ESLint blocks
+  - No hardcoded data arrays in components → audit.js catches
+
+  ### Before Every Commit (automated via .husky/pre-commit)
+  - pnpm tsc --noEmit       (TypeScript strict)
+  - pnpm lint               (ESLint + custom rules)
+  - node scripts/audit.js   (design + architecture audit)
+  All must pass or commit is blocked.
+
+  ### Adding a New Feature
+  1. Create /lib/[feature]-data.ts with TypeScript interface
+  2. Create /app/[route]/page.tsx importing from /lib
+  3. Components receive data as props
+  4. Run: pnpm tsc --noEmit && pnpm lint && node scripts/audit.js
+
+
+## 9. PROMPT TEMPLATE — use this for every task
 
   ## Task
   [Exact change — be specific]

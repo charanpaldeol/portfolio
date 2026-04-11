@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh" 2>/dev/null || true
+
+echo "🔍 Running pre-commit checks..."
+
+# 1. Type check
+echo "  → TypeScript..."
+pnpm tsc --noEmit --pretty 2>&1 | head -20 || { echo "❌ TypeScript errors. Fix before committing."; exit 1; }
+
+# 2. Lint staged files
+echo "  → ESLint..."
+pnpm lint-staged || { echo "❌ Lint errors. Fix before committing."; exit 1; }
+
+# 3. Design + architecture audit
+echo "  → Audit (design.md + code-architecture-review.md)..."
+node scripts/audit.js || { echo "❌ Audit violations. Fix before committing."; exit 1; }
+
+echo "✅ All pre-commit checks passed."

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { ideasLinks, workLinks } from '@/config/navigation'
+import { ideasLinks, portfolioNavLinks, workLinks } from '@/config/navigation'
 import { cn } from '@/lib/utils'
 import { BrandMark } from './navbar/BrandMark'
 import { SocialLinks } from './navbar/SocialLinks'
@@ -75,6 +75,12 @@ export function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
+              {portfolioNavLinks.map((link) => (
+                <NavigationMenuItem key={link.href}>
+                  <NavigationMenuLink href={link.href}>{link.label}</NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+
               {/* Ideas — direct link while single destination; expand to dropdown when more pages added */}
               <NavigationMenuItem>
                 <NavigationMenuLink
@@ -119,6 +125,17 @@ export function Navbar() {
 
                 <p className="px-2 pt-1 text-xs font-semibold tracking-widest text-background/50 uppercase">Work</p>
                 {workLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <Link href={link.href} className="flex items-center gap-3 rounded-md px-4 py-2 text-base font-medium text-background hover:bg-background/10">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-background/15 text-background/90">
+                        {link.icon}
+                      </span>
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+
+                {portfolioNavLinks.map((link) => (
                   <SheetClose key={link.href} asChild>
                     <Link href={link.href} className="flex items-center gap-3 rounded-md px-4 py-2 text-base font-medium text-background hover:bg-background/10">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-background/15 text-background/90">

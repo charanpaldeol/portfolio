@@ -36,21 +36,31 @@ export default function ProjectsPage() {
             Selected <span className="text-editorial-gradient">work.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl">
-            A fuller case-study index is on the way. For now, explore curated highlights on the portfolio projects page.
+            Product decisions, technical depth, and measurable outcomes across AI/ML, real-time systems, compliance, and cloud-native architecture.
           </p>
         </header>
 
-        <div className="rounded-xl bg-surface-container-low p-8 md:p-10">
-          <p className="text-base leading-relaxed text-on-surface-variant">
-            Detailed write-ups and visuals are coming soon. If you&apos;re evaluating fit for an engagement, the
-            portfolio section has representative work.
-          </p>
-          <Link
-            href="/portfolio/projects"
-            className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-6 py-3 text-sm font-semibold text-primary-foreground shadow-editorial transition hover:brightness-[1.03]"
-          >
-            View portfolio projects
-          </Link>
+        <div className="space-y-6 rounded-xl bg-surface-container-low p-8 md:p-10">
+          <div>
+            <h2 className="text-lg font-semibold text-on-surface">9 Detailed Case Studies</h2>
+            <p className="mt-3 text-base leading-relaxed text-on-surface-variant">
+              Each project includes a problem statement, solution approach, quantified results, and the tech stack used. Click any project to dive deep into the decisions and outcomes.
+            </p>
+          </div>
+          <div className="pt-2 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/portfolio/projects"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-container px-6 py-3 text-sm font-semibold text-primary-foreground shadow-editorial transition hover:brightness-[1.03]"
+            >
+              Explore All Projects →
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-xl border border-surface-container-high bg-transparent px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
+            >
+              Let's Discuss
+            </Link>
+          </div>
         </div>
       </div>
     </PageShell>
