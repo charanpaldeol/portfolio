@@ -24,10 +24,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
+const ROBOT_ANIMATION_URL = "https://assets2.lottiefiles.com/packages/lf20_GbabwrUY2k.json"
+
+export default async function AboutPage() {
+  const robotAnimationData: object | null = await fetch(ROBOT_ANIMATION_URL, {
+    next: { revalidate: 86400 }, // cache for 24 h
+  })
+    .then((r) => r.json())
+    .catch(() => null)
+
   return (
     <PageShell containerClassName="max-w-screen-2xl">
-      <AboutContent />
+      <AboutContent robotAnimationData={robotAnimationData} />
     </PageShell>
   )
 }
