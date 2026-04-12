@@ -186,11 +186,7 @@ export default function AboutContent() {
             className="relative col-span-12 mt-10 pb-0 md:pb-16 lg:col-span-5 lg:mt-0"
           >
             <div className="relative flex aspect-[5/6] max-w-md items-center justify-center rounded-2xl bg-surface-container-high shadow-editorial-lg lg:max-w-none">
-              {/* ↓ Drop any free Lottie JSON from lottiefiles.com into /public/animations/robot.json */}
-              <RobotAvatar
-                src="/animations/robot.json"
-                className="h-full w-full p-4 md:p-6"
-              />
+              <RobotAvatar className="h-full w-full p-4 md:p-6" />
             </div>
             <div className="absolute -bottom-6 -left-2 z-10 hidden max-w-[min(240px,calc(100vw-3rem))] rounded-xl bg-secondary p-6 text-on-secondary shadow-editorial md:-left-6 md:block md:p-8">
               <p className="mb-2 text-xs font-semibold tracking-[0.18em] text-on-secondary/80 uppercase">Philosophy</p>
