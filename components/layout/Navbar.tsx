@@ -26,12 +26,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-[100] w-full shrink-0 border-b border-outline-variant/10 bg-surface/90 shadow-editorial-float backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-surface/80">
-      <div
-        className={cn(
-          'mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6',
-          isWorkRoute ? 'py-2' : 'py-3'
-        )}
-      >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         {/* Logo */}
         <Link href="/" aria-label="cpdeol home" className="flex items-center gap-2">
           <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center">

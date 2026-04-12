@@ -241,18 +241,15 @@ describe("Navbar", () => {
     })
   })
 
-  describe("Padding adjustments", () => {
-    it("reduces vertical padding on work routes", () => {
-      mockUsePathname.mockReturnValue("/portfolio/project")
-
-      const { container } = render(<Navbar />)
-
-      const navContent = container.querySelector("div[class*='mx-auto']")
-      expect(navContent).toHaveClass("py-2")
-    })
-
-    it("uses standard padding on non-work routes", () => {
-      mockUsePathname.mockReturnValue("/")
+  describe("Padding", () => {
+    it.each([
+      ["/", "home"],
+      ["/blog", "blog"],
+      ["/internet-owned", "ideas"],
+      ["/portfolio/services", "portfolio services"],
+      ["/portfolio/projects", "portfolio projects"],
+    ])("uses the same bar padding on %s (%s)", (path) => {
+      mockUsePathname.mockReturnValue(path)
 
       const { container } = render(<Navbar />)
 

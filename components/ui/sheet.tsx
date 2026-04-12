@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { createPortal } from 'react-dom'
 
 interface SheetContextValue {
   open: boolean
@@ -67,21 +68,30 @@ export function SheetContent({ side = 'left', children }: SheetContentProps) {
 
   if (!open) return null
 
-  return (
+  // Render at document.body so `position: fixed` is not trapped by ancestors
+  // (e.g. the sticky navbar uses `backdrop-blur`, which creates a containing block
+  // for fixed descendants and clips the drawer to the header height).
+  const layer = (
     <div className="fixed inset-0 z-[200] flex">
       <button
         type="button"
         aria-label="Close navigation menu"
-        className="fixed inset-0 h-full w-full bg-on-surface/25 backdrop-blur-sm"
+        className="fixed inset-0 z-0 h-full w-full bg-on-surface/25 backdrop-blur-sm"
         onClick={() => setOpen(false)}
       />
       <div
-        className={`fixed bg-foreground p-6 text-background shadow-editorial-lg backdrop-blur-xl transition-transform ${sideClasses[side]}`}
+        className={`fixed z-10 bg-foreground p-6 text-background shadow-editorial-lg backdrop-blur-xl transition-transform ${sideClasses[side]}`}
       >
         {children}
       </div>
     </div>
   )
+
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  return createPortal(layer, document.body)
 }
 
 export interface SheetHeaderProps {

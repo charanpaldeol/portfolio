@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm dev:free3000 && cross-env FORCE_COLOR=1 next dev -p 3000",
+    "dev:clean": "rm -rf .next && pnpm dev",
     "dev:free3000": "bash -c 'lsof -ti :3000 | xargs kill -9 2>/dev/null || true'",
     "dev:turbo": "pnpm dev:free3000 && cross-env FORCE_COLOR=1 next dev --turbo -p 3000",
     "build": "next build",
