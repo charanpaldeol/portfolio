@@ -30,7 +30,7 @@ export default async function AboutPage() {
   const robotAnimationData: object | null = await fetch(ROBOT_ANIMATION_URL, {
     next: { revalidate: 86400 }, // cache for 24 h
   })
-    .then((r) => r.json())
+    .then((r) => r.json() as Promise<object>)
     .catch(() => null)
 
   return (
