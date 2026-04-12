@@ -7,10 +7,9 @@ import Link from "next/link"
 import { useState } from "react"
 
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { portfolioHoverTints } from "@/lib/portfolio-hover-tints"
 import { projects } from "@/lib/projects-data"
 import { cn } from "@/lib/utils"
-
-const hoverTints = ["bg-primary/10", "bg-secondary/10", "bg-tertiary/10"] as const
 
 const outcomeStats = [
   {
@@ -125,7 +124,7 @@ export default function PortfolioProjectsContent() {
                   <div
                     className={cn(
                       "absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-                      hoverTints[i % 3],
+                      portfolioHoverTints[i % 3],
                     )}
                     aria-hidden
                   />

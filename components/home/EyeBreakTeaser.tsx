@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function EyeBreakTeaser() {
   return (
-    <section>
+    <section id="eye-break" className="scroll-mt-28">
       <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Small tool</div>
 
       <Link

@@ -3,11 +3,15 @@
 import { motion, useReducedMotion } from "framer-motion"
 import type { ReactNode } from "react"
 
+import { cn } from "@/lib/utils"
+
 export type EditorialPageHeroProps = {
   eyebrow: string
   title: ReactNode
   /** Plain string or rich text (e.g. inline links). */
   description: ReactNode
+  /** Merged onto the root `<header>` after defaults (e.g. tighter `mb-*` for a dense page). */
+  headerClassName?: string
 }
 
 /**
@@ -17,7 +21,12 @@ export type EditorialPageHeroProps = {
  * **Proof page:** `app/what-i-bring/page.tsx` must compose only this component.
  * Do not reimplement this pattern on other routes; extend props here if needed.
  */
-export function EditorialPageHero({ eyebrow, title, description }: EditorialPageHeroProps) {
+export function EditorialPageHero({
+  eyebrow,
+  title,
+  description,
+  headerClassName,
+}: EditorialPageHeroProps) {
   const reduceMotion = useReducedMotion() ?? false
   const t = (duration: number, delay = 0) => ({
     duration: reduceMotion ? 0 : duration,
@@ -26,7 +35,7 @@ export function EditorialPageHero({ eyebrow, title, description }: EditorialPage
   const instant = reduceMotion ? { opacity: 1, x: 0, y: 0 } : undefined
 
   return (
-    <header className="mb-20 max-w-4xl">
+    <header className={cn("mb-20 max-w-4xl", headerClassName)}>
       <motion.div
         initial={instant ?? { opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}

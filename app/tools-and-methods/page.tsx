@@ -10,31 +10,32 @@ import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 function PageHero() {
   return (
     <EditorialPageHero
+      headerClassName="mb-10 md:mb-12"
       eyebrow="Toolkit"
       title={
         <>
           Tools &amp; <span className="text-editorial-gradient">methods</span>
         </>
       }
-      description="Comfortable in a technical design session in the morning and a boardroom presentation in the afternoon."
+      description="From LLM integration and solution architecture to stakeholder workshops and board-ready reporting — the full toolkit, mapped to every phase of delivery."
     />
   )
 }
 
 function CTA() {
   return (
-    <section className="mt-14 md:mt-20 rounded-2xl bg-primary text-on-primary p-10 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
-      <div className="relative z-10">
-        <h2 className="text-2xl md:text-3xl font-bold">Need a clean engagement plan?</h2>
-        <p className="mt-2 opacity-85 max-w-xl text-sm md:text-base leading-relaxed">
-          I’ll bring the right artifacts at the right time — workshop design, requirements,
-          solution specs, delivery rituals, and adoption.
+    <section className="relative mt-14 flex flex-col items-stretch gap-8 overflow-hidden rounded-2xl bg-primary p-10 text-on-primary md:mt-20 md:flex-row md:items-center md:justify-between md:p-12">
+      <div className="relative z-10 min-w-0 flex-1">
+        <h2 className="text-2xl font-bold md:text-3xl">Need a clean engagement plan?</h2>
+        <p className="mt-2 max-w-xl text-sm leading-relaxed opacity-85 md:text-base">
+          The right artifacts at the right phase — from problem framing and AI-native architecture
+          through to adoption and value reporting.
         </p>
       </div>
-      <div className="relative z-10">
+      <div className="relative z-10 shrink-0 md:self-center">
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-fixed text-on-primary-fixed px-7 py-4 font-semibold shadow-editorial-float transition hover:brightness-[1.03]"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-fixed px-7 py-4 font-semibold text-on-primary-fixed shadow-editorial-float transition hover:brightness-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-fixed/50 focus-visible:ring-offset-2 focus-visible:ring-offset-primary md:w-auto"
         >
           Contact me <ArrowRight className="h-4 w-4" />
         </Link>
@@ -48,9 +49,7 @@ export default function ToolsAndMethodsPage() {
   return (
     <PageShell>
       <PageHero />
-      <section className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-10">
-        <ToolsAndMethods />
-      </section>
+      <ToolsAndMethods />
       <CTA />
     </PageShell>
   )

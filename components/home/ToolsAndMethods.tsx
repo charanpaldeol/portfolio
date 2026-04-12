@@ -1,73 +1,86 @@
-import type { ReactNode } from "react"
+"use client"
 
-import { cn } from "@/lib/utils"
+import { Fragment } from "react"
 
-function Chip({ children, bold }: { children: ReactNode; bold?: boolean }) {
-  return (
-    <span
-      className={cn(
-        "rounded-md bg-surface-container-high px-3 py-1 text-xs font-medium text-muted-foreground",
-        bold && "text-foreground",
-      )}
-    >
-      {children}
-    </span>
-  )
-}
+import { toolGroups } from "@/lib/tools-and-methods-data"
+
+import { ToolkitPhaseColumnHeading } from "./tools-and-methods/ToolkitPhaseColumnHeading"
+import { ToolkitPhaseNode } from "./tools-and-methods/ToolkitPhaseNode"
 
 export default function ToolsAndMethods() {
-  const groups = [
-    {
-      title: "Analysis & delivery",
-      bold: new Set(["BPMN", "User story mapping", "Process mapping"]),
-      chips: [
-        "BPMN",
-        "User story mapping",
-        "Process mapping",
-        "Gap analysis",
-        "Requirements workshops",
-        "MoSCoW prioritisation",
-        "Agile / Scrum",
-        "PRINCE2",
-      ],
-    },
-    {
-      title: "Change management",
-      bold: new Set(["ADKAR", "Prosci"]),
-      chips: ["ADKAR", "Prosci", "Stakeholder mapping", "Training design", "Communication planning"],
-    },
-    {
-      title: "Platforms & tooling",
-      bold: new Set(["Jira", "Confluence", "Salesforce"]),
-      chips: ["Jira", "Confluence", "Salesforce", "ServiceNow", "Power BI", "Miro", "Figma"],
-    },
-  ] as const
+  const upstream = toolGroups.slice(0, 3)
+  const downstream = toolGroups.slice(3)
 
   return (
-    <section>
-      <header>
-        <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Tools & methods</div>
-        <h2 className="mt-2 text-xl font-medium text-foreground">I speak the language of both rooms</h2>
-        <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
-          Comfortable in a technical design session in the morning and a boardroom presentation in the afternoon.
-        </p>
-      </header>
+    <div className="space-y-16">
+      <section
+        id="toolkit-principle"
+        aria-label="Guiding principle"
+        className="relative scroll-mt-24 overflow-hidden rounded-2xl bg-surface-container-low p-10 shadow-editorial md:p-14"
+      >
+        <div
+          className="pointer-events-none absolute right-4 top-4 select-none font-display text-[5rem] font-extrabold leading-none text-on-surface opacity-[0.04] sm:right-8 sm:top-6 sm:text-[9rem]"
+          aria-hidden
+        >
+          &ldquo;
+        </div>
+        <div className="relative max-w-3xl border-l-4 border-tertiary pl-6 sm:pl-8 md:pl-10">
+          <blockquote>
+            <p className="font-display text-2xl font-extrabold leading-tight tracking-tight text-on-surface md:text-4xl">
+              The tools we choose are secondary to the intent they serve — every artefact
+              must earn its place in the delivery arc.
+            </p>
+            <footer className="mt-6 text-sm font-semibold text-tertiary-container">
+              <cite className="not-italic">Guiding principle behind the toolkit</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {groups.map((group) => (
-          <div key={group.title}>
-            <div className="text-[11px] font-medium text-muted-foreground mb-2 mt-4">{group.title}</div>
-            <div className="flex flex-wrap gap-2">
-              {group.chips.map((chip) => (
-                <Chip key={chip} bold={group.bold.has(chip)}>
-                  {chip}
-                </Chip>
-              ))}
-            </div>
+      <section
+        id="toolkit-phases"
+        aria-label="Delivery phase toolkit"
+        className="scroll-mt-24"
+      >
+        <div className="mb-10 hidden grid-cols-2 items-start gap-5 md:grid">
+          <ToolkitPhaseColumnHeading variant="strategic" />
+          <ToolkitPhaseColumnHeading variant="execution" />
+        </div>
+
+        <div className="relative hidden md:block">
+          <div
+            className="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 bg-outline-variant/30"
+            aria-hidden
+          />
+          <div className="grid grid-cols-2 gap-5">
+            {upstream.map((g, i) => {
+              const right = downstream[i]
+              if (!right) return null
+              return (
+                <Fragment key={g.phase}>
+                  <ToolkitPhaseNode {...g} accent="primary" />
+                  <ToolkitPhaseNode {...right} accent="secondary" />
+                </Fragment>
+              )
+            })}
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+
+        <div className="relative flex flex-col gap-12 md:hidden">
+          <div className="flex flex-col gap-5">
+            <ToolkitPhaseColumnHeading variant="strategic" />
+            {upstream.map((g) => (
+              <ToolkitPhaseNode key={g.phase} {...g} accent="primary" />
+            ))}
+          </div>
+          <div className="flex flex-col gap-5">
+            <ToolkitPhaseColumnHeading variant="execution" />
+            {downstream.map((g) => (
+              <ToolkitPhaseNode key={g.phase} {...g} accent="secondary" />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
-
