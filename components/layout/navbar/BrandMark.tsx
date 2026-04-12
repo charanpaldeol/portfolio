@@ -1,15 +1,21 @@
-// Brand mark SVG — colours are locked to the Editorial Expert design system.
-// Primary #00694c circle base, dashed inner ring at 55% opacity for depth.
+// Brand mark SVG — fills/strokes use @theme tokens (DESIGN.md §2).
 export function BrandMark() {
   return (
     <svg width="32" height="32" viewBox="0 0 80 80" aria-hidden="true">
-      <circle cx="40" cy="40" r="38" fill="#003828" stroke="#00694c" strokeWidth="3" />
+      <circle
+        cx="40"
+        cy="40"
+        r="38"
+        fill="var(--color-on-primary-fixed)"
+        stroke="var(--color-primary)"
+        strokeWidth="3"
+      />
       <circle
         cx="40"
         cy="40"
         r="27"
         fill="none"
-        stroke="#0d8c6c"
+        stroke="var(--color-primary-container)"
         strokeWidth="1"
         strokeDasharray="3 4"
         opacity="0.55"
@@ -21,7 +27,7 @@ export function BrandMark() {
         fontFamily="ui-sans-serif, system-ui, sans-serif"
         fontSize="22"
         fontWeight="700"
-        fill="#c8ebe0"
+        fill="var(--color-primary-fixed)"
         dominantBaseline="central"
       >
         CP

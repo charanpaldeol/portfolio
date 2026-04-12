@@ -9,7 +9,7 @@ export default function PortfolioShell({ children }: { children: ReactNode }) {
         className="pointer-events-none fixed inset-0 -z-10 size-full min-h-screen"
         squareSize={4}
         gridGap={6}
-        color="#8a8680"
+        color="var(--color-muted-foreground)"
         maxOpacity={0.1}
         flickerChance={0.05}
       />

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -31,22 +31,34 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 })
+  /** RGBA prefix for canvas squares: `rgba(r,g,b,` + dynamic opacity + `)` */
+  const [colorRgbPrefix, setColorRgbPrefix] = useState("rgba(0, 0, 0,")
 
-  const memoizedColor = useMemo(() => {
-    const toRGBA = (color: string) => {
-      if (typeof window === "undefined") {
-        return `rgba(0, 0, 0,`
-      }
-      const canvas = document.createElement("canvas")
-      canvas.width = canvas.height = 1
-      const ctx = canvas.getContext("2d")
-      if (!ctx) return "rgba(255, 0, 0,"
-      ctx.fillStyle = color
-      ctx.fillRect(0, 0, 1, 1)
-      const [r, g, b] = Array.from(ctx.getImageData(0, 0, 1, 1).data)
-      return `rgba(${r}, ${g}, ${b},`
+  // Canvas 2D cannot resolve `var(--token)` on a scratch context; resolve after mount (no DOM during render).
+  useLayoutEffect(() => {
+    let resolved = color
+    if (color.includes("var(")) {
+      const probe = document.createElement("span")
+      probe.style.color = color
+      probe.style.position = "absolute"
+      probe.style.pointerEvents = "none"
+      probe.style.visibility = "hidden"
+      document.documentElement.appendChild(probe)
+      resolved = getComputedStyle(probe).color || color
+      document.documentElement.removeChild(probe)
     }
-    return toRGBA(color)
+
+    const scratch = document.createElement("canvas")
+    scratch.width = scratch.height = 1
+    const ctx = scratch.getContext("2d")
+    if (!ctx) {
+      setColorRgbPrefix("rgba(255, 0, 0,")
+      return
+    }
+    ctx.fillStyle = resolved
+    ctx.fillRect(0, 0, 1, 1)
+    const [r, g, b] = Array.from(ctx.getImageData(0, 0, 1, 1).data)
+    setColorRgbPrefix(`rgba(${r}, ${g}, ${b},`)
   }, [color])
 
   const setupCanvas = useCallback(
@@ -97,7 +109,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           const opacity = squares[i * rows + j]
-          ctx.fillStyle = `${memoizedColor}${opacity})`
+          ctx.fillStyle = `${colorRgbPrefix}${opacity})`
           ctx.fillRect(
             i * (squareSize + gridGap) * dpr,
             j * (squareSize + gridGap) * dpr,
@@ -107,7 +119,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
         }
       }
     },
-    [memoizedColor, squareSize, gridGap],
+    [colorRgbPrefix, squareSize, gridGap],
   )
 
   useEffect(() => {

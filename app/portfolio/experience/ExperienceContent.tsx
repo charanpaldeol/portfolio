@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { cn } from "@/lib/utils"
 
 const timeline = [
@@ -48,33 +49,15 @@ const education = [
 
 function PageHero() {
   return (
-    <header className="mb-14 max-w-4xl md:mb-20">
-      <motion.div
-        initial={{ opacity: 0, x: -18 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.55 }}
-        className="mb-6 flex items-center gap-4"
-      >
-        <div className="h-px w-12 bg-primary" />
-        <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Experience</span>
-      </motion.div>
-      <motion.h1
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, delay: 0.1 }}
-        className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl"
-      >
-        Career <span className="text-editorial-gradient">timeline.</span>
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, delay: 0.22 }}
-        className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl"
-      >
-        Roles and chapters that shaped how I think about product, design systems, and shipping with teams at scale.
-      </motion.p>
-    </header>
+    <EditorialPageHero
+      eyebrow="Experience"
+      title={
+        <>
+          Career <span className="text-editorial-gradient">timeline.</span>
+        </>
+      }
+      description="Roles and chapters that shaped how I think about product, design systems, and shipping with teams at scale."
+    />
   )
 }
 

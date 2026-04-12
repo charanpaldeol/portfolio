@@ -3,6 +3,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { cn } from "@/lib/utils"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
@@ -49,20 +50,15 @@ export default function BlogPage() {
     <PageShell>
       <div className="space-y-14 md:space-y-20">
 
-        {/* ── Header ─────────────────────────────────────────────────── */}
-        <header className="max-w-3xl">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-14 bg-primary" aria-hidden />
-            <span className="font-sans text-xs font-semibold tracking-[0.22em] text-primary uppercase">Blog</span>
-          </div>
-          <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl">
-            Ideas that <span className="text-editorial-gradient">ship.</span>
-          </h1>
-          <p className="mt-6 max-w-xl font-sans text-lg font-light leading-relaxed text-on-surface-variant md:text-xl">
-            Frameworks and practical thinking on problem framing, solution design, AI&#8209;native delivery, engineering
-            depth, and value realization.
-          </p>
-        </header>
+        <EditorialPageHero
+          eyebrow="Blog"
+          title={
+            <>
+              Ideas that <span className="text-editorial-gradient">ship.</span>
+            </>
+          }
+          description="Frameworks and practical thinking on problem framing, solution design, AI\u2011native delivery, engineering depth, and value realization."
+        />
 
         {/* ── Article list ───────────────────────────────────────────── */}
         <ul className="m-0 list-none space-y-3 p-0">

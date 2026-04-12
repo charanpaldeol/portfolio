@@ -17,43 +17,21 @@ import {
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 function Hero() {
   return (
-    <header className="mb-20 max-w-4xl">
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-4 mb-6"
-      >
-        <div className="h-[1px] w-12 bg-primary"></div>
-        <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
-          What I bring
-        </span>
-      </motion.div>
-
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 text-on-surface leading-[1.05]"
-      >
-        Mastering the{" "}
-        <span className="text-editorial-gradient">Digital Blueprint.</span>
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-on-surface-variant text-lg md:text-2xl leading-relaxed max-w-2xl font-light"
-      >
-        From discovery to value realized: clear problem framing, scalable solution
-        design, AI-native delivery, engineering rigor, and adoption-driven impact.
-      </motion.p>
-    </header>
+    <EditorialPageHero
+      eyebrow="What I bring"
+      title={
+        <>
+          Mastering the{" "}
+          <span className="text-editorial-gradient">Digital Blueprint.</span>
+        </>
+      }
+      description="From discovery to value realized: clear problem framing, scalable solution design, AI-native delivery, engineering rigor, and adoption-driven impact."
+    />
   )
 }
 

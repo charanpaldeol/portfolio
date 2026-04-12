@@ -75,6 +75,30 @@ If a required change touches a frozen file, STOP and ask the user.
   Never hardcode inline.
 
 
+## 2.5 EDITORIAL PAGE HERO — canonical (read before any hero work)
+
+  Implementation: components/portfolio/EditorialPageHero.tsx
+  Default visual reference: /what-i-bring (app/what-i-bring/page.tsx) — that route's Hero
+  must compose ONLY EditorialPageHero so the live page and the component never drift.
+
+  DO:
+  - Import EditorialPageHero for any new page that needs this pattern (rule line,
+    uppercase eyebrow, large H1 with text-editorial-gradient span, light subcopy).
+  - When the user says "match the editorial hero" without naming another page,
+    treat EditorialPageHero + /what-i-bring as the source of truth.
+
+  DON'T:
+  - Copy hero markup from /how-i-work, About, Blog, or other routes as the
+    "template" unless the user's prompt explicitly names that page.
+  - Duplicate the hero as a one-off <header> + framer-motion block on services,
+    projects, or similar — extend EditorialPageHero or its props instead.
+
+  When changing hero layout or typography: edit EditorialPageHero.tsx, then
+  grep "EditorialPageHero" and verify every import site, and run
+  `node scripts/audit.js hero` (or full `node scripts/audit.js`). Full rules:
+  docs/GOVERNANCE.md (section "Editorial page hero (canonical UI)").
+
+
 ## 3. SCOPE — only touch what the prompt names
 
   ✅ Only edit files listed under "Files to edit" in the prompt
@@ -126,7 +150,8 @@ If a required change touches a frozen file, STOP and ask the user.
   This project must be buildable and maintainable by AI agents
   with zero human intervention. Every change must follow these rules.
 
-  Standards enforced by code (see docs/GOVERNANCE.md for details):
+  Standards enforced by code (see docs/GOVERNANCE.md for details —
+  including canonical editorial hero rules in § Editorial page hero):
   - lib/eslint-rules/   → 6 custom ESLint rules
   - scripts/audit.js    → design + architecture compliance scanner
   - .husky/pre-commit   → blocks commits that violate rules

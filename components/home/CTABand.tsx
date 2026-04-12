@@ -8,7 +8,7 @@ export default function CTABand() {
         <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
           I work best with teams building real solutions — where the problem is messy, the stakes are real, and
           they need someone who can think, decide, and deliver. Not a fit for every engagement — but if the
-          challenge is genuine, let's talk.
+          challenge is genuine, let&apos;s talk.
         </p>
       </div>
 

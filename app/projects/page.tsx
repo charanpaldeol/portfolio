@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { projects } from "@/lib/projects-data"
 
 export const metadata: Metadata = {
@@ -28,18 +29,15 @@ export default function ProjectsPage() {
   return (
     <PageShell>
       <div className="space-y-10 md:space-y-12">
-        <header className="max-w-4xl">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-12 bg-primary" />
-            <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">Projects</span>
-          </div>
-          <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-7xl">
-            Selected <span className="text-editorial-gradient">work.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl">
-            Product decisions, technical depth, and measurable outcomes across AI/ML, real-time systems, compliance, and cloud-native architecture.
-          </p>
-        </header>
+        <EditorialPageHero
+          eyebrow="Projects"
+          title={
+            <>
+              Selected <span className="text-editorial-gradient">work.</span>
+            </>
+          }
+          description="Product decisions, technical depth, and measurable outcomes across AI/ML, real-time systems, compliance, and cloud-native architecture."
+        />
 
         <div className="space-y-6 rounded-xl bg-surface-container-low p-8 md:p-10">
           <div>

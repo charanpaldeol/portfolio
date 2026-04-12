@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react"
 
 import { BlurFade } from "@/components/magicui/blur-fade"
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { RainbowButton } from "@/registry/magicui/rainbow-button"
 
 export default function ContactContent() {
@@ -44,30 +45,29 @@ export default function ContactContent() {
 
   return (
     <div className="w-full">
-      {/* Editorial hero — display + body pair per DESIGN.md */}
-      <header className="max-w-4xl pb-12 md:pb-16 lg:pb-20">
-        <BlurFade>
-          <div className="mb-8 flex items-center gap-4">
-            <div className="h-px w-14 shrink-0 bg-primary" aria-hidden />
-            <span className="text-xs font-semibold tracking-[0.22em] text-primary uppercase">Contact</span>
-          </div>
-          <h1 className="font-display text-5xl font-extrabold tracking-tighter text-on-surface leading-[1.05] md:text-6xl lg:text-7xl">
-            Let&apos;s start a{" "}
-            <span className="text-editorial-gradient">conversation.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-on-surface-variant md:text-2xl md:leading-relaxed">
-            Share a bit about your product, team, or decision you&apos;re trying to make. I read every message and reply
-            from{" "}
-            <a
-              href="mailto:hello@cpdeol.com"
-              className="font-medium text-on-surface underline decoration-tertiary/40 underline-offset-[6px] transition hover:decoration-tertiary"
-            >
-              hello@cpdeol.com
-            </a>
-            .
-          </p>
-        </BlurFade>
-      </header>
+      <div className="pb-12 md:pb-16 lg:pb-20">
+        <EditorialPageHero
+          eyebrow="Contact"
+          title={
+            <>
+              Let&apos;s start a <span className="text-editorial-gradient">conversation.</span>
+            </>
+          }
+          description={
+            <>
+              Share a bit about your product, team, or decision you&apos;re trying to make. I read every message and
+              reply from{" "}
+              <a
+                href="mailto:hello@cpdeol.com"
+                className="font-medium text-on-surface underline decoration-tertiary/40 underline-offset-[6px] transition hover:decoration-tertiary"
+              >
+                hello@cpdeol.com
+              </a>
+              .
+            </>
+          }
+        />
+      </div>
 
       <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0 xl:gap-x-16">
         {/* Left column — tonal layers, no box borders */}

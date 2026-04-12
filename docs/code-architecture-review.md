@@ -242,10 +242,11 @@ Each PR should pass: `pnpm lint && pnpm tsc --noEmit && pnpm test && pnpm build`
 ## 9. Documentation
 
 ### 9.1 What Exists
-- `.cursorrules` — comprehensive AI development guidelines with architecture diagram and frozen-file list. Excellent.
+- `.cursorrules` — comprehensive AI development guidelines with architecture diagram and frozen-file list. Excellent. **§ 2.5** documents the canonical editorial page hero (`EditorialPageHero` + default reference `/what-i-bring`).
 - `docs/DESIGN.md` — ✅ Added April 10, 2026. Full design system strategy: Editorial Expert north star, color/surface philosophy, typography scale, elevation rules, component guidelines, and do/don'ts.
+- `docs/GOVERNANCE.md` — **§ Editorial page hero (canonical UI)** — single implementation (`components/portfolio/EditorialPageHero.tsx`), proof page (`app/what-i-bring/page.tsx`), call-site list, and PR-review rules so marketing heroes do not drift across routes.
 - `docs/` — directory structure for ADRs, specs, stories, and research (mostly empty placeholders).
-- `README.md` — contains only `# portfolio`. Not useful.
+- `README.md` — standards index and enforcement pointers (see table including editorial hero row).
 
 ### 9.2 What's Missing
 - ~~**`.env.example`**~~ ✅ Created April 10, 2026 — documents all three Resend variables with placeholder values and comments.

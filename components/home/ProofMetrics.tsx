@@ -3,76 +3,8 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { NumberTicker } from "@/components/magicui/number-ticker"
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// To add or change a metric, edit this array only — no layout code to touch.
-
-type TagColor = "emerald" | "violet" | "amber" | "sky" | "rose"
-
-interface Metric {
-  /**
-   * Numeric value for the animated counter.
-   * Set to null and use statDisplay for non-numeric stats (e.g. "4 → 1").
-   */
-  numericValue: number | null
-  statSuffix?: string
-  statDisplay?: string
-  label: string
-  tag: string
-  tagColor: TagColor
-}
-
-const metrics: Metric[] = [
-  {
-    numericValue: 60,
-    statSuffix: "%",
-    label:
-      "Reduction in manual reporting time after leading a BI tool selection and full implementation across a 200-person finance team.",
-    tag: "SaaS implementation",
-    tagColor: "emerald",
-  },
-  {
-    numericValue: null,
-    statDisplay: "4 → 1",
-    label:
-      "Consolidated four disconnected systems into a single platform, cutting onboarding time from 3 weeks to 4 days for a healthcare provider.",
-    tag: "In-house build",
-    tagColor: "violet",
-  },
-  {
-    numericValue: 83,
-    statSuffix: "%",
-    label:
-      "User adoption rate achieved within 60 days of go-live through structured change management — up from a projected 40%.",
-    tag: "Change management",
-    tagColor: "amber",
-  },
-]
-
-// ─── Color maps (Tailwind-native, dark-mode safe) ──────────────────────────────
-
-const tagStyles: Record<TagColor, { pill: string; accent: string }> = {
-  emerald: {
-    pill: "bg-primary-fixed text-on-primary-fixed",
-    accent: "bg-primary",
-  },
-  violet: {
-    pill: "bg-secondary-fixed text-on-secondary-fixed",
-    accent: "bg-secondary",
-  },
-  amber: {
-    pill: "bg-tertiary-fixed text-on-tertiary-fixed",
-    accent: "bg-tertiary",
-  },
-  sky: {
-    pill: "bg-secondary-fixed/80 text-on-secondary-fixed",
-    accent: "bg-secondary",
-  },
-  rose: {
-    pill: "bg-primary-fixed/90 text-on-primary-fixed",
-    accent: "bg-primary",
-  },
-}
+import { type Metric, metrics, tagStyles } from "@/lib/proof-metrics-data"
+import { cn } from "@/lib/utils"
 
 // ─── Card ──────────────────────────────────────────────────────────────────────
 
@@ -88,7 +20,7 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
       className="group flex flex-col overflow-hidden rounded-xl bg-card shadow-editorial-float transition-shadow duration-300 hover:shadow-editorial"
     >
       {/* Colored accent bar */}
-      <div className={`h-1 w-full shrink-0 ${accent}`} />
+      <div className={cn("h-1 w-full shrink-0", accent)} />
 
       <div className="flex flex-1 flex-col gap-4 p-6">
         {/* Stat */}
@@ -113,7 +45,10 @@ function MetricCard({ metric, index }: { metric: Metric; index: number }) {
         {/* Tag */}
         <div className="mt-auto pt-4">
           <span
-            className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide uppercase ${pill}`}
+            className={cn(
+              "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide uppercase",
+              pill
+            )}
           >
             {metric.tag}
           </span>
@@ -132,7 +67,7 @@ export default function ProofMetrics() {
         <div className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
           Proof of work
         </div>
-        <h2 className="mt-2 text-xl font-medium text-foreground">
+        <h2 className="font-display mt-2 text-xl font-bold tracking-tight text-foreground">
           Results that actually moved the needle
         </h2>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -140,7 +75,7 @@ export default function ProofMetrics() {
         </p>
       </header>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
         {metrics.map((metric, i) => (
           <div key={metric.tag}>
             <h3 className="sr-only">{metric.tag}</h3>

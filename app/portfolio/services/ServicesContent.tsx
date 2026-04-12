@@ -13,6 +13,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { createContext, type ReactNode, useContext } from "react"
 
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { cn } from "@/lib/utils"
 
 /** When true, Framer Motion durations are collapsed (accessibility). */
@@ -147,56 +148,19 @@ const collaborationSteps = [
 ] as const
 
 function HeroSection() {
-  const reduceMotion = useContext(ReduceMotionContext)
-  const t = (duration: number, delay = 0) => ({
-    duration: reduceMotion ? 0 : duration,
-    delay: reduceMotion ? 0 : delay,
-  })
-  const fadeUp = reduceMotion ? { opacity: 1, y: 0 } : undefined
-
   return (
-    <section className="mb-24 md:mb-32">
-      <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-8">
-          <motion.span
-            initial={fadeUp ?? { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.45)}
-            className="mb-6 inline-block rounded-full bg-primary-fixed px-3 py-1 text-xs font-bold tracking-widest text-on-primary-fixed uppercase"
-          >
-            Strategic partnership
-          </motion.span>
-          <motion.h1
-            initial={fadeUp ?? { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.6, 0.05)}
-            className="font-display mb-8 text-5xl font-extrabold tracking-tighter text-balance text-on-surface leading-[0.92] md:text-7xl lg:text-8xl"
-          >
-            Services &amp; expertise
-          </motion.h1>
-          <motion.p
-            initial={fadeUp ?? { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.55, 0.12)}
-            className="max-w-2xl text-xl font-normal leading-relaxed text-pretty text-on-surface-variant md:text-2xl"
-          >
-            Architecting resilient systems and AI-native experiences — from first landing page to enterprise-scale
-            platforms.
-          </motion.p>
-        </div>
-        <div className="lg:col-span-4 lg:text-right">
-          <div className="mb-6 hidden h-1 w-full bg-tertiary lg:block" aria-hidden />
-          <motion.p
-            initial={fadeUp ?? { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.5, 0.18)}
-            className="text-sm font-medium tracking-widest text-on-surface-variant/60 uppercase"
-          >
-            Selected disciplines
-          </motion.p>
-        </div>
-      </div>
-    </section>
+    <div className="mb-16 md:mb-24">
+      <EditorialPageHero
+        eyebrow="Strategic partnership"
+        title={
+          <>
+            Services &amp;{" "}
+            <span className="text-editorial-gradient">expertise.</span>
+          </>
+        }
+        description="Architecting resilient systems and AI-native experiences — from first landing page to enterprise-scale platforms."
+      />
+    </div>
   )
 }
 

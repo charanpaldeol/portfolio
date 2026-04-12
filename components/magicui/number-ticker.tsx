@@ -1,7 +1,7 @@
 "use client"
 import { useInView, useMotionValue, useSpring } from "framer-motion"
 import { useEffect, useRef } from "react"
-import { twMerge } from "tailwind-merge"
+import { cn } from "@/lib/utils"
 
 type NumberTickerProps = {
   value: number
@@ -26,5 +26,5 @@ export function NumberTicker({ value, delay = 0, suffix = "", className }: Numbe
         ref.current.textContent = Intl.NumberFormat("en-US").format(Math.round(latest)) + suffix
     }), [springValue, suffix])
 
-  return <span ref={ref} className={twMerge("inline-block tabular-nums", className)}>0{suffix}</span>
+  return <span ref={ref} className={cn("inline-block tabular-nums", className)}>0{suffix}</span>
 }

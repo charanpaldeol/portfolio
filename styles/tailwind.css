@@ -58,6 +58,9 @@
   --color-destructive: #b42318;
   --color-destructive-foreground: #fcf9f5;
 
+  /* Third-party brand marks (navbar) — defined here so app/components stay hex-free for audit */
+  --color-external-linkedin: #0a66c2;
+
   /* Extra-diffused “natural light” shadow (on-surface tint, not #000) */
   --shadow-editorial: 0 32px 56px -12px color-mix(in srgb, var(--color-on-surface) 6%, transparent);
   --shadow-editorial-lg: 0 40px 72px -16px color-mix(in srgb, var(--color-on-surface) 7%, transparent);

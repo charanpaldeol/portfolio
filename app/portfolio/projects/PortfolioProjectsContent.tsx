@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { projects } from "@/lib/projects-data"
 import { cn } from "@/lib/utils"
 
@@ -44,48 +45,19 @@ const outcomeStats = [
 
 type Filter = "All" | (typeof projects)[number]["category"]
 
-function EditorialHero({ caseStudyCount }: { caseStudyCount: number }) {
+function ProjectsHero({ caseStudyCount }: { caseStudyCount: number }) {
   return (
-    <header className="mb-16 max-w-4xl md:mb-24">
-      <motion.span
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-        className="mb-6 inline-block rounded-full bg-secondary-fixed px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-on-secondary-fixed"
-      >
-        Portfolio index
-      </motion.span>
-      <motion.h1
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.05 }}
-        className="font-display mb-8 text-5xl font-extrabold leading-[0.95] tracking-tighter text-on-surface md:text-7xl lg:text-8xl"
-      >
-        Selected projects
-      </motion.h1>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.12 }}
-          className="text-lg leading-relaxed text-on-surface-variant md:col-span-8 md:text-xl lg:text-2xl"
-        >
-          Product decisions, technical depth, and measurable outcomes across AI/ML, real-time systems, compliance, and
-          cloud-native architecture — curated as full case studies you can read in depth.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.2 }}
-          className="flex flex-col justify-end md:col-span-4"
-        >
-          <div className="mb-4 h-1 w-12 bg-tertiary" aria-hidden />
-          <p className="text-sm font-medium uppercase tracking-widest text-on-surface-variant">
-            Case studies · {caseStudyCount} deep dives
-          </p>
-        </motion.div>
-      </div>
-    </header>
+    <div className="mb-16 md:mb-20">
+      <EditorialPageHero
+        eyebrow={`Portfolio · ${caseStudyCount} case studies`}
+        title={
+          <>
+            Selected <span className="text-editorial-gradient">projects.</span>
+          </>
+        }
+        description="Product decisions, technical depth, and measurable outcomes across AI/ML, real-time systems, compliance, and cloud-native architecture — curated as full case studies you can read in depth."
+      />
+    </div>
   )
 }
 
@@ -97,7 +69,7 @@ export default function PortfolioProjectsContent() {
 
   return (
     <>
-      <EditorialHero caseStudyCount={projects.length} />
+      <ProjectsHero caseStudyCount={projects.length} />
 
       <motion.div
         initial={{ opacity: 0, y: 8 }}

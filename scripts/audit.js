@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Unified audit script — checks design.md + code-architecture-review.md compliance.
+ * Unified audit script — design.md + code-architecture-review.md + editorial hero (GOVERNANCE).
  *
  * Usage:
  *   node scripts/audit.js           # run all audits
  *   node scripts/audit.js design    # design only
  *   node scripts/audit.js arch      # architecture only
+ *   node scripts/audit.js hero        # editorial hero (GOVERNANCE) only
  *
  * Exit code 1 if violations found (blocks CI).
  */
@@ -117,11 +118,43 @@ function auditArchitecture() {
   }
 }
 
+// ── Editorial hero (docs/GOVERNANCE.md § Editorial page hero) ───────────────
+function auditEditorialHero() {
+  const appDir = path.join(ROOT, "app")
+  if (!fs.existsSync(appDir)) return
+
+  const skipName = (name) =>
+    name.endsWith("layout.tsx") ||
+    name.endsWith("template.tsx") ||
+    name.endsWith("loading.tsx") ||
+    name.endsWith("not-found.tsx") ||
+    name.endsWith("error.tsx") ||
+    name.endsWith("global-error.tsx")
+
+  const files = walk(appDir, [".tsx"]).filter((f) => !skipName(path.basename(f)))
+
+  for (const file of files) {
+    const content = fs.readFileSync(file, "utf8")
+    if (!content.includes("text-editorial-gradient")) continue
+    if (!content.includes("text-5xl")) continue
+    if (!content.includes("<header")) continue
+    if (content.includes("EditorialPageHero")) continue
+
+    addViolation(
+      file,
+      "Duplicate editorial page hero — import EditorialPageHero from @/components/portfolio/EditorialPageHero (see docs/GOVERNANCE.md § Editorial page hero)",
+      "GOVERNANCE.md § Editorial page hero",
+      1,
+    )
+  }
+}
+
 // ── Run ─────────────────────────────────────────────────────────────────────
 const mode = process.argv[2] || "all"
 
 if (mode === "all" || mode === "design") auditDesign()
 if (mode === "all" || mode === "arch") auditArchitecture()
+if (mode === "all" || mode === "hero") auditEditorialHero()
 
 // ── Report ──────────────────────────────────────────────────────────────────
 if (violations.length === 0) {

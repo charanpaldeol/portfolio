@@ -52,7 +52,7 @@ export default function Hero() {
         {/* Name */}
         <TypingAnimation
           as="h1"
-          className="mt-4 text-5xl font-bold leading-tight text-foreground"
+          className="font-display mt-4 text-5xl font-extrabold leading-tight tracking-tighter text-foreground"
           duration={80}
         >
           Charan Deol

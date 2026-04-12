@@ -1,46 +1,23 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import ToolsAndMethods from "@/components/home/ToolsAndMethods"
 import { PageShell } from "@/components/layout/PageShell"
+import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 
 function PageHero() {
   return (
-    <header className="mb-14 md:mb-20 max-w-4xl">
-      <motion.div
-        initial={{ opacity: 0, x: -18 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.55 }}
-        className="flex items-center gap-4 mb-6"
-      >
-        <div className="h-px w-12 bg-primary" />
-        <span className="text-primary text-xs font-semibold tracking-[0.2em] uppercase">
-          Toolkit
-        </span>
-      </motion.div>
-
-      <motion.h1
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, delay: 0.12 }}
-        className="text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface leading-[1.05]"
-      >
-        Tools &amp; <span className="text-editorial-gradient">methods</span>
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, delay: 0.25 }}
-        className="mt-6 text-on-surface-variant text-lg md:text-2xl leading-relaxed max-w-2xl font-light"
-      >
-        Comfortable in a technical design session in the morning and a boardroom
-        presentation in the afternoon.
-      </motion.p>
-    </header>
+    <EditorialPageHero
+      eyebrow="Toolkit"
+      title={
+        <>
+          Tools &amp; <span className="text-editorial-gradient">methods</span>
+        </>
+      }
+      description="Comfortable in a technical design session in the morning and a boardroom presentation in the afternoon."
+    />
   )
 }
 

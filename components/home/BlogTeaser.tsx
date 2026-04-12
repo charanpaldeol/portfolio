@@ -16,7 +16,7 @@ export default function BlogTeaser() {
           <h3 className="text-sm font-medium text-foreground mb-1">Why the problem on the brief is never the real problem</h3>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Most projects fail not because of bad execution — but because everyone agreed on solving the wrong thing.
-            Here's the framework I use to find the real problem before any solution is designed.
+            Here&apos;s the framework I use to find the real problem before any solution is designed.
           </p>
         </div>
         <div className="text-lg text-muted-foreground flex-shrink-0 pt-1" aria-hidden="true">

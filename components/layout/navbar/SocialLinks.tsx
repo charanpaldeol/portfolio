@@ -2,8 +2,7 @@ import { GITHUB_URL, LINKEDIN_URL } from '@/config/navigation'
 import { RainbowButton } from '@/registry/magicui/rainbow-button'
 
 // Desktop-only social icon buttons + CTA.
-// LinkedIn hover colour (#0A66C2) is LinkedIn's official brand colour —
-// intentionally not a theme token since it is an external brand value.
+// LinkedIn hover uses --color-external-linkedin (tailwind.css).
 export function SocialLinks() {
   return (
     <div className="hidden items-center gap-4 md:flex">
@@ -33,7 +32,7 @@ export function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         aria-label="LinkedIn"
-        className="group relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-surface-container-low transition-all duration-300 hover:bg-[#0A66C2] hover:shadow-editorial"
+        className="group relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-surface-container-low transition-all duration-300 hover:bg-external-linkedin hover:shadow-editorial"
       >
         <svg
           aria-hidden="true"

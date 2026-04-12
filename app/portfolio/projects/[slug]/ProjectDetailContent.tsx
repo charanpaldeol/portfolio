@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 
+import { editorialGradientLastWord, EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import type { ProjectData } from "@/lib/projects-data"
 import { cn } from "@/lib/utils"
 
@@ -13,7 +14,7 @@ export default function ProjectDetailContent({ project }: { project: ProjectData
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-6"
+        className="space-y-8"
       >
         <Link
           href="/portfolio/projects"
@@ -22,42 +23,39 @@ export default function ProjectDetailContent({ project }: { project: ProjectData
           <span>← Back to Projects</span>
         </Link>
 
-        <div className="space-y-4">
-          <div className="flex items-start gap-4">
-            <div
-              className={cn(
-                "flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl text-5xl",
-                project.accent,
-              )}
-            >
-              {project.icon}
-            </div>
-            <div className="flex-1">
-              <h1 className="font-display text-4xl font-extrabold tracking-tight text-on-surface md:text-5xl">
-                {project.title}
-              </h1>
-              <p className="mt-2 text-lg text-on-surface-variant">{project.category}</p>
-            </div>
-          </div>
+        <EditorialPageHero
+          eyebrow={project.category}
+          title={editorialGradientLastWord(project.title)}
+          description={project.shortDescription}
+        />
 
-          <div className="flex flex-wrap gap-3 pt-4">
+        <div className="flex flex-wrap items-center gap-4">
+          <div
+            className={cn(
+              "flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-4xl md:h-20 md:w-20 md:text-5xl",
+              project.accent,
+            )}
+            aria-hidden
+          >
+            {project.icon}
+          </div>
+          <div className="flex min-w-0 flex-1 flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-surface-container-lowest px-4 py-2 text-sm font-medium text-on-surface-variant"
+                className="rounded-full bg-surface-container-lowest px-3 py-1.5 text-xs font-medium text-on-surface-variant md:px-4 md:py-2 md:text-sm"
               >
                 {tag}
               </span>
             ))}
           </div>
+        </div>
 
-          <div className="rounded-lg bg-surface-container-low p-4 md:p-6">
-            <p className="text-base leading-relaxed text-on-surface-variant">{project.shortDescription}</p>
-            <p className="mt-4 text-lg font-semibold text-secondary">
-              <span className="text-on-surface">Key Result: </span>
-              {project.outcome}
-            </p>
-          </div>
+        <div className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-8">
+          <p className="text-lg font-semibold text-secondary">
+            <span className="text-on-surface">Key result: </span>
+            {project.outcome}
+          </p>
         </div>
       </motion.div>
 
