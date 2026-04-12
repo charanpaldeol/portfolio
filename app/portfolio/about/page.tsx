@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageShell>
+    <PageShell containerClassName="max-w-screen-2xl">
       <AboutContent />
     </PageShell>
   )
