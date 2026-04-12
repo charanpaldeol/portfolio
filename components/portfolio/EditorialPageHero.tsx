@@ -62,7 +62,7 @@ export function EditorialPageHero({ eyebrow, title, description }: EditorialPage
 
 /** Puts the editorial gradient on the last word (matches “How I work”, “Selected work”, etc.). */
 export function editorialGradientLastWord(title: string): ReactNode {
-  const words = title.trim().split(/\s+/u)
+  const words = title.trim().split(/\s+/)
   if (words.length === 0) return title
   if (words.length === 1) {
     return <span className="text-editorial-gradient">{words[0]}</span>
