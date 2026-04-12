@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 import BlogTeaser from "@/components/home/BlogTeaser"
 import CTABand from "@/components/home/CTABand"
-import EyeBreakTeaser from "@/components/home/EyeBreakTeaser"
 import Hero from "@/components/home/Hero"
+import HomeHowIWorkTeaser from "@/components/home/HomeHowIWorkTeaser"
+import HomeJumpNav from "@/components/home/HomeJumpNav"
+import HowIThink from "@/components/home/HowIThink"
 import ProofMetrics from "@/components/home/ProofMetrics"
+import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
 
 export const metadata: Metadata = {
@@ -61,9 +64,12 @@ export default function Home() {
       <PageShell>
         <div className="space-y-14 md:space-y-20">
           <Hero />
+          <HomeJumpNav />
+          <WhatIBring />
           <ProofMetrics />
+          <HomeHowIWorkTeaser />
+          <HowIThink />
           <BlogTeaser />
-          <EyeBreakTeaser />
           <CTABand />
         </div>
       </PageShell>

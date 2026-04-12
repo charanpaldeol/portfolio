@@ -101,7 +101,7 @@ export function Navbar() {
         <div className="flex items-center md:hidden">
           <Sheet>
             <SheetTrigger aria-label="Open navigation menu">
-              <svg aria-hidden="true" className="h-5 w-5 text-background" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg aria-hidden="true" className="h-5 w-5 text-foreground" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 6H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 <path d="M4 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 <path d="M4 18H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
