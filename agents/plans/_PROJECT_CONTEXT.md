@@ -106,17 +106,56 @@ scripts/
 - Body: Inter Regular — readable paragraphs
 - Label: Inter SemiBold — chips, metadata, eyebrow text
 
-## Before you finish
-Run these checks:
+## Before you finish — governance handoff (REQUIRED)
+
+**Do NOT commit your work yourself.** The governance agent reviews and approves all work before it goes to git. The loop is:
+
+```
+You finish work → Write status report → Governance reviews → 
+  If APPROVED → Governance tells you to commit → You commit & push
+  If REVISION NEEDED → You fix issues → Resubmit → Loop repeats
+```
+
+### Step 1 — Run checks yourself first
 ```bash
 pnpm tsc --noEmit    # must pass with 0 errors
 pnpm lint            # must pass with 0 errors (warnings are OK)
 node scripts/audit.js  # must exit 0 (no violations)
+pnpm build           # must succeed
+```
+Fix any failures before writing your report. Do not report checks as passing if they fail.
+
+### Step 2 — Write your completion report
+Copy the template from `agents/governance/REPORT-TEMPLATE.md`.
+Fill it in honestly. Save to:
+```
+agents/governance/reports/PLAN-[XX]-status.md
+```
+(Replace XX with your plan number, e.g. `PLAN-03-status.md`)
+
+### Step 3 — Notify governance
+Output this message (exactly) so the orchestrator or user knows to trigger governance:
+
+```
+GOVERNANCE REVIEW REQUESTED
+Plan: PLAN-[XX]
+Report: agents/governance/reports/PLAN-[XX]-status.md
+Round: [1]
 ```
 
-## Commit format
+### Step 4 — Wait for governance decision
+The governance agent will write its decision to:
+```
+agents/governance/reviews/PLAN-[XX]-review.md
+```
+
+**If APPROVED:** Governance will give you the exact `git add` + `git commit` + `git push` commands. Run them.
+
+**If REVISION NEEDED:** Read `agents/governance/reviews/PLAN-[XX]-review.md`. Fix every item marked ❌. Increment your round number. Update the status report. Re-notify governance.
+
+### Commit format (only after governance approval)
 ```bash
-git add [specific files only — not git add -A unless you've verified all changes]
+git add [specific files listed by governance — not git add -A]
 git commit -m "$(cat <<'EOF'
 feat/fix: [short description]
 
@@ -125,5 +164,5 @@ feat/fix: [short description]
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 EOF
 )"
+git push
 ```
-Push to `main` (this repo uses direct-to-main workflow).
