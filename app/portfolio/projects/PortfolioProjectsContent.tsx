@@ -129,10 +129,17 @@ export default function PortfolioProjectsContent() {
                     aria-hidden
                   />
                 </div>
-                <div className="mb-4 flex flex-wrap gap-2">
+                <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
                     {project.category}
                   </span>
+                  {project.impactMetrics[0] ? (
+                    <span className="rounded-full bg-surface-container-low px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+                      <span className="text-primary">{project.impactMetrics[0].value}</span>
+                      <span aria-hidden> · </span>
+                      <span>{project.impactMetrics[0].label}</span>
+                    </span>
+                  ) : null}
                   {project.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
@@ -145,7 +152,7 @@ export default function PortfolioProjectsContent() {
                 <h2 className="font-display mb-4 text-2xl font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary md:text-3xl">
                   {project.title}
                 </h2>
-                <p className="mb-6 max-w-lg leading-relaxed text-on-surface-variant">{project.shortDescription}</p>
+                <p className="mb-6 max-w-lg leading-relaxed text-on-surface-variant">{project.tagline}</p>
                 <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-tight text-primary underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors group-hover:decoration-primary">
                   View case study
                   <ArrowRight className="h-4 w-4" aria-hidden />
