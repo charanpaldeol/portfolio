@@ -6,8 +6,10 @@ import HomeHowIWorkTeaser from "@/components/home/HomeHowIWorkTeaser"
 import HomeJumpNav from "@/components/home/HomeJumpNav"
 import HowIThink from "@/components/home/HowIThink"
 import ProofMetrics from "@/components/home/ProofMetrics"
+import { Testimonials } from "@/components/home/Testimonials"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
+import { testimonials } from "@/lib/testimonials-data"
 
 export const metadata: Metadata = {
   title: "Charan Deol — Product Engineer & Consultant",
@@ -67,6 +69,7 @@ export default function Home() {
           <HomeJumpNav />
           <WhatIBring />
           <ProofMetrics />
+          <Testimonials testimonials={testimonials} />
           <HomeHowIWorkTeaser />
           <HowIThink />
           <BlogTeaser />

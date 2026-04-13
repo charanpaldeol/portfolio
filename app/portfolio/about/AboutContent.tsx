@@ -362,6 +362,17 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
         </div>
       </section>
 
+      {/* Collaboration history */}
+      <section className="py-12 text-center md:py-16" aria-label="Companies and teams">
+        {/* TODO: replace placeholder company names with real teams Charan has worked with */}
+        <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-on-surface-variant">
+          Companies &amp; teams I&apos;ve worked with
+        </p>
+        <p className="mx-auto max-w-3xl text-sm leading-relaxed tracking-wide text-on-surface-variant">
+          Northwind Analytics · Meridian Health Systems · Cascade Fintech · Harbor Operations Co · Lumen Collaboration
+        </p>
+      </section>
+
       {/* Availability */}
       <section className="py-20 md:py-24" aria-labelledby="availability-heading">
         <div className="grid gap-8 md:grid-cols-2">
