@@ -179,6 +179,60 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Minimal, “hand-drawn” underline accent (used on principle quotes). */
+.editorial-green-underline {
+  position: relative;
+  display: inline-block;
+}
+.editorial-green-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35rem;
+  height: 2px;
+  background-color: var(--color-primary);
+  transform: rotate(-1deg);
+  opacity: 0.9;
+}
+
+/* Modern principle card graphics (token-based, no hex). */
+.editorial-principle-card {
+  position: relative;
+  overflow: visible;
+}
+.editorial-principle-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(700px circle at 20% 0%,
+      color-mix(in srgb, var(--editorial-accent) 18%, transparent),
+      transparent 55%),
+    radial-gradient(600px circle at 100% 30%,
+      color-mix(in srgb, var(--editorial-accent) 12%, transparent),
+      transparent 52%);
+  opacity: 0.9;
+}
+.editorial-principle-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-on-surface) 4%, transparent),
+      transparent 35%,
+      color-mix(in srgb, var(--color-on-surface) 5%, transparent)
+    );
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
 /* Navbar — cursor blink for the brand wordmark */
 @keyframes cpdeolBlink {
   0%, 100% { opacity: 1; }

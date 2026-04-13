@@ -38,17 +38,20 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
         aria-label="Delivery phases"
       >
         <div className={styles.hiwTrack} aria-hidden />
-        {workPhases.map(({ title, description, Icon, emphasized }) => (
+        {workPhases.map(({ title, description, Icon, emphasized, step }) => (
           <div key={title} className={styles.hiwPhase} role="listitem">
             <div
               className={cn(
-                "mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-outline-variant/20 transition-colors md:size-24",
+                "relative mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-outline-variant/20 transition-colors md:size-24",
                 "hover:bg-surface-container-low",
                 emphasized && cn(styles.hiwNodeValue, "ring-2 ring-primary/35 text-primary")
               )}
               aria-hidden
             >
               <Icon className="size-7 stroke-[1.5] md:size-8" strokeLinecap="round" strokeLinejoin="round" />
+              <span className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-surface-container-low ring-1 ring-outline-variant/30 font-mono text-[9px] font-bold text-muted-foreground md:size-6 md:text-[10px]">
+                {step}
+              </span>
             </div>
             <span className={cn(styles.hiwPhaseTitle, "text-base tracking-tight md:text-lg", emphasized && styles.hiwPhaseTitlePrimary)}>
               {title}

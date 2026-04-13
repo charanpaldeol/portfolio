@@ -1,5 +1,3 @@
-"use client"
-
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
@@ -49,7 +47,19 @@ export default function HowIThinkPage() {
     <PageShell>
       <PageHero />
       <section className="rounded-2xl bg-surface-container-low p-6 shadow-editorial md:p-10">
-        <HowIThink />
+        <header className="mb-8 md:mb-10">
+          <div className="text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
+            Interactive
+          </div>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+            Arrange the principles
+          </h2>
+          <p className="mt-3 max-w-2xl text-base font-light leading-relaxed text-muted-foreground">
+            Drag the cards until the sequence feels right. The point isn’t a “correct” order — it’s noticing what you prioritise.
+          </p>
+        </header>
+
+        <HowIThink showHeader={false} showHelperText={false} />
       </section>
       <CTA />
     </PageShell>
