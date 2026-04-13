@@ -52,6 +52,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdn.simpleicons.org" />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col bg-background text-foreground`}
       >
