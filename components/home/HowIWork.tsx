@@ -1,5 +1,6 @@
 "use client"
 
+import type { ReactNode } from "react"
 import { useEffect, useRef, useState } from "react"
 
 import { expertiseAreas, workPhases } from "@/lib/how-i-work-data"
@@ -7,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 import styles from "./HowIWork.module.css"
 
-export default function HowIWork() {
+export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode }) {
   const pipelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -58,6 +59,8 @@ export default function HowIWork() {
           </div>
         ))}
       </div>
+
+      {afterPipeline}
 
       <h2
         id="hiw-expertise-heading"
