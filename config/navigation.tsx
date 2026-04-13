@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Handshake } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -53,6 +54,12 @@ export const portfolioNavLinks: NavLink[] = [
 // Add new pages here — the nav updates automatically.
 
 export const workLinks: NavLink[] = [
+  {
+    href: '/work-with-me',
+    label: 'Work with me',
+    description: 'Engagement models, process, and how to start a consulting conversation',
+    icon: <Handshake className="h-5 w-5" aria-hidden />,
+  },
   {
     href: '/what-i-bring',
     label: 'What I bring',
