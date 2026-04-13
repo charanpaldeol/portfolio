@@ -138,4 +138,5 @@ export const workLinks: NavLink[] = [
 
 export const ideasLinks: SimpleNavLink[] = [
   { href: '/internet-owned', label: 'Internet Owned' },
+  { href: '/how-i-use-ai', label: 'How I Use AI' },
 ]
