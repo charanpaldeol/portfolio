@@ -64,7 +64,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <PageShell variant="home">
+      <PageShell>
         <div className="space-y-16 md:space-y-24">
           <div className="space-y-5 md:space-y-6">
             <Hero />
