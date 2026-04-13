@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { NewsletterSignup } from "@/components/home/NewsletterSignup"
 import { cn } from "@/lib/utils"
 import type { WhatIBringCard } from "@/lib/what-i-bring-cards"
 
@@ -81,6 +82,8 @@ export function BlogTopicArticle({ card }: Props) {
           </Link>
         </p>
       </footer>
+
+      <NewsletterSignup variant="inline" />
     </article>
   )
 }

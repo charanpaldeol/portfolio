@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { NewsletterSignup } from "@/components/home/NewsletterSignup"
+
 const GITHUB_URL = 'https://github.com/charanpaldeol'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/cdeol'
 
@@ -88,6 +90,12 @@ export function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 pb-6 md:px-6">
+        <div className="rounded-xl bg-surface-container px-4 py-3 md:px-6 md:py-3">
+          <NewsletterSignup variant="footer" />
         </div>
       </div>
 

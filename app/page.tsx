@@ -5,6 +5,7 @@ import Hero from "@/components/home/Hero"
 import HomeHowIWorkTeaser from "@/components/home/HomeHowIWorkTeaser"
 import HomeJumpNav from "@/components/home/HomeJumpNav"
 import HowIThink from "@/components/home/HowIThink"
+import { NewsletterSignup } from "@/components/home/NewsletterSignup"
 import ProofMetrics from "@/components/home/ProofMetrics"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
@@ -70,6 +71,7 @@ export default function Home() {
           <HomeHowIWorkTeaser />
           <HowIThink />
           <BlogTeaser />
+          <NewsletterSignup variant="inline" />
           <CTABand />
         </div>
       </PageShell>
