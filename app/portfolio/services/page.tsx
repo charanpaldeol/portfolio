@@ -7,12 +7,12 @@ import ServicesContent from "./ServicesContent"
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Websites and landing pages, custom software, AI automation, and enterprise-grade systems — from first launch to scale. Consulting by Charan Deol.",
+    "Product design consulting: strategy, AI-native UX, design systems, and fractional design leadership — from clarity to shipped product. Charan Deol.",
   alternates: { canonical: "https://cpdeol.com/portfolio/services" },
   openGraph: {
     title: "Services — Charan Deol",
     description:
-      "Websites, custom products, AI workflows, and secure enterprise systems — clear collaboration from discovery to handoff.",
+      "Concrete consulting services for teams building AI-powered products, scaling design systems, and shipping with better cross-functional alignment.",
     url: "https://cpdeol.com/portfolio/services",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services — Charan Deol",
     description:
-      "Websites, custom products, AI workflows, and secure enterprise systems — clear collaboration from discovery to handoff.",
+      "Product design consulting for AI-native products, design systems, and fractional design leadership — outcomes, deliverables, and clear engagement shapes.",
   },
 }
 
