@@ -38,11 +38,12 @@ function SectionReveal({
 
 function HeroSection() {
   return (
-    <div className="mb-16 md:mb-24">
+    <div className="mx-auto mb-12 max-w-6xl md:mb-16">
       <EditorialPageHero
         eyebrow="Services"
         title={editorialGradientLastWord("From strategy to shipped product")}
         description="Product design consulting for teams building AI-powered products, scaling design systems, and shipping faster."
+        headerClassName="mb-0"
       />
     </div>
   )
@@ -52,21 +53,24 @@ function DifferentiationSection() {
   const reduceMotion = useContext(ReduceMotionContext)
   const slide = reduceMotion ? { opacity: 1, x: 0 } : undefined
   return (
-    <section className="mb-24 md:mb-32">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+    <section>
+      <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
         <motion.div
           initial={slide ?? { opacity: 0, x: -12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: reduceMotion ? 0 : 0.5 }}
-          className="space-y-4"
+          className="space-y-5"
         >
           <h2 className="font-display text-3xl font-extrabold tracking-tighter text-on-surface md:text-4xl">
             Why design and engineering literacy matters
           </h2>
-          <p className="text-pretty text-on-surface-variant">
+          <p className="max-w-prose text-pretty text-base leading-relaxed text-on-surface-variant md:text-lg">
             For a deeper look at how I think about discovery, delivery, and AI-native programs, read{" "}
-            <Link href="/what-i-bring" className="font-semibold text-primary underline-offset-4 hover:underline">
+            <Link
+              href="/what-i-bring"
+              className="font-semibold text-primary underline decoration-primary/30 underline-offset-[0.22em] transition hover:decoration-primary"
+            >
               what I bring
             </Link>
             .
@@ -77,13 +81,16 @@ function DifferentiationSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : 0.06 }}
-          className="flex gap-6 rounded-2xl bg-surface-container-low p-8 md:p-10"
+          className="flex flex-col gap-5 rounded-2xl bg-surface-container-low p-8 shadow-editorial-float backdrop-blur-[2px] sm:flex-row sm:gap-6 md:p-10"
         >
-          <div className="w-1 shrink-0 self-stretch rounded-full bg-tertiary" aria-hidden />
-          <div>
-            <p className="font-display text-3xl font-bold leading-snug text-pretty text-on-surface md:text-4xl md:leading-tight">
-              I bring both design craft and engineering literacy — which means I speak your developers&apos; language and
-              ship work that doesn&apos;t fall apart in implementation.
+          <div
+            className="h-1 w-full shrink-0 rounded-full bg-gradient-to-r from-tertiary to-primary sm:h-auto sm:w-1 sm:self-stretch sm:bg-gradient-to-b"
+            aria-hidden
+          />
+          <div className="min-w-0 flex-1">
+            <p className="font-display text-2xl font-bold leading-snug text-pretty text-on-surface md:text-3xl md:leading-tight">
+              I bring both design craft and engineering literacy — which means I speak your developers&apos; language
+              and ship work that doesn&apos;t fall apart in implementation.
             </p>
           </div>
         </motion.div>
@@ -94,23 +101,25 @@ function DifferentiationSection() {
 
 function FaqSection() {
   return (
-    <section className="mb-24 md:mb-32">
+    <section>
       <SectionReveal className="mb-10 max-w-2xl">
         <h2 className="font-display text-3xl font-extrabold tracking-tighter text-on-surface md:text-4xl">FAQ</h2>
-        <p className="mt-3 text-pretty text-on-surface-variant">Practical questions teams ask before a first call.</p>
+        <p className="mt-4 text-pretty text-base leading-relaxed text-on-surface-variant">
+          Practical questions teams ask before a first call.
+        </p>
       </SectionReveal>
-      <div className="space-y-3">
+      <div className="space-y-4">
         {serviceFAQs.map((item, i) => (
           <SectionReveal key={item.question} delay={i * 0.04}>
-            <details className="group rounded-2xl bg-surface-container-low px-5 py-4 shadow-editorial-float open:bg-surface-container">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-bold text-on-surface marker:content-none [&::-webkit-details-marker]:hidden">
-                <span>{item.question}</span>
+            <details className="group rounded-2xl bg-surface-container-low px-5 py-4 shadow-editorial-float transition-colors open:bg-surface-container">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-display text-base font-bold leading-snug text-on-surface marker:content-none [&::-webkit-details-marker]:hidden">
+                <span className="min-w-0 pr-2">{item.question}</span>
                 <ChevronDown
-                  className="size-5 shrink-0 text-on-surface-variant transition group-open:rotate-180"
+                  className="mt-0.5 size-5 shrink-0 text-on-surface-variant transition-transform duration-200 group-open:rotate-180"
                   aria-hidden
                 />
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.answer}</p>
+              <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">{item.answer}</p>
             </details>
           </SectionReveal>
         ))}
@@ -127,30 +136,30 @@ function CtaSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: reduceMotion ? 0 : 0.5 }}
-      className="relative overflow-hidden rounded-2xl bg-inverse-surface px-8 py-16 text-center text-inverse-on-surface md:px-16 md:py-24"
+      className="relative overflow-hidden rounded-2xl bg-inverse-surface px-6 py-14 text-center text-inverse-on-surface shadow-editorial-lg sm:px-10 md:px-16 md:py-20"
     >
       <div
-        className="pointer-events-none absolute bottom-0 left-1/2 h-1/2 w-[120%] -translate-x-1/2 bg-gradient-to-t from-primary/25 to-transparent opacity-60"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,color-mix(in_srgb,var(--color-primary)_28%,transparent),transparent_55%)] opacity-90"
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-3xl">
-        <h2 className="font-display mb-6 text-4xl font-extrabold tracking-tighter text-pretty md:text-5xl">
+        <h2 className="font-display mb-5 text-3xl font-extrabold tracking-tighter text-pretty md:mb-6 md:text-4xl lg:text-5xl">
           Ready to scope the first milestone?
         </h2>
-        <p className="mx-auto mb-10 max-w-2xl text-lg text-pretty text-inverse-on-surface/75 md:text-xl">
+        <p className="mx-auto mb-9 max-w-2xl text-base text-pretty leading-relaxed text-inverse-on-surface/80 md:mb-10 md:text-lg">
           Engagement shapes and process live on Work With Me. If you already know what you need, jump straight to
           contact.
         </p>
-        <div className="flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+        <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
           <Link
             href="/work-with-me"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-10 py-5 text-lg font-bold text-primary-foreground transition hover:scale-[1.02] active:scale-[0.99]"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-editorial-float transition hover:brightness-105 active:brightness-95 sm:px-10 sm:py-4 sm:text-lg"
           >
             Work with me
           </Link>
           <Link
             href="/contact?from=services"
-            className="inline-flex items-center justify-center rounded-lg bg-inverse-on-surface/10 px-10 py-5 text-lg font-bold text-inverse-on-surface transition hover:bg-inverse-on-surface/15"
+            className="inline-flex items-center justify-center rounded-xl bg-inverse-on-surface/10 px-8 py-4 text-base font-bold text-inverse-on-surface transition hover:bg-inverse-on-surface/18 sm:px-10 sm:py-4 sm:text-lg"
           >
             Contact
           </Link>
@@ -165,12 +174,14 @@ export default function ServicesContent() {
 
   return (
     <ReduceMotionContext.Provider value={prefersReducedMotion}>
-      <div className="pb-8 md:pb-12">
+      <div className="pb-10 md:pb-14">
         <HeroSection />
-        {services.map((service, index) => (
-          <ServiceCard key={service.id} service={service} index={index} reduceMotion={prefersReducedMotion} />
-        ))}
-        <div className="mx-auto max-w-6xl px-6 md:px-8">
+        <div className="flex flex-col">
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} reduceMotion={prefersReducedMotion} />
+          ))}
+        </div>
+        <div className="mx-auto mt-20 max-w-6xl space-y-20 md:mt-28 md:space-y-28">
           <DifferentiationSection />
           <FaqSection />
           <CtaSection />

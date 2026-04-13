@@ -8,6 +8,9 @@ export type ServiceTier = {
   deliverables: string[]
   engagement: string
   outcomes: { metric: string; description: string }[]
+  /** Editorial illustration (SVG) beside service copy. */
+  imageSrc: string
+  imageAlt: string
 }
 
 export type ServiceFAQ = {
@@ -35,6 +38,8 @@ export const services: ServiceTier[] = [
       { metric: "2–3×", description: "faster stakeholder alignment on what to build first" },
       { metric: "30–50%", description: "fewer late scope changes once engineering starts" },
     ],
+    imageSrc: "/portfolio/services/product-design-strategy.svg",
+    imageAlt: "Abstract illustration: roadmap paths and discovery artifacts for product strategy.",
   },
   {
     id: "ai-native-ux",
@@ -56,6 +61,8 @@ export const services: ServiceTier[] = [
       { metric: "20–40%", description: "reduction in correction loops after first production release" },
       { metric: "2–3×", description: "faster iteration on high-risk AI flows once baseline instrumentation exists" },
     ],
+    imageSrc: "/portfolio/services/ai-native-ux.svg",
+    imageAlt: "Abstract illustration: layered signals and review patterns for AI-assisted product UX.",
   },
   {
     id: "design-systems",
@@ -76,6 +83,8 @@ export const services: ServiceTier[] = [
       { metric: "25–45%", description: "less repeated UI work across squads after baseline" },
       { metric: "Top journeys", description: "documented accessible patterns for the highest-traffic flows" },
     ],
+    imageSrc: "/portfolio/services/design-systems.svg",
+    imageAlt: "Abstract illustration: modular tiles suggesting tokens, components, and documentation.",
   },
   {
     id: "fractional-leadership",
@@ -96,6 +105,8 @@ export const services: ServiceTier[] = [
       { metric: "1–2 quarters", description: "to stabilize design quality and delivery predictability" },
       { metric: "Weekly", description: "design critique and alignment loop embedded with product and engineering" },
     ],
+    imageSrc: "/portfolio/services/fractional-leadership.svg",
+    imageAlt: "Abstract illustration: overlapping collaboration shapes for embedded design leadership.",
   },
 ]
 
