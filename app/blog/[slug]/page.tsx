@@ -1,16 +1,26 @@
 import { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 import { BlogTopicArticle } from "@/components/blog/BlogTopicArticle"
 import { PageShell } from "@/components/layout/PageShell"
-import { requireWhatIBringCard } from "@/lib/what-i-bring-cards"
+import { standaloneArticles } from "@/lib/blog-articles-data"
+import { whatIBringCards } from "@/lib/what-i-bring-cards"
+
+const allArticles = [...whatIBringCards, ...standaloneArticles]
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
+function getArticleOrNotFound(slug: string) {
+  const card = allArticles.find((a) => a.slug === slug)
+  if (!card) notFound()
+  return card
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const card = requireWhatIBringCard(slug)
+  const card = getArticleOrNotFound(slug)
   return {
     title: card.title,
     description: card.body,
@@ -30,18 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export function generateStaticParams() {
-  return [
-    { slug: "ai-native-delivery" },
-    { slug: "engineering-depth" },
-    { slug: "problem-framing" },
-    { slug: "solution-design" },
-    { slug: "value-realization" },
-  ]
+  return allArticles.map((a) => ({ slug: a.slug }))
 }
 
 export default async function BlogSlugPage({ params }: Props) {
   const { slug } = await params
-  const card = requireWhatIBringCard(slug)
+  const card = getArticleOrNotFound(slug)
   return (
     <PageShell>
       <BlogTopicArticle card={card} />
