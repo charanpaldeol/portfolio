@@ -22,16 +22,16 @@ Read before writing:
 4. The `BlogTopicArticle` component (find its import in the `[slug]` page) — understand what props it accepts
 
 ### Step 2 — Understand the existing data structure
-The articles in `what-i-bring-cards.ts` have a specific nested shape with `sections`, `eyebrow`, `body`, etc. Understand the exact TypeScript type before writing new articles.
+The type in `lib/what-i-bring-cards.ts` is **`WhatIBringCard`** (exact name — use this). It has nested `WhatIBringArticleSection[]`. Read the file in full to understand every field before writing new articles. Your new data file must use this same type — do not create a new type.
 
 ### Step 3 — Create standalone article data file
 Create `lib/blog-articles-data.ts` for the new standalone articles (keep `what-i-bring-cards.ts` unchanged):
 
 ```typescript
-// Import the same article type used in what-i-bring-cards.ts
-// (read that file to get the exact type name and shape)
+import type { WhatIBringCard } from "@/lib/what-i-bring-cards"
+// WhatIBringCard is the exact type — do not create a new type
 
-export const standaloneArticles: [ArticleType][] = [
+export const standaloneArticles: WhatIBringCard[] = [
   // ARTICLE 1: "The Prompt is a Design Artifact"
   // Topic: How writing good AI prompts requires the same skills as good UX writing
   // Angle: Most designers treat prompts as technical commands. They're actually
@@ -79,17 +79,45 @@ export const standaloneArticles: [ArticleType][] = [
 Write complete, substantive article content — not outlines or placeholders. Each article should have 5 rich sections of 150–300 words each. The writing tone should match the existing articles in `what-i-bring-cards.ts` — expert, direct, practical. Write as Charan's voice: confident, experience-backed, not academic.
 
 ### Step 4 — Update blog data source
-The `app/blog/[slug]/page.tsx` currently calls `generateStaticParams` from the what-i-bring cards. Update it to also include the new standalone articles:
+Read `app/blog/[slug]/page.tsx` in full first. Key facts:
+- `generateStaticParams` is **hardcoded** with 5 slugs (lines 32–40). You must change it to be dynamic.
+- The page uses `requireWhatIBringCard(slug)` from `lib/what-i-bring-cards.ts` — this function throws `notFound()` for unknown slugs.
 
-Read `app/blog/[slug]/page.tsx` first, then:
-1. Import `standaloneArticles` from `lib/blog-articles-data.ts`
-2. In `generateStaticParams`, return slugs from BOTH data sources: `[...whatIBringCards, ...standaloneArticles].map(a => ({ slug: a.slug }))`
-3. In the page component, find the article by slug from both sources: check `whatIBringCards` first, then `standaloneArticles`, and handle `notFound()` if neither matches
+Make these changes:
+1. Import `standaloneArticles` from `@/lib/blog-articles-data`
+2. Change `generateStaticParams` from hardcoded to:
+   ```typescript
+   import { whatIBringCards } from "@/lib/what-i-bring-cards"
+   import { standaloneArticles } from "@/lib/blog-articles-data"
+   
+   export function generateStaticParams() {
+     return [...whatIBringCards, ...standaloneArticles].map((a) => ({ slug: a.slug }))
+   }
+   ```
+3. In the page component, replace `requireWhatIBringCard(slug)` with a lookup that checks both sources:
+   ```typescript
+   const allArticles = [...whatIBringCards, ...standaloneArticles]
+   const card = allArticles.find((a) => a.slug === slug)
+   if (!card) notFound()
+   ```
+   Import `notFound` from `"next/navigation"` if not already imported.
 
 ### Step 5 — Update blog list page
-In `app/blog/page.tsx`, import the new standalone articles and render them alongside existing ones. Read the page to understand the current rendering — likely it maps over the cards array. Combine the arrays: show all articles.
+In `app/blog/page.tsx`, the current page iterates over `whatIBringCards` only (flat list, no sections). Add the new articles as a separate **"Thinking out loud"** section below the existing cards:
 
-If the blog list page has separate sections (e.g. "Service Articles" vs "Thoughts"), use that structure. If it's a flat list, add the new articles to the flat list. Follow existing patterns exactly.
+```typescript
+import { standaloneArticles } from "@/lib/blog-articles-data"
+
+// In JSX, after the existing whatIBringCards section, add:
+<section>
+  <h2>Thinking out loud</h2>
+  {standaloneArticles.map((article) => (
+    // render each article card using the same card component/pattern as above
+  ))}
+</section>
+```
+
+Read the file first to copy the exact card rendering pattern used for `whatIBringCards`.
 
 ### Step 6 — Verify static generation
 ```bash

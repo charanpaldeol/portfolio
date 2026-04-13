@@ -111,9 +111,7 @@ type Props = {
 - Same input/button styles but smaller padding
 
 ### Step 5 — Add to blog articles
-In the `BlogTopicArticle` component (or the blog `[slug]` page), add `<NewsletterSignup variant="inline" />` after the article body content, before any related links section.
-
-Read the component first to understand the exact placement.
+The blog article component is at `components/blog/BlogTopicArticle.tsx` (imported in `app/blog/[slug]/page.tsx` as `@/components/blog/BlogTopicArticle`). Read it first, then add `<NewsletterSignup variant="inline" />` as the last item inside the component's JSX, after the article sections content and before the closing wrapper tag. This ensures every blog article gets the signup.
 
 ### Step 6 — Add to footer
 In `components/layout/Footer.tsx`, add `<NewsletterSignup variant="footer" />` in an appropriate column or above the copyright line.

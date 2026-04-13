@@ -3,14 +3,17 @@
 > Read `agents/plans/_PROJECT_CONTEXT.md` first for coding rules, file locations, and tech stack.
 
 ## Objective
-The `/portfolio/services` page is currently the weakest page on the site — basic and thin. Rewrite it with concrete service offerings, who each is for, and what outcomes clients get. This is often the first page a potential client checks after the home page.
+The `/portfolio/services` page currently has **incorrect content** — it was auto-generated with generic web agency services ("Websites & Landing Pages", "Custom Software & Products", etc.) and uses first-person plural "we" language, as if Charan runs an agency. This is completely wrong for a solo product design consultant's portfolio.
+
+**Goal:** Replace the service content with Charan's actual product design consulting services. **Preserve** the existing Framer Motion animation patterns, card layout structure, and `EditorialPageHero` — only the service data and copy needs replacing.
 
 ## What exists today
-- **Page**: `app/portfolio/services/ServicesContent.tsx` — read this first to understand the current state
-- **Related content**: `lib/what-i-bring-cards.ts` — rich service card data with article sections; use this as source material but don't duplicate it
-- **Hero**: must use `EditorialPageHero`
+- **Page**: `app/portfolio/services/ServicesContent.tsx` — 531 lines, `"use client"` Framer Motion component. Has good animation patterns to keep. Has WRONG service content to replace.
+- **Current wrong services**: "Websites & Landing Pages", "Custom Software & Products", "AI & Automation", "Enterprise Systems & Security" — these are generic agency services, not Charan's offerings
+- **Hero**: Already uses `EditorialPageHero` ✅ — keep as-is
+- **Related content**: `lib/what-i-bring-cards.ts` — source material for Charan's real capabilities
 
-The goal is NOT to duplicate `what-i-bring`. That page explains the *philosophy*. Services explains the *commercial offering* — what you hire Charan to do, what you get, and what problems it solves.
+The goal is NOT to duplicate `what-i-bring`. That page explains the *philosophy*. Services explains the *commercial offering*.
 
 ## Steps
 
@@ -70,7 +73,7 @@ export const serviceFAQs: ServiceFAQ[] = [
 ```
 
 ### Step 3 — Rewrite ServicesContent
-Rewrite `app/portfolio/services/ServicesContent.tsx` (keep the filename — the page.tsx imports it).
+Rewrite `app/portfolio/services/ServicesContent.tsx`. Keep the filename and the `"use client"` directive (Framer Motion is used). **Preserve the animation patterns** (motion.div, useReducedMotion, whileInView, etc.) but replace all service data with the new services from `lib/services-data.ts`. Remove the hardcoded `const services = [...]` array from the component — import from lib instead.
 
 **Section 1 — Hero** (use `EditorialPageHero`):
 - eyebrow: "Services"

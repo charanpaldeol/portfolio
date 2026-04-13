@@ -6,8 +6,9 @@
 Rewrite the project case studies so hiring managers and consulting prospects can understand business impact within 6 seconds. Currently the project detail pages exist but lead with description. They need to be restructured to: **Impact first → Role → Process → Outcomes → Learnings**.
 
 ## What exists today
-- **Data**: `lib/projects-data.ts` — 7+ `ProjectData` objects with `problem`, `solution`, `metrics`, `techStack` fields
-- **Detail page**: `app/portfolio/projects/[slug]/ProjectDetailContent.tsx` — renders a project's data
+- **Data**: `lib/projects-data.ts` — 7+ objects using `export interface ProjectData` (exact type name) with `problem`, `solution`, `metrics`, `techStack` fields
+- **Detail page**: `app/portfolio/projects/[slug]/ProjectDetailContent.tsx` — already a **Client Component** (`"use client"` on line 1, uses Framer Motion). Do NOT remove this directive.
+- **Static params**: `app/portfolio/projects/[slug]/page.tsx` — has `generateStaticParams()` that returns all project slugs. If you add new slugs to `projects-data.ts`, update this function too.
 - **List page**: `app/portfolio/projects/PortfolioProjectsContent.tsx` — grid of project cards
 
 ## Steps
@@ -20,9 +21,9 @@ Read these files in full before writing anything:
 4. `components/portfolio/EditorialPageHero.tsx` — understand hero props
 
 ### Step 2 — Extend the ProjectData type
-In `lib/projects-data.ts`, extend (do not break) the existing TypeScript interface to add:
+In `lib/projects-data.ts`, extend (do not break) the existing `export interface ProjectData` to add:
 ```typescript
-type ProjectData = {
+export interface ProjectData {
   // ... existing fields preserved ...
   slug: string
   title: string
@@ -62,7 +63,7 @@ Rewrite `app/portfolio/projects/[slug]/ProjectDetailContent.tsx` with this secti
 9. **Key Learning** (if exists) — pull-quote style using `text-4xl` Manrope with a `bg-primary` left accent bar (4px wide, `bg-tertiary` per DESIGN.md "Expert Highlight" component spec)
 10. **Tech Stack** — existing rendering, keep as-is
 
-Component must remain a Server Component (no `"use client"`). Data flows from the page via props.
+This component is already a Client Component (`"use client"`) using Framer Motion — keep it that way. Data flows from the page via props.
 
 ### Step 4 — Update project card on list page
 In `PortfolioProjectsContent.tsx` (or wherever cards render), update the card to show:

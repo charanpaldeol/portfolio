@@ -168,6 +168,7 @@ Working directory: /Users/al/Projects AI/Portfolio/portfolio
 You are an autonomous agent for cpdeol.com. Complete this mission without stopping or asking for human input.
 
 MISSION: Execute PLAN-04 (Services Page) fully and push to git.
+NOTE: The current services page has WRONG generic agency content (531 lines). Preserve Framer Motion animation patterns, replace all service data.
 
 ── STEP 1: LOAD CONTEXT ──
 Read these files in full before writing a single line of code:
@@ -475,14 +476,15 @@ Working directory: /Users/al/Projects AI/Portfolio/portfolio
 You are an autonomous agent for cpdeol.com. Complete this mission without stopping or asking for human input.
 
 MISSION: Execute PLAN-10 (New Articles) fully and push to git.
+NOTE: Article type is WhatIBringCard (exact name). generateStaticParams in blog/[slug]/page.tsx is hardcoded — you must convert it to dynamic. Do NOT modify lib/what-i-bring-cards.ts.
 
 ── STEP 1: LOAD CONTEXT ──
 Read these files in full before writing a single line of code:
 1. agents/plans/_PROJECT_CONTEXT.md
 2. agents/plans/PLAN-10-new-articles.md
 3. agents/governance/REVIEW-CHECKLIST.md  (find "PLAN-10" section + "Universal checks")
-4. lib/what-i-bring-cards.ts  (CRITICAL — use the exact TypeScript type from this file)
-5. app/blog/[slug]/page.tsx  (understand generateStaticParams before touching it)
+4. lib/what-i-bring-cards.ts  (CRITICAL — WhatIBringCard is the type; use it exactly)
+5. app/blog/[slug]/page.tsx  (CRITICAL — generateStaticParams is hardcoded, you must make it dynamic)
 
 ── STEP 2: EXECUTE ──
 Follow every step in PLAN-10-new-articles.md exactly.

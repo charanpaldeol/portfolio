@@ -7,7 +7,7 @@ Add social proof to the portfolio. The site currently has zero testimonials, no 
 
 ## What exists today
 - **Home page**: `app/page.tsx` — renders sections from `components/home/`
-- **About page**: `app/portfolio/about/page.tsx` + `app/portfolio/about/AboutContent.tsx`
+- **About page**: `app/portfolio/about/page.tsx` imports `AboutContent` from `./AboutContent` — the component file is at `app/portfolio/about/AboutContent.tsx`
 - **No testimonials data** exists anywhere yet
 
 ## Steps
@@ -88,7 +88,9 @@ type TestimonialsProps = {
 Keep component under 300 lines. If card markup is complex, extract a `TestimonialCard` sub-component in the same file or as `components/home/TestimonialCard.tsx`.
 
 ### Step 4 — Add Testimonials to home page
-In `app/page.tsx`, import the new component and add it after `ProofMetrics` (or after `WhatIBring` — read the current order and pick the more natural placement):
+The current home page section order is: Hero → HomeJumpNav → WhatIBring → ProofMetrics → HomeHowIWorkTeaser → HowIThink → BlogTeaser → CTABand.
+
+In `app/page.tsx`, import the new component and add it **after `ProofMetrics` and before `HomeHowIWorkTeaser`** — this is the natural social-proof placement immediately following the metrics:
 
 ```typescript
 import { Testimonials } from "@/components/home/Testimonials"

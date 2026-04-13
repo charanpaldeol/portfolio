@@ -107,7 +107,16 @@ Create `app/work-with-me/WorkWithMeContent.tsx` (Server Component) with these se
 - Note: add `// TODO: replace /contact with Calendly link when available`
 
 ### Step 4 — Add to navigation
-In `config/navigation.tsx`, add the new route. Read the file first to understand the exact data shape, then add "Work With Me" as a link in the appropriate nav group (likely the "Work" dropdown or as a standalone top-level link). Follow the existing TypeScript interface exactly.
+In `config/navigation.tsx`, add the new route to the `workLinks` array (line ~55). The exact interface is:
+```typescript
+export interface NavLink {
+  href: string
+  label: string
+  description: string
+  icon: ReactNode   // use a Lucide icon, e.g. <Handshake className="h-5 w-5" />
+}
+```
+Add a `NavLink` entry for `/work-with-me`. Import the icon from `lucide-react`. The `description` field appears as subtitle text in the dropdown — write 1 sentence describing the page.
 
 ### Step 5 — Verify and commit
 ```bash

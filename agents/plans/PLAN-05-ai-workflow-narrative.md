@@ -7,7 +7,7 @@ Create a `/how-i-use-ai` page that tells Charan's personal story of working with
 
 ## What exists today
 - **Related content**: `lib/what-i-bring-cards.ts` — read the `ai-native-delivery` card entry for existing positioning language
-- **Blog article**: `app/blog/ai-native-delivery` — read to understand current AI messaging
+- **AI article content**: in `lib/what-i-bring-cards.ts` — find the entry where `slug === "ai-native-delivery"`. This is the existing AI-native messaging to build on.
 - **How I Work page**: `app/how-i-work/page.tsx` — workflow framing reference
 - **Internet Owned editorial**: `app/internet-owned/InternetOwnedEditorial.tsx` — example of long-form editorial layout with scroll-tracking sidebar nav
 
@@ -95,7 +95,14 @@ A pull-quote style section (DESIGN.md "Expert Highlight" pattern):
 Link to `/blog/ai-native-delivery` and `/what-i-bring` for deeper context.
 
 ### Step 4 — Add to navigation
-In `config/navigation.tsx`, add the new route under the "Work" or "Ideas" group (read the file to determine which fits better). Use the existing TypeScript interface exactly.
+In `config/navigation.tsx`, add `/how-i-use-ai` to the `ideasLinks` array (line ~132). This array uses `SimpleNavLink` interface:
+```typescript
+export interface SimpleNavLink {
+  href: string
+  label: string
+}
+```
+Add: `{ href: "/how-i-use-ai", label: "How I Use AI" }` to `ideasLinks`.
 
 ### Step 5 — Verify and commit
 ```bash

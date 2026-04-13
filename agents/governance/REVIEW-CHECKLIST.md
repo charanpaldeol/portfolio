@@ -63,13 +63,16 @@ This file contains the specific acceptance criteria for each plan. The governanc
 [ ] lib/services-data.ts exists with ServiceTier TypeScript interface
 [ ] 4 services defined: Product Design Strategy, AI-Native UX, Design Systems, Fractional Leadership
 [ ] Each service has: name, tagline, description, whoItsFor, deliverables[], engagement, outcomes[]
+[ ] ZERO remaining "we"/"our" language (old agency copy fully removed)
+[ ] ZERO references to old generic services (Websites, Custom Software, Enterprise Systems)
 [ ] ServicesContent shows deliverables list for each service
 [ ] ServicesContent shows outcome metrics for each service
+[ ] Framer Motion animations preserved (component remains "use client")
 [ ] Differentiation pull-quote section present (Expert Highlight pattern)
-[ ] FAQ section present (uses <details>/<summary>)
+[ ] FAQ section present
 [ ] CTA links to /work-with-me AND /contact
 [ ] No content duplicated from /what-i-bring
-[ ] EditorialPageHero used
+[ ] EditorialPageHero used (already present — do not remove)
 [ ] No component exceeds 300 lines (split if needed)
 ```
 
@@ -165,16 +168,17 @@ This file contains the specific acceptance criteria for each plan. The governanc
 ## PLAN-10: New Articles
 
 ```
-[ ] lib/blog-articles-data.ts exists with 3 article entries
+[ ] lib/blog-articles-data.ts exists and imports WhatIBringCard from @/lib/what-i-bring-cards
+[ ] standaloneArticles typed as WhatIBringCard[] (NOT a new type)
 [ ] Article slugs: prompt-as-design-artifact, why-design-systems-fail, designing-for-decisions
 [ ] All 3 articles have full content (5 sections each, 150-300 words per section)
 [ ] No lorem ipsum or placeholder article body text
-[ ] Articles use same TypeScript type as existing articles (no new types introduced)
-[ ] app/blog/[slug]/page.tsx serves articles from both data sources
-[ ] generateStaticParams includes all 8 article slugs
-[ ] /blog list page shows all 8 articles
+[ ] app/blog/[slug]/page.tsx generateStaticParams is now DYNAMIC (not hardcoded 5 slugs)
+[ ] Blog slug page looks up article from both whatIBringCards + standaloneArticles combined
+[ ] notFound() called if slug not found in either source
+[ ] /blog list page shows existing 5 articles + new 3 in a separate "Thinking out loud" section
 [ ] All 3 new routes render without 404
-[ ] pnpm build pre-renders all 3 new routes as static pages
+[ ] pnpm build pre-renders all 8 article slugs as static pages
 [ ] lib/what-i-bring-cards.ts is UNCHANGED
 ```
 

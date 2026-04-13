@@ -36,16 +36,20 @@ Arrows/connectors show how decisions in Layer 1 propagate upward and unlock spee
 // Use CSS variable aliases like diagrams.tsx
 const C = {
   primary: "var(--color-primary)",
-  primaryFixed: "var(--color-primary-fixed)",
-  primaryDark: "var(--color-on-primary-fixed)",
+  primaryFixed: "var(--color-primary-fixed)",       // ← hyphen, NOT camelCase
+  primaryDark: "var(--color-on-primary-fixed)",      // ← hyphen
   secondary: "var(--color-secondary)",
-  secondaryFixed: "var(--color-secondary-fixed)",
+  secondaryFixed: "var(--color-secondary-fixed)",    // ← hyphen
   onSurface: "var(--color-on-surface)",
   onSurfaceVariant: "var(--color-on-surface-variant)",
   surface: "var(--color-surface)",
   containerLow: "var(--color-surface-container-low)",
   containerHighest: "var(--color-surface-container-highest)",
 } as const
+
+// CRITICAL: CSS custom property names use hyphens (kebab-case), NEVER camelCase.
+// e.g. var(--color-primary-fixed) ✅   var(--color-primaryFixed) ❌
+// Cross-reference styles/tailwind.css for all valid token names before using them.
 ```
 
 The SVG should be:

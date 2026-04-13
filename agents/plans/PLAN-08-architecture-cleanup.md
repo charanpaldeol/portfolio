@@ -10,12 +10,19 @@ Complete the remaining architecture items that are flagged in `docs/code-archite
 ### Item A — Extract HowIWork data arrays to lib
 `components/home/HowIWork.tsx` still has `phases` and `expertise` arrays hardcoded inline (lines ~24-95). These must move to `lib/how-i-work-data.ts` per the architecture rule: "No hardcoded data in components — move to /lib/".
 
-### Item B — Fix remaining hardcoded colors
-Two hex values remain in app code:
-- `#8a8680` in `components/layout/PortfolioShell.tsx` (or similar — verify location)
-- `#0A66C2` in `components/layout/navbar/SocialLinks.tsx` (LinkedIn blue)
+### Item B — Verify and fix remaining hardcoded colors
+**First, verify these colors still exist** — they may have been fixed already:
 
-These need to move to `styles/tailwind.css` as named tokens.
+```bash
+grep -rn "#8a8680\|8a8680" --include="*.tsx" --include="*.ts" .
+grep -rn "#0A66C2\|0A66C2\|0a66c2" --include="*.tsx" --include="*.ts" .
+```
+
+If grep returns nothing for either color → that item is already done, skip it.
+
+If colors ARE found:
+- `#8a8680` → add `--color-shell-mid: #8a8680;` to `styles/tailwind.css` and replace the hex with the token class
+- `#0A66C2` → `--color-external-linkedin` already exists in `styles/tailwind.css`; replace the hex with `text-external-linkedin` or `bg-external-linkedin` (check usage context)
 
 ### Item C — Add TypeScript `as const` to readonly data arrays
 Several data arrays in `/lib/` would benefit from `as const` for better type inference. This is low-risk and improves IDE experience.
@@ -35,26 +42,36 @@ Read these in full:
 Create `lib/how-i-work-data.ts`:
 
 ```typescript
-// Matches the shape of whatever arrays currently exist in HowIWork.tsx
-// Read the component first, copy the exact type shape
+// HowIWork.tsx uses LucideIcon type for icons in both arrays.
+// You MUST import LucideIcon and all icon components used in the data.
+import type { LucideIcon } from "lucide-react"
+// Import the specific icons used in the phases and expertise arrays
+// (read HowIWork.tsx first to find which icons are used, then import them here)
 
 export type WorkPhase = {
   // Copy the exact shape from HowIWork.tsx — do not change property names
-  // Just move the data, don't redesign the types
+  // The phases array uses: title, description, Icon, emphasized (at minimum)
+  // Read HowIWork.tsx lines 24-62 for the exact shape
+  Icon: LucideIcon
+  // ... other fields
 }
 
 export type ExpertiseArea = {
-  // Same — copy exact shape
+  // Read HowIWork.tsx lines 63-94 for the exact shape
+  Icon: LucideIcon
+  // ... other fields
 }
 
 export const workPhases: WorkPhase[] = [
   // Copy the array verbatim from HowIWork.tsx
-] as const
+]
 
 export const expertiseAreas: ExpertiseArea[] = [
   // Copy the array verbatim from HowIWork.tsx  
-] as const
+]
 ```
+
+**Critical:** The icon components (e.g. `Brain`, `Code2`, `Layers` from lucide-react) that are currently imported at the top of `HowIWork.tsx` must also be imported in `how-i-work-data.ts`. After moving the data, remove the icon imports from `HowIWork.tsx` (since the data — and thus icon usage — moves to the lib file), then re-import them in `lib/how-i-work-data.ts`.
 
 Then in `HowIWork.tsx`:
 1. Remove the inline arrays
