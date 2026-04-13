@@ -1,9 +1,8 @@
-"use client"
-
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import HowIWork from "@/components/home/HowIWork"
+import SystemsThinkingSection from "@/components/home/SystemsThinkingSection"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 
@@ -48,7 +47,7 @@ export default function HowIWorkPage() {
         description="End-to-end ownership, measured outcomes, and clean handoffs only when the value is real."
       />
       <section className="rounded-2xl bg-surface-container-low p-8 shadow-editorial md:p-12 lg:p-14">
-        <HowIWork />
+        <HowIWork afterPipeline={<SystemsThinkingSection />} />
       </section>
       <CTA />
     </PageShell>
