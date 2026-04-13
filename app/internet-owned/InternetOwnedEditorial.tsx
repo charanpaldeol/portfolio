@@ -503,7 +503,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
                 href="https://discord.gg/wRJTpGfApZ"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 rounded-lg bg-[#5865F2] px-10 py-5 font-sans text-xl font-semibold text-white shadow-editorial transition hover:bg-[#4752C4] active:scale-[0.98]"
+                className="inline-flex items-center gap-3 rounded-lg bg-external-discord px-10 py-5 font-sans text-xl font-semibold text-white shadow-editorial transition hover:bg-external-discord-hover active:scale-[0.98]"
               >
                 <span>Join Discord community</span>
                 <MessageSquare className="h-6 w-6" />

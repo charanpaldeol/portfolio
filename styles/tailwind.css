@@ -58,8 +58,23 @@
   --color-destructive: #b42318;
   --color-destructive-foreground: #fcf9f5;
 
-  /* Third-party brand marks (navbar) — defined here so app/components stay hex-free for audit */
+  /* Third-party brand marks (navbar/cta) — defined here so app/components stay hex-free for audit */
   --color-external-linkedin: #0a66c2;
+  --color-external-discord: #5865f2;
+  --color-external-discord-hover: #4752c4;
+
+  /* Diagram semantic colors — internet-owned article diagrams */
+  --color-diagram-mesh: var(--color-primary);
+  --color-diagram-mesh-light: var(--color-primary-fixed);
+  --color-diagram-mesh-dark: var(--color-on-primary-fixed);
+  --color-diagram-neutral-node: var(--color-surface-container-low);
+  --color-diagram-neutral-edge: var(--color-surface-container-highest);
+  --color-diagram-neutral-stroke: var(--color-on-surface-variant);
+  --color-diagram-neutral-text: var(--color-on-surface-variant);
+  --color-diagram-neutral-bg: var(--color-surface);
+  --color-diagram-gateway: #0369a1;
+  --color-diagram-gateway-light: #bae6fd;
+  --color-diagram-gateway-dark: #0c4a6e;
 
   /* Extra-diffused “natural light” shadow (on-surface tint, not #000) */
   --shadow-editorial: 0 32px 56px -12px color-mix(in srgb, var(--color-on-surface) 6%, transparent);
