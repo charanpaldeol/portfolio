@@ -64,10 +64,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <PageShell>
-        <div className="space-y-14 md:space-y-20">
-          <Hero />
-          <HomeJumpNav />
+      <PageShell variant="home">
+        <div className="space-y-16 md:space-y-24">
+          <div className="space-y-5 md:space-y-6">
+            <Hero />
+            <HomeJumpNav />
+          </div>
           <WhatIBring />
           <ProofMetrics />
           <Testimonials testimonials={testimonials} />
