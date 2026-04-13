@@ -35,7 +35,7 @@ export default function CTABand() {
             </Link>
             <Link
               href="/portfolio/projects"
-              className="inline-flex w-full items-center justify-center rounded-xl border border-background/20 px-10 py-5 text-base font-bold text-background transition-all hover:bg-background/10 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-xl bg-background/10 px-10 py-5 text-base font-bold text-background shadow-editorial-float transition-all hover:bg-background/14 sm:w-auto"
             >
               View case studies
             </Link>

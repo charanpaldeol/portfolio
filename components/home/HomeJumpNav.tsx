@@ -6,7 +6,7 @@ export default function HomeJumpNav() {
     <nav
       aria-label="On this page"
       className={cn(
-        "sticky top-16 z-30 -mx-6 mb-2 border-y border-outline-variant/10 bg-surface/95 py-3 backdrop-blur-md md:-mx-8"
+        "sticky top-16 z-30 -mx-6 mb-2 bg-surface-container-low/85 py-3 shadow-editorial-float backdrop-blur-md md:-mx-8"
       )}
     >
       <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto px-4 pb-0.5 md:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

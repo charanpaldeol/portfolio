@@ -32,7 +32,7 @@ export default function SystemsThinkingSection() {
       <ul className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {systemsExamples.map((ex) => (
           <li key={ex.id}>
-            <article className="flex h-full flex-col rounded-xl bg-surface p-6 shadow-editorial outline outline-1 outline-outline-variant/15 md:p-7">
+            <article className="flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 shadow-editorial md:p-7">
               <span className={layerChipClasses(ex.layer)}>
                 {ex.layer === "token" ? "Token" : ex.layer === "component" ? "Component" : "Platform"}
               </span>

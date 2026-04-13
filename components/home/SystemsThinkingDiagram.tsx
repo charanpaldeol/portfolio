@@ -5,7 +5,7 @@ function DiagramFigure({ children, "aria-label": ariaLabel }: { children: ReactN
   return (
     <figure
       aria-label={ariaLabel}
-      className="mt-8 overflow-hidden rounded-2xl bg-surface-container-low p-5 shadow-editorial outline outline-1 outline-outline-variant/15 md:mt-10 md:p-8"
+      className="mt-8 overflow-hidden rounded-2xl bg-surface-container-low p-5 shadow-editorial md:mt-10 md:p-8"
     >
       {children}
     </figure>

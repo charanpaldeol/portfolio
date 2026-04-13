@@ -24,7 +24,9 @@ export default function ToolsAndMethods() {
         >
           &ldquo;
         </div>
-        <div className="relative max-w-3xl border-l-4 border-tertiary pl-6 sm:pl-8 md:pl-10">
+        <div className="relative flex max-w-3xl gap-4 sm:gap-5 md:gap-6">
+          <div className="w-1 shrink-0 self-stretch rounded-full bg-tertiary" aria-hidden />
+          <div className="min-w-0 flex-1">
           <blockquote>
             <p className="font-display text-2xl font-extrabold leading-tight tracking-tight text-on-surface md:text-4xl">
               The tools we choose are secondary to the intent they serve — every artefact
@@ -34,6 +36,7 @@ export default function ToolsAndMethods() {
               <cite className="not-italic">Guiding principle behind the toolkit</cite>
             </footer>
           </blockquote>
+          </div>
         </div>
       </section>
 
@@ -49,7 +52,7 @@ export default function ToolsAndMethods() {
 
         <div className="relative hidden md:block">
           <div
-            className="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 bg-outline-variant/30"
+            className="pointer-events-none absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,color-mix(in_srgb,var(--color-on-surface)_10%,transparent),transparent_70%)] opacity-45"
             aria-hidden
           />
           <div className="grid grid-cols-2 gap-5">

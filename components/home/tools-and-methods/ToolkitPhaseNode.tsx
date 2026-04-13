@@ -56,15 +56,21 @@ export function ToolkitPhaseNode({
     <div
       className={cn(
         "group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl bg-surface-container-lowest p-6 shadow-editorial",
-        "border-l-4 transition-transform duration-500 ease-out will-change-transform",
+        "transition-transform duration-500 ease-out will-change-transform",
         "hover:-translate-y-2 hover:shadow-editorial-lg",
-        accent === "primary" ? "border-primary" : "border-secondary"
       )}
     >
       <div
         className={cn(
           "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
           accent === "primary" ? "bg-primary/10" : "bg-secondary/10"
+        )}
+        aria-hidden
+      />
+      <div
+        className={cn(
+          "pointer-events-none absolute left-0 top-0 h-full w-1 rounded-full opacity-70",
+          accent === "primary" ? "bg-primary" : "bg-secondary"
         )}
         aria-hidden
       />
