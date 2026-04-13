@@ -5,7 +5,7 @@ import { cva } from 'class-variance-authority'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 // ─── Style helper (mirrors shadcn's navigationMenuTriggerStyle) ───────────────
 
@@ -28,7 +28,7 @@ export const NavigationMenu = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Root
     ref={ref}
-    className={twMerge('relative z-10 flex max-w-max flex-1 items-center justify-center', className)}
+    className={cn('relative z-10 flex max-w-max flex-1 items-center justify-center', className)}
     {...props}
   >
     {children}
@@ -45,7 +45,7 @@ export const NavigationMenuList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <NavigationMenuPrimitive.List
     ref={ref}
-    className={twMerge('group flex flex-1 list-none items-center justify-center gap-1', className)}
+    className={cn('group flex flex-1 list-none items-center justify-center gap-1', className)}
     {...props}
   />
 ))
@@ -63,7 +63,7 @@ export const NavigationMenuTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={twMerge(navigationMenuTriggerStyle(), 'group', className)}
+    className={cn(navigationMenuTriggerStyle(), 'group', className)}
     {...props}
   >
     {children}
@@ -92,7 +92,7 @@ export const NavigationMenuContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <NavigationMenuPrimitive.Content
     ref={ref}
-    className={twMerge(
+    className={cn(
       'left-0 top-0 w-full md:absolute md:w-auto',
       'data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out',
       'data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
@@ -121,7 +121,7 @@ export function NavigationMenuLink({ href, exact = false, className, children, .
       href={href}
       aria-current={isActive ? 'page' : undefined}
       data-active={isActive || undefined}
-      className={twMerge(
+      className={cn(
         navigationMenuTriggerStyle(),
         'text-muted-foreground hover:text-foreground',
         isActive && 'font-semibold text-foreground',
@@ -140,9 +140,9 @@ export const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
-  <div className={twMerge('absolute left-0 top-full flex justify-center')}>
+  <div className={cn('absolute left-0 top-full flex justify-center')}>
     <NavigationMenuPrimitive.Viewport
-      className={twMerge(
+      className={cn(
         'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)]',
         'w-full overflow-hidden rounded-xl bg-popover text-popover-foreground shadow-editorial-lg',
         'md:w-[var(--radix-navigation-menu-viewport-width)]',
@@ -165,7 +165,7 @@ export const NavigationMenuIndicator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <NavigationMenuPrimitive.Indicator
     ref={ref}
-    className={twMerge(
+    className={cn(
       'top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden',
       'data-[state=visible]:animate-in data-[state=hidden]:animate-out',
       'data-[state=hidden]:fade-out data-[state=visible]:fade-in',

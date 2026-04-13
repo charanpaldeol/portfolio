@@ -1,97 +1,11 @@
 "use client"
 
-import type { LucideIcon } from "lucide-react"
-import {
-  Box,
-  Briefcase,
-  Building2,
-  CheckCircle2,
-  Code2,
-  Database,
-  FileText,
-  PenLine,
-  Search,
-  Shield,
-  Users,
-  Zap,
-} from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
+import { expertiseAreas, workPhases } from "@/lib/how-i-work-data"
 import { cn } from "@/lib/utils"
 
 import styles from "./HowIWork.module.css"
-
-const phases: {
-  title: string
-  description: string
-  Icon: LucideIcon
-  emphasized?: boolean
-}[] = [
-  {
-    title: "Discover",
-    description: "Stakeholder interviews, process mapping, problem framing",
-    Icon: Search,
-  },
-  {
-    title: "Define",
-    description: "BRDs, user stories, acceptance criteria, business case",
-    Icon: FileText,
-  },
-  {
-    title: "Design",
-    description: "Architecture, data models, API contracts, integration specs",
-    Icon: Box,
-  },
-  {
-    title: "Deliver",
-    description: "Agile execution, backlog ownership, UAT, defect triage",
-    Icon: Zap,
-  },
-  {
-    title: "Adopt",
-    description: "Training, comms, rollout, post-launch support",
-    Icon: Users,
-  },
-  {
-    title: "Value",
-    description: "KPIs tracked, outcomes measured, platform scales",
-    Icon: CheckCircle2,
-    emphasized: true,
-  },
-]
-
-const expertise: { title: string; body: string; Icon: LucideIcon }[] = [
-  {
-    title: "Business & product",
-    body: "Executives, product owners, domain SMEs",
-    Icon: Briefcase,
-  },
-  {
-    title: "Engineering & QA",
-    body: "Dev, QA, DevOps, testing, release",
-    Icon: Code2,
-  },
-  {
-    title: "Architects & tech leads",
-    body: "Solution, enterprise, integration",
-    Icon: Building2,
-  },
-  {
-    title: "UX & design",
-    body: "Flows, prototypes, research",
-    Icon: PenLine,
-  },
-  {
-    title: "Data & AI teams",
-    body: "Data science, LLMs, agentic workflows",
-    Icon: Database,
-  },
-  {
-    title: "Compliance & vendors",
-    body: "Regulatory, procurement, 3rd parties",
-    Icon: Shield,
-  },
-]
 
 export default function HowIWork() {
   const pipelineRef = useRef<HTMLDivElement>(null)
@@ -123,7 +37,7 @@ export default function HowIWork() {
         aria-label="Delivery phases"
       >
         <div className={styles.hiwTrack} aria-hidden />
-        {phases.map(({ title, description, Icon, emphasized }) => (
+        {workPhases.map(({ title, description, Icon, emphasized }) => (
           <div key={title} className={styles.hiwPhase} role="listitem">
             <div
               className={cn(
@@ -156,7 +70,7 @@ export default function HowIWork() {
       </p>
 
       <ul className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {expertise.map(({ title, body, Icon }) => (
+        {expertiseAreas.map(({ title, body, Icon }) => (
           <li key={title}>
             <div className="flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 transition-colors duration-200 hover:bg-surface-container md:p-8">
               <Icon

@@ -14,7 +14,7 @@ export interface ToolGroup {
   bold: string[]
 }
 
-export const toolGroups: ToolGroup[] = [
+export const toolGroups = [
   {
     phase: "Discover",
     description:
@@ -120,4 +120,4 @@ export const toolGroups: ToolGroup[] = [
     ],
     bold: ["KPI definition", "Value architecture"],
   },
-]
+] as const satisfies readonly ToolGroup[]

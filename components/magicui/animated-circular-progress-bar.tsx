@@ -1,5 +1,6 @@
 "use client"
-import { twMerge } from "tailwind-merge"
+
+import { cn } from "@/lib/utils"
 
 type AnimatedCircularProgressBarProps = {
   max?: number
@@ -27,7 +28,7 @@ export function AnimatedCircularProgressBar({
   const dashOffset = circumference * (1 - percentage)
 
   return (
-    <div className={twMerge("relative h-40 w-40", className)}>
+    <div className={cn("relative h-40 w-40", className)}>
       <svg viewBox="0 0 120 120" className="h-full w-full" aria-hidden="true">
         <circle
           cx="60"

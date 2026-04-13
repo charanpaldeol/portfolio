@@ -14,7 +14,7 @@ export interface Metric {
   tagColor: TagColor
 }
 
-export const metrics: Metric[] = [
+export const metrics = [
   {
     numericValue: 60,
     statSuffix: "%",
@@ -39,7 +39,7 @@ export const metrics: Metric[] = [
     tag: "Change management",
     tagColor: "amber",
   },
-]
+] as const satisfies readonly Metric[]
 
 export const tagStyles: Record<TagColor, { pill: string; accent: string }> = {
   emerald: {

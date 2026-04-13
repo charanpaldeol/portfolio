@@ -12,7 +12,7 @@ export type WhatIBringCard = {
   sections: WhatIBringArticleSection[]
 }
 
-export const whatIBringCards: WhatIBringCard[] = [
+export const whatIBringCards = [
   {
     slug: "problem-framing",
     badge: "Discovery",
@@ -203,7 +203,7 @@ export const whatIBringCards: WhatIBringCard[] = [
       },
     ],
   },
-]
+] as const satisfies readonly WhatIBringCard[]
 
 export function getWhatIBringCard(slug: string): WhatIBringCard | undefined {
   return whatIBringCards.find((c) => c.slug === slug)

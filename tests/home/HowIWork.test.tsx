@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-import HowIWork from "./HowIWork"
+import HowIWork from "../../components/home/HowIWork"
 
 // Mock Lucide icons
 vi.mock("lucide-react", () => ({
@@ -19,13 +19,20 @@ vi.mock("lucide-react", () => ({
   Zap: () => <div data-testid="icon-zap">Zap</div>,
 }))
 
+const phaseTitles = ["Discover", "Define", "Design", "Deliver", "Adopt", "Value"] as const
+
 describe("HowIWork", () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    const win = window as Window & { IntersectionObserver?: typeof IntersectionObserver }
-    if (win.IntersectionObserver) {
-      delete win.IntersectionObserver
-    }
+    globalThis.IntersectionObserver = class {
+      observe = vi.fn()
+      unobserve = vi.fn()
+      disconnect = vi.fn()
+      takeRecords = vi.fn(() => [])
+      root = null
+      rootMargin = ""
+      thresholds = []
+    } as unknown as typeof IntersectionObserver
   })
 
   afterEach(() => {
@@ -38,14 +45,12 @@ describe("HowIWork", () => {
       expect(true).toBe(true)
     })
 
-    it("renders all five workflow phases", () => {
+    it("renders all workflow phases", () => {
       render(<HowIWork />)
 
-      expect(screen.getByText(/discover/i)).toBeInTheDocument()
-      expect(screen.getByText(/define/i)).toBeInTheDocument()
-      expect(screen.getByText(/design/i)).toBeInTheDocument()
-      expect(screen.getByText(/deliver/i)).toBeInTheDocument()
-      expect(screen.getByText(/devops/i)).toBeInTheDocument()
+      phaseTitles.forEach((title) => {
+        expect(screen.getByText(new RegExp(`^${title}$`, "i"))).toBeInTheDocument()
+      })
     })
 
     it("renders phase descriptions", () => {
@@ -59,9 +64,8 @@ describe("HowIWork", () => {
     it("renders expertise items", () => {
       render(<HowIWork />)
 
-      // Some expertise items should be rendered
-      const expertise = screen.queryByText(/product strategy/i)
-      expect(expertise || screen.getByText(/discover/i)).toBeInTheDocument()
+      expect(screen.getByText(/Business & product/i)).toBeInTheDocument()
+      expect(screen.getByText(/Engineering & QA/i)).toBeInTheDocument()
     })
   })
 
@@ -70,7 +74,7 @@ describe("HowIWork", () => {
       const { container } = render(<HowIWork />)
 
       const listItems = container.querySelectorAll('[role="listitem"]')
-      expect(listItems.length).toBeGreaterThanOrEqual(5)
+      expect(listItems.length).toBeGreaterThanOrEqual(phaseTitles.length)
     })
 
     it("displays phase icons", () => {
@@ -85,9 +89,8 @@ describe("HowIWork", () => {
     it("renders phase titles with appropriate styling", () => {
       render(<HowIWork />)
 
-      const titles = ["Discover", "Define", "Design", "Deliver", "DevOps"]
-      titles.forEach((title) => {
-        expect(screen.getByText(new RegExp(title, "i"))).toBeInTheDocument()
+      phaseTitles.forEach((title) => {
+        expect(screen.getByText(new RegExp(`^${title}$`, "i"))).toBeInTheDocument()
       })
     })
   })
@@ -96,7 +99,6 @@ describe("HowIWork", () => {
     it("marks certain phases as emphasized", () => {
       const { container } = render(<HowIWork />)
 
-      // Some phases should have emphasized styling
       const emphasizedElements = container.querySelectorAll("[class*='primary']")
       expect(emphasizedElements.length).toBeGreaterThanOrEqual(0)
     })
@@ -120,7 +122,6 @@ describe("HowIWork", () => {
     it("renders a track/beam animation container", () => {
       const { container } = render(<HowIWork />)
 
-      // Should have animation elements
       const elements = container.querySelectorAll("*")
       expect(elements.length).toBeGreaterThan(10)
     })
@@ -128,11 +129,9 @@ describe("HowIWork", () => {
     it("uses CSS module classes for styling", () => {
       const { container } = render(<HowIWork />)
 
-      // Elements should have classes from the CSS module
       const styled = container.querySelectorAll("[class*='hiw']")
       expect(styled.length).toBeGreaterThanOrEqual(0)
 
-      // At least some elements should be present
       expect(container.querySelectorAll("*").length).toBeGreaterThan(5)
     })
   })
@@ -141,18 +140,15 @@ describe("HowIWork", () => {
     it("has correct number of phases defined", () => {
       render(<HowIWork />)
 
-      const expectedPhases = ["Discover", "Define", "Design", "Deliver", "DevOps"]
-      expectedPhases.forEach((phase) => {
-        expect(screen.getByText(new RegExp(phase, "i"))).toBeInTheDocument()
+      phaseTitles.forEach((phase) => {
+        expect(screen.getByText(new RegExp(`^${phase}$`, "i"))).toBeInTheDocument()
       })
     })
 
     it("has expertise array populated", () => {
       render(<HowIWork />)
 
-      // At least one expertise item should be visible
-      const hasContent = screen.getByText(/discover/i) || screen.getByText(/define/i)
-      expect(hasContent).toBeInTheDocument()
+      expect(screen.getByText(/Executives, product owners/i)).toBeInTheDocument()
     })
   })
 
@@ -167,7 +163,6 @@ describe("HowIWork", () => {
     it("uses appropriate heading levels", () => {
       render(<HowIWork />)
 
-      // Should have text content for phases
       expect(screen.getByText(/discover/i)).toBeInTheDocument()
     })
 
@@ -183,9 +178,8 @@ describe("HowIWork", () => {
     it("displays phase titles clearly", () => {
       render(<HowIWork />)
 
-      const titles = ["Discover", "Define", "Design", "Deliver", "DevOps"]
-      titles.forEach((title) => {
-        const element = screen.getByText(new RegExp(title, "i"))
+      phaseTitles.forEach((title) => {
+        const element = screen.getByText(new RegExp(`^${title}$`, "i"))
         expect(element).toBeVisible()
       })
     })
@@ -225,18 +219,15 @@ describe("HowIWork", () => {
     it("renders elements with animation-ready structure", () => {
       const { container } = render(<HowIWork />)
 
-      // Should have elements that can be animated
       const animatable = container.querySelectorAll("[class*='transition']")
       expect(animatable.length).toBeGreaterThanOrEqual(0)
 
-      // But component should render without errors regardless
       expect(container.querySelectorAll("*").length).toBeGreaterThan(0)
     })
 
     it("renders nodes that could be highlighted on scroll", () => {
       render(<HowIWork />)
 
-      // Should have nodes/values to highlight
       const nodes = screen.getByText(/discover/i).closest("div")
       expect(nodes).toBeInTheDocument()
     })
@@ -253,16 +244,14 @@ describe("HowIWork", () => {
     it("renders all text content visibly", () => {
       render(<HowIWork />)
 
-      const phases = ["Discover", "Define", "Design", "Deliver", "DevOps"]
-      phases.forEach((phase) => {
-        expect(screen.getByText(new RegExp(phase, "i"))).toBeVisible()
+      phaseTitles.forEach((phase) => {
+        expect(screen.getByText(new RegExp(`^${phase}$`, "i"))).toBeVisible()
       })
     })
 
     it("has sufficient contrast with icons and text", () => {
       render(<HowIWork />)
 
-      // Icons and text should be distinguishable
       expect(screen.getByTestId("icon-search")).toBeInTheDocument()
       expect(screen.getByText(/discover/i)).toBeInTheDocument()
     })
@@ -270,7 +259,6 @@ describe("HowIWork", () => {
     it("provides context for phase meaning", () => {
       render(<HowIWork />)
 
-      // Each phase should have a description
       expect(screen.getByText(/stakeholder interviews/i)).toBeInTheDocument()
       expect(screen.getByText(/user stories/i)).toBeInTheDocument()
       expect(screen.getByText(/architecture/i)).toBeInTheDocument()
@@ -281,7 +269,6 @@ describe("HowIWork", () => {
     it("renders efficiently without excessive re-renders", () => {
       const { rerender } = render(<HowIWork />)
 
-      // Should handle re-render without crashing
       rerender(<HowIWork />)
 
       expect(screen.getByText(/discover/i)).toBeInTheDocument()
@@ -290,25 +277,22 @@ describe("HowIWork", () => {
     it("has reasonable DOM size", () => {
       const { container } = render(<HowIWork />)
 
-      // Component should be lean
       expect(container.querySelectorAll("*").length).toBeLessThan(500)
     })
   })
 
   describe("Content completeness", () => {
-    it("covers all five workflow phases", () => {
+    it("covers all workflow phases", () => {
       render(<HowIWork />)
 
-      const phases = ["Discover", "Define", "Design", "Deliver", "DevOps"]
-      phases.forEach((phase) => {
-        expect(screen.getByText(new RegExp(`^${phase}`, "i"))).toBeInTheDocument()
+      phaseTitles.forEach((phase) => {
+        expect(screen.getByText(new RegExp(`^${phase}$`, "i"))).toBeInTheDocument()
       })
     })
 
-    it("includes expertise arrays for each phase", () => {
+    it("includes expertise and phase copy", () => {
       render(<HowIWork />)
 
-      // At least one expertise item per phase area
       const keywords = ["stakeholder", "user stories", "architecture", "agile"]
       keywords.forEach((keyword) => {
         expect(screen.getByText(new RegExp(keyword, "i"))).toBeInTheDocument()

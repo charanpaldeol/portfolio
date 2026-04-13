@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation"
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import { Navbar } from "./Navbar"
+import { Navbar } from "../../components/layout/Navbar"
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
@@ -11,20 +11,20 @@ vi.mock("next/navigation", () => ({
 }))
 
 // Mock sub-components
-vi.mock("./navbar/BrandMark", () => ({
+vi.mock("../../components/layout/navbar/BrandMark", () => ({
   BrandMark: () => <div data-testid="brand-mark">Logo</div>,
 }))
 
-vi.mock("./navbar/WorkPanel", () => ({
+vi.mock("../../components/layout/navbar/WorkPanel", () => ({
   WorkPanel: () => <div data-testid="work-panel">Work Panel</div>,
 }))
 
-vi.mock("./navbar/SocialLinks", () => ({
+vi.mock("../../components/layout/navbar/SocialLinks", () => ({
   SocialLinks: () => <div data-testid="social-links">Social Links</div>,
 }))
 
 // Mock UI components
-vi.mock("../ui/navigation-menu", () => ({
+vi.mock("../../components/ui/navigation-menu", () => ({
   NavigationMenu: ({ children }: { children: React.ReactNode }) => (
     <nav data-testid="navigation-menu">{children}</nav>
   ),
@@ -57,7 +57,7 @@ vi.mock("../ui/navigation-menu", () => ({
   ),
 }))
 
-vi.mock("../ui/sheet", () => ({
+vi.mock("../../components/ui/sheet", () => ({
   Sheet: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="sheet">{children}</div>
   ),
@@ -265,7 +265,6 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       const workTrigger = screen.getByTestId("navigation-trigger")
-      // Work trigger should have bold styling when on work route
       expect(workTrigger).toHaveClass("font-semibold")
     })
 
@@ -283,7 +282,6 @@ describe("Navbar", () => {
 
       render(<Navbar />)
 
-      // Ideas link should be highlighted
       expect(screen.getByTestId("navigation-menu")).toBeInTheDocument()
     })
   })

@@ -261,9 +261,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.5
         version: 4.1.5
-      tsc:
-        specifier: ^2.0.4
-        version: 2.0.4
       typed-query-selector:
         specifier: ^2.12.0
         version: 2.12.0
@@ -8305,10 +8302,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  tsc@2.0.4:
-    resolution: {integrity: sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==}
-    hasBin: true
 
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
@@ -18145,8 +18138,6 @@ snapshots:
   ts-pnp@1.2.0(typescript@5.8.3):
     optionalDependencies:
       typescript: 5.8.3
-
-  tsc@2.0.4: {}
 
   tsconfck@3.1.6(typescript@5.8.3):
     optionalDependencies:

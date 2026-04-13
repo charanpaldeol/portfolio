@@ -2,7 +2,7 @@
 
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -16,7 +16,7 @@ const DropdownMenuContent = React.forwardRef<
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
-      className={twMerge(
+      className={cn(
         'z-50 w-44 overflow-hidden rounded-xl bg-popover p-2 text-popover-foreground shadow-editorial-lg',
         'data-[state=open]:animate-in data-[state=closed]:animate-out',
         'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
@@ -36,7 +36,7 @@ const DropdownMenuItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
     ref={ref}
-    className={twMerge(
+    className={cn(
       'cursor-pointer rounded-md px-3 py-2 text-sm outline-none select-none',
       'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
       'focus:bg-accent focus:text-accent-foreground',
