@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next"
 
-import { standaloneArticles } from "@/lib/blog-articles-data"
+import { allBlogArticles } from "@/lib/all-blog-articles"
 import { projects } from "@/lib/projects-data"
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
+import { SITE_URL } from "@/lib/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://cpdeol.com"
+  const base = SITE_URL
 
-  const blogPosts = [...whatIBringCards, ...standaloneArticles].map((article) => ({
+  const blogPosts = allBlogArticles.map((article) => ({
     url: `${base}/blog/${article.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
@@ -47,6 +47,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${base}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/what-i-bring`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${base}/how-i-work`,

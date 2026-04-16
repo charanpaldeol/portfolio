@@ -3,17 +3,20 @@ import { notFound } from "next/navigation"
 
 import { BlogTopicArticle } from "@/components/blog/BlogTopicArticle"
 import { PageShell } from "@/components/layout/PageShell"
-import { standaloneArticles } from "@/lib/blog-articles-data"
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
+import { allBlogArticles } from "@/lib/all-blog-articles"
+import { SITE_URL } from "@/lib/site"
 
-const allArticles = [...whatIBringCards, ...standaloneArticles]
+function articleDescription(body: string): string {
+  if (body.length <= 160) return body
+  return `${body.slice(0, 157).trimEnd()}…`
+}
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 function getArticleOrNotFound(slug: string) {
-  const card = allArticles.find((a) => a.slug === slug)
+  const card = allBlogArticles.find((a) => a.slug === slug)
   if (!card) notFound()
   return card
 }
@@ -21,14 +24,15 @@ function getArticleOrNotFound(slug: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const card = getArticleOrNotFound(slug)
+  const canonical = `${SITE_URL}/blog/${slug}`
   return {
     title: card.title,
     description: card.body,
-    alternates: { canonical: `https://cpdeol.com/blog/${slug}` },
+    alternates: { canonical },
     openGraph: {
       title: card.title,
       description: card.body,
-      url: `https://cpdeol.com/blog/${slug}`,
+      url: canonical,
       type: "article",
     },
     twitter: {
@@ -40,15 +44,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export function generateStaticParams() {
-  return allArticles.map((a) => ({ slug: a.slug }))
+  return allBlogArticles.map((a) => ({ slug: a.slug }))
 }
 
 export default async function BlogSlugPage({ params }: Props) {
   const { slug } = await params
   const card = getArticleOrNotFound(slug)
+  const canonical = `${SITE_URL}/blog/${slug}`
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: card.title,
+    description: articleDescription(card.body),
+    url: canonical,
+    author: {
+      "@type": "Person",
+      name: "Charan Deol",
+      url: SITE_URL,
+    },
+  }
   return (
-    <PageShell>
-      <BlogTopicArticle card={card} />
-    </PageShell>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <PageShell>
+        <BlogTopicArticle card={card} />
+      </PageShell>
+    </>
   )
 }

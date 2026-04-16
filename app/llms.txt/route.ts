@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server"
 
-import { standaloneArticles } from "@/lib/blog-articles-data"
+import { allBlogArticles } from "@/lib/all-blog-articles"
 import { projects } from "@/lib/projects-data"
 import { services } from "@/lib/services-data"
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
+import { SITE_URL } from "@/lib/site"
 
 export async function GET() {
-  const base = "https://cpdeol.com"
+  const base = SITE_URL
 
   const lines: string[] = [
     "# Charan Deol",
@@ -19,7 +19,10 @@ export async function GET() {
     `- [About](${base}/portfolio/about): Professional background and work history`,
     `- [Experience](${base}/portfolio/experience): Career timeline and key roles`,
     `- [Services](${base}/portfolio/services): Consulting service offerings and engagement models`,
-    `- [Projects](${base}/portfolio/projects): Portfolio of delivered work with case studies`,
+    `- [Projects](${base}/projects): Curated projects overview (same work as the portfolio index, lighter layout)`,
+    `- [Portfolio projects](${base}/portfolio/projects): Full case study index with detailed write-ups`,
+    `> /projects vs /portfolio/projects: both cover the same projects; /projects is the overview hub, /portfolio/projects is the detailed gallery.`,
+    `- [What I Bring](${base}/what-i-bring): Service ecosystem from discovery through impact`,
     `- [Blog](${base}/blog): Articles on product strategy, AI, systems, and leadership`,
     `- [How I Work](${base}/how-i-work): Delivery methodology (Discover → Define → Design → Deliver → Adopt → Value)`,
     `- [How I Think](${base}/how-i-think): Leadership and decision-making principles`,
@@ -69,9 +72,7 @@ export async function GET() {
   lines.push("## Articles")
   lines.push("")
 
-  const allArticles = [...whatIBringCards, ...standaloneArticles]
-
-  for (const article of allArticles) {
+  for (const article of allBlogArticles) {
     lines.push(`### ${article.title}`)
     lines.push("")
     lines.push(article.body)
@@ -80,6 +81,13 @@ export async function GET() {
     lines.push("")
   }
 
+  lines.push("## Structured JSON (read-only)")
+  lines.push("")
+  lines.push(`- Articles: ${base}/api/content/articles`)
+  lines.push(`- Projects: ${base}/api/content/projects`)
+  lines.push(`- Services: ${base}/api/content/services`)
+  lines.push(`- Profile: ${base}/api/content/profile`)
+  lines.push("")
   lines.push("## Contact")
   lines.push("")
   lines.push(`- Contact form: [${base}/contact](${base}/contact)`)

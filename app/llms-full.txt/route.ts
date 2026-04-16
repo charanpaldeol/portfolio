@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server"
 
-import { standaloneArticles } from "@/lib/blog-articles-data"
+import { allBlogArticles } from "@/lib/all-blog-articles"
 import { projects } from "@/lib/projects-data"
 import { services } from "@/lib/services-data"
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
+import { SITE_URL } from "@/lib/site"
 
 export async function GET() {
-  const base = "https://cpdeol.com"
+  const base = SITE_URL
 
   const lines: string[] = [
     "# Charan Deol — Full Content",
@@ -14,7 +14,7 @@ export async function GET() {
     "> Independent consultant based in Toronto, Canada. I help product and engineering teams turn complex problems into clear decisions and delivered solutions. Specialties: AI-native product design, systems architecture, design systems, and fractional design leadership.",
     "",
     "> This file contains the full text of all articles and detailed project write-ups for AI agent consumption.",
-    "> For a concise index, see: https://cpdeol.com/llms.txt",
+    `> For a concise index, see: ${base}/llms.txt`,
     "",
     "---",
     "",
@@ -102,9 +102,7 @@ export async function GET() {
   lines.push("## Articles")
   lines.push("")
 
-  const allArticles = [...whatIBringCards, ...standaloneArticles]
-
-  for (const article of allArticles) {
+  for (const article of allBlogArticles) {
     lines.push(`### ${article.title}`)
     lines.push("")
     lines.push(`**Category:** ${article.badge}`)

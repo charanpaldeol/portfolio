@@ -10,6 +10,8 @@ import ProofMetrics from "@/components/home/ProofMetrics"
 import { Testimonials } from "@/components/home/Testimonials"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
+import { GITHUB_URL, LINKEDIN_URL } from "@/config/navigation"
+import { SITE_URL } from "@/lib/site"
 import { testimonials } from "@/lib/testimonials-data"
 
 export const metadata: Metadata = {
@@ -36,7 +38,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Charan Deol",
-  url: "https://cpdeol.com",
+  url: SITE_URL,
   jobTitle: "Independent Consultant",
   description:
     "Product engineer and independent consultant bridging business and engineering across B2B SaaS, fintech, and consumer apps.",
@@ -54,7 +56,7 @@ const personSchema = {
     addressLocality: "Toronto",
     addressCountry: "CA",
   },
-  sameAs: ["https://cpdeol.com"],
+  sameAs: [SITE_URL, GITHUB_URL, LINKEDIN_URL],
 }
 
 export default function Home() {
