@@ -1,5 +1,6 @@
 import "styles/tailwind.css"
 
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next"
 import { Inter, Manrope } from "next/font/google"
 
@@ -61,6 +62,7 @@ export default function RootLayout({
         <GlobalChrome />
         <PortfolioShell>{children}</PortfolioShell>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
