@@ -430,7 +430,7 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
-                href="mailto:hello@cpdeol.com"
+                href="mailto:cpdeol@outlook.com"
                 className="inline-flex min-h-11 items-center justify-center gap-3 rounded-xl bg-on-primary px-8 py-4 font-display text-sm font-extrabold tracking-tight text-primary uppercase transition-all hover:bg-primary-fixed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-fixed focus-visible:ring-offset-2 focus-visible:ring-offset-primary group sm:inline-flex"
               >
                 Let&apos;s talk

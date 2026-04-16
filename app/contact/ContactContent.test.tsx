@@ -50,7 +50,7 @@ describe("ContactContent", () => {
 
       expect(screen.getByText(/let's start a conversation/i)).toBeInTheDocument()
       expect(screen.getByText(/Share a bit about your product/i)).toBeInTheDocument()
-      expect(screen.getByText(/hello@cpdeol.com/i)).toBeInTheDocument()
+      expect(screen.getByText(/cpdeol@outlook.com/i)).toBeInTheDocument()
     })
 
     it("renders info cards describing engagements and availability", () => {

@@ -1,0 +1,7 @@
+# Security disclosures — cpdeol.com
+# https://www.rfc-editor.org/rfc/rfc9116.html
+
+Contact: mailto:cpdeol@outlook.com
+Canonical: https://cpdeol.com/.well-known/security.txt
+Preferred-Languages: en
+Expires: 2027-04-16T23:59:59.000Z

@@ -79,8 +79,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@cpdeol.com" className="transition-colors hover:text-foreground">
-                  hello@cpdeol.com
+                <a href="mailto:cpdeol@outlook.com" className="transition-colors hover:text-foreground">
+                  cpdeol@outlook.com
                 </a>
               </li>
               <li>

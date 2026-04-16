@@ -58,10 +58,10 @@ export default function ContactContent() {
               Share a bit about your product, team, or decision you&apos;re trying to make. I read every message and
               reply from{" "}
               <a
-                href="mailto:hello@cpdeol.com"
+                href="mailto:cpdeol@outlook.com"
                 className="font-medium text-on-surface underline decoration-tertiary/40 underline-offset-[6px] transition hover:decoration-tertiary"
               >
-                hello@cpdeol.com
+                cpdeol@outlook.com
               </a>
               .
             </>

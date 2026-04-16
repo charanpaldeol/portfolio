@@ -4,7 +4,7 @@ import { z } from "zod"
 import { env } from "@/env.mjs"
 
 const FROM_EMAIL = env.RESEND_FROM_EMAIL ?? "Contact <onboarding@resend.dev>"
-const TO_EMAIL = env.RESEND_TO_EMAIL ?? "hello@cpdeol.com"
+const TO_EMAIL = env.RESEND_TO_EMAIL ?? "cpdeol@outlook.com"
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
