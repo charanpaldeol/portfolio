@@ -26,6 +26,10 @@ export const env = createEnv({
       .enum(["true", "false"])
       .optional()
       .transform((value) => value === "true"),
+    DATABASE_URL: z.preprocess(
+      (val) => (val === "" || val === undefined ? undefined : val),
+      z.string().min(1).optional(),
+    ),
     RESEND_API_KEY: z.string().optional(),
     RESEND_FROM_EMAIL: optionalResendFrom,
     RESEND_TO_EMAIL: z.string().email().optional(),
@@ -34,6 +38,7 @@ export const env = createEnv({
   client: {},
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
+    DATABASE_URL: process.env.DATABASE_URL,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
     RESEND_TO_EMAIL: process.env.RESEND_TO_EMAIL,

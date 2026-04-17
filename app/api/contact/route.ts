@@ -2,6 +2,7 @@ import { Resend } from "resend"
 import { z } from "zod"
 
 import { env } from "@/env.mjs"
+import { getDb } from "@/lib/db"
 
 const FROM_EMAIL = env.RESEND_FROM_EMAIL ?? "Contact <onboarding@resend.dev>"
 const TO_EMAIL = env.RESEND_TO_EMAIL ?? "cpdeol@outlook.com"
@@ -33,6 +34,22 @@ export async function POST(request: Request) {
     }
 
     const { name, email, message } = parsed.data
+
+    const sql = getDb()
+    if (sql) {
+      try {
+        await sql`
+          INSERT INTO contact_submissions (name, email, message)
+          VALUES (${name}, ${email}, ${message})
+        `
+      } catch (dbErr) {
+        console.error("Contact DB error:", dbErr)
+        return Response.json(
+          { error: "Could not save your message. Please try again or email directly." },
+          { status: 503 }
+        )
+      }
+    }
 
     const subject = `Contact from cpdeol.com – ${name}`
     const html = `

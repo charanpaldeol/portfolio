@@ -1,6 +1,10 @@
+/** @vitest-environment node */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-import { POST } from "./route"
+process.env.RESEND_API_KEY = "test-api-key"
+process.env.RESEND_FROM_EMAIL = "test@example.com"
+process.env.RESEND_TO_EMAIL = "recipient@example.com"
+delete process.env.DATABASE_URL
 
 function mockResendWithSend(send: ReturnType<typeof vi.fn>) {
   return () => ({
@@ -17,17 +21,13 @@ vi.mock("resend", () => ({
   })),
 }))
 
-// Mock env
-vi.mock("@/env.mjs", () => ({
-  env: {
-    RESEND_API_KEY: "test-api-key",
-    RESEND_FROM_EMAIL: "test@example.com",
-    RESEND_TO_EMAIL: "recipient@example.com",
-  },
+vi.mock("@/lib/db", () => ({
+  getDb: () => null,
 }))
 
 const { Resend } = await import("resend")
 const mockResend = vi.mocked(Resend)
+const { POST } = await import("./route")
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
