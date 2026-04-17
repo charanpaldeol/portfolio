@@ -18,7 +18,7 @@ export function NewsletterSignup({ variant = "inline" }: Props) {
     if (status === "submitting") return
     setStatus("submitting")
     try {
-      const ok = await subscribeToNewsletter(email)
+      const ok = await subscribeToNewsletter(email, { source: variant })
       if (!ok) {
         setStatus("error")
         return

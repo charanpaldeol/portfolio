@@ -7,12 +7,12 @@ import ExperienceContent from "./ExperienceContent"
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Career timeline of Charan Deol — independent consultant, senior product engineer, and designer with 8+ years across B2B SaaS, fintech, and consumer apps.",
+    "Career timeline of Charan Deol — lead business systems analyst and technical BA with 8+ years across enterprise software, banking compliance, capital-markets CRM, and logistics technology.",
   alternates: { canonical: "https://cpdeol.com/portfolio/experience" },
   openGraph: {
     title: "Experience — Charan Deol",
     description:
-      "Career timeline of Charan Deol — independent consultant, senior product engineer, and designer with 8+ years across B2B SaaS, fintech, and consumer apps.",
+      "Career timeline of Charan Deol — lead business systems analyst and technical BA with 8+ years across enterprise software, banking compliance, capital-markets CRM, and logistics technology.",
     url: "https://cpdeol.com/portfolio/experience",
     type: "profile",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Experience — Charan Deol",
     description:
-      "Career timeline of Charan Deol — independent consultant, senior product engineer, and designer with 8+ years across B2B SaaS, fintech, and consumer apps.",
+      "Career timeline of Charan Deol — lead business systems analyst and technical BA with 8+ years across enterprise software, banking compliance, capital-markets CRM, and logistics technology.",
   },
 }
 
