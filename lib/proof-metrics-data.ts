@@ -19,7 +19,7 @@ export const metrics = [
     numericValue: 60,
     statSuffix: "%",
     label:
-      "Reduction in manual reporting time after leading a BI tool selection and full implementation across a 200-person finance team.",
+      "Reduction in manual reporting time after leading BI tool selection and full implementation for a 200-person enterprise operations team at a major SaaS company.",
     tag: "SaaS implementation",
     tagColor: "emerald",
   },
@@ -27,15 +27,15 @@ export const metrics = [
     numericValue: null,
     statDisplay: "4 → 1",
     label:
-      "Consolidated four disconnected systems into a single platform, cutting onboarding time from 3 weeks to 4 days for a healthcare provider.",
-    tag: "In-house build",
+      "Consolidated four disconnected enterprise systems into a single platform — cutting partner onboarding from 3 weeks to 4 days across 100+ locations.",
+    tag: "Platform consolidation",
     tagColor: "violet",
   },
   {
     numericValue: 83,
     statSuffix: "%",
     label:
-      "User adoption rate achieved within 60 days of go-live through structured change management — up from a projected 40%.",
+      "User adoption rate achieved within 60 days of go-live at a major Canadian bank — up from a projected 40% — through structured PROSCI change management.",
     tag: "Change management",
     tagColor: "amber",
   },

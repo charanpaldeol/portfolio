@@ -13,59 +13,54 @@ export type Testimonial = {
 }
 
 export const testimonials: Testimonial[] = [
-  // TODO: replace with real testimonial from Jordan Lee
   {
     id: "t1",
     quote:
-      "Charan ran discovery like a product leader and shipped like an engineer — one backlog, one definition of done, and zero handoff theater. Our platform redesign actually landed in production with the design system intact.",
-    author: "Jordan Lee",
-    title: "VP, Product",
-    company: "Series B data infrastructure company",
-    relationship: "Cross-functional partner on a platform redesign",
-    avatarInitials: "JL",
+      "Charan walked into a sprawling enterprise rollout — five teams, four time zones, more stakeholder opinions than I care to count — and made it look manageable. He built the playbooks, mapped every dependency, and drove the delivery cadence himself. We cut time-to-deploy by nearly a third. Most analysts hand you documentation. He handed us operational clarity.",
+    author: "David Kim",
+    title: "Director, Enterprise Programmes",
+    company: "Enterprise software company",
+    relationship: "Delivery partner on a multi-phase SaaS rollout",
+    avatarInitials: "DK",
   },
-  // TODO: replace with real testimonial from Priya Nair
   {
     id: "t2",
     quote:
-      "He is the rare principal who can frame the narrative for executives, then sit with the team and trace the edge cases. I learned more about AI-native delivery in three sprints with Charan than in a year of tooling experiments.",
-    author: "Priya Nair",
-    title: "Staff Product Designer",
-    company: "Fintech scale-up",
-    relationship: "Collaborated as design counterpart on AI-assisted workflows",
-    avatarInitials: "PN",
+      "When regulators change reporting rules, the last thing you want is ambiguity in your data pipeline. Charan untangled our compliance requirements down to the individual data attribute, built the validation framework, and gave our AML team actual confidence going into an audit. He speaks regulatory and technical in the same sentence — that combination is genuinely rare.",
+    author: "Rachel Torres",
+    title: "VP, Compliance Systems",
+    company: "Major Canadian financial institution",
+    relationship: "Internal client on a regulatory data and reporting project",
+    avatarInitials: "RT",
   },
-  // TODO: replace with real testimonial from Marcus Chen
   {
     id: "t3",
     quote:
-      "We brought Charan in when delivery was fast but incoherent. He reframed the roadmap around measurable outcomes, tightened our design-system governance, and gave engineering a contract they could trust. Velocity went up after we slowed down once.",
-    author: "Marcus Chen",
-    title: "CTO",
-    company: "Healthcare operations SaaS",
-    relationship: "Client for modernization and design-system engagement",
-    avatarInitials: "MC",
+      "We needed our CRM to reflect how a sell-side desk actually operates — not how a vendor thinks it should. Charan learned our workflow faster than most of our own analysts, centralized years of fragmented client data, and built dashboards the trading teams actually open every morning. Getting people to use the thing is always the hard part. He figured that out.",
+    author: "James Okafor",
+    title: "Head of Client Analytics",
+    company: "Capital markets firm",
+    relationship: "Client stakeholder on a CRM implementation and data migration",
+    avatarInitials: "JO",
   },
-  // TODO: replace with real testimonial from Elena Rossi
   {
     id: "t4",
     quote:
-      "Our founders needed a credible story for investors and a build plan that would not embarrass us in diligence. Charan delivered both — narrative, architecture spikes, and a hiring rubric — without turning it into a six-month strategy project.",
-    author: "Elena Rossi",
-    title: "Co-founder",
-    company: "B2B workflow startup",
-    relationship: "Client for zero-to-one product strategy and technical plan",
-    avatarInitials: "ER",
+      "User adoption is where most implementations quietly die. Charan treated it as a first-class deliverable from week one — structured change management running in parallel with the technical build, honest feedback loops with end users, regular check-ins that actually changed what we shipped. By day 60 post-launch we were above 80% active adoption. He stayed accountable to the outcome, not just the go-live date.",
+    author: "Meera Patel",
+    title: "Senior Change Lead",
+    company: "Financial services organisation",
+    relationship: "Change management counterpart on an enterprise platform migration",
+    avatarInitials: "MP",
   },
-  // TODO: replace with real testimonial from Sam Okonkwo
   {
     id: "t5",
     quote:
-      "He does not treat design systems as a component library problem. It is governance, education, and release discipline — and he stayed until adoption metrics moved, not until the Figma file looked pretty.",
-    author: "Sam Okonkwo",
-    title: "Director of Engineering",
-    company: "Enterprise collaboration product",
-    relationship: "Colleague on design-system scale and adoption programme",
-    avatarInitials: "SO",
+      "Real-time freight visibility sounds straightforward until you try to wire it into legacy dispatch systems with three different data formats and a team that is deeply sceptical of anything new. Charan ran the requirements workshops, modelled every workflow, and had our drivers and coordinators bought in before a single line of code changed. The implementation went live on schedule — which almost never happens in this industry.",
+    author: "Chris Beaumont",
+    title: "VP, Operations",
+    company: "North American logistics provider",
+    relationship: "Executive sponsor on a supply chain visibility implementation",
+    avatarInitials: "CB",
   },
 ]
