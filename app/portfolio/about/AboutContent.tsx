@@ -28,22 +28,22 @@ const INTEREST_IMAGES = {
 
 const journey = [
   {
-    years: "2016—2019",
-    title: "Full-stack product work",
+    years: "2017—2020",
+    title: "Business Analyst, logistics & supply chain",
     phase: "Foundations",
-    body: "Agency and in-house roles across healthcare, retail, and fintech — shipping interfaces, APIs, and the glue between them with an eye for durable patterns.",
+    body: "End-to-end SaaS implementation at a North American freight and logistics provider — requirements gathering, UML process modeling, stakeholder workshops, and on-schedule go-live across operations and dispatch teams.",
   },
   {
     years: "2020—2022",
-    title: "Platform & design systems",
-    phase: "The bridge",
-    body: "Led frontend architecture and design systems at a B2B data platform — scaling component libraries, performance budgets, and how product and engineering agreed on quality.",
+    title: "Tech Account Lead, capital markets CRM",
+    phase: "Expanding scope",
+    body: "Led Salesforce CRM deployments for sell-side capital markets clients — data migration, custom analytics dashboards, and the advisory work that kept complex enterprise implementations on track and adopted.",
   },
   {
-    years: "2023—Present",
-    title: "Independent consultant",
-    phase: "Visionary execution",
-    body: "Partnering with teams on strategy, UX, and the code that ships it — from discovery workshops to production handoff, with editorial clarity at every step.",
+    years: "2022—Present",
+    title: "Lead BA, banking compliance and enterprise SaaS",
+    phase: "Lead-level delivery",
+    body: "KYC/AML compliance programmes at a major Canadian bank, followed by enterprise-scale system integration at a global SaaS company — 100+ stakeholders, five globally distributed teams, and $1M+ in measurable outcomes.",
   },
 ] as const
 
@@ -51,26 +51,26 @@ const values = [
   {
     icon: Building2,
     iconClass: "text-primary",
-    title: "Architectural precision",
-    body: "I don't just build features; I build systems. Scalability is baked in early so growth doesn't trade away integrity.",
+    title: "Systems clarity",
+    body: "I don't just document requirements; I map the entire system. Every dependency, integration point, and data flow is accounted for before implementation begins.",
   },
   {
     icon: Zap,
     iconClass: "text-secondary",
-    title: "AI-augmented workflows",
-    body: "Using modern tooling to compress cycles and sharpen decisions — without letting speed replace judgment or craft.",
+    title: "AI-augmented delivery",
+    body: "Applying modern AI tools to compress requirements cycles, sharpen data analysis, and accelerate stakeholder insight — without letting speed replace rigour or judgment.",
   },
   {
     icon: Shield,
     iconClass: "text-tertiary",
-    title: "Inherent resilience",
-    body: "Most failures are design problems before they're technical ones. I prioritize patterns and processes that absorb change.",
+    title: "Compliance-first thinking",
+    body: "In regulated industries, most failures are requirements problems before they're technical ones. I prioritize accuracy and governance so implementations survive their first audit.",
   },
   {
     icon: Eye,
     iconClass: "text-primary",
     title: "Radical transparency",
-    body: "Clients are partners. Strategic clarity is a deliverable — especially when tradeoffs are hard or timelines are tight.",
+    body: "Stakeholders are partners. Clear documentation, honest status, and structured communication are deliverables — especially when scope is shifting or deadlines are tight.",
   },
 ] as const
 
@@ -163,18 +163,18 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
               Charan Deol
             </p>
             <h1 className="mb-10 font-display text-5xl font-extrabold leading-[0.95] tracking-tighter text-on-surface md:mb-12 md:text-7xl lg:text-8xl">
-              Where <span className="text-primary">engineering</span> logic meets{" "}
-              <span className="text-secondary">strategic</span> design.
+              Where <span className="text-primary">technical</span> depth meets{" "}
+              <span className="text-secondary">stakeholder</span> clarity.
             </h1>
             <div className="max-w-xl">
               <p className="mb-8 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-                Independent consultant with 8+ years across B2B SaaS, fintech, and consumer products. Work sits at the
-                intersection of architectural discipline and product intuition — helping teams ship coherent software, not
-                just more tickets.
+                Lead Technical Business Analyst with 8+ years across financial services, banking compliance, and enterprise SaaS. Work sits at the
+                intersection of technical depth and stakeholder clarity — translating complex business problems into
+                requirements, implementations, and outcomes that stick.
               </p>
               <div className="flex items-center gap-4">
                 <span className="h-px w-12 shrink-0 bg-outline-variant" aria-hidden />
-                <span className="text-xs font-semibold tracking-[0.2em] text-tertiary uppercase">Bridging the gap</span>
+                <span className="text-xs font-semibold tracking-[0.2em] text-tertiary uppercase">Requirements to outcomes</span>
               </div>
             </div>
           </motion.div>
@@ -191,7 +191,7 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
             <div className="absolute -bottom-6 -left-2 z-10 hidden max-w-[min(240px,calc(100vw-3rem))] rounded-xl bg-secondary p-6 text-on-secondary shadow-editorial md:-left-6 md:block md:p-8">
               <p className="mb-2 text-xs font-semibold tracking-[0.18em] text-on-secondary/80 uppercase">Philosophy</p>
               <p className="font-display text-lg font-bold leading-tight italic">
-                &quot;Good architecture is invisible; great product strategy is undeniable.&quot;
+                &quot;Requirements are decisions in disguise. Getting them right upstream is the highest-leverage work on any programme.&quot;
               </p>
             </div>
             <figure className="mt-6 rounded-xl bg-secondary p-6 text-on-secondary shadow-editorial md:hidden">
@@ -199,7 +199,7 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
                 Philosophy
               </figcaption>
               <blockquote className="font-display text-lg font-bold leading-tight italic">
-                &quot;Good architecture is invisible; great product strategy is undeniable.&quot;
+                &quot;Requirements are decisions in disguise. Getting them right upstream is the highest-leverage work on any programme.&quot;
               </blockquote>
             </figure>
           </motion.div>
@@ -364,12 +364,11 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
 
       {/* Collaboration history */}
       <section className="py-12 text-center md:py-16" aria-label="Companies and teams">
-        {/* TODO: replace placeholder company names with real teams Charan has worked with */}
         <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-on-surface-variant">
-          Companies &amp; teams I&apos;ve worked with
+          Industries &amp; organisations I&apos;ve delivered for
         </p>
         <p className="mx-auto max-w-3xl text-sm leading-relaxed tracking-wide text-on-surface-variant">
-          Northwind Analytics · Meridian Health Systems · Cascade Fintech · Harbor Operations Co · Lumen Collaboration
+          Major Canadian Bank · Global Enterprise SaaS · Capital Markets CRM · North American Logistics · Financial Services Compliance
         </p>
       </section>
 
@@ -391,16 +390,16 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
           <div className="flex flex-col gap-4">
             {[
               {
-                title: "AI-native programme delivery",
-                body: "End-to-end ownership from discovery through adoption — with LLM-assisted workflows built in from the start.",
+                title: "Programme delivery & BA leadership",
+                body: "Embedded as a Lead BA across an initiative — requirements, stakeholder alignment, data mapping, UAT, and go-live governance.",
               },
               {
-                title: "Solution architecture & BA",
-                body: "Requirements, system design, integration specs, and the stakeholder alignment that makes them stick.",
+                title: "Project-based BA consulting",
+                body: "Fixed-scope engagements for system migrations, compliance implementations, CRM deployments, or process reengineering — with clean handoff.",
               },
               {
-                title: "Fractional engagement",
-                body: "Senior embedded capacity on a defined scope — from sprint zero through to handoff.",
+                title: "Enterprise systems & AI advisory",
+                body: "Targeted expertise for Salesforce, SAP, or AI platform rollouts — workshops, audits, and requirements your team can execute against.",
               },
             ].map(({ title, body }) => (
               <div

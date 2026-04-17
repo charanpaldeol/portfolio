@@ -22,48 +22,51 @@ export type FAQ = {
 
 export const engagementTypes: EngagementType[] = [
   {
-    id: "fractional",
+    id: "programme",
     icon: "🧭",
-    name: "Fractional design lead",
+    name: "Programme delivery & BA leadership",
     description:
-      "Embedded leadership a few days a week: aligning product and engineering on outcomes, raising the quality bar across UX and UI, and keeping design decisions moving without a full-time hire.",
-    idealFor: "Best for teams that have strong builders but need senior design direction, critique, and stakeholder translation.",
+      "Embedded as a Lead Technical Business Analyst or Lead Business Systems Analyst — driving requirements, stakeholder alignment, and delivery governance across an initiative from discovery through go-live.",
+    idealFor: "Best for teams with a complex programme underway who need senior BA leadership to bridge technical and business stakeholders, manage scope, and deliver clean outcomes.",
     typicalDuration: "3–6 months",
     deliverables: [
-      "Design direction, reviews, and async feedback loops",
-      "Roadmap-level UX framing tied to business metrics",
-      "Hiring support and design ops light-weight rituals",
-      "Partnering with PM/Eng on tradeoffs and sequencing",
+      "Requirements elicitation, BRDs, and functional specifications",
+      "Stakeholder alignment workshops and communication plans",
+      "Data mapping, source-to-target documentation, and ETL specifications",
+      "UAT framework design, execution, and sign-off management",
+      "Change management support and go-live governance",
     ],
   },
   {
     id: "project",
     icon: "⚡",
-    name: "Project-based consulting",
+    name: "Project-based BA consulting",
     description:
-      "A fixed-scope engagement with crisp milestones—discovery through shipped artifacts—when you need a senior pair of hands for a launch, redesign, or complex workflow.",
-    idealFor: "Best for teams with a bounded problem, a deadline, and a need for execution-grade craft—not open-ended exploration.",
+      "Fixed-scope engagement for a bounded problem — a system migration, compliance implementation, CRM deployment, or process reengineering initiative — with clear milestones and deliverables.",
+    idealFor: "Best for teams with a specific project that needs structured BA work: requirements, data analysis, vendor coordination, and a handoff the internal team can sustain independently.",
     typicalDuration: "4–12 weeks",
     deliverables: [
-      "Problem framing, journey maps, and success metrics",
-      "High-fidelity flows and interaction specs",
-      "Build-ready handoff with engineering collaboration",
-      "Launch checklist and measurement plan",
+      "Current-state process mapping and gap analysis",
+      "Future-state requirements and integration specifications",
+      "Vendor evaluation support and RFP documentation",
+      "UAT design, execution, and compliance sign-off",
+      "Operational runbook and knowledge transfer",
     ],
   },
   {
     id: "advisory",
     icon: "🛰️",
-    name: "Design systems & AI workflow advisory",
+    name: "Enterprise systems & AI implementation advisory",
     description:
-      "Targeted expertise for design system architecture, governance, and AI-native delivery patterns—workshops, audits, and actionable recommendations your team can run with.",
-    idealFor: "Best for orgs modernizing a system, adopting AI-assisted design/dev workflows, or unblocking adoption at scale.",
+      "Targeted expertise for enterprise system implementations, AI platform rollouts, and compliance programme design — workshops, audits, and actionable requirements your team can execute against.",
+    idealFor: "Best for orgs implementing Salesforce, SAP, or AI-driven platforms and needing structured BA governance to ensure the right requirements reach the right teams.",
     typicalDuration: "2–8 weeks",
     deliverables: [
-      "System audit with prioritized roadmap",
-      "Component/token strategy and documentation guidance",
-      "AI workflow design with guardrails and review gates",
-      "Enablement sessions for designers and engineers",
+      "System audit and requirements gap analysis",
+      "Data governance and source-to-target mapping guidance",
+      "AI implementation requirements and UAT frameworks",
+      "Compliance and regulatory alignment documentation",
+      "Stakeholder enablement sessions and knowledge transfer",
     ],
   },
 ]
@@ -73,14 +76,14 @@ export const processSteps: ProcessStep[] = [
     number: "01",
     title: "Discovery call",
     description:
-      "A focused conversation about goals, constraints, stakeholders, and what “good” looks like. We decide if there is a mutual fit before any paperwork.",
+      "A focused conversation about the problem, stakeholders, constraints, and what a successful outcome looks like. We decide if there is a mutual fit before any paperwork.",
     duration: "30 minutes",
   },
   {
     number: "02",
     title: "Proposal & scope",
     description:
-      "A short written proposal with options, milestones, and ways of working. You get clarity on outcomes, cadence, and how we will collaborate day to day.",
+      "A short written proposal with engagement options, milestones, and ways of working. You get clarity on deliverables, cadence, and how we will collaborate day to day.",
     duration: "3–5 business days",
   },
   {
@@ -94,7 +97,7 @@ export const processSteps: ProcessStep[] = [
     number: "04",
     title: "Delivery & iteration",
     description:
-      "Ship work in tight loops with visible artifacts, regular reviews, and adjustments based on feedback and learning. Close with a handoff your team can sustain.",
+      "Work is delivered in tight loops with visible artifacts, regular stakeholder reviews, and scope adjustments based on feedback. Close with a handoff your team can sustain.",
     duration: "Per engagement",
   },
 ]
@@ -103,31 +106,31 @@ export const faqs: FAQ[] = [
   {
     question: "How do you price engagements?",
     answer:
-      "Most work is scoped as a monthly retainer for fractional leadership or a fixed-fee statement of work for projects. Advisory can be packaged as a sprint. TODO(Charan): Add your typical rate bands and minimums here.",
+      "Engagements are typically structured as a monthly retainer for programme delivery roles or a fixed-fee statement of work for project-based and advisory engagements. Rates are shared on request — reach out with your scope and timeline for a tailored proposal.",
   },
   {
     question: "What is your availability?",
     answer:
-      "I keep a small number of concurrent engagements so quality stays high. TODO(Charan): Update your next opening window (e.g., “accepting starts from …”).",
+      "I maintain a small number of concurrent engagements to keep quality high. Currently accepting new starts from Q3 2026 — reach out early to discuss scope and timing so we can plan the right start date.",
   },
   {
-    question: "Where are you located—and do you work remotely?",
+    question: "Where are you located — and do you work remotely?",
     answer:
-      "I collaborate remotely with teams globally and travel on-site when milestones benefit from face time (workshops, exec reviews, design critiques).",
+      "Based in Toronto, Canada. I collaborate remotely with teams globally and travel on-site when milestones benefit from face time — stakeholder workshops, executive reviews, and programme kick-offs.",
   },
   {
     question: "How do we get started?",
     answer:
-      "Book a discovery call via the contact page. Come with a short brief: problem, users, timeline, and what you have tried so far. If there is a fit, you will receive a proposal within a few days.",
+      "Reach out via the contact page with a short brief: the problem, the stakeholders involved, your timeline, and what you have tried so far. If there is a fit, you will receive a proposal within a few business days.",
   },
   {
     question: "Do you work with agencies or only in-house teams?",
     answer:
-      "Both. In-house product teams are common, but I also partner with agencies needing senior design leadership on critical accounts or delivery spikes.",
+      "Both. In-house product and operations teams are most common, but I also partner with implementation consultancies and agencies that need senior BA leadership on critical client programmes or delivery spikes.",
   },
   {
     question: "What industries do you focus on?",
     answer:
-      "B2B SaaS, regulated workflows, and AI-native products are where I have the deepest pattern library—but the engagement model matters more than the sector.",
+      "Financial services, banking and compliance, enterprise SaaS, and capital markets are where I have the deepest pattern library — KYC/AML, FINTRAC reporting, Salesforce implementations, SAP integrations, and payment system migrations. The problem quality and stakeholder complexity matter more than the sector.",
   },
 ]

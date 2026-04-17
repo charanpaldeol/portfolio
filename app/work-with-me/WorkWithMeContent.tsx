@@ -21,7 +21,7 @@ export function WorkWithMeContent() {
             <span className="text-editorial-gradient">shipping</span>
           </>
         }
-        description="I work with product teams as a fractional design lead, project consultant, and design systems advisor."
+        description="I work with teams as a Lead Technical Business Analyst, programme delivery consultant, and enterprise systems implementation advisor — from requirements through go-live."
       />
 
       <section aria-labelledby="engagements-heading" className="mb-24">
@@ -169,7 +169,6 @@ export function WorkWithMeContent() {
             >
               Book a discovery call
             </Link>
-            {/* TODO: replace /contact with Calendly link when available */}
           </div>
         </div>
       </section>
