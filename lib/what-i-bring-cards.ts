@@ -14,6 +14,8 @@ export type WhatIBringCard = {
   relatedServiceIds?: readonly string[]
   relatedProjectSlugs?: readonly string[]
   relatedPhaseSteps?: readonly string[]
+  relatedExpertiseIds?: readonly string[]
+  relatedBlogSlugs?: readonly string[]
 }
 
 export const whatIBringCards = [
@@ -58,6 +60,8 @@ export const whatIBringCards = [
     relatedServiceIds: ["product-design-strategy"],
     relatedProjectSlugs: ["kyc-aml-automation", "hr-management-system"],
     relatedPhaseSteps: ["01", "02"],
+    relatedExpertiseIds: ["business-product", "compliance-vendors"],
+    relatedBlogSlugs: ["designing-for-decisions"],
   },
   {
     slug: "solution-design",
@@ -100,6 +104,8 @@ export const whatIBringCards = [
     relatedServiceIds: ["product-design-strategy", "design-systems"],
     relatedProjectSlugs: ["api-first-banking-microservices", "event-streaming-pipeline"],
     relatedPhaseSteps: ["03"],
+    relatedExpertiseIds: ["architects-tech-leads", "engineering-qa"],
+    relatedBlogSlugs: ["why-design-systems-fail"],
   },
   {
     slug: "ai-native-delivery",
@@ -146,6 +152,8 @@ export const whatIBringCards = [
       "data-breach-forensics-ai",
     ],
     relatedPhaseSteps: ["04", "05", "06"],
+    relatedExpertiseIds: ["data-ai-teams", "engineering-qa"],
+    relatedBlogSlugs: ["prompt-as-design-artifact"],
   },
   {
     slug: "engineering-depth",
@@ -192,6 +200,8 @@ export const whatIBringCards = [
       "high-performance-ecommerce-checkout",
     ],
     relatedPhaseSteps: ["03", "04"],
+    relatedExpertiseIds: ["engineering-qa", "architects-tech-leads"],
+    relatedBlogSlugs: ["why-design-systems-fail", "designing-for-decisions"],
   },
   {
     slug: "value-realization",
@@ -234,6 +244,8 @@ export const whatIBringCards = [
     relatedServiceIds: ["fractional-leadership"],
     relatedProjectSlugs: ["hr-management-system", "compliance-risk-monitoring"],
     relatedPhaseSteps: ["05", "06"],
+    relatedExpertiseIds: ["business-product", "compliance-vendors"],
+    relatedBlogSlugs: ["designing-for-decisions", "prompt-as-design-artifact"],
   },
 ] as const satisfies readonly WhatIBringCard[]
 

@@ -26,6 +26,7 @@ export const toolGroups = [
       "Stakeholder mapping",
       "Requirements workshops",
       "Gap analysis",
+      "Supply Chain",
       "Miro",
       "Figma",
       "LLM-assisted research",

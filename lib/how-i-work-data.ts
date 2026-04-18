@@ -87,8 +87,8 @@ export const expertiseAreas: ExpertiseArea[] = [
     body: "Translating executive goals into delivery-ready requirements with executives, product owners, and domain SMEs.",
     Icon: Briefcase,
     relatedServiceIds: ["product-design-strategy", "fractional-leadership"],
-    relatedProjectSlugs: ["landing-page-website", "real-time-analytics-dashboard"],
-    relatedTestimonialIds: ["t1", "t3"],
+    relatedProjectSlugs: ["landing-page-website", "real-time-analytics-dashboard", "distributed-order-fulfillment"],
+    relatedTestimonialIds: ["t1", "t3", "t5"],
     relatedPhaseSteps: ["01", "02"],
   },
   {

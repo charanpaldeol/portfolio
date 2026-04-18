@@ -1,10 +1,15 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import HowIWork from "@/components/home/HowIWork"
 import SystemsThinkingSection from "@/components/home/SystemsThinkingSection"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { resolveBlogArticles, resolveExpertiseAreas, resolveProcessSteps, resolveServices } from "@/lib/content-lookups"
+import { expertiseAreas } from "@/lib/how-i-work-data"
+import { services } from "@/lib/services-data"
+import { processSteps } from "@/lib/work-with-me-data"
 
 function CTA() {
   return (
@@ -49,6 +54,21 @@ export default function HowIWorkPage() {
       <section className="rounded-2xl bg-surface-container-low p-8 shadow-editorial md:p-12 lg:p-14">
         <HowIWork afterPipeline={<SystemsThinkingSection />} />
       </section>
+      <RelatedLinks
+        className="mt-10"
+        heading="Connected content"
+        description="Move from operating model detail into concrete services and engagement next steps."
+        groups={[
+          { title: "Expertise areas", items: resolveExpertiseAreas(expertiseAreas.map((area) => area.id ?? "")), showSublabel: true },
+          { title: "Services", items: resolveServices(services.map((service) => service.id)) },
+          { title: "Engagement flow", items: resolveProcessSteps(processSteps.map((step) => step.id ?? "")), showSublabel: true },
+          {
+            title: "Related essays",
+            items: resolveBlogArticles(["problem-framing", "ai-native-delivery", "designing-for-decisions"]),
+            showSublabel: true,
+          },
+        ]}
+      />
       <CTA />
     </PageShell>
   )

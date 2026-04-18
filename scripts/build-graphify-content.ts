@@ -113,6 +113,12 @@ function write(filename: string, builder: MDBuilder) {
   return { path, bytes: body.length }
 }
 
+function withNavigate(builder: MDBuilder, links: readonly { label: string; href: string }[]) {
+  builder.h2("Navigate next")
+  builder.bullets(links.map((link) => `[${link.label}](${link.href})`))
+  return builder
+}
+
 // ── Bucket builders ───────────────────────────────────────────────────────────
 
 function buildHome() {
@@ -129,7 +135,12 @@ function buildHome() {
     .p(
       `Delivery phases in order: ${homeDeliveryPhaseTitles.join(" → ")}.`,
     )
-  return b
+  return withNavigate(b, [
+    { label: "Services", href: "/portfolio/services" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Proof of work", href: "/#proof-of-work" },
+    { label: "Work with me", href: "/work-with-me" },
+  ])
 }
 
 function buildServices() {
@@ -148,7 +159,12 @@ function buildServices() {
     b.h2("Service FAQs")
     for (const f of serviceFAQs) b.h3(f.question).p(f.answer)
   }
-  return b
+  return withNavigate(b, [
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Proof of work", href: "/#proof-of-work" },
+    { label: "Work with me", href: "/work-with-me" },
+    { label: "Contact", href: "/contact" },
+  ])
 }
 
 function buildProjects() {
@@ -176,7 +192,12 @@ function buildProjects() {
       for (const ts of p.techStack) b.p(`${ts.category}: ${ts.technologies.join(", ")}.`)
     }
   }
-  return b
+  return withNavigate(b, [
+    { label: "Proof of work", href: "/#proof-of-work" },
+    { label: "Services", href: "/portfolio/services" },
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Contact", href: "/contact" },
+  ])
 }
 
 function buildHowIWork() {
@@ -185,7 +206,12 @@ function buildHowIWork() {
   for (const phase of workPhases) b.h3(`${phase.step} — ${phase.title}`).p(phase.description)
   b.h2("Expertise areas")
   for (const e of expertiseAreas) b.h3(e.title).p(e.body)
-  return b
+  return withNavigate(b, [
+    { label: "Tools & methods", href: "/tools-and-methods" },
+    { label: "Work with me", href: "/work-with-me" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "How I think", href: "/how-i-think" },
+  ])
 }
 
 function buildHowIThink() {
@@ -194,7 +220,12 @@ function buildHowIThink() {
     b.h2(p.quote).p(`Why: ${p.why}`)
     if (p.example) b.p(`In practice: ${p.example}`)
   }
-  return b
+  return withNavigate(b, [
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Work with me", href: "/work-with-me" },
+    { label: "What I bring", href: "/what-i-bring" },
+    { label: "Blog", href: "/blog" },
+  ])
 }
 
 function buildWhatIBring() {
@@ -203,7 +234,12 @@ function buildWhatIBring() {
     b.h2(c.title).p(c.body)
     for (const s of c.sections) b.h3(s.heading).bullets(s.paragraphs)
   }
-  return b
+  return withNavigate(b, [
+    { label: "Blog", href: "/blog" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Work with me", href: "/work-with-me" },
+    { label: "Contact", href: "/contact" },
+  ])
 }
 
 function buildBlog() {
@@ -212,7 +248,12 @@ function buildBlog() {
     b.h2(a.title).p(a.body)
     for (const s of a.sections) b.h3(s.heading).bullets(s.paragraphs)
   }
-  return b
+  return withNavigate(b, [
+    { label: "What I bring", href: "/what-i-bring" },
+    { label: "How I think", href: "/how-i-think" },
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Projects", href: "/portfolio/projects" },
+  ])
 }
 
 function buildTestimonials() {
@@ -221,7 +262,12 @@ function buildTestimonials() {
     const attribution = [t.author, t.title, t.company].filter(Boolean).join(" · ")
     b.h2(attribution).p(`"${t.quote}"`).p(`Relationship: ${t.relationship}.`)
   }
-  return b
+  return withNavigate(b, [
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Services", href: "/portfolio/services" },
+    { label: "Proof of work", href: "/#proof-of-work" },
+    { label: "Contact", href: "/contact" },
+  ])
 }
 
 function buildWorkWithMe() {
@@ -239,16 +285,27 @@ function buildWorkWithMe() {
   for (const s of processSteps) b.h3(`${s.number} — ${s.title}`).p(s.description).p(`Duration: ${s.duration}.`)
   b.h2("Work-with-me FAQs")
   for (const f of workWithMeFaqs) b.h3(f.question).p(f.answer)
-  return b
+  return withNavigate(b, [
+    { label: "Services", href: "/portfolio/services" },
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Contact", href: "/contact" },
+  ])
 }
 
 function buildProofMetrics() {
   const b = md().h1("Proof of work")
   for (const m of metrics) {
-    const stat = m.statDisplay ?? (m.numericValue !== null ? `${m.numericValue}${m.statSuffix ?? ""}` : "")
+    const statDisplay = "statDisplay" in m ? m.statDisplay : undefined
+    const stat = statDisplay ?? (m.numericValue !== null ? `${m.numericValue}${m.statSuffix ?? ""}` : "")
     b.h2(stat ? `${stat} — ${m.tag}` : m.tag).p(m.label)
   }
-  return b
+  return withNavigate(b, [
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Testimonials", href: "/#testimonials" },
+    { label: "Services", href: "/portfolio/services" },
+    { label: "Work with me", href: "/work-with-me" },
+  ])
 }
 
 function buildAIWorkflow() {
@@ -263,13 +320,23 @@ function buildAIWorkflow() {
   }
   b.h2("Philosophy")
   for (const q of philosophyPoints) b.h3(q.title).p(q.body)
-  return b
+  return withNavigate(b, [
+    { label: "Tools & methods", href: "/tools-and-methods" },
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Blog", href: "/blog" },
+    { label: "Projects", href: "/portfolio/projects" },
+  ])
 }
 
 function buildSystemsThinking() {
   const b = md().h1("Systems thinking")
   for (const s of systemsExamples) b.h2(`${s.layer} — ${s.title}`).p(s.description).p(`Impact: ${s.impact}`)
-  return b
+  return withNavigate(b, [
+    { label: "Services", href: "/portfolio/services" },
+    { label: "How I work", href: "/how-i-work" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "What I bring", href: "/what-i-bring" },
+  ])
 }
 
 function buildToolsAndMethods() {
@@ -278,7 +345,12 @@ function buildToolsAndMethods() {
     b.h2(g.phase).p(g.description).p(`Toolkit: ${g.chips.join(", ")}.`)
     if (g.bold?.length) b.p(`Core emphasis: ${g.bold.join(", ")}.`)
   }
-  return b
+  return withNavigate(b, [
+    { label: "How I work", href: "/how-i-work" },
+    { label: "How I use AI", href: "/how-i-use-ai" },
+    { label: "Projects", href: "/portfolio/projects" },
+    { label: "Proof of work", href: "/#proof-of-work" },
+  ])
 }
 
 // ── Emit ──────────────────────────────────────────────────────────────────────

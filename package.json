@@ -25,6 +25,7 @@
     "test:watch": "cross-env FORCE_COLOR=1 vitest --watch",
     "test:ui": "cross-env FORCE_COLOR=1 vitest --ui",
     "test:coverage": "cross-env FORCE_COLOR=1 vitest --coverage",
+    "audit:content-links": "tsx scripts/audit-content-links.ts",
     "e2e:headless": "playwright test",
     "e2e:ui": "playwright test --ui",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

@@ -86,9 +86,9 @@ export const processSteps: ProcessStep[] = [
   {
     id: "discovery-call",
     number: "01",
-    title: "Discovery call",
+    title: "Scoping call",
     description:
-      "A focused conversation about the problem, stakeholders, constraints, and what a successful outcome looks like. We decide if there is a mutual fit before any paperwork.",
+      "A focused commercial + delivery-fit conversation about the problem, stakeholders, constraints, and what a successful outcome looks like. This is engagement scoping (not the project delivery Discover phase).",
     duration: "30 minutes",
   },
   {
@@ -122,28 +122,28 @@ export const faqs: FAQ[] = [
     id: "pricing",
     question: "How do you price engagements?",
     answer:
-      "Engagements are typically structured as a monthly retainer for programme delivery roles or a fixed-fee statement of work for project-based and advisory engagements. Rates are shared on request — reach out with your scope and timeline for a tailored proposal.",
+      "Engagements are structured as either monthly retainers (embedded programme leadership) or fixed-fee statements of work (project/advisory). Pricing is tied to governance complexity, stakeholder load, and expected delivery cadence.",
     relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
     id: "availability",
     question: "What is your availability?",
     answer:
-      "I maintain a small number of concurrent engagements to keep quality high. Currently accepting new starts from Q3 2026 — reach out early to discuss scope and timing so we can plan the right start date.",
+      "I maintain a limited number of concurrent engagements to protect delivery quality. Start windows are planned around milestone calendars and decision checkpoints, so earlier scoping usually secures better timing.",
     relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
     id: "location-remote",
-    question: "Where are you located — and do you work remotely?",
+    question: "How are stakeholder rhythms handled during delivery?",
     answer:
-      "Based in Toronto, Canada. I collaborate remotely with teams globally and travel on-site when milestones benefit from face time — stakeholder workshops, executive reviews, and programme kick-offs.",
+      "Delivery uses a structured rhythm: weekly operating reviews, decision logs, risk escalation points, and async status updates. On-site sessions are used for high-stakes alignment moments such as kick-off, executive reviews, or reset workshops.",
     relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
     id: "get-started",
     question: "How do we get started?",
     answer:
-      "Reach out via the contact page with a short brief: the problem, the stakeholders involved, your timeline, and what you have tried so far. If there is a fit, you will receive a proposal within a few business days.",
+      "Reach out with a short brief (problem, stakeholders, timeline, constraints). The first step is a scoping call, followed by a proposal and operating model. If you primarily need product/design outcome packages, the Services page is the better starting point.",
     relatedEngagementIds: ["programme", "project", "advisory"],
     relatedPhaseSteps: ["01"],
   },
@@ -158,7 +158,7 @@ export const faqs: FAQ[] = [
     id: "industries",
     question: "What industries do you focus on?",
     answer:
-      "Financial services, banking and compliance, enterprise SaaS, and capital markets are where I have the deepest pattern library — KYC/AML, FINTRAC reporting, Salesforce implementations, SAP integrations, and payment system migrations. The problem quality and stakeholder complexity matter more than the sector.",
+      "Financial services, banking/compliance, enterprise SaaS, and capital markets are where I have the deepest pattern library — KYC/AML, FINTRAC reporting, Salesforce programmes, SAP integrations, and payment migrations. The deciding factor is stakeholder complexity and delivery risk, not logo category.",
     relatedEngagementIds: ["programme", "project", "advisory"],
   },
 ]

@@ -59,6 +59,8 @@ export const standaloneArticles: WhatIBringCard[] = [
     relatedServiceIds: ["ai-native-ux"],
     relatedProjectSlugs: ["ai-customer-onboarding-agent", "fraud-detection-engine"],
     relatedPhaseSteps: ["02", "03"],
+    relatedExpertiseIds: ["data-ai-teams", "engineering-qa"],
+    relatedBlogSlugs: ["ai-native-delivery", "problem-framing"],
   },
   {
     slug: "why-design-systems-fail",
@@ -118,6 +120,8 @@ export const standaloneArticles: WhatIBringCard[] = [
     relatedServiceIds: ["design-systems", "fractional-leadership"],
     relatedProjectSlugs: ["landing-page-website"],
     relatedPhaseSteps: ["03", "05"],
+    relatedExpertiseIds: ["ux-design", "engineering-qa"],
+    relatedBlogSlugs: ["engineering-depth", "solution-design"],
   },
   {
     slug: "designing-for-decisions",
@@ -181,5 +185,7 @@ export const standaloneArticles: WhatIBringCard[] = [
       "ai-customer-onboarding-agent",
     ],
     relatedPhaseSteps: ["02", "03"],
+    relatedExpertiseIds: ["business-product", "ux-design"],
+    relatedBlogSlugs: ["problem-framing", "value-realization"],
   },
 ]

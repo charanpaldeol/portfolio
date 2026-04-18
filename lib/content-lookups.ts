@@ -21,12 +21,26 @@ export type RelatedItem = {
   key: string
 }
 
+export const CONTENT_DESTINATIONS = {
+  service: (id: string) => `/portfolio/services#${id}`,
+  project: (slug: string) => `/portfolio/projects/${slug}`,
+  testimonial: () => "/#testimonials",
+  phase: () => "/how-i-work",
+  principle: () => "/how-i-think",
+  engagement: (id: string) => `/work-with-me#engagement-${id}`,
+  proofMetric: () => "/#proof-of-work",
+  expertise: () => "/how-i-work#expertise",
+  blogArticle: (slug: string) => `/blog/${slug}`,
+  processStep: () => "/work-with-me#process",
+  workWithMeFaq: () => "/work-with-me#faqs",
+} as const
+
 export function resolveServices(ids: readonly string[] | undefined): RelatedItem[] {
   if (!ids?.length) return []
   return ids
     .map((id) => services.find((s) => s.id === id))
     .filter((s): s is (typeof services)[number] => Boolean(s))
-    .map((s) => ({ key: s.id, label: s.name, sublabel: s.tagline, href: `/portfolio/services#${s.id}` }))
+    .map((s) => ({ key: s.id, label: s.name, sublabel: s.tagline, href: CONTENT_DESTINATIONS.service(s.id) }))
 }
 
 export function resolveProjects(slugs: readonly string[] | undefined): RelatedItem[] {
@@ -34,7 +48,7 @@ export function resolveProjects(slugs: readonly string[] | undefined): RelatedIt
   return slugs
     .map((slug) => projects.find((p) => p.slug === slug))
     .filter((p): p is (typeof projects)[number] => Boolean(p))
-    .map((p) => ({ key: p.slug, label: p.title, sublabel: p.tagline, href: `/portfolio/projects/${p.slug}` }))
+    .map((p) => ({ key: p.slug, label: p.title, sublabel: p.tagline, href: CONTENT_DESTINATIONS.project(p.slug) }))
 }
 
 export function resolveTestimonials(ids: readonly string[] | undefined): RelatedItem[] {
@@ -42,7 +56,7 @@ export function resolveTestimonials(ids: readonly string[] | undefined): Related
   return ids
     .map((id) => testimonials.find((t) => t.id === id))
     .filter((t): t is (typeof testimonials)[number] => Boolean(t))
-    .map((t) => ({ key: t.id, label: `${t.author} — ${t.title}`, sublabel: t.relationship, href: "/#testimonials" }))
+    .map((t) => ({ key: t.id, label: `${t.author} — ${t.title}`, sublabel: t.relationship, href: CONTENT_DESTINATIONS.testimonial() }))
 }
 
 export function resolvePhases(steps: readonly string[] | undefined): RelatedItem[] {
@@ -50,7 +64,7 @@ export function resolvePhases(steps: readonly string[] | undefined): RelatedItem
   return steps
     .map((step) => workPhases.find((p) => p.step === step))
     .filter((p): p is (typeof workPhases)[number] => Boolean(p))
-    .map((p) => ({ key: p.step, label: `${p.step} · ${p.title}`, sublabel: p.description, href: "/how-i-work" }))
+    .map((p) => ({ key: p.step, label: `${p.step} · ${p.title}`, sublabel: p.description, href: CONTENT_DESTINATIONS.phase() }))
 }
 
 export function resolvePrinciples(ids: readonly string[] | undefined): RelatedItem[] {
@@ -58,7 +72,7 @@ export function resolvePrinciples(ids: readonly string[] | undefined): RelatedIt
   return ids
     .map((id) => HOW_I_THINK_PRINCIPLES.find((p) => p.id === id))
     .filter((p): p is (typeof HOW_I_THINK_PRINCIPLES)[number] => Boolean(p))
-    .map((p) => ({ key: p.id, label: p.quote, sublabel: p.why, href: "/how-i-think" }))
+    .map((p) => ({ key: p.id, label: p.quote, sublabel: p.why, href: CONTENT_DESTINATIONS.principle() }))
 }
 
 export function resolveEngagements(ids: readonly string[] | undefined): RelatedItem[] {
@@ -66,7 +80,7 @@ export function resolveEngagements(ids: readonly string[] | undefined): RelatedI
   return ids
     .map((id) => engagementTypes.find((e) => e.id === id))
     .filter((e): e is (typeof engagementTypes)[number] => Boolean(e))
-    .map((e) => ({ key: e.id, label: e.name, sublabel: e.typicalDuration, href: `/work-with-me#engagement-${e.id}` }))
+    .map((e) => ({ key: e.id, label: e.name, sublabel: e.typicalDuration, href: CONTENT_DESTINATIONS.engagement(e.id) }))
 }
 
 export function resolveProofMetrics(tags: readonly string[] | undefined): RelatedItem[] {
@@ -80,7 +94,7 @@ export function resolveProofMetrics(tags: readonly string[] | undefined): Relate
         key: m.tag,
         label: m.statDisplay ?? numericLabel ?? m.tag,
         sublabel: m.tag,
-        href: "/#proof",
+        href: CONTENT_DESTINATIONS.proofMetric(),
       }
     })
 }
@@ -90,7 +104,7 @@ export function resolveExpertiseAreas(ids: readonly string[] | undefined): Relat
   return ids
     .map((id) => expertiseAreas.find((a) => a.id === id))
     .filter((a): a is (typeof expertiseAreas)[number] => Boolean(a))
-    .map((a) => ({ key: a.id ?? a.title, label: a.title, sublabel: a.body, href: "/how-i-work#expertise" }))
+    .map((a) => ({ key: a.id ?? a.title, label: a.title, sublabel: a.body, href: CONTENT_DESTINATIONS.expertise() }))
 }
 
 export function resolveBlogArticles(slugs: readonly string[] | undefined): RelatedItem[] {
@@ -99,7 +113,7 @@ export function resolveBlogArticles(slugs: readonly string[] | undefined): Relat
   return slugs
     .map((slug) => combined.find((a) => a.slug === slug))
     .filter((a): a is (typeof combined)[number] => Boolean(a))
-    .map((a) => ({ key: a.slug, label: a.title, sublabel: a.badge, href: `/blog/${a.slug}` }))
+    .map((a) => ({ key: a.slug, label: a.title, sublabel: a.badge, href: CONTENT_DESTINATIONS.blogArticle(a.slug) }))
 }
 
 export function resolveProcessSteps(ids: readonly string[] | undefined): RelatedItem[] {
@@ -107,7 +121,7 @@ export function resolveProcessSteps(ids: readonly string[] | undefined): Related
   return ids
     .map((id) => processSteps.find((s) => s.id === id))
     .filter((s): s is (typeof processSteps)[number] => Boolean(s))
-    .map((s) => ({ key: s.id ?? s.number, label: `${s.number} · ${s.title}`, sublabel: s.duration, href: "/work-with-me#process" }))
+    .map((s) => ({ key: s.id ?? s.number, label: `${s.number} · ${s.title}`, sublabel: s.duration, href: CONTENT_DESTINATIONS.processStep() }))
 }
 
 export function resolveWorkWithMeFaqs(ids: readonly string[] | undefined): RelatedItem[] {
@@ -115,5 +129,5 @@ export function resolveWorkWithMeFaqs(ids: readonly string[] | undefined): Relat
   return ids
     .map((id) => workWithMeFaqs.find((f) => f.id === id))
     .filter((f): f is (typeof workWithMeFaqs)[number] => Boolean(f))
-    .map((f) => ({ key: f.id ?? f.question, label: f.question, href: "/work-with-me#faqs" }))
+    .map((f) => ({ key: f.id ?? f.question, label: f.question, href: CONTENT_DESTINATIONS.workWithMeFaq() }))
 }

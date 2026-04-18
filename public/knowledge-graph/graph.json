@@ -156,19 +156,6 @@
       "norm_label": "compliance"
     },
     {
-      "label": "KYC/AML",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_kyc",
-      "community": 0,
-      "norm_label": "kyc/aml"
-    },
-    {
       "label": "Agile/Scrum",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -191,7 +178,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_jira",
-      "community": 4,
+      "community": 0,
       "norm_label": "jira"
     },
     {
@@ -204,7 +191,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_confluence",
-      "community": 1,
+      "community": 0,
       "norm_label": "confluence"
     },
     {
@@ -230,7 +217,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_brd",
-      "community": 4,
+      "community": 0,
       "norm_label": "brd/tdd"
     },
     {
@@ -256,7 +243,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_figma",
-      "community": 5,
+      "community": 4,
       "norm_label": "figma"
     },
     {
@@ -269,7 +256,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_claude",
-      "community": 3,
+      "community": 4,
       "norm_label": "claude"
     },
     {
@@ -282,7 +269,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_cursor",
-      "community": 3,
+      "community": 4,
       "norm_label": "cursor"
     },
     {
@@ -295,7 +282,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_change_management",
-      "community": 1,
+      "community": 0,
       "norm_label": "change management"
     },
     {
@@ -325,19 +312,6 @@
       "norm_label": "salesforce"
     },
     {
-      "label": "SAP",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_sap",
-      "community": 1,
-      "norm_label": "sap"
-    },
-    {
       "label": "MuleSoft",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -351,84 +325,6 @@
       "norm_label": "mulesoft"
     },
     {
-      "label": "Python",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_python",
-      "community": 0,
-      "norm_label": "python"
-    },
-    {
-      "label": "TensorFlow",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_tensorflow",
-      "community": 0,
-      "norm_label": "tensorflow"
-    },
-    {
-      "label": "PyTorch",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_pytorch",
-      "community": 0,
-      "norm_label": "pytorch"
-    },
-    {
-      "label": "XGBoost",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_xgboost",
-      "community": 0,
-      "norm_label": "xgboost"
-    },
-    {
-      "label": "Apache Kafka",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_kafka",
-      "community": 0,
-      "norm_label": "apache kafka"
-    },
-    {
-      "label": "Apache Spark",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_spark",
-      "community": 0,
-      "norm_label": "apache spark"
-    },
-    {
       "label": "PostgreSQL",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -438,7 +334,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_postgresql",
-      "community": 3,
+      "community": 4,
       "norm_label": "postgresql"
     },
     {
@@ -451,34 +347,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_docker",
-      "community": 3,
+      "community": 4,
       "norm_label": "docker"
-    },
-    {
-      "label": "Kubernetes",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_kubernetes",
-      "community": 0,
-      "norm_label": "kubernetes"
-    },
-    {
-      "label": "Redis",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_redis",
-      "community": 0,
-      "norm_label": "redis"
     },
     {
       "label": "SSMS",
@@ -503,7 +373,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_excel",
-      "community": 1,
+      "community": 0,
       "norm_label": "excel"
     },
     {
@@ -529,7 +399,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_visio",
-      "community": 1,
+      "community": 0,
       "norm_label": "visio"
     },
     {
@@ -542,7 +412,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_etl",
-      "community": 1,
+      "community": 0,
       "norm_label": "etl"
     },
     {
@@ -572,19 +442,6 @@
       "norm_label": "soap"
     },
     {
-      "label": "Stripe API",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_stripe",
-      "community": 4,
-      "norm_label": "stripe api"
-    },
-    {
       "label": "GDPR",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -598,45 +455,6 @@
       "norm_label": "gdpr"
     },
     {
-      "label": "CCPA",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_ccpa",
-      "community": 0,
-      "norm_label": "ccpa"
-    },
-    {
-      "label": "SOC2",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_soc2",
-      "community": 0,
-      "norm_label": "soc2"
-    },
-    {
-      "label": "ISO 27001",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_iso_27001",
-      "community": 0,
-      "norm_label": "iso 27001"
-    },
-    {
       "label": "AWS",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -646,47 +464,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_aws",
-      "community": 3,
-      "norm_label": "aws"
-    },
-    {
-      "label": "Azure",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_azure",
-      "community": 0,
-      "norm_label": "azure"
-    },
-    {
-      "label": "Terraform",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_terraform",
-      "community": 0,
-      "norm_label": "terraform"
-    },
-    {
-      "label": "Next.js",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_nextjs",
       "community": 4,
-      "norm_label": "next.js"
+      "norm_label": "aws"
     },
     {
       "label": "React",
@@ -698,7 +477,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_react",
-      "community": 3,
+      "community": 4,
       "norm_label": "react"
     },
     {
@@ -711,60 +490,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_typescript",
-      "community": 3,
+      "community": 4,
       "norm_label": "typescript"
-    },
-    {
-      "label": "Tailwind CSS",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_tailwind",
-      "community": 4,
-      "norm_label": "tailwind css"
-    },
-    {
-      "label": "Google Analytics",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_google_analytics",
-      "community": 4,
-      "norm_label": "google analytics"
-    },
-    {
-      "label": "Mixpanel",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_mixpanel",
-      "community": 4,
-      "norm_label": "mixpanel"
-    },
-    {
-      "label": "Hotjar",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_hotjar",
-      "community": 4,
-      "norm_label": "hotjar"
     },
     {
       "label": "ADP",
@@ -776,7 +503,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_adp",
-      "community": 1,
+      "community": 0,
       "norm_label": "adp"
     },
     {
@@ -789,21 +516,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_gusto",
-      "community": 1,
+      "community": 0,
       "norm_label": "gusto"
-    },
-    {
-      "label": "QuickBooks",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_quickbooks",
-      "community": 1,
-      "norm_label": "quickbooks"
     },
     {
       "label": "Power BI",
@@ -815,7 +529,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_power_bi",
-      "community": 8,
+      "community": 5,
       "norm_label": "power bi"
     },
     {
@@ -828,7 +542,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_tableau",
-      "community": 4,
+      "community": 1,
       "norm_label": "tableau"
     },
     {
@@ -867,21 +581,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_data_modeling",
-      "community": 3,
+      "community": 4,
       "norm_label": "data modeling"
-    },
-    {
-      "label": "Data Lineage",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_data_lineage",
-      "community": 0,
-      "norm_label": "data lineage"
     },
     {
       "label": "Prosci",
@@ -932,7 +633,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_ab_testing",
-      "community": 4,
+      "community": 0,
       "norm_label": "a/b testing"
     },
     {
@@ -945,7 +646,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_miro",
-      "community": 5,
+      "community": 2,
       "norm_label": "miro"
     },
     {
@@ -958,47 +659,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_notion_ai",
-      "community": 3,
+      "community": 4,
       "norm_label": "notion ai"
-    },
-    {
-      "label": "Otter.ai",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_otter_ai",
-      "community": 3,
-      "norm_label": "otter.ai"
-    },
-    {
-      "label": "Granola",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_granola",
-      "community": 3,
-      "norm_label": "granola"
-    },
-    {
-      "label": "GitHub Copilot",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_github_copilot",
-      "community": 3,
-      "norm_label": "github copilot"
     },
     {
       "label": "Vercel",
@@ -1062,7 +724,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_bpmn",
-      "community": 5,
+      "community": 2,
       "norm_label": "bpmn"
     },
     {
@@ -1075,7 +737,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_moscow",
-      "community": 4,
+      "community": 5,
       "norm_label": "moscow prioritisation"
     },
     {
@@ -1088,7 +750,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_openai_api",
-      "community": 3,
+      "community": 4,
       "norm_label": "openai api"
     },
     {
@@ -1101,7 +763,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_langchain",
-      "community": 3,
+      "community": 4,
       "norm_label": "langchain"
     },
     {
@@ -1114,21 +776,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_claude_api",
-      "community": 3,
+      "community": 4,
       "norm_label": "claude api"
-    },
-    {
-      "label": "Credit Risk",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_credit_risk",
-      "community": 0,
-      "norm_label": "credit risk"
     },
     {
       "label": "Regulatory Reporting",
@@ -1170,19 +819,6 @@
       "norm_label": "siem"
     },
     {
-      "label": "Forensics",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_forensics",
-      "community": 0,
-      "norm_label": "forensics"
-    },
-    {
       "label": "Audit Logging",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -1196,19 +832,6 @@
       "norm_label": "audit logging"
     },
     {
-      "label": "Linear",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_linear",
-      "community": 3,
-      "norm_label": "linear"
-    },
-    {
       "label": "ChatGPT",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -1218,21 +841,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_chatgpt",
-      "community": 3,
+      "community": 4,
       "norm_label": "chatgpt"
-    },
-    {
-      "label": "Figma AI",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_figma_ai",
-      "community": 3,
-      "norm_label": "figma ai"
     },
     {
       "label": "Requirements",
@@ -1257,7 +867,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_process_mapping",
-      "community": 5,
+      "community": 2,
       "norm_label": "process mapping"
     },
     {
@@ -1274,32 +884,6 @@
       "norm_label": "api integration"
     },
     {
-      "label": "AI Implementation",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_ai_implementation",
-      "community": 2,
-      "norm_label": "ai implementation"
-    },
-    {
-      "label": "Risk Management",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_risk_management",
-      "community": 0,
-      "norm_label": "risk management"
-    },
-    {
       "label": "Supply Chain",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -1313,19 +897,6 @@
       "norm_label": "supply chain"
     },
     {
-      "label": "Process Reengineering",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_process_reengineering",
-      "community": 1,
-      "norm_label": "process reengineering"
-    },
-    {
       "label": "Payment Gateways",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -1335,7 +906,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_payment_gateways",
-      "community": 4,
+      "community": 0,
       "norm_label": "payment gateways"
     },
     {
@@ -1350,19 +921,6 @@
       "id": "skill_saas_implementation",
       "community": 1,
       "norm_label": "saas implementation"
-    },
-    {
-      "label": "Fraud Detection",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_fraud",
-      "community": 4,
-      "norm_label": "fraud detection"
     },
     {
       "label": "Security",
@@ -1391,45 +949,6 @@
       "norm_label": "audit"
     },
     {
-      "label": "Payroll",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_payroll",
-      "community": 1,
-      "norm_label": "payroll"
-    },
-    {
-      "label": "Accounting",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_accounting",
-      "community": 1,
-      "norm_label": "accounting"
-    },
-    {
-      "label": "HR Systems",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_hr_systems",
-      "community": 1,
-      "norm_label": "hr systems"
-    },
-    {
       "label": "Analytics",
       "file_type": "code",
       "source_file": "portfolio/lib/tools-and-methods-data.ts",
@@ -1439,73 +958,8 @@
       "author": null,
       "contributor": null,
       "id": "skill_analytics",
-      "community": 4,
+      "community": 1,
       "norm_label": "analytics"
-    },
-    {
-      "label": "SEO",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_seo",
-      "community": 4,
-      "norm_label": "seo"
-    },
-    {
-      "label": "Stakeholder Management",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_stakeholder_management",
-      "community": 4,
-      "norm_label": "stakeholder management"
-    },
-    {
-      "label": "Enterprise Architecture",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_enterprise_architecture",
-      "community": 1,
-      "norm_label": "enterprise architecture"
-    },
-    {
-      "label": "Incident Management",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_incident_management",
-      "community": 0,
-      "norm_label": "incident management"
-    },
-    {
-      "label": "Process Automation",
-      "file_type": "code",
-      "source_file": "portfolio/lib/tools-and-methods-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "skill_process_automation",
-      "community": 1,
-      "norm_label": "process automation"
     },
     {
       "label": "Discover",
@@ -1517,7 +971,7 @@
       "author": null,
       "contributor": null,
       "id": "phase_discover",
-      "community": 5,
+      "community": 2,
       "norm_label": "discover"
     },
     {
@@ -1530,7 +984,7 @@
       "author": null,
       "contributor": null,
       "id": "phase_define",
-      "community": 4,
+      "community": 5,
       "norm_label": "define"
     },
     {
@@ -1543,7 +997,7 @@
       "author": null,
       "contributor": null,
       "id": "phase_design",
-      "community": 3,
+      "community": 4,
       "norm_label": "design"
     },
     {
@@ -1582,7 +1036,7 @@
       "author": null,
       "contributor": null,
       "id": "phase_value",
-      "community": 8,
+      "community": 5,
       "norm_label": "value"
     },
     {
@@ -1608,7 +1062,7 @@
       "author": null,
       "contributor": null,
       "id": "industry_payments",
-      "community": 4,
+      "community": 0,
       "norm_label": "payments"
     },
     {
@@ -1638,32 +1092,6 @@
       "norm_label": "enterprise"
     },
     {
-      "label": "Ai",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_ai",
-      "community": 2,
-      "norm_label": "ai"
-    },
-    {
-      "label": "Cx",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_cx",
-      "community": 2,
-      "norm_label": "cx"
-    },
-    {
       "label": "Ecommerce",
       "file_type": "code",
       "source_file": "portfolio/lib/projects-data.ts",
@@ -1673,7 +1101,7 @@
       "author": null,
       "contributor": null,
       "id": "industry_ecommerce",
-      "community": 4,
+      "community": 0,
       "norm_label": "ecommerce"
     },
     {
@@ -1703,45 +1131,6 @@
       "norm_label": "cybersecurity"
     },
     {
-      "label": "Cloud",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_cloud",
-      "community": 0,
-      "norm_label": "cloud"
-    },
-    {
-      "label": "Web",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_web",
-      "community": 4,
-      "norm_label": "web"
-    },
-    {
-      "label": "Digital",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_digital",
-      "community": 4,
-      "norm_label": "digital"
-    },
-    {
       "label": "Internal",
       "file_type": "code",
       "source_file": "portfolio/lib/projects-data.ts",
@@ -1751,21 +1140,8 @@
       "author": null,
       "contributor": null,
       "id": "industry_internal",
-      "community": 1,
+      "community": 0,
       "norm_label": "internal"
-    },
-    {
-      "label": "Finance",
-      "file_type": "code",
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "industry_finance",
-      "community": 1,
-      "norm_label": "finance"
     },
     {
       "label": "AI-Powered Fraud Detection Engine",
@@ -1790,7 +1166,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_payment_settlement_platform",
-      "community": 1,
+      "community": 0,
       "norm_label": "payment gateway migration & settlement platform"
     },
     {
@@ -1842,7 +1218,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_ai_customer_onboarding_agent",
-      "community": 2,
+      "community": 3,
       "norm_label": "ai-assisted customer onboarding platform"
     },
     {
@@ -1894,7 +1270,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_ecommerce_product_search_recommendations",
-      "community": 4,
+      "community": 0,
       "norm_label": "product discovery & search optimisation"
     },
     {
@@ -1907,7 +1283,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_high_performance_ecommerce_checkout",
-      "community": 4,
+      "community": 0,
       "norm_label": "checkout optimisation & fraud prevention"
     },
     {
@@ -1985,7 +1361,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_hr_management_system",
-      "community": 1,
+      "community": 0,
       "norm_label": "hr system consolidation & process automation"
     },
     {
@@ -1998,7 +1374,7 @@
       "author": null,
       "contributor": null,
       "id": "projects_data_payroll_management_system",
-      "community": 1,
+      "community": 0,
       "norm_label": "payroll automation & accounting integration"
     },
     {
@@ -2011,7 +1387,7 @@
       "author": null,
       "contributor": null,
       "id": "services_data_product_design_strategy",
-      "community": 2,
+      "community": 3,
       "norm_label": "product design strategy"
     },
     {
@@ -2024,7 +1400,7 @@
       "author": null,
       "contributor": null,
       "id": "services_data_ai_native_ux",
-      "community": 2,
+      "community": 3,
       "norm_label": "ai-native ux design"
     },
     {
@@ -2037,7 +1413,7 @@
       "author": null,
       "contributor": null,
       "id": "services_data_design_systems",
-      "community": 2,
+      "community": 1,
       "norm_label": "design systems & component architecture"
     },
     {
@@ -2050,7 +1426,7 @@
       "author": null,
       "contributor": null,
       "id": "services_data_fractional_leadership",
-      "community": 2,
+      "community": 3,
       "norm_label": "fractional design leadership"
     },
     {
@@ -2063,7 +1439,7 @@
       "author": null,
       "contributor": null,
       "id": "services_data_faq_timelines",
-      "community": 2,
+      "community": 3,
       "norm_label": "faq: what timelines should teams plan for?"
     },
     {
@@ -2076,7 +1452,7 @@
       "author": null,
       "contributor": null,
       "id": "ai_workflow_data_discovery_research",
-      "community": 3,
+      "community": 4,
       "norm_label": "discovery & research"
     },
     {
@@ -2089,7 +1465,7 @@
       "author": null,
       "contributor": null,
       "id": "ai_workflow_data_problem_framing",
-      "community": 3,
+      "community": 4,
       "norm_label": "problem framing (ai workflow)"
     },
     {
@@ -2102,7 +1478,7 @@
       "author": null,
       "contributor": null,
       "id": "ai_workflow_data_ideation_concept",
-      "community": 3,
+      "community": 4,
       "norm_label": "ideation & concept design"
     },
     {
@@ -2115,7 +1491,7 @@
       "author": null,
       "contributor": null,
       "id": "ai_workflow_data_prototyping_iteration",
-      "community": 3,
+      "community": 4,
       "norm_label": "prototyping & iteration"
     },
     {
@@ -2128,34 +1504,8 @@
       "author": null,
       "contributor": null,
       "id": "ai_workflow_data_handoff_documentation",
-      "community": 3,
+      "community": 4,
       "norm_label": "handoff & documentation"
-    },
-    {
-      "label": "Accelerate the loop; own the direction",
-      "file_type": "code",
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "ai_workflow_data_philosophy_loop_vs_direction",
-      "community": 6,
-      "norm_label": "accelerate the loop; own the direction"
-    },
-    {
-      "label": "AI-native is not AI-dependent",
-      "file_type": "code",
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "ai_workflow_data_philosophy_native_not_dependent",
-      "community": 2,
-      "norm_label": "ai-native is not ai-dependent"
     },
     {
       "label": "Problem Framing",
@@ -2167,7 +1517,7 @@
       "author": null,
       "contributor": null,
       "id": "what_i_bring_cards_problem_framing",
-      "community": 2,
+      "community": 3,
       "norm_label": "problem framing"
     },
     {
@@ -2180,7 +1530,7 @@
       "author": null,
       "contributor": null,
       "id": "what_i_bring_cards_solution_design",
-      "community": 2,
+      "community": 1,
       "norm_label": "solution design"
     },
     {
@@ -2193,7 +1543,7 @@
       "author": null,
       "contributor": null,
       "id": "what_i_bring_cards_ai_native_delivery",
-      "community": 6,
+      "community": 3,
       "norm_label": "ai-native delivery"
     },
     {
@@ -2206,7 +1556,7 @@
       "author": null,
       "contributor": null,
       "id": "what_i_bring_cards_engineering_depth",
-      "community": 2,
+      "community": 1,
       "norm_label": "engineering depth"
     },
     {
@@ -2219,7 +1569,7 @@
       "author": null,
       "contributor": null,
       "id": "what_i_bring_cards_value_realization",
-      "community": 6,
+      "community": 3,
       "norm_label": "value realization"
     },
     {
@@ -2232,7 +1582,7 @@
       "author": null,
       "contributor": null,
       "id": "blog_articles_data_prompt_as_design_artifact",
-      "community": 2,
+      "community": 3,
       "norm_label": "the prompt is a design artifact"
     },
     {
@@ -2245,7 +1595,7 @@
       "author": null,
       "contributor": null,
       "id": "blog_articles_data_why_design_systems_fail",
-      "community": 2,
+      "community": 1,
       "norm_label": "why design systems fail (and what to do instead)"
     },
     {
@@ -2258,7 +1608,7 @@
       "author": null,
       "contributor": null,
       "id": "blog_articles_data_designing_for_decisions",
-      "community": 2,
+      "community": 3,
       "norm_label": "designing for decisions, not screens"
     },
     {
@@ -2271,7 +1621,7 @@
       "author": null,
       "contributor": null,
       "id": "how_i_work_data_workphase_discover",
-      "community": 2,
+      "community": 3,
       "norm_label": "work phase 01 - discover"
     },
     {
@@ -2284,60 +1634,8 @@
       "author": null,
       "contributor": null,
       "id": "how_i_work_data_workphase_define",
-      "community": 3,
+      "community": 4,
       "norm_label": "work phase 02 - define"
-    },
-    {
-      "label": "Work Phase 03 - Design",
-      "file_type": "code",
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "how_i_work_data_workphase_design",
-      "community": 3,
-      "norm_label": "work phase 03 - design"
-    },
-    {
-      "label": "Work Phase 04 - Deliver",
-      "file_type": "code",
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "how_i_work_data_workphase_deliver",
-      "community": 6,
-      "norm_label": "work phase 04 - deliver"
-    },
-    {
-      "label": "Work Phase 05 - Adopt",
-      "file_type": "code",
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "how_i_work_data_workphase_adopt",
-      "community": 7,
-      "norm_label": "work phase 05 - adopt"
-    },
-    {
-      "label": "Work Phase 06 - Value",
-      "file_type": "code",
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "how_i_work_data_workphase_value",
-      "community": 8,
-      "norm_label": "work phase 06 - value"
     },
     {
       "label": "Business & product",
@@ -2375,7 +1673,7 @@
       "author": null,
       "contributor": null,
       "id": "how_i_work_data_expertise_ux_design",
-      "community": 2,
+      "community": 3,
       "norm_label": "ux & design"
     },
     {
@@ -2427,125 +1725,8 @@
       "author": null,
       "contributor": null,
       "id": "proof_metrics_data_change_management",
-      "community": 1,
+      "community": 0,
       "norm_label": "83% user adoption via prosci change management"
-    },
-    {
-      "label": "Systems Layer - Token",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_layer_token",
-      "community": 2,
-      "norm_label": "systems layer - token"
-    },
-    {
-      "label": "Systems Layer - Component",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_layer_component",
-      "community": 10,
-      "norm_label": "systems layer - component"
-    },
-    {
-      "label": "Systems Layer - Platform",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_layer_platform",
-      "community": 9,
-      "norm_label": "systems layer - platform"
-    },
-    {
-      "label": "Spacing tokens as the single source of truth",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_spacing_tokens",
-      "community": 2,
-      "norm_label": "spacing tokens as the single source of truth"
-    },
-    {
-      "label": "One empty-state pattern, many products",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_empty_state_pattern",
-      "community": 10,
-      "norm_label": "one empty-state pattern, many products"
-    },
-    {
-      "label": "Shared navigation model across the suite",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_nav_ia_platform",
-      "community": 9,
-      "norm_label": "shared navigation model across the suite"
-    },
-    {
-      "label": "Form field contract at the token layer",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_form_field_contract",
-      "community": 2,
-      "norm_label": "form field contract at the token layer"
-    },
-    {
-      "label": "Status vocabulary in components",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_status_language",
-      "community": 10,
-      "norm_label": "status vocabulary in components"
-    },
-    {
-      "label": "Telemetry hooks tied to platform releases",
-      "file_type": "code",
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "systems_thinking_data_release_telemetry",
-      "community": 9,
-      "norm_label": "telemetry hooks tied to platform releases"
     },
     {
       "label": "David Kim - Enterprise Programmes Director",
@@ -2596,7 +1777,7 @@
       "author": null,
       "contributor": null,
       "id": "testimonials_data_t4",
-      "community": 1,
+      "community": 0,
       "norm_label": "meera patel - senior change lead"
     },
     {
@@ -2622,7 +1803,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_user_story_mapping",
-      "community": 5,
+      "community": 2,
       "norm_label": "user story mapping"
     },
     {
@@ -2635,7 +1816,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_stakeholder_mapping",
-      "community": 5,
+      "community": 2,
       "norm_label": "stakeholder mapping"
     },
     {
@@ -2648,7 +1829,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_requirements_workshops",
-      "community": 5,
+      "community": 2,
       "norm_label": "requirements workshops"
     },
     {
@@ -2661,7 +1842,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_gap_analysis",
-      "community": 5,
+      "community": 2,
       "norm_label": "gap analysis"
     },
     {
@@ -2674,7 +1855,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_llm_assisted_research",
-      "community": 5,
+      "community": 2,
       "norm_label": "llm-assisted research"
     },
     {
@@ -2687,7 +1868,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_user_stories",
-      "community": 4,
+      "community": 5,
       "norm_label": "user stories"
     },
     {
@@ -2700,7 +1881,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_acceptance_criteria",
-      "community": 4,
+      "community": 5,
       "norm_label": "acceptance criteria"
     },
     {
@@ -2713,7 +1894,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_business_case_writing",
-      "community": 4,
+      "community": 5,
       "norm_label": "business case writing"
     },
     {
@@ -2726,7 +1907,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_solution_architecture",
-      "community": 3,
+      "community": 4,
       "norm_label": "solution architecture"
     },
     {
@@ -2739,7 +1920,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_api_design",
-      "community": 3,
+      "community": 4,
       "norm_label": "api design"
     },
     {
@@ -2752,7 +1933,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_integration_specs",
-      "community": 3,
+      "community": 4,
       "norm_label": "integration specs"
     },
     {
@@ -2765,7 +1946,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_nodejs",
-      "community": 3,
+      "community": 4,
       "norm_label": "node.js"
     },
     {
@@ -2895,7 +2076,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_kpi_definition",
-      "community": 8,
+      "community": 5,
       "norm_label": "kpi definition"
     },
     {
@@ -2908,7 +2089,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_value_architecture",
-      "community": 8,
+      "community": 5,
       "norm_label": "value architecture"
     },
     {
@@ -2921,7 +2102,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_okr_alignment",
-      "community": 8,
+      "community": 5,
       "norm_label": "okr alignment"
     },
     {
@@ -2934,7 +2115,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_adoption_metrics",
-      "community": 8,
+      "community": 5,
       "norm_label": "adoption metrics"
     },
     {
@@ -2947,7 +2128,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_executive_reporting",
-      "community": 8,
+      "community": 5,
       "norm_label": "executive reporting"
     },
     {
@@ -2960,7 +2141,7 @@
       "author": null,
       "contributor": null,
       "id": "skill_business_case_retrospective",
-      "community": 8,
+      "community": 5,
       "norm_label": "business case retrospective"
     },
     {
@@ -2973,7 +2154,7 @@
       "author": null,
       "contributor": null,
       "id": "tools_and_methods_data_group_discover",
-      "community": 5,
+      "community": 2,
       "norm_label": "tool group - discover"
     },
     {
@@ -2986,7 +2167,7 @@
       "author": null,
       "contributor": null,
       "id": "tools_and_methods_data_group_define",
-      "community": 4,
+      "community": 5,
       "norm_label": "tool group - define"
     },
     {
@@ -2999,7 +2180,7 @@
       "author": null,
       "contributor": null,
       "id": "tools_and_methods_data_group_design",
-      "community": 3,
+      "community": 4,
       "norm_label": "tool group - design"
     },
     {
@@ -3038,7 +2219,7 @@
       "author": null,
       "contributor": null,
       "id": "tools_and_methods_data_group_value",
-      "community": 8,
+      "community": 5,
       "norm_label": "tool group - value"
     },
     {
@@ -3051,7 +2232,7 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_engagement_programme",
-      "community": 5,
+      "community": 2,
       "norm_label": "programme delivery & ba leadership"
     },
     {
@@ -3064,7 +2245,7 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_engagement_project",
-      "community": 5,
+      "community": 2,
       "norm_label": "project-based ba consulting"
     },
     {
@@ -3077,60 +2258,8 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_engagement_advisory",
-      "community": 5,
+      "community": 2,
       "norm_label": "enterprise systems & ai implementation advisory"
-    },
-    {
-      "label": "Step 01 - Discovery call",
-      "file_type": "code",
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "work_with_me_data_process_step_01",
-      "community": 5,
-      "norm_label": "step 01 - discovery call"
-    },
-    {
-      "label": "Step 02 - Proposal & scope",
-      "file_type": "code",
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "work_with_me_data_process_step_02",
-      "community": 4,
-      "norm_label": "step 02 - proposal & scope"
-    },
-    {
-      "label": "Step 03 - Kick-off",
-      "file_type": "code",
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "work_with_me_data_process_step_03",
-      "community": 4,
-      "norm_label": "step 03 - kick-off"
-    },
-    {
-      "label": "Step 04 - Delivery & iteration",
-      "file_type": "code",
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "work_with_me_data_process_step_04",
-      "community": 6,
-      "norm_label": "step 04 - delivery & iteration"
     },
     {
       "label": "FAQ: How do you price engagements?",
@@ -3142,7 +2271,7 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_faq_pricing",
-      "community": 5,
+      "community": 2,
       "norm_label": "faq: how do you price engagements?"
     },
     {
@@ -3155,7 +2284,7 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_faq_availability",
-      "community": 5,
+      "community": 2,
       "norm_label": "faq: what is your availability?"
     },
     {
@@ -3168,7 +2297,7 @@
       "author": null,
       "contributor": null,
       "id": "work_with_me_data_faq_industries",
-      "community": 5,
+      "community": 2,
       "norm_label": "faq: what industries do you focus on?"
     },
     {
@@ -3181,7 +2310,7 @@
       "author": null,
       "contributor": null,
       "id": "home_page_sections_what_i_bring",
-      "community": 2,
+      "community": 3,
       "norm_label": "what i bring (services teaser)"
     },
     {
@@ -3198,88 +2327,85 @@
       "norm_label": "proof of work"
     },
     {
-      "label": "How I work",
-      "file_type": "code",
-      "source_file": "portfolio/lib/home-page-sections.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "home_page_sections_how_i_work",
-      "community": 2,
-      "norm_label": "how i work"
-    },
-    {
-      "label": "How I think (Principles)",
-      "file_type": "code",
-      "source_file": "portfolio/lib/home-page-sections.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "home_page_sections_how_i_think",
-      "community": 6,
-      "norm_label": "how i think (principles)"
-    },
-    {
-      "label": "Writing / Blog teaser",
-      "file_type": "code",
-      "source_file": "portfolio/lib/home-page-sections.ts",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "home_page_sections_writing",
-      "community": 2,
-      "norm_label": "writing / blog teaser"
-    },
-    {
-      "label": "How do you structure rates and availability?",
+      "label": "How are service engagements scoped and priced?",
       "type": "service",
       "file_type": "code",
       "source_file": "portfolio/lib/services-data.ts",
       "id": "services_data_rates_availability",
-      "community": 2,
-      "norm_label": "how do you structure rates and availability?"
+      "community": 3,
+      "norm_label": "how are service engagements scoped and priced?"
     },
     {
-      "label": "Where are you based, and how do you collaborate remotely?",
+      "label": "What is the difference between Services and Work with me?",
       "type": "service",
       "file_type": "code",
       "source_file": "portfolio/lib/services-data.ts",
       "id": "services_data_remote_collaboration",
-      "community": 2,
-      "norm_label": "where are you based, and how do you collaborate remotely?"
+      "community": 3,
+      "norm_label": "what is the difference between services and work with me?"
     },
     {
-      "label": "What timelines should teams plan for?",
+      "label": "How quickly can a service start showing value?",
       "type": "service",
       "file_type": "code",
       "source_file": "portfolio/lib/services-data.ts",
       "id": "services_data_timelines",
-      "community": 2,
-      "norm_label": "what timelines should teams plan for?"
+      "community": 3,
+      "norm_label": "how quickly can a service start showing value?"
     },
     {
-      "label": "What makes this different from a traditional agency?",
+      "label": "Do services include implementation-aware guidance?",
       "type": "service",
       "file_type": "code",
       "source_file": "portfolio/lib/services-data.ts",
       "id": "services_data_vs_agency",
-      "community": 2,
-      "norm_label": "what makes this different from a traditional agency?"
+      "community": 3,
+      "norm_label": "do services include implementation-aware guidance?"
     },
     {
-      "label": "How does an engagement start?",
+      "label": "What does the first service milestone usually cover?",
       "type": "service",
       "file_type": "code",
       "source_file": "portfolio/lib/services-data.ts",
       "id": "services_data_engagement_start",
-      "community": 2,
-      "norm_label": "how does an engagement start?"
+      "community": 3,
+      "norm_label": "what does the first service milestone usually cover?"
+    },
+    {
+      "label": "How are service engagements scoped and priced?",
+      "type": "faq_service",
+      "file_type": "code",
+      "source_file": "portfolio/lib/services-data.ts",
+      "id": "services_data_faq_rates_availability",
+      "community": 3,
+      "norm_label": "how are service engagements scoped and priced?"
+    },
+    {
+      "label": "What is the difference between Services and Work with me?",
+      "type": "faq_service",
+      "file_type": "code",
+      "source_file": "portfolio/lib/services-data.ts",
+      "id": "services_data_faq_remote_collaboration",
+      "community": 3,
+      "norm_label": "what is the difference between services and work with me?"
+    },
+    {
+      "label": "Do services include implementation-aware guidance?",
+      "type": "faq_service",
+      "file_type": "code",
+      "source_file": "portfolio/lib/services-data.ts",
+      "id": "services_data_faq_vs_agency",
+      "community": 3,
+      "norm_label": "do services include implementation-aware guidance?"
+    },
+    {
+      "label": "What does the first service milestone usually cover?",
+      "type": "faq_service",
+      "file_type": "code",
+      "source_file": "portfolio/lib/services-data.ts",
+      "id": "services_data_faq_engagement_start",
+      "community": 3,
+      "norm_label": "what does the first service milestone usually cover?"
     },
     {
       "label": "How do you price engagements?",
@@ -3287,7 +2413,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_pricing",
-      "community": 5,
+      "community": 2,
       "norm_label": "how do you price engagements?"
     },
     {
@@ -3296,17 +2422,17 @@
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_availability",
-      "community": 5,
+      "community": 2,
       "norm_label": "what is your availability?"
     },
     {
-      "label": "Where are you located \u2014 and do you work remotely?",
+      "label": "How are stakeholder rhythms handled during delivery?",
       "type": "engagement",
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_location_remote",
-      "community": 5,
-      "norm_label": "where are you located \u2014 and do you work remotely?"
+      "community": 2,
+      "norm_label": "how are stakeholder rhythms handled during delivery?"
     },
     {
       "label": "How do we get started?",
@@ -3314,7 +2440,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_get_started",
-      "community": 5,
+      "community": 2,
       "norm_label": "how do we get started?"
     },
     {
@@ -3323,7 +2449,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_agencies_or_inhouse",
-      "community": 5,
+      "community": 2,
       "norm_label": "do you work with agencies or only in-house teams?"
     },
     {
@@ -3332,8 +2458,143 @@
       "file_type": "code",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "id": "work_with_me_data_engagement_industries",
-      "community": 5,
+      "community": 2,
       "norm_label": "what industries do you focus on?"
+    },
+    {
+      "label": "Programme delivery & BA leadership",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_programme",
+      "community": 7,
+      "norm_label": "programme delivery & ba leadership"
+    },
+    {
+      "label": "Project-based BA consulting",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_project",
+      "community": 5,
+      "norm_label": "project-based ba consulting"
+    },
+    {
+      "label": "Enterprise systems & AI implementation advisory",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_advisory",
+      "community": 5,
+      "norm_label": "enterprise systems & ai implementation advisory"
+    },
+    {
+      "label": "How do you price engagements?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_pricing",
+      "community": 2,
+      "norm_label": "how do you price engagements?"
+    },
+    {
+      "label": "What is your availability?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_availability",
+      "community": 2,
+      "norm_label": "what is your availability?"
+    },
+    {
+      "label": "How are stakeholder rhythms handled during delivery?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_location_remote",
+      "community": 2,
+      "norm_label": "how are stakeholder rhythms handled during delivery?"
+    },
+    {
+      "label": "How do we get started?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_get_started",
+      "community": 2,
+      "norm_label": "how do we get started?"
+    },
+    {
+      "label": "Do you work with agencies or only in-house teams?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_agencies_or_inhouse",
+      "community": 2,
+      "norm_label": "do you work with agencies or only in-house teams?"
+    },
+    {
+      "label": "What industries do you focus on?",
+      "type": "process_step",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_process_step_industries",
+      "community": 2,
+      "norm_label": "what industries do you focus on?"
+    },
+    {
+      "label": "Programme delivery & BA leadership",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_programme",
+      "community": 5,
+      "norm_label": "programme delivery & ba leadership"
+    },
+    {
+      "label": "Project-based BA consulting",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_project",
+      "community": 5,
+      "norm_label": "project-based ba consulting"
+    },
+    {
+      "label": "Enterprise systems & AI implementation advisory",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_advisory",
+      "community": 5,
+      "norm_label": "enterprise systems & ai implementation advisory"
+    },
+    {
+      "label": "How are stakeholder rhythms handled during delivery?",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_location_remote",
+      "community": 2,
+      "norm_label": "how are stakeholder rhythms handled during delivery?"
+    },
+    {
+      "label": "How do we get started?",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_get_started",
+      "community": 2,
+      "norm_label": "how do we get started?"
+    },
+    {
+      "label": "Do you work with agencies or only in-house teams?",
+      "type": "faq_work",
+      "file_type": "code",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "id": "work_with_me_data_faq_agencies_or_inhouse",
+      "community": 2,
+      "norm_label": "do you work with agencies or only in-house teams?"
     },
     {
       "label": "Architects & tech leads",
@@ -3341,7 +2602,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/how-i-work-data.ts",
       "id": "phase_step_architects-tech-leads",
-      "community": 2,
+      "community": 1,
       "norm_label": "architects & tech leads"
     },
     {
@@ -3350,7 +2611,25 @@
       "file_type": "code",
       "source_file": "portfolio/lib/how-i-work-data.ts",
       "id": "phase_step_data-ai-teams",
-      "community": 4,
+      "community": 0,
+      "norm_label": "data & ai teams"
+    },
+    {
+      "label": "Architects & tech leads",
+      "type": "expertise",
+      "file_type": "code",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "id": "how_i_work_data_expertise_architects_tech_leads",
+      "community": 1,
+      "norm_label": "architects & tech leads"
+    },
+    {
+      "label": "Data & AI teams",
+      "type": "expertise",
+      "file_type": "code",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "id": "how_i_work_data_expertise_data_ai_teams",
+      "community": 3,
       "norm_label": "data & ai teams"
     },
     {
@@ -3359,7 +2638,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "id": "how_i_think_principles_clarity",
-      "community": 2,
+      "community": 1,
       "norm_label": "i think principles clarity"
     },
     {
@@ -3368,7 +2647,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "id": "how_i_think_principles_evidence_over_opinion",
-      "community": 2,
+      "community": 3,
       "norm_label": "i think principles evidence over opinion"
     },
     {
@@ -3377,7 +2656,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "id": "how_i_think_principles_less_better",
-      "community": 2,
+      "community": 3,
       "norm_label": "i think principles less better"
     },
     {
@@ -3386,7 +2665,7 @@
       "file_type": "code",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "id": "how_i_think_principles_ship_learn_adapt",
-      "community": 6,
+      "community": 3,
       "norm_label": "i think principles ship learn adapt"
     },
     {
@@ -3395,17 +2674,17 @@
       "file_type": "code",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "id": "how_i_think_principles_adoption_over_delivery",
-      "community": 6,
+      "community": 3,
       "norm_label": "i think principles adoption over delivery"
     },
     {
-      "label": "I Think Principles Empathy",
-      "type": "principle",
+      "label": "Articles Data Problem Framing",
+      "type": "blog_article",
       "file_type": "code",
       "source_file": "portfolio/lib/blog-articles-data.ts",
-      "id": "how_i_think_principles_empathy",
-      "community": 2,
-      "norm_label": "i think principles empathy"
+      "id": "blog_articles_data_problem_framing",
+      "community": 3,
+      "norm_label": "articles data problem framing"
     }
   ],
   "links": [
@@ -3732,18 +3011,6 @@
       "_tgt": "skill_compliance",
       "source": "skill_compliance",
       "target": "projects_data_cloud_security_compliance_automation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_kyc_aml_automation",
-      "_tgt": "skill_kyc",
-      "source": "skill_kyc",
-      "target": "projects_data_kyc_aml_automation"
     },
     {
       "relation": "uses",
@@ -5217,18 +4484,6 @@
       "source_location": null,
       "weight": 1.0,
       "_src": "projects_data_payment_settlement_platform",
-      "_tgt": "skill_sap",
-      "source": "skill_sap",
-      "target": "projects_data_payment_settlement_platform"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_payment_settlement_platform",
       "_tgt": "skill_mulesoft",
       "source": "skill_mulesoft",
       "target": "projects_data_payment_settlement_platform"
@@ -5244,78 +4499,6 @@
       "_tgt": "skill_mulesoft",
       "source": "skill_mulesoft",
       "target": "projects_data_api_first_banking_microservices"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_python",
-      "source": "skill_python",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_tensorflow",
-      "source": "skill_tensorflow",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_pytorch",
-      "source": "skill_pytorch",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_xgboost",
-      "source": "skill_xgboost",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_kafka",
-      "source": "skill_kafka",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_spark",
-      "source": "skill_spark",
-      "target": "projects_data_fraud_detection_engine"
     },
     {
       "relation": "uses",
@@ -5396,30 +4579,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_kubernetes",
-      "source": "skill_kubernetes",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_fraud_detection_engine",
-      "_tgt": "skill_redis",
-      "source": "skill_redis",
-      "target": "projects_data_fraud_detection_engine"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_payment_settlement_platform",
       "_tgt": "skill_ssms",
       "source": "skill_ssms",
@@ -6044,18 +5203,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_high_performance_ecommerce_checkout",
-      "_tgt": "skill_stripe",
-      "source": "skill_stripe",
-      "target": "projects_data_high_performance_ecommerce_checkout"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_credit_risk_underwriting",
       "_tgt": "skill_gdpr",
       "source": "skill_gdpr",
@@ -6072,42 +5219,6 @@
       "_tgt": "skill_gdpr",
       "source": "skill_gdpr",
       "target": "projects_data_data_breach_forensics_ai"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_data_breach_forensics_ai",
-      "_tgt": "skill_ccpa",
-      "source": "skill_ccpa",
-      "target": "projects_data_data_breach_forensics_ai"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_cloud_security_compliance_automation",
-      "_tgt": "skill_soc2",
-      "source": "skill_soc2",
-      "target": "projects_data_cloud_security_compliance_automation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_cloud_security_compliance_automation",
-      "_tgt": "skill_iso_27001",
-      "source": "skill_iso_27001",
-      "target": "projects_data_cloud_security_compliance_automation"
     },
     {
       "relation": "uses",
@@ -6144,42 +5255,6 @@
       "_tgt": "phase_design",
       "source": "skill_aws",
       "target": "phase_design"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_cloud_security_compliance_automation",
-      "_tgt": "skill_azure",
-      "source": "skill_azure",
-      "target": "projects_data_cloud_security_compliance_automation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_cloud_security_compliance_automation",
-      "_tgt": "skill_terraform",
-      "source": "skill_terraform",
-      "target": "projects_data_cloud_security_compliance_automation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_nextjs",
-      "source": "skill_nextjs",
-      "target": "projects_data_landing_page_website"
     },
     {
       "relation": "uses",
@@ -6260,54 +5335,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_tailwind",
-      "source": "skill_tailwind",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_google_analytics",
-      "source": "skill_google_analytics",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_mixpanel",
-      "source": "skill_mixpanel",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_hotjar",
-      "source": "skill_hotjar",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_hr_management_system",
       "_tgt": "skill_adp",
       "source": "skill_adp",
@@ -6347,18 +5374,6 @@
       "_src": "projects_data_payroll_management_system",
       "_tgt": "skill_gusto",
       "source": "skill_gusto",
-      "target": "projects_data_payroll_management_system"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_payroll_management_system",
-      "_tgt": "skill_quickbooks",
-      "source": "skill_quickbooks",
       "target": "projects_data_payroll_management_system"
     },
     {
@@ -6569,18 +5584,6 @@
       "relation": "uses",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_data_breach_forensics_ai",
-      "_tgt": "skill_data_lineage",
-      "source": "skill_data_lineage",
-      "target": "projects_data_data_breach_forensics_ai"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "portfolio/lib/proof-metrics-data.ts",
       "source_location": null,
       "weight": 1.0,
@@ -6768,42 +5771,6 @@
       "_tgt": "skill_notion_ai",
       "source": "skill_notion_ai",
       "target": "ai_workflow_data_handoff_documentation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "ai_workflow_data_discovery_research",
-      "_tgt": "skill_otter_ai",
-      "source": "skill_otter_ai",
-      "target": "ai_workflow_data_discovery_research"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "ai_workflow_data_discovery_research",
-      "_tgt": "skill_granola",
-      "source": "skill_granola",
-      "target": "ai_workflow_data_discovery_research"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "ai_workflow_data_prototyping_iteration",
-      "_tgt": "skill_github_copilot",
-      "source": "skill_github_copilot",
-      "target": "ai_workflow_data_prototyping_iteration"
     },
     {
       "relation": "uses",
@@ -7041,18 +6008,6 @@
       "source_location": null,
       "weight": 1.0,
       "_src": "projects_data_credit_risk_underwriting",
-      "_tgt": "skill_credit_risk",
-      "source": "skill_credit_risk",
-      "target": "projects_data_credit_risk_underwriting"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_credit_risk_underwriting",
       "_tgt": "skill_regulatory_reporting",
       "source": "skill_regulatory_reporting",
       "target": "projects_data_credit_risk_underwriting"
@@ -7136,18 +6091,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_data_breach_forensics_ai",
-      "_tgt": "skill_forensics",
-      "source": "skill_forensics",
-      "target": "projects_data_data_breach_forensics_ai"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_real_time_api_attack_detection",
       "_tgt": "skill_audit_logging",
       "source": "skill_audit_logging",
@@ -7172,18 +6115,6 @@
       "source_file": "portfolio/lib/ai-workflow-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "ai_workflow_data_handoff_documentation",
-      "_tgt": "skill_linear",
-      "source": "skill_linear",
-      "target": "ai_workflow_data_handoff_documentation"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "ai_workflow_data_problem_framing",
       "_tgt": "skill_chatgpt",
       "source": "skill_chatgpt",
@@ -7199,18 +6130,6 @@
       "_src": "ai_workflow_data_ideation_concept",
       "_tgt": "skill_chatgpt",
       "source": "skill_chatgpt",
-      "target": "ai_workflow_data_ideation_concept"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/ai-workflow-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "ai_workflow_data_ideation_concept",
-      "_tgt": "skill_figma_ai",
-      "source": "skill_figma_ai",
       "target": "ai_workflow_data_ideation_concept"
     },
     {
@@ -7382,30 +6301,6 @@
       "target": "projects_data_api_first_banking_microservices"
     },
     {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_ai_customer_onboarding_agent",
-      "_tgt": "skill_ai_implementation",
-      "source": "skill_ai_implementation",
-      "target": "projects_data_ai_customer_onboarding_agent"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_compliance_risk_monitoring",
-      "_tgt": "skill_risk_management",
-      "source": "skill_risk_management",
-      "target": "projects_data_compliance_risk_monitoring"
-    },
-    {
       "relation": "belongs_to",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
@@ -7415,18 +6310,6 @@
       "_src": "projects_data_distributed_order_fulfillment",
       "_tgt": "skill_supply_chain",
       "source": "skill_supply_chain",
-      "target": "projects_data_distributed_order_fulfillment"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_distributed_order_fulfillment",
-      "_tgt": "skill_process_reengineering",
-      "source": "skill_process_reengineering",
       "target": "projects_data_distributed_order_fulfillment"
     },
     {
@@ -7484,18 +6367,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_high_performance_ecommerce_checkout",
-      "_tgt": "skill_fraud",
-      "source": "skill_fraud",
-      "target": "projects_data_high_performance_ecommerce_checkout"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_real_time_api_attack_detection",
       "_tgt": "skill_security",
       "source": "skill_security",
@@ -7538,42 +6409,6 @@
       "target": "projects_data_cloud_security_compliance_automation"
     },
     {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_payroll_management_system",
-      "_tgt": "skill_payroll",
-      "source": "skill_payroll",
-      "target": "projects_data_payroll_management_system"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_payroll_management_system",
-      "_tgt": "skill_accounting",
-      "source": "skill_accounting",
-      "target": "projects_data_payroll_management_system"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_hr_management_system",
-      "_tgt": "skill_hr_systems",
-      "source": "skill_hr_systems",
-      "target": "projects_data_hr_management_system"
-    },
-    {
       "relation": "belongs_to",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
@@ -7608,66 +6443,6 @@
       "_tgt": "skill_analytics",
       "source": "skill_analytics",
       "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_seo",
-      "source": "skill_seo",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "skill_stakeholder_management",
-      "source": "skill_stakeholder_management",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_api_first_banking_microservices",
-      "_tgt": "skill_enterprise_architecture",
-      "source": "skill_enterprise_architecture",
-      "target": "projects_data_api_first_banking_microservices"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_real_time_api_attack_detection",
-      "_tgt": "skill_incident_management",
-      "source": "skill_incident_management",
-      "target": "projects_data_real_time_api_attack_detection"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_hr_management_system",
-      "_tgt": "skill_process_automation",
-      "source": "skill_process_automation",
-      "target": "projects_data_hr_management_system"
     },
     {
       "relation": "covers",
@@ -8035,18 +6810,6 @@
     },
     {
       "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "work_with_me_data_process_step_01",
-      "_tgt": "phase_discover",
-      "source": "phase_discover",
-      "target": "work_with_me_data_process_step_01"
-    },
-    {
-      "relation": "covers",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
       "weight": 1.0,
@@ -8081,6 +6844,17 @@
     {
       "relation": "covers",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_engagement_start",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "services_data_faq_engagement_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "weight": 1.0,
       "_src": "work_with_me_data_engagement_project",
@@ -8098,6 +6872,94 @@
       "_tgt": "phase_discover",
       "source": "phase_discover",
       "target": "work_with_me_data_engagement_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_project",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_process_step_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_advisory",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_process_step_advisory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_get_started",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_process_step_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_project",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_faq_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_advisory",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_faq_advisory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_get_started",
+      "_tgt": "phase_discover",
+      "source": "phase_discover",
+      "target": "work_with_me_data_faq_get_started",
       "confidence_score": 1.0
     },
     {
@@ -8399,30 +7261,6 @@
     },
     {
       "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "work_with_me_data_process_step_02",
-      "_tgt": "phase_define",
-      "source": "phase_define",
-      "target": "work_with_me_data_process_step_02"
-    },
-    {
-      "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.7,
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "work_with_me_data_process_step_03",
-      "_tgt": "phase_define",
-      "source": "phase_define",
-      "target": "work_with_me_data_process_step_03"
-    },
-    {
-      "relation": "covers",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
       "weight": 1.0,
@@ -8441,6 +7279,72 @@
       "_tgt": "phase_define",
       "source": "phase_define",
       "target": "work_with_me_data_engagement_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_project",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_process_step_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_advisory",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_process_step_advisory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_project",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_faq_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_advisory",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "work_with_me_data_faq_advisory",
       "confidence_score": 1.0
     },
     {
@@ -8485,6 +7389,17 @@
       "_tgt": "phase_define",
       "source": "phase_define",
       "target": "how_i_work_data_expertise_compliance_vendors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "phase_define",
+      "source": "phase_define",
+      "target": "how_i_work_data_expertise_data_ai_teams",
       "confidence_score": 1.0
     },
     {
@@ -8599,18 +7514,6 @@
       "source": "phase_design",
       "target": "what_i_bring_cards_engineering_depth",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "how_i_work_data_workphase_design",
-      "_tgt": "phase_design",
-      "source": "phase_design",
-      "target": "how_i_work_data_workphase_design"
     },
     {
       "relation": "covers",
@@ -8774,6 +7677,50 @@
     {
       "relation": "covers",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_design",
+      "source": "phase_design",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_project",
+      "_tgt": "phase_design",
+      "source": "phase_design",
+      "target": "work_with_me_data_process_step_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_design",
+      "source": "phase_design",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_project",
+      "_tgt": "phase_design",
+      "source": "phase_design",
+      "target": "work_with_me_data_faq_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/how-i-work-data.ts",
       "weight": 1.0,
       "_src": "how_i_work_data_expertise_engineering_qa",
@@ -8802,6 +7749,17 @@
       "_tgt": "phase_design",
       "source": "phase_design",
       "target": "how_i_work_data_expertise_ux_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "phase_design",
+      "source": "phase_design",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
       "confidence_score": 1.0
     },
     {
@@ -9087,18 +8045,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "how_i_work_data_workphase_deliver",
-      "_tgt": "phase_deliver",
-      "source": "phase_deliver",
-      "target": "how_i_work_data_workphase_deliver"
-    },
-    {
       "relation": "covers",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -9194,18 +8140,6 @@
     },
     {
       "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/work-with-me-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "work_with_me_data_process_step_04",
-      "_tgt": "phase_deliver",
-      "source": "phase_deliver",
-      "target": "work_with_me_data_process_step_04"
-    },
-    {
-      "relation": "covers",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
       "weight": 1.0,
@@ -9240,6 +8174,50 @@
     {
       "relation": "covers",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_project",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "work_with_me_data_process_step_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_project",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "work_with_me_data_faq_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/how-i-work-data.ts",
       "weight": 1.0,
       "_src": "how_i_work_data_expertise_engineering_qa",
@@ -9268,6 +8246,28 @@
       "_tgt": "phase_deliver",
       "source": "phase_deliver",
       "target": "phase_step_data-ai-teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "phase_deliver",
+      "source": "phase_deliver",
+      "target": "how_i_work_data_expertise_data_ai_teams",
       "confidence_score": 1.0
     },
     {
@@ -9338,18 +8338,6 @@
       "source": "phase_adopt",
       "target": "what_i_bring_cards_value_realization",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "how_i_work_data_workphase_adopt",
-      "_tgt": "phase_adopt",
-      "source": "phase_adopt",
-      "target": "how_i_work_data_workphase_adopt"
     },
     {
       "relation": "covers",
@@ -9436,6 +8424,28 @@
     {
       "relation": "covers",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_adopt",
+      "source": "phase_adopt",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_adopt",
+      "source": "phase_adopt",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "weight": 1.0,
       "_src": "what_i_bring_cards_ai_native_delivery",
@@ -9513,18 +8523,6 @@
       "source": "phase_value",
       "target": "what_i_bring_cards_value_realization",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/how-i-work-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "how_i_work_data_workphase_value",
-      "_tgt": "phase_value",
-      "source": "phase_value",
-      "target": "how_i_work_data_workphase_value"
     },
     {
       "relation": "covers",
@@ -9685,6 +8683,50 @@
       "_tgt": "phase_value",
       "source": "phase_value",
       "target": "work_with_me_data_engagement_advisory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_programme",
+      "_tgt": "phase_value",
+      "source": "phase_value",
+      "target": "work_with_me_data_process_step_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_advisory",
+      "_tgt": "phase_value",
+      "source": "phase_value",
+      "target": "work_with_me_data_process_step_advisory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_programme",
+      "_tgt": "phase_value",
+      "source": "phase_value",
+      "target": "work_with_me_data_faq_programme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_advisory",
+      "_tgt": "phase_value",
+      "source": "phase_value",
+      "target": "work_with_me_data_faq_advisory",
       "confidence_score": 1.0
     },
     {
@@ -9920,30 +8962,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_ai_customer_onboarding_agent",
-      "_tgt": "industry_ai",
-      "source": "industry_ai",
-      "target": "projects_data_ai_customer_onboarding_agent"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_ai_customer_onboarding_agent",
-      "_tgt": "industry_cx",
-      "source": "industry_cx",
-      "target": "projects_data_ai_customer_onboarding_agent"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_ecommerce_product_search_recommendations",
       "_tgt": "industry_ecommerce",
       "source": "industry_ecommerce",
@@ -10028,42 +9046,6 @@
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "projects_data_cloud_security_compliance_automation",
-      "_tgt": "industry_cloud",
-      "source": "industry_cloud",
-      "target": "projects_data_cloud_security_compliance_automation"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "industry_web",
-      "source": "industry_web",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_landing_page_website",
-      "_tgt": "industry_digital",
-      "source": "industry_digital",
-      "target": "projects_data_landing_page_website"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
       "_src": "projects_data_hr_management_system",
       "_tgt": "industry_internal",
       "source": "industry_internal",
@@ -10079,18 +9061,6 @@
       "_src": "projects_data_payroll_management_system",
       "_tgt": "industry_internal",
       "source": "industry_internal",
-      "target": "projects_data_payroll_management_system"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "projects_data_payroll_management_system",
-      "_tgt": "industry_finance",
-      "source": "industry_finance",
       "target": "projects_data_payroll_management_system"
     },
     {
@@ -10180,6 +9150,17 @@
       "_tgt": "projects_data_fraud_detection_engine",
       "source": "projects_data_fraud_detection_engine",
       "target": "phase_step_data-ai-teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "projects_data_fraud_detection_engine",
+      "source": "projects_data_fraud_detection_engine",
+      "target": "how_i_work_data_expertise_data_ai_teams",
       "confidence_score": 1.0
     },
     {
@@ -10458,6 +9439,39 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
       "weight": 1.0,
+      "_src": "projects_data_event_streaming_pipeline",
+      "_tgt": "services_data_design_systems",
+      "source": "projects_data_event_streaming_pipeline",
+      "target": "services_data_design_systems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_event_streaming_pipeline",
+      "_tgt": "services_data_product_design_strategy",
+      "source": "projects_data_event_streaming_pipeline",
+      "target": "services_data_product_design_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "proves",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_event_streaming_pipeline",
+      "_tgt": "proof_metrics_data_platform_consolidation",
+      "source": "projects_data_event_streaming_pipeline",
+      "target": "proof_metrics_data_platform_consolidation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
       "_src": "projects_data_distributed_order_fulfillment",
       "_tgt": "projects_data_event_streaming_pipeline",
       "source": "projects_data_event_streaming_pipeline",
@@ -10473,6 +9487,17 @@
       "_tgt": "projects_data_event_streaming_pipeline",
       "source": "projects_data_event_streaming_pipeline",
       "target": "phase_step_architects-tech-leads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "projects_data_event_streaming_pipeline",
+      "source": "projects_data_event_streaming_pipeline",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
       "confidence_score": 1.0
     },
     {
@@ -10550,6 +9575,17 @@
       "_tgt": "projects_data_ai_customer_onboarding_agent",
       "source": "projects_data_ai_customer_onboarding_agent",
       "target": "phase_step_data-ai-teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "projects_data_ai_customer_onboarding_agent",
+      "source": "projects_data_ai_customer_onboarding_agent",
+      "target": "how_i_work_data_expertise_data_ai_teams",
       "confidence_score": 1.0
     },
     {
@@ -10660,6 +9696,17 @@
       "_tgt": "projects_data_api_first_banking_microservices",
       "source": "projects_data_api_first_banking_microservices",
       "target": "phase_step_architects-tech-leads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "projects_data_api_first_banking_microservices",
+      "source": "projects_data_api_first_banking_microservices",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
       "confidence_score": 1.0
     },
     {
@@ -10787,6 +9834,17 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "projects_data_ecommerce_product_search_recommendations",
+      "source": "projects_data_ecommerce_product_search_recommendations",
+      "target": "how_i_work_data_expertise_data_ai_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
       "weight": 1.0,
       "_src": "projects_data_high_performance_ecommerce_checkout",
@@ -10865,6 +9923,17 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_business_product",
+      "_tgt": "projects_data_distributed_order_fulfillment",
+      "source": "projects_data_distributed_order_fulfillment",
+      "target": "how_i_work_data_expertise_business_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
       "confidence_score": 0.85,
       "source_file": "portfolio/lib/projects-data.ts",
       "source_location": null,
@@ -10879,10 +9948,32 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
       "weight": 1.0,
+      "_src": "projects_data_real_time_api_attack_detection",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "projects_data_real_time_api_attack_detection",
+      "target": "services_data_fractional_leadership",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
       "_src": "projects_data_cloud_security_compliance_automation",
       "_tgt": "projects_data_real_time_api_attack_detection",
       "source": "projects_data_real_time_api_attack_detection",
       "target": "projects_data_cloud_security_compliance_automation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "proves",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_real_time_api_attack_detection",
+      "_tgt": "proof_metrics_data_change_management",
+      "source": "projects_data_real_time_api_attack_detection",
+      "target": "proof_metrics_data_change_management",
       "confidence_score": 1.0
     },
     {
@@ -10932,12 +10023,45 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "projects_data_data_breach_forensics_ai",
+      "source": "projects_data_data_breach_forensics_ai",
+      "target": "how_i_work_data_expertise_data_ai_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "weight": 1.0,
       "_src": "what_i_bring_cards_ai_native_delivery",
       "_tgt": "projects_data_data_breach_forensics_ai",
       "source": "projects_data_data_breach_forensics_ai",
       "target": "what_i_bring_cards_ai_native_delivery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_cloud_security_compliance_automation",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "projects_data_cloud_security_compliance_automation",
+      "target": "services_data_fractional_leadership",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_cloud_security_compliance_automation",
+      "_tgt": "services_data_product_design_strategy",
+      "source": "projects_data_cloud_security_compliance_automation",
+      "target": "services_data_product_design_strategy",
       "confidence_score": 1.0
     },
     {
@@ -10982,6 +10106,17 @@
       "_tgt": "projects_data_cloud_security_compliance_automation",
       "source": "projects_data_cloud_security_compliance_automation",
       "target": "how_i_work_data_expertise_compliance_vendors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "projects_data_cloud_security_compliance_automation",
+      "source": "projects_data_cloud_security_compliance_automation",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
       "confidence_score": 1.0
     },
     {
@@ -11246,10 +10381,43 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
       "weight": 1.0,
+      "_src": "services_data_faq_rates_availability",
+      "_tgt": "services_data_product_design_strategy",
+      "source": "services_data_product_design_strategy",
+      "target": "services_data_faq_rates_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_remote_collaboration",
+      "_tgt": "services_data_product_design_strategy",
+      "source": "services_data_product_design_strategy",
+      "target": "services_data_faq_remote_collaboration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
       "_src": "services_data_faq_timelines",
       "_tgt": "services_data_product_design_strategy",
       "source": "services_data_product_design_strategy",
       "target": "services_data_faq_timelines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_engagement_start",
+      "_tgt": "services_data_product_design_strategy",
+      "source": "services_data_product_design_strategy",
+      "target": "services_data_faq_engagement_start",
       "confidence_score": 1.0
     },
     {
@@ -11321,18 +10489,6 @@
       "target": "ai_workflow_data_prototyping_iteration"
     },
     {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "portfolio/lib/services-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "services_data_ai_native_ux",
-      "_tgt": "ai_workflow_data_philosophy_native_not_dependent",
-      "source": "services_data_ai_native_ux",
-      "target": "ai_workflow_data_philosophy_native_not_dependent"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
@@ -11381,10 +10537,43 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
       "weight": 1.0,
+      "_src": "services_data_faq_rates_availability",
+      "_tgt": "services_data_ai_native_ux",
+      "source": "services_data_ai_native_ux",
+      "target": "services_data_faq_rates_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_remote_collaboration",
+      "_tgt": "services_data_ai_native_ux",
+      "source": "services_data_ai_native_ux",
+      "target": "services_data_faq_remote_collaboration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
       "_src": "services_data_faq_timelines",
       "_tgt": "services_data_ai_native_ux",
       "source": "services_data_ai_native_ux",
       "target": "services_data_faq_timelines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_vs_agency",
+      "_tgt": "services_data_ai_native_ux",
+      "source": "services_data_ai_native_ux",
+      "target": "services_data_faq_vs_agency",
       "confidence_score": 1.0
     },
     {
@@ -11423,6 +10612,17 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "services_data_ai_native_ux",
+      "source": "services_data_ai_native_ux",
+      "target": "how_i_work_data_expertise_data_ai_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/blog-articles-data.ts",
       "weight": 1.0,
       "_src": "blog_articles_data_prompt_as_design_artifact",
@@ -11453,18 +10653,6 @@
       "_tgt": "services_data_design_systems",
       "source": "services_data_design_systems",
       "target": "what_i_bring_cards_engineering_depth"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "portfolio/lib/services-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "services_data_design_systems",
-      "_tgt": "systems_thinking_data_spacing_tokens",
-      "source": "services_data_design_systems",
-      "target": "systems_thinking_data_spacing_tokens"
     },
     {
       "relation": "references",
@@ -11516,6 +10704,28 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
       "weight": 1.0,
+      "_src": "services_data_faq_rates_availability",
+      "_tgt": "services_data_design_systems",
+      "source": "services_data_design_systems",
+      "target": "services_data_faq_rates_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_remote_collaboration",
+      "_tgt": "services_data_design_systems",
+      "source": "services_data_design_systems",
+      "target": "services_data_faq_remote_collaboration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
       "_src": "services_data_faq_timelines",
       "_tgt": "services_data_design_systems",
       "source": "services_data_design_systems",
@@ -11553,6 +10763,17 @@
       "_tgt": "services_data_design_systems",
       "source": "services_data_design_systems",
       "target": "how_i_work_data_expertise_ux_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_architects_tech_leads",
+      "_tgt": "services_data_design_systems",
+      "source": "services_data_design_systems",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
       "confidence_score": 1.0
     },
     {
@@ -11626,10 +10847,54 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/services-data.ts",
       "weight": 1.0,
+      "_src": "services_data_faq_rates_availability",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "services_data_fractional_leadership",
+      "target": "services_data_faq_rates_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_remote_collaboration",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "services_data_fractional_leadership",
+      "target": "services_data_faq_remote_collaboration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
       "_src": "services_data_faq_timelines",
       "_tgt": "services_data_fractional_leadership",
       "source": "services_data_fractional_leadership",
       "target": "services_data_faq_timelines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_vs_agency",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "services_data_fractional_leadership",
+      "target": "services_data_faq_vs_agency",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/services-data.ts",
+      "weight": 1.0,
+      "_src": "services_data_faq_engagement_start",
+      "_tgt": "services_data_fractional_leadership",
+      "source": "services_data_fractional_leadership",
+      "target": "services_data_faq_engagement_start",
       "confidence_score": 1.0
     },
     {
@@ -11713,37 +10978,13 @@
     },
     {
       "relation": "references",
-      "confidence": "INFERRED",
+      "confidence": "EXTRACTED",
       "confidence_score": 0.75,
-      "source_file": "portfolio/app/page.tsx",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "home_page_sections_how_i_think",
-      "_tgt": "ai_workflow_data_philosophy_loop_vs_direction",
-      "source": "ai_workflow_data_philosophy_loop_vs_direction",
-      "target": "home_page_sections_how_i_think"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "source_location": null,
       "weight": 1.0,
-      "_src": "what_i_bring_cards_ai_native_delivery",
-      "_tgt": "ai_workflow_data_philosophy_loop_vs_direction",
-      "source": "ai_workflow_data_philosophy_loop_vs_direction",
-      "target": "what_i_bring_cards_ai_native_delivery"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.75,
-      "source_file": "portfolio/lib/blog-articles-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "blog_articles_data_designing_for_decisions",
-      "_tgt": "what_i_bring_cards_problem_framing",
+      "_src": "what_i_bring_cards_problem_framing",
+      "_tgt": "blog_articles_data_designing_for_decisions",
       "source": "what_i_bring_cards_problem_framing",
       "target": "blog_articles_data_designing_for_decisions"
     },
@@ -11805,6 +11046,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_problem_framing",
+      "_tgt": "how_i_work_data_expertise_business_product",
+      "source": "what_i_bring_cards_problem_framing",
+      "target": "how_i_work_data_expertise_business_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_problem_framing",
+      "_tgt": "how_i_work_data_expertise_compliance_vendors",
+      "source": "what_i_bring_cards_problem_framing",
+      "target": "how_i_work_data_expertise_compliance_vendors",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "applies",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
@@ -11824,6 +11087,39 @@
       "_tgt": "how_i_think_principles_evidence_over_opinion",
       "source": "what_i_bring_cards_solution_design",
       "target": "how_i_think_principles_evidence_over_opinion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_solution_design",
+      "_tgt": "how_i_work_data_expertise_architects_tech_leads",
+      "source": "what_i_bring_cards_solution_design",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_solution_design",
+      "_tgt": "how_i_work_data_expertise_engineering_qa",
+      "source": "what_i_bring_cards_solution_design",
+      "target": "how_i_work_data_expertise_engineering_qa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_solution_design",
+      "_tgt": "blog_articles_data_why_design_systems_fail",
+      "source": "what_i_bring_cards_solution_design",
+      "target": "blog_articles_data_why_design_systems_fail",
       "confidence_score": 1.0
     },
     {
@@ -11860,6 +11156,39 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_ai_native_delivery",
+      "_tgt": "how_i_work_data_expertise_data_ai_teams",
+      "source": "what_i_bring_cards_ai_native_delivery",
+      "target": "how_i_work_data_expertise_data_ai_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_ai_native_delivery",
+      "_tgt": "how_i_work_data_expertise_engineering_qa",
+      "source": "what_i_bring_cards_ai_native_delivery",
+      "target": "how_i_work_data_expertise_engineering_qa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_ai_native_delivery",
+      "_tgt": "blog_articles_data_prompt_as_design_artifact",
+      "source": "what_i_bring_cards_ai_native_delivery",
+      "target": "blog_articles_data_prompt_as_design_artifact",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "applies",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/what-i-bring-cards.ts",
@@ -11879,6 +11208,50 @@
       "_tgt": "how_i_think_principles_evidence_over_opinion",
       "source": "what_i_bring_cards_engineering_depth",
       "target": "how_i_think_principles_evidence_over_opinion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_engineering_depth",
+      "_tgt": "how_i_work_data_expertise_engineering_qa",
+      "source": "what_i_bring_cards_engineering_depth",
+      "target": "how_i_work_data_expertise_engineering_qa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_engineering_depth",
+      "_tgt": "how_i_work_data_expertise_architects_tech_leads",
+      "source": "what_i_bring_cards_engineering_depth",
+      "target": "how_i_work_data_expertise_architects_tech_leads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_engineering_depth",
+      "_tgt": "blog_articles_data_why_design_systems_fail",
+      "source": "what_i_bring_cards_engineering_depth",
+      "target": "blog_articles_data_why_design_systems_fail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_engineering_depth",
+      "_tgt": "blog_articles_data_designing_for_decisions",
+      "source": "what_i_bring_cards_engineering_depth",
+      "target": "blog_articles_data_designing_for_decisions",
       "confidence_score": 1.0
     },
     {
@@ -11917,15 +11290,47 @@
     },
     {
       "relation": "references",
-      "confidence": "INFERRED",
-      "confidence_score": 0.7,
-      "source_file": "portfolio/app/page.tsx",
-      "source_location": null,
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
       "weight": 1.0,
-      "_src": "home_page_sections_writing",
+      "_src": "what_i_bring_cards_value_realization",
+      "_tgt": "how_i_work_data_expertise_business_product",
+      "source": "what_i_bring_cards_value_realization",
+      "target": "how_i_work_data_expertise_business_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_value_realization",
+      "_tgt": "how_i_work_data_expertise_compliance_vendors",
+      "source": "what_i_bring_cards_value_realization",
+      "target": "how_i_work_data_expertise_compliance_vendors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_value_realization",
+      "_tgt": "blog_articles_data_designing_for_decisions",
+      "source": "what_i_bring_cards_value_realization",
+      "target": "blog_articles_data_designing_for_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_value_realization",
       "_tgt": "blog_articles_data_prompt_as_design_artifact",
-      "source": "blog_articles_data_prompt_as_design_artifact",
-      "target": "home_page_sections_writing"
+      "source": "what_i_bring_cards_value_realization",
+      "target": "blog_articles_data_prompt_as_design_artifact",
+      "confidence_score": 1.0
     },
     {
       "relation": "applies",
@@ -11958,6 +11363,39 @@
       "_tgt": "how_i_think_principles_ship_learn_adapt",
       "source": "blog_articles_data_prompt_as_design_artifact",
       "target": "how_i_think_principles_ship_learn_adapt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_prompt_as_design_artifact",
+      "_tgt": "how_i_work_data_expertise_data_ai_teams",
+      "source": "blog_articles_data_prompt_as_design_artifact",
+      "target": "how_i_work_data_expertise_data_ai_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_prompt_as_design_artifact",
+      "_tgt": "how_i_work_data_expertise_engineering_qa",
+      "source": "blog_articles_data_prompt_as_design_artifact",
+      "target": "how_i_work_data_expertise_engineering_qa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_prompt_as_design_artifact",
+      "_tgt": "blog_articles_data_problem_framing",
+      "source": "blog_articles_data_prompt_as_design_artifact",
+      "target": "blog_articles_data_problem_framing",
       "confidence_score": 1.0
     },
     {
@@ -11994,6 +11432,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_why_design_systems_fail",
+      "_tgt": "how_i_work_data_expertise_ux_design",
+      "source": "blog_articles_data_why_design_systems_fail",
+      "target": "how_i_work_data_expertise_ux_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_why_design_systems_fail",
+      "_tgt": "how_i_work_data_expertise_engineering_qa",
+      "source": "blog_articles_data_why_design_systems_fail",
+      "target": "how_i_work_data_expertise_engineering_qa",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "applies",
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/blog-articles-data.ts",
@@ -12010,17 +11470,6 @@
       "source_file": "portfolio/lib/blog-articles-data.ts",
       "weight": 1.0,
       "_src": "blog_articles_data_designing_for_decisions",
-      "_tgt": "how_i_think_principles_empathy",
-      "source": "blog_articles_data_designing_for_decisions",
-      "target": "how_i_think_principles_empathy",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "applies",
-      "confidence": "EXTRACTED",
-      "source_file": "portfolio/lib/blog-articles-data.ts",
-      "weight": 1.0,
-      "_src": "blog_articles_data_designing_for_decisions",
       "_tgt": "how_i_think_principles_evidence_over_opinion",
       "source": "blog_articles_data_designing_for_decisions",
       "target": "how_i_think_principles_evidence_over_opinion",
@@ -12029,14 +11478,35 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/app/page.tsx",
-      "source_location": null,
+      "source_file": "portfolio/lib/blog-articles-data.ts",
       "weight": 1.0,
-      "_src": "home_page_sections_how_i_work",
-      "_tgt": "how_i_work_data_workphase_discover",
-      "source": "how_i_work_data_workphase_discover",
-      "target": "home_page_sections_how_i_work"
+      "_src": "blog_articles_data_designing_for_decisions",
+      "_tgt": "how_i_work_data_expertise_business_product",
+      "source": "blog_articles_data_designing_for_decisions",
+      "target": "how_i_work_data_expertise_business_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_designing_for_decisions",
+      "_tgt": "how_i_work_data_expertise_ux_design",
+      "source": "blog_articles_data_designing_for_decisions",
+      "target": "how_i_work_data_expertise_ux_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/blog-articles-data.ts",
+      "weight": 1.0,
+      "_src": "blog_articles_data_designing_for_decisions",
+      "_tgt": "blog_articles_data_problem_framing",
+      "source": "blog_articles_data_designing_for_decisions",
+      "target": "blog_articles_data_problem_framing",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -12058,6 +11528,17 @@
       "_tgt": "testimonials_data_t3",
       "source": "how_i_work_data_expertise_business_product",
       "target": "testimonials_data_t3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_business_product",
+      "_tgt": "testimonials_data_t5",
+      "source": "how_i_work_data_expertise_business_product",
+      "target": "testimonials_data_t5",
       "confidence_score": 1.0
     },
     {
@@ -12141,78 +11622,6 @@
       "target": "home_page_sections_proof_of_work"
     },
     {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_spacing_tokens",
-      "_tgt": "systems_layer_token",
-      "source": "systems_layer_token",
-      "target": "systems_thinking_data_spacing_tokens"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_form_field_contract",
-      "_tgt": "systems_layer_token",
-      "source": "systems_layer_token",
-      "target": "systems_thinking_data_form_field_contract"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_empty_state_pattern",
-      "_tgt": "systems_layer_component",
-      "source": "systems_layer_component",
-      "target": "systems_thinking_data_empty_state_pattern"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_status_language",
-      "_tgt": "systems_layer_component",
-      "source": "systems_layer_component",
-      "target": "systems_thinking_data_status_language"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_nav_ia_platform",
-      "_tgt": "systems_layer_platform",
-      "source": "systems_layer_platform",
-      "target": "systems_thinking_data_nav_ia_platform"
-    },
-    {
-      "relation": "belongs_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "portfolio/lib/systems-thinking-data.ts",
-      "source_location": null,
-      "weight": 1.0,
-      "_src": "systems_thinking_data_release_telemetry",
-      "_tgt": "systems_layer_platform",
-      "source": "systems_layer_platform",
-      "target": "systems_thinking_data_release_telemetry"
-    },
-    {
       "relation": "references",
       "confidence": "INFERRED",
       "confidence_score": 0.7,
@@ -12245,6 +11654,17 @@
       "_tgt": "testimonials_data_t2",
       "source": "testimonials_data_t2",
       "target": "phase_step_data-ai-teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/how-i-work-data.ts",
+      "weight": 1.0,
+      "_src": "how_i_work_data_expertise_data_ai_teams",
+      "_tgt": "testimonials_data_t2",
+      "source": "testimonials_data_t2",
+      "target": "how_i_work_data_expertise_data_ai_teams",
       "confidence_score": 1.0
     },
     {
@@ -12667,6 +12087,61 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "weight": 1.0,
+      "_src": "work_with_me_data_process_step_pricing",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_process_step_pricing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_availability",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_process_step_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_location_remote",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_process_step_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_get_started",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_process_step_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_industries",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_process_step_industries",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
       "_src": "work_with_me_data_faq_pricing",
       "_tgt": "work_with_me_data_engagement_programme",
       "source": "work_with_me_data_engagement_programme",
@@ -12682,6 +12157,28 @@
       "_tgt": "work_with_me_data_engagement_programme",
       "source": "work_with_me_data_engagement_programme",
       "target": "work_with_me_data_faq_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_location_remote",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_faq_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_get_started",
+      "_tgt": "work_with_me_data_engagement_programme",
+      "source": "work_with_me_data_engagement_programme",
+      "target": "work_with_me_data_faq_get_started",
       "confidence_score": 1.0
     },
     {
@@ -12766,6 +12263,72 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "weight": 1.0,
+      "_src": "work_with_me_data_process_step_pricing",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_pricing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_availability",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_location_remote",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_get_started",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_agencies_or_inhouse",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_agencies_or_inhouse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_industries",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_process_step_industries",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
       "_src": "work_with_me_data_faq_pricing",
       "_tgt": "work_with_me_data_engagement_project",
       "source": "work_with_me_data_engagement_project",
@@ -12781,6 +12344,39 @@
       "_tgt": "work_with_me_data_engagement_project",
       "source": "work_with_me_data_engagement_project",
       "target": "work_with_me_data_faq_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_location_remote",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_faq_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_get_started",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_faq_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_agencies_or_inhouse",
+      "_tgt": "work_with_me_data_engagement_project",
+      "source": "work_with_me_data_engagement_project",
+      "target": "work_with_me_data_faq_agencies_or_inhouse",
       "confidence_score": 1.0
     },
     {
@@ -12865,6 +12461,72 @@
       "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/work-with-me-data.ts",
       "weight": 1.0,
+      "_src": "work_with_me_data_process_step_pricing",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_pricing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_availability",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_location_remote",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_get_started",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_agencies_or_inhouse",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_agencies_or_inhouse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_process_step_industries",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_process_step_industries",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
       "_src": "work_with_me_data_faq_pricing",
       "_tgt": "work_with_me_data_engagement_advisory",
       "source": "work_with_me_data_engagement_advisory",
@@ -12880,6 +12542,39 @@
       "_tgt": "work_with_me_data_engagement_advisory",
       "source": "work_with_me_data_engagement_advisory",
       "target": "work_with_me_data_faq_availability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_location_remote",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_faq_location_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_get_started",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_faq_get_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "applies_to",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/work-with-me-data.ts",
+      "weight": 1.0,
+      "_src": "work_with_me_data_faq_agencies_or_inhouse",
+      "_tgt": "work_with_me_data_engagement_advisory",
+      "source": "work_with_me_data_engagement_advisory",
+      "target": "work_with_me_data_faq_agencies_or_inhouse",
       "confidence_score": 1.0
     },
     {

@@ -16,8 +16,10 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { resolveBlogArticles, resolveProjects, resolveServices } from "@/lib/content-lookups"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 function Hero() {
@@ -248,11 +250,32 @@ function CTA() {
   )
 }
 
+function RelatedSection() {
+  const relatedServiceIds = Array.from(new Set(whatIBringCards.flatMap((card) => card.relatedServiceIds ?? [])))
+  const relatedProjectSlugs = Array.from(new Set(whatIBringCards.flatMap((card) => card.relatedProjectSlugs ?? [])))
+  const relatedBlogSlugs = Array.from(new Set(whatIBringCards.flatMap((card) => card.relatedBlogSlugs ?? [])))
+
+  return (
+    <section className="mt-20">
+      <RelatedLinks
+        heading="Navigate by connection"
+        description="Jump from capability themes to concrete projects and deeper essays."
+        groups={[
+          { title: "Services", items: resolveServices(relatedServiceIds) },
+          { title: "Projects", items: resolveProjects(relatedProjectSlugs), showSublabel: true },
+          { title: "Related essays", items: resolveBlogArticles(relatedBlogSlugs), showSublabel: true },
+        ]}
+      />
+    </section>
+  )
+}
+
 export default function WhatIBringPage() {
   return (
     <PageShell>
       <Hero />
       <ServicesGrid />
+      <RelatedSection />
       <Manifesto />
       <CTA />
     </PageShell>

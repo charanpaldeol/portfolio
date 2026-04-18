@@ -118,9 +118,9 @@ export const serviceFAQs: ServiceFAQ[] = [
   // TODO(Charan): confirm public rate bands vs. private quotes
   {
     id: "rates-availability",
-    question: "How do you structure rates and availability?",
+    question: "How are service engagements scoped and priced?",
     answer:
-      "Engagements are scoped around outcomes and timeboxed milestones. Rates depend on cadence, seniority of the work, and risk profile — specifics are confirmed on a short intro call.",
+      "Services are scoped around outcomes, explicit deliverables, and timeboxed milestones. Pricing reflects complexity, decision risk, and collaboration cadence — quoted after a short context call, not by day-rate alone.",
     relatedServiceIds: [
       "product-design-strategy",
       "ai-native-ux",
@@ -130,9 +130,9 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     id: "remote-collaboration",
-    question: "Where are you based, and how do you collaborate remotely?",
+    question: "What is the difference between Services and Work with me?",
     answer:
-      "Collaboration is remote-first with structured async updates and workshop blocks in friendly time zones. On-site intensives are available when travel makes sense for the phase of work.",
+      "Services are product/design-led outcome packages (strategy, AI-native UX, design systems, leadership). Work with me is engagement-model and delivery-operations support (programme, project, advisory). If you need an embedded delivery lead alongside service outcomes, start with Services and continue into Work with me.",
     relatedServiceIds: [
       "product-design-strategy",
       "ai-native-ux",
@@ -142,9 +142,9 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     id: "timelines",
-    question: "What timelines should teams plan for?",
+    question: "How quickly can a service start showing value?",
     answer:
-      "Strategy and AI-native UX work typically lands in multi-week phases; systems work often runs as a quarter-long program with incremental releases. Fractional leadership is intentionally measured in months so standards stick.",
+      "Most services are designed to produce a concrete decision artifact in the first 1-2 weeks (scope, architecture direction, or risk map), then compound into implementation-ready outputs over the engagement window.",
     relatedServiceIds: [
       "product-design-strategy",
       "ai-native-ux",
@@ -155,16 +155,16 @@ export const serviceFAQs: ServiceFAQ[] = [
   },
   {
     id: "vs-agency",
-    question: "What makes this different from a traditional agency?",
+    question: "Do services include implementation-aware guidance?",
     answer:
-      "You work directly with a senior practitioner who designs and understands implementation tradeoffs — not a rotating bench. The work is positioned for product impact, not deliverable volume.",
+      "Yes. Every service is shaped for implementation handoff: constraints, trade-offs, and technical implications are documented so engineering and delivery teams can execute without narrative loss.",
     relatedServiceIds: ["fractional-leadership", "ai-native-ux"],
   },
   {
     id: "engagement-start",
-    question: "How does an engagement start?",
+    question: "What does the first service milestone usually cover?",
     answer:
-      "Share context on the product stage, constraints, and the decision you need to improve. From there, the first step is a short discovery slice or a scoped milestone before expanding scope.",
+      "The first milestone is usually a scoped problem-definition or design-direction sprint: decision context, constraints, success metrics, and prioritized next actions. If ongoing delivery support is needed after that, transition into Work with me engagement models.",
     relatedServiceIds: ["product-design-strategy", "fractional-leadership"],
     relatedPhaseSteps: ["01"],
   },

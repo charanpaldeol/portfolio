@@ -5,9 +5,10 @@ import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { createContext, type ReactNode, useContext } from "react"
 
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import { editorialGradientLastWord, EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { Badge } from "@/components/ui/badge"
-import { resolvePhases, resolveServices } from "@/lib/content-lookups"
+import { resolveBlogArticles, resolvePhases, resolveServices } from "@/lib/content-lookups"
 import { serviceFAQs, services } from "@/lib/services-data"
 import { cn } from "@/lib/utils"
 
@@ -74,6 +75,13 @@ function DifferentiationSection() {
               className="font-semibold text-primary underline decoration-primary/30 underline-offset-[0.22em] transition hover:decoration-primary"
             >
               what I bring
+            </Link>
+            . If you need embedded programme governance after service strategy, continue to{" "}
+            <Link
+              href="/work-with-me"
+              className="font-semibold text-primary underline decoration-primary/30 underline-offset-[0.22em] transition hover:decoration-primary"
+            >
+              Work with me
             </Link>
             .
           </p>
@@ -195,6 +203,27 @@ function CtaSection() {
   )
 }
 
+function RelatedSection() {
+  const serviceIds = services.map((service) => service.id)
+  const phaseSteps = Array.from(new Set(serviceFAQs.flatMap((faq) => faq.relatedPhaseSteps ?? [])))
+  return (
+    <RelatedLinks
+      heading="Related pathways"
+      description="Start from a service, then branch to methods and proof."
+      groups={[
+        { title: "Services", items: resolveServices(serviceIds) },
+        { title: "Proof pathway", items: resolveBlogArticles(["value-realization"]), showSublabel: true },
+        { title: "Work phases", items: resolvePhases(phaseSteps), showSublabel: true },
+        {
+          title: "Deep dives",
+          items: resolveBlogArticles(["designing-for-decisions", "why-design-systems-fail", "prompt-as-design-artifact"]),
+          showSublabel: true,
+        },
+      ]}
+    />
+  )
+}
+
 export default function ServicesContent() {
   const prefersReducedMotion = useReducedMotion() ?? false
 
@@ -210,6 +239,7 @@ export default function ServicesContent() {
         <div className="mx-auto mt-20 max-w-6xl space-y-20 md:mt-28 md:space-y-28">
           <DifferentiationSection />
           <FaqSection />
+          <RelatedSection />
           <CtaSection />
         </div>
       </div>

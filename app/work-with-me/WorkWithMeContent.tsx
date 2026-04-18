@@ -1,10 +1,11 @@
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { Badge } from "@/components/ui/badge"
-import { resolveEngagements, resolvePhases } from "@/lib/content-lookups"
+import { resolveBlogArticles, resolveEngagements, resolvePhases, resolveProcessSteps, resolveWorkWithMeFaqs } from "@/lib/content-lookups"
 import { cn } from "@/lib/utils"
 import {
   engagementTypes,
@@ -25,6 +26,13 @@ export function WorkWithMeContent() {
         }
         description="I work with teams as a Lead Technical Business Analyst, programme delivery consultant, and enterprise systems implementation advisor — from requirements through go-live."
       />
+      <p className="mb-12 max-w-3xl text-sm leading-relaxed text-on-surface-variant md:text-base">
+        If you are primarily looking for product/design outcome packages, start with{" "}
+        <Link href="/portfolio/services" className="font-semibold text-primary underline decoration-primary/30 underline-offset-[0.22em]">
+          Services
+        </Link>
+        . Work with me is best when you need embedded delivery governance and stakeholder orchestration.
+      </p>
 
       <section aria-labelledby="engagements-heading" className="mb-24">
         <h2
@@ -77,7 +85,7 @@ export function WorkWithMeContent() {
                 {coveredPhases.length > 0 && (
                   <div className="mt-6 flex flex-wrap items-center gap-2">
                     <span className="text-xs font-medium uppercase tracking-wide text-on-surface/55">
-                      Covers phases
+                      Delivery phases
                     </span>
                     {coveredPhases.map((p) => (
                       <Badge key={p.key} variant="secondary" asChild>
@@ -169,6 +177,22 @@ export function WorkWithMeContent() {
           })}
         </div>
       </section>
+
+      <RelatedLinks
+        className="mb-24"
+        heading="You may also need"
+        description="Common next reads after scoping an engagement."
+        groups={[
+          { title: "Engagement types", items: resolveEngagements(engagementTypes.map((e) => e.id)) },
+          { title: "Process steps", items: resolveProcessSteps(processSteps.map((step) => step.id ?? "")), showSublabel: true },
+          { title: "Frequently asked", items: resolveWorkWithMeFaqs(faqs.map((faq) => faq.id ?? "")) },
+          {
+            title: "Related essays",
+            items: resolveBlogArticles(["problem-framing", "designing-for-decisions", "value-realization"]),
+            showSublabel: true,
+          },
+        ]}
+      />
 
       <section
         aria-labelledby="cta-heading"
