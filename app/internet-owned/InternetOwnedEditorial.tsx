@@ -185,7 +185,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
     <div className="internet-owned-editorial relative min-w-0 text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
       <div className="grid min-h-0 grid-cols-1 gap-0 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         {/* Tall grid cell + inner sticky aside so the rail scrolls with the document, then pins under the site header */}
-        <div className="relative z-10 hidden min-h-0 min-w-0 self-stretch border-r border-outline-variant/15 bg-surface shadow-editorial-float lg:block">
+        <div className="relative z-10 hidden min-h-0 min-w-0 self-stretch bg-surface shadow-editorial-float lg:block">
           <aside className="sticky top-[var(--site-header-offset)] z-30 flex w-full min-w-0 flex-col py-10 pl-1 pr-5 [backface-visibility:hidden]">
             <div className="mb-10 px-1">
               <h2 className="font-sans text-lg font-medium tracking-normal text-on-surface">Editorial portal</h2>
@@ -256,7 +256,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
               </a>
               <a
                 href="#io-impact"
-                className="inline-flex items-center justify-center rounded-lg border border-outline-variant/15 bg-surface-container-low px-8 py-4 font-sans text-lg font-semibold text-on-surface transition hover:bg-surface-container"
+                className="inline-flex items-center justify-center rounded-lg bg-surface-container-low px-8 py-4 font-sans text-lg font-semibold text-on-surface transition hover:bg-surface-container"
               >
                 See cost comparison
               </a>

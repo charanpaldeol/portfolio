@@ -24,7 +24,7 @@ export function ShimmerButton({ children, className, as = "a", ...props }: Shimm
         <a
           className={cn(
             "inline-flex items-center justify-center rounded-xl px-6 py-2.5 text-sm font-semibold text-white",
-            "bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500 shadow-md",
+            "bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500 shadow-editorial-float",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
             className
           )}
@@ -36,7 +36,7 @@ export function ShimmerButton({ children, className, as = "a", ...props }: Shimm
         <button
           className={cn(
             "inline-flex items-center justify-center rounded-xl px-6 py-2.5 text-sm font-semibold text-white",
-            "bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500 shadow-md",
+            "bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500 shadow-editorial-float",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
             className
           )}

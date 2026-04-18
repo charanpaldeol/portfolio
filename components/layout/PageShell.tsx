@@ -18,7 +18,7 @@ export function PageShell({ children, className, containerClassName }: Props) {
         className
       )}
     >
-      <div className={cn("mx-auto w-full max-w-7xl flex-1 px-6 pt-10 pb-20 md:px-8", containerClassName)}>
+      <div className={cn("mx-auto w-full max-w-7xl flex-1 pl-6 pr-10 pt-10 pb-20 md:pl-8 md:pr-16", containerClassName)}>
         {children}
       </div>
     </div>

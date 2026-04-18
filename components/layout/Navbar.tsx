@@ -25,7 +25,7 @@ export function Navbar() {
   const isHomeRoute = pathname === '/'
 
   return (
-    <header className="sticky top-0 z-[100] w-full shrink-0 border-b border-outline-variant/10 bg-surface/90 shadow-editorial-float backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-surface/80">
+    <header className="sticky top-0 z-[100] w-full shrink-0 bg-surface/90 shadow-editorial-float backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-surface/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         {/* Logo */}
         <Link href="/" aria-label="cpdeol home" className="flex items-center gap-2">

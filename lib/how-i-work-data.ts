@@ -55,7 +55,7 @@ export const workPhases: WorkPhase[] = [
   {
     id: "define",
     title: deliveryPhasesById.define.label,
-    description: "BRDs, user stories, acceptance criteria, business case",
+    description: "BRDs, user stories, acceptance criteria — translating the problem framing memo into a measurable business case with KPI baselines, target outcomes, and acceptance criteria stakeholders can sign off on",
     decisionArtifacts: [
       "Requirements decision log with assumptions and trade-offs",
       "Prioritized user story set with acceptance criteria",
@@ -119,7 +119,7 @@ export const expertiseAreas: ExpertiseArea[] = [
   {
     id: "business-product",
     title: "Business & product",
-    body: "Translating executive goals into delivery-ready requirements with executives, product owners, and domain SMEs — including logistics and supply chain visibility programmes where discovery work spans warehouses, dispatch, and partner integrations.",
+    body: "Translating executive goals into delivery-ready requirements — from capital markets analytics and CRM decision-support programmes to supply chain implementations spanning warehouses, dispatch, and partner integrations.",
     Icon: Briefcase,
     relatedServiceIds: ["product-design-strategy", "fractional-leadership"],
     relatedProjectSlugs: ["landing-page-website", "real-time-analytics-dashboard", "distributed-order-fulfillment"],
@@ -156,7 +156,7 @@ export const expertiseAreas: ExpertiseArea[] = [
   {
     id: "ux-design",
     title: "UX & design",
-    body: "Partnering on user flows, prototypes, and research so requirements and experience stay in sync.",
+    body: "Partnering on user flows, prototypes, and research to design decision surfaces — not just screens — so requirements and the actual experience of making a choice stay in sync.",
     Icon: PenLine,
     relatedServiceIds: ["ai-native-ux", "design-systems", "product-design-strategy"],
     relatedProjectSlugs: ["landing-page-website", "ai-customer-onboarding-agent"],

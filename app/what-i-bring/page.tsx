@@ -74,7 +74,7 @@ function ServicesGrid() {
       </motion.div>
 
       {/* Card 2: Solution Design */}
-      <motion.div whileHover={{ y: -5 }} className="md:col-span-4 group bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between border border-outline-variant/10">
+      <motion.div whileHover={{ y: -5 }} className="md:col-span-4 group bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between">
         <div>
           <div className="flex justify-between items-start mb-8">
             <div className="bg-secondary-container/10 p-3 rounded-lg">
@@ -206,19 +206,22 @@ function ServicesGrid() {
 
 function Manifesto() {
   return (
-    <section className="mt-32 border-l-4 border-tertiary pl-12 py-4">
-      <motion.h2
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        className="text-3xl md:text-4xl font-extrabold mb-6 italic text-on-surface-variant leading-tight"
-      >
-        &quot;Architecture is not just about building systems; it is about
-        defining how teams inhabit their digital future.&quot;
-      </motion.h2>
-      <p className="text-xs font-semibold tracking-widest text-tertiary uppercase">
-        The editorial manifesto
-      </p>
+    <section className="mt-32 flex gap-8 py-4">
+      <div className="w-1 shrink-0 self-stretch rounded-full bg-tertiary" aria-hidden />
+      <div>
+        <motion.h2
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-extrabold mb-6 italic text-on-surface-variant leading-tight"
+        >
+          &quot;Architecture is not just about building systems; it is about
+          defining how teams inhabit their digital future.&quot;
+        </motion.h2>
+        <p className="text-xs font-semibold tracking-widest text-tertiary uppercase">
+          The editorial manifesto
+        </p>
+      </div>
     </section>
   )
 }

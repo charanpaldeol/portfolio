@@ -185,7 +185,7 @@ export const standaloneArticles: WhatIBringCard[] = [
       "ai-customer-onboarding-agent",
     ],
     relatedPhaseSteps: ["02", "03"],
-    relatedExpertiseIds: ["business-product", "ux-design"],
+    relatedExpertiseIds: ["business-product", "ux-design", "data-ai-teams"],
     relatedBlogSlugs: ["problem-framing", "value-realization"],
   },
 ]

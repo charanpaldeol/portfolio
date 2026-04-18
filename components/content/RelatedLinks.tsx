@@ -34,7 +34,7 @@ export function RelatedLinks({ heading, description, groups, className }: Relate
     <section
       aria-label={heading ?? "Related content"}
       className={cn(
-        "rounded-2xl border border-on-surface/10 bg-surface-container/40 p-6 sm:p-8",
+        "rounded-2xl bg-surface-container/40 p-6 sm:p-8",
         className,
       )}
     >
@@ -73,7 +73,7 @@ export function RelatedLinks({ heading, description, groups, className }: Relate
 
 function RelatedChip({ item, showSublabel }: { item: RelatedItem; showSublabel: boolean }) {
   const baseClass = cn(
-    "group inline-flex max-w-full flex-col gap-0.5 rounded-xl border border-on-surface/12 bg-surface px-3 py-2 text-left text-sm transition-colors",
+    "group inline-flex max-w-full flex-col gap-0.5 rounded-xl bg-surface-container-low px-3 py-2 text-left text-sm transition-colors",
     "hover:border-primary/40 hover:bg-primary-container/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
   )
   const body = (

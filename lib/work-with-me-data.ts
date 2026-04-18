@@ -38,6 +38,7 @@ export const engagementTypes: EngagementType[] = [
     idealFor: "Best for teams with a complex programme underway who need senior BA leadership to bridge technical and business stakeholders, manage scope, and deliver clean outcomes.",
     typicalDuration: "3–6 months",
     deliverables: [
+      "Problem framing memo and KPI success model",
       "Requirements elicitation, BRDs, and functional specifications",
       "Stakeholder alignment workshops and communication plans",
       "Data mapping, source-to-target documentation, and ETL specifications",
@@ -55,6 +56,7 @@ export const engagementTypes: EngagementType[] = [
     idealFor: "Best for teams with a specific project that needs structured BA work: requirements, data analysis, vendor coordination, and a handoff the internal team can sustain independently.",
     typicalDuration: "4–12 weeks",
     deliverables: [
+      "Problem framing memo and KPI success model",
       "Current-state process mapping and gap analysis",
       "Future-state requirements and integration specifications",
       "Vendor evaluation support and RFP documentation",

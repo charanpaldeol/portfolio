@@ -181,7 +181,8 @@ export default function ExperiencePage() {
           transition={{ duration: reduceMotion ? 0 : 0.45 }}
           className="rounded-2xl bg-surface-container-low px-6 py-6 md:px-10 md:py-8"
         >
-          <blockquote className="border-l-4 border-tertiary pl-5 md:pl-6">
+          <blockquote className="flex gap-5">
+            <div className="w-1 shrink-0 self-stretch rounded-full bg-tertiary" aria-hidden />
             <p className="font-display text-lg font-bold leading-snug tracking-tight text-on-surface md:text-xl">
               I stay closest to the work where business intent, data quality, and delivery discipline have to meet—or
               nothing ships with confidence.

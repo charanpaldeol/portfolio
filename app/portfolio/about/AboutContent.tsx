@@ -280,7 +280,7 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={t(0.4, i * 0.06)}
-                className="rounded-xl bg-surface-container-lowest p-8 shadow-sm transition-colors hover:bg-surface-container-low"
+                className="rounded-xl bg-surface-container-lowest p-8 shadow-editorial-float transition-colors hover:bg-surface-container-low"
               >
                 <v.icon className={cn("mb-6 size-10 stroke-[1.25]", v.iconClass)} aria-hidden />
                 <h4 className="mb-4 font-display text-xl font-bold text-on-surface">{v.title}</h4>

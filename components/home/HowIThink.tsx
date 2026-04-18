@@ -169,7 +169,7 @@ export default function HowIThink({
                     </div>
 
                     {/* Why + In practice */}
-                    <div className="space-y-3 border-t border-outline-variant/20 pt-4">
+                    <div className="space-y-3 pt-4">
                       <div>
                         <div className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: accentVarByToken[p.accent] }}>
                           Why it matters

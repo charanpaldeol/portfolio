@@ -57,7 +57,7 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
           >
             <div
               className={cn(
-                "relative mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-outline-variant/20 transition-colors md:size-24",
+                "relative mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-editorial-float ring-1 ring-outline-variant/20 transition-colors md:size-24",
                 "hover:bg-surface-container-low",
                 emphasized && cn(styles.hiwNodeValue, "ring-2 ring-primary/35 text-primary")
               )}
@@ -147,7 +147,8 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
         <p className="font-sans text-[0.9375rem] font-normal leading-relaxed text-on-surface-variant">
           Most PMs stop at the roadmap. Most BAs stop at the requirements doc.
         </p>
-        <blockquote className="my-5 border-l-4 border-tertiary py-1 pl-5">
+        <blockquote className="my-5 flex gap-5 py-1">
+          <div className="w-1 shrink-0 self-stretch rounded-full bg-tertiary" aria-hidden />
           <p className="font-display text-lg font-bold leading-snug tracking-tight text-on-surface md:text-xl">
             I stay in the room until the outcome is real
           </p>
