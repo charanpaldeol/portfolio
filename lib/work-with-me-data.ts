@@ -6,6 +6,8 @@ export type EngagementType = {
   idealFor: string
   typicalDuration: string
   deliverables: string[]
+  /** Phase steps this engagement typically covers. Values: "01"–"06". */
+  relatedPhaseSteps?: string[]
 }
 
 export type ProcessStep = {
@@ -13,11 +15,17 @@ export type ProcessStep = {
   title: string
   description: string
   duration: string
+  id?: string
 }
 
 export type FAQ = {
   question: string
   answer: string
+  id?: string
+  /** Engagement type IDs referenced by this FAQ. Values: "programme", "project", "advisory". */
+  relatedEngagementIds?: string[]
+  /** Phase steps referenced by this FAQ. Values: "01"–"06". */
+  relatedPhaseSteps?: string[]
 }
 
 export const engagementTypes: EngagementType[] = [
@@ -36,6 +44,7 @@ export const engagementTypes: EngagementType[] = [
       "UAT framework design, execution, and sign-off management",
       "Change management support and go-live governance",
     ],
+    relatedPhaseSteps: ["01", "02", "03", "04", "05", "06"],
   },
   {
     id: "project",
@@ -52,6 +61,7 @@ export const engagementTypes: EngagementType[] = [
       "UAT design, execution, and compliance sign-off",
       "Operational runbook and knowledge transfer",
     ],
+    relatedPhaseSteps: ["01", "02", "03", "04"],
   },
   {
     id: "advisory",
@@ -68,11 +78,13 @@ export const engagementTypes: EngagementType[] = [
       "Compliance and regulatory alignment documentation",
       "Stakeholder enablement sessions and knowledge transfer",
     ],
+    relatedPhaseSteps: ["01", "02", "06"],
   },
 ]
 
 export const processSteps: ProcessStep[] = [
   {
+    id: "discovery-call",
     number: "01",
     title: "Discovery call",
     description:
@@ -80,6 +92,7 @@ export const processSteps: ProcessStep[] = [
     duration: "30 minutes",
   },
   {
+    id: "proposal-scope",
     number: "02",
     title: "Proposal & scope",
     description:
@@ -87,6 +100,7 @@ export const processSteps: ProcessStep[] = [
     duration: "3–5 business days",
   },
   {
+    id: "kick-off",
     number: "03",
     title: "Kick-off",
     description:
@@ -94,6 +108,7 @@ export const processSteps: ProcessStep[] = [
     duration: "1 session",
   },
   {
+    id: "delivery-iteration",
     number: "04",
     title: "Delivery & iteration",
     description:
@@ -104,33 +119,46 @@ export const processSteps: ProcessStep[] = [
 
 export const faqs: FAQ[] = [
   {
+    id: "pricing",
     question: "How do you price engagements?",
     answer:
       "Engagements are typically structured as a monthly retainer for programme delivery roles or a fixed-fee statement of work for project-based and advisory engagements. Rates are shared on request — reach out with your scope and timeline for a tailored proposal.",
+    relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
+    id: "availability",
     question: "What is your availability?",
     answer:
       "I maintain a small number of concurrent engagements to keep quality high. Currently accepting new starts from Q3 2026 — reach out early to discuss scope and timing so we can plan the right start date.",
+    relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
+    id: "location-remote",
     question: "Where are you located — and do you work remotely?",
     answer:
       "Based in Toronto, Canada. I collaborate remotely with teams globally and travel on-site when milestones benefit from face time — stakeholder workshops, executive reviews, and programme kick-offs.",
+    relatedEngagementIds: ["programme", "project", "advisory"],
   },
   {
+    id: "get-started",
     question: "How do we get started?",
     answer:
       "Reach out via the contact page with a short brief: the problem, the stakeholders involved, your timeline, and what you have tried so far. If there is a fit, you will receive a proposal within a few business days.",
+    relatedEngagementIds: ["programme", "project", "advisory"],
+    relatedPhaseSteps: ["01"],
   },
   {
+    id: "agencies-or-inhouse",
     question: "Do you work with agencies or only in-house teams?",
     answer:
       "Both. In-house product and operations teams are most common, but I also partner with implementation consultancies and agencies that need senior BA leadership on critical client programmes or delivery spikes.",
+    relatedEngagementIds: ["project", "advisory"],
   },
   {
+    id: "industries",
     question: "What industries do you focus on?",
     answer:
       "Financial services, banking and compliance, enterprise SaaS, and capital markets are where I have the deepest pattern library — KYC/AML, FINTRAC reporting, Salesforce implementations, SAP integrations, and payment system migrations. The problem quality and stakeholder complexity matter more than the sector.",
+    relatedEngagementIds: ["programme", "project", "advisory"],
   },
 ]

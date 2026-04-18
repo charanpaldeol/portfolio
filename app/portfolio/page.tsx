@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation"
 
 export default function PortfolioIndexPage() {
-  redirect("/portfolio/about")
+  redirect("/")
 }

@@ -55,6 +55,10 @@ export const standaloneArticles: WhatIBringCard[] = [
         ],
       },
     ],
+    relatedPrincipleIds: ["clarity", "evidence-over-opinion", "ship-learn-adapt"],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedProjectSlugs: ["ai-customer-onboarding-agent", "fraud-detection-engine"],
+    relatedPhaseSteps: ["02", "03"],
   },
   {
     slug: "why-design-systems-fail",
@@ -110,6 +114,10 @@ export const standaloneArticles: WhatIBringCard[] = [
         ],
       },
     ],
+    relatedPrincipleIds: ["less-better", "adoption-over-delivery", "clarity"],
+    relatedServiceIds: ["design-systems", "fractional-leadership"],
+    relatedProjectSlugs: ["landing-page-website"],
+    relatedPhaseSteps: ["03", "05"],
   },
   {
     slug: "designing-for-decisions",
@@ -165,5 +173,13 @@ export const standaloneArticles: WhatIBringCard[] = [
         ],
       },
     ],
+    relatedPrincipleIds: ["clarity", "empathy", "evidence-over-opinion"],
+    relatedServiceIds: ["product-design-strategy", "ai-native-ux"],
+    relatedProjectSlugs: [
+      "real-time-analytics-dashboard",
+      "compliance-risk-monitoring",
+      "ai-customer-onboarding-agent",
+    ],
+    relatedPhaseSteps: ["02", "03"],
   },
 ]

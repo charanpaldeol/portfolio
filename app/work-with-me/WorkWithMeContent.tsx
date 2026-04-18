@@ -3,6 +3,8 @@ import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { Badge } from "@/components/ui/badge"
+import { resolveEngagements, resolvePhases } from "@/lib/content-lookups"
 import { cn } from "@/lib/utils"
 import {
   engagementTypes,
@@ -32,49 +34,65 @@ export function WorkWithMeContent() {
           Ways we can work together
         </h2>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {engagementTypes.map((e) => (
-            <article
-              key={e.id}
-              className="flex flex-col rounded-2xl bg-surface-container-lowest p-8 md:p-10"
-            >
-              <div className="mb-4 text-3xl" aria-hidden>
-                {e.icon}
-              </div>
-              <h3 className="mb-4 text-2xl font-bold text-on-surface">{e.name}</h3>
-              <p className="mb-6 text-base leading-relaxed text-on-surface-variant">
-                {e.description}
-              </p>
-              <p className="mb-6 text-sm font-medium leading-relaxed text-on-surface">
-                {e.idealFor}
-              </p>
-              <span
-                className={cn(
-                  "mb-6 inline-flex w-fit rounded-full bg-primary-fixed px-4 py-1.5",
-                  "text-xs font-semibold uppercase tracking-wide text-on-primary-fixed"
-                )}
+          {engagementTypes.map((e) => {
+            const coveredPhases = resolvePhases(e.relatedPhaseSteps)
+            return (
+              <article
+                key={e.id}
+                id={`engagement-${e.id}`}
+                className="flex flex-col rounded-2xl bg-surface-container-lowest p-8 md:p-10"
               >
-                {e.typicalDuration}
-              </span>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
-                What you get
-              </p>
-              <ul className="mt-auto space-y-3 text-sm leading-relaxed text-on-surface-variant">
-                {e.deliverables.map((d) => (
-                  <li key={d} className="flex gap-3">
-                    <span
-                      className="mt-1.5 size-2 shrink-0 rounded-full bg-primary"
-                      aria-hidden
-                    />
-                    <span>{d}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+                <div className="mb-4 text-3xl" aria-hidden>
+                  {e.icon}
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-on-surface">{e.name}</h3>
+                <p className="mb-6 text-base leading-relaxed text-on-surface-variant">
+                  {e.description}
+                </p>
+                <p className="mb-6 text-sm font-medium leading-relaxed text-on-surface">
+                  {e.idealFor}
+                </p>
+                <span
+                  className={cn(
+                    "mb-6 inline-flex w-fit rounded-full bg-primary-fixed px-4 py-1.5",
+                    "text-xs font-semibold uppercase tracking-wide text-on-primary-fixed"
+                  )}
+                >
+                  {e.typicalDuration}
+                </span>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+                  What you get
+                </p>
+                <ul className="mt-auto space-y-3 text-sm leading-relaxed text-on-surface-variant">
+                  {e.deliverables.map((d) => (
+                    <li key={d} className="flex gap-3">
+                      <span
+                        className="mt-1.5 size-2 shrink-0 rounded-full bg-primary"
+                        aria-hidden
+                      />
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+                {coveredPhases.length > 0 && (
+                  <div className="mt-6 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-medium uppercase tracking-wide text-on-surface/55">
+                      Covers phases
+                    </span>
+                    {coveredPhases.map((p) => (
+                      <Badge key={p.key} variant="secondary" asChild>
+                        <Link href={p.href ?? "#"}>{p.label}</Link>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </article>
+            )
+          })}
         </div>
       </section>
 
-      <section aria-labelledby="process-heading" className="mb-24">
+      <section id="process" aria-labelledby="process-heading" className="mb-24">
         <h2
           id="process-heading"
           className="mb-10 font-display text-3xl font-bold tracking-tight text-on-surface md:text-4xl"
@@ -99,7 +117,7 @@ export function WorkWithMeContent() {
         </div>
       </section>
 
-      <section aria-labelledby="faq-heading" className="mb-24">
+      <section id="faqs" aria-labelledby="faq-heading" className="mb-24">
         <h2
           id="faq-heading"
           className="mb-10 font-display text-3xl font-bold tracking-tight text-on-surface md:text-4xl"
@@ -107,32 +125,48 @@ export function WorkWithMeContent() {
           Frequently asked questions
         </h2>
         <div className="mx-auto max-w-3xl space-y-4">
-          {faqs.map((faq) => (
-            <details
-              key={faq.question}
-              className="group rounded-2xl bg-surface-container-lowest px-5 md:px-6"
-            >
-              <summary
-                className={cn(
-                  "flex cursor-pointer list-none items-center justify-between gap-4 py-5",
-                  "text-left text-base font-semibold text-on-surface",
-                  "[&::-webkit-details-marker]:hidden"
-                )}
+          {faqs.map((faq, index) => {
+            const relatedEngagements = resolveEngagements(faq.relatedEngagementIds)
+            return (
+              <details
+                key={faq.question}
+                id={`faq-${faq.id ?? index}`}
+                className="group rounded-2xl bg-surface-container-lowest px-5 md:px-6"
               >
-                {faq.question}
-                <ChevronDown
+                <summary
                   className={cn(
-                    "size-5 shrink-0 text-on-surface-variant transition-transform",
-                    "group-open:rotate-180"
+                    "flex cursor-pointer list-none items-center justify-between gap-4 py-5",
+                    "text-left text-base font-semibold text-on-surface",
+                    "[&::-webkit-details-marker]:hidden"
                   )}
-                  aria-hidden
-                />
-              </summary>
-              <div className="bg-surface-container-low/40 rounded-xl px-3 pb-5 pt-2 text-sm leading-relaxed text-on-surface-variant md:text-base">
-                {faq.answer}
-              </div>
-            </details>
-          ))}
+                >
+                  {faq.question}
+                  <ChevronDown
+                    className={cn(
+                      "size-5 shrink-0 text-on-surface-variant transition-transform",
+                      "group-open:rotate-180"
+                    )}
+                    aria-hidden
+                  />
+                </summary>
+                <div className="bg-surface-container-low/40 rounded-xl px-3 pb-5 pt-2 text-sm leading-relaxed text-on-surface-variant md:text-base">
+                  {faq.answer}
+                  {relatedEngagements.length > 0 && (
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-medium uppercase tracking-wide text-on-surface/55">
+                        Relevant engagements
+                      </span>
+                      {relatedEngagements.map((en) => (
+                        <Badge key={en.key} variant="outline" asChild>
+                          <Link href={en.href ?? "#"}>{en.label}</Link>
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </details>
+            )
+          })}
         </div>
       </section>
 

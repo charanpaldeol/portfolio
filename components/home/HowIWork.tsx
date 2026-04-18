@@ -1,12 +1,22 @@
 "use client"
 
+import Link from "next/link"
 import type { ReactNode } from "react"
 import { useEffect, useRef, useState } from "react"
 
+import { Badge } from "@/components/ui/badge"
+import { resolveProjects, resolveServices } from "@/lib/content-lookups"
 import { expertiseAreas, workPhases } from "@/lib/how-i-work-data"
 import { cn } from "@/lib/utils"
 
 import styles from "./HowIWork.module.css"
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+}
 
 export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode }) {
   const pipelineRef = useRef<HTMLDivElement>(null)
@@ -39,7 +49,12 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
       >
         <div className={styles.hiwTrack} aria-hidden />
         {workPhases.map(({ title, description, Icon, emphasized, step }) => (
-          <div key={title} className={styles.hiwPhase} role="listitem">
+          <div
+            key={title}
+            id={`phase-${step}`}
+            className={styles.hiwPhase}
+            role="listitem"
+          >
             <div
               className={cn(
                 "relative mb-4 flex size-20 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-outline-variant/20 transition-colors md:size-24",
@@ -75,24 +90,52 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
         Teams I lead across every phase.
       </p>
 
-      <ul className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {expertiseAreas.map(({ title, body, Icon }) => (
-          <li key={title}>
-            <div className="flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 transition-colors duration-200 hover:bg-surface-container md:p-8">
-              <Icon
-                className="mb-4 size-8 text-on-surface-variant"
-                strokeWidth={1.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              />
-              <h3 className="font-display text-lg font-bold text-on-surface md:text-xl">{title}</h3>
-              <p className="mt-2 font-sans text-sm font-normal leading-relaxed text-on-surface-variant md:text-base">
-                {body}
-              </p>
-            </div>
-          </li>
-        ))}
+      <ul
+        id="expertise"
+        className="m-0 mt-8 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+      >
+        {expertiseAreas.map((expertise) => {
+          const { title, body, Icon, id, relatedServiceIds, relatedProjectSlugs } = expertise
+          const anchorId = `expertise-${id ?? slugify(title)}`
+          const relatedServices = resolveServices(relatedServiceIds)
+          const relatedProjects = resolveProjects(relatedProjectSlugs)
+          const hasRelated = relatedServices.length > 0 || relatedProjects.length > 0
+
+          return (
+            <li key={title} id={anchorId} className="scroll-mt-24">
+              <div className="flex h-full flex-col rounded-xl bg-surface-container-lowest p-6 transition-colors duration-200 hover:bg-surface-container md:p-8">
+                <Icon
+                  className="mb-4 size-8 text-on-surface-variant"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                />
+                <h3 className="font-display text-lg font-bold text-on-surface md:text-xl">{title}</h3>
+                <p className="mt-2 font-sans text-sm font-normal leading-relaxed text-on-surface-variant md:text-base">
+                  {body}
+                </p>
+                {hasRelated && (
+                  <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                    <span className="mr-1 font-sans text-[10px] font-semibold tracking-wide text-on-surface-variant/70 uppercase">
+                      Related
+                    </span>
+                    {relatedServices.map((service) => (
+                      <Badge key={`service-${service.key}`} variant="outline" asChild>
+                        <Link href={service.href ?? "#"}>{service.label}</Link>
+                      </Badge>
+                    ))}
+                    {relatedProjects.map((project) => (
+                      <Badge key={`project-${project.key}`} variant="secondary" asChild>
+                        <Link href={project.href ?? "#"}>{project.label}</Link>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </li>
+          )
+        })}
       </ul>
 
       <div className="mt-10 rounded-2xl bg-surface-container-low p-6 shadow-editorial md:mt-12 md:p-8">

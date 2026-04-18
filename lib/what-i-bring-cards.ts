@@ -10,6 +10,10 @@ export type WhatIBringCard = {
   title: string
   body: string
   sections: WhatIBringArticleSection[]
+  relatedPrincipleIds?: readonly string[]
+  relatedServiceIds?: readonly string[]
+  relatedProjectSlugs?: readonly string[]
+  relatedPhaseSteps?: readonly string[]
 }
 
 export const whatIBringCards = [
@@ -50,6 +54,10 @@ export const whatIBringCards = [
         ],
       },
     ],
+    relatedPrincipleIds: ["clarity", "evidence-over-opinion", "less-better"],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedProjectSlugs: ["kyc-aml-automation", "hr-management-system"],
+    relatedPhaseSteps: ["01", "02"],
   },
   {
     slug: "solution-design",
@@ -88,6 +96,10 @@ export const whatIBringCards = [
         ],
       },
     ],
+    relatedPrincipleIds: ["clarity", "evidence-over-opinion"],
+    relatedServiceIds: ["product-design-strategy", "design-systems"],
+    relatedProjectSlugs: ["api-first-banking-microservices", "event-streaming-pipeline"],
+    relatedPhaseSteps: ["03"],
   },
   {
     slug: "ai-native-delivery",
@@ -126,6 +138,14 @@ export const whatIBringCards = [
         ],
       },
     ],
+    relatedPrincipleIds: ["ship-learn-adapt", "evidence-over-opinion", "adoption-over-delivery"],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedProjectSlugs: [
+      "fraud-detection-engine",
+      "ai-customer-onboarding-agent",
+      "data-breach-forensics-ai",
+    ],
+    relatedPhaseSteps: ["04", "05", "06"],
   },
   {
     slug: "engineering-depth",
@@ -164,6 +184,14 @@ export const whatIBringCards = [
         ],
       },
     ],
+    relatedPrincipleIds: ["clarity", "evidence-over-opinion"],
+    relatedServiceIds: ["design-systems", "fractional-leadership"],
+    relatedProjectSlugs: [
+      "api-first-banking-microservices",
+      "fraud-detection-engine",
+      "high-performance-ecommerce-checkout",
+    ],
+    relatedPhaseSteps: ["03", "04"],
   },
   {
     slug: "value-realization",
@@ -202,6 +230,10 @@ export const whatIBringCards = [
         ],
       },
     ],
+    relatedPrincipleIds: ["adoption-over-delivery", "ship-learn-adapt"],
+    relatedServiceIds: ["fractional-leadership"],
+    relatedProjectSlugs: ["hr-management-system", "compliance-risk-monitoring"],
+    relatedPhaseSteps: ["05", "06"],
   },
 ] as const satisfies readonly WhatIBringCard[]
 

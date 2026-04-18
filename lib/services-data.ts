@@ -16,6 +16,10 @@ export type ServiceTier = {
 export type ServiceFAQ = {
   question: string
   answer: string
+  id?: string
+  relatedServiceIds?: string[]
+  /** Phase steps referenced by this FAQ. Values: "01"–"06" (Discover, Define, Design, Deliver, Adopt, Value). */
+  relatedPhaseSteps?: string[]
 }
 
 export const services: ServiceTier[] = [
@@ -113,28 +117,55 @@ export const services: ServiceTier[] = [
 export const serviceFAQs: ServiceFAQ[] = [
   // TODO(Charan): confirm public rate bands vs. private quotes
   {
+    id: "rates-availability",
     question: "How do you structure rates and availability?",
     answer:
       "Engagements are scoped around outcomes and timeboxed milestones. Rates depend on cadence, seniority of the work, and risk profile — specifics are confirmed on a short intro call.",
+    relatedServiceIds: [
+      "product-design-strategy",
+      "ai-native-ux",
+      "design-systems",
+      "fractional-leadership",
+    ],
   },
   {
+    id: "remote-collaboration",
     question: "Where are you based, and how do you collaborate remotely?",
     answer:
       "Collaboration is remote-first with structured async updates and workshop blocks in friendly time zones. On-site intensives are available when travel makes sense for the phase of work.",
+    relatedServiceIds: [
+      "product-design-strategy",
+      "ai-native-ux",
+      "design-systems",
+      "fractional-leadership",
+    ],
   },
   {
+    id: "timelines",
     question: "What timelines should teams plan for?",
     answer:
       "Strategy and AI-native UX work typically lands in multi-week phases; systems work often runs as a quarter-long program with incremental releases. Fractional leadership is intentionally measured in months so standards stick.",
+    relatedServiceIds: [
+      "product-design-strategy",
+      "ai-native-ux",
+      "design-systems",
+      "fractional-leadership",
+    ],
+    relatedPhaseSteps: ["01", "04"],
   },
   {
+    id: "vs-agency",
     question: "What makes this different from a traditional agency?",
     answer:
       "You work directly with a senior practitioner who designs and understands implementation tradeoffs — not a rotating bench. The work is positioned for product impact, not deliverable volume.",
+    relatedServiceIds: ["fractional-leadership", "ai-native-ux"],
   },
   {
+    id: "engagement-start",
     question: "How does an engagement start?",
     answer:
       "Share context on the product stage, constraints, and the decision you need to improve. From there, the first step is a short discovery slice or a scoped milestone before expanding scope.",
+    relatedServiceIds: ["product-design-strategy", "fractional-leadership"],
+    relatedPhaseSteps: ["01"],
   },
 ]

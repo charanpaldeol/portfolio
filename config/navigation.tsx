@@ -47,6 +47,25 @@ export const portfolioNavLinks: NavLink[] = [
       </svg>
     ),
   },
+  {
+    href: '/knowledge-graph',
+    label: 'Graph',
+    description: 'Persona, projects, and skills as an interactive graph',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <circle cx="4" cy="4" r="1.6" />
+        <circle cx="12" cy="4" r="1.6" />
+        <circle cx="8" cy="12" r="1.6" />
+        <circle cx="3" cy="10.5" r="1.1" />
+        <circle cx="13" cy="10.5" r="1.1" />
+        <path d="M4 5.2V9.4" />
+        <path d="M12 5.2V9.4" />
+        <path d="M5.4 4h5.2" />
+        <path d="M4 10.6l3.2 1.2" />
+        <path d="M12 10.6l-3.2 1.2" />
+      </svg>
+    ),
+  },
 ]
 
 // ─── Work links ───────────────────────────────────────────────────────────────

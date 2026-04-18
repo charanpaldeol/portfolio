@@ -93,6 +93,7 @@ export function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) 
 
   return (
     <motion.section
+      id={service.id}
       initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-48px" }}

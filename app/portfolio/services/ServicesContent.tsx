@@ -6,6 +6,8 @@ import Link from "next/link"
 import { createContext, type ReactNode, useContext } from "react"
 
 import { editorialGradientLastWord, EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { Badge } from "@/components/ui/badge"
+import { resolvePhases, resolveServices } from "@/lib/content-lookups"
 import { serviceFAQs, services } from "@/lib/services-data"
 import { cn } from "@/lib/utils"
 
@@ -109,20 +111,44 @@ function FaqSection() {
         </p>
       </SectionReveal>
       <div className="space-y-4">
-        {serviceFAQs.map((item, i) => (
-          <SectionReveal key={item.question} delay={i * 0.04}>
-            <details className="group rounded-2xl bg-surface-container-low px-5 py-4 shadow-editorial-float transition-colors open:bg-surface-container">
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-display text-base font-bold leading-snug text-on-surface marker:content-none [&::-webkit-details-marker]:hidden">
-                <span className="min-w-0 pr-2">{item.question}</span>
-                <ChevronDown
-                  className="mt-0.5 size-5 shrink-0 text-on-surface-variant transition-transform duration-200 group-open:rotate-180"
-                  aria-hidden
-                />
-              </summary>
-              <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">{item.answer}</p>
-            </details>
-          </SectionReveal>
-        ))}
+        {serviceFAQs.map((item, i) => {
+          const relatedServices = resolveServices(item.relatedServiceIds)
+          const relatedPhases = resolvePhases(item.relatedPhaseSteps)
+          return (
+            <SectionReveal key={item.question} delay={i * 0.04}>
+              <details className="group rounded-2xl bg-surface-container-low px-5 py-4 shadow-editorial-float transition-colors open:bg-surface-container">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-display text-base font-bold leading-snug text-on-surface marker:content-none [&::-webkit-details-marker]:hidden">
+                  <span className="min-w-0 pr-2">{item.question}</span>
+                  <ChevronDown
+                    className="mt-0.5 size-5 shrink-0 text-on-surface-variant transition-transform duration-200 group-open:rotate-180"
+                    aria-hidden
+                  />
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">{item.answer}</p>
+                {relatedServices.length > 0 && (
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-medium uppercase tracking-wide text-on-surface/55">Applies to:</span>
+                    {relatedServices.map((svc) => (
+                      <Badge key={svc.key} variant="outline" asChild>
+                        <Link href={svc.href ?? "#"}>{svc.label}</Link>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+                {relatedPhases.length > 0 && (
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-medium uppercase tracking-wide text-on-surface/55">Relevant phases:</span>
+                    {relatedPhases.map((phase) => (
+                      <Badge key={phase.key} variant="secondary" asChild>
+                        <Link href={phase.href ?? "#"}>{phase.label}</Link>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </details>
+            </SectionReveal>
+          )
+        })}
       </div>
     </section>
   )

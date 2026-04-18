@@ -2,8 +2,15 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { BlogTopicArticle } from "@/components/blog/BlogTopicArticle"
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import { PageShell } from "@/components/layout/PageShell"
 import { allBlogArticles } from "@/lib/all-blog-articles"
+import {
+  resolvePhases,
+  resolvePrinciples,
+  resolveProjects,
+  resolveServices,
+} from "@/lib/content-lookups"
 import { SITE_URL } from "@/lib/site"
 
 function articleDescription(body: string): string {
@@ -71,6 +78,17 @@ export default async function BlogSlugPage({ params }: Props) {
       />
       <PageShell>
         <BlogTopicArticle card={card} />
+        <RelatedLinks
+          className="mt-12"
+          heading="Related"
+          description="Where this essay connects to my principles, services, and work."
+          groups={[
+            { title: "Principles", items: resolvePrinciples(card.relatedPrincipleIds), showSublabel: true },
+            { title: "Services", items: resolveServices(card.relatedServiceIds) },
+            { title: "Work phases", items: resolvePhases(card.relatedPhaseSteps), showSublabel: true },
+            { title: "Projects", items: resolveProjects(card.relatedProjectSlugs), showSublabel: true },
+          ]}
+        />
       </PageShell>
     </>
   )

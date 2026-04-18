@@ -436,7 +436,7 @@ export default function AboutContent({ robotAnimationData }: { robotAnimationDat
                 <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" aria-hidden />
               </a>
               <Link
-                href="/portfolio/contact"
+                href="/contact"
                 className="inline-flex min-h-11 items-center justify-center rounded-xl bg-on-primary/10 px-8 py-4 text-center text-sm font-semibold text-on-primary/95 transition-colors hover:bg-on-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-fixed/80 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               >
                 Contact form

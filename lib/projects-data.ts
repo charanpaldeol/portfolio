@@ -33,6 +33,16 @@ export interface ProjectData {
     category: string
     technologies: string[]
   }[]
+  /** IDs of services this project demonstrates (see `services-data.ts`). */
+  relatedServiceIds?: string[]
+  /** IDs of testimonials that reference this project or its outcomes (see `testimonials-data.ts`). */
+  relatedTestimonialIds?: string[]
+  /** `tag` values from proof metrics that this project evidences (see `proof-metrics-data.ts`). */
+  relatedProofMetricTags?: string[]
+  /** Step IDs from the "how I work" phases (e.g. "01" Discover – "06" Value) emphasised on this project. */
+  relatedPhaseSteps?: string[]
+  /** Slugs of 1–2 sibling projects in the same theme, for cross-navigation. */
+  relatedProjectSlugs?: string[]
 }
 
 export const projects: ProjectData[] = [
@@ -83,6 +93,10 @@ export const projects: ProjectData[] = [
       { category: "Infrastructure", technologies: ["Kubernetes", "Docker", "Redis"] },
       { category: "Monitoring", technologies: ["Prometheus", "Grafana", "ELK Stack"] },
     ],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedTestimonialIds: ["t2"],
+    relatedPhaseSteps: ["01", "02", "04"],
+    relatedProjectSlugs: ["kyc-aml-automation", "compliance-risk-monitoring"],
   },
   {
     id: "2",
@@ -130,6 +144,11 @@ export const projects: ProjectData[] = [
       { category: "Integration", technologies: ["RESTful APIs", "SOAP", "ETL/ELT"] },
       { category: "Project Tools", technologies: ["JIRA", "SharePoint", "Visio"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t2"],
+    relatedProofMetricTags: ["Platform consolidation"],
+    relatedPhaseSteps: ["02", "03", "04"],
+    relatedProjectSlugs: ["api-first-banking-microservices", "kyc-aml-automation"],
   },
   {
     id: "3",
@@ -177,6 +196,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "SharePoint", "Visio"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "Waterfall", "UAT", "BRD/TDD"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t2"],
+    relatedPhaseSteps: ["01", "02", "06"],
+    relatedProjectSlugs: ["fraud-detection-engine", "compliance-risk-monitoring"],
   },
   {
     id: "4",
@@ -218,6 +241,11 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "UAT", "BRD", "Data Modeling"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t3"],
+    relatedProofMetricTags: ["SaaS implementation"],
+    relatedPhaseSteps: ["02", "03", "04"],
+    relatedProjectSlugs: ["event-streaming-pipeline"],
   },
   {
     id: "5",
@@ -258,6 +286,9 @@ export const projects: ProjectData[] = [
       { category: "Integration", technologies: ["RESTful APIs", "SOAP", "API Integration"] },
       { category: "Tools", technologies: ["Confluence", "JIRA", "Visio", "SharePoint"] },
     ],
+    relatedTestimonialIds: ["t3"],
+    relatedPhaseSteps: ["03", "04"],
+    relatedProjectSlugs: ["real-time-analytics-dashboard", "api-first-banking-microservices"],
   },
   {
     id: "6",
@@ -305,6 +336,11 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "UAT", "Change Management", "BRD"] },
     ],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedTestimonialIds: ["t4"],
+    relatedProofMetricTags: ["Change management"],
+    relatedPhaseSteps: ["02", "03", "04"],
+    relatedProjectSlugs: ["fraud-detection-engine", "data-breach-forensics-ai"],
   },
   {
     id: "7",
@@ -346,6 +382,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "UAT", "BRD/TDD", "Data Mapping"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t2"],
+    relatedPhaseSteps: ["01", "02"],
+    relatedProjectSlugs: ["kyc-aml-automation", "compliance-risk-monitoring"],
   },
   {
     id: "8",
@@ -387,6 +427,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "UML"] },
     ],
+    relatedServiceIds: ["design-systems"],
+    relatedProofMetricTags: ["Platform consolidation"],
+    relatedPhaseSteps: ["03", "04"],
+    relatedProjectSlugs: ["payment-settlement-platform", "event-streaming-pipeline"],
   },
   {
     id: "9",
@@ -428,6 +472,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "Data Modeling"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t2"],
+    relatedPhaseSteps: ["01", "02", "06"],
+    relatedProjectSlugs: ["kyc-aml-automation", "cloud-security-compliance-automation"],
   },
   {
     id: "10",
@@ -469,6 +517,9 @@ export const projects: ProjectData[] = [
       { category: "Integration", technologies: ["RESTful APIs", "Analytics APIs"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD", "UAT", "Data Analysis"] },
     ],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedPhaseSteps: ["02", "03"],
+    relatedProjectSlugs: ["high-performance-ecommerce-checkout"],
   },
   {
     id: "11",
@@ -510,6 +561,9 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "Process Modeling"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedPhaseSteps: ["03", "04"],
+    relatedProjectSlugs: ["ecommerce-product-search-recommendations", "landing-page-website"],
   },
   {
     id: "12",
@@ -551,6 +605,11 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio", "Excel"] },
       { category: "Methodology", technologies: ["UML", "Process Reengineering", "BRD", "UAT"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t5"],
+    relatedProofMetricTags: ["SaaS implementation"],
+    relatedPhaseSteps: ["02", "03", "04"],
+    relatedProjectSlugs: ["event-streaming-pipeline"],
   },
   {
     id: "13",
@@ -593,6 +652,8 @@ export const projects: ProjectData[] = [
       { category: "Methodology", technologies: ["Agile/Scrum", "ITSM", "BRD", "Runbook Design"] },
       { category: "Compliance", technologies: ["Security Frameworks", "Audit Logging", "Change Management"] },
     ],
+    relatedPhaseSteps: ["03", "04"],
+    relatedProjectSlugs: ["data-breach-forensics-ai", "cloud-security-compliance-automation"],
   },
   {
     id: "14",
@@ -634,6 +695,9 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD", "Data Lineage", "Change Management"] },
     ],
+    relatedServiceIds: ["ai-native-ux"],
+    relatedPhaseSteps: ["02", "04", "06"],
+    relatedProjectSlugs: ["cloud-security-compliance-automation", "real-time-api-attack-detection"],
   },
   {
     id: "15",
@@ -675,6 +739,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "ServiceNow", "SharePoint"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD", "Change Management", "Audit"] },
     ],
+    relatedTestimonialIds: ["t4"],
+    relatedProofMetricTags: ["Change management"],
+    relatedPhaseSteps: ["04", "05", "06"],
+    relatedProjectSlugs: ["real-time-api-attack-detection", "compliance-risk-monitoring"],
   },
   {
     id: "16",
@@ -717,6 +785,9 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Figma"] },
       { category: "Methodology", technologies: ["Agile", "BRD", "UAT", "A/B Testing"] },
     ],
+    relatedServiceIds: ["product-design-strategy", "design-systems"],
+    relatedPhaseSteps: ["02", "03", "04"],
+    relatedProjectSlugs: ["high-performance-ecommerce-checkout"],
   },
   {
     id: "17",
@@ -758,6 +829,11 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio", "Excel"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "Change Management"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t1", "t4"],
+    relatedProofMetricTags: ["Platform consolidation", "Change management"],
+    relatedPhaseSteps: ["01", "04", "05", "06"],
+    relatedProjectSlugs: ["payroll-management-system"],
   },
   {
     id: "18",
@@ -799,5 +875,10 @@ export const projects: ProjectData[] = [
       { category: "Tools", technologies: ["JIRA", "Confluence", "Visio"] },
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "Root Cause Analysis"] },
     ],
+    relatedServiceIds: ["product-design-strategy"],
+    relatedTestimonialIds: ["t4"],
+    relatedProofMetricTags: ["Change management"],
+    relatedPhaseSteps: ["04", "05"],
+    relatedProjectSlugs: ["hr-management-system"],
   },
 ]

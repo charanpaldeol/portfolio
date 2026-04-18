@@ -87,6 +87,19 @@
 
   --font-sans: var(--font-inter, ui-sans-serif), system-ui, sans-serif;
   --font-display: var(--font-manrope, ui-sans-serif), system-ui, sans-serif;
+
+  /* Graphify categorical palette (Tableau 10) — used by the knowledge-graph
+     view so community colors match what graphify's own graph.html emits. */
+  --color-graphify-cat-0: #4e79a7;
+  --color-graphify-cat-1: #f28e2b;
+  --color-graphify-cat-2: #e15759;
+  --color-graphify-cat-3: #76b7b2;
+  --color-graphify-cat-4: #59a14f;
+  --color-graphify-cat-5: #edc948;
+  --color-graphify-cat-6: #b07aa1;
+  --color-graphify-cat-7: #ff9da7;
+  --color-graphify-cat-8: #9c755f;
+  --color-graphify-cat-9: #bab0ac;
 }
 
 @keyframes marquee {

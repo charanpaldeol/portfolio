@@ -4,8 +4,16 @@ import { motion } from "framer-motion"
 import { Check } from "lucide-react"
 import Link from "next/link"
 
+import { RelatedLinks } from "@/components/content/RelatedLinks"
 import { editorialGradientLastWord, EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { ProjectImpactStrip } from "@/components/portfolio/project-detail/ProjectImpactStrip"
+import {
+  resolvePhases,
+  resolveProjects,
+  resolveProofMetrics,
+  resolveServices,
+  resolveTestimonials,
+} from "@/lib/content-lookups"
 import type { ProjectData } from "@/lib/projects-data"
 import { cn } from "@/lib/utils"
 
@@ -193,6 +201,37 @@ export default function ProjectDetailContent({ project }: { project: ProjectData
           </Link>
         </motion.div>
       </motion.div>
+
+      <RelatedLinks
+        heading="Related"
+        description="How this project connects to the rest of my work."
+        groups={[
+          {
+            title: "Services",
+            items: resolveServices(project.relatedServiceIds),
+          },
+          {
+            title: "Work phases this project exemplifies",
+            items: resolvePhases(project.relatedPhaseSteps),
+            showSublabel: true,
+          },
+          {
+            title: "Related testimonials",
+            items: resolveTestimonials(project.relatedTestimonialIds),
+            showSublabel: true,
+          },
+          {
+            title: "Proof metrics",
+            items: resolveProofMetrics(project.relatedProofMetricTags),
+            showSublabel: true,
+          },
+          {
+            title: "Related projects",
+            items: resolveProjects(project.relatedProjectSlugs),
+            showSublabel: true,
+          },
+        ]}
+      />
     </article>
   )
 }
