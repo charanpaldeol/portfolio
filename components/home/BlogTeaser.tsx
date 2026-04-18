@@ -22,13 +22,13 @@ export default function BlogTeaser() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
-            Writing
+            Insights
           </div>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
-            Thinking in writing
+            Notes from the field
           </h2>
           <p className="mt-3 max-w-xl text-base font-light leading-relaxed text-muted-foreground">
-            Frameworks and practical thinking on problem framing, AI-native delivery, and value realization.
+            Concise write-ups on choices, trade-offs, and lessons behind the work.
           </p>
         </div>
         <Link

@@ -28,6 +28,36 @@ export const homeHeroBody = {
 
 export const homeHeroIndustries = ["Finance & Banking", "Insurance", "Tech & SaaS"] as const
 
+export type HomeDomainNarrative = {
+  domain: string
+  recurringProblems: string
+  visitorValue: string
+}
+
+export const homeDomainNarratives: readonly HomeDomainNarrative[] = [
+  {
+    domain: "Finance, banking, and compliance",
+    recurringProblems:
+      "Regulatory ambiguity, fragmented workflows, and slow onboarding or risk response cycles.",
+    visitorValue:
+      "I align compliance, product, and engineering around explicit controls and measurable delivery outcomes.",
+  },
+  {
+    domain: "Enterprise SaaS and internal platforms",
+    recurringProblems:
+      "Disconnected systems, inconsistent reporting, and stakeholder misalignment on what success means.",
+    visitorValue:
+      "I translate operating complexity into a clear roadmap, implementation artifacts, and KPI ownership.",
+  },
+  {
+    domain: "Supply chain visibility and fulfilment operations",
+    recurringProblems:
+      "Inventory truth gaps, partner handoff failures, overselling, and reconciliation-heavy workflows.",
+    visitorValue:
+      "I map warehouse-to-dispatch reality, define integration requirements, and drive adoption to value realization.",
+  },
+]
+
 /**
  * Plain-text representation of the hero body for the knowledge-graph corpus.
  * Kept as a derived constant so graphify sees a single contiguous sentence.

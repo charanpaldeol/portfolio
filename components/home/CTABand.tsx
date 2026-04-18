@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { withAttribution } from "@/lib/ux-measurement"
 
 export default function CTABand() {
   return (
@@ -20,24 +21,34 @@ export default function CTABand() {
             <span className="italic text-primary-fixed">hard problem?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-background/70 md:text-lg">
-            I work best with teams where the problem is messy, the stakes are
-            real, and they need someone who can think, decide, and deliver. Not
-            a fit for every engagement — but if the challenge is genuine, let&apos;s
-            talk.
+            If the challenge is high-stakes, I can help shape the approach, lead execution, and stay through adoption.
+            Explore case studies first, or book a scope call when you are ready to move.
           </p>
+
+          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2">
+            <span className="rounded-full bg-background/12 px-3 py-1 text-xs font-semibold tracking-wide text-background">
+              2-3x faster alignment
+            </span>
+            <span className="rounded-full bg-background/12 px-3 py-1 text-xs font-semibold tracking-wide text-background">
+              30-50% fewer late scope changes
+            </span>
+            <span className="rounded-full bg-background/12 px-3 py-1 text-xs font-semibold tracking-wide text-background">
+              80%+ adoption patterns
+            </span>
+          </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/contact"
+              href={withAttribution("/contact", { from: "home-cta", intent: "scope" })}
               className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-10 py-5 text-base font-bold text-on-primary shadow-editorial-float transition-all hover:bg-primary-container sm:w-auto"
             >
-              Book a consultation
+              Scope your milestone
             </Link>
             <Link
-              href="/portfolio/projects"
+              href={withAttribution("/portfolio/projects", { from: "home-cta", intent: "explore" })}
               className="inline-flex w-full items-center justify-center rounded-xl bg-background/10 px-10 py-5 text-base font-bold text-background shadow-editorial-float transition-all hover:bg-background/14 sm:w-auto"
             >
-              View case studies
+              Explore case studies
             </Link>
           </div>
         </div>

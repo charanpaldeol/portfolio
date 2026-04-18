@@ -39,6 +39,7 @@ export const whatIBringCards = [
         paragraphs: [
           "Interview frontline users, managers, and operators in the same value chain. Ask where delays happen, where rework is created, and where judgment depends on incomplete data.",
           "This exposes the real bottlenecks: handoff gaps, policy ambiguity, and missing context. Technology can then be applied to the true constraint, not the visible symptom.",
+          "In supply chain and fulfilment contexts, trace inventory truth across warehouses and partners until overselling, cancellation, or write-off paths are visible — as in the Supply Chain Visibility & Fulfilment Platform programme.",
         ],
       },
       {
@@ -58,7 +59,11 @@ export const whatIBringCards = [
     ],
     relatedPrincipleIds: ["clarity", "evidence-over-opinion", "less-better"],
     relatedServiceIds: ["product-design-strategy"],
-    relatedProjectSlugs: ["kyc-aml-automation", "hr-management-system"],
+    relatedProjectSlugs: [
+      "kyc-aml-automation",
+      "hr-management-system",
+      "distributed-order-fulfillment",
+    ],
     relatedPhaseSteps: ["01", "02"],
     relatedExpertiseIds: ["business-product", "compliance-vendors"],
     relatedBlogSlugs: ["designing-for-decisions"],

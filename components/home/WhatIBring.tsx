@@ -43,10 +43,10 @@ export default function WhatIBring() {
           What I bring
         </div>
         <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
-          The AI Advantage
+          Scope, systems, and momentum
         </h2>
         <p className="mt-3 max-w-xl text-base font-light text-muted-foreground">
-          End-to-end ownership across every phase — from the first discovery conversation to the business metric that proves it worked.
+          The high-leverage problems I take on, and the patterns I use to turn ambiguity into a clear path.
         </p>
       </div>
 

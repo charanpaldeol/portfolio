@@ -6574,15 +6574,14 @@
     },
     {
       "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
       "weight": 1.0,
       "_src": "projects_data_distributed_order_fulfillment",
       "_tgt": "phase_discover",
       "source": "phase_discover",
-      "target": "projects_data_distributed_order_fulfillment"
+      "target": "projects_data_distributed_order_fulfillment",
+      "confidence_score": 1.0
     },
     {
       "relation": "covers",
@@ -8284,15 +8283,14 @@
     },
     {
       "relation": "covers",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
+      "confidence": "EXTRACTED",
       "source_file": "portfolio/lib/projects-data.ts",
-      "source_location": null,
       "weight": 1.0,
       "_src": "projects_data_distributed_order_fulfillment",
       "_tgt": "phase_adopt",
       "source": "phase_adopt",
-      "target": "projects_data_distributed_order_fulfillment"
+      "target": "projects_data_distributed_order_fulfillment",
+      "confidence_score": 1.0
     },
     {
       "relation": "covers",
@@ -8628,6 +8626,17 @@
       "_tgt": "phase_value",
       "source": "phase_value",
       "target": "projects_data_compliance_risk_monitoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "covers",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/projects-data.ts",
+      "weight": 1.0,
+      "_src": "projects_data_distributed_order_fulfillment",
+      "_tgt": "phase_value",
+      "source": "phase_value",
+      "target": "projects_data_distributed_order_fulfillment",
       "confidence_score": 1.0
     },
     {
@@ -9929,6 +9938,17 @@
       "_tgt": "projects_data_distributed_order_fulfillment",
       "source": "projects_data_distributed_order_fulfillment",
       "target": "how_i_work_data_expertise_business_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "portfolio/lib/what-i-bring-cards.ts",
+      "weight": 1.0,
+      "_src": "what_i_bring_cards_problem_framing",
+      "_tgt": "projects_data_distributed_order_fulfillment",
+      "source": "projects_data_distributed_order_fulfillment",
+      "target": "what_i_bring_cards_problem_framing",
       "confidence_score": 1.0
     },
     {

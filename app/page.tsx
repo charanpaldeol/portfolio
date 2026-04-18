@@ -73,10 +73,10 @@ export default function Home() {
             <HomeJumpNav />
           </div>
           <WhatIBring />
+          <HowIThink />
+          <HomeHowIWorkTeaser />
           <ProofMetrics />
           <Testimonials testimonials={testimonials} />
-          <HomeHowIWorkTeaser />
-          <HowIThink />
           <BlogTeaser />
           <NewsletterSignup variant="inline" />
           <CTABand />

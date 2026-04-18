@@ -36,8 +36,8 @@ export const portfolioNavLinks: NavLink[] = [
   },
   {
     href: '/portfolio/projects',
-    label: 'Projects',
-    description: 'Selected work across sectors',
+    label: 'Proof',
+    description: 'Case studies and measurable outcomes',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <rect x="1" y="1" width="5.5" height="5.5" rx="1" />
@@ -81,8 +81,8 @@ export const workLinks: NavLink[] = [
   },
   {
     href: '/what-i-bring',
-    label: 'What I bring',
-    description: 'My service ecosystem from discovery to impact',
+    label: 'What I do',
+    description: 'Where strategy, systems, and delivery meet',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M8 1.5v13" />
@@ -93,8 +93,8 @@ export const workLinks: NavLink[] = [
   },
   {
     href: '/how-i-work',
-    label: 'How I work',
-    description: 'My delivery operating model end-to-end',
+    label: 'How I deliver',
+    description: 'Six-phase operating model from discover to value',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M2 8h12" />
@@ -107,7 +107,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/how-i-think',
     label: 'How I think',
-    description: 'Principles I bring to every problem',
+    description: 'Decision principles for ambiguity and trade-offs',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M6 14c0-2 4-2 4-4 0-1.25-1-2-2-2s-2 .75-2 2" />

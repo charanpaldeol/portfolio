@@ -14,10 +14,14 @@ import {
   Zap,
 } from "lucide-react"
 
+import { deliveryPhasesById } from "@/lib/delivery-taxonomy"
+
 export type WorkPhase = {
   id?: string
   title: string
   description: string
+  /** Tangible artifacts that make decisions and delivery quality explicit. */
+  decisionArtifacts?: string[]
   Icon: LucideIcon
   emphasized?: boolean
   step: string
@@ -37,43 +41,74 @@ export type ExpertiseArea = {
 export const workPhases: WorkPhase[] = [
   {
     id: "discover",
-    title: "Discover",
-    description: "Stakeholder interviews, process mapping, problem framing",
+    title: deliveryPhasesById.discover.label,
+    description:
+      "Stakeholder interviews, process mapping, problem framing — including supply chain and fulfilment mapping where operations span warehouses and partners",
+    decisionArtifacts: [
+      "Stakeholder map with decision owners",
+      "Current-state process map with bottlenecks and risk points",
+      "Problem framing memo with baseline metrics",
+    ],
     Icon: Search,
     step: "01",
   },
   {
     id: "define",
-    title: "Define",
+    title: deliveryPhasesById.define.label,
     description: "BRDs, user stories, acceptance criteria, business case",
+    decisionArtifacts: [
+      "Requirements decision log with assumptions and trade-offs",
+      "Prioritized user story set with acceptance criteria",
+      "Business case and KPI success model",
+    ],
     Icon: FileText,
     step: "02",
   },
   {
     id: "design",
-    title: "Design",
+    title: deliveryPhasesById.design.label,
     description: "Architecture, data models, API contracts, integration specs",
+    decisionArtifacts: [
+      "Solution architecture options with rationale",
+      "API and integration contract pack",
+      "Data model and dependency map",
+    ],
     Icon: Box,
     step: "03",
   },
   {
     id: "deliver",
-    title: "Deliver",
+    title: deliveryPhasesById.deliver.label,
     description: "Agile execution, backlog ownership, UAT, defect triage",
+    decisionArtifacts: [
+      "Release plan with risk and rollback criteria",
+      "UAT scenario suite and sign-off matrix",
+      "Defect triage board with severity ownership",
+    ],
     Icon: Zap,
     step: "04",
   },
   {
     id: "adopt",
-    title: "Adopt",
+    title: deliveryPhasesById.adopt.label,
     description: "Training, comms, rollout, post-launch support",
+    decisionArtifacts: [
+      "Role-based enablement and communication plan",
+      "Change impact map by stakeholder group",
+      "Adoption playbook with reinforcement cadence",
+    ],
     Icon: Users,
     step: "05",
   },
   {
     id: "value",
-    title: "Value",
+    title: deliveryPhasesById.value.label,
     description: "KPIs tracked, outcomes measured, platform scales",
+    decisionArtifacts: [
+      "Outcome dashboard with baseline versus current",
+      "Executive value review with next investment options",
+      "Post-implementation learning report",
+    ],
     Icon: CheckCircle2,
     emphasized: true,
     step: "06",
@@ -84,7 +119,7 @@ export const expertiseAreas: ExpertiseArea[] = [
   {
     id: "business-product",
     title: "Business & product",
-    body: "Translating executive goals into delivery-ready requirements with executives, product owners, and domain SMEs.",
+    body: "Translating executive goals into delivery-ready requirements with executives, product owners, and domain SMEs — including logistics and supply chain visibility programmes where discovery work spans warehouses, dispatch, and partner integrations.",
     Icon: Briefcase,
     relatedServiceIds: ["product-design-strategy", "fractional-leadership"],
     relatedProjectSlugs: ["landing-page-website", "real-time-analytics-dashboard", "distributed-order-fulfillment"],

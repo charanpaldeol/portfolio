@@ -93,10 +93,10 @@ export default function HowIThink({
             Principles
           </div>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
-            Philosophy &amp; principles
+            How I make decisions
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base font-light leading-relaxed text-muted-foreground">
-            A small set of principles I use to navigate ambiguity, reduce rework, and keep delivery tethered to outcomes.
+            The principles that shape trade-offs before execution starts, so delivery stays focused and outcomes stay measurable.
           </p>
         </header>
       ) : null}

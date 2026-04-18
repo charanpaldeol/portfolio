@@ -24,6 +24,9 @@ function SectionTitle({ children }: { children: string }) {
 }
 
 export default function ProjectDetailContent({ project }: { project: ProjectData }) {
+  const relatedServices = resolveServices(project.relatedServiceIds)
+  const relatedPhases = resolvePhases(project.relatedPhaseSteps)
+
   return (
     <article className="max-w-4xl space-y-12">
       <motion.div
@@ -62,6 +65,40 @@ export default function ProjectDetailContent({ project }: { project: ProjectData
             <p className="mt-1 text-base font-semibold text-on-surface">{project.timeline}</p>
           </div>
         </motion.div>
+
+        {(relatedServices.length > 0 || relatedPhases.length > 0) && (
+          <motion.section
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="space-y-3 rounded-2xl bg-surface-container-low px-5 py-4 md:px-6 md:py-5"
+            aria-label="Project delivery context links"
+          >
+            <p className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+              Delivery context
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {relatedServices.map((service) => (
+                <Link
+                  key={`service-${service.key}`}
+                  href={service.href ?? "#"}
+                  className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition hover:bg-primary/15"
+                >
+                  Service: {service.label}
+                </Link>
+              ))}
+              {relatedPhases.map((phase) => (
+                <Link
+                  key={`phase-${phase.key}`}
+                  href={phase.href ?? "#"}
+                  className="rounded-full bg-surface-container-lowest px-3 py-1.5 text-xs font-medium text-on-surface transition hover:bg-surface"
+                >
+                  Phase: {phase.label}
+                </Link>
+              ))}
+            </div>
+          </motion.section>
+        )}
 
         <div className="flex flex-wrap items-center gap-4">
           <div

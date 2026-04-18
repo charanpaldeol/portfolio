@@ -38,7 +38,7 @@ describe("ContactContent", () => {
     it("renders the contact form with all fields", () => {
       render(<ContactContent />)
 
-      expect(screen.getByText(/let's start a conversation/i)).toBeInTheDocument()
+      expect(screen.getByRole("heading", { name: /let.?s start a conversation/i })).toBeInTheDocument()
       expect(screen.getByLabelText(/name/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/project details/i)).toBeInTheDocument()
@@ -48,7 +48,7 @@ describe("ContactContent", () => {
     it("renders hero section with correct text", () => {
       render(<ContactContent />)
 
-      expect(screen.getByText(/let's start a conversation/i)).toBeInTheDocument()
+      expect(screen.getByRole("heading", { name: /let.?s start a conversation/i })).toBeInTheDocument()
       expect(screen.getByText(/Share a bit about your product/i)).toBeInTheDocument()
       expect(screen.getByText(/cpdeol@outlook.com/i)).toBeInTheDocument()
     })

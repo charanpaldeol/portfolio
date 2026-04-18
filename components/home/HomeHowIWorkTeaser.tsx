@@ -1,7 +1,7 @@
 import Link from "next/link"
 
+import { DeliveryPhaseGlossary } from "@/components/shared/DeliveryPhaseGlossary"
 import {
-  homeDeliveryPhaseTitles,
   homeHowIWorkIntro,
   homeHowIWorkNavDescription,
   homeHowIWorkPullQuote,
@@ -38,18 +38,19 @@ export default function HomeHowIWorkTeaser() {
             <p className="mt-4 max-w-2xl text-base font-light leading-relaxed text-primary-foreground/85">
               {homeHowIWorkIntro}
             </p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-primary-foreground/75 md:text-base">
+              Execution layer: one six-phase model from discovery to value, so teams know where decisions live and what
+              happens next.
+            </p>
 
-            {/* Phase pills */}
-            <div className="mt-6 flex flex-wrap gap-2" aria-label="Delivery phases">
-              {homeDeliveryPhaseTitles.map((title) => (
-                <span
-                  key={title}
-                  className="rounded-full bg-primary-foreground/15 px-3 py-1 text-[10px] font-bold tracking-[0.15em] text-primary-foreground uppercase ring-1 ring-primary-foreground/10"
-                >
-                  {title}
-                </span>
-              ))}
-            </div>
+            <DeliveryPhaseGlossary
+              title="Canonical delivery phases"
+              className="mt-6"
+              titleClassName="text-primary-foreground/75"
+              itemClassName="bg-primary-foreground/10 ring-1 ring-primary-foreground/10"
+              termClassName="text-primary-foreground"
+              definitionClassName="text-primary-foreground/80"
+            />
           </div>
 
           <div className="relative z-10 mt-8">
@@ -73,7 +74,7 @@ export default function HomeHowIWorkTeaser() {
             </blockquote>
           </div>
           <p className="mt-6 text-sm font-normal leading-relaxed text-muted-foreground">
-            Most PMs stop at the roadmap. Most BAs stop at the requirements doc. I stay until the outcome is real.
+            Method only matters if it changes outcomes. This framework keeps execution connected to adoption and value.
           </p>
           <Link
             href="/how-i-work"

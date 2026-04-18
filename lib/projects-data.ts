@@ -95,6 +95,7 @@ export const projects: ProjectData[] = [
     ],
     relatedServiceIds: ["ai-native-ux"],
     relatedTestimonialIds: ["t2"],
+    relatedProofMetricTags: ["Change management"],
     relatedPhaseSteps: ["01", "02", "04"],
     relatedProjectSlugs: ["kyc-aml-automation", "compliance-risk-monitoring"],
   },
@@ -198,6 +199,7 @@ export const projects: ProjectData[] = [
     ],
     relatedServiceIds: ["product-design-strategy"],
     relatedTestimonialIds: ["t2"],
+    relatedProofMetricTags: ["Change management"],
     relatedPhaseSteps: ["01", "02", "06"],
     relatedProjectSlugs: ["fraud-detection-engine", "compliance-risk-monitoring"],
   },
@@ -259,7 +261,7 @@ export const projects: ProjectData[] = [
     accent: "bg-indigo-500/15 text-indigo-600",
     shortDescription: "Business analysis and data flow mapping for a major platform decoupling initiative at a capital markets CRM provider. Enabled independent team delivery and compliant audit trails across 12 service domains.",
     outcome: "12 domains, 0 data loss",
-    tags: ["Data Mapping", "SQL", "Salesforce", "API Integration", "Capital Markets", "Supply Chain"],
+    tags: ["Data Mapping", "SQL", "Salesforce", "API Integration", "Capital Markets", "Supply Chain Visibility"],
     coverImage: "/images/projects/event-streaming-pipeline.jpg",
     coverImageAlt: "Server racks in a data center, representing high-throughput event streaming.",
     span: "md:col-span-6",
@@ -386,6 +388,7 @@ export const projects: ProjectData[] = [
     ],
     relatedServiceIds: ["product-design-strategy"],
     relatedTestimonialIds: ["t2"],
+    relatedProofMetricTags: ["Change management"],
     relatedPhaseSteps: ["01", "02"],
     relatedProjectSlugs: ["kyc-aml-automation", "compliance-risk-monitoring"],
   },
@@ -476,6 +479,7 @@ export const projects: ProjectData[] = [
     ],
     relatedServiceIds: ["product-design-strategy"],
     relatedTestimonialIds: ["t2"],
+    relatedProofMetricTags: ["Change management"],
     relatedPhaseSteps: ["01", "02", "06"],
     relatedProjectSlugs: ["kyc-aml-automation", "cloud-security-compliance-automation"],
   },
@@ -520,6 +524,7 @@ export const projects: ProjectData[] = [
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD", "UAT", "Data Analysis"] },
     ],
     relatedServiceIds: ["ai-native-ux"],
+    relatedProofMetricTags: ["SaaS implementation"],
     relatedPhaseSteps: ["02", "03"],
     relatedProjectSlugs: ["high-performance-ecommerce-checkout"],
   },
@@ -564,6 +569,7 @@ export const projects: ProjectData[] = [
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD/TDD", "UAT", "Process Modeling"] },
     ],
     relatedServiceIds: ["product-design-strategy"],
+    relatedProofMetricTags: ["SaaS implementation"],
     relatedPhaseSteps: ["03", "04"],
     relatedProjectSlugs: ["ecommerce-product-search-recommendations", "landing-page-website"],
   },
@@ -579,7 +585,15 @@ export const projects: ProjectData[] = [
     accent: "bg-green-500/15 text-green-600",
     shortDescription: "End-to-end requirements and process reengineering for a supply chain visibility implementation. Mapped fulfilment workflows across five warehouses, drove stakeholder adoption, and delivered on-schedule go-live.",
     outcome: "2-hour delivery",
-    tags: ["Supply Chain", "Process Reengineering", "UML", "SQL", "SaaS Implementation"],
+    tags: [
+      "Supply Chain Visibility",
+      "Process mapping",
+      "Process Reengineering",
+      "Gap analysis",
+      "UML",
+      "SQL",
+      "SaaS Implementation",
+    ],
     coverImage: "/images/projects/distributed-order-fulfillment.jpg",
     coverImageAlt: "Stacked shipping boxes suggesting order fulfillment and logistics operations.",
     span: "md:col-span-12",
@@ -592,7 +606,35 @@ export const projects: ProjectData[] = [
     ],
     problem: "10,000+ daily orders across five warehouses with 3-5 day delivery, frequent overselling leading to customer cancellations, and significant annual inventory write-offs from manual reconciliation. The operations team needed a single source of truth for inventory status across all warehouse locations.",
     myRole: "I led the requirements gathering and process reengineering for this supply chain visibility implementation at a North American logistics and freight provider. I facilitated workshops with warehouse coordinators, dispatchers, and logistics partners to map the current-state fulfilment workflows, modeled the future state using UML process diagrams, and defined the integration requirements between the visibility platform and the existing inventory systems. I authored the functional and technical specifications, managed stakeholder engagement across the operations team, and designed the UAT plan that validated routing accuracy and inventory sync before go-live. The implementation delivered on schedule — a result driven as much by stakeholder preparation as by technical execution.",
-    solution: "Requirements-led visibility implementation: current-state workflow mapping across five warehouses, UML future-state modeling, SaaS integration specifications, logistics partner API requirements, and a structured UAT plan before go-live.",
+    solution:
+      "Requirements-led visibility implementation: current-state workflow mapping across five warehouses, UML future-state modeling, SaaS integration specifications, logistics partner API requirements, and a structured UAT plan before go-live. Discover: workshops and supply chain process mapping with warehouse coordinators, dispatchers, and logistics partners. Define: BRDs plus functional and technical specifications for inventory sync and routing. Design: integration contracts for REST, EDI, and logistics partner APIs into the visibility platform. Deliver: structured UAT on routing accuracy and inventory sync. Adopt: stakeholder engagement until operations were ready for go-live. Value: measured in fulfilment cycle time, cancellation rate, and write-off elimination.",
+    processSteps: [
+      {
+        phase: "Discover",
+        description:
+          "Facilitated workshops to map current-state fulfilment across five warehouses; captured supply chain handoffs, overselling failure modes, and where a single inventory truth was missing.",
+      },
+      {
+        phase: "Define",
+        description:
+          "Authored functional and technical specifications, integration requirements between the visibility platform and legacy inventory systems, and acceptance criteria aligned to operations KPIs.",
+      },
+      {
+        phase: "Design",
+        description:
+          "Specified REST, EDI, and logistics partner API behaviour so engineering could implement reliable routing, sync, and exception handling.",
+      },
+      {
+        phase: "Deliver",
+        description:
+          "Designed and ran UAT validating routing accuracy and inventory sync under production-like order volumes before cutover.",
+      },
+      {
+        phase: "Adopt",
+        description:
+          "Managed stakeholder engagement so warehouse and dispatch teams trusted the future-state models before systems went live.",
+      },
+    ],
     metrics: [
       "Average delivery: 3-5 days → 2 hours (same-day in metro areas)",
       "99.5% orders fulfilled without cancellation (zero overselling)",
@@ -610,7 +652,7 @@ export const projects: ProjectData[] = [
     relatedServiceIds: ["product-design-strategy"],
     relatedTestimonialIds: ["t5"],
     relatedProofMetricTags: ["SaaS implementation"],
-    relatedPhaseSteps: ["02", "03", "04"],
+    relatedPhaseSteps: ["01", "02", "03", "04", "05", "06"],
     relatedProjectSlugs: ["event-streaming-pipeline"],
   },
   {
@@ -700,6 +742,7 @@ export const projects: ProjectData[] = [
       { category: "Methodology", technologies: ["Agile/Scrum", "BRD", "Data Lineage", "Change Management"] },
     ],
     relatedServiceIds: ["ai-native-ux"],
+    relatedProofMetricTags: ["Change management"],
     relatedPhaseSteps: ["02", "04", "06"],
     relatedProjectSlugs: ["cloud-security-compliance-automation", "real-time-api-attack-detection"],
   },
@@ -791,6 +834,7 @@ export const projects: ProjectData[] = [
       { category: "Methodology", technologies: ["Agile", "BRD", "UAT", "A/B Testing"] },
     ],
     relatedServiceIds: ["product-design-strategy", "design-systems"],
+    relatedProofMetricTags: ["SaaS implementation"],
     relatedPhaseSteps: ["02", "03", "04"],
     relatedProjectSlugs: ["high-performance-ecommerce-checkout"],
   },

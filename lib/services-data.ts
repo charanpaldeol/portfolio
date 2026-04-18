@@ -8,9 +8,26 @@ export type ServiceTier = {
   deliverables: string[]
   engagement: string
   outcomes: { metric: string; description: string }[]
+  /** Short scenarios that signal where this service creates highest leverage. */
+  bestFitScenarios?: string[]
+  /** Project slugs this service is best demonstrated by (see `projects-data.ts`). */
+  relatedProjectSlugs?: string[]
+  /** Proof metric tags this service most often moves (see `proof-metrics-data.ts`). */
+  relatedProofMetricTags?: string[]
+  /** Domain-context quick routes for reducing context-switch between service, project proof, and outcomes. */
+  domainCues?: ServiceDomainCue[]
   /** Editorial illustration (SVG) beside service copy. */
   imageSrc: string
   imageAlt: string
+}
+
+export type ServiceDomainCue = {
+  /** Visitor-facing domain label (for example: Fintech, Compliance). */
+  label: "Fintech" | "Compliance" | "Supply Chain" | "Internal Systems"
+  /** Project slug to route to domain-specific case study proof. */
+  projectSlug: string
+  /** Optional proof metric tag that reinforces the same domain route. */
+  proofMetricTag?: string
 }
 
 export type ServiceFAQ = {
@@ -28,7 +45,7 @@ export const services: ServiceTier[] = [
     name: "Product Design Strategy",
     tagline: "Clarity before pixels — a credible plan your team can fund and ship.",
     description:
-      "Discovery that connects business decisions to user reality: problem framing, research synthesis, journey mapping, and a prioritized roadmap.\n\nYou get artifacts executives trust and engineers can estimate — not a slide deck that evaporates after the workshop.",
+      "Discovery that connects business decisions to user reality: problem framing, research synthesis, journey mapping, and a prioritized roadmap.\n\nThe output is decision-grade: explicit trade-offs, funding-ready scope options, and implementation constraints engineering can estimate without re-discovery cycles.",
     whoItsFor: "Product and engineering leaders shipping 0→1, redesigns, or pivots where scope and risk are both high.",
     notFor: "Teams looking for a visual-only reskin without revisiting product strategy or success metrics.",
     deliverables: [
@@ -41,6 +58,19 @@ export const services: ServiceTier[] = [
     outcomes: [
       { metric: "2–3×", description: "faster stakeholder alignment on what to build first" },
       { metric: "30–50%", description: "fewer late scope changes once engineering starts" },
+      { metric: "Weeks not months", description: "to produce an executive decision artifact with measurable success criteria" },
+    ],
+    bestFitScenarios: [
+      "A programme is blocked by conflicting stakeholder definitions of the problem.",
+      "Leadership needs a funding decision artifact before committing engineering capacity.",
+      "A product pivot needs defensible scope options and measurable success criteria.",
+    ],
+    relatedProjectSlugs: ["distributed-order-fulfillment", "payment-settlement-platform", "hr-management-system"],
+    relatedProofMetricTags: ["SaaS implementation", "Platform consolidation", "Change management"],
+    domainCues: [
+      { label: "Fintech", projectSlug: "payment-settlement-platform", proofMetricTag: "Platform consolidation" },
+      { label: "Supply Chain", projectSlug: "distributed-order-fulfillment", proofMetricTag: "SaaS implementation" },
+      { label: "Internal Systems", projectSlug: "hr-management-system", proofMetricTag: "Change management" },
     ],
     imageSrc: "/portfolio/services/product-design-strategy.svg",
     imageAlt: "Abstract illustration: roadmap paths and discovery artifacts for product strategy.",
@@ -50,7 +80,7 @@ export const services: ServiceTier[] = [
     name: "AI-Native UX Design",
     tagline: "Interfaces and workflows for products where AI is the product — not a bolt-on.",
     description:
-      "Design for probabilistic systems: prompt UX, confidence and uncertainty, review loops, traceability, and safe escalation paths.\n\nThe focus is customer outcomes — faster decisions, fewer errors, clearer accountability — not novelty for its own sake.",
+      "Design for probabilistic systems: prompt UX, confidence and uncertainty, review loops, traceability, and safe escalation paths.\n\nThe focus is customer outcomes: faster decisions, lower correction burden, and auditable human override paths that satisfy compliance and operational risk teams.",
     whoItsFor: "Teams building copilots, agents, retrieval workflows, or AI-assisted operations tools.",
     notFor:
       "Teams looking for AI only as a drafting shortcut in Figma. This engagement is product UX for AI-powered experiences.",
@@ -64,6 +94,18 @@ export const services: ServiceTier[] = [
     outcomes: [
       { metric: "20–40%", description: "reduction in correction loops after first production release" },
       { metric: "2–3×", description: "faster iteration on high-risk AI flows once baseline instrumentation exists" },
+      { metric: "Higher trust", description: "through clearer confidence signals, fallback states, and escalation design" },
+    ],
+    bestFitScenarios: [
+      "A copilot or agent experience needs trust and verification designed in from day one.",
+      "Teams need to reduce rework from ambiguous AI outputs in production workflows.",
+      "Compliance and operations require clear human override and audit-ready interaction flows.",
+    ],
+    relatedProjectSlugs: ["ai-customer-onboarding-agent", "fraud-detection-engine", "compliance-risk-monitoring"],
+    relatedProofMetricTags: ["Change management"],
+    domainCues: [
+      { label: "Compliance", projectSlug: "fraud-detection-engine", proofMetricTag: "Change management" },
+      { label: "Fintech", projectSlug: "ai-customer-onboarding-agent", proofMetricTag: "Change management" },
     ],
     imageSrc: "/portfolio/services/ai-native-ux.svg",
     imageAlt: "Abstract illustration: layered signals and review patterns for AI-assisted product UX.",
@@ -73,7 +115,7 @@ export const services: ServiceTier[] = [
     name: "Design Systems & Component Architecture",
     tagline: "Tokens, components, and Figma↔code parity your team can maintain.",
     description:
-      "Audit or build a token-first system, component API design, accessibility defaults, and documentation that matches how engineers actually ship.\n\nThe goal is speed without chaos: consistent patterns, fewer one-offs, and less design–dev ping-pong.",
+      "Audit or build a token-first system, component API design, accessibility defaults, and documentation that matches how engineers actually ship.\n\nThe goal is speed without chaos: consistent patterns, fewer one-offs, less design-dev ping-pong, and governance that keeps Figma and production aligned over time.",
     whoItsFor: "Growing product orgs where UI drift, rework, and handoff tax are slowing delivery.",
     notFor: "A purely marketing-site component library with no product surface area.",
     deliverables: [
@@ -86,6 +128,19 @@ export const services: ServiceTier[] = [
     outcomes: [
       { metric: "25–45%", description: "less repeated UI work across squads after baseline" },
       { metric: "Top journeys", description: "documented accessible patterns for the highest-traffic flows" },
+      { metric: "Faster onboarding", description: "new designers and engineers ship with shared primitives instead of local variants" },
+    ],
+    bestFitScenarios: [
+      "Multiple squads are shipping similar UI with inconsistent quality and naming.",
+      "Design and engineering teams need Figma-to-code parity and governance.",
+      "A product org wants to reduce handoff tax and component drift before scaling.",
+    ],
+    relatedProjectSlugs: ["api-first-banking-microservices", "event-streaming-pipeline", "hr-management-system"],
+    relatedProofMetricTags: ["Platform consolidation"],
+    domainCues: [
+      { label: "Fintech", projectSlug: "api-first-banking-microservices", proofMetricTag: "Platform consolidation" },
+      { label: "Supply Chain", projectSlug: "event-streaming-pipeline", proofMetricTag: "Platform consolidation" },
+      { label: "Internal Systems", projectSlug: "hr-management-system", proofMetricTag: "Platform consolidation" },
     ],
     imageSrc: "/portfolio/services/design-systems.svg",
     imageAlt: "Abstract illustration: modular tiles suggesting tokens, components, and documentation.",
@@ -95,7 +150,7 @@ export const services: ServiceTier[] = [
     name: "Fractional Design Leadership",
     tagline: "Senior design leadership embedded part-time — craft, process, and cross-functional traction.",
     description:
-      "Operating as an embedded lead: critique and standards, design–dev partnership, planning with PMs, and hiring support when you need a senior seat at the table without a full-time hire yet.\n\nThis is hands-on leadership — reviews, rituals, and unblocking — not staff-only strategy theater.",
+      "Operating as an embedded lead: critique and standards, design-dev partnership, planning with PMs, and hiring support when you need a senior seat at the table without a full-time hire yet.\n\nThis is hands-on leadership: reviews, rituals, decision hygiene, and cross-functional unblocking that improves execution quality week over week.",
     whoItsFor: "Startups and scale-ups with strong IC designers but no seasoned design leader in seat.",
     notFor: "A full-time Head of Design replacement on a fractional calendar — scope stays bounded and explicit.",
     deliverables: [
@@ -108,6 +163,19 @@ export const services: ServiceTier[] = [
     outcomes: [
       { metric: "1–2 quarters", description: "to stabilize design quality and delivery predictability" },
       { metric: "Weekly", description: "design critique and alignment loop embedded with product and engineering" },
+      { metric: "Lower execution drift", description: "through clearer ownership, better review rituals, and repeatable decision frameworks" },
+    ],
+    bestFitScenarios: [
+      "A growing team needs senior design leadership without immediate full-time hire risk.",
+      "Delivery quality is uneven because ownership and decision rituals are unclear.",
+      "Product and engineering need a stronger design governance loop across active workstreams.",
+    ],
+    relatedProjectSlugs: ["cloud-security-compliance-automation", "hr-management-system", "compliance-risk-monitoring"],
+    relatedProofMetricTags: ["Change management"],
+    domainCues: [
+      { label: "Compliance", projectSlug: "cloud-security-compliance-automation", proofMetricTag: "Change management" },
+      { label: "Internal Systems", projectSlug: "hr-management-system", proofMetricTag: "Change management" },
+      { label: "Fintech", projectSlug: "compliance-risk-monitoring", proofMetricTag: "Change management" },
     ],
     imageSrc: "/portfolio/services/fractional-leadership.svg",
     imageAlt: "Abstract illustration: overlapping collaboration shapes for embedded design leadership.",

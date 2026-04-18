@@ -56,7 +56,7 @@ export default function ContactContent() {
           description={
             <>
               Share a bit about your product, team, or decision you&apos;re trying to make. I read every message and
-              reply from{" "}
+              usually reply within 1 business day from{" "}
               <a
                 href="mailto:cpdeol@outlook.com"
                 className="font-medium text-on-surface underline decoration-tertiary/40 underline-offset-[6px] transition hover:decoration-tertiary"
@@ -89,8 +89,8 @@ export default function ContactContent() {
               <div className="rounded-2xl bg-surface-container-low px-7 py-7 md:px-8 md:py-8">
                 <h2 className="font-sans text-base font-medium text-on-surface">Typical engagements</h2>
                 <p className="mt-3 text-base leading-relaxed text-on-surface-variant">
-                  Product strategy, design systems, full-stack engineering, and technical leadership — from discovery
-                  through delivery.
+                  Product strategy, AI-native UX, design systems, and fractional leadership from discovery through
+                  measurable value.
                 </p>
               </div>
               <div className="rounded-2xl bg-surface-container-low px-7 py-7 md:px-8 md:py-8">
@@ -101,8 +101,17 @@ export default function ContactContent() {
                   </span>
                 </div>
                 <p className="mt-3 text-base leading-relaxed text-on-surface-variant">
-                  Limited consulting and advisory capacity. Early alignment on scope and timing helps both sides.
+                  Limited consulting and advisory capacity. Early scope context helps me tell you quickly if there is
+                  a fit.
                 </p>
+              </div>
+              <div className="rounded-2xl bg-surface-container-low px-7 py-7 md:px-8 md:py-8">
+                <h2 className="font-sans text-base font-medium text-on-surface">What happens next</h2>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-on-surface-variant">
+                  <li>1) I reply with fit, constraints, and suggested next step.</li>
+                  <li>2) If aligned, we run a short scoping call.</li>
+                  <li>3) You get a clear first-milestone proposal.</li>
+                </ul>
               </div>
             </div>
           </BlurFade>
@@ -115,7 +124,7 @@ export default function ContactContent() {
               <div className="rounded-[0.875rem] bg-surface-container-lowest px-6 py-8 md:px-8 md:py-10">
                 <p className="font-sans text-base font-medium text-on-surface">Send a message</p>
                 <p className="mt-1 text-sm leading-relaxed text-on-surface-variant">
-                  A few lines is enough to get the thread started.
+                  A few lines is enough. Include your goal, timeline, and biggest risk.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-8 space-y-8">
@@ -171,7 +180,7 @@ export default function ContactContent() {
                   )}
                   {success && (
                     <p className="text-sm font-medium text-primary" role="status">
-                      Message sent — I&apos;ll get back to you soon.
+                      Message sent — I&apos;ll reply within 1 business day.
                     </p>
                   )}
 

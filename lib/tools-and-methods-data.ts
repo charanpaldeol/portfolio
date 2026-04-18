@@ -12,13 +12,17 @@ export interface ToolGroup {
   chips: string[]
   /** Subset of chips to visually emphasise */
   bold: string[]
+  /** Step IDs from the canonical six-phase operating model ("01"–"06"). */
+  relatedPhaseSteps?: readonly string[]
+  /** Project slugs that are strong examples of this phase in practice. */
+  relatedProjectSlugs?: readonly string[]
 }
 
 export const toolGroups = [
   {
     phase: "Discover",
     description:
-      "Stakeholder interviews, process mapping, and problem framing before any solution is agreed.",
+      "Stakeholder interviews, process mapping, and problem framing before any solution is agreed — including supply chain and fulfilment discovery (warehouse-to-dispatch workflows, inventory truth gaps, and logistics partner handoffs) when programmes depend on physical operations.",
     chips: [
       "BPMN",
       "User story mapping",
@@ -26,12 +30,14 @@ export const toolGroups = [
       "Stakeholder mapping",
       "Requirements workshops",
       "Gap analysis",
-      "Supply Chain",
+      "Supply Chain Visibility & Fulfilment",
       "Miro",
       "Figma",
       "LLM-assisted research",
     ],
     bold: ["BPMN", "User story mapping", "Process mapping"],
+    relatedPhaseSteps: ["01"],
+    relatedProjectSlugs: ["distributed-order-fulfillment", "kyc-aml-automation"],
   },
   {
     phase: "Define",
@@ -48,6 +54,8 @@ export const toolGroups = [
       "Power BI",
     ],
     bold: ["MoSCoW prioritisation", "Business requirements (BRD)"],
+    relatedPhaseSteps: ["02"],
+    relatedProjectSlugs: ["credit-risk-underwriting", "payment-settlement-platform"],
   },
   {
     phase: "Design",
@@ -70,6 +78,8 @@ export const toolGroups = [
       "LangChain",
     ],
     bold: ["Solution architecture", "API design", "Claude API"],
+    relatedPhaseSteps: ["03"],
+    relatedProjectSlugs: ["api-first-banking-microservices", "event-streaming-pipeline"],
   },
   {
     phase: "Deliver",
@@ -89,6 +99,8 @@ export const toolGroups = [
       "Playwright",
     ],
     bold: ["Agile / Scrum", "AI agent workflows", "LLM orchestration"],
+    relatedPhaseSteps: ["04"],
+    relatedProjectSlugs: ["ai-customer-onboarding-agent", "high-performance-ecommerce-checkout"],
   },
   {
     phase: "Adopt",
@@ -105,6 +117,8 @@ export const toolGroups = [
       "Rollout planning",
     ],
     bold: ["ADKAR", "Training design"],
+    relatedPhaseSteps: ["05"],
+    relatedProjectSlugs: ["hr-management-system", "cloud-security-compliance-automation"],
   },
   {
     phase: "Value",
@@ -120,5 +134,7 @@ export const toolGroups = [
       "Business case retrospective",
     ],
     bold: ["KPI definition", "Value architecture"],
+    relatedPhaseSteps: ["06"],
+    relatedProjectSlugs: ["compliance-risk-monitoring", "distributed-order-fulfillment"],
   },
 ] as const satisfies readonly ToolGroup[]

@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
+import { DeliveryPhaseGlossary } from "@/components/shared/DeliveryPhaseGlossary"
 import { philosophyPoints, workflowPhases } from "@/lib/ai-workflow-data"
 import { cn } from "@/lib/utils"
 
@@ -60,6 +61,7 @@ export default function HowIUseAIContent() {
           This is the shape of a typical engagement — not a feature tour. Tools change; the rhythm of
           pairing acceleration with judgment does not.
         </p>
+        <DeliveryPhaseGlossary className="mb-8" title="Delivery terms used on this page" />
         <div className="flex flex-col gap-6">
           {workflowPhases.map((phase, index) => (
             <article

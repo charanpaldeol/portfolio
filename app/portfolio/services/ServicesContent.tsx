@@ -10,6 +10,7 @@ import { editorialGradientLastWord, EditorialPageHero } from "@/components/portf
 import { Badge } from "@/components/ui/badge"
 import { resolveBlogArticles, resolvePhases, resolveServices } from "@/lib/content-lookups"
 import { serviceFAQs, services } from "@/lib/services-data"
+import { withAttribution } from "@/lib/ux-measurement"
 import { cn } from "@/lib/utils"
 
 import { ServiceCard } from "./ServiceCard"
@@ -181,21 +182,20 @@ function CtaSection() {
           Ready to scope the first milestone?
         </h2>
         <p className="mx-auto mb-9 max-w-2xl text-base text-pretty leading-relaxed text-inverse-on-surface/80 md:mb-10 md:text-lg">
-          Engagement shapes and process live on Work With Me. If you already know what you need, jump straight to
-          contact.
+          Exploring options? Start with engagement shapes on Work With Me. Ready to scope? Jump straight to contact.
         </p>
         <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
           <Link
-            href="/work-with-me"
+            href={withAttribution("/work-with-me", { from: "services-cta", intent: "explore" })}
             className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-editorial-float transition hover:brightness-105 active:brightness-95 sm:px-10 sm:py-4 sm:text-lg"
           >
-            Work with me
+            Explore engagement options
           </Link>
           <Link
-            href="/contact?from=services"
+            href={withAttribution("/contact", { from: "services-cta", intent: "scope" })}
             className="inline-flex items-center justify-center rounded-xl bg-inverse-on-surface/10 px-8 py-4 text-base font-bold text-inverse-on-surface transition hover:bg-inverse-on-surface/18 sm:px-10 sm:py-4 sm:text-lg"
           >
-            Contact
+            Scope the first milestone
           </Link>
         </div>
       </div>

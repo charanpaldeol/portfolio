@@ -4,10 +4,12 @@ import { TypingAnimation } from "@/registry/magicui/typing-animation"
 import {
   homeHeroAvailability,
   homeHeroBody,
+  homeDomainNarratives,
   homeHeroIndustries,
   homeHeroName,
   homeHeroSubhead,
 } from "@/lib/home-hero-data"
+import { withAttribution } from "@/lib/ux-measurement"
 
 const slugs = [
   "typescript",
@@ -100,16 +102,33 @@ export default function Hero() {
           ))}
         </div>
 
+        <div className="mt-5 grid gap-2 sm:grid-cols-3">
+          {homeDomainNarratives.map((domain) => (
+            <article
+              key={domain.domain}
+              className="rounded-xl bg-surface-container-low p-3 text-xs leading-relaxed text-muted-foreground"
+            >
+              <h2 className="font-semibold tracking-tight text-foreground">{domain.domain}</h2>
+              <p className="mt-1">
+                <span className="font-medium text-foreground">Recurring problem:</span> {domain.recurringProblems}
+              </p>
+              <p className="mt-1">
+                <span className="font-medium text-foreground">Value:</span> {domain.visitorValue}
+              </p>
+            </article>
+          ))}
+        </div>
+
         {/* CTAs — Primary: gradient fill. Secondary: surface tonal, ghost border at max 20% */}
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
-            href="/portfolio/projects"
+            href={withAttribution("/portfolio/projects", { from: "home-hero", intent: "explore" })}
             className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary to-primary-container px-8 py-4 text-sm font-bold text-primary-foreground shadow-editorial-float transition-all hover:brightness-[1.04] hover:shadow-editorial"
           >
             See my work →
           </Link>
           <Link
-            href="/contact"
+            href={withAttribution("/contact", { from: "home-hero", intent: "scope" })}
             className="inline-flex items-center justify-center rounded-xl bg-surface-container-lowest px-8 py-4 text-sm font-bold text-foreground shadow-editorial-float ring-1 ring-outline-variant/15 transition-all hover:bg-surface-container"
           >
             Get in touch →

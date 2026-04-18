@@ -1,26 +1,21 @@
+import { deliveryPhaseTitles } from "@/lib/delivery-taxonomy"
+
 /**
  * Homepage-only anchors and labels — keeps jump nav and teasers in sync.
  */
 
 export const homeJumpNavLinks = [
-  { href: "#page-top", label: "Intro" },
-  { href: "#what-i-bring", label: "Services" },
-  { href: "#proof-of-work", label: "Proof" },
-  { href: "#how-i-work", label: "How I work" },
+  { href: "#page-top", label: "Start" },
+  { href: "#what-i-bring", label: "What I bring" },
   { href: "#how-i-think", label: "Principles" },
-  { href: "#writing", label: "Writing" },
+  { href: "#how-i-work", label: "Execution" },
+  { href: "#proof-of-work", label: "Outcomes" },
+  { href: "#writing", label: "Insights" },
   { href: "#contact-cta", label: "Contact" },
 ] as const
 
 /** Phase titles — same order as the pipeline on /how-i-work */
-export const homeDeliveryPhaseTitles = [
-  "Discover",
-  "Define",
-  "Design",
-  "Deliver",
-  "Adopt",
-  "Value",
-] as const
+export const homeDeliveryPhaseTitles = deliveryPhaseTitles
 
 /** Pulled from components/home/HowIWork.tsx (blockquote) */
 export const homeHowIWorkPullQuote =
@@ -32,4 +27,4 @@ export const homeHowIWorkIntro =
 
 /** Same string as Work → How I work in config/navigation.tsx (avoid importing that module on the home page). */
 export const homeHowIWorkNavDescription =
-  "My delivery operating model end-to-end" as const
+  "See the full delivery model" as const

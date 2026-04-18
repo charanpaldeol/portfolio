@@ -23,6 +23,7 @@ import { standaloneArticles } from "../lib/blog-articles-data"
 import {
   homeHeroAvailability,
   homeHeroBodyPlain,
+  homeDomainNarratives,
   homeHeroIndustries,
   homeHeroName,
   homeHeroSubhead,
@@ -119,6 +120,100 @@ function withNavigate(builder: MDBuilder, links: readonly { label: string; href:
   return builder
 }
 
+const serviceById = new Map(services.map((service) => [service.id, service]))
+const projectBySlug = new Map(projects.map((project) => [project.slug, project]))
+const phaseByStep = new Map(workPhases.map((phase) => [phase.step, phase]))
+const principleById = new Map(HOW_I_THINK_PRINCIPLES.map((principle) => [principle.id, principle]))
+const expertiseById = new Map(expertiseAreas.map((area) => [area.id ?? area.title, area]))
+const articleBySlug = new Map(
+  [...whatIBringCards, ...standaloneArticles].map((article) => [article.slug, article]),
+)
+const testimonialById = new Map(testimonials.map((testimonial) => [testimonial.id, testimonial]))
+const proofMetricByTag = new Map(metrics.map((metric) => [metric.tag, metric]))
+
+function formatServiceRefs(ids: readonly string[] | undefined): string | undefined {
+  if (!ids?.length) return undefined
+  const labels = ids.map((id) => {
+    const service = serviceById.get(id)
+    return service ? service.name : id
+  })
+  return `Services: ${labels.join(", ")}`
+}
+
+function formatProjectRefs(slugs: readonly string[] | undefined): string | undefined {
+  if (!slugs?.length) return undefined
+  const labels = slugs.map((slug) => {
+    const project = projectBySlug.get(slug)
+    return project ? `${project.title} (${project.slug})` : slug
+  })
+  return `Projects: ${labels.join(", ")}`
+}
+
+function formatPhaseRefs(steps: readonly string[] | undefined): string | undefined {
+  if (!steps?.length) return undefined
+  const labels = steps.map((step) => {
+    const phase = phaseByStep.get(step)
+    return phase ? `${phase.step} · ${phase.title}` : step
+  })
+  return `Delivery phases: ${labels.join(", ")}`
+}
+
+function formatPrincipleRefs(ids: readonly string[] | undefined): string | undefined {
+  if (!ids?.length) return undefined
+  const labels = ids.map((id) => {
+    const principle = principleById.get(id)
+    return principle ? principle.quote : id
+  })
+  return `Principles: ${labels.join(", ")}`
+}
+
+function formatExpertiseRefs(ids: readonly string[] | undefined): string | undefined {
+  if (!ids?.length) return undefined
+  const labels = ids.map((id) => {
+    const area = expertiseById.get(id)
+    return area ? area.title : id
+  })
+  return `Expertise areas: ${labels.join(", ")}`
+}
+
+function formatBlogRefs(slugs: readonly string[] | undefined): string | undefined {
+  if (!slugs?.length) return undefined
+  const labels = slugs.map((slug) => {
+    const article = articleBySlug.get(slug)
+    return article ? `${article.title} (${article.slug})` : slug
+  })
+  return `Articles: ${labels.join(", ")}`
+}
+
+function formatTestimonialRefs(ids: readonly string[] | undefined): string | undefined {
+  if (!ids?.length) return undefined
+  const labels = ids.map((id) => {
+    const testimonial = testimonialById.get(id)
+    if (!testimonial) return id
+    return `${testimonial.author} (${testimonial.relationship})`
+  })
+  return `Testimonials: ${labels.join(", ")}`
+}
+
+function formatProofMetricRefs(tags: readonly string[] | undefined): string | undefined {
+  if (!tags?.length) return undefined
+  const labels = tags.map((tag) => {
+    const metric = proofMetricByTag.get(tag)
+    if (!metric) return tag
+    const statDisplay = "statDisplay" in metric ? metric.statDisplay : undefined
+    const numericValue = metric.numericValue !== null ? `${metric.numericValue}${metric.statSuffix ?? ""}` : ""
+    const stat = statDisplay ?? numericValue
+    return stat ? `${metric.tag} (${stat})` : metric.tag
+  })
+  return `Proof metrics: ${labels.join(", ")}`
+}
+
+function addRelatedSection(builder: MDBuilder, relations: readonly (string | undefined)[]) {
+  const items = relations.filter((relation): relation is string => Boolean(relation && relation.trim().length > 0))
+  if (!items.length) return
+  builder.h3("Related").bullets(items)
+}
+
 // ── Bucket builders ───────────────────────────────────────────────────────────
 
 function buildHome() {
@@ -129,6 +224,13 @@ function buildHome() {
     .p(`${homeHeroName} — ${homeHeroSubhead.prefix} ${homeHeroSubhead.accent}`)
     .p(homeHeroBodyPlain)
     .p(`Industries of focus: ${homeHeroIndustries.join(", ")}.`)
+    .h2("Domain narratives")
+    .bullets(
+      homeDomainNarratives.map(
+        (domain) =>
+          `${domain.domain}: recurring problem — ${domain.recurringProblems} Visitor value — ${domain.visitorValue}`,
+      ),
+    )
     .h2("Operating model in brief")
     .p(homeHowIWorkIntro)
     .p(`Pull quote: "${homeHowIWorkPullQuote}".`)
@@ -154,10 +256,15 @@ function buildServices() {
     b.h3("Deliverables").bullets(s.deliverables)
     b.h3("Engagement").p(s.engagement)
     b.h3("Outcomes").bullets(s.outcomes.map((o) => `${o.metric} — ${o.description}`))
+    if (s.bestFitScenarios?.length) b.h3("Best-fit scenarios").bullets(s.bestFitScenarios)
+    addRelatedSection(b, [formatProjectRefs(s.relatedProjectSlugs), formatProofMetricRefs(s.relatedProofMetricTags)])
   }
   if (serviceFAQs.length) {
     b.h2("Service FAQs")
-    for (const f of serviceFAQs) b.h3(f.question).p(f.answer)
+    for (const f of serviceFAQs) {
+      b.h3(f.question).p(f.answer)
+      addRelatedSection(b, [formatServiceRefs(f.relatedServiceIds), formatPhaseRefs(f.relatedPhaseSteps)])
+    }
   }
   return withNavigate(b, [
     { label: "Projects", href: "/portfolio/projects" },
@@ -191,6 +298,13 @@ function buildProjects() {
       b.h3("Tech stack")
       for (const ts of p.techStack) b.p(`${ts.category}: ${ts.technologies.join(", ")}.`)
     }
+    addRelatedSection(b, [
+      formatServiceRefs(p.relatedServiceIds),
+      formatProjectRefs(p.relatedProjectSlugs),
+      formatPhaseRefs(p.relatedPhaseSteps),
+      formatTestimonialRefs(p.relatedTestimonialIds),
+      formatProofMetricRefs(p.relatedProofMetricTags),
+    ])
   }
   return withNavigate(b, [
     { label: "Proof of work", href: "/#proof-of-work" },
@@ -203,9 +317,20 @@ function buildProjects() {
 function buildHowIWork() {
   const b = md().h1("How I work")
   b.h2("Delivery phases")
-  for (const phase of workPhases) b.h3(`${phase.step} — ${phase.title}`).p(phase.description)
+  for (const phase of workPhases) {
+    b.h3(`${phase.step} — ${phase.title}`).p(phase.description)
+    if (phase.decisionArtifacts?.length) b.p(`Decision artifacts: ${phase.decisionArtifacts.join("; ")}.`)
+  }
   b.h2("Expertise areas")
-  for (const e of expertiseAreas) b.h3(e.title).p(e.body)
+  for (const e of expertiseAreas) {
+    b.h3(e.title).p(e.body)
+    addRelatedSection(b, [
+      formatServiceRefs(e.relatedServiceIds),
+      formatProjectRefs(e.relatedProjectSlugs),
+      formatPhaseRefs(e.relatedPhaseSteps),
+      formatTestimonialRefs(e.relatedTestimonialIds),
+    ])
+  }
   return withNavigate(b, [
     { label: "Tools & methods", href: "/tools-and-methods" },
     { label: "Work with me", href: "/work-with-me" },
@@ -219,6 +344,12 @@ function buildHowIThink() {
   for (const p of HOW_I_THINK_PRINCIPLES) {
     b.h2(p.quote).p(`Why: ${p.why}`)
     if (p.example) b.p(`In practice: ${p.example}`)
+    addRelatedSection(b, [
+      formatServiceRefs(p.relatedServiceIds),
+      formatProjectRefs(p.relatedProjectSlugs),
+      formatPhaseRefs(p.relatedPhaseSteps),
+      formatExpertiseRefs(p.relatedExpertiseIds),
+    ])
   }
   return withNavigate(b, [
     { label: "How I work", href: "/how-i-work" },
@@ -233,6 +364,14 @@ function buildWhatIBring() {
   for (const c of whatIBringCards) {
     b.h2(c.title).p(c.body)
     for (const s of c.sections) b.h3(s.heading).bullets(s.paragraphs)
+    addRelatedSection(b, [
+      formatPrincipleRefs(c.relatedPrincipleIds),
+      formatServiceRefs(c.relatedServiceIds),
+      formatProjectRefs(c.relatedProjectSlugs),
+      formatPhaseRefs(c.relatedPhaseSteps),
+      formatExpertiseRefs(c.relatedExpertiseIds),
+      formatBlogRefs(c.relatedBlogSlugs),
+    ])
   }
   return withNavigate(b, [
     { label: "Blog", href: "/blog" },
@@ -247,6 +386,14 @@ function buildBlog() {
   for (const a of standaloneArticles) {
     b.h2(a.title).p(a.body)
     for (const s of a.sections) b.h3(s.heading).bullets(s.paragraphs)
+    addRelatedSection(b, [
+      formatPrincipleRefs(a.relatedPrincipleIds),
+      formatServiceRefs(a.relatedServiceIds),
+      formatProjectRefs(a.relatedProjectSlugs),
+      formatPhaseRefs(a.relatedPhaseSteps),
+      formatExpertiseRefs(a.relatedExpertiseIds),
+      formatBlogRefs(a.relatedBlogSlugs),
+    ])
   }
   return withNavigate(b, [
     { label: "What I bring", href: "/what-i-bring" },
@@ -299,6 +446,17 @@ function buildProofMetrics() {
     const statDisplay = "statDisplay" in m ? m.statDisplay : undefined
     const stat = statDisplay ?? (m.numericValue !== null ? `${m.numericValue}${m.statSuffix ?? ""}` : "")
     b.h2(stat ? `${stat} — ${m.tag}` : m.tag).p(m.label)
+    b.bullets([
+      m.baseline ? `Baseline: ${m.baseline}` : undefined,
+      m.timeframe ? `Timeframe: ${m.timeframe}` : undefined,
+      m.measurementMethod ? `Measurement method: ${m.measurementMethod}` : undefined,
+    ])
+    addRelatedSection(b, [
+      formatServiceRefs(m.relatedServiceIds),
+      formatProjectRefs(m.relatedProjectSlugs),
+      formatPhaseRefs(m.relatedPhaseSteps),
+      formatPrincipleRefs(m.relatedPrincipleIds),
+    ])
   }
   return withNavigate(b, [
     { label: "Projects", href: "/portfolio/projects" },
@@ -317,6 +475,7 @@ function buildAIWorkflow() {
       .p(`How AI helps: ${p.howAIHelps}`)
       .p(`Human part: ${p.humanPart}`)
       .p(`Tools: ${p.tools.join(", ")}.`)
+    addRelatedSection(b, [formatPhaseRefs(p.relatedPhaseSteps), formatProjectRefs(p.relatedProjectSlugs)])
   }
   b.h2("Philosophy")
   for (const q of philosophyPoints) b.h3(q.title).p(q.body)
@@ -344,6 +503,15 @@ function buildToolsAndMethods() {
   for (const g of toolGroups) {
     b.h2(g.phase).p(g.description).p(`Toolkit: ${g.chips.join(", ")}.`)
     if (g.bold?.length) b.p(`Core emphasis: ${g.bold.join(", ")}.`)
+    addRelatedSection(b, [formatPhaseRefs(g.relatedPhaseSteps), formatProjectRefs(g.relatedProjectSlugs)])
+    if (g.phase === "Discover") {
+      b.p(
+        "Supply chain and fulfilment (Discover): for logistics and multi-node inventory programmes, this phase captures warehouse coordinators, dispatch, carrier or 3PL partners, and reconciliation paths that drive overselling or write-offs. Process mapping, gap analysis, workshops, and UML or BPMN views connect that operational reality to later requirements. The Supply Chain Visibility & Fulfilment Platform project describes the arc: current-state mapping across five warehouses, integration specifications, UAT on routing and inventory sync, and adoption with operations before go-live.",
+      )
+      b.p(
+        "Canonical link: Supply Chain is represented by the Supply Chain Visibility & Fulfilment Platform (distributed-order-fulfillment) across Discover, Adopt, and Value phases.",
+      )
+    }
   }
   return withNavigate(b, [
     { label: "How I work", href: "/how-i-work" },

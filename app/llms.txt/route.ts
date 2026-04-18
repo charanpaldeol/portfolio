@@ -51,6 +51,16 @@ export async function GET() {
     lines.push("")
   }
 
+  lines.push("## Delivery Model")
+  lines.push("")
+  lines.push("- Discover (01): stakeholder interviews, process mapping, and problem framing")
+  lines.push("- Define (02): requirements, acceptance criteria, and business case clarity")
+  lines.push("- Design (03): architecture, integration contracts, and solution direction")
+  lines.push("- Deliver (04): iterative execution, UAT, and release governance")
+  lines.push("- Adopt (05): enablement, change routines, and rollout support")
+  lines.push("- Value (06): KPI tracking, adoption depth, and executive reporting")
+  lines.push("")
+
   lines.push("## Portfolio Projects")
   lines.push("")
 
@@ -80,6 +90,14 @@ export async function GET() {
     lines.push(`[Read article](${base}/blog/${article.slug})`)
     lines.push("")
   }
+
+  lines.push("## Canonical Taxonomy")
+  lines.push("")
+  lines.push("- Domains: finance and banking, compliance and risk, enterprise SaaS, cybersecurity, supply chain")
+  lines.push("- Methods: BPMN, process mapping, requirements workshops, UAT design, change management (ADKAR and PROSCI)")
+  lines.push("- AI workflow: discovery synthesis, problem framing, ideation, prototyping, handoff and documentation")
+  lines.push("- Evidence model: outcomes are linked to projects, services, and delivery phases")
+  lines.push("")
 
   lines.push("## Structured JSON (read-only)")
   lines.push("")

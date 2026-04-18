@@ -1,3 +1,5 @@
+import { deliveryPhasesById } from "@/lib/delivery-taxonomy"
+
 export type WorkflowPhase = {
   id: string
   title: string
@@ -5,6 +7,10 @@ export type WorkflowPhase = {
   howAIHelps: string
   tools: string[]
   humanPart: string
+  /** Step IDs from the canonical delivery model in `how-i-work-data.ts` ("01"–"06"). */
+  relatedPhaseSteps?: readonly string[]
+  /** Project slugs that demonstrate this workflow phase in practice. */
+  relatedProjectSlugs?: readonly string[]
 }
 
 export type AIPhilosophyPoint = {
@@ -16,7 +22,7 @@ export type AIPhilosophyPoint = {
 export const workflowPhases: WorkflowPhase[] = [
   {
     id: "discovery-research",
-    title: "Discovery & research",
+    title: deliveryPhasesById.discover.label,
     description:
       "Before pixels or PRDs, I stay close to the problem: interviews, desk research, and the messy signals that do not yet form a story. The goal is not more transcripts — it is a defensible read on what people need and what the business can credibly ship.",
     howAIHelps:
@@ -24,10 +30,12 @@ export const workflowPhases: WorkflowPhase[] = [
     tools: ["Claude", "Granola", "Notion AI", "Otter.ai"],
     humanPart:
       "Choosing who to talk to, what to ask, and which tensions matter is judgment work. AI cannot replace the trust you earn in a room or the instinct to dig when an answer feels too tidy.",
+    relatedPhaseSteps: ["01"],
+    relatedProjectSlugs: ["distributed-order-fulfillment", "fraud-detection-engine"],
   },
   {
     id: "problem-framing",
-    title: "Problem framing",
+    title: deliveryPhasesById.define.label,
     description:
       "Good delivery starts with a problem statement everyone can argue with productively. I treat framing as a design activity: boundaries, assumptions, success signals, and the risks we are willing to name out loud.",
     howAIHelps:
@@ -35,10 +43,12 @@ export const workflowPhases: WorkflowPhase[] = [
     tools: ["Claude", "ChatGPT", "Cursor"],
     humanPart:
       "Stakeholder alignment and picking the hypothesis portfolio are human calls. AI helps me think in parallel; it does not decide what is worth funding.",
+    relatedPhaseSteps: ["02"],
+    relatedProjectSlugs: ["kyc-aml-automation", "compliance-risk-monitoring"],
   },
   {
     id: "ideation-concept",
-    title: "Ideation & concept design",
+    title: deliveryPhasesById.design.label,
     description:
       "This is where exploration should feel abundant: flows, narratives, and rough IA before anything is precious. I want enough divergence to surprise the team, then a disciplined path to convergence.",
     howAIHelps:
@@ -46,10 +56,12 @@ export const workflowPhases: WorkflowPhase[] = [
     tools: ["Claude", "Figma", "Figma AI", "ChatGPT"],
     humanPart:
       "Taste, brand coherence, and the courage to kill weak directions stay with the designer. AI broadens the menu; I still own the edit.",
+    relatedPhaseSteps: ["03"],
+    relatedProjectSlugs: ["landing-page-website", "ai-customer-onboarding-agent"],
   },
   {
     id: "prototyping-iteration",
-    title: "Prototyping & iteration",
+    title: deliveryPhasesById.deliver.label,
     description:
       "I like prototypes that earn their keep: clickable enough to learn, thin enough to throw away. When the risk is interaction or narrative, I bias to something people can react to — not a slide that pretends to be a product.",
     howAIHelps:
@@ -57,17 +69,34 @@ export const workflowPhases: WorkflowPhase[] = [
     tools: ["Cursor", "Claude", "GitHub Copilot", "Figma"],
     humanPart:
       "Defining what we are trying to learn from each build — and when to stop coding and go talk to a human — is still the craft. Speed without a learning plan is just busywork.",
+    relatedPhaseSteps: ["04"],
+    relatedProjectSlugs: ["ai-customer-onboarding-agent", "high-performance-ecommerce-checkout"],
   },
   {
-    id: "handoff-documentation",
-    title: "Handoff & documentation",
+    id: "adoption-enablement",
+    title: deliveryPhasesById.adopt.label,
     description:
-      "Handoff is where ambiguity becomes cost. I write for the team that has to live with the decision next quarter, not just the sprint review tomorrow.",
+      "Adoption is where intent becomes behavior. I treat enablement as product work: clear rollout paths, role-based messaging, and support plans that make the change usable under real operating pressure.",
     howAIHelps:
-      "I draft specs, acceptance criteria, and component notes from structured notes and Figma context, then tighten manually for tone and accountability. AI is excellent at consistency and completeness checks once the intent is clear.",
+      "I use AI to draft training outlines, implementation runbooks, and support macros tailored to each audience, then sharpen manually for accountability and tone. It is strong at consistency across many touchpoints once decisions are set.",
     tools: ["Claude", "Cursor", "Notion AI", "Linear"],
     humanPart:
-      "Ownership of tradeoffs, risk language, and what we are explicitly not solving stays human. Documentation is a promise — AI helps draft it, but my signature is on the outcome.",
+      "Change leadership, stakeholder trust, and what we explicitly ask teams to do differently remain human responsibilities. AI can structure the materials, but not carry the commitment.",
+    relatedPhaseSteps: ["05"],
+    relatedProjectSlugs: ["cloud-security-compliance-automation", "hr-management-system"],
+  },
+  {
+    id: "value-realization",
+    title: deliveryPhasesById.value.label,
+    description:
+      "Value is where delivery earns the next investment. I focus on outcome evidence: what changed, what did not, and where we should compound gains in the next cycle.",
+    howAIHelps:
+      "I use models to summarize outcome trends, draft executive readouts, and generate follow-on experiment options from KPI movement. AI accelerates synthesis so we can spend more time deciding the next bet.",
+    tools: ["Claude", "Notion AI", "Linear", "Looker Studio"],
+    humanPart:
+      "Interpreting tradeoffs, choosing what to fund next, and owning the narrative with leadership are human calls. Metrics inform judgment; they do not replace it.",
+    relatedPhaseSteps: ["06"],
+    relatedProjectSlugs: ["cloud-security-compliance-automation", "compliance-risk-monitoring"],
   },
 ]
 

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
+import Link from "next/link"
 
+import { resolveProjects, resolveProofMetrics } from "@/lib/content-lookups"
 import type { ServiceTier } from "@/lib/services-data"
 import { cn } from "@/lib/utils"
 
@@ -12,6 +14,12 @@ type ServiceCardProps = {
 
 export function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) {
   const paragraphs = service.description.split("\n\n").filter(Boolean)
+  const relatedProjects = resolveProjects(service.relatedProjectSlugs)
+  const relatedProofMetrics = resolveProofMetrics(service.relatedProofMetricTags)
+  const domainProjects = resolveProjects(service.domainCues?.map((cue) => cue.projectSlug))
+  const domainProofMetrics = resolveProofMetrics(service.domainCues?.flatMap((cue) => (cue.proofMetricTag ? [cue.proofMetricTag] : [])))
+  const domainProjectMap = new Map(domainProjects.map((project) => [project.key, project]))
+  const domainProofMap = new Map(domainProofMetrics.map((metric) => [metric.key, metric]))
 
   const visual = (
     <div
@@ -88,6 +96,86 @@ export function ServiceCard({ service, index, reduceMotion }: ServiceCardProps) 
           </div>
         ))}
       </div>
+      {service.bestFitScenarios?.length ? (
+        <div className="rounded-2xl bg-surface-container-low p-5 md:p-6">
+          <p className="text-[11px] font-semibold tracking-[0.14em] text-on-surface-variant uppercase">
+            Best-fit scenarios
+          </p>
+          <ul className="mt-3 space-y-2">
+            {service.bestFitScenarios.map((scenario) => (
+              <li key={scenario} className="relative pl-5 text-sm leading-relaxed text-on-surface-variant">
+                <span
+                  className="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-secondary shadow-[0_0_0_3px_color-mix(in_srgb,var(--color-secondary)_18%,transparent)]"
+                  aria-hidden
+                />
+                {scenario}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {(relatedProjects.length > 0 || relatedProofMetrics.length > 0) && (
+        <div className="rounded-2xl bg-surface-container-low p-5 md:p-6">
+          <p className="text-[11px] font-semibold tracking-[0.14em] text-on-surface-variant uppercase">
+            Method → artifact → business outcome
+          </p>
+          {service.domainCues?.length ? (
+            <div className="mt-3">
+              <p className="text-xs font-semibold tracking-wide text-on-surface-variant uppercase">Domain routes</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {service.domainCues.map((cue) => {
+                  const project = domainProjectMap.get(cue.projectSlug)
+                  const proof = cue.proofMetricTag ? domainProofMap.get(cue.proofMetricTag) : undefined
+                  const href = project?.href ?? proof?.href ?? "#"
+                  return (
+                    <Link
+                      key={`${service.id}-${cue.label}-${cue.projectSlug}`}
+                      href={href}
+                      className="rounded-full bg-surface-container-lowest px-3 py-1.5 text-xs font-semibold text-on-surface transition hover:bg-surface"
+                      title={project?.label ? `${cue.label}: ${project.label}` : cue.label}
+                    >
+                      {cue.label}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          ) : null}
+          {relatedProjects.length > 0 && (
+            <div className="mt-3">
+              <p className="text-xs font-semibold tracking-wide text-on-surface-variant uppercase">Case studies</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {relatedProjects.map((project) => (
+                  <Link
+                    key={project.key}
+                    href={project.href ?? "#"}
+                    className="rounded-full bg-surface-container-lowest px-3 py-1.5 text-xs font-medium text-on-surface transition hover:bg-surface"
+                  >
+                    {project.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+          {relatedProofMetrics.length > 0 && (
+            <div className="mt-3">
+              <p className="text-xs font-semibold tracking-wide text-on-surface-variant uppercase">Proof signals</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {relatedProofMetrics.map((metric) => (
+                  <Link
+                    key={metric.key}
+                    href={metric.href ?? "#"}
+                    className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition hover:bg-primary/15"
+                  >
+                    {metric.label} · {metric.sublabel}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 

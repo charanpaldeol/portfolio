@@ -48,7 +48,7 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
         aria-label="Delivery phases"
       >
         <div className={styles.hiwTrack} aria-hidden />
-        {workPhases.map(({ title, description, Icon, emphasized, step }) => (
+        {workPhases.map(({ title, description, decisionArtifacts, Icon, emphasized, step }) => (
           <div
             key={title}
             id={`phase-${step}`}
@@ -74,6 +74,11 @@ export default function HowIWork({ afterPipeline }: { afterPipeline?: ReactNode 
             <span className={cn(styles.hiwPhaseDesc, "mt-2 md:mt-2 md:px-1 md:text-[0.8125rem] md:leading-relaxed")}>
               {description}
             </span>
+            {decisionArtifacts?.length ? (
+              <span className="mt-2 text-[0.72rem] leading-relaxed text-muted-foreground md:px-1">
+                Decision artifacts: {decisionArtifacts.join("; ")}.
+              </span>
+            ) : null}
           </div>
         ))}
       </div>
