@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { NumberTicker } from "@/components/magicui/number-ticker"
 import { type Metric, metrics, tagStyles } from "@/lib/proof-metrics-data"
-import { withAttribution } from "@/lib/ux-measurement"
 import { cn } from "@/lib/utils"
+import { withAttribution } from "@/lib/ux-measurement"
 
 // Stat number accent colors per card index — primary / secondary / tertiary
 const statColors = [

@@ -1,15 +1,16 @@
 import Link from "next/link"
-import { IconCloud } from "@/registry/magicui/icon-cloud"
-import { TypingAnimation } from "@/registry/magicui/typing-animation"
+
 import {
+  homeDomainNarratives,
   homeHeroAvailability,
   homeHeroBody,
-  homeDomainNarratives,
   homeHeroIndustries,
   homeHeroName,
   homeHeroSubhead,
 } from "@/lib/home-hero-data"
 import { withAttribution } from "@/lib/ux-measurement"
+import { IconCloud } from "@/registry/magicui/icon-cloud"
+import { TypingAnimation } from "@/registry/magicui/typing-animation"
 
 const slugs = [
   "typescript",

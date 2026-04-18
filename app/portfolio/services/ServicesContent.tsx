@@ -10,8 +10,8 @@ import { editorialGradientLastWord, EditorialPageHero } from "@/components/portf
 import { Badge } from "@/components/ui/badge"
 import { resolveBlogArticles, resolvePhases, resolveServices } from "@/lib/content-lookups"
 import { serviceFAQs, services } from "@/lib/services-data"
-import { withAttribution } from "@/lib/ux-measurement"
 import { cn } from "@/lib/utils"
+import { withAttribution } from "@/lib/ux-measurement"
 
 import { ServiceCard } from "./ServiceCard"
 

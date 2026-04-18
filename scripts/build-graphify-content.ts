@@ -33,10 +33,10 @@ import {
   homeHowIWorkIntro,
   homeHowIWorkPullQuote,
 } from "../lib/home-page-sections"
-import { HOW_I_THINK_PRINCIPLES } from "../lib/how-i-think-principles"
+import { HOW_I_THINK_PRINCIPLES, type HowIThinkPrinciple } from "../lib/how-i-think-principles"
 import { expertiseAreas, workPhases } from "../lib/how-i-work-data"
 import { projects } from "../lib/projects-data"
-import { metrics } from "../lib/proof-metrics-data"
+import { metrics, type Metric } from "../lib/proof-metrics-data"
 import { serviceFAQs, services } from "../lib/services-data"
 import { systemsExamples } from "../lib/systems-thinking-data"
 import { testimonials } from "../lib/testimonials-data"
@@ -123,13 +123,15 @@ function withNavigate(builder: MDBuilder, links: readonly { label: string; href:
 const serviceById = new Map(services.map((service) => [service.id, service]))
 const projectBySlug = new Map(projects.map((project) => [project.slug, project]))
 const phaseByStep = new Map(workPhases.map((phase) => [phase.step, phase]))
-const principleById = new Map(HOW_I_THINK_PRINCIPLES.map((principle) => [principle.id, principle]))
+const principleById = new Map<string, HowIThinkPrinciple>(
+  HOW_I_THINK_PRINCIPLES.map((principle) => [principle.id, principle]),
+)
 const expertiseById = new Map(expertiseAreas.map((area) => [area.id ?? area.title, area]))
 const articleBySlug = new Map(
   [...whatIBringCards, ...standaloneArticles].map((article) => [article.slug, article]),
 )
 const testimonialById = new Map(testimonials.map((testimonial) => [testimonial.id, testimonial]))
-const proofMetricByTag = new Map(metrics.map((metric) => [metric.tag, metric]))
+const proofMetricByTag = new Map<string, Metric>(metrics.map((metric) => [metric.tag, metric]))
 
 function formatServiceRefs(ids: readonly string[] | undefined): string | undefined {
   if (!ids?.length) return undefined

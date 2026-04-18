@@ -1,7 +1,7 @@
 import Link from "next/link"
 
-import { whatIBringCards } from "@/lib/what-i-bring-cards"
 import { cn } from "@/lib/utils"
+import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
 const badgeColors: Record<string, string> = {
   "problem-framing":    "bg-secondary-fixed text-on-secondary-fixed",

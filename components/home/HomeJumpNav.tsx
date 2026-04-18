@@ -5,9 +5,11 @@ import { useEffect, useMemo, useState } from "react"
 import { homeJumpNavLinks } from "@/lib/home-page-sections"
 import { cn } from "@/lib/utils"
 
+type JumpHref = (typeof homeJumpNavLinks)[number]["href"]
+
 export default function HomeJumpNav() {
-  const defaultHref = homeJumpNavLinks[0]?.href ?? "#page-top"
-  const [activeHref, setActiveHref] = useState(defaultHref)
+  const defaultHref: JumpHref = homeJumpNavLinks[0]?.href ?? "#page-top"
+  const [activeHref, setActiveHref] = useState<JumpHref>(defaultHref)
 
   const linksWithTargets = useMemo(
     () =>
