@@ -1,6 +1,13 @@
 import Link from "next/link"
 import { IconCloud } from "@/registry/magicui/icon-cloud"
 import { TypingAnimation } from "@/registry/magicui/typing-animation"
+import {
+  homeHeroAvailability,
+  homeHeroBody,
+  homeHeroIndustries,
+  homeHeroName,
+  homeHeroSubhead,
+} from "@/lib/home-hero-data"
 
 const slugs = [
   "typescript",
@@ -56,7 +63,7 @@ export default function Hero() {
         {/* Availability badge — surface tonal, no border */}
         <div className="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1.5 text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" aria-hidden="true" />
-          Toronto, Ontario · Remote Worldwide
+          {homeHeroAvailability}
         </div>
 
         {/* H1 — Display scale: Manrope ExtraBold via base styles */}
@@ -65,27 +72,25 @@ export default function Hero() {
           className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground md:text-6xl lg:text-7xl"
           duration={70}
         >
-          Charan Deol
+          {homeHeroName}
         </TypingAnimation>
 
         {/* Sub-headline — Manrope Bold, italic primary accent */}
         <p className="mt-4 text-xl font-bold leading-snug tracking-tight text-foreground md:text-2xl">
-          Product Management &amp; Business Systems.{" "}
-          <span className="italic text-primary">AI&#8209;Native Delivery.</span>
+          {homeHeroSubhead.prefix}{" "}
+          <span className="italic text-primary">{homeHeroSubhead.accent.replace("-", "\u2011")}</span>
         </p>
 
         {/* Body — Inter Light per DESIGN.md "Body" scale */}
         <p className="mt-5 max-w-xl text-base font-light leading-relaxed text-muted-foreground md:text-lg">
-          Most product leaders think in features. Most analysts think in
-          requirements. I think in{" "}
-          <span className="font-medium text-foreground">systems, outcomes,</span>{" "}
-          and what it actually takes to ship — from discovery through to value
-          realized.
+          {homeHeroBody.before}{" "}
+          <span className="font-medium text-foreground">{homeHeroBody.accent}</span>{" "}
+          {homeHeroBody.after}
         </p>
 
         {/* Industry pills — Label scale: Inter SemiBold, all-caps */}
         <div className="mt-5 flex flex-wrap gap-2">
-          {["Finance & Banking", "Insurance", "Tech & SaaS"].map((label) => (
+          {homeHeroIndustries.map((label) => (
             <span
               key={label}
               className="rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold tracking-[0.15em] text-muted-foreground uppercase"
