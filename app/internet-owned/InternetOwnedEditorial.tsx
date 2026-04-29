@@ -509,7 +509,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
                 <MessageSquare className="h-6 w-6" />
               </Link>
             </div>
-            <div className="relative z-[5] hidden h-72 w-72 shrink-0 rounded-full border border-primary/30 bg-primary/25 blur-[100px] lg:block" aria-hidden />
+            <div className="relative z-[5] hidden h-72 w-72 shrink-0 rounded-full bg-primary/25 blur-[100px] lg:block" aria-hidden />
           </div>
         </section>
         </article>

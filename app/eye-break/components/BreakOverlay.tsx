@@ -101,7 +101,12 @@ export function BreakOverlay({
           >
             Skip break
           </Button>
-          <Button variant="outline" onClick={onStop} aria-label="Stop timer" className="border-background/40 bg-transparent text-background hover:bg-background/10 hover:text-background">
+          <Button
+            variant="outline"
+            onClick={onStop}
+            aria-label="Stop timer"
+            className="bg-transparent text-background hover:bg-background/10 hover:text-background"
+          >
             Stop timer
           </Button>
         </div>

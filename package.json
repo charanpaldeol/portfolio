@@ -31,7 +31,7 @@
     "e2e:proof": "playwright test e2e/visual-proof.spec.ts --config playwright.verify.config.ts",
     "e2e:smoke": "playwright test e2e/smoke.spec.ts --config playwright.verify.config.ts --project=chromium",
     "e2e:ui": "playwright test --ui",
-    "verify": "pnpm tsc --noEmit && pnpm lint && node scripts/audit.js && pnpm build && pnpm e2e:smoke && pnpm e2e:proof",
+    "verify": "pnpm tsc --noEmit && pnpm lint && node scripts/audit.js && pnpm build && pnpm dev:free3000 && pnpm e2e:smoke && pnpm dev:free3000 && pnpm e2e:proof",
     "verify:full": "pnpm verify && pnpm test --run",
     "extract-rules": "node scripts/extract-rules.mjs",
     "deploy:smoke": "node scripts/deploy-smoke.mjs",

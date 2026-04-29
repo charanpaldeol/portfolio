@@ -57,7 +57,7 @@ export default function ProjectsPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-surface-container-high bg-transparent px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
+              className="inline-flex items-center justify-center rounded-xl bg-surface-container-high px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
             >
               Let&apos;s discuss
             </Link>

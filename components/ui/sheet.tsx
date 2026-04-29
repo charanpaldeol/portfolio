@@ -3,6 +3,8 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
+import { cn } from '@/lib/utils'
+
 interface SheetContextValue {
   open: boolean
   setOpen: (open: boolean) => void
@@ -37,7 +39,7 @@ export function SheetTrigger({ children, ...props }: SheetTriggerProps) {
     <button
       type="button"
       onClick={() => setOpen(true)}
-      className="inline-flex items-center justify-center rounded-xl border border-transparent bg-foreground px-3 py-2 text-sm font-medium text-background hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="inline-flex items-center justify-center rounded-xl bg-foreground px-3 py-2 text-sm font-medium text-background hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       {...props}
     >
       {children}
@@ -80,7 +82,10 @@ export function SheetContent({ side = 'left', children }: SheetContentProps) {
         onClick={() => setOpen(false)}
       />
       <div
-        className={`fixed z-10 bg-foreground p-6 text-background shadow-editorial-lg backdrop-blur-xl transition-transform ${sideClasses[side]}`}
+        className={cn(
+          'fixed z-10 bg-foreground p-6 text-background shadow-editorial-lg backdrop-blur-xl transition-transform',
+          sideClasses[side]
+        )}
       >
         {children}
       </div>
@@ -148,7 +153,7 @@ export function SheetClose({ children, asChild, ...props }: SheetCloseProps) {
     <button
       type="button"
       onClick={() => setOpen(false)}
-      className="inline-flex items-center justify-center rounded-xl border border-background/20 bg-transparent px-3 py-2 text-sm font-medium text-background hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+      className="inline-flex items-center justify-center rounded-xl bg-transparent px-3 py-2 text-sm font-medium text-background hover:bg-background/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
       {...props}
     >
       {children}

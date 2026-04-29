@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next"
 import { Inter, Manrope } from "next/font/google"
 
+import { cn } from "@/lib/utils"
 import { Footer } from "components/layout/Footer"
 import GlobalChrome from "components/layout/GlobalChrome"
 import PortfolioShell from "components/layout/PortfolioShell"
@@ -53,12 +54,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={cn(inter.variable, manrope.variable)}>
       <head>
         <link rel="preconnect" href="https://cdn.simpleicons.org" />
       </head>
       <body
-        className={`${inter.className} flex min-h-screen flex-col bg-background text-foreground`}
+        className={cn(inter.className, "flex min-h-screen flex-col bg-background text-foreground")}
       >
         <GlobalChrome />
         <PortfolioShell>{children}</PortfolioShell>
