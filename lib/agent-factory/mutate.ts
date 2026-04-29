@@ -1,9 +1,10 @@
 import type { z } from "zod"
 
-import { readFile, writeFile } from "node:fs/promises"
+import { readFile } from "node:fs/promises"
 import path from "node:path"
 
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, AgentFactoryRunSchema, AgentFactoryRunsFileSchema } from "@/lib/agent-factory/queue"
+import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
 function repoPath(...parts: string[]) {
   return path.join(process.cwd(), ...parts)
@@ -26,7 +27,13 @@ export async function readFactoryQueueFile() {
 
 export async function writeFactoryQueueFile(queue: unknown) {
   const parsed = AgentFactoryQueueSchema.parse(queue)
-  await writeFile(repoPath("agents", "factory-queue.json"), `${JSON.stringify(parsed, null, 2)}\n`, "utf8")
+  const filePath = repoPath("agents", "factory-queue.json")
+  await withFileLock({
+    lockPath: `${filePath}.lock`,
+    fn: async () => {
+      await writeJsonFile(filePath, parsed)
+    },
+  })
   return parsed
 }
 
@@ -37,49 +44,73 @@ export async function readFactoryRunsFile() {
 
 export async function writeFactoryRunsFile(runs: unknown) {
   const parsed = AgentFactoryRunsFileSchema.parse(runs)
-  await writeFile(repoPath("agents", "factory-runs.json"), `${JSON.stringify(parsed, null, 2)}\n`, "utf8")
+  const filePath = repoPath("agents", "factory-runs.json")
+  await withFileLock({
+    lockPath: `${filePath}.lock`,
+    fn: async () => {
+      await writeJsonFile(filePath, parsed)
+    },
+  })
   return parsed
 }
 
 export async function addFactoryTask(input: { title: string; spec?: unknown; priority: number }) {
-  const queue = await readFactoryQueueFile()
-  const ts = nowIso()
-  const item = AgentFactoryQueueItemSchema.parse({
-    id: makeId("task"),
-    title: input.title,
-    spec: input.spec ?? {},
-    status: "queued",
-    priority: input.priority,
-    created_at: ts,
-    updated_at: ts,
+  const filePath = repoPath("agents", "factory-queue.json")
+  return await withFileLock({
+    lockPath: `${filePath}.lock`,
+    fn: async () => {
+      const queue = await readJsonFile(filePath, AgentFactoryQueueSchema)
+      const ts = nowIso()
+      const item = AgentFactoryQueueItemSchema.parse({
+        id: makeId("task"),
+        title: input.title,
+        spec: input.spec ?? {},
+        status: "queued",
+        priority: input.priority,
+        created_at: ts,
+        updated_at: ts,
+      })
+      const next = { ...queue, items: [item, ...queue.items] }
+      await writeJsonFile(filePath, AgentFactoryQueueSchema.parse(next))
+      return item
+    },
   })
-  const next = { ...queue, items: [item, ...queue.items] }
-  await writeFactoryQueueFile(next)
-  return item
 }
 
 export async function setFactoryTaskStatus(input: { id: string; status: "queued" | "in_progress" | "blocked" | "done" | "failed" | "cancelled" }) {
-  const queue = await readFactoryQueueFile()
-  const idx = queue.items.findIndex((item) => item.id === input.id)
-  if (idx === -1) return null
-  const updated = { ...queue.items[idx], status: input.status, updated_at: nowIso() }
-  const items = queue.items.slice()
-  items[idx] = AgentFactoryQueueItemSchema.parse(updated)
-  const next = { ...queue, items }
-  await writeFactoryQueueFile(next)
-  return items[idx]
+  const filePath = repoPath("agents", "factory-queue.json")
+  return await withFileLock({
+    lockPath: `${filePath}.lock`,
+    fn: async () => {
+      const queue = await readJsonFile(filePath, AgentFactoryQueueSchema)
+      const idx = queue.items.findIndex((item) => item.id === input.id)
+      if (idx === -1) return null
+      const updated = { ...queue.items[idx], status: input.status, updated_at: nowIso() }
+      const items = queue.items.slice()
+      items[idx] = AgentFactoryQueueItemSchema.parse(updated)
+      const next = { ...queue, items }
+      await writeJsonFile(filePath, AgentFactoryQueueSchema.parse(next))
+      return items[idx]
+    },
+  })
 }
 
 type AgentFactoryRunInput = z.input<typeof AgentFactoryRunSchema>
 
 export async function appendFactoryRun(input: Omit<AgentFactoryRunInput, "run_id">) {
-  const runsFile = await readFactoryRunsFile()
-  const run = AgentFactoryRunSchema.parse({
-    run_id: makeId("run"),
-    ...input,
+  const filePath = repoPath("agents", "factory-runs.json")
+  return await withFileLock({
+    lockPath: `${filePath}.lock`,
+    fn: async () => {
+      const runsFile = await readJsonFile(filePath, AgentFactoryRunsFileSchema)
+      const run = AgentFactoryRunSchema.parse({
+        run_id: makeId("run"),
+        ...input,
+      })
+      const next = { ...runsFile, runs: [run, ...runsFile.runs].slice(0, 500) }
+      await writeJsonFile(filePath, AgentFactoryRunsFileSchema.parse(next))
+      return run
+    },
   })
-  const next = { ...runsFile, runs: [run, ...runsFile.runs].slice(0, 500) }
-  await writeFactoryRunsFile(next)
-  return run
 }
 

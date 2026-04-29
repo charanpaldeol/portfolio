@@ -48,7 +48,7 @@ async function runCmd(args: {
   })
 }
 
-async function readJsonFile<T>(filePath: string, schema: z.ZodType<T>): Promise<T> {
+async function readJsonFile<S extends z.ZodTypeAny>(filePath: string, schema: S): Promise<z.output<S>> {
   const raw = await readFile(filePath, "utf8")
   return schema.parse(JSON.parse(raw))
 }
@@ -106,6 +106,7 @@ async function main() {
   const worktreesDir = await ensureWorktreesDir(root)
   const worktreePath = path.join(worktreesDir, nextItem.id)
   const logPath = path.join(root, "agents", "factory-logs", `${runId}.log`)
+  const workerId = (process.env.FACTORY_WORKER_ID ?? "").trim() || `worker_${process.pid}`
 
   const claimedQueue = markItem(queue, nextItem.id, { status: "in_progress" })
   await writeJsonFile(queuePath, claimedQueue)
@@ -120,6 +121,7 @@ async function main() {
         title: nextItem.title,
         branch,
         worktree_path: worktreePath,
+        worker_id: null,
         status: "started",
         started_at: startedAt,
         finished_at: null,

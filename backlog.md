@@ -37,6 +37,27 @@
 - [ ] Ensure CI (or local) has Git push credentials for `git push -u origin <branch>` used by `pnpm factory:run-once`
 - [ ] Decide branch naming + protection rules for `agent/*` branches in the remote
 
+### Running the factory indefinitely
+- **Start**: `pnpm factory:loop`
+- **Stop**: `Ctrl+C` (or set `FACTORY_MAX_RUNS` to a finite number)
+- **Key env vars**:
+  - **`FACTORY_MAX_RUNS`**: If set, stops after N runs (otherwise runs forever)
+  - **`FACTORY_INTERVAL_MS`**: Sleep between runs (default `60000`)
+  - **`FACTORY_QUEUE_LOW_WATERMARK`**: When queued work is below this, the loop calls `factory:plan-next` (default `2`)
+  - **`FACTORY_QUEUE_TARGET_SIZE`**: Planner tries to enqueue up to this many queued items when refilling (default `5`)
+
+### Planner inputs
+- **Roadmap**: `agents/factory-roadmap.json` (curated, deterministic list of tasks)
+- **Queue**: `agents/factory-queue.json`
+- **Runs**: `agents/factory-runs.json`
+- **Notes**: `backlog.md` is read by `factory:plan-next` for deterministic “repo state” (no LLM calls)
+
+### Troubleshooting
+- **Run logs**: `agents/factory-logs/<run_id>.log`
+- **If a task/run is stale**: run `pnpm factory:reclaim`. Configure thresholds with:
+  - `FACTORY_STALE_CLAIM_MS` (default 15m)
+  - `FACTORY_STALE_RUN_MS` (default 60m)
+
 
 ### Factory dashboard (EvidencePack app)
 - [ ] Seed the data files (checked into repo):
@@ -50,3 +71,15 @@
   - [ ] `POST /api/evidencepack/factory/tasks` (title, priority, spec)
   - [ ] `PATCH /api/evidencepack/factory/tasks/:id/status` (status)
   - [ ] `POST /api/evidencepack/factory/runs` (item_id, branch, worktree_path, status, ...)
+
+### Swarm runner (multi-worker)
+- [ ] Start a local swarm (N workers):
+  - [ ] `FACTORY_WORKERS=5 pnpm -s factory:swarm`
+  - [ ] Optional tuning: `FACTORY_INTERVAL_MS=60000`, `FACTORY_QUEUE_LOW_WATERMARK=2`, `FACTORY_QUEUE_TARGET_SIZE=5`
+- [ ] Confirm worker heartbeats appear:
+  - [ ] Files written to `agents/factory-logs/heartbeats/<worker_id>.json`
+  - [ ] Dashboard shows a “Workers” panel; stale if heartbeat is older than ~15s
+- [ ] Concurrency safety notes:
+  - [ ] Queue claims use `claimed_by` + `claimed_at` and an on-disk lock file (`agents/factory-queue.json.lock`)
+  - [ ] Runs writes are guarded by `agents/factory-runs.json.lock`
+  - [ ] If a process dies mid-write, locks auto-break after ~30s (stale lock TTL)

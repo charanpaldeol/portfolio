@@ -11,14 +11,16 @@ export const AgentFactoryQueueItemSchema = z.object({
   priority: z.number().int().min(0),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
+  claimed_by: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()),
+  claimed_at: z.preprocess((v) => (v === undefined ? null : v), z.string().datetime().nullable()),
 })
-export type AgentFactoryQueueItem = z.infer<typeof AgentFactoryQueueItemSchema>
+export type AgentFactoryQueueItem = z.output<typeof AgentFactoryQueueItemSchema>
 
 export const AgentFactoryQueueSchema = z.object({
   version: z.literal(1),
   items: z.array(AgentFactoryQueueItemSchema),
 })
-export type AgentFactoryQueue = z.infer<typeof AgentFactoryQueueSchema>
+export type AgentFactoryQueue = z.output<typeof AgentFactoryQueueSchema>
 
 export const AgentFactoryRunStatusSchema = z.enum(["started", "succeeded", "failed"])
 export type AgentFactoryRunStatus = z.infer<typeof AgentFactoryRunStatusSchema>
@@ -29,21 +31,22 @@ export const AgentFactoryRunSchema = z.object({
   title: z.string().min(1),
   branch: z.string().min(1),
   worktree_path: z.string().min(1),
+  worker_id: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()),
   status: AgentFactoryRunStatusSchema,
   started_at: z.string().datetime(),
   finished_at: z.string().datetime().nullable(),
   commit_sha: z.string().min(1).nullable(),
   error: z.string().nullable(),
 })
-export type AgentFactoryRun = z.infer<typeof AgentFactoryRunSchema>
+export type AgentFactoryRun = z.output<typeof AgentFactoryRunSchema>
 
 export const AgentFactoryRunsFileSchema = z.object({
   version: z.literal(1),
   runs: z.array(AgentFactoryRunSchema),
 })
-export type AgentFactoryRunsFile = z.infer<typeof AgentFactoryRunsFileSchema>
+export type AgentFactoryRunsFile = z.output<typeof AgentFactoryRunsFileSchema>
 
-export function pickNextFactoryItem(items: AgentFactoryQueueItem[]) {
+export function pickNextFactoryItem<T extends { status: AgentFactoryItemStatus; priority: number; created_at: string }>(items: T[]) {
   return items
     .filter((item) => item.status === "queued")
     .slice()

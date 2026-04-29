@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "MAY13_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 13",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY12_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 12",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY11_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 11",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY10_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 10",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY09_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 9",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY08_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 8",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY07_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 7",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY06_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 6",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY05_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 5",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY04_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 4",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY03_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 3",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY02_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 2",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY01_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 1",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "APR30_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — Apr 30",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "APR29_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — Apr 29",
+      "priority": 30,
+      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
+    },
+    {
+      "id": "MAY13_VERIFY_FULL",
+      "title": "Verify full suite (local) — May 13",
+      "priority": 20,
+      "spec": { "command": "pnpm -s verify:full" }
+    },
+    {
+      "id": "MAY09_VERIFY",
+      "title": "Verify (local) — May 9",
+      "priority": 20,
+      "spec": { "command": "pnpm -s verify" }
+    },
+    {
+      "id": "MAY05_VERIFY",
+      "title": "Verify (local) — May 5",
+      "priority": 20,
+      "spec": { "command": "pnpm -s verify" }
+    },
+    {
+      "id": "MAY01_VERIFY",
+      "title": "Verify (local) — May 1",
+      "priority": 20,
+      "spec": { "command": "pnpm -s verify" }
+    },
+    {
+      "id": "APR29_VERIFY",
+      "title": "Verify (local) — Apr 29",
+      "priority": 20,
+      "spec": { "command": "pnpm -s verify" }
+    },
+    {
+      "id": "MAY13_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — May 13",
+      "priority": 10,
+      "spec": { "command": "graphify update ." }
+    },
+    {
+      "id": "MAY06_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — May 6",
+      "priority": 10,
+      "spec": { "command": "graphify update ." }
+    },
+    {
+      "id": "APR29_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — Apr 29",
+      "priority": 10,
+      "spec": { "command": "graphify update ." }
+    }
+  ]
+}
+

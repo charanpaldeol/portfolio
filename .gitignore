@@ -29,3 +29,7 @@ test-results/
 
 # Governance proof artifacts (generated)
 agents/governance/screenshots/
+
+# Agent factory generated artifacts (local)
+.agent-worktrees/
+agents/factory-logs/
