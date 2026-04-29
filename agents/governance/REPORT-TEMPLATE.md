@@ -29,10 +29,13 @@ Then notify the governance agent: "Governance review requested for PLAN-[XX]. Re
 - [Any file from the plan you deliberately skipped and why]
 
 ## Automated checks I ran
-- `pnpm tsc --noEmit`: PASS ✅ | FAIL ❌ — [paste errors if fail]
-- `pnpm lint`: PASS ✅ | FAIL ❌ — [paste errors if fail]  
-- `node scripts/audit.js`: PASS ✅ | FAIL ❌ — [paste violations if fail]
-- `pnpm build`: PASS ✅ | FAIL ❌ — [paste errors if fail]
+- `pnpm verify`: PASS ✅ | FAIL ❌ — [paste errors if fail]
+
+## Visual proof (required for UI changes)
+- **PLAN_ID used**: `[e.g. PLAN-04 or adhoc]`
+- **Screenshots folder**: `agents/governance/screenshots/[PLAN_ID]/`
+- **Desktop**: `agents/governance/screenshots/[PLAN_ID]/desktop/*.png`
+- **Mobile**: `agents/governance/screenshots/[PLAN_ID]/mobile/*.png`
 
 ## Plan acceptance criteria — self-check
 [Copy the "Success criteria" section from your plan and mark each:]

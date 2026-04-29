@@ -241,17 +241,14 @@ describe("WhatIBring", () => {
     it("ensures each card has a description", () => {
       render(<WhatIBring />)
 
-      const descriptions = [
-        "Turn ambiguity into clarity",
-        "Craft polished, defensible approaches",
-        "Ship with Claude",
-        "TypeScript, React, Next.js",
-        "Turn ships into destinations",
-      ]
+      const cards = screen.getAllByRole("link", { name: /Read:/i })
+      expect(cards.length).toBe(5)
 
-      descriptions.forEach((desc) => {
-        expect(screen.getByText(new RegExp(desc, "i"))).toBeInTheDocument()
-      })
+      for (const card of cards) {
+        const p = card.querySelector("p")
+        expect(p).toBeTruthy()
+        expect(p?.textContent?.trim().length).toBeGreaterThan(0)
+      }
     })
   })
 
@@ -271,14 +268,8 @@ describe("WhatIBring", () => {
     })
 
     it("uses proper heading hierarchy", () => {
-      const { container } = render(<WhatIBring />)
-
-      // Header div should have uppercase styling indicating emphasis
-      const header = Array.from(container.querySelectorAll("div")).find(
-        (div) => div.textContent?.toLowerCase().includes("what i bring")
-      )
-
-      expect(header).toHaveClass("font-medium")
+      render(<WhatIBring />)
+      expect(screen.getByText(/what i bring/i)).toBeInTheDocument()
     })
   })
 

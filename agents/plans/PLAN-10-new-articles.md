@@ -131,9 +131,7 @@ Check that:
 
 ### Step 7 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:

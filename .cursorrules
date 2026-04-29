@@ -156,6 +156,12 @@ If a required change touches a frozen file, STOP and ask the user.
   - scripts/audit.js    → design + architecture compliance scanner
   - .husky/pre-commit   → blocks commits that violate rules
 
+  ### Feature flags (safe merge pattern)
+  New user-visible features should be shipped behind a server-side flag by default:
+  - Utility: lib/feature-flags.ts
+  - Pattern: `if (featureFlag(\"new-testimonials\")) { ... }`
+  - Env var: `FF_NEW_TESTIMONIALS=1`
+
   ### Data Architecture
   - All feature data lives in /lib/[feature]-data.ts (single source of truth)
   - Components accept data as props — never fetch internally
@@ -175,16 +181,14 @@ If a required change touches a frozen file, STOP and ask the user.
   - No hardcoded data arrays in components → audit.js catches
 
   ### Before Every Commit (automated via .husky/pre-commit)
-  - pnpm tsc --noEmit       (TypeScript strict)
-  - pnpm lint               (ESLint + custom rules)
-  - node scripts/audit.js   (design + architecture audit)
+  - pnpm verify             (tsc + lint + audit + build + e2e)
   All must pass or commit is blocked.
 
   ### Adding a New Feature
   1. Create /lib/[feature]-data.ts with TypeScript interface
   2. Create /app/[route]/page.tsx importing from /lib
   3. Components receive data as props
-  4. Run: pnpm tsc --noEmit && pnpm lint && node scripts/audit.js
+  4. Run: pnpm verify
 
 
 ## 9. PROMPT TEMPLATE — use this for every task

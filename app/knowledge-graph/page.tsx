@@ -12,7 +12,7 @@ export default function KnowledgeGraphPage() {
       <iframe
         src="/knowledge-graph/graph.html"
         title="graphify knowledge graph"
-        className="h-full w-full rounded-2xl border-0 bg-[#0f0f1a] shadow-editorial"
+        className="h-full w-full rounded-2xl border-0 bg-inverse-surface shadow-editorial"
         loading="lazy"
       />
     </section>

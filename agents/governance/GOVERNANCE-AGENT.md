@@ -23,17 +23,7 @@ You do not build features. You do not rewrite code. You review, approve, or reje
 ```bash
 cd /Users/al/Projects AI/Portfolio/portfolio
 
-# 1. TypeScript — zero errors required
-pnpm tsc --noEmit
-
-# 2. ESLint — zero errors required (warnings are OK, errors are not)
-pnpm lint
-
-# 3. Audit script — must exit 0
-node scripts/audit.js
-
-# 4. Build — must succeed
-pnpm build
+pnpm verify
 ```
 
 **If any of these fail → REJECT immediately.** Do not proceed to Phase 2.
@@ -52,6 +42,7 @@ Understand:
 - What the agent claims to have done
 - Which files were created or modified
 - Whether the agent ran the checks themselves
+- Whether the agent produced **visual proof** (screenshots folder) when UI was changed
 
 ---
 
@@ -94,6 +85,7 @@ Read every file listed in the report. Do not trust claims — verify them.
 | Placeholder content marked | `// TODO: replace` comments on all placeholder text |
 | No lorem ipsum | All content is real or clearly marked TODO |
 | All new lib files export typed interfaces | TypeScript types exported alongside data |
+| Visual proof provided (UI changes) | Screenshots exist under `agents/governance/screenshots/[PLAN_ID]/desktop` and `.../mobile` |
 
 #### D. Plan-Specific Checks
 
@@ -117,10 +109,7 @@ Use this exact format:
 **Decision:** APPROVED ✅ | REVISION NEEDED ❌
 
 ## Automated Checks
-- `pnpm tsc --noEmit`: PASS ✅ | FAIL ❌
-- `pnpm lint`: PASS ✅ | FAIL ❌ (N warnings)
-- `node scripts/audit.js`: PASS ✅ | FAIL ❌
-- `pnpm build`: PASS ✅ | FAIL ❌
+- `pnpm verify`: PASS ✅ | FAIL ❌
 
 ## Standards Review
 

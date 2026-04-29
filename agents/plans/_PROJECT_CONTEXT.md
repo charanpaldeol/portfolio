@@ -17,6 +17,28 @@ All file paths in plans are relative to this root.
 - **Testing**: Vitest (unit), Playwright (e2e)
 - **Deployment**: Vercel
 
+## Agent enablers (MCP + automation)
+
+This repo is designed to support **outcome-based verification**. Prefer proof artifacts over code-reading:
+
+- **Fast route sanity**: `pnpm e2e:smoke`
+- **Full verification**: `pnpm verify`
+- **Visual proof**: set `PLAN_ID=PLAN-XX` before `pnpm verify` to capture screenshots to:
+  - `agents/governance/screenshots/PLAN-XX/desktop/*.png`
+  - `agents/governance/screenshots/PLAN-XX/mobile/*.png`
+
+If MCP integrations are available in your environment, use them to remove copy/paste friction:
+- **Browser automation** (UI acceptance): use the browser automation tools to click flows and capture screenshots/videos when Playwright is insufficient.
+- **Knowledge graph**: use the graphify map (`graphify-out/GRAPH_REPORT.md`) as the navigation hub when scoping changes.
+
+## Feature flags (safe merge pattern)
+
+Default to shipping new user-visible changes behind a server-side feature flag unless the plan says otherwise:
+
+- Utility: `lib/feature-flags.ts`
+- Pattern: `if (featureFlag("new-testimonials")) { ... }`
+- Env: `FF_NEW_TESTIMONIALS=1`
+
 ## Critical coding rules (enforced by ESLint + pre-commit)
 
 ### Colors — NEVER use hex values in .tsx/.ts files
@@ -118,10 +140,7 @@ You finish work → Write status report → Governance reviews →
 
 ### Step 1 — Run checks yourself first
 ```bash
-pnpm tsc --noEmit    # must pass with 0 errors
-pnpm lint            # must pass with 0 errors (warnings are OK)
-node scripts/audit.js  # must exit 0 (no violations)
-pnpm build           # must succeed
+pnpm verify
 ```
 Fix any failures before writing your report. Do not report checks as passing if they fail.
 

@@ -187,10 +187,7 @@ This file contains the specific acceptance criteria for each plan. The governanc
 ## Universal checks (apply to ALL plans)
 
 ```
-[ ] pnpm tsc --noEmit: 0 errors
-[ ] pnpm lint: 0 errors (warnings OK)
-[ ] node scripts/audit.js: exit 0
-[ ] pnpm build: success
+[ ] pnpm verify: PASS (tsc + lint + audit + build + e2e)
 [ ] No hex colors in any .tsx file
 [ ] No 1px borders in any new component
 [ ] cn() used for all class construction (not twMerge / template literals)

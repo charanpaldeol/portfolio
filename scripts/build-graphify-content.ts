@@ -52,8 +52,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const portfolioRoot = resolve(__dirname, "..")
-const repoRoot = resolve(portfolioRoot, "..")
-const outDir = resolve(repoRoot, "graphify-content")
+const outDir = resolve(portfolioRoot, "graphify-content")
 mkdirSync(outDir, { recursive: true })
 
 // ── Small markdown helpers ────────────────────────────────────────────────────

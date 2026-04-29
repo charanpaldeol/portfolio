@@ -121,9 +121,7 @@ If the home page has a natural spot (after Blog Teaser or before Footer), add `<
 
 ### Step 8 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:

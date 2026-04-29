@@ -101,6 +101,16 @@ function auditArchitecture() {
       if (!content.includes("from 'zod'") && !content.includes('from "zod"')) {
         addViolation(file, "API route missing Zod validation", "code-architecture-review.md § 1.1", 1)
       }
+
+      // Sentinel: POST routes should validate request bodies via safeParse (not parse)
+      if (content.includes("export async function POST") && !content.includes(".safeParse(")) {
+        addViolation(
+          file,
+          "POST route must validate input with Zod safeParse()",
+          "code-architecture-review.md § 1.1 (sentinel)",
+          1,
+        )
+      }
     }
   }
 

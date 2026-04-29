@@ -72,9 +72,7 @@ In `PortfolioProjectsContent.tsx` (or wherever cards render), update the card to
 
 ### Step 5 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 Fix any errors. Then commit:
 ```

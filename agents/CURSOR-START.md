@@ -1,5 +1,14 @@
 # CURSOR START — Copy-Paste Prompts for Each Plan
 
+## Dev environment: agent-startable
+
+From the `portfolio/` root:
+
+- **Start dev server (agent-friendly)**: `pnpm agent:start`
+- **Ready signal**: the command prints `✅ Agent dev server ready: http://127.0.0.1:3000`
+- **Health URL**: `http://127.0.0.1:3000` (override with `AGENT_HEALTH_URL` if needed)
+- **Timeout**: defaults to 90s (override with `AGENT_START_TIMEOUT_MS`)
+
 ## How to use in Cursor (or any single-agent tool)
 1. Open Cursor Agent / Composer
 2. Set working directory to: `/Users/al/Projects AI/Portfolio/portfolio`
@@ -33,10 +42,7 @@ Follow every step in PLAN-01-case-study-depth.md exactly.
 ── STEP 3: SELF-REVIEW LOOP ──
 After completing the work, run this loop. Repeat until ALL pass:
 
-  a) pnpm tsc --noEmit          → must show 0 errors
-  b) pnpm lint                  → must show 0 errors (warnings OK)
-  c) node scripts/audit.js      → must exit 0
-  d) pnpm build                 → must succeed
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Then check EVERY item in the PLAN-01 checklist AND Universal checks from REVIEW-CHECKLIST.md.
   For each ❌ item: fix it → re-run all 4 commands → re-check all items → repeat.
@@ -82,10 +88,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-02-social-proof.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-02 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat until all pass.
@@ -130,10 +133,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-03-work-with-me.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-03 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat until all pass.
@@ -180,10 +180,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-04-services-page.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-04 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.
@@ -229,10 +226,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-05-ai-workflow-narrative.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-05 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.
@@ -280,10 +274,7 @@ Follow every step in PLAN-06-systems-thinking-visual.md exactly.
 Mirror the const C = { ... } pattern and DiagramFigure wrapper from diagrams.tsx.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0  (grep for any hex in the new SVG file — must be zero)
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-06 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.
@@ -330,10 +321,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-07-email-capture.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-07 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.
@@ -381,10 +369,7 @@ Follow every step in PLAN-08-architecture-cleanup.md exactly.
 This is data-only cleanup — no visual changes, no new pages.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0  (this is the primary success signal for this plan)
-  d) pnpm build                 → success
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-08 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.
@@ -434,10 +419,7 @@ Read these files in full before writing a single line of code:
 Follow every step in PLAN-09-mobile-performance.md exactly.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit                    → 0 errors
-  b) pnpm lint                            → 0 errors
-  c) node scripts/audit.js               → exit 0
-  d) pnpm build                           → success
+  pnpm verify                              → must pass (tsc + lint + audit + build + e2e)
   e) Start dev server and run mobile tests:
      npx playwright test --project="Mobile Chrome" e2e/mobile.spec.ts
 
@@ -491,10 +473,7 @@ Follow every step in PLAN-10-new-articles.md exactly.
 Do NOT modify lib/what-i-bring-cards.ts.
 
 ── STEP 3: SELF-REVIEW LOOP ──
-  a) pnpm tsc --noEmit          → 0 errors
-  b) pnpm lint                  → 0 errors
-  c) node scripts/audit.js      → exit 0
-  d) pnpm build                 → success (must pre-render all 3 new slugs)
+  pnpm verify                   → must pass (tsc + lint + audit + build + e2e)
 
   Check EVERY item in PLAN-10 checklist + Universal checks.
   Fix any ❌ → re-run all 4 → re-check → repeat.

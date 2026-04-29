@@ -115,9 +115,7 @@ Only apply where TypeScript accepts it cleanly — if any `as const` causes type
 
 ### Step 5 — Run audit and verify
 ```bash
-node scripts/audit.js   # must exit 0
-pnpm tsc --noEmit       # must pass
-pnpm lint               # must pass
+pnpm verify
 ```
 
 The audit script specifically checks for hardcoded data in components and hardcoded colors. Both should be clean after this plan.

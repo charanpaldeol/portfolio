@@ -120,9 +120,7 @@ Add a `NavLink` entry for `/work-with-me`. Import the icon from `lucide-react`. 
 
 ### Step 5 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:

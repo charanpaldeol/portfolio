@@ -112,9 +112,7 @@ Style: `text-on-surface-variant text-sm`, centered, `tracking-wide`. Add a `TODO
 
 ### Step 6 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:

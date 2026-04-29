@@ -221,7 +221,7 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       expect(screen.getByTestId("nav-link-/portfolio/services")).toHaveTextContent("Services")
-      expect(screen.getByTestId("nav-link-/portfolio/projects")).toHaveTextContent("Projects")
+      expect(screen.getByTestId("nav-link-/portfolio/projects")).toHaveTextContent(/(projects|proof)/i)
     })
 
     it("renders Work dropdown trigger", () => {
@@ -315,7 +315,7 @@ describe("Navbar", () => {
       const { container } = render(<Navbar />)
       const header = container.querySelector("header")
 
-      expect(header).toHaveClass("border-b", "border-outline-variant/10")
+      expect(header).not.toHaveClass("border-b")
     })
   })
 

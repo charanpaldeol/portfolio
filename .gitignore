@@ -11,3 +11,21 @@ package-lock.json
 .DS_Store
 graphify-out/
 docs/C Deol OH.docx
+
+# Local-only agent settings
+.claude/settings.local.json
+
+# Generated knowledge-graph inputs/outputs (kept out of git)
+graphify-content/
+graphify-visitor/
+graphify-out.inner-backup/
+
+# TypeScript build info (generated)
+tsconfig.tsbuildinfo
+
+# Playwright artifacts
+playwright-report/
+test-results/
+
+# Governance proof artifacts (generated)
+agents/governance/screenshots/

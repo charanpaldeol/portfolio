@@ -106,9 +106,7 @@ Add: `{ href: "/how-i-use-ai", label: "How I Use AI" }` to `ideasLinks`.
 
 ### Step 5 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:

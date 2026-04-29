@@ -38,7 +38,7 @@ Each worker agent must:
 1. Read `/Users/al/Projects AI/Portfolio/portfolio/agents/plans/_PROJECT_CONTEXT.md`
 2. Read its specific plan file
 3. Do the work fully
-4. Run `pnpm tsc --noEmit`, `pnpm lint`, `node scripts/audit.js`, `pnpm build`
+4. Run `pnpm verify`
 5. Write a completion report to `agents/governance/reports/PLAN-[XX]-status.md` using the template at `agents/governance/REPORT-TEMPLATE.md`
 6. Output "GOVERNANCE REVIEW REQUESTED — Plan: PLAN-[XX] — Round: 1"
 7. Wait — do NOT commit anything
@@ -100,7 +100,7 @@ Read your full brief at:
 Review PLAN-[XX]:
 - Worker report: agents/governance/reports/PLAN-[XX]-status.md
 - Acceptance checklist: agents/governance/REVIEW-CHECKLIST.md (find the PLAN-[XX] section)
-- Run: pnpm tsc --noEmit, pnpm lint, node scripts/audit.js, pnpm build
+- Run: pnpm verify
 - Read every file the worker created or modified
 - Write your decision to: agents/governance/reviews/PLAN-[XX]-review.md
 

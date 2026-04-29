@@ -149,9 +149,8 @@ If any `<img>` tags exist that should be `<Image>` from `next/image`, convert th
 
 ### Step 7 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-npx playwright test e2e/mobile.spec.ts  # these should pass
+pnpm verify
+npx playwright test --project=\"Mobile Chrome\" e2e/mobile.spec.ts
 ```
 
 Commit:

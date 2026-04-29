@@ -21,21 +21,20 @@ import { fileURLToPath } from "node:url"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const portfolioRoot = resolve(__dirname, "..")
-const repoRoot = resolve(portfolioRoot, "..")
 
 const sources = [
   {
-    from: resolve(repoRoot, "graphify-visitor/graph.html"),
+    from: resolve(portfolioRoot, "graphify-visitor/graph.html"),
     to: resolve(portfolioRoot, "public/knowledge-graph/graph.html"),
     label: "graph.html",
   },
   {
-    from: resolve(repoRoot, "graphify-visitor/graph.json"),
+    from: resolve(portfolioRoot, "graphify-visitor/graph.json"),
     to: resolve(portfolioRoot, "public/knowledge-graph/graph.json"),
     label: "graph.json",
   },
   {
-    from: resolve(repoRoot, "graphify-visitor/.graphify_labels.json"),
+    from: resolve(portfolioRoot, "graphify-visitor/.graphify_labels.json"),
     to: resolve(portfolioRoot, "public/knowledge-graph/labels.json"),
     label: "labels.json",
   },

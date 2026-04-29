@@ -110,9 +110,7 @@ If the component exceeds 300 lines, split:
 
 ### Step 4 — Verify and commit
 ```bash
-pnpm tsc --noEmit
-pnpm lint
-node scripts/audit.js
+pnpm verify
 ```
 
 Commit:
