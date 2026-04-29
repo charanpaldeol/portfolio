@@ -68,6 +68,12 @@ export default async function EvidencePackAppPage() {
             >
               View questionnaires
             </Link>
+            <Link
+              href="/evidencepack/app/billing"
+              className="inline-flex h-11 items-center justify-center rounded-xl bg-surface px-5 font-sans text-sm font-semibold text-on-surface shadow-editorial ring-1 ring-outline-variant/15 hover:bg-surface-container-low"
+            >
+              Billing
+            </Link>
           </div>
         </section>
       </div>

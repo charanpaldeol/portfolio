@@ -40,6 +40,10 @@ export const env = createEnv({
       .optional()
       .describe("HMAC secret for EvidencePack pilot auth cookies"),
     BLOB_READ_WRITE_TOKEN: z.string().optional(),
+    STRIPE_SECRET_KEY: z.string().optional(),
+    STRIPE_WEBHOOK_SECRET: z.string().optional(),
+    STRIPE_PRICE_ID: z.string().optional(),
+    SITE_URL: z.string().url().optional(),
   },
   client: {},
   runtimeEnv: {
@@ -51,5 +55,9 @@ export const env = createEnv({
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
     EVIDENCEPACK_AUTH_SECRET: process.env.EVIDENCEPACK_AUTH_SECRET,
     BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
+    SITE_URL: process.env.SITE_URL,
   },
 })
