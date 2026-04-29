@@ -1,6 +1,6 @@
 "use client"
 
-import { LayoutGroup, motion } from "framer-motion"
+import { LayoutGroup, motion, useReducedMotion } from "framer-motion"
 import {
   ArrowRight,
   Check,
@@ -19,7 +19,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react"
+import { type ReactNode, useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 import { IO_EDITORIAL_HERO_IMAGE } from "./editorial-assets"
@@ -28,10 +28,22 @@ const SECTION_IDS = ["io-hero", "io-how-it-works", "io-impact", "io-incentives",
 
 type SectionId = (typeof SECTION_IDS)[number]
 
-/** Sections that appear in the sticky sidebar (subset of SECTION_IDS, document order). */
-const SIDEBAR_NAV_IDS = ["io-hero", "io-how-it-works", "io-impact", "io-incentives"] as const
+type NavItem = {
+  id: SectionId
+  label: string
+  href: `#${SectionId}`
+  icon: ReactNode
+}
 
-type SidebarNavId = (typeof SIDEBAR_NAV_IDS)[number]
+const NAV_ITEMS: readonly NavItem[] = [
+  { id: "io-hero", label: "Overview", href: "#io-hero", icon: <Info size={18} /> },
+  { id: "io-how-it-works", label: "How it works", href: "#io-how-it-works", icon: <Network size={18} /> },
+  { id: "io-impact", label: "Cost comparison", href: "#io-impact", icon: <CreditCard size={18} /> },
+  { id: "io-incentives", label: "Earning potential", href: "#io-incentives", icon: <TrendingUp size={18} /> },
+  { id: "io-privacy", label: "Privacy", href: "#io-privacy", icon: <Shield size={18} /> },
+  { id: "io-adoption", label: "Roadmap", href: "#io-adoption", icon: <ArrowRight size={18} /> },
+  { id: "io-join", label: "Join", href: "#io-join", icon: <MessageSquare size={18} /> },
+] as const
 
 function parseHeaderOffsetPx(): number {
   const raw = getComputedStyle(document.documentElement).getPropertyValue("--site-header-offset").trim()
@@ -69,17 +81,6 @@ function computeActiveSectionFromScroll(): SectionId {
   return active
 }
 
-function toSidebarHighlight(scrollActive: SectionId): SidebarNavId {
-  const nav = new Set<string>(SIDEBAR_NAV_IDS)
-  if (nav.has(scrollActive)) return scrollActive as SidebarNavId
-  const idx = SECTION_IDS.indexOf(scrollActive)
-  for (let i = idx; i >= 0; i--) {
-    const id = SECTION_IDS[i]!
-    if (nav.has(id)) return id as SidebarNavId
-  }
-  return "io-hero"
-}
-
 type Props = {
   meshDiagram: ReactNode
   payoffDiagram: ReactNode
@@ -91,11 +92,13 @@ function SidebarLink({
   label,
   href,
   active = false,
+  reducedMotion = false,
 }: {
   icon: ReactNode
   label: string
   href: string
   active?: boolean
+  reducedMotion?: boolean
 }) {
   return (
     <a
@@ -104,15 +107,20 @@ function SidebarLink({
         "group relative flex items-center gap-3 overflow-hidden rounded-2xl px-3 py-2.5 font-sans text-sm transition-colors duration-200",
         active ? "z-[1] font-semibold text-primary" : "font-normal text-on-surface-variant hover:bg-surface-container-low/80 hover:text-on-surface"
       )}
+      aria-current={active ? "location" : undefined}
     >
       {active ? (
-        <motion.span
-          layoutId="io-editorial-nav-pill"
-          className="absolute inset-0 rounded-2xl bg-primary/10 ring-1 ring-primary/15"
-          transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.72 }}
-        />
+        reducedMotion ? (
+          <span className="absolute inset-0 rounded-2xl bg-primary/10 ring-1 ring-primary/15" aria-hidden />
+        ) : (
+          <motion.span
+            layoutId="io-editorial-nav-pill"
+            className="absolute inset-0 rounded-2xl bg-primary/10 ring-1 ring-primary/15"
+            transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.72 }}
+          />
+        )
       ) : null}
-      <span className="relative shrink-0 transition-transform group-hover:scale-110">{icon}</span>
+      <span className={cn("relative shrink-0", !reducedMotion && "transition-transform group-hover:scale-110")}>{icon}</span>
       <span className="relative min-w-0 break-words">{label}</span>
     </a>
   )
@@ -138,9 +146,10 @@ function ComparisonItem({ icon, text }: { icon: ReactNode; text: string }) {
 }
 
 function IncentiveCard({ icon, title, description, bgColor }: { icon: ReactNode; title: string; description: string; bgColor: string }) {
+  const reducedMotion = useReducedMotion() ?? false
   return (
     <motion.div
-      whileHover={{ y: -4 }}
+      whileHover={reducedMotion ? undefined : { y: -4 }}
       className="rounded-2xl bg-surface-container-low p-9 shadow-editorial md:p-10"
     >
       <div className={cn("mb-6 flex h-12 w-12 items-center justify-center rounded-xl", bgColor)}>{icon}</div>
@@ -153,6 +162,7 @@ function IncentiveCard({ icon, title, description, bgColor }: { icon: ReactNode;
 export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDiagram }: Props) {
   const [scrollSectionId, setScrollSectionId] = useState<SectionId>("io-hero")
   const rafRef = useRef<number | null>(null)
+  const reducedMotion = useReducedMotion() ?? false
 
   useEffect(() => {
     const tick = () => {
@@ -177,9 +187,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
     }
   }, [])
 
-  const sidebarActiveId = useMemo(() => toSidebarHighlight(scrollSectionId), [scrollSectionId])
-
-  const isNavActive = (id: SidebarNavId) => sidebarActiveId === id
+  const isNavActive = (id: SectionId) => scrollSectionId === id
 
   return (
     <div className="internet-owned-editorial relative min-w-0 text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -194,11 +202,17 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
               </p>
             </div>
             <LayoutGroup id="io-editorial-sidebar-nav">
-              <nav className="flex flex-col gap-1.5 pb-3">
-                <SidebarLink icon={<Info size={18} />} label="Overview" href="#io-hero" active={isNavActive("io-hero")} />
-                <SidebarLink icon={<Network size={18} />} label="How it works" href="#io-how-it-works" active={isNavActive("io-how-it-works")} />
-                <SidebarLink icon={<CreditCard size={18} />} label="Cost comparison" href="#io-impact" active={isNavActive("io-impact")} />
-                <SidebarLink icon={<TrendingUp size={18} />} label="Earning potential" href="#io-incentives" active={isNavActive("io-incentives")} />
+              <nav className="flex flex-col gap-1.5 pb-3" aria-label="On this page">
+                {NAV_ITEMS.map((item) => (
+                  <SidebarLink
+                    key={item.id}
+                    icon={item.icon}
+                    label={item.label}
+                    href={item.href}
+                    active={isNavActive(item.id)}
+                    reducedMotion={reducedMotion}
+                  />
+                ))}
               </nav>
             </LayoutGroup>
           </aside>
@@ -208,10 +222,32 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
           className="io-editorial-main relative z-0 isolate flex min-w-0 flex-col gap-6 md:gap-8 lg:gap-10"
           aria-label="Internet Owned article"
         >
-        <header
-          id="io-hero"
-          className="relative flex min-h-[min(32rem,72dvh)] scroll-mt-32 flex-col justify-center overflow-hidden rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:min-h-[min(36rem,76dvh)] md:px-12 md:py-28 lg:scroll-mt-36"
-        >
+          <nav className="lg:hidden" aria-label="On this page">
+            <details className="rounded-2xl bg-surface-container-low p-5 shadow-editorial outline outline-1 outline-outline-variant/15 md:p-6">
+              <summary className="cursor-pointer list-none font-sans text-sm font-semibold text-on-surface [&::-webkit-details-marker]:hidden">
+                On this page
+              </summary>
+              <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3">
+                {NAV_ITEMS.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    className={cn(
+                      "rounded-xl bg-surface px-3 py-2 font-sans text-xs font-semibold tracking-wide text-on-surface-variant uppercase",
+                      "ring-1 ring-outline-variant/15 hover:bg-surface-container-high hover:text-on-surface"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </details>
+          </nav>
+
+          <header
+            id="io-hero"
+            className="relative flex min-h-[min(32rem,72dvh)] scroll-mt-32 flex-col justify-center overflow-hidden rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:min-h-[min(36rem,76dvh)] md:px-12 md:py-28 lg:scroll-mt-36"
+          >
           {/* Design photography: full-bleed hero atmosphere (same asset as architecture section) */}
           <Image
             src={IO_EDITORIAL_HERO_IMAGE}
@@ -232,10 +268,10 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
           />
           <div className="pointer-events-none absolute inset-0 z-[1] bg-primary/[0.05] mix-blend-multiply" aria-hidden />
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={reducedMotion ? undefined : { once: true }}
+            transition={reducedMotion ? undefined : { duration: 0.7 }}
             className="relative z-10 w-full max-w-4xl"
           >
             <p className="mb-5 font-sans text-xs font-semibold tracking-[0.22em] text-tertiary uppercase">Community internet</p>
@@ -279,9 +315,9 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
           </div>
           <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-16">
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              initial={reducedMotion ? false : { opacity: 0, scale: 0.98 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, scale: 1 }}
+              viewport={reducedMotion ? undefined : { once: true }}
               className="group relative aspect-video overflow-hidden rounded-2xl bg-surface-container-highest shadow-editorial lg:col-span-7"
             >
               <Image
@@ -385,7 +421,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
                 className="group mt-10 inline-flex items-center font-sans font-semibold text-primary underline-offset-[0.2em] hover:underline"
               >
                 See payoff timeline
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className={cn("ml-2 h-5 w-5", !reducedMotion && "transition-transform group-hover:translate-x-1")} />
               </a>
             </div>
             <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8 lg:col-span-8">
@@ -503,7 +539,10 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
                 href="https://discord.gg/wRJTpGfApZ"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 rounded-lg bg-external-discord px-10 py-5 font-sans text-xl font-semibold text-white shadow-editorial transition hover:bg-external-discord-hover active:scale-[0.98]"
+                className={cn(
+                  "inline-flex items-center gap-3 rounded-lg bg-external-discord px-10 py-5 font-sans text-xl font-semibold text-white shadow-editorial transition hover:bg-external-discord-hover",
+                  !reducedMotion && "active:scale-[0.98]"
+                )}
               >
                 <span>Join Discord community</span>
                 <MessageSquare className="h-6 w-6" />
