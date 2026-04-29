@@ -7,6 +7,8 @@
     "dev:clean": "rm -rf .next && pnpm dev",
     "dev:free3000": "bash -c 'lsof -ti :3000 | xargs kill -9 2>/dev/null || true'",
     "agent:start": "node scripts/agent-start.mjs",
+    "factory:run-once": "tsx scripts/agent-factory/factory-run-once.ts",
+    "factory:loop": "tsx scripts/agent-factory/factory-loop.ts",
     "dev:turbo": "pnpm dev:free3000 && cross-env FORCE_COLOR=1 next dev --turbo -p 3000",
     "build:content": "tsx scripts/build-graphify-content.ts",
     "sync:graph": "node scripts/sync-knowledge-graph.mjs",

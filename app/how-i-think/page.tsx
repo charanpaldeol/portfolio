@@ -5,6 +5,8 @@ import HowIThink from "@/components/home/HowIThink"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 
+export const dynamic = "force-dynamic"
+
 function PageHero() {
   return (
     <EditorialPageHero

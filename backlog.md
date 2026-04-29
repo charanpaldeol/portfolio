@@ -29,3 +29,23 @@
   - [ ] Upload PDF + CSV
   - [ ] Save questionnaire → list → export CSV
   - [ ] Billing page → checkout session creation
+
+## Agent Factory — manual ops checklist (do later)
+
+### Git / CI credentials
+- [ ] Ensure CI (or local) has Git push credentials for `git push -u origin <branch>` used by `pnpm factory:run-once`
+- [ ] Decide branch naming + protection rules for `agent/*` branches in the remote
+
+
+### Factory dashboard (EvidencePack app)
+- [ ] Seed the data files (checked into repo):
+  - [ ] `agents/factory-queue.json`
+  - [ ] `agents/factory-runs.json`
+- [ ] Use the protected UI at `/evidencepack/app/factory` to:
+  - [ ] Add tasks, set `in_progress`, mark `done`
+  - [ ] Append a run log entry (minimal fields)
+- [ ] If you need direct API access (requires EvidencePack auth + access):
+  - [ ] `GET /api/evidencepack/factory/state?limitRuns=25`
+  - [ ] `POST /api/evidencepack/factory/tasks` (title, priority, spec)
+  - [ ] `PATCH /api/evidencepack/factory/tasks/:id/status` (status)
+  - [ ] `POST /api/evidencepack/factory/runs` (item_id, branch, worktree_path, status, ...)
