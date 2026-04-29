@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process"
 import { randomUUID } from "node:crypto"
-import { mkdir, writeFile } from "node:fs/promises"
+import { mkdir, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
@@ -46,15 +46,16 @@ async function writeHeartbeat(args: {
 
 async function runCmd(args: {
   cmd: string
+  argv: string[]
   cwd?: string
   env?: NodeJS.ProcessEnv
   logPath: string
 }) {
-  const { cmd, cwd, env, logPath } = args
+  const { cmd, argv, cwd, env, logPath } = args
   await mkdir(path.dirname(logPath), { recursive: true })
 
   return await new Promise<number>((resolve) => {
-    const child = spawn(cmd, { cwd, env, shell: true })
+    const child = spawn(cmd, argv, { cwd, env, shell: false })
     const prefix = cwd ? `[${cwd}] ` : ""
 
     const write = async (chunk: Buffer) => {
@@ -66,6 +67,16 @@ async function runCmd(args: {
     child.stdout?.on("data", (chunk) => void write(chunk))
     child.stderr?.on("data", (chunk) => void write(chunk))
     child.on("close", (code) => resolve(code ?? 1))
+  })
+}
+
+async function runBash(args: { bashCommand: string; cwd?: string; env?: NodeJS.ProcessEnv; logPath: string }) {
+  return await runCmd({
+    cmd: "bash",
+    argv: ["-lc", args.bashCommand],
+    cwd: args.cwd,
+    env: args.env,
+    logPath: args.logPath,
   })
 }
 
@@ -128,9 +139,9 @@ async function ensureCleanWorktree(args: { branch: string; worktreePath: string;
 
   // If a previous run crashed or was interrupted, the worktree path can remain.
   // Git then refuses to check out the same branch at the same path.
-  await runCmd({ cmd: `git worktree remove --force "${worktreePath}"`, logPath })
-  await runCmd({ cmd: `rm -rf "${worktreePath}"`, logPath })
-  await runCmd({ cmd: `git branch -D "${branch}"`, logPath })
+  await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", worktreePath], logPath })
+  await rm(worktreePath, { recursive: true, force: true })
+  await runCmd({ cmd: "git", argv: ["branch", "-D", branch], logPath })
 }
 
 async function main() {
@@ -187,16 +198,21 @@ async function main() {
   try {
     await ensureCleanWorktree({ branch, worktreePath, logPath })
 
-    const addWorktree = await runCmd({
-      cmd: `git worktree add -B "${branch}" "${worktreePath}"`,
+    const addWorktree = await runCmd({ cmd: "git", argv: ["worktree", "add", "-B", branch, worktreePath], logPath })
+    if (addWorktree !== 0) throw new Error(`git worktree add failed (exit ${addWorktree})`)
+
+    const install = await runCmd({
+      cmd: "pnpm",
+      argv: ["-s", "install", "--frozen-lockfile", "--prefer-offline"],
+      cwd: worktreePath,
       logPath,
     })
-    if (addWorktree !== 0) throw new Error(`git worktree add failed (exit ${addWorktree})`)
+    if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
 
     const maybeCommand = extractCommand(nextItem.spec)
     if (maybeCommand) {
-      const cmdExit = await runCmd({
-        cmd: `bash -lc ${JSON.stringify(maybeCommand)}`,
+      const cmdExit = await runBash({
+        bashCommand: maybeCommand,
         cwd: worktreePath,
         env: { ...process.env, FACTORY_ITEM_ID: nextItem.id },
         logPath,
@@ -206,34 +222,43 @@ async function main() {
       console.log("factory: no spec.command provided; skipping task execution")
     }
 
-    const tsc = await runCmd({ cmd: "pnpm -s tsc", cwd: worktreePath, logPath })
+    const tsc = await runCmd({ cmd: "pnpm", argv: ["-s", "tsc"], cwd: worktreePath, logPath })
     if (tsc !== 0) throw new Error(`pnpm tsc failed (exit ${tsc})`)
 
-    const lint = await runCmd({ cmd: "pnpm -s lint", cwd: worktreePath, logPath })
+    const lint = await runCmd({ cmd: "pnpm", argv: ["-s", "lint"], cwd: worktreePath, logPath })
     if (lint !== 0) throw new Error(`pnpm lint failed (exit ${lint})`)
 
-    const build = await runCmd({ cmd: "pnpm -s build", cwd: worktreePath, logPath })
+    const build = await runCmd({ cmd: "pnpm", argv: ["-s", "build"], cwd: worktreePath, logPath })
     if (build !== 0) throw new Error(`pnpm build failed (exit ${build})`)
 
-    const hasChanges = await runCmd({ cmd: 'test -n "$(git status --porcelain)"', cwd: worktreePath, logPath })
-    if (hasChanges === 0) {
-      await runCmd({ cmd: "git add -A", cwd: worktreePath, logPath })
+    const statusOut = await new Promise<string>((resolve, reject) => {
+      const child = spawn("git", ["status", "--porcelain"], { cwd: worktreePath, shell: false })
+      let out = ""
+      child.stdout?.on("data", (c) => (out += c.toString("utf8")))
+      child.stderr?.on("data", (c) => (out += c.toString("utf8")))
+      child.on("close", (code) => (code === 0 ? resolve(out) : reject(new Error("git status failed"))))
+    })
+
+    const hasChanges = statusOut.trim().length > 0
+    if (hasChanges) {
+      await runCmd({ cmd: "git", argv: ["add", "-A"], cwd: worktreePath, logPath })
       const commit = await runCmd({
-        cmd: `git commit -m ${JSON.stringify(`chore(factory): ${nextItem.id} ${nextItem.title}`)}`,
+        cmd: "git",
+        argv: ["commit", "-m", `chore(factory): ${nextItem.id} ${nextItem.title}`],
         cwd: worktreePath,
         logPath,
       })
       if (commit !== 0) throw new Error(`git commit failed (exit ${commit})`)
 
       const shaOut = await new Promise<string>((resolve, reject) => {
-        const child = spawn("git rev-parse HEAD", { cwd: worktreePath, shell: true })
+        const child = spawn("git", ["rev-parse", "HEAD"], { cwd: worktreePath, shell: false })
         let out = ""
         child.stdout?.on("data", (c) => (out += c.toString("utf8")))
         child.on("close", (code) => (code === 0 ? resolve(out.trim()) : reject(new Error("rev-parse failed"))))
       })
       commitSha = shaOut
 
-      const push = await runCmd({ cmd: `git push -u origin "${branch}"`, cwd: worktreePath, logPath })
+      const push = await runCmd({ cmd: "git", argv: ["push", "-u", "origin", branch], cwd: worktreePath, logPath })
       if (push !== 0) throw new Error(`git push failed (exit ${push})`)
     } else {
       console.log("factory: no changes detected; skipping commit/push")
@@ -280,8 +305,8 @@ async function main() {
       },
     })
 
-    await runCmd({ cmd: `git worktree remove --force "${worktreePath}"`, logPath })
-    await runCmd({ cmd: `rm -rf "${worktreePath}"`, logPath })
+    await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", worktreePath], logPath })
+    await rm(worktreePath, { recursive: true, force: true })
   }
 }
 

@@ -2,17 +2,135 @@
   "version": 1,
   "items": [
     {
-      "id": "MAY08_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 8",
+      "id": "MAY07_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 7",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "in_progress",
+      "priority": 30,
+      "created_at": "2026-04-29T18:18:50.250Z",
+      "updated_at": "2026-04-29T18:21:11.585Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:21:11.585Z"
+    },
+    {
+      "id": "MAY06_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 6",
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
       "status": "queued",
       "priority": 30,
-      "created_at": "2026-04-29T17:58:15.566Z",
-      "updated_at": "2026-04-29T17:58:15.566Z",
+      "created_at": "2026-04-29T18:18:50.251Z",
+      "updated_at": "2026-04-29T18:18:50.251Z",
       "claimed_by": null,
       "claimed_at": null
+    },
+    {
+      "id": "MAY05_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 5",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "queued",
+      "priority": 30,
+      "created_at": "2026-04-29T18:18:50.251Z",
+      "updated_at": "2026-04-29T18:18:50.251Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "MAY04_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 4",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "queued",
+      "priority": 30,
+      "created_at": "2026-04-29T18:18:50.251Z",
+      "updated_at": "2026-04-29T18:18:50.251Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EP_PDF_INGEST_V1",
+      "title": "EvidencePack: PDF ingestion v1 (extract text + store chunks)",
+      "spec": {
+        "definition_of_done": [
+          "Uploading a PDF creates a DB document row and chunks",
+          "Chunks are queryable for drafting/citations",
+          "pnpm tsc/lint/build pass"
+        ]
+      },
+      "status": "done",
+      "priority": 100,
+      "created_at": "2026-04-29T18:12:41.319Z",
+      "updated_at": "2026-04-29T18:13:09.444Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:12:41.619Z"
+    },
+    {
+      "id": "EP_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "definition_of_done": [
+          "Given a saved questionnaire, generate draft answers referencing chunks",
+          "Store citations (doc id + snippet) per question",
+          "Gate UI behind FF_EVIDENCEPACK_DRAFTING=1"
+        ]
+      },
+      "status": "done",
+      "priority": 95,
+      "created_at": "2026-04-29T18:12:41.319Z",
+      "updated_at": "2026-04-29T18:14:38.043Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:14:10.223Z"
+    },
+    {
+      "id": "EP_EVIDENCE_PACK_EXPORT_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "definition_of_done": [
+          "Export a zip containing questionnaire CSV + citation snippets",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "done",
+      "priority": 90,
+      "created_at": "2026-04-29T18:12:41.319Z",
+      "updated_at": "2026-04-29T18:16:08.147Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:15:38.869Z"
+    },
+    {
+      "id": "EP_STRIPE_METRICS_SYNC",
+      "title": "Factory: sync revenue metrics from Stripe (optional)",
+      "spec": {
+        "definition_of_done": [
+          "If Stripe keys exist, compute MRR/ARR and update agents/factory-metrics.json",
+          "Does not fail factory loop when Stripe not configured"
+        ]
+      },
+      "status": "done",
+      "priority": 60,
+      "created_at": "2026-04-29T18:12:41.319Z",
+      "updated_at": "2026-04-29T18:17:49.404Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:17:08.936Z"
+    },
+    {
+      "id": "MAY08_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 8",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "done",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:15.566Z",
+      "updated_at": "2026-04-29T18:19:55.818Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:18:50.671Z"
     },
     {
       "id": "MAY13_DEPLOY_SMOKE",
@@ -72,12 +190,12 @@
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
-      "status": "queued",
+      "status": "done",
       "priority": 30,
       "created_at": "2026-04-29T17:58:04.843Z",
-      "updated_at": "2026-04-29T17:58:04.843Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T18:11:40.480Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T18:11:13.442Z"
     }
   ]
 }
