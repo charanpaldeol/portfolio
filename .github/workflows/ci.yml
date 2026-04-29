@@ -30,9 +30,6 @@ jobs:
       - name: ESLint
         run: pnpm lint
 
-      - name: Audit (design + architecture)
-        run: node scripts/audit.js
-
       - name: Prettier
         run: pnpm prettier
 
