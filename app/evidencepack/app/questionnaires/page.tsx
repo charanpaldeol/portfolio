@@ -3,9 +3,11 @@ import { cookies } from "next/headers"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { getEvidencePackAccess } from "@/lib/evidencepack-access"
 import { getEvidencePackSessionCookieName, verifyEvidencePackToken } from "@/lib/evidencepack-auth"
 
 import { EvidencePackQuestionnairesClient } from "./questionnaires-client"
+import { UpgradeRequiredCard } from "../UpgradeRequiredCard"
 
 export const metadata: Metadata = {
   title: "EvidencePack Questionnaires",
@@ -40,6 +42,9 @@ export default async function EvidencePackQuestionnairesPage() {
     )
   }
 
+  const access = await getEvidencePackAccess(session.email)
+  const allowed = access.invited || access.subscribed
+
   return (
     <PageShell>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
@@ -51,7 +56,7 @@ export default async function EvidencePackQuestionnairesPage() {
           </p>
         </header>
 
-        <EvidencePackQuestionnairesClient />
+        {!allowed ? <UpgradeRequiredCard /> : <EvidencePackQuestionnairesClient />}
       </div>
     </PageShell>
   )

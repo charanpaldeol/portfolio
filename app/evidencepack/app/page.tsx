@@ -3,7 +3,10 @@ import { cookies } from "next/headers"
 import Link from "next/link"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { getEvidencePackAccess } from "@/lib/evidencepack-access"
 import { getEvidencePackSessionCookieName, verifyEvidencePackToken } from "@/lib/evidencepack-auth"
+
+import { UpgradeRequiredCard } from "./UpgradeRequiredCard"
 
 export const metadata: Metadata = {
   title: "EvidencePack App",
@@ -39,6 +42,9 @@ export default async function EvidencePackAppPage() {
     )
   }
 
+  const access = await getEvidencePackAccess(session.email)
+  const allowed = access.invited || access.subscribed
+
   return (
     <PageShell>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
@@ -50,6 +56,8 @@ export default async function EvidencePackAppPage() {
           </p>
         </header>
 
+        {!allowed ? <UpgradeRequiredCard /> : null}
+
         <section className="rounded-2xl bg-surface-container-low p-8 shadow-editorial md:p-10">
           <h2 className="font-sans text-lg font-semibold tracking-normal text-on-surface">Next</h2>
           <p className="mt-2 font-sans text-sm font-normal leading-[1.7] text-on-surface-variant">
@@ -58,12 +66,14 @@ export default async function EvidencePackAppPage() {
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
               href="/evidencepack/app/uploads"
+              aria-disabled={!allowed}
               className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-5 font-sans text-sm font-semibold text-primary-foreground shadow-editorial hover:brightness-[1.02]"
             >
               Upload files
             </Link>
             <Link
               href="/evidencepack/app/questionnaires"
+              aria-disabled={!allowed}
               className="inline-flex h-11 items-center justify-center rounded-xl bg-surface px-5 font-sans text-sm font-semibold text-on-surface shadow-editorial ring-1 ring-outline-variant/15 hover:bg-surface-container-low"
             >
               View questionnaires
