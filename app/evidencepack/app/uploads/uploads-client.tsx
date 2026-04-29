@@ -82,6 +82,7 @@ export function EvidencePackUploadsClient() {
   const [docFile, setDocFile] = useState<File | null>(null)
   const [qFile, setQFile] = useState<File | null>(null)
   const [qPreview, setQPreview] = useState<CsvPreview | null>(null)
+  const [qTitle, setQTitle] = useState("")
   const [state, setState] = useState<UploadState>({ type: "idle" })
 
   const helperText = useMemo(() => {
@@ -111,10 +112,34 @@ export function EvidencePackUploadsClient() {
       await upload("questionnaire", qFile)
       const preview = await previewCsv(qFile)
       setQPreview(preview)
+      setQTitle((prev) => (prev.trim() ? prev : qFile.name.replace(/\.csv$/i, "").slice(0, 120)))
       setState({ type: "success", message: "Questionnaire uploaded. Preview below." })
       setQFile(null)
     } catch (e) {
       setState({ type: "error", message: e instanceof Error ? e.message : "Upload failed" })
+    }
+  }
+
+  async function onSaveQuestionnaire() {
+    if (!qPreview || disabled) return
+    const title = qTitle.trim()
+    if (!title) {
+      setState({ type: "error", message: "Add a title to save this questionnaire." })
+      return
+    }
+
+    setState({ type: "uploading" })
+    try {
+      const res = await fetch("/api/evidencepack/questionnaires/create", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ title, headers: qPreview.headers, rows: qPreview.rows }),
+      })
+      const json: unknown = await res.json().catch(() => null)
+      if (!res.ok) throw new Error(getStringField(json, "error") ?? "Could not save")
+      setState({ type: "success", message: "Saved. View it in Questionnaires." })
+    } catch (e) {
+      setState({ type: "error", message: e instanceof Error ? e.message : "Could not save" })
     }
   }
 
@@ -157,6 +182,7 @@ export function EvidencePackUploadsClient() {
               onChange={(e) => {
                 setQFile(e.target.files?.[0] ?? null)
                 setQPreview(null)
+                setQTitle("")
               }}
               className={cn("font-sans text-sm", disabled && "opacity-60")}
             />
@@ -188,7 +214,35 @@ export function EvidencePackUploadsClient() {
       {qPreview ? (
         <div className="mt-8 overflow-hidden rounded-2xl bg-surface shadow-editorial ring-1 ring-outline-variant/15">
           <div className="bg-surface-container-low px-6 py-4">
-            <h3 className="font-sans text-sm font-semibold text-on-surface">Questionnaire preview (first 50 rows)</h3>
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <h3 className="font-sans text-sm font-semibold text-on-surface">Questionnaire preview (first 50 rows)</h3>
+              <button
+                type="button"
+                onClick={onSaveQuestionnaire}
+                disabled={disabled || !qTitle.trim()}
+                className={cn(
+                  "inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 font-sans text-xs font-semibold text-primary-foreground shadow-editorial",
+                  "hover:brightness-[1.02] disabled:opacity-60"
+                )}
+              >
+                {state.type === "uploading" ? "Saving…" : "Save questionnaire"}
+              </button>
+            </div>
+            <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-[1fr_14rem] md:items-end">
+              <label className="flex min-w-0 flex-col gap-2">
+                <span className="font-sans text-[0.7rem] font-semibold tracking-[0.15em] text-on-surface-variant uppercase">Title</span>
+                <input
+                  value={qTitle}
+                  onChange={(e) => setQTitle(e.target.value)}
+                  disabled={disabled}
+                  className={cn(
+                    "h-10 w-full rounded-xl bg-surface px-4 font-sans text-xs text-on-surface shadow-editorial outline-none",
+                    "ring-1 ring-outline-variant/15 focus:ring-2 focus:ring-primary/30 disabled:opacity-60"
+                  )}
+                />
+              </label>
+              <div className="font-sans text-xs text-on-surface-variant md:text-right">Saved items appear in “View questionnaires”.</div>
+            </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[44rem] border-collapse text-left font-sans text-xs">
