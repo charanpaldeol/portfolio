@@ -18,6 +18,7 @@
 - [ ] Ensure `DATABASE_URL` is set in Vercel env
 - [ ] Run migrations:
   - [ ] `db/evidencepack_waitlist.sql`
+  - [ ] `db/evidencepack_invites.sql`
   - [ ] `db/evidencepack_files.sql`
   - [ ] `db/evidencepack_questionnaires.sql`
   - [ ] `db/evidencepack_billing.sql`
