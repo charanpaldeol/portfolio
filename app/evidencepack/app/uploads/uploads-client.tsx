@@ -10,11 +10,56 @@ type UploadState =
   | { type: "success"; message: string }
   | { type: "error"; message: string }
 
+type CsvPreview = {
+  headers: string[]
+  rows: string[][]
+}
+
 function getStringField(payload: unknown, key: string): string | null {
   if (typeof payload !== "object" || payload === null) return null
   const record = payload as Record<string, unknown>
   const value = record[key]
   return typeof value === "string" ? value : null
+}
+
+function parseCsvLine(line: string) {
+  const out: string[] = []
+  let cur = ""
+  let inQuotes = false
+
+  for (let i = 0; i < line.length; i += 1) {
+    const ch = line[i]
+    if (ch === "\"") {
+      const next = line[i + 1]
+      if (inQuotes && next === "\"") {
+        cur += "\""
+        i += 1
+        continue
+      }
+      inQuotes = !inQuotes
+      continue
+    }
+
+    if (ch === "," && !inQuotes) {
+      out.push(cur)
+      cur = ""
+      continue
+    }
+
+    cur += ch
+  }
+
+  out.push(cur)
+  return out.map((v) => v.trim())
+}
+
+async function previewCsv(file: File): Promise<CsvPreview> {
+  const text = await file.text()
+  const lines = text.split(/\r?\n/).filter((l) => l.trim() !== "")
+  const headerLine = lines[0] ?? ""
+  const headers = parseCsvLine(headerLine)
+  const rows = lines.slice(1, 51).map((line) => parseCsvLine(line))
+  return { headers, rows }
 }
 
 async function upload(kind: "doc" | "questionnaire", file: File) {
@@ -36,6 +81,7 @@ async function upload(kind: "doc" | "questionnaire", file: File) {
 export function EvidencePackUploadsClient() {
   const [docFile, setDocFile] = useState<File | null>(null)
   const [qFile, setQFile] = useState<File | null>(null)
+  const [qPreview, setQPreview] = useState<CsvPreview | null>(null)
   const [state, setState] = useState<UploadState>({ type: "idle" })
 
   const helperText = useMemo(() => {
@@ -63,7 +109,9 @@ export function EvidencePackUploadsClient() {
     setState({ type: "uploading" })
     try {
       await upload("questionnaire", qFile)
-      setState({ type: "success", message: "Questionnaire uploaded." })
+      const preview = await previewCsv(qFile)
+      setQPreview(preview)
+      setState({ type: "success", message: "Questionnaire uploaded. Preview below." })
       setQFile(null)
     } catch (e) {
       setState({ type: "error", message: e instanceof Error ? e.message : "Upload failed" })
@@ -106,7 +154,10 @@ export function EvidencePackUploadsClient() {
               type="file"
               accept=".csv,text/csv"
               disabled={disabled}
-              onChange={(e) => setQFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => {
+                setQFile(e.target.files?.[0] ?? null)
+                setQPreview(null)
+              }}
               className={cn("font-sans text-sm", disabled && "opacity-60")}
             />
             <button
@@ -133,6 +184,38 @@ export function EvidencePackUploadsClient() {
       >
         {helperText}
       </p>
+
+      {qPreview ? (
+        <div className="mt-8 overflow-hidden rounded-2xl bg-surface shadow-editorial ring-1 ring-outline-variant/15">
+          <div className="bg-surface-container-low px-6 py-4">
+            <h3 className="font-sans text-sm font-semibold text-on-surface">Questionnaire preview (first 50 rows)</h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[44rem] border-collapse text-left font-sans text-xs">
+              <thead className="bg-surface-container-low">
+                <tr>
+                  {qPreview.headers.map((h, idx) => (
+                    <th key={`${h}-${idx}`} className="whitespace-nowrap px-4 py-3 font-semibold text-on-surface">
+                      {h || `Column ${idx + 1}`}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {qPreview.rows.map((row, rIdx) => (
+                  <tr key={rIdx} className={cn("text-on-surface-variant", rIdx % 2 === 0 ? "bg-surface" : "bg-surface-container-lowest/60")}>
+                    {qPreview.headers.map((_, cIdx) => (
+                      <td key={cIdx} className="max-w-[20rem] truncate px-4 py-3">
+                        {row[cIdx] ?? ""}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
