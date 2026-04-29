@@ -15,7 +15,7 @@ async function queuedCount() {
 
 async function main() {
   const intervalMs = Number(process.env.FACTORY_INTERVAL_MS ?? String(60_000))
-  const lowWatermark = Number(process.env.FACTORY_QUEUE_LOW_WATERMARK ?? String(2))
+  const lowWatermark = Number(process.env.FACTORY_QUEUE_LOW_WATERMARK ?? String(20))
   const reclaimCooldownMs = Number(process.env.FACTORY_RECLAIM_COOLDOWN_MS ?? String(5 * 60_000))
   let lastReclaimErrorAt = 0
 

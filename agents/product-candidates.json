@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "candidates": [
+    {
+      "id": "evidencepack",
+      "name": "EvidencePack",
+      "seed_id": "evidencepack",
+      "score": {
+        "tam": 7.45,
+        "urgency": 8.6,
+        "competition": 4.85,
+        "founder_fit": 8.3,
+        "build_time": 5.7,
+        "pricing_power": 7.45,
+        "weighted_total": 7.154999999999999,
+        "evidence_hits": 2
+      },
+      "matched_snippet_ids": [
+        "d77a9ef96aa9eb24754f2b3d88a701e0"
+      ]
+    },
+    {
+      "id": "contract_redline_copilot",
+      "name": "Contract redline copilot",
+      "seed_id": "contract_redline_copilot",
+      "score": {
+        "tam": 8.675,
+        "urgency": 7.9,
+        "competition": 3.775,
+        "founder_fit": 5.45,
+        "build_time": 4.55,
+        "pricing_power": 7.675,
+        "weighted_total": 6.532500000000001,
+        "evidence_hits": 3
+      },
+      "matched_snippet_ids": [
+        "f9c3985ff9ebea6516b08fe110ba5416",
+        "6704c8a5fe5e8b0e0db5a4336924868d"
+      ]
+    },
+    {
+      "id": "vendor_risk_portal",
+      "name": "Vendor risk intake portal",
+      "seed_id": "vendor_risk_portal",
+      "score": {
+        "tam": 7,
+        "urgency": 7,
+        "competition": 5,
+        "founder_fit": 6,
+        "build_time": 6,
+        "pricing_power": 6,
+        "weighted_total": 6.25,
+        "evidence_hits": 0
+      },
+      "matched_snippet_ids": []
+    }
+  ],
+  "updated_at": "2026-04-29T21:30:12.839Z"
+}

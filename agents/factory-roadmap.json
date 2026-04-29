@@ -2,189 +2,160 @@
   "version": 1,
   "items": [
     {
-      "id": "EP_PDF_INGEST_V1",
-      "title": "EvidencePack: PDF ingestion v1 (extract text + store chunks)",
-      "priority": 100,
+      "id": "EVIDENCEPACK_R4_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "priority": 1000,
       "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_PRICING_PAGE_V1",
         "definition_of_done": [
-          "Uploading a PDF creates a DB document row and chunks",
-          "Chunks are queryable for drafting/citations",
-          "pnpm tsc/lint/build pass"
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
         ]
       }
     },
     {
-      "id": "EP_DRAFT_WITH_CITATIONS_V1",
+      "id": "EVIDENCEPACK_R4_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "priority": 990,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "priority": 980,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "priority": 970,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "priority": 960,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "priority": 890,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "priority": 880,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_CORE_DRAFT_WITH_CITATIONS_V1",
       "title": "EvidencePack: draft answers with citations v1 (flagged)",
-      "priority": 95,
+      "priority": 870,
       "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_DRAFT_WITH_CITATIONS_V1",
         "definition_of_done": [
-          "Given a saved questionnaire, generate draft answers referencing chunks",
-          "Store citations (doc id + snippet) per question",
-          "Gate UI behind FF_EVIDENCEPACK_DRAFTING=1"
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
         ]
       }
     },
     {
-      "id": "EP_EVIDENCE_PACK_EXPORT_V1",
-      "title": "EvidencePack: evidence pack ZIP export v1",
-      "priority": 90,
+      "id": "EVIDENCEPACK_R4_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "priority": 800,
       "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_EXPORT_CSV_V1",
         "definition_of_done": [
-          "Export a zip containing questionnaire CSV + citation snippets",
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      }
+    },
+    {
+      "id": "EVIDENCEPACK_R4_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "priority": 790,
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
           "Works for a saved questionnaire"
         ]
       }
     },
     {
-      "id": "EP_STRIPE_METRICS_SYNC",
-      "title": "Factory: sync revenue metrics from Stripe (optional)",
-      "priority": 60,
+      "id": "EVIDENCEPACK_R4_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "priority": 700,
       "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_RELIABILITY_EVENT_LOG_V1",
         "definition_of_done": [
-          "If Stripe keys exist, compute MRR/ARR and update agents/factory-metrics.json",
-          "Does not fail factory loop when Stripe not configured"
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
         ]
       }
-    },
-    {
-      "id": "MAY13_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 13",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY12_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 12",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY11_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 11",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY10_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 10",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY09_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 9",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY08_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 8",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY07_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 7",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY06_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 6",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY05_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 5",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY04_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 4",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY03_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 3",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY02_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 2",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY01_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — May 1",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "APR30_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — Apr 30",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "APR29_DEPLOY_SMOKE",
-      "title": "Deploy smoke (cpdeol.com) — Apr 29",
-      "priority": 30,
-      "spec": { "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke" }
-    },
-    {
-      "id": "MAY13_VERIFY_FULL",
-      "title": "Verify full suite (local) — May 13",
-      "priority": 20,
-      "spec": { "command": "pnpm -s verify:full" }
-    },
-    {
-      "id": "MAY09_VERIFY",
-      "title": "Verify (local) — May 9",
-      "priority": 20,
-      "spec": { "command": "pnpm -s verify" }
-    },
-    {
-      "id": "MAY05_VERIFY",
-      "title": "Verify (local) — May 5",
-      "priority": 20,
-      "spec": { "command": "pnpm -s verify" }
-    },
-    {
-      "id": "MAY01_VERIFY",
-      "title": "Verify (local) — May 1",
-      "priority": 20,
-      "spec": { "command": "pnpm -s verify" }
-    },
-    {
-      "id": "APR29_VERIFY",
-      "title": "Verify (local) — Apr 29",
-      "priority": 20,
-      "spec": { "command": "pnpm -s verify" }
-    },
-    {
-      "id": "MAY13_GRAPHIFY_UPDATE",
-      "title": "Update graphify knowledge graph — May 13",
-      "priority": 10,
-      "spec": { "command": "graphify update ." }
-    },
-    {
-      "id": "MAY06_GRAPHIFY_UPDATE",
-      "title": "Update graphify knowledge graph — May 6",
-      "priority": 10,
-      "spec": { "command": "graphify update ." }
-    },
-    {
-      "id": "APR29_GRAPHIFY_UPDATE",
-      "title": "Update graphify knowledge graph — Apr 29",
-      "priority": 10,
-      "spec": { "command": "graphify update ." }
     }
   ]
 }
-

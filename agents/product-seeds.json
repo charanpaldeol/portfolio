@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "evidencepack",
+      "name": "EvidencePack",
+      "keywords": [
+        "security questionnaire",
+        "vendor assessment",
+        "compliance",
+        "SOC 2",
+        "questionnaire",
+        "security review"
+      ],
+      "priors": {
+        "tam": 7,
+        "urgency": 8,
+        "competition": 5,
+        "founder_fit": 8,
+        "build_time": 6,
+        "pricing_power": 7
+      }
+    },
+    {
+      "id": "contract_redline_copilot",
+      "name": "Contract redline copilot",
+      "keywords": [
+        "contract",
+        "redline",
+        "MSA",
+        "legal",
+        "clause",
+        "negotiation"
+      ],
+      "priors": {
+        "tam": 8,
+        "urgency": 7,
+        "competition": 4,
+        "founder_fit": 5,
+        "build_time": 5,
+        "pricing_power": 7
+      }
+    },
+    {
+      "id": "vendor_risk_portal",
+      "name": "Vendor risk intake portal",
+      "keywords": [
+        "vendor risk",
+        "third party",
+        "due diligence",
+        "security review",
+        "questionnaire"
+      ],
+      "priors": {
+        "tam": 7,
+        "urgency": 7,
+        "competition": 5,
+        "founder_fit": 6,
+        "build_time": 6,
+        "pricing_power": 6
+      }
+    }
+  ]
+}

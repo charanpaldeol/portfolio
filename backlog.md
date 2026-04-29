@@ -43,8 +43,8 @@
 - **Key env vars**:
   - **`FACTORY_MAX_RUNS`**: If set, stops after N runs (otherwise runs forever)
   - **`FACTORY_INTERVAL_MS`**: Sleep between runs (default `60000`)
-  - **`FACTORY_QUEUE_LOW_WATERMARK`**: When queued work is below this, the loop calls `factory:plan-next` (default `2`)
-  - **`FACTORY_QUEUE_TARGET_SIZE`**: Planner tries to enqueue up to this many queued items when refilling (default `5`)
+  - **`FACTORY_QUEUE_LOW_WATERMARK`**: When queued work is below this, the loop calls `factory:plan-next` (default `20`)
+  - **`FACTORY_QUEUE_TARGET_SIZE`**: Planner tries to enqueue up to this many queued items when refilling (default `100`)
 
 ### Planner inputs
 - **Roadmap**: `agents/factory-roadmap.json` (curated, deterministic list of tasks)
@@ -75,7 +75,7 @@
 ### Swarm runner (multi-worker)
 - [ ] Start a local swarm (N workers):
   - [ ] `FACTORY_WORKERS=5 pnpm -s factory:swarm`
-  - [ ] Optional tuning: `FACTORY_INTERVAL_MS=60000`, `FACTORY_QUEUE_LOW_WATERMARK=2`, `FACTORY_QUEUE_TARGET_SIZE=5`
+  - [ ] Optional tuning: `FACTORY_INTERVAL_MS=60000`, `FACTORY_QUEUE_LOW_WATERMARK=20`, `FACTORY_QUEUE_TARGET_SIZE=100`
 - [ ] Confirm worker heartbeats appear:
   - [ ] Files written to `agents/factory-logs/heartbeats/<worker_id>.json`
   - [ ] Dashboard shows a “Workers” panel; stale if heartbeat is older than ~15s
@@ -83,3 +83,20 @@
   - [ ] Queue claims use `claimed_by` + `claimed_at` and an on-disk lock file (`agents/factory-queue.json.lock`)
   - [ ] Runs writes are guarded by `agents/factory-runs.json.lock`
   - [ ] If a process dies mid-write, locks auto-break after ~30s (stale lock TTL)
+
+
+## EvidencePack — build roadmap expansions
+
+### EP_REVENUE_PRICING_PAGE_V1 — Revenue loop: pricing page v1 (EvidencePack)
+
+- Priority: 1000
+- Added: 2026-04-29T20:44:29.507Z
+
+**Definition of done**
+- [ ] Pricing page exists with one clear plan and CTA into EvidencePack
+- [ ] CTA leads to login/signup entrypoint
+- [ ] No placeholder links or dead ends
+
+**Implementation notes**
+- [ ] (Agent) Break into smaller PR-sized tasks
+- [ ] (Agent) Identify required env vars / manual setup and record here

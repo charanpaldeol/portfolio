@@ -6,6 +6,11 @@ import process from "node:process"
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, type AgentFactoryQueueItem } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
+function envTruthy(key: string) {
+  const v = (process.env[key] ?? "").trim().toLowerCase()
+  return v === "1" || v === "true" || v === "yes"
+}
+
 type Incident = {
   kind: "worker_error" | "worker_exit"
   worker_id: string
@@ -25,6 +30,9 @@ type State = {
   recent_incident_ended_at: string[]
   last_stabilize_at: string | null
   last_class_heal_at: Record<string, string>
+  last_vercel_deployment_id: string | null
+  last_vercel_checked_at: string | null
+  last_vercel_error_deployment_id: string | null
 }
 
 function parseIsoMs(iso: string | null | undefined) {
@@ -49,6 +57,71 @@ function nowIso() {
 function parseMs(value: string | undefined, fallbackMs: number) {
   const n = Number(value ?? "")
   return Number.isFinite(n) && n >= 0 ? n : fallbackMs
+}
+
+type VercelDeployment = {
+  uid?: unknown
+  url?: unknown
+  state?: unknown
+  target?: unknown
+  createdAt?: unknown
+  gitSource?: unknown
+  meta?: unknown
+}
+
+async function fetchJson(url: string, init: RequestInit) {
+  const res = await fetch(url, init)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  return (await res.json()) as unknown
+}
+
+function getGitRefFromDeployment(d: VercelDeployment) {
+  const gs = d.gitSource
+  if (gs && typeof gs === "object") {
+    const ref = (gs as { ref?: unknown }).ref
+    if (typeof ref === "string") return ref
+  }
+  const meta = d.meta
+  if (meta && typeof meta === "object") {
+    const ref = (meta as { githubCommitRef?: unknown }).githubCommitRef
+    if (typeof ref === "string") return ref
+  }
+  return null
+}
+
+async function readLatestVercelDeployment(args: {
+  token: string
+  projectId: string
+  teamId: string | null
+  gitRef: string
+}) {
+  const qs = new URLSearchParams()
+  qs.set("projectId", args.projectId)
+  qs.set("limit", "10")
+  if (args.teamId) qs.set("teamId", args.teamId)
+
+  const url = `https://api.vercel.com/v6/deployments?${qs.toString()}`
+  const data = await fetchJson(url, { headers: { Authorization: `Bearer ${args.token}` } })
+
+  if (!data || typeof data !== "object") return null
+  const deployments = (data as { deployments?: unknown }).deployments
+  if (!Array.isArray(deployments)) return null
+
+  const match = deployments
+    .filter((d): d is VercelDeployment => !!d && typeof d === "object")
+    .filter((d) => (typeof d.target === "string" ? d.target : null) === "production")
+    .filter((d) => getGitRefFromDeployment(d) === args.gitRef)
+    .sort((a, b) => {
+      const ac = typeof a.createdAt === "number" ? a.createdAt : 0
+      const bc = typeof b.createdAt === "number" ? b.createdAt : 0
+      return bc - ac
+    })[0]
+
+  if (!match) return null
+  const uid = typeof match.uid === "string" ? match.uid : null
+  const state = typeof match.state === "string" ? match.state : null
+  const urlHost = typeof match.url === "string" ? match.url : null
+  return uid && state ? { uid, state, url: urlHost } : null
 }
 
 function safeId(input: string) {
@@ -111,13 +184,6 @@ async function readJson<T>(p: string): Promise<T | null> {
 async function writeJson(p: string, v: unknown) {
   await mkdir(path.dirname(p), { recursive: true })
   await writeFile(p, `${JSON.stringify(v, null, 2)}\n`, "utf8")
-}
-
-async function spawnAndWait(cmd: string, argv: string[], cwd: string) {
-  return await new Promise<number>((resolve) => {
-    const child = spawn(cmd, argv, { cwd, stdio: "inherit", shell: false })
-    child.on("close", (c) => resolve(c ?? 1))
-  })
 }
 
 async function listIncidentFiles(root: string) {
@@ -237,6 +303,20 @@ async function enqueueHealJob(args: {
 
 async function main() {
   const root = process.cwd()
+
+  if (process.env.FACTORY_ISSUE_SWARM_INTERNAL !== "1" && envTruthy("FACTORY_ISSUE_SWARM_NO_WAIT")) {
+    const child = spawn("pnpm", ["-s", "tsx", "scripts/agent-factory/factory-issue-swarm.ts"], {
+      cwd: root,
+      env: { ...process.env, FACTORY_ISSUE_SWARM_INTERNAL: "1" },
+      detached: true,
+      stdio: "inherit",
+      shell: false,
+    })
+    child.unref()
+    console.log("factory:issue-swarm: watcher running in background (FACTORY_ISSUE_SWARM_NO_WAIT=1); launcher exiting")
+    return
+  }
+
   const intervalMs = Number(process.env.FACTORY_ISSUE_SWARM_INTERVAL_MS ?? "5000")
   const statusIntervalMs = Number(process.env.FACTORY_ISSUE_SWARM_STATUS_INTERVAL_MS ?? "60000")
   const healCooldownMs = parseMs(process.env.FACTORY_ISSUE_SWARM_HEAL_COOLDOWN_MS, 10 * 60 * 1000)
@@ -260,12 +340,17 @@ async function main() {
       rawState?.last_class_heal_at && typeof rawState.last_class_heal_at === "object"
         ? (rawState.last_class_heal_at as Record<string, string>)
         : {},
+    last_vercel_deployment_id: typeof rawState?.last_vercel_deployment_id === "string" ? rawState.last_vercel_deployment_id : null,
+    last_vercel_checked_at: typeof rawState?.last_vercel_checked_at === "string" ? rawState.last_vercel_checked_at : null,
+    last_vercel_error_deployment_id:
+      typeof rawState?.last_vercel_error_deployment_id === "string" ? rawState.last_vercel_error_deployment_id : null,
   }
 
   console.log(`factory:issue-swarm: watching incidents (interval=${intervalMs}ms)`)
   console.log(`factory:issue-swarm: queue status checks every ${statusIntervalMs}ms`)
 
   let lastStatusAt = 0
+  let lastVercelAt = 0
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -376,6 +461,50 @@ async function main() {
         )
       } catch (err) {
         console.warn(`factory:issue-swarm: queue status check failed: ${(err as Error).message}`)
+      }
+    }
+
+    const vercelToken = (process.env.VERCEL_TOKEN ?? "").trim()
+    const vercelProjectId = (process.env.VERCEL_PROJECT_ID ?? "").trim()
+    const vercelTeamId = (process.env.VERCEL_TEAM_ID ?? "").trim() || null
+    const vercelGitRef = (process.env.FACTORY_VERCEL_GIT_REF ?? "main").trim()
+    const vercelIntervalMs = parseMs(process.env.FACTORY_ISSUE_SWARM_VERCEL_INTERVAL_MS, 60 * 1000)
+    const deploySmokeUrl = (process.env.FACTORY_DEPLOY_SMOKE_URL ?? "https://cpdeol.com").trim()
+
+    if (vercelToken && vercelProjectId && now - lastVercelAt >= vercelIntervalMs) {
+      lastVercelAt = now
+      try {
+        const latest = await readLatestVercelDeployment({
+          token: vercelToken,
+          projectId: vercelProjectId,
+          teamId: vercelTeamId,
+          gitRef: vercelGitRef,
+        })
+
+        state.last_vercel_checked_at = nowIso()
+        if (latest?.uid) state.last_vercel_deployment_id = latest.uid
+
+        if (latest && latest.state.toUpperCase() === "ERROR") {
+          if (state.last_vercel_error_deployment_id !== latest.uid) {
+            const id = safeId(`VERCEL_DEPLOY_ERROR_${latest.uid}`)
+            const title = `Vercel deployment ERROR for ${vercelGitRef} (${latest.uid})`
+            const spec = {
+              kind: "auto_heal",
+              class_key: "vercel_deploy_error",
+              deployment_id: latest.uid,
+              deployment_url: latest.url,
+              git_ref: vercelGitRef,
+              command: `pnpm -s factory:stabilize && DEPLOY_URL=${JSON.stringify(deploySmokeUrl)} pnpm -s deploy:smoke`,
+            }
+            console.warn(`factory:issue-swarm: vercel deployment ERROR -> enqueuing backlog item (${latest.uid})`)
+            await enqueueHealJob({ root, id, title, priority: 1000, spec, maxQueuedAutoHeal })
+            state.last_vercel_error_deployment_id = latest.uid
+          }
+        }
+
+        await writeJson(statePath, state)
+      } catch (err) {
+        console.warn(`factory:issue-swarm: vercel check failed: ${(err as Error).message}`)
       }
     }
 

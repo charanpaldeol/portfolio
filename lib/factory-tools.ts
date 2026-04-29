@@ -20,13 +20,19 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
   {
     id: "factory-swarm",
     title: "Factory swarm",
-    purpose: "Runs multiple worker loops in parallel for higher throughput.",
+    purpose:
+      "Runs multiple worker loops in parallel for higher throughput, and periodically runs `factory:roadmap:refresh` (market scan → candidates → product select → roadmap generate).",
     howToUse: [
       "Set `FACTORY_WORKERS` to control worker count.",
-      "Use when you have multiple queued tasks and want parallel execution.",
+      "Market refresh: `FACTORY_MARKET_REFRESH_INTERVAL_MS` (default 3600000 = 1h; set 0 to disable).",
+      "First market run delay: `FACTORY_MARKET_REFRESH_STAGGER_MS` (default 10000).",
     ],
     commands: ["FACTORY_WORKERS=5 pnpm factory:swarm"],
-    relatedFiles: ["scripts/agent-factory/factory-swarm.ts", "scripts/agent-factory/factory-loop.ts"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-swarm.ts",
+      "scripts/agent-factory/factory-loop.ts",
+      "scripts/agent-factory/factory-roadmap-refresh.ts",
+    ],
   },
   {
     id: "factory-run-once",
@@ -42,10 +48,16 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
   {
     id: "factory-plan-next",
     title: "Planner: enqueue next work",
-    purpose: "Refills the queue with deterministic next items based on roadmap/maintenance needs.",
+    purpose:
+      "Refills the queue from the roadmap; if no roadmap items remain, runs market research refresh (scan → score → select → generate roadmap) then retries.",
     howToUse: ["Use when the queue is low and you want the factory to enqueue next work."],
     commands: ["pnpm factory:plan-next"],
-    relatedFiles: ["scripts/agent-factory/factory-plan-next.ts", "agents/factory-roadmap.json", "agents/factory-queue.json"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-plan-next.ts",
+      "agents/factory-roadmap.json",
+      "agents/factory-queue.json",
+      "scripts/agent-factory/factory-roadmap-refresh.ts",
+    ],
   },
   {
     id: "factory-reclaim",
@@ -70,6 +82,75 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     howToUse: ["Use to remediate a specific incident JSON from `agents/factory-logs/swarm-incidents/`."],
     commands: ['pnpm factory:maintenance "agents/factory-logs/swarm-incidents/<incident>.json"'],
     relatedFiles: ["scripts/agent-factory/factory-maintenance.ts", "agents/factory-logs/swarm-incidents/"],
+  },
+  {
+    id: "factory-learn-github",
+    title: "Learn from merged PR reviews",
+    purpose: "Pulls high-signal review comments from recently merged PRs into `agents/factory-learnings.json` for later rule/workflow hardening.",
+    howToUse: [
+      "Requires GitHub CLI (`gh`) authenticated for the repo.",
+      "Run on a cadence (weekly) or after major merges.",
+    ],
+    commands: ["pnpm factory:learn-github"],
+    relatedFiles: ["scripts/agent-factory/factory-learn-github.ts", "agents/factory-learnings.json"],
+  },
+  {
+    id: "factory-roadmap-expand",
+    title: "Roadmap expander",
+    purpose: "Turns roadmap items into actionable `backlog.md` entries so the factory can keep shipping incremental planning work.",
+    howToUse: ["Use when you want to expand a roadmap item into a structured backlog entry."],
+    commands: ["pnpm factory:roadmap:expand <ITEM_ID>"],
+    relatedFiles: ["scripts/agent-factory/factory-roadmap-expand.ts", "agents/factory-roadmap.json", "backlog.md"],
+  },
+  {
+    id: "factory-market-scan",
+    title: "Market scan",
+    purpose: "Fetches configured RSS/URL sources and caches citations into `agents/market-evidence.json`.",
+    howToUse: ["Tune sources in `agents/market-sources.json`.", "Optional: `FACTORY_MARKET_FETCH_TIMEOUT_MS`, `FACTORY_MARKET_FETCH_DELAY_MS`."],
+    commands: ["pnpm factory:market:scan"],
+    relatedFiles: ["scripts/agent-factory/factory-market-scan.ts", "agents/market-sources.json", "agents/market-evidence.json"],
+  },
+  {
+    id: "factory-candidates-refresh",
+    title: "Product candidates refresh",
+    purpose: "Scores product seeds against evidence and writes `agents/product-candidates.json`.",
+    howToUse: ["Edit seeds in `agents/product-seeds.json`.", "Requires `agents/market-evidence.json` (or starts empty)."],
+    commands: ["pnpm factory:candidates:refresh"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-candidates-refresh.ts",
+      "agents/product-seeds.json",
+      "agents/product-candidates.json",
+      "lib/agent-factory/market.ts",
+    ],
+  },
+  {
+    id: "factory-product-select",
+    title: "Product selection",
+    purpose: "Picks the top scored candidate and writes `agents/selected-product.json`.",
+    howToUse: ["Run after `pnpm factory:candidates:refresh`."],
+    commands: ["pnpm factory:product:select"],
+    relatedFiles: ["scripts/agent-factory/factory-product-select.ts", "agents/selected-product.json"],
+  },
+  {
+    id: "factory-roadmap-generate",
+    title: "Roadmap generator",
+    purpose: "Builds `agents/factory-roadmap.json` from `agents/selected-product.json` using a revenue-loop-first template.",
+    howToUse: ["Run after `pnpm factory:product:select`."],
+    commands: ["pnpm factory:roadmap:generate"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-roadmap-generate.ts",
+      "agents/selected-product.json",
+      "agents/factory-roadmap.json",
+      "agents/factory-roadmap-meta.json",
+    ],
+  },
+  {
+    id: "factory-roadmap-refresh",
+    title: "Roadmap refresh pipeline",
+    purpose: "Runs market scan → candidates → product select → roadmap generate (best-effort per step).",
+    howToUse: ["Normally invoked by `pnpm factory:plan-next` when the roadmap is exhausted."],
+    commands: ["pnpm factory:roadmap:refresh"],
+    relatedFiles: ["scripts/agent-factory/factory-roadmap-refresh.ts"],
   },
 ]
 

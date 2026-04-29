@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "kind": "rss",
+      "url": "https://news.ycombinator.com/rss",
+      "label": "Hacker News (RSS)"
+    },
+    {
+      "kind": "url",
+      "url": "https://stripe.com/docs",
+      "label": "Stripe docs landing (signal for B2B SaaS)"
+    }
+  ]
+}

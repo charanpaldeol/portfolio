@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "product_id": "evidencepack",
+  "name": "EvidencePack",
+  "icp": "B2B teams buying security/compliance software with recurring procurement cycles (refine after customer interviews).",
+  "pricing_hypothesis": "Usage-based or per-seat monthly subscription with annual option; start with a single paid tier.",
+  "chosen_at": "2026-04-29T21:30:41.866Z",
+  "score": {
+    "tam": 7.45,
+    "urgency": 8.6,
+    "competition": 4.85,
+    "founder_fit": 8.3,
+    "build_time": 5.7,
+    "pricing_power": 7.45,
+    "weighted_total": 7.154999999999999,
+    "evidence_hits": 2
+  },
+  "evidence_snippet_ids": [
+    "d77a9ef96aa9eb24754f2b3d88a701e0"
+  ]
+}
