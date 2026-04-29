@@ -214,7 +214,7 @@ async function main() {
       const cmdExit = await runBash({
         bashCommand: maybeCommand,
         cwd: worktreePath,
-        env: { ...process.env, FACTORY_ITEM_ID: nextItem.id },
+        env: { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: root },
         logPath,
       })
       if (cmdExit !== 0) throw new Error(`spec.command failed (exit ${cmdExit})`)
