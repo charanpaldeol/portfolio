@@ -22,6 +22,17 @@ function nowIso() {
   return new Date().toISOString()
 }
 
+async function readGitOutput(args: { cwd: string; argv: string[] }) {
+  const { cwd, argv } = args
+  return await new Promise<string>((resolve, reject) => {
+    const child = spawn("git", argv, { cwd, shell: false })
+    let out = ""
+    child.stdout?.on("data", (c) => (out += c.toString("utf8")))
+    child.stderr?.on("data", (c) => (out += c.toString("utf8")))
+    child.on("close", (code) => (code === 0 ? resolve(out.trim()) : reject(new Error(`git ${argv.join(" ")} failed`))))
+  })
+}
+
 async function writeHeartbeat(args: {
   root: string
   workerId: string
@@ -140,8 +151,59 @@ async function ensureCleanWorktree(args: { branch: string; worktreePath: string;
   // If a previous run crashed or was interrupted, the worktree path can remain.
   // Git then refuses to check out the same branch at the same path.
   await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", worktreePath], logPath })
-  await rm(worktreePath, { recursive: true, force: true })
+  try {
+    await rm(worktreePath, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 })
+  } catch {
+    await runBash({ bashCommand: `rm -rf "${worktreePath.replaceAll('"', '\\"')}"`, logPath })
+  }
   await runCmd({ cmd: "git", argv: ["branch", "-D", branch], logPath })
+}
+
+async function mergeAndPushToMain(args: {
+  root: string
+  workerId: string
+  branch: string
+  worktreesDir: string
+  logPath: string
+}) {
+  const { root, workerId, branch, worktreesDir, logPath } = args
+  const lockPath = path.join(root, "agents", "factory-merge-main.lock")
+  const mergeWorktreePath = path.join(worktreesDir, "__merge_main")
+  const mergeBranch = "factory-main"
+
+  return await withFileLock({
+    lockPath,
+    workerId,
+    fn: async () => {
+      const fetchMainRoot = await runCmd({ cmd: "git", argv: ["fetch", "origin", "main"], cwd: root, logPath })
+      if (fetchMainRoot !== 0) throw new Error(`git fetch origin main failed (exit ${fetchMainRoot})`)
+
+      await ensureCleanWorktree({ branch: mergeBranch, worktreePath: mergeWorktreePath, logPath })
+
+      const addWorktree = await runCmd({
+        cmd: "git",
+        argv: ["worktree", "add", "-B", mergeBranch, mergeWorktreePath, "origin/main"],
+        logPath,
+      })
+      if (addWorktree !== 0) throw new Error(`git worktree add (merge) failed (exit ${addWorktree})`)
+
+      const fetchBranch = await runCmd({ cmd: "git", argv: ["fetch", "origin", branch], cwd: mergeWorktreePath, logPath })
+      if (fetchBranch !== 0) throw new Error(`git fetch origin ${branch} failed (exit ${fetchBranch})`)
+
+      const merge = await runCmd({ cmd: "git", argv: ["merge", "--no-edit", "--no-ff", `origin/${branch}`], cwd: mergeWorktreePath, logPath })
+      if (merge !== 0) {
+        await runCmd({ cmd: "git", argv: ["merge", "--abort"], cwd: mergeWorktreePath, logPath })
+        throw new Error(`git merge origin/${branch} into main failed (exit ${merge})`)
+      }
+
+      const sha = await readGitOutput({ cwd: mergeWorktreePath, argv: ["rev-parse", "HEAD"] })
+      const pushMain = await runCmd({ cmd: "git", argv: ["push", "origin", `${sha}:main`], cwd: mergeWorktreePath, logPath })
+      if (pushMain !== 0) throw new Error(`git push origin main failed (exit ${pushMain})`)
+
+      await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", mergeWorktreePath], logPath })
+      await rm(mergeWorktreePath, { recursive: true, force: true })
+    },
+  })
 }
 
 async function main() {
@@ -194,6 +256,7 @@ async function main() {
   let finishedStatus: "succeeded" | "failed" = "failed"
   let finishedError: string | null = null
   let commitSha: string | null = null
+  let pushedBranch = false
 
   try {
     await ensureCleanWorktree({ branch, worktreePath, logPath })
@@ -250,22 +313,22 @@ async function main() {
       })
       if (commit !== 0) throw new Error(`git commit failed (exit ${commit})`)
 
-      const shaOut = await new Promise<string>((resolve, reject) => {
-        const child = spawn("git", ["rev-parse", "HEAD"], { cwd: worktreePath, shell: false })
-        let out = ""
-        child.stdout?.on("data", (c) => (out += c.toString("utf8")))
-        child.on("close", (code) => (code === 0 ? resolve(out.trim()) : reject(new Error("rev-parse failed"))))
-      })
-      commitSha = shaOut
+      commitSha = await readGitOutput({ cwd: worktreePath, argv: ["rev-parse", "HEAD"] })
 
       const push = await runCmd({ cmd: "git", argv: ["push", "-u", "origin", branch], cwd: worktreePath, logPath })
       if (push !== 0) throw new Error(`git push failed (exit ${push})`)
+      pushedBranch = true
+
+      await mergeAndPushToMain({ root, workerId, branch, worktreesDir, logPath })
     } else {
       console.log("factory: no changes detected; skipping commit/push")
     }
 
     finishedStatus = "succeeded"
   } catch (err) {
+    if (pushedBranch) {
+      console.error(`factory: branch '${branch}' was pushed but merge-to-main failed; manual intervention may be required`)
+    }
     finishedError = err instanceof Error ? err.message : String(err)
     finishedStatus = "failed"
   } finally {

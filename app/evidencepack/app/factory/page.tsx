@@ -16,6 +16,26 @@ export const metadata: Metadata = {
 }
 
 export default async function EvidencePackFactoryPage() {
+  if (process.env.NODE_ENV !== "production") {
+    const [queue, runs] = await Promise.all([readFactoryQueueFile(), readFactoryRunsFile()])
+
+    return (
+      <PageShell>
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
+          <header className="rounded-2xl bg-surface-container-low p-8 shadow-editorial md:p-10">
+            <p className="font-sans text-xs font-semibold tracking-[0.2em] text-tertiary uppercase">Local</p>
+            <h1 className="font-display mt-4 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">Factory</h1>
+            <p className="mt-4 font-sans text-sm font-normal leading-[1.7] text-on-surface-variant md:text-base md:leading-[1.75]">
+              Running without sign-in on localhost.
+            </p>
+          </header>
+
+          <EvidencePackFactoryClient initialQueue={queue} initialRuns={runs} initialWorkers={[]} />
+        </div>
+      </PageShell>
+    )
+  }
+
   const cookieJar = await cookies()
   const token = cookieJar.get(getEvidencePackSessionCookieName())?.value ?? null
   const session = token ? verifyEvidencePackToken(token) : null

@@ -4,6 +4,10 @@ import { getEvidencePackAccess } from "@/lib/evidencepack-access"
 import { getEvidencePackSessionCookieName, verifyEvidencePackToken } from "@/lib/evidencepack-auth"
 
 export async function requireEvidencePackFactorySession() {
+  if (process.env.NODE_ENV !== "production") {
+    return { ok: true as const, session: { email: "local@localhost", exp: Date.now() + 60_000 } }
+  }
+
   const cookieJar = await cookies()
   const token = cookieJar.get(getEvidencePackSessionCookieName())?.value ?? null
   const session = token ? verifyEvidencePackToken(token) : null
