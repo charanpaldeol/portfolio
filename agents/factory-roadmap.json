@@ -2,11 +2,11 @@
   "version": 1,
   "items": [
     {
-      "id": "EVIDENCEPACK_R4_REVENUE_PRICING_PAGE_V1",
+      "id": "EVIDENCEPACK_R19_REVENUE_PRICING_PAGE_V1",
       "title": "EvidencePack: pricing page v1",
       "priority": 1000,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_PRICING_PAGE_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_REVENUE_PRICING_PAGE_V1",
         "definition_of_done": [
           "Pricing page exists with one clear plan and CTA",
           "CTA leads to login/signup entrypoint",
@@ -15,11 +15,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_REVENUE_AUTH_MAGIC_LINK_V1",
+      "id": "EVIDENCEPACK_R19_REVENUE_AUTH_MAGIC_LINK_V1",
       "title": "EvidencePack: magic-link auth v1",
       "priority": 990,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_AUTH_MAGIC_LINK_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_REVENUE_AUTH_MAGIC_LINK_V1",
         "definition_of_done": [
           "User can request a magic link and establish a session cookie",
           "After login, user is redirected into the app",
@@ -28,11 +28,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_CHECKOUT_V1",
+      "id": "EVIDENCEPACK_R19_REVENUE_STRIPE_CHECKOUT_V1",
       "title": "EvidencePack: Stripe Checkout session creation v1",
       "priority": 980,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_STRIPE_CHECKOUT_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_REVENUE_STRIPE_CHECKOUT_V1",
         "definition_of_done": [
           "Authenticated user can start checkout from inside the app",
           "Checkout success/cancel URLs are correct",
@@ -41,11 +41,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_WEBHOOKS_V1",
+      "id": "EVIDENCEPACK_R19_REVENUE_STRIPE_WEBHOOKS_V1",
       "title": "EvidencePack: Stripe webhooks → subscription record v1",
       "priority": 970,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_STRIPE_WEBHOOKS_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_REVENUE_STRIPE_WEBHOOKS_V1",
         "definition_of_done": [
           "Webhook endpoint verifies signature and records subscription status",
           "DB subscription state updates on relevant Stripe events",
@@ -54,11 +54,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_REVENUE_ACCESS_GATING_V1",
+      "id": "EVIDENCEPACK_R19_REVENUE_ACCESS_GATING_V1",
       "title": "EvidencePack: paid access gating v1",
       "priority": 960,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_REVENUE_ACCESS_GATING_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_REVENUE_ACCESS_GATING_V1",
         "definition_of_done": [
           "App gates paid features behind subscription/invite access",
           "Gating uses a single source of truth for access checks",
@@ -67,11 +67,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_CORE_UPLOAD_PDF_V1",
+      "id": "EVIDENCEPACK_R19_CORE_UPLOAD_PDF_V1",
       "title": "EvidencePack: upload PDF v1 (store file + metadata)",
       "priority": 900,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_UPLOAD_PDF_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_CORE_UPLOAD_PDF_V1",
         "definition_of_done": [
           "Upload PDF stores blob and writes document metadata row",
           "Upload UI shows success + lists recent uploads",
@@ -80,11 +80,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_CORE_PDF_INGEST_PIPELINE_V1",
+      "id": "EVIDENCEPACK_R19_CORE_PDF_INGEST_PIPELINE_V1",
       "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
       "priority": 890,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_PDF_INGEST_PIPELINE_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_CORE_PDF_INGEST_PIPELINE_V1",
         "definition_of_done": [
           "Uploaded PDFs are ingested into chunk rows",
           "Chunks are queryable for drafting and citations",
@@ -93,11 +93,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_CORE_QUESTIONNAIRES_MODEL_V1",
+      "id": "EVIDENCEPACK_R19_CORE_QUESTIONNAIRES_MODEL_V1",
       "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
       "priority": 880,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_QUESTIONNAIRES_MODEL_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_CORE_QUESTIONNAIRES_MODEL_V1",
         "definition_of_done": [
           "Questionnaire entity can be saved and re-opened",
           "List view shows questionnaires for current user",
@@ -106,11 +106,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_CORE_DRAFT_WITH_CITATIONS_V1",
+      "id": "EVIDENCEPACK_R19_CORE_DRAFT_WITH_CITATIONS_V1",
       "title": "EvidencePack: draft answers with citations v1 (flagged)",
       "priority": 870,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_CORE_DRAFT_WITH_CITATIONS_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_CORE_DRAFT_WITH_CITATIONS_V1",
         "definition_of_done": [
           "Draft answers can be generated referencing chunks",
           "Citations are stored per question",
@@ -119,11 +119,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_EXPORT_CSV_V1",
+      "id": "EVIDENCEPACK_R19_EXPORT_CSV_V1",
       "title": "EvidencePack: questionnaire CSV export v1",
       "priority": 800,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_EXPORT_CSV_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_EXPORT_CSV_V1",
         "definition_of_done": [
           "Export CSV for a saved questionnaire",
           "Export includes answers + citation references",
@@ -132,11 +132,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_EXPORT_EVIDENCE_ZIP_V1",
+      "id": "EVIDENCEPACK_R19_EXPORT_EVIDENCE_ZIP_V1",
       "title": "EvidencePack: evidence pack ZIP export v1",
       "priority": 790,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_EXPORT_EVIDENCE_ZIP_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_EXPORT_EVIDENCE_ZIP_V1",
         "definition_of_done": [
           "Export zip contains questionnaire CSV + evidence snippets",
           "Export has a manifest for traceability",
@@ -145,11 +145,11 @@
       }
     },
     {
-      "id": "EVIDENCEPACK_R4_RELIABILITY_EVENT_LOG_V1",
+      "id": "EVIDENCEPACK_R19_RELIABILITY_EVENT_LOG_V1",
       "title": "EvidencePack: event log v1 (minimal audit trail)",
       "priority": 700,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R4_RELIABILITY_EVENT_LOG_V1",
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R19_RELIABILITY_EVENT_LOG_V1",
         "definition_of_done": [
           "Key actions emit events with request id + user identifier",
           "Events are queryable for support/debug",

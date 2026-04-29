@@ -68,6 +68,21 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     relatedFiles: ["scripts/agent-factory/factory-reclaim.ts", "agents/factory-queue.json", "agents/factory-runs.json"],
   },
   {
+    id: "factory-stabilize",
+    title: "Stabilize environment",
+    purpose:
+      "Restores a missing `tsx` shim if needed, runs `factory:reclaim`, then `factory:maintenance` to clear orphan worktrees and run git maintenance.",
+    howToUse: [
+      "Use when `tsx` is missing from `node_modules/.bin` or after worker crashes left the queue in a bad state.",
+    ],
+    commands: ["pnpm factory:stabilize"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-stabilize.ts",
+      "scripts/agent-factory/factory-reclaim.ts",
+      "scripts/agent-factory/factory-maintenance.ts",
+    ],
+  },
+  {
     id: "factory-issue-swarm",
     title: "Issue swarm",
     purpose: "Generates maintenance/ops tasks and injects them into the factory queue for self-healing.",

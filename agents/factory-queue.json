@@ -2,6 +2,2356 @@
   "version": 1,
   "items": [
     {
+      "id": "AUTO_HEAL_CWD_REMOVED_2026_04_29T23_02_20_752Z_SWARM_28_WORK",
+      "title": "Auto-heal: worker cwd removed (2026-04-29T23-02-20-752Z.swarm_28.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "cwd_removed",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T23-02-20-752Z.swarm_28.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_28",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T23:02:20.752Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_28.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-04-29T23:02:21.236Z",
+      "updated_at": "2026-04-29T23:04:10.976Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:03:58.048Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_43_55_405Z_SWARM_47_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-43-55-405Z.swarm_47.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-43-55-405Z.swarm_47.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_47",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:43:55.405Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_47.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:43:58.922Z",
+      "updated_at": "2026-04-29T22:53:36.613Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:52:31.067Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_36_49_387Z_SWARM_34_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-36-49-387Z.swarm_34.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-36-49-387Z.swarm_34.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_34",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:36:49.386Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_34.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:36:52.782Z",
+      "updated_at": "2026-04-29T22:51:53.019Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:51:13.722Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_30_03_590Z_SWARM_18_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-30-03-590Z.swarm_18.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-30-03-590Z.swarm_18.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_18",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:30:03.582Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_18.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:30:06.105Z",
+      "updated_at": "2026-04-29T22:50:47.159Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_27_52_105Z_SWARM_37_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-27-52-105Z.swarm_37.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-27-52-105Z.swarm_37.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_37",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:27:52.104Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_37.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:27:55.737Z",
+      "updated_at": "2026-04-29T22:49:58.964Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_CWD_REMOVED_2026_04_29T22_21_03_229Z_SWARM_07_WORK",
+      "title": "Auto-heal: worker cwd removed (2026-04-29T22-21-03-229Z.swarm_07.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "cwd_removed",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-21-03-229Z.swarm_07.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_07",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:21:03.228Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_07.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-04-29T22:21:03.948Z",
+      "updated_at": "2026-04-29T22:41:59.675Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:41:24.493Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_19_24_117Z_SWARM_48_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-19-24-117Z.swarm_48.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-19-24-117Z.swarm_48.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_48",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:19:24.115Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_48.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:19:28.438Z",
+      "updated_at": "2026-04-29T22:49:21.953Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_16_51_509Z_SWARM_23_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-16-51-509Z.swarm_23.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-16-51-509Z.swarm_23.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_23",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:16:51.509Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_23.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "cancelled",
+      "priority": 900,
+      "created_at": "2026-04-29T22:16:52.585Z",
+      "updated_at": "2026-04-29T22:36:52.782Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_GENERIC_INCIDENT_2026_04_29T22_10_03_351Z_SWARM_29",
+      "title": "Auto-maintenance for incident: 2026-04-29T22-10-03-351Z.swarm_29.worker_exit.json",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "generic_incident",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-10-03-351Z.swarm_29.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_29",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:10:03.341Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_29.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-10-03-351Z.swarm_29.worker_exit.json\""
+      },
+      "status": "cancelled",
+      "priority": 700,
+      "created_at": "2026-04-29T22:10:04.801Z",
+      "updated_at": "2026-04-29T22:30:06.106Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_MISSING_TSX_2026_04_29T22_08_00_353Z_SWARM_05_WORK",
+      "title": "Auto-heal: missing tsx (2026-04-29T22-08-00-353Z.swarm_05.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "missing_tsx",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-08-00-353Z.swarm_05.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_05",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:08:00.344Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_05.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:08:03.265Z",
+      "updated_at": "2026-04-29T22:14:42.519Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:12:19.598Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R16_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R16_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:54.848Z",
+      "updated_at": "2026-04-29T22:13:38.444Z",
+      "claimed_by": "swarm_23",
+      "claimed_at": "2026-04-29T22:12:19.360Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R16_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R16_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:54.848Z",
+      "updated_at": "2026-04-29T22:20:01.430Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:19:51.252Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R16_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R16_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:54.848Z",
+      "updated_at": "2026-04-29T22:27:16.954Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:26:42.978Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R16_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R16_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:54.848Z",
+      "updated_at": "2026-04-29T22:35:00.669Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:34:27.262Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_07_41_390Z_SWARM_14_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-07-41-390Z.swarm_14.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-07-41-390Z.swarm_14.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_14",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:07:41.389Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_14.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "cancelled",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:43.041Z",
+      "updated_at": "2026-04-29T22:27:55.749Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R14_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R14_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:35.551Z",
+      "updated_at": "2026-04-29T22:11:15.763Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R14_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R14_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:35.551Z",
+      "updated_at": "2026-04-29T22:20:41.085Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:18:57.796Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R14_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R14_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:35.551Z",
+      "updated_at": "2026-04-29T22:26:34.730Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:26:23.871Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R14_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R14_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:35.551Z",
+      "updated_at": "2026-04-29T22:34:07.200Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T22:33:43.651Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R14_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R14_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:35.551Z",
+      "updated_at": "2026-04-29T22:41:09.907Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:40:48.003Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:35.409Z",
+      "updated_at": "2026-04-29T22:11:14.056Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R13_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:19:43.177Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T22:17:53.824Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:27:16.087Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:26:23.751Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:33:08.401Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:33:06.217Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:40:40.347Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:39:55.454Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:48:55.113Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:48:13.393Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:59:46.559Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:59:24.768Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T23:08:15.885Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:07:29.575Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T23:17:03.903Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:16:16.434Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T23:25:57.285Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:25:08.070Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T23:34:45.010Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:33:56.715Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R13_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R13_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "queued",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:35.410Z",
+      "updated_at": "2026-04-29T22:07:35.410Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R12_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:10:54.163Z",
+      "claimed_by": "swarm_24",
+      "claimed_at": "2026-04-29T22:10:06.619Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:17:27.528Z",
+      "claimed_by": "swarm_24",
+      "claimed_at": "2026-04-29T22:16:10.548Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:25:31.288Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R12_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:33:08.860Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:32:32.840Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:39:45.281Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:39:21.011Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:47:31.983Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:47:12.593Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:59:27.695Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:58:53.397Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T23:08:15.609Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:07:29.545Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T23:17:04.142Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:16:16.404Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T23:25:57.043Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:25:08.043Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T23:34:45.247Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:33:56.697Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R12_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R12_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "queued",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:35.152Z",
+      "updated_at": "2026-04-29T22:07:35.152Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R11_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:08:58.625Z",
+      "claimed_by": "swarm_24",
+      "claimed_at": "2026-04-29T22:08:06.491Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:17:27.640Z",
+      "claimed_by": "swarm_37",
+      "claimed_at": "2026-04-29T22:16:10.407Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:25:52.435Z",
+      "claimed_by": "swarm_18",
+      "claimed_at": "2026-04-29T22:24:55.739Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:31:46.832Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:31:06.740Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:39:17.401Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:38:36.447Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:46:51.629Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:46:22.743Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:58:08.895Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:57:42.031Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T23:06:03.007Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:05:11.847Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T23:14:50.616Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:14:01.891Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T23:23:43.533Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:22:54.190Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T23:32:32.647Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:31:45.034Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R11_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R11_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "queued",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:35.064Z",
+      "updated_at": "2026-04-29T22:07:35.064Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R10_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:11:29.963Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:07:40.060Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:16:51.188Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T22:16:09.693Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:22:47.643Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R10_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:30:52.957Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R10_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:38:13.762Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:37:50.015Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:46:42.827Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:45:56.965Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:57:27.038Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:57:02.028Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T23:06:02.781Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:05:11.828Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T23:14:50.378Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:14:01.857Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T23:23:43.263Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:22:54.164Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T23:32:32.875Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:31:45.002Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R10_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R10_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "queued",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:35.000Z",
+      "updated_at": "2026-04-29T22:07:35.000Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R9_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:34.821Z",
+      "updated_at": "2026-04-29T22:11:43.896Z",
+      "claimed_by": "swarm_18",
+      "claimed_at": "2026-04-29T22:07:38.826Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:17:31.040Z",
+      "claimed_by": "swarm_24",
+      "claimed_at": "2026-04-29T22:14:51.163Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:22:47.381Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R9_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:30:59.237Z",
+      "claimed_by": "swarm_18",
+      "claimed_at": "2026-04-29T22:29:45.457Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:37:49.266Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:36:46.775Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:45:07.061Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:44:23.549Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T22:56:05.330Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R9_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T23:02:42.070Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:02:21.207Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T23:12:38.035Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:11:51.153Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T23:21:30.495Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:20:42.179Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T23:30:19.597Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:29:33.415Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R9_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R9_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:34.822Z",
+      "updated_at": "2026-04-29T23:39:10.351Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:38:22.109Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:11:41.848Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:07:38.624Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:17:12.226Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:14:28.224Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:25:31.371Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:22:36.784Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:31:00.026Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:29:14.768Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:37:16.693Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:36:46.383Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:44:31.677Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T22:43:42.943Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T22:56:22.409Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:55:33.707Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T23:02:13.760Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:01:49.570Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T23:12:37.711Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:11:51.101Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T23:21:30.736Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:20:42.157Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T23:30:19.383Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:29:33.385Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R8_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R8_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:34.780Z",
+      "updated_at": "2026-04-29T23:39:10.125Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:38:22.088Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:11:45.793Z",
+      "claimed_by": "swarm_48",
+      "claimed_at": "2026-04-29T22:07:38.477Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:14:08.220Z",
+      "claimed_by": "swarm_07",
+      "claimed_at": "2026-04-29T22:12:21.358Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:20:33.656Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R6_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:28:13.360Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R6_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:35:15.689Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R6_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:43:05.478Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:42:36.349Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T22:54:13.727Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:53:47.460Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T23:01:19.847Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T23:01:05.167Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T23:10:27.059Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:09:40.037Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T23:19:17.017Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:18:28.185Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T23:28:09.094Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:27:20.879Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R6_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R6_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:34.200Z",
+      "updated_at": "2026-04-29T23:36:58.397Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:36:09.611Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_REVENUE_PRICING_PAGE_V1",
+      "title": "EvidencePack: pricing page v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_REVENUE_PRICING_PAGE_V1",
+        "definition_of_done": [
+          "Pricing page exists with one clear plan and CTA",
+          "CTA leads to login/signup entrypoint",
+          "No placeholder links or dead ends"
+        ]
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:08:03.017Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R5_REVENUE_AUTH_MAGIC_LINK_V1",
+      "title": "EvidencePack: magic-link auth v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_REVENUE_AUTH_MAGIC_LINK_V1",
+        "definition_of_done": [
+          "User can request a magic link and establish a session cookie",
+          "After login, user is redirected into the app",
+          "Auth failure states are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 990,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:13:25.849Z",
+      "claimed_by": "swarm_37",
+      "claimed_at": "2026-04-29T22:12:20.842Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_REVENUE_STRIPE_CHECKOUT_V1",
+      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_REVENUE_STRIPE_CHECKOUT_V1",
+        "definition_of_done": [
+          "Authenticated user can start checkout from inside the app",
+          "Checkout success/cancel URLs are correct",
+          "No secrets leak to the client"
+        ]
+      },
+      "status": "failed",
+      "priority": 980,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:23:28.064Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T22:20:26.691Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_REVENUE_STRIPE_WEBHOOKS_V1",
+      "title": "EvidencePack: Stripe webhooks → subscription record v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_REVENUE_STRIPE_WEBHOOKS_V1",
+        "definition_of_done": [
+          "Webhook endpoint verifies signature and records subscription status",
+          "DB subscription state updates on relevant Stripe events",
+          "Handles replay/idempotency safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 970,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:28:30.378Z",
+      "claimed_by": "swarm_24",
+      "claimed_at": "2026-04-29T22:27:44.018Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_REVENUE_ACCESS_GATING_V1",
+      "title": "EvidencePack: paid access gating v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_REVENUE_ACCESS_GATING_V1",
+        "definition_of_done": [
+          "App gates paid features behind subscription/invite access",
+          "Gating uses a single source of truth for access checks",
+          "Locked states explain what to do next"
+        ]
+      },
+      "status": "failed",
+      "priority": 960,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:35:16.636Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R5_CORE_UPLOAD_PDF_V1",
+      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_CORE_UPLOAD_PDF_V1",
+        "definition_of_done": [
+          "Upload PDF stores blob and writes document metadata row",
+          "Upload UI shows success + lists recent uploads",
+          "Large file and type errors are handled"
+        ]
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:42:31.764Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T22:42:09.246Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_CORE_PDF_INGEST_PIPELINE_V1",
+      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_CORE_PDF_INGEST_PIPELINE_V1",
+        "definition_of_done": [
+          "Uploaded PDFs are ingested into chunk rows",
+          "Chunks are queryable for drafting and citations",
+          "Ingest can be retried safely"
+        ]
+      },
+      "status": "failed",
+      "priority": 890,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T22:53:38.396Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "EVIDENCEPACK_R5_CORE_QUESTIONNAIRES_MODEL_V1",
+      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_CORE_QUESTIONNAIRES_MODEL_V1",
+        "definition_of_done": [
+          "Questionnaire entity can be saved and re-opened",
+          "List view shows questionnaires for current user",
+          "DB schema + types are defined"
+        ]
+      },
+      "status": "failed",
+      "priority": 880,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T23:00:35.592Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:00:09.122Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_CORE_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_CORE_DRAFT_WITH_CITATIONS_V1",
+        "definition_of_done": [
+          "Draft answers can be generated referencing chunks",
+          "Citations are stored per question",
+          "UI is gated behind a feature flag"
+        ]
+      },
+      "status": "failed",
+      "priority": 870,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T23:10:27.379Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:09:40.011Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_EXPORT_CSV_V1",
+      "title": "EvidencePack: questionnaire CSV export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_EXPORT_CSV_V1",
+        "definition_of_done": [
+          "Export CSV for a saved questionnaire",
+          "Export includes answers + citation references",
+          "Download works from the app UI"
+        ]
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T23:19:17.373Z",
+      "claimed_by": "swarm_26",
+      "claimed_at": "2026-04-29T23:18:28.111Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_EXPORT_EVIDENCE_ZIP_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_EXPORT_EVIDENCE_ZIP_V1",
+        "definition_of_done": [
+          "Export zip contains questionnaire CSV + evidence snippets",
+          "Export has a manifest for traceability",
+          "Works for a saved questionnaire"
+        ]
+      },
+      "status": "failed",
+      "priority": 790,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T23:28:09.442Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:27:20.822Z"
+    },
+    {
+      "id": "EVIDENCEPACK_R5_RELIABILITY_EVENT_LOG_V1",
+      "title": "EvidencePack: event log v1 (minimal audit trail)",
+      "spec": {
+        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R5_RELIABILITY_EVENT_LOG_V1",
+        "definition_of_done": [
+          "Key actions emit events with request id + user identifier",
+          "Events are queryable for support/debug",
+          "No PII leakage beyond what is required"
+        ]
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-04-29T22:07:20.638Z",
+      "updated_at": "2026-04-29T23:36:58.171Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T23:36:09.589Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_04_46_397Z_SWARM_31_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-04-46-397Z.swarm_31.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-04-46-397Z.swarm_31.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_31",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:04:46.396Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_31.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:04:47.030Z",
+      "updated_at": "2026-04-29T22:06:39.851Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_04_32_252Z_SWARM_22_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-04-32-252Z.swarm_22.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-04-32-252Z.swarm_22.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_22",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:04:32.251Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_22.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:04:36.985Z",
+      "updated_at": "2026-04-29T22:06:03.382Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T22:05:45.379Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T22_03_45_525Z_SWARM_41_",
+      "title": "Auto-heal: locked worktree (2026-04-29T22-03-45-525Z.swarm_41.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T22-03-45-525Z.swarm_41.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_41",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T22:03:45.518Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_41.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T22:03:46.601Z",
+      "updated_at": "2026-04-29T22:06:02.504Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T22:05:45.191Z"
+    },
+    {
+      "id": "AUTO_HEAL_MISSING_TSX_2026_04_29T21_56_11_551Z_SWARM_10_WORK",
+      "title": "Auto-heal: missing tsx (2026-04-29T21-56-11-551Z.swarm_10.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "missing_tsx",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-56-11-551Z.swarm_10.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_10",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:56:11.548Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_10.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 1000,
+      "created_at": "2026-04-29T21:56:12.943Z",
+      "updated_at": "2026-04-29T21:57:32.186Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T21:57:16.851Z"
+    },
+    {
+      "id": "AUTO_HEAL_GENERIC_INCIDENT_2026_04_29T21_54_00_318Z_SWARM_50",
+      "title": "Auto-maintenance for incident: 2026-04-29T21-54-00-318Z.swarm_50.worker_exit.json",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "generic_incident",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-54-00-318Z.swarm_50.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_50",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:54:00.303Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_50.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-54-00-318Z.swarm_50.worker_exit.json\""
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-04-29T21:54:01.589Z",
+      "updated_at": "2026-04-29T22:04:39.508Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_NOT_EMPTY_2026_04_29T21_50_16_024Z_SWARM_",
+      "title": "Auto-heal: worktree cleanup failed (2026-04-29T21-50-16-024Z.swarm_30.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_not_empty",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-50-16-024Z.swarm_30.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_30",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:50:16.013Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_30.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-04-29T21:50:19.376Z",
+      "updated_at": "2026-04-29T21:58:48.401Z",
+      "claimed_by": "swarm_28",
+      "claimed_at": "2026-04-29T21:58:35.018Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T21_49_11_544Z_SWARM_32_",
+      "title": "Auto-heal: locked worktree (2026-04-29T21-49-11-544Z.swarm_32.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-49-11-544Z.swarm_32.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_32",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:49:11.544Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_32.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T21:49:13.378Z",
+      "updated_at": "2026-04-29T21:56:10.323Z",
+      "claimed_by": "swarm_22",
+      "claimed_at": "2026-04-29T21:55:41.812Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T21_37_45_739Z_SWARM_19_",
+      "title": "Auto-heal: locked worktree (2026-04-29T21-37-45-739Z.swarm_19.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-37-45-739Z.swarm_19.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_19",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:37:45.736Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_19.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T21:37:48.571Z",
+      "updated_at": "2026-04-29T21:49:11.846Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T21:48:05.659Z"
+    },
+    {
+      "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T21_35_49_775Z_SWARM_11_",
+      "title": "Auto-heal: locked worktree (2026-04-29T21-35-49-775Z.swarm_11.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "worktree_locked",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T21-35-49-775Z.swarm_11.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_11",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T21:35:49.761Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_11.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-04-29T21:35:53.257Z",
+      "updated_at": "2026-04-29T21:49:11.408Z",
+      "claimed_by": "swarm_14",
+      "claimed_at": "2026-04-29T21:48:05.089Z"
+    },
+    {
       "id": "EVIDENCEPACK_R4_REVENUE_PRICING_PAGE_V1",
       "title": "EvidencePack: pricing page v1",
       "spec": {
@@ -15,7 +2365,7 @@
       "status": "failed",
       "priority": 1000,
       "created_at": "2026-04-29T21:31:24.063Z",
-      "updated_at": "2026-04-29T21:35:41.968Z",
+      "updated_at": "2026-04-29T21:35:43.462Z",
       "claimed_by": "swarm_49",
       "claimed_at": "2026-04-29T21:35:04.810Z"
     },
@@ -30,12 +2380,12 @@
           "Auth failure states are handled"
         ]
       },
-      "status": "in_progress",
+      "status": "failed",
       "priority": 990,
       "created_at": "2026-04-29T21:31:24.063Z",
-      "updated_at": "2026-04-29T21:35:05.341Z",
-      "claimed_by": "swarm_23",
-      "claimed_at": "2026-04-29T21:35:05.340Z"
+      "updated_at": "2026-04-29T21:48:38.441Z",
+      "claimed_by": "swarm_49",
+      "claimed_at": "2026-04-29T21:37:35.876Z"
     },
     {
       "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_CHECKOUT_V1",
@@ -48,12 +2398,12 @@
           "No secrets leak to the client"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 980,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:32:09.874Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:39:24.169Z",
+      "claimed_by": "swarm_23",
+      "claimed_at": "2026-04-29T21:38:58.790Z"
     },
     {
       "id": "EVIDENCEPACK_R4_REVENUE_STRIPE_WEBHOOKS_V1",
@@ -66,12 +2416,12 @@
           "Handles replay/idempotency safely"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 970,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:31:24.065Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:41:53.201Z",
+      "claimed_by": "swarm_23",
+      "claimed_at": "2026-04-29T21:41:01.909Z"
     },
     {
       "id": "EVIDENCEPACK_R4_REVENUE_ACCESS_GATING_V1",
@@ -84,10 +2434,10 @@
           "Locked states explain what to do next"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 960,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:31:24.065Z",
+      "updated_at": "2026-04-29T21:44:50.069Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -102,12 +2452,12 @@
           "Large file and type errors are handled"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 900,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:31:24.065Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:46:55.487Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T21:46:33.608Z"
     },
     {
       "id": "EVIDENCEPACK_R4_CORE_PDF_INGEST_PIPELINE_V1",
@@ -120,12 +2470,12 @@
           "Ingest can be retried safely"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 890,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:31:24.065Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:56:57.367Z",
+      "claimed_by": "swarm_23",
+      "claimed_at": "2026-04-29T21:48:05.801Z"
     },
     {
       "id": "EVIDENCEPACK_R4_CORE_QUESTIONNAIRES_MODEL_V1",
@@ -138,10 +2488,10 @@
           "DB schema + types are defined"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 880,
       "created_at": "2026-04-29T21:31:24.065Z",
-      "updated_at": "2026-04-29T21:31:24.065Z",
+      "updated_at": "2026-04-29T22:00:20.955Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -156,10 +2506,10 @@
           "UI is gated behind a feature flag"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 870,
       "created_at": "2026-04-29T21:31:24.077Z",
-      "updated_at": "2026-04-29T21:31:24.077Z",
+      "updated_at": "2026-04-29T21:58:37.003Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -174,10 +2524,10 @@
           "Download works from the app UI"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 800,
       "created_at": "2026-04-29T21:31:24.077Z",
-      "updated_at": "2026-04-29T21:31:24.077Z",
+      "updated_at": "2026-04-29T21:58:20.516Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -192,12 +2542,12 @@
           "Works for a saved questionnaire"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 790,
       "created_at": "2026-04-29T21:31:24.077Z",
-      "updated_at": "2026-04-29T21:31:24.077Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T22:02:01.034Z",
+      "claimed_by": "swarm_23",
+      "claimed_at": "2026-04-29T22:01:20.892Z"
     },
     {
       "id": "EVIDENCEPACK_R4_RELIABILITY_EVENT_LOG_V1",
@@ -210,12 +2560,12 @@
           "No PII leakage beyond what is required"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 700,
       "created_at": "2026-04-29T21:31:24.077Z",
-      "updated_at": "2026-04-29T21:31:24.077Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T22:04:11.224Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T22:03:44.638Z"
     },
     {
       "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T21_30_11_770Z_SWARM_33_",
@@ -233,12 +2583,12 @@
         },
         "command": "pnpm -s factory:stabilize"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 900,
       "created_at": "2026-04-29T21:30:12.475Z",
-      "updated_at": "2026-04-29T21:30:12.475Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T22:03:22.475Z",
+      "claimed_by": "swarm_47",
+      "claimed_at": "2026-04-29T21:46:10.606Z"
     },
     {
       "id": "AUTO_HEAL_WORKTREE_LOCKED_2026_04_29T21_30_04_420Z_SWARM_40_",
@@ -256,12 +2606,12 @@
         },
         "command": "pnpm -s factory:stabilize"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 900,
       "created_at": "2026-04-29T21:30:06.327Z",
-      "updated_at": "2026-04-29T21:30:06.327Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:46:22.711Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T21:46:09.094Z"
     },
     {
       "id": "EVIDENCEPACK_R3_REVENUE_PRICING_PAGE_V1",
@@ -310,10 +2660,10 @@
           "No secrets leak to the client"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 980,
       "created_at": "2026-04-29T21:28:54.657Z",
-      "updated_at": "2026-04-29T21:32:09.874Z",
+      "updated_at": "2026-04-29T21:37:19.834Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -328,12 +2678,12 @@
           "Handles replay/idempotency safely"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 970,
       "created_at": "2026-04-29T21:28:54.657Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:42:07.114Z",
+      "claimed_by": "swarm_34",
+      "claimed_at": "2026-04-29T21:41:01.361Z"
     },
     {
       "id": "EVIDENCEPACK_R3_REVENUE_ACCESS_GATING_V1",
@@ -346,10 +2696,10 @@
           "Locked states explain what to do next"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 960,
       "created_at": "2026-04-29T21:28:54.660Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
+      "updated_at": "2026-04-29T21:43:26.100Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -364,12 +2714,12 @@
           "Large file and type errors are handled"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 900,
       "created_at": "2026-04-29T21:28:54.661Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T21:45:20.863Z",
+      "claimed_by": "swarm_17",
+      "claimed_at": "2026-04-29T21:45:06.341Z"
     },
     {
       "id": "EVIDENCEPACK_R3_CORE_PDF_INGEST_PIPELINE_V1",
@@ -382,12 +2732,12 @@
           "Ingest can be retried safely"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 890,
       "created_at": "2026-04-29T21:28:54.661Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T22:04:18.085Z",
+      "claimed_by": "swarm_29",
+      "claimed_at": "2026-04-29T21:46:35.163Z"
     },
     {
       "id": "EVIDENCEPACK_R3_CORE_QUESTIONNAIRES_MODEL_V1",
@@ -400,10 +2750,10 @@
           "DB schema + types are defined"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 880,
       "created_at": "2026-04-29T21:28:54.661Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
+      "updated_at": "2026-04-29T21:47:03.736Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -418,10 +2768,10 @@
           "UI is gated behind a feature flag"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 870,
       "created_at": "2026-04-29T21:28:54.661Z",
-      "updated_at": "2026-04-29T21:31:27.168Z",
+      "updated_at": "2026-04-29T21:47:08.632Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -436,10 +2786,10 @@
           "Download works from the app UI"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 800,
       "created_at": "2026-04-29T21:28:54.661Z",
-      "updated_at": "2026-04-29T21:28:54.661Z",
+      "updated_at": "2026-04-29T21:58:04.423Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -454,12 +2804,12 @@
           "Works for a saved questionnaire"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 790,
       "created_at": "2026-04-29T21:28:54.662Z",
-      "updated_at": "2026-04-29T21:28:54.662Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T22:01:04.033Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T22:00:57.464Z"
     },
     {
       "id": "EVIDENCEPACK_R3_RELIABILITY_EVENT_LOG_V1",
@@ -472,10 +2822,10 @@
           "No PII leakage beyond what is required"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 700,
       "created_at": "2026-04-29T21:28:54.662Z",
-      "updated_at": "2026-04-29T21:28:54.662Z",
+      "updated_at": "2026-04-29T22:03:45.204Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -493,7 +2843,7 @@
       "status": "failed",
       "priority": 900,
       "created_at": "2026-04-29T21:25:01.449Z",
-      "updated_at": "2026-04-29T21:29:55.708Z",
+      "updated_at": "2026-04-29T21:47:17.453Z",
       "claimed_by": "swarm_40",
       "claimed_at": "2026-04-29T21:29:19.031Z"
     },
@@ -529,7 +2879,7 @@
       "status": "failed",
       "priority": 880,
       "created_at": "2026-04-29T21:25:01.449Z",
-      "updated_at": "2026-04-29T21:30:02.077Z",
+      "updated_at": "2026-04-29T21:47:15.060Z",
       "claimed_by": "swarm_41",
       "claimed_at": "2026-04-29T21:29:21.547Z"
     },
@@ -562,10 +2912,10 @@
           "Download works from the app UI"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 800,
       "created_at": "2026-04-29T21:25:01.449Z",
-      "updated_at": "2026-04-29T21:28:46.977Z",
+      "updated_at": "2026-04-29T21:45:46.964Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -580,10 +2930,10 @@
           "Works for a saved questionnaire"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 790,
       "created_at": "2026-04-29T21:25:01.449Z",
-      "updated_at": "2026-04-29T21:28:46.977Z",
+      "updated_at": "2026-04-29T21:45:46.056Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -598,10 +2948,10 @@
           "No PII leakage beyond what is required"
         ]
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 700,
       "created_at": "2026-04-29T21:25:01.449Z",
-      "updated_at": "2026-04-29T21:28:46.977Z",
+      "updated_at": "2026-04-29T21:45:46.635Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -898,7 +3248,7 @@
       "status": "failed",
       "priority": 1000,
       "created_at": "2026-04-29T21:17:42.820Z",
-      "updated_at": "2026-04-29T21:18:24.209Z",
+      "updated_at": "2026-04-29T21:37:51.244Z",
       "claimed_by": "swarm_10",
       "claimed_at": "2026-04-29T21:18:23.680Z"
     },

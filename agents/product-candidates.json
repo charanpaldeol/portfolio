@@ -24,17 +24,16 @@
       "name": "Contract redline copilot",
       "seed_id": "contract_redline_copilot",
       "score": {
-        "tam": 8.675,
-        "urgency": 7.9,
-        "competition": 3.775,
-        "founder_fit": 5.45,
-        "build_time": 4.55,
-        "pricing_power": 7.675,
-        "weighted_total": 6.532500000000001,
-        "evidence_hits": 3
+        "tam": 8.225,
+        "urgency": 7.3,
+        "competition": 3.925,
+        "founder_fit": 5.15,
+        "build_time": 4.85,
+        "pricing_power": 7.225,
+        "weighted_total": 6.277500000000001,
+        "evidence_hits": 1
       },
       "matched_snippet_ids": [
-        "f9c3985ff9ebea6516b08fe110ba5416",
         "6704c8a5fe5e8b0e0db5a4336924868d"
       ]
     },
@@ -55,5 +54,5 @@
       "matched_snippet_ids": []
     }
   ],
-  "updated_at": "2026-04-29T21:30:12.839Z"
+  "updated_at": "2026-04-29T23:13:56.569Z"
 }
