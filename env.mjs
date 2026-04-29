@@ -39,6 +39,7 @@ export const env = createEnv({
       .min(16)
       .optional()
       .describe("HMAC secret for EvidencePack pilot auth cookies"),
+    BLOB_READ_WRITE_TOKEN: z.string().optional(),
   },
   client: {},
   runtimeEnv: {
@@ -49,5 +50,6 @@ export const env = createEnv({
     RESEND_TO_EMAIL: process.env.RESEND_TO_EMAIL,
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
     EVIDENCEPACK_AUTH_SECRET: process.env.EVIDENCEPACK_AUTH_SECRET,
+    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
   },
 })
