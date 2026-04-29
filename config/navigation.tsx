@@ -26,7 +26,7 @@ export const portfolioNavLinks: NavLink[] = [
   {
     href: '/portfolio/services',
     label: 'Services',
-    description: 'What I offer and how I engage',
+    description: 'How I help',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <rect x="1" y="4.5" width="14" height="9" rx="1.5" />
@@ -37,7 +37,7 @@ export const portfolioNavLinks: NavLink[] = [
   {
     href: '/portfolio/projects',
     label: 'Proof',
-    description: 'Case studies and measurable outcomes',
+    description: 'Case studies & outcomes',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <rect x="1" y="1" width="5.5" height="5.5" rx="1" />
@@ -50,7 +50,7 @@ export const portfolioNavLinks: NavLink[] = [
   {
     href: '/knowledge-graph',
     label: 'Graph',
-    description: 'Persona, projects, and skills as an interactive graph',
+    description: 'Interactive knowledge graph',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <circle cx="4" cy="4" r="1.6" />
@@ -76,13 +76,13 @@ export const workLinks: NavLink[] = [
   {
     href: '/work-with-me',
     label: 'Work with me',
-    description: 'Engagement models, process, and how to start a consulting conversation',
+    description: 'Engagement model and how to start',
     icon: <Handshake className="h-5 w-5" aria-hidden />,
   },
   {
     href: '/what-i-bring',
     label: 'What I do',
-    description: 'Where strategy, systems, and delivery meet',
+    description: 'Strategy, systems, delivery',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M8 1.5v13" />
@@ -94,7 +94,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/how-i-work',
     label: 'How I deliver',
-    description: 'Six-phase operating model from discover to value',
+    description: 'Six-phase model from discovery to value',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M2 8h12" />
@@ -107,7 +107,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/how-i-think',
     label: 'How I think',
-    description: 'Decision principles for ambiguity and trade-offs',
+    description: 'Principles for ambiguity and trade-offs',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M6 14c0-2 4-2 4-4 0-1.25-1-2-2-2s-2 .75-2 2" />
@@ -118,7 +118,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/tools-and-methods',
     label: 'Tools & methods',
-    description: 'Artifacts, frameworks, and platforms I use',
+    description: 'Artifacts and frameworks I use',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M6.5 1.5h3" />
@@ -131,7 +131,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/portfolio/about',
     label: 'About',
-    description: 'Who I am and how I approach problems',
+    description: 'Background and approach',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <circle cx="8" cy="5.5" r="2.5" />
@@ -142,7 +142,7 @@ export const workLinks: NavLink[] = [
   {
     href: '/portfolio/experience',
     label: 'Experience',
-    description: 'Career background and timeline',
+    description: 'Career timeline',
     icon: (
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <circle cx="8" cy="8" r="6.5" />

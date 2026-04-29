@@ -60,7 +60,7 @@ export default function HomeJumpNav() {
       )}
     >
       <p className="px-4 pb-2 font-sans text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase md:px-6">
-        Jump to section. Now viewing: {activeLabel}
+        Now viewing: {activeLabel}
       </p>
       <div className="flex snap-x snap-mandatory gap-1 overflow-x-auto px-4 pb-0.5 md:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {linksWithTargets.map((item) => (

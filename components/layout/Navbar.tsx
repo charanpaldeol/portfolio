@@ -20,7 +20,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 
 export function Navbar() {
   const pathname = usePathname()
-  const isWorkRoute = pathname.startsWith('/portfolio')
+  const isWorkRoute = workLinks.some((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))
   const isIdeasRoute = ideasLinks.some((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))
   const isHomeRoute = pathname === '/'
 
@@ -130,6 +130,7 @@ export function Navbar() {
                   </SheetClose>
                 ))}
 
+                <p className="px-2 pt-1 text-xs font-semibold tracking-widest text-background/50 uppercase">Portfolio</p>
                 {portfolioNavLinks.map((link) => (
                   <SheetClose key={link.href} asChild>
                     <Link href={link.href} className="flex items-center gap-3 rounded-md px-4 py-2 text-base font-medium text-background hover:bg-background/10">

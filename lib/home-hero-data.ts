@@ -21,9 +21,9 @@ export const homeHeroSubhead = {
  * them with inline emphasis around `accent`.
  */
 export const homeHeroBody = {
-  before: "Most product leaders think in features. Most analysts think in requirements. I think in",
+  before: "Most teams think in features or requirements. I think in",
   accent: "systems, outcomes,",
-  after: "and what it actually takes to ship — from discovery through to value realized.",
+  after: "and what it takes to ship — from discovery to value.",
 } as const
 
 export const homeHeroIndustries = ["Finance & Banking", "Insurance", "Tech & SaaS"] as const
