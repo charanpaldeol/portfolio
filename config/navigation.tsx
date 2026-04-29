@@ -1,0 +1,175 @@
+import type { ReactNode } from 'react'
+import { Handshake } from 'lucide-react'
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+export interface NavLink {
+  href: string
+  label: string
+  description: string
+  icon: ReactNode
+}
+
+export interface SimpleNavLink {
+  href: string
+  label: string
+}
+
+// ─── Social URLs ──────────────────────────────────────────────────────────────
+
+export const GITHUB_URL = 'https://github.com/charanpaldeol'
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/cdeol'
+
+// ─── Top-level portfolio links (Navbar, not inside Work dropdown) ─────────────
+
+export const portfolioNavLinks: NavLink[] = [
+  {
+    href: '/portfolio/services',
+    label: 'Services',
+    description: 'How I help',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <rect x="1" y="4.5" width="14" height="9" rx="1.5" />
+        <path d="M5 4.5V3.5A1.5 1.5 0 0 1 6.5 2h3A1.5 1.5 0 0 1 11 3.5v1" />
+      </svg>
+    ),
+  },
+  {
+    href: '/portfolio/projects',
+    label: 'Proof',
+    description: 'Case studies & outcomes',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1" />
+        <rect x="9.5" y="1" width="5.5" height="5.5" rx="1" />
+        <rect x="1" y="9.5" width="5.5" height="5.5" rx="1" />
+        <rect x="9.5" y="9.5" width="5.5" height="5.5" rx="1" />
+      </svg>
+    ),
+  },
+  {
+    href: '/knowledge-graph',
+    label: 'Graph',
+    description: 'Interactive knowledge graph',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <circle cx="4" cy="4" r="1.6" />
+        <circle cx="12" cy="4" r="1.6" />
+        <circle cx="8" cy="12" r="1.6" />
+        <circle cx="3" cy="10.5" r="1.1" />
+        <circle cx="13" cy="10.5" r="1.1" />
+        <path d="M4 5.2V9.4" />
+        <path d="M12 5.2V9.4" />
+        <path d="M5.4 4h5.2" />
+        <path d="M4 10.6l3.2 1.2" />
+        <path d="M12 10.6l-3.2 1.2" />
+      </svg>
+    ),
+  },
+  {
+    href: '/factory',
+    label: 'Factory',
+    description: 'Tools, purpose, and usage',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <path d="M2 13.5V6.5l3 2 3-2 3 2 3-2v7" />
+        <path d="M2 13.5h12" />
+        <path d="M4.5 13.5v-3h2v3" />
+        <path d="M9.5 13.5v-3h2v3" />
+        <path d="M2 6.5V3.5h3l1 1h3l1-1h3v3" />
+      </svg>
+    ),
+  },
+]
+
+// ─── Work links ───────────────────────────────────────────────────────────────
+// Each entry appears in both the desktop dropdown (WorkPanel) and mobile Sheet.
+// Add new pages here — the nav updates automatically.
+
+export const workLinks: NavLink[] = [
+  {
+    href: '/work-with-me',
+    label: 'Work with me',
+    description: 'Engagement model and how to start',
+    icon: <Handshake className="h-5 w-5" aria-hidden />,
+  },
+  {
+    href: '/what-i-bring',
+    label: 'What I do',
+    description: 'Strategy, systems, delivery',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <path d="M8 1.5v13" />
+        <path d="M3 6l5-4.5L13 6" />
+        <path d="M3 10l5 4.5 5-4.5" />
+      </svg>
+    ),
+  },
+  {
+    href: '/how-i-work',
+    label: 'How I deliver',
+    description: 'Six-phase model from discovery to value',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <path d="M2 8h12" />
+        <path d="M10.5 4.5 14 8l-3.5 3.5" />
+        <path d="M2 3.5h6" />
+        <path d="M2 12.5h6" />
+      </svg>
+    ),
+  },
+  {
+    href: '/how-i-think',
+    label: 'How I think',
+    description: 'Principles for ambiguity and trade-offs',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <path d="M6 14c0-2 4-2 4-4 0-1.25-1-2-2-2s-2 .75-2 2" />
+        <path d="M8 2a5 5 0 0 0-3 9.04V12.5c0 .83.67 1.5 1.5 1.5h3c.83 0 1.5-.67 1.5-1.5v-1.46A5 5 0 0 0 8 2Z" />
+      </svg>
+    ),
+  },
+  {
+    href: '/tools-and-methods',
+    label: 'Tools & methods',
+    description: 'Artifacts and frameworks I use',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <path d="M6.5 1.5h3" />
+        <path d="M8 1.5v13" />
+        <path d="M3 5.5h10" />
+        <path d="M3 10.5h10" />
+      </svg>
+    ),
+  },
+  {
+    href: '/portfolio/about',
+    label: 'About',
+    description: 'Background and approach',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <circle cx="8" cy="5.5" r="2.5" />
+        <path d="M2.5 13.5v-.667C2.5 11.26 4.067 10 6 10h4c1.933 0 3.5 1.26 3.5 2.833v.667" />
+      </svg>
+    ),
+  },
+  {
+    href: '/portfolio/experience',
+    label: 'Experience',
+    description: 'Career timeline',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.5" />
+        <path d="M8 4.5V8l2.5 2" />
+      </svg>
+    ),
+  },
+]
+
+// ─── Ideas links ──────────────────────────────────────────────────────────────
+// Append here when new ideas pages are added.
+
+export const ideasLinks: SimpleNavLink[] = [
+  { href: '/internet-owned', label: 'Internet Owned' },
+  { href: '/how-i-use-ai', label: 'How I Use AI' },
+]

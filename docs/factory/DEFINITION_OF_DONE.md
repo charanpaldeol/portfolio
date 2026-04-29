@@ -6,4 +6,5 @@ For any change intended to be merged:
 - If UI changed: screenshots exist under `agents/governance/screenshots/[PLAN_ID]/desktop` and `.../mobile`.
 - Governance checklist items for the plan pass (`agents/governance/REVIEW-CHECKLIST.md`).
 - No frozen files were modified unless explicitly allowed by the prompt.
+- Factory tooling documentation is updated (`lib/factory-tools.ts` + `/factory`).
 
