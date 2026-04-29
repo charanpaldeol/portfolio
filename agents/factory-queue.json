@@ -1,5 +1,83 @@
 {
   "version": 1,
-  "items": []
+  "items": [
+    {
+      "id": "MAY08_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 8",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "queued",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:15.566Z",
+      "updated_at": "2026-04-29T17:58:15.566Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "MAY13_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 13",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "failed",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:04.842Z",
+      "updated_at": "2026-04-29T17:58:17.040Z",
+      "claimed_by": "worker_17423",
+      "claimed_at": "2026-04-29T17:58:09.943Z"
+    },
+    {
+      "id": "MAY12_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 12",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "failed",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:04.843Z",
+      "updated_at": "2026-04-29T17:58:33.186Z",
+      "claimed_by": "worker_19078",
+      "claimed_at": "2026-04-29T17:58:25.275Z"
+    },
+    {
+      "id": "MAY11_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 11",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "failed",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:04.843Z",
+      "updated_at": "2026-04-29T17:59:02.772Z",
+      "claimed_by": "worker_22126",
+      "claimed_at": "2026-04-29T17:58:55.685Z"
+    },
+    {
+      "id": "MAY10_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 10",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "queued",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:04.843Z",
+      "updated_at": "2026-04-29T17:58:04.843Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "MAY09_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 9",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "queued",
+      "priority": 30,
+      "created_at": "2026-04-29T17:58:04.843Z",
+      "updated_at": "2026-04-29T17:58:04.843Z",
+      "claimed_by": null,
+      "claimed_at": null
+    }
+  ]
 }
-
