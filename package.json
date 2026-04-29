@@ -35,6 +35,7 @@
     "verify:full": "pnpm verify && pnpm test --run",
     "extract-rules": "node scripts/extract-rules.mjs",
     "deploy:smoke": "node scripts/deploy-smoke.mjs",
+    "factory:loop": "node scripts/factory-loop.mjs",
     "self-review": "node scripts/self-review.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "npx patch-package -y",
