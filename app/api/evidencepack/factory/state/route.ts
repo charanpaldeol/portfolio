@@ -3,7 +3,9 @@ import { z } from "zod"
 import { readdir, readFile } from "node:fs/promises"
 import path from "node:path"
 
+import { computeGoalProgress, FactoryMetricsSchema } from "@/lib/agent-factory/goals"
 import { readFactoryQueueFile, readFactoryRunsFile } from "@/lib/agent-factory/mutate"
+import { readJsonFile } from "@/lib/agent-factory/storage"
 import { requireEvidencePackFactorySession } from "@/lib/evidencepack-factory-auth"
 
 type WorkerHeartbeat = {
@@ -58,11 +60,21 @@ export async function GET(request: Request) {
 
     const limitRuns = parsed.success ? parsed.data.limitRuns : 15
 
-    const [queue, runs, workers] = await Promise.all([readFactoryQueueFile(), readFactoryRunsFile(), readHeartbeats()])
+    const metricsPath = path.join(process.cwd(), "agents", "factory-metrics.json")
+    const [queue, runs, workers, metrics] = await Promise.all([
+      readFactoryQueueFile(),
+      readFactoryRunsFile(),
+      readHeartbeats(),
+      readJsonFile(metricsPath, FactoryMetricsSchema),
+    ])
     return Response.json({
       queue,
       runs: { ...runs, runs: runs.runs.slice(0, limitRuns) },
       workers,
+      goals: {
+        revenue: computeGoalProgress(metrics),
+        metrics,
+      },
     })
   } catch (err) {
     console.error("EvidencePack factory state API error:", err)

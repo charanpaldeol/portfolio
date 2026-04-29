@@ -45,10 +45,18 @@ type WorkerHeartbeat = {
   updated_at: string
 }
 
+type FactoryGoals = {
+  revenue: {
+    target_arr_usd: number
+    current_arr_usd: number
+    ratio: number
+  }
+}
+
 type State =
-  | { type: "idle"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
-  | { type: "loading"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
-  | { type: "error"; message: string; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
+  | { type: "idle"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[]; goals: FactoryGoals | null }
+  | { type: "loading"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[]; goals: FactoryGoals | null }
+  | { type: "error"; message: string; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[]; goals: FactoryGoals | null }
 
 function getStringField(payload: unknown, key: string): string | null {
   if (typeof payload !== "object" || payload === null) return null
@@ -82,7 +90,13 @@ export function EvidencePackFactoryClient({
   initialRuns: RunsFile
   initialWorkers: WorkerHeartbeat[]
 }) {
-  const [state, setState] = useState<State>({ type: "idle", queue: initialQueue, runs: initialRuns, workers: initialWorkers })
+  const [state, setState] = useState<State>({
+    type: "idle",
+    queue: initialQueue,
+    runs: initialRuns,
+    workers: initialWorkers,
+    goals: null,
+  })
   const [newTitle, setNewTitle] = useState("")
   const [newPriority, setNewPriority] = useState(0)
 
@@ -106,6 +120,7 @@ export function EvidencePackFactoryClient({
       const queue = record["queue"]
       const runs = record["runs"]
       const workers = record["workers"]
+      const goals = record["goals"]
       if (!queue || !runs) throw new Error("Invalid response")
 
       setState({
@@ -113,6 +128,7 @@ export function EvidencePackFactoryClient({
         queue: queue as QueueFile,
         runs: runs as RunsFile,
         workers: Array.isArray(workers) ? (workers as WorkerHeartbeat[]) : [],
+        goals: goals && typeof goals === "object" ? (goals as FactoryGoals) : null,
       })
     } catch (e) {
       setState((s) => ({
@@ -121,6 +137,7 @@ export function EvidencePackFactoryClient({
         queue: s.queue,
         runs: s.runs,
         workers: s.workers,
+        goals: s.goals,
       }))
     }
   }, [])
@@ -160,6 +177,7 @@ export function EvidencePackFactoryClient({
         queue: s.queue,
         runs: s.runs,
         workers: s.workers,
+        goals: s.goals,
       }))
     }
   }
@@ -181,6 +199,7 @@ export function EvidencePackFactoryClient({
         queue: s.queue,
         runs: s.runs,
         workers: s.workers,
+        goals: s.goals,
       }))
     }
   }
@@ -218,6 +237,7 @@ export function EvidencePackFactoryClient({
         queue: s.queue,
         runs: s.runs,
         workers: s.workers,
+        goals: s.goals,
       }))
     }
   }
@@ -274,6 +294,20 @@ export function EvidencePackFactoryClient({
             <p className="mt-2 font-display text-3xl font-bold text-on-surface">{counts.done}</p>
           </div>
         </div>
+
+        {state.goals?.revenue ? (
+          <div className="mt-6 rounded-2xl bg-surface p-6 shadow-editorial ring-1 ring-outline-variant/15">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="font-sans text-sm font-semibold text-on-surface">Revenue goal</h3>
+              <p className="font-mono text-xs text-on-surface-variant">
+                ${state.goals.revenue.current_arr_usd.toLocaleString()} / ${state.goals.revenue.target_arr_usd.toLocaleString()} ARR
+              </p>
+            </div>
+            <p className="mt-2 font-sans text-xs text-on-surface-variant">
+              Progress: {Math.round(state.goals.revenue.ratio * 100)}%
+            </p>
+          </div>
+        ) : null}
 
         <div className="mt-6 rounded-2xl bg-surface p-6 shadow-editorial ring-1 ring-outline-variant/15">
           <div className="flex items-center justify-between gap-4">

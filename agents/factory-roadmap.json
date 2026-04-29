@@ -2,6 +2,52 @@
   "version": 1,
   "items": [
     {
+      "id": "EP_PDF_INGEST_V1",
+      "title": "EvidencePack: PDF ingestion v1 (extract text + store chunks)",
+      "priority": 100,
+      "spec": {
+        "definition_of_done": [
+          "Uploading a PDF creates a DB document row and chunks",
+          "Chunks are queryable for drafting/citations",
+          "pnpm tsc/lint/build pass"
+        ]
+      }
+    },
+    {
+      "id": "EP_DRAFT_WITH_CITATIONS_V1",
+      "title": "EvidencePack: draft answers with citations v1 (flagged)",
+      "priority": 95,
+      "spec": {
+        "definition_of_done": [
+          "Given a saved questionnaire, generate draft answers referencing chunks",
+          "Store citations (doc id + snippet) per question",
+          "Gate UI behind FF_EVIDENCEPACK_DRAFTING=1"
+        ]
+      }
+    },
+    {
+      "id": "EP_EVIDENCE_PACK_EXPORT_V1",
+      "title": "EvidencePack: evidence pack ZIP export v1",
+      "priority": 90,
+      "spec": {
+        "definition_of_done": [
+          "Export a zip containing questionnaire CSV + citation snippets",
+          "Works for a saved questionnaire"
+        ]
+      }
+    },
+    {
+      "id": "EP_STRIPE_METRICS_SYNC",
+      "title": "Factory: sync revenue metrics from Stripe (optional)",
+      "priority": 60,
+      "spec": {
+        "definition_of_done": [
+          "If Stripe keys exist, compute MRR/ARR and update agents/factory-metrics.json",
+          "Does not fail factory loop when Stripe not configured"
+        ]
+      }
+    },
+    {
       "id": "MAY13_DEPLOY_SMOKE",
       "title": "Deploy smoke (cpdeol.com) — May 13",
       "priority": 30,

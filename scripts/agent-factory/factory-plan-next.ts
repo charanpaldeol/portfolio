@@ -6,6 +6,7 @@ import { z } from "zod"
 
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, type AgentFactoryQueueItem } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
+import { FactoryMetricsSchema, computeGoalProgress } from "@/lib/agent-factory/goals"
 
 const RoadmapItemSchema = z.object({
   id: z.string().min(1),
@@ -53,10 +54,19 @@ async function main() {
   const queuePath = path.join(root, "agents", "factory-queue.json")
   const roadmapPath = path.join(root, "agents", "factory-roadmap.json")
   const backlogPath = path.join(root, "backlog.md")
+  const goalPath = path.join(root, "agents", "FACTORY_GOAL.md")
+  const metricsPath = path.join(root, "agents", "factory-metrics.json")
   const workerId = (process.env.FACTORY_WORKER_ID ?? "").trim() || `planner_${process.pid}`
 
   const roadmap = RoadmapSchema.parse(await readJson(roadmapPath))
   await readFile(backlogPath, "utf8")
+  await readFile(goalPath, "utf8")
+  const metrics = FactoryMetricsSchema.parse(await readJson(metricsPath))
+  const progress = computeGoalProgress(metrics)
+  if (progress.ratio >= 1) {
+    console.log(`factory: plan-next: goal achieved (ARR ${progress.current_arr_usd} / ${progress.target_arr_usd}) — not enqueuing`)
+    return
+  }
 
   const targetSize = Number(process.env.FACTORY_QUEUE_TARGET_SIZE ?? String(5))
 
@@ -80,7 +90,11 @@ async function main() {
         return existing.status === "cancelled"
       })
 
-      const toEnqueue = candidates.slice(0, capacity).map(toQueueItem)
+      const revenueFirst = candidates
+        .slice()
+        .sort((a, b) => b.priority - a.priority)
+        .slice(0, capacity)
+      const toEnqueue = revenueFirst.map(toQueueItem)
       if (!toEnqueue.length) {
         console.log("factory: plan-next: no roadmap items to enqueue")
         return
