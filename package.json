@@ -14,6 +14,7 @@
     "factory:swarm": "tsx scripts/agent-factory/factory-swarm.ts",
     "factory:issue-swarm": "tsx scripts/agent-factory/factory-issue-swarm.ts",
     "factory:maintenance": "tsx scripts/agent-factory/factory-maintenance.ts",
+    "factory:stabilize": "tsx scripts/agent-factory/factory-stabilize.ts",
     "factory:legacy-loop": "node scripts/factory-loop.mjs",
     "dev:turbo": "pnpm dev:free3000 && cross-env FORCE_COLOR=1 next dev --turbo -p 3000",
     "build:content": "tsx scripts/build-graphify-content.ts",

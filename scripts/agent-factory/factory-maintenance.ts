@@ -1,10 +1,33 @@
 import { spawn } from "node:child_process"
-import { readdir, rm } from "node:fs/promises"
+import { readFile, readdir, rm } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
 function nowIso() {
   return new Date().toISOString()
+}
+
+type IncidentPayload = {
+  kind?: unknown
+  worker_id?: unknown
+  exit_code?: unknown
+  ended_at?: unknown
+  error?: unknown
+  log_path?: unknown
+}
+
+type IncidentFile = {
+  kind?: unknown
+  worker_id?: unknown
+  pid?: unknown
+  started_at?: unknown
+  ended_at?: unknown
+  exit_code?: unknown
+  signal?: unknown
+  error?: unknown
+  log_path?: unknown
+  incident?: IncidentPayload | null
+  spec?: { incident?: IncidentPayload | null } | null
 }
 
 async function spawnCapture(cmd: string, argv: string[], cwd: string) {
@@ -32,6 +55,47 @@ async function resolveRepoRoot(startCwd: string) {
   const top = await spawnCapture("git", ["rev-parse", "--show-toplevel"], startCwd)
   if (top.code !== 0) throw new Error(`factory:maintenance: failed to resolve repo root (git rev-parse exit ${top.code})`)
   return top.stdout.trim()
+}
+
+function extractIncidentFromFile(parsed: IncidentFile): IncidentPayload | null {
+  if (parsed && typeof parsed === "object") {
+    const direct = parsed.incident
+    if (direct && typeof direct === "object") return direct
+    const nested = parsed.spec?.incident
+    if (nested && typeof nested === "object") return nested
+    // Some incident files store the incident payload at top-level.
+    return parsed as IncidentPayload
+  }
+  return null
+}
+
+async function maybeRemediateMissingTsx(args: { root: string; incidentPath: string }) {
+  const { root, incidentPath } = args
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(await readFile(incidentPath, "utf8")) as unknown
+  } catch {
+    return
+  }
+  if (!parsed || typeof parsed !== "object") return
+
+  const incident = extractIncidentFromFile(parsed as IncidentFile)
+  const logPathRaw = incident?.log_path
+  const logPath = typeof logPathRaw === "string" ? logPathRaw : null
+  if (!logPath) return
+
+  let logText = ""
+  try {
+    logText = await readFile(logPath, "utf8")
+  } catch {
+    return
+  }
+
+  if (!/tsx:\s*command\s+not\s+found/i.test(logText)) return
+
+  console.warn("factory:maintenance: detected missing tsx -> running pnpm install --frozen-lockfile")
+  const code = await spawnInherit("pnpm", ["-s", "install", "--frozen-lockfile", "--prefer-offline"], root)
+  if (code !== 0) throw new Error(`factory:maintenance: pnpm install failed (exit ${code})`)
 }
 
 function parseWorktreeListPorcelain(stdout: string) {
@@ -66,7 +130,13 @@ async function cleanOrphanWorktreeDirs(root: string) {
     const resolved = path.resolve(full)
     if (active.has(resolved)) continue
     // Only touch our managed area, and only when it is NOT an active worktree.
-    await rm(full, { recursive: true, force: true })
+    try {
+      await rm(full, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 })
+    } catch {
+      // Some file systems can race on deep pnpm-store trees; fallback to rm -rf.
+      const escaped = full.replaceAll('"', '\\"')
+      await spawnInherit("bash", ["-lc", `rm -rf "${escaped}"`], root)
+    }
   }
 }
 
@@ -78,6 +148,8 @@ async function main() {
   console.log(`factory:maintenance: start ${nowIso()}`)
   if (incidentPath) console.log(`factory:maintenance: incident=${incidentPath}`)
   console.log(`factory:maintenance: root=${root}`)
+
+  if (incidentPath) await maybeRemediateMissingTsx({ root, incidentPath })
 
   await spawnInherit("git", ["worktree", "prune"], root)
   await cleanOrphanWorktreeDirs(root)

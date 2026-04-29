@@ -2,17 +2,297 @@
   "version": 1,
   "items": [
     {
+      "id": "AUTO_HEAL_MISSING_TSX_2026_04_29T20_19_01_179Z_SWARM_06_WORK",
+      "title": "Auto-heal: missing tsx (2026-04-29T20-19-01-179Z.swarm_06.worker_exit.json)",
+      "spec": {
+        "kind": "auto_heal",
+        "class_key": "missing_tsx",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T20-19-01-179Z.swarm_06.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_06",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T20:19:01.179Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_06.log"
+        },
+        "command": "pnpm -s factory:stabilize"
+      },
+      "status": "queued",
+      "priority": 1000,
+      "created_at": "2026-04-29T20:19:03.640Z",
+      "updated_at": "2026-04-29T20:19:03.640Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "APR29_VERIFY",
+      "title": "Verify (local) — Apr 29",
+      "spec": {
+        "command": "pnpm -s verify"
+      },
+      "status": "failed",
+      "priority": 20,
+      "created_at": "2026-04-29T20:13:21.409Z",
+      "updated_at": "2026-04-29T20:15:17.115Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T20:14:53.918Z"
+    },
+    {
+      "id": "MAY13_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — May 13",
+      "spec": {
+        "command": "graphify update ."
+      },
+      "status": "done",
+      "priority": 10,
+      "created_at": "2026-04-29T20:13:21.409Z",
+      "updated_at": "2026-04-29T20:19:24.278Z",
+      "claimed_by": "swarm_04",
+      "claimed_at": "2026-04-29T20:17:02.337Z"
+    },
+    {
+      "id": "MAY06_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — May 6",
+      "spec": {
+        "command": "graphify update ."
+      },
+      "status": "failed",
+      "priority": 10,
+      "created_at": "2026-04-29T20:13:21.409Z",
+      "updated_at": "2026-04-29T20:19:00.949Z",
+      "claimed_by": "swarm_06",
+      "claimed_at": "2026-04-29T20:18:47.036Z"
+    },
+    {
+      "id": "APR29_GRAPHIFY_UPDATE",
+      "title": "Update graphify knowledge graph — Apr 29",
+      "spec": {
+        "command": "graphify update ."
+      },
+      "status": "queued",
+      "priority": 10,
+      "created_at": "2026-04-29T20:13:21.409Z",
+      "updated_at": "2026-04-29T20:13:21.409Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "MAY13_VERIFY_FULL",
+      "title": "Verify full suite (local) — May 13",
+      "spec": {
+        "command": "pnpm -s verify:full"
+      },
+      "status": "failed",
+      "priority": 20,
+      "created_at": "2026-04-29T20:05:48.159Z",
+      "updated_at": "2026-04-29T20:13:01.419Z",
+      "claimed_by": "swarm_09",
+      "claimed_at": "2026-04-29T20:08:32.898Z"
+    },
+    {
+      "id": "MAY09_VERIFY",
+      "title": "Verify (local) — May 9",
+      "spec": {
+        "command": "pnpm -s verify"
+      },
+      "status": "failed",
+      "priority": 20,
+      "created_at": "2026-04-29T20:05:48.159Z",
+      "updated_at": "2026-04-29T20:10:26.368Z",
+      "claimed_by": "swarm_04",
+      "claimed_at": "2026-04-29T20:10:06.758Z"
+    },
+    {
+      "id": "MAY05_VERIFY",
+      "title": "Verify (local) — May 5",
+      "spec": {
+        "command": "pnpm -s verify"
+      },
+      "status": "failed",
+      "priority": 20,
+      "created_at": "2026-04-29T20:05:48.159Z",
+      "updated_at": "2026-04-29T20:15:34.751Z",
+      "claimed_by": "swarm_04",
+      "claimed_at": "2026-04-29T20:11:28.277Z"
+    },
+    {
+      "id": "MAY01_VERIFY",
+      "title": "Verify (local) — May 1",
+      "spec": {
+        "command": "pnpm -s verify"
+      },
+      "status": "failed",
+      "priority": 20,
+      "created_at": "2026-04-29T20:05:48.159Z",
+      "updated_at": "2026-04-29T20:16:33.838Z",
+      "claimed_by": "swarm_06",
+      "claimed_at": "2026-04-29T20:13:22.244Z"
+    },
+    {
+      "id": "AUTO_MAINT_2026_04_29T20_00_28_062Z_SWARM_05_WORKER_EXIT",
+      "title": "Auto-maintenance for incident: 2026-04-29T20-00-28-062Z.swarm_05.worker_exit.json",
+      "spec": {
+        "kind": "auto_maintenance",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T20-00-28-062Z.swarm_05.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_05",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T20:00:28.061Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_05.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T20-00-28-062Z.swarm_05.worker_exit.json\""
+      },
+      "status": "done",
+      "priority": 999,
+      "created_at": "2026-04-29T20:00:32.999Z",
+      "updated_at": "2026-04-29T20:07:03.429Z",
+      "claimed_by": "swarm_09",
+      "claimed_at": "2026-04-29T20:02:56.915Z"
+    },
+    {
+      "id": "AUTO_MAINT_2026_04_29T19_56_55_404Z_SWARM_08_WORKER_EXIT",
+      "title": "Auto-maintenance for incident: 2026-04-29T19-56-55-404Z.swarm_08.worker_exit.json",
+      "spec": {
+        "kind": "auto_maintenance",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-56-55-404Z.swarm_08.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_08",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T19:56:55.404Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_08.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-56-55-404Z.swarm_08.worker_exit.json\""
+      },
+      "status": "failed",
+      "priority": 999,
+      "created_at": "2026-04-29T19:57:00.358Z",
+      "updated_at": "2026-04-29T19:57:49.585Z",
+      "claimed_by": "swarm_09",
+      "claimed_at": "2026-04-29T19:57:26.199Z"
+    },
+    {
+      "id": "MAY03_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 3",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "done",
+      "priority": 30,
+      "created_at": "2026-04-29T19:56:56.212Z",
+      "updated_at": "2026-04-29T20:04:09.214Z",
+      "claimed_by": "swarm_04",
+      "claimed_at": "2026-04-29T19:57:29.586Z"
+    },
+    {
+      "id": "MAY02_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 2",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "failed",
+      "priority": 30,
+      "created_at": "2026-04-29T19:56:56.212Z",
+      "updated_at": "2026-04-29T20:01:28.973Z",
+      "claimed_by": "swarm_05",
+      "claimed_at": "2026-04-29T19:59:39.539Z"
+    },
+    {
+      "id": "MAY01_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 1",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "done",
+      "priority": 30,
+      "created_at": "2026-04-29T19:56:56.212Z",
+      "updated_at": "2026-04-29T20:08:41.645Z",
+      "claimed_by": "swarm_06",
+      "claimed_at": "2026-04-29T20:04:29.002Z"
+    },
+    {
+      "id": "APR30_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — Apr 30",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "done",
+      "priority": 30,
+      "created_at": "2026-04-29T19:56:56.212Z",
+      "updated_at": "2026-04-29T20:04:32.601Z",
+      "claimed_by": null,
+      "claimed_at": null
+    },
+    {
+      "id": "APR29_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — Apr 29",
+      "spec": {
+        "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
+      },
+      "status": "failed",
+      "priority": 30,
+      "created_at": "2026-04-29T19:56:56.212Z",
+      "updated_at": "2026-04-29T20:08:43.420Z",
+      "claimed_by": "swarm_03",
+      "claimed_at": "2026-04-29T20:06:30.691Z"
+    },
+    {
+      "id": "AUTO_MAINT_2026_04_29T19_54_59_777Z_SWARM_01_WORKER_EXIT",
+      "title": "Auto-maintenance for incident: 2026-04-29T19-54-59-777Z.swarm_01.worker_exit.json",
+      "spec": {
+        "kind": "auto_maintenance",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-54-59-777Z.swarm_01.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_01",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T19:54:59.776Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_01.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-54-59-777Z.swarm_01.worker_exit.json\""
+      },
+      "status": "failed",
+      "priority": 999,
+      "created_at": "2026-04-29T19:55:01.066Z",
+      "updated_at": "2026-04-29T19:56:23.252Z",
+      "claimed_by": "swarm_06",
+      "claimed_at": "2026-04-29T19:56:15.062Z"
+    },
+    {
+      "id": "AUTO_MAINT_2026_04_29T19_54_52_269Z_SWARM_02_WORKER_EXIT",
+      "title": "Auto-maintenance for incident: 2026-04-29T19-54-52-269Z.swarm_02.worker_exit.json",
+      "spec": {
+        "kind": "auto_maintenance",
+        "source_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-54-52-269Z.swarm_02.worker_exit.json",
+        "incident": {
+          "kind": "worker_exit",
+          "worker_id": "swarm_02",
+          "exit_code": 1,
+          "ended_at": "2026-04-29T19:54:52.269Z",
+          "log_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-workers/swarm_02.log"
+        },
+        "command": "pnpm -s factory:maintenance \"/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T19-54-52-269Z.swarm_02.worker_exit.json\""
+      },
+      "status": "failed",
+      "priority": 999,
+      "created_at": "2026-04-29T19:54:56.053Z",
+      "updated_at": "2026-04-29T19:56:22.000Z",
+      "claimed_by": "swarm_09",
+      "claimed_at": "2026-04-29T19:56:12.739Z"
+    },
+    {
       "id": "MAY07_DEPLOY_SMOKE",
       "title": "Deploy smoke (cpdeol.com) — May 7",
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
-      "status": "in_progress",
+      "status": "failed",
       "priority": 30,
       "created_at": "2026-04-29T18:18:50.250Z",
-      "updated_at": "2026-04-29T18:21:11.585Z",
-      "claimed_by": "swarm_03",
-      "claimed_at": "2026-04-29T18:21:11.585Z"
+      "updated_at": "2026-04-29T19:55:00.115Z",
+      "claimed_by": "swarm_04",
+      "claimed_at": "2026-04-29T19:54:52.620Z"
     },
     {
       "id": "MAY06_DEPLOY_SMOKE",
@@ -20,12 +300,12 @@
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 30,
       "created_at": "2026-04-29T18:18:50.251Z",
-      "updated_at": "2026-04-29T18:18:50.251Z",
-      "claimed_by": null,
-      "claimed_at": null
+      "updated_at": "2026-04-29T19:54:58.609Z",
+      "claimed_by": "swarm_08",
+      "claimed_at": "2026-04-29T19:54:53.207Z"
     },
     {
       "id": "MAY05_DEPLOY_SMOKE",
@@ -33,10 +313,10 @@
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 30,
       "created_at": "2026-04-29T18:18:50.251Z",
-      "updated_at": "2026-04-29T18:18:50.251Z",
+      "updated_at": "2026-04-29T19:55:03.487Z",
       "claimed_by": null,
       "claimed_at": null
     },
@@ -46,10 +326,10 @@
       "spec": {
         "command": "DEPLOY_URL=https://cpdeol.com pnpm -s deploy:smoke"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 30,
       "created_at": "2026-04-29T18:18:50.251Z",
-      "updated_at": "2026-04-29T18:18:50.251Z",
+      "updated_at": "2026-04-29T19:55:43.184Z",
       "claimed_by": null,
       "claimed_at": null
     },

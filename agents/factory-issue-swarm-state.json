@@ -1,0 +1,10 @@
+{
+  "last_seen_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T20-19-01-179Z.swarm_06.worker_exit.json",
+  "incident_count": 8,
+  "last_remediation_at": "2026-04-29T20:19:03.604Z",
+  "recent_incident_ended_at": [],
+  "last_stabilize_at": null,
+  "last_class_heal_at": {
+    "missing_tsx": "2026-04-29T20:19:03.642Z"
+  }
+}
