@@ -86,9 +86,10 @@ export function EvidencePackQuestionnairesClient() {
 
       <div className="mt-6 overflow-hidden rounded-2xl bg-surface shadow-editorial ring-1 ring-outline-variant/15">
         <div className="bg-surface-container-low px-6 py-4">
-          <div className="grid grid-cols-[1fr_10rem] gap-4 font-sans text-xs font-semibold text-on-surface">
+          <div className="grid grid-cols-[1fr_10rem_8rem] gap-4 font-sans text-xs font-semibold text-on-surface">
             <div>Title</div>
             <div>Created</div>
+            <div className="text-right">Export</div>
           </div>
         </div>
         <div className="divide-y-0">
@@ -103,12 +104,20 @@ export function EvidencePackQuestionnairesClient() {
                   <div
                     key={item.id}
                     className={cn(
-                      "grid grid-cols-[1fr_10rem] gap-4 px-6 py-5 font-sans text-sm",
+                      "grid grid-cols-[1fr_10rem_8rem] gap-4 px-6 py-5 font-sans text-sm",
                       idx % 2 === 0 ? "bg-surface" : "bg-surface-container-lowest/60"
                     )}
                   >
                     <div className="min-w-0 truncate text-on-surface">{item.title}</div>
                     <div className="whitespace-nowrap text-on-surface-variant">{formatDate(item.created_at)}</div>
+                    <div className="text-right">
+                      <a
+                        href={`/api/evidencepack/questionnaires/export?id=${item.id}`}
+                        className="inline-flex h-9 items-center justify-center rounded-xl bg-surface px-3 font-sans text-xs font-semibold text-on-surface shadow-editorial ring-1 ring-outline-variant/15 hover:bg-surface-container-low"
+                      >
+                        CSV
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
