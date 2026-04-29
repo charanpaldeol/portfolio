@@ -36,10 +36,19 @@ type RunsFile = {
   runs: RunItem[]
 }
 
+type WorkerHeartbeat = {
+  worker_id: string
+  pid: number
+  status: "idle" | "running"
+  run_id: string | null
+  item_id: string | null
+  updated_at: string
+}
+
 type State =
-  | { type: "idle"; queue: QueueFile; runs: RunsFile }
-  | { type: "loading"; queue: QueueFile; runs: RunsFile }
-  | { type: "error"; message: string; queue: QueueFile; runs: RunsFile }
+  | { type: "idle"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
+  | { type: "loading"; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
+  | { type: "error"; message: string; queue: QueueFile; runs: RunsFile; workers: WorkerHeartbeat[] }
 
 function getStringField(payload: unknown, key: string): string | null {
   if (typeof payload !== "object" || payload === null) return null
@@ -67,11 +76,13 @@ function groupCounts(items: QueueItem[]) {
 export function EvidencePackFactoryClient({
   initialQueue,
   initialRuns,
+  initialWorkers,
 }: {
   initialQueue: QueueFile
   initialRuns: RunsFile
+  initialWorkers: WorkerHeartbeat[]
 }) {
-  const [state, setState] = useState<State>({ type: "idle", queue: initialQueue, runs: initialRuns })
+  const [state, setState] = useState<State>({ type: "idle", queue: initialQueue, runs: initialRuns, workers: initialWorkers })
   const [newTitle, setNewTitle] = useState("")
   const [newPriority, setNewPriority] = useState(0)
 
@@ -94,15 +105,22 @@ export function EvidencePackFactoryClient({
       const record = json as Record<string, unknown>
       const queue = record["queue"]
       const runs = record["runs"]
+      const workers = record["workers"]
       if (!queue || !runs) throw new Error("Invalid response")
 
-      setState({ type: "idle", queue: queue as QueueFile, runs: runs as RunsFile })
+      setState({
+        type: "idle",
+        queue: queue as QueueFile,
+        runs: runs as RunsFile,
+        workers: Array.isArray(workers) ? (workers as WorkerHeartbeat[]) : [],
+      })
     } catch (e) {
       setState((s) => ({
         type: "error",
         message: e instanceof Error ? e.message : "Failed to load",
         queue: s.queue,
         runs: s.runs,
+        workers: s.workers,
       }))
     }
   }, [])
@@ -141,6 +159,7 @@ export function EvidencePackFactoryClient({
         message: e instanceof Error ? e.message : "Could not add task",
         queue: s.queue,
         runs: s.runs,
+        workers: s.workers,
       }))
     }
   }
@@ -161,6 +180,7 @@ export function EvidencePackFactoryClient({
         message: e instanceof Error ? e.message : "Could not update task",
         queue: s.queue,
         runs: s.runs,
+        workers: s.workers,
       }))
     }
   }
@@ -197,11 +217,16 @@ export function EvidencePackFactoryClient({
         message: e instanceof Error ? e.message : "Could not append run",
         queue: s.queue,
         runs: s.runs,
+        workers: s.workers,
       }))
     }
   }
 
   const helperText = state.type === "error" ? state.message : "Live-refreshing every ~3s."
+
+  const workersSorted = useMemo(() => {
+    return state.workers.slice().sort((a, b) => a.worker_id.localeCompare(b.worker_id))
+  }, [state.workers])
 
   const itemsSorted = useMemo(() => {
     return state.queue.items.slice().sort((a, b) => {
@@ -248,6 +273,43 @@ export function EvidencePackFactoryClient({
             <p className="font-sans text-xs font-semibold tracking-[0.18em] text-on-surface-variant uppercase">Completed</p>
             <p className="mt-2 font-display text-3xl font-bold text-on-surface">{counts.done}</p>
           </div>
+        </div>
+
+        <div className="mt-6 rounded-2xl bg-surface p-6 shadow-editorial ring-1 ring-outline-variant/15">
+          <div className="flex items-center justify-between gap-4">
+            <h3 className="font-sans text-sm font-semibold text-on-surface">Workers</h3>
+            <p className="font-mono text-xs text-on-surface-variant">{workersSorted.length} heartbeat(s)</p>
+          </div>
+          {workersSorted.length === 0 ? (
+            <p className="mt-3 font-sans text-sm text-on-surface-variant">No worker heartbeats yet.</p>
+          ) : (
+            <div className="mt-4 overflow-hidden rounded-2xl ring-1 ring-outline-variant/15">
+              <div className="bg-surface-container-low px-5 py-3">
+                <div className="grid grid-cols-[10rem_6rem_1fr_12rem] gap-3 font-sans text-xs font-semibold text-on-surface">
+                  <div>Worker</div>
+                  <div>Status</div>
+                  <div>Task</div>
+                  <div className="text-right">Heartbeat</div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                {workersSorted.map((w, idx) => (
+                  <div
+                    key={w.worker_id}
+                    className={cn(
+                      "grid grid-cols-[10rem_6rem_1fr_12rem] gap-3 px-5 py-4 font-sans text-sm",
+                      idx % 2 === 0 ? "bg-surface" : "bg-surface-container-lowest/60"
+                    )}
+                  >
+                    <div className="truncate font-mono text-xs font-semibold text-on-surface">{w.worker_id}</div>
+                    <div className="font-semibold text-on-surface-variant">{w.status}</div>
+                    <div className="truncate font-mono text-xs text-on-surface-variant">{w.item_id ?? "—"}</div>
+                    <div className="text-right font-mono text-xs text-on-surface-variant">{formatDate(w.updated_at)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

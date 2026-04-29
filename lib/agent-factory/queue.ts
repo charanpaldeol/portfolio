@@ -11,8 +11,8 @@ export const AgentFactoryQueueItemSchema = z.object({
   priority: z.number().int().min(0),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
-  claimed_by: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()),
-  claimed_at: z.preprocess((v) => (v === undefined ? null : v), z.string().datetime().nullable()),
+  claimed_by: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()) as z.ZodType<string | null>,
+  claimed_at: z.preprocess((v) => (v === undefined ? null : v), z.string().datetime().nullable()) as z.ZodType<string | null>,
 })
 export type AgentFactoryQueueItem = z.output<typeof AgentFactoryQueueItemSchema>
 
@@ -31,7 +31,7 @@ export const AgentFactoryRunSchema = z.object({
   title: z.string().min(1),
   branch: z.string().min(1),
   worktree_path: z.string().min(1),
-  worker_id: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()),
+  worker_id: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()) as z.ZodType<string | null>,
   status: AgentFactoryRunStatusSchema,
   started_at: z.string().datetime(),
   finished_at: z.string().datetime().nullable(),

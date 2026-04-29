@@ -77,7 +77,7 @@ export default async function EvidencePackFactoryPage() {
           </p>
         </header>
 
-        <EvidencePackFactoryClient initialQueue={queue} initialRuns={runs} />
+        <EvidencePackFactoryClient initialQueue={queue} initialRuns={runs} initialWorkers={[]} />
       </div>
     </PageShell>
   )
