@@ -2,6 +2,19 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_7621ec58-997e-47ac-8e4f-7788e7eb89fd",
+      "item_id": "MAY10_DEPLOY_SMOKE",
+      "title": "Deploy smoke (cpdeol.com) — May 10",
+      "branch": "agent/may10_deploy_smoke-deploy-smoke-cpdeol-com-may-10",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/MAY10_DEPLOY_SMOKE",
+      "worker_id": "worker_29404",
+      "status": "succeeded",
+      "started_at": "2026-04-29T17:59:22.990Z",
+      "finished_at": "2026-04-29T17:59:51.272Z",
+      "commit_sha": null,
+      "error": null
+    },
+    {
       "run_id": "run_f5c00c80-6328-4c19-85c2-fd30eb4b5d33",
       "item_id": "MAY11_DEPLOY_SMOKE",
       "title": "Deploy smoke (cpdeol.com) — May 11",
