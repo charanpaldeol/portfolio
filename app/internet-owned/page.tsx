@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 /** Same outer shell as other marketing pages (`max-w-7xl`, horizontal padding). */
 export default function InternetOwnedPage() {
   return (
-    <PageShell>
+    <PageShell containerClassName="mx-auto w-full max-w-7xl flex-1 px-6 pt-10 pb-20 md:px-8">
       <InternetOwnedEditorial
         meshDiagram={<MeshStagesDiagram />}
         payoffDiagram={<PayoffChart />}

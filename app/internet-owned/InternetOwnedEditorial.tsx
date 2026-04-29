@@ -45,6 +45,9 @@ const NAV_ITEMS: readonly NavItem[] = [
   { id: "io-join", label: "Join", href: "#io-join", icon: <MessageSquare size={18} /> },
 ] as const
 
+const SECTION_SCROLL_MT =
+  "scroll-mt-[calc(var(--site-header-offset)+2.5rem)] lg:scroll-mt-[calc(var(--site-header-offset)+3rem)]"
+
 function parseHeaderOffsetPx(): number {
   const raw = getComputedStyle(document.documentElement).getPropertyValue("--site-header-offset").trim()
   const rootFs = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
@@ -194,8 +197,13 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
       <div className="grid min-h-0 grid-cols-1 gap-0 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-stretch lg:gap-8">
         {/* Tall grid cell + inner sticky aside so the rail scrolls with the document, then pins under the site header */}
         <div className="relative z-10 hidden min-h-0 min-w-0 self-stretch bg-surface shadow-editorial-float lg:block">
-          <aside className="sticky top-[var(--site-header-offset)] z-30 flex w-full min-w-0 flex-col py-10 pl-1 pr-5 [backface-visibility:hidden]">
-            <div className="mb-10 px-1">
+          <aside
+            className={cn(
+              "sticky top-[var(--site-header-offset)] z-30 flex w-full min-w-0 flex-col py-10 pl-1 pr-4 [backface-visibility:hidden]",
+              "max-h-[calc(100vh-var(--site-header-offset))] overflow-y-auto"
+            )}
+          >
+            <div className="mb-8 px-1">
               <h2 className="font-sans text-lg font-medium tracking-normal text-on-surface">Editorial portal</h2>
               <p className="mt-2 font-sans text-xs font-semibold tracking-[0.2em] text-on-surface-variant uppercase">
                 Decentralized insights
@@ -246,7 +254,10 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
 
           <header
             id="io-hero"
-            className="relative flex min-h-[min(32rem,72dvh)] scroll-mt-32 flex-col justify-center overflow-hidden rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:min-h-[min(36rem,76dvh)] md:px-12 md:py-28 lg:scroll-mt-36"
+            className={cn(
+              "relative flex min-h-[min(32rem,72dvh)] flex-col justify-center overflow-hidden rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:min-h-[min(36rem,76dvh)] md:px-12 md:py-28",
+              SECTION_SCROLL_MT
+            )}
           >
           {/* Design photography: full-bleed hero atmosphere (same asset as architecture section) */}
           <Image
@@ -303,7 +314,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
 
         <section
           id="io-how-it-works"
-          className="scroll-mt-32 rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28 lg:scroll-mt-36"
+          className={cn("rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28", SECTION_SCROLL_MT)}
         >
           <div className="mb-16 md:mb-20">
             <span className="font-sans text-xs font-semibold tracking-[0.2em] text-tertiary uppercase">Architecture</span>
@@ -352,7 +363,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
 
         <section
           id="io-impact"
-          className="scroll-mt-32 rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28 lg:scroll-mt-36"
+          className={cn("rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28", SECTION_SCROLL_MT)}
         >
           <div className="mx-auto max-w-6xl">
             <div className="mb-20 text-center md:mb-24">
@@ -406,7 +417,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
 
         <section
           id="io-incentives"
-          className="scroll-mt-32 rounded-2xl bg-surface-container-highest px-6 py-20 shadow-editorial md:px-12 md:py-28 lg:scroll-mt-36"
+          className={cn("rounded-2xl bg-surface-container-highest px-6 py-20 shadow-editorial md:px-12 md:py-28", SECTION_SCROLL_MT)}
         >
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="self-center lg:col-span-4">
@@ -456,7 +467,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
 
         <section
           id="io-privacy"
-          className="scroll-mt-32 rounded-2xl bg-surface-container-highest px-6 py-20 shadow-editorial md:px-12 md:py-28 lg:scroll-mt-36"
+          className={cn("rounded-2xl bg-surface-container-highest px-6 py-20 shadow-editorial md:px-12 md:py-28", SECTION_SCROLL_MT)}
         >
           <div className="mx-auto max-w-4xl text-center">
             <Shield className="mx-auto mb-10 h-16 w-16 text-primary md:mb-12" aria-hidden fill="currentColor" />
@@ -473,7 +484,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
           </div>
         </section>
 
-        <section id="io-adoption" className="scroll-mt-32 rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28 lg:scroll-mt-36">
+        <section id="io-adoption" className={cn("rounded-2xl bg-surface-container-low px-6 py-20 shadow-editorial md:px-12 md:py-28", SECTION_SCROLL_MT)}>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 max-w-3xl md:mb-20">
               <span className="font-sans text-xs font-semibold tracking-[0.2em] text-tertiary uppercase">Roadmap</span>
@@ -515,7 +526,7 @@ export function InternetOwnedEditorial({ meshDiagram, payoffDiagram, earningsDia
           </div>
         </section>
 
-        <section id="io-join" className="scroll-mt-32 lg:scroll-mt-36">
+        <section id="io-join" className={SECTION_SCROLL_MT}>
           <div className="relative flex flex-col items-center justify-between gap-12 overflow-hidden rounded-2xl bg-on-surface px-6 py-14 text-primary-foreground shadow-editorial md:flex-row md:gap-14 md:px-12 md:py-20 lg:px-12 lg:py-24">
             {/* Same editorial photo as abstract depth layer (design mock: blurred orb + imagery) */}
             <div className="pointer-events-none absolute inset-0 opacity-25" aria-hidden>
