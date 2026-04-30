@@ -114,3 +114,17 @@
 **Implementation notes**
 - [ ] (Agent) Break into smaller PR-sized tasks
 - [ ] (Agent) Identify required env vars / manual setup and record here
+
+### EVIDENCEPACK_R24_REVENUE_AUTH_MAGIC_LINK_V1 — EvidencePack: magic-link auth v1
+
+- Priority: 990
+- Added: 2026-04-30T03:27:07.017Z
+
+**Definition of done**
+- [ ] User can request a magic link and establish a session cookie
+- [ ] After login, user is redirected into the app
+- [ ] Auth failure states are handled
+
+**Implementation notes**
+- [ ] (Agent) Break into smaller PR-sized tasks
+- [ ] (Agent) Identify required env vars / manual setup and record here
