@@ -12,11 +12,8 @@ import {
   type AgentFactoryQueueItem,
   type AgentFactoryRunsFile,
 } from "@/lib/agent-factory/queue"
+import { parseFactoryItemSpec } from "@/lib/agent-factory/item-spec"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
-
-type SpecCommand = {
-  command?: unknown
-}
 
 function nowIso() {
   return new Date().toISOString()
@@ -132,13 +129,6 @@ function slugBranchTitle(input: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "")
     .slice(0, 48)
-}
-
-function extractCommand(spec: unknown): string | null {
-  if (typeof spec !== "object" || spec === null) return null
-  const maybe = spec as SpecCommand
-  if (typeof maybe.command !== "string") return null
-  return maybe.command.trim() ? maybe.command.trim() : null
 }
 
 function markItem(queue: AgentFactoryQueue, itemId: string, patch: Partial<AgentFactoryQueueItem>) {
@@ -471,10 +461,10 @@ async function main() {
     })
     if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
 
-    const maybeCommand = extractCommand(nextItem.spec)
-    if (maybeCommand) {
+    const itemSpec = parseFactoryItemSpec(nextItem.spec)
+    if (itemSpec.command) {
       const cmdExit = await runBash({
-        bashCommand: maybeCommand,
+        bashCommand: itemSpec.command,
         cwd: worktreePath,
         env: { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot },
         fallbackCwd: repoRoot,
@@ -503,6 +493,25 @@ async function main() {
     })
 
     const hasChanges = statusOut.trim().length > 0
+    if (itemSpec.requireDiff && itemSpec.command && !hasChanges) {
+      throw new Error("require_diff: spec.command ran but git status is clean (no changes to commit)")
+    }
+
+    const acceptanceEnv = { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot }
+    let acceptanceIndex = 0
+    for (const bashCommand of itemSpec.acceptanceCommands) {
+      const accExit = await runBash({
+        bashCommand,
+        cwd: worktreePath,
+        env: acceptanceEnv,
+        fallbackCwd: repoRoot,
+        logPath,
+      })
+      if (accExit !== 0) {
+        throw new Error(`spec.acceptance[${acceptanceIndex}] failed (exit ${accExit}): ${bashCommand}`)
+      }
+      acceptanceIndex += 1
+    }
     if (hasChanges) {
       await runCmd({ cmd: "git", argv: ["add", "-A"], cwd: worktreePath, logPath })
       const commit = await runCmd({

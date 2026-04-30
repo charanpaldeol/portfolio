@@ -8,6 +8,8 @@
     "dev:free3000": "bash -c 'lsof -ti :3000 | xargs kill -9 2>/dev/null || true'",
     "agent:start": "node scripts/agent-start.mjs",
     "factory:plan-next": "tsx scripts/agent-factory/factory-plan-next.ts",
+    "factory:plan-from-goal": "tsx scripts/agent-factory/factory-plan-from-goal.ts",
+    "factory:evaluate-goal": "tsx scripts/agent-factory/factory-evaluate-goal.ts",
     "factory:reclaim": "tsx scripts/agent-factory/factory-reclaim.ts",
     "factory:run-once": "tsx scripts/agent-factory/factory-run-once.ts",
     "factory:loop": "tsx scripts/agent-factory/factory-loop.ts",

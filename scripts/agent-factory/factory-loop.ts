@@ -41,6 +41,14 @@ async function main() {
       }
     }
 
+    try {
+      const evalGoal = spawn("pnpm", ["-s", "factory:evaluate-goal"], { stdio: "inherit", shell: false })
+      const evalCode = await new Promise<number>((resolve) => evalGoal.on("close", (c) => resolve(c ?? 1)))
+      if (evalCode !== 0) console.warn(`factory: evaluate-goal exited ${evalCode}; continuing loop`)
+    } catch (err) {
+      console.warn("factory: evaluate-goal threw; continuing loop", err)
+    }
+
     const count = await queuedCount()
     if (count < lowWatermark) {
       const plan = spawn("pnpm", ["-s", "factory:plan-next"], { stdio: "inherit", shell: false })

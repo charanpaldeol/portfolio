@@ -5,6 +5,7 @@ import process from "node:process"
 
 import { z } from "zod"
 
+import { FactoryGoalStateSchema } from "@/lib/agent-factory/goal-spec"
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, type AgentFactoryQueueItem } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 import { FactoryMetricsSchema, computeGoalProgress } from "@/lib/agent-factory/goals"
@@ -23,6 +24,11 @@ const RoadmapSchema = z.object({
 
 function nowIso() {
   return new Date().toISOString()
+}
+
+function parseBool(value: string | undefined) {
+  const v = (value ?? "").trim().toLowerCase()
+  return v === "1" || v === "true" || v === "yes" || v === "on"
 }
 
 async function readJson(filePath: string) {
@@ -73,6 +79,20 @@ async function main() {
   if (progress.ratio >= 1) {
     console.log(`factory: plan-next: goal achieved (ARR ${progress.current_arr_usd} / ${progress.target_arr_usd}) — not enqueuing`)
     return
+  }
+
+  if (parseBool(process.env.FACTORY_GOAL_STATE_CONTROLS_PLAN)) {
+    try {
+      const statePath = path.join(root, "agents", "factory-goal-state.json")
+      const raw = await readFile(statePath, "utf8")
+      const st = FactoryGoalStateSchema.parse(JSON.parse(raw) as unknown)
+      if (st.status === "met") {
+        console.log("factory: plan-next: factory-goal-state is met — not enqueuing (FACTORY_GOAL_STATE_CONTROLS_PLAN=1)")
+        return
+      }
+    } catch {
+      // no state file yet or invalid — continue planning
+    }
   }
 
   const targetSize = Number(process.env.FACTORY_QUEUE_TARGET_SIZE ?? String(100))

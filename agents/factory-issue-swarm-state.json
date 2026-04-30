@@ -1,7 +1,7 @@
 {
-  "last_seen_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T23-02-20-752Z.swarm_28.worker_exit.json",
-  "incident_count": 45,
-  "last_remediation_at": "2026-04-29T23:02:21.193Z",
+  "last_seen_incident_path": "/Users/al/Projects AI/Portfolio/agents/factory-logs/swarm-incidents/2026-04-29T23-39-53-477Z.swarm_17.worker_exit.json",
+  "incident_count": 46,
+  "last_remediation_at": "2026-04-30T03:12:44.116Z",
   "recent_incident_ended_at": [],
   "last_stabilize_at": null,
   "last_class_heal_at": {
@@ -9,7 +9,7 @@
     "worktree_not_empty": "2026-04-29T21:50:19.455Z",
     "generic_incident": "2026-04-29T22:10:04.937Z",
     "worktree_locked": "2026-04-29T22:43:58.927Z",
-    "cwd_removed": "2026-04-29T23:02:21.242Z"
+    "cwd_removed": "2026-04-30T03:12:44.305Z"
   },
   "last_vercel_deployment_id": null,
   "last_vercel_checked_at": null,

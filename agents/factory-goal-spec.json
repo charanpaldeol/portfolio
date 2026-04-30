@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "statement": "Describe the outcome you want in plain language. Merge concrete roadmap rows via `pnpm factory:plan-from-goal` after filling `roadmap_items`.",
+  "goal_acceptance": null,
+  "roadmap_items": []
+}

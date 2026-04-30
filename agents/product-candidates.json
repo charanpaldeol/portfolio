@@ -6,17 +6,18 @@
       "name": "EvidencePack",
       "seed_id": "evidencepack",
       "score": {
-        "tam": 7.45,
-        "urgency": 8.6,
-        "competition": 4.85,
-        "founder_fit": 8.3,
-        "build_time": 5.7,
-        "pricing_power": 7.45,
-        "weighted_total": 7.154999999999999,
-        "evidence_hits": 2
+        "tam": 7.675,
+        "urgency": 8.9,
+        "competition": 4.775,
+        "founder_fit": 8.45,
+        "build_time": 5.55,
+        "pricing_power": 7.675,
+        "weighted_total": 7.2825,
+        "evidence_hits": 3
       },
       "matched_snippet_ids": [
-        "d77a9ef96aa9eb24754f2b3d88a701e0"
+        "d77a9ef96aa9eb24754f2b3d88a701e0",
+        "dc600b5a6b67b5313600ab4712d3e3e1"
       ]
     },
     {
@@ -24,16 +25,17 @@
       "name": "Contract redline copilot",
       "seed_id": "contract_redline_copilot",
       "score": {
-        "tam": 8.225,
-        "urgency": 7.3,
-        "competition": 3.925,
-        "founder_fit": 5.15,
-        "build_time": 4.85,
-        "pricing_power": 7.225,
-        "weighted_total": 6.277500000000001,
-        "evidence_hits": 1
+        "tam": 9.125,
+        "urgency": 8.5,
+        "competition": 3.625,
+        "founder_fit": 5.75,
+        "build_time": 4.25,
+        "pricing_power": 8.125,
+        "weighted_total": 6.7875000000000005,
+        "evidence_hits": 5
       },
       "matched_snippet_ids": [
+        "dc600b5a6b67b5313600ab4712d3e3e1",
         "6704c8a5fe5e8b0e0db5a4336924868d"
       ]
     },
@@ -54,5 +56,5 @@
       "matched_snippet_ids": []
     }
   ],
-  "updated_at": "2026-04-29T23:13:56.569Z"
+  "updated_at": "2026-04-30T03:13:21.599Z"
 }

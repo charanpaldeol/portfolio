@@ -37,26 +37,62 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
   {
     id: "factory-run-once",
     title: "Run one factory item",
-    purpose: "Claims one queued item, runs its `spec.command` in a clean worktree, verifies, commits/pushes, and merges to main.",
+    purpose:
+      "Claims one queued item, runs its `spec.command` in a clean worktree, runs `pnpm tsc` / `lint` / `build`, optional `spec.acceptance` shell checks, optional `spec.require_diff`, then commits/pushes/merges when there are changes.",
     howToUse: [
       "Use for debugging a single iteration.",
       "Use with a single queued item when you want one pass then exit.",
+      "Per-item checks: set `spec.acceptance` to a command or string array; set `spec.require_diff: true` to fail no-op commands.",
     ],
     commands: ["pnpm factory:run-once"],
-    relatedFiles: ["scripts/agent-factory/factory-run-once.ts", "agents/factory-queue.json", "agents/factory-runs.json"],
+    relatedFiles: ["scripts/agent-factory/factory-run-once.ts", "lib/agent-factory/item-spec.ts", "agents/factory-queue.json", "agents/factory-runs.json"],
   },
   {
     id: "factory-plan-next",
     title: "Planner: enqueue next work",
     purpose:
-      "Refills the queue from the roadmap; if no roadmap items remain, runs market research refresh (scan → score → select → generate roadmap) then retries.",
+      "Refills the queue from the roadmap; if no roadmap items remain, runs market research refresh (scan → score → select → generate roadmap) then retries. With `FACTORY_GOAL_STATE_CONTROLS_PLAN=1`, skips enqueue when `agents/factory-goal-state.json` status is `met`.",
     howToUse: ["Use when the queue is low and you want the factory to enqueue next work."],
-    commands: ["pnpm factory:plan-next"],
+    commands: ["pnpm factory:plan-next", "FACTORY_GOAL_STATE_CONTROLS_PLAN=1 pnpm factory:plan-next"],
     relatedFiles: [
       "scripts/agent-factory/factory-plan-next.ts",
       "agents/factory-roadmap.json",
       "agents/factory-queue.json",
+      "agents/factory-goal-state.json",
       "scripts/agent-factory/factory-roadmap-refresh.ts",
+    ],
+  },
+  {
+    id: "factory-plan-from-goal",
+    title: "Planner: merge goal spec into roadmap",
+    purpose:
+      "Reads `agents/factory-goal-spec.json` (`statement`, `roadmap_items`) and upserts those rows into `agents/factory-roadmap.json`, then bumps roadmap meta seq. Use after you (or another agent) decompose a goal into concrete roadmap rows.",
+    howToUse: [
+      "Edit `agents/factory-goal-spec.json` with `roadmap_items` (id, title, priority, optional spec).",
+      "Run `pnpm factory:plan-from-goal`, then `pnpm factory:plan-next` to enqueue.",
+    ],
+    commands: ["pnpm factory:plan-from-goal"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-plan-from-goal.ts",
+      "agents/factory-goal-spec.json",
+      "agents/factory-roadmap.json",
+    ],
+  },
+  {
+    id: "factory-evaluate-goal",
+    title: "Goal-level evaluation",
+    purpose:
+      "Writes `agents/factory-goal-state.json`: compares roadmap ids to queue statuses, runs optional `goal_acceptance` shell checks from `factory-goal-spec.json` when every linked item is done, sets status to `met`, `active`, `blocked`, or `unknown`. Invoked automatically each `factory:loop` iteration after reclaim.",
+    howToUse: [
+      "Set `goal_acceptance` when you have a repo-level check that proves the overall outcome.",
+      "Use `FACTORY_GOAL_STATE_CONTROLS_PLAN=1` with `factory:plan-next` to stop enqueueing when status is `met`.",
+    ],
+    commands: ["pnpm factory:evaluate-goal"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-evaluate-goal.ts",
+      "lib/agent-factory/goal-spec.ts",
+      "agents/factory-goal-spec.json",
+      "agents/factory-goal-state.json",
     ],
   },
   {

@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { FactoryBpmn } from "@/components/factory/FactoryBpmn"
 import { FACTORY_TOOLS } from "@/lib/factory-tools"
 
 export function FactoryContent() {
@@ -28,6 +29,16 @@ export function FactoryContent() {
             Run continuously with <span className="font-mono text-xs text-on-surface">pnpm factory:loop</span>, or run parallel workers with{" "}
             <span className="font-mono text-xs text-on-surface">FACTORY_WORKERS=5 pnpm factory:swarm</span>.
           </p>
+        </div>
+      </section>
+
+      <section className="rounded-2xl bg-surface-container-low p-8 shadow-editorial md:p-10" aria-label="How the factory works">
+        <h2 className="font-sans text-lg font-semibold tracking-normal text-on-surface">How it works</h2>
+        <p className="mt-2 font-sans text-sm font-normal leading-[1.7] text-on-surface-variant md:text-base md:leading-[1.75]">
+          A worker claims one queued item, runs it in an isolated worktree, gates on tsc · lint · build, and only then merges. The issue swarm watches incidents in parallel and feeds auto-heal items back into the same queue.
+        </p>
+        <div className="mt-6 rounded-2xl bg-surface p-4 ring-1 ring-outline-variant/15 md:p-6">
+          <FactoryBpmn />
         </div>
       </section>
 

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "status": "blocked",
+  "statement": "Describe the outcome you want in plain language. Merge concrete roadmap rows via `pnpm factory:plan-from-goal` after filling `roadmap_items`.",
+  "evaluated_at": "2026-04-30T03:17:41.015Z",
+  "summary": "1 roadmap-linked queue item(s) failed; replan or fix, then re-queue.",
+  "roadmap_item_count": 12,
+  "queue_done": 0,
+  "queue_failed": 1,
+  "queue_inflight": 11,
+  "goal_acceptance_ok": null
+}
