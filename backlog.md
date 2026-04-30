@@ -100,3 +100,17 @@
 **Implementation notes**
 - [ ] (Agent) Break into smaller PR-sized tasks
 - [ ] (Agent) Identify required env vars / manual setup and record here
+
+### EVIDENCEPACK_R19_REVENUE_PRICING_PAGE_V1 — EvidencePack: pricing page v1
+
+- Priority: 1000
+- Added: 2026-04-30T03:13:17.450Z
+
+**Definition of done**
+- [ ] Pricing page exists with one clear plan and CTA
+- [ ] CTA leads to login/signup entrypoint
+- [ ] No placeholder links or dead ends
+
+**Implementation notes**
+- [ ] (Agent) Break into smaller PR-sized tasks
+- [ ] (Agent) Identify required env vars / manual setup and record here
