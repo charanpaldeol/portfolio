@@ -5,6 +5,7 @@ import path from "node:path"
 import process from "node:process"
 
 import {
+  AgentFactoryQueueItemSchema,
   AgentFactoryQueueSchema,
   AgentFactoryRunsFileSchema,
   pickNextFactoryItem,
@@ -12,6 +13,7 @@ import {
   type AgentFactoryQueueItem,
   type AgentFactoryRunsFile,
 } from "@/lib/agent-factory/queue"
+import { assertFactoryPreflight } from "@/lib/agent-factory/factory-preflight"
 import { parseFactoryItemSpec } from "@/lib/agent-factory/item-spec"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
@@ -22,6 +24,13 @@ function nowIso() {
 function parseBool(value: string | undefined) {
   const v = (value ?? "").trim().toLowerCase()
   return v === "1" || v === "true" || v === "yes" || v === "on"
+}
+
+/** Stock `spec.command` from templates — run `pnpm` directly (no shell) so PATH/quoting matches `pnpm install` in the worktree. */
+function isDefaultPnpmFactoryImplementCommand(command: string | null, itemId: string): boolean {
+  if (!command) return false
+  const t = command.trim().replace(/\s+/g, " ")
+  return t === `pnpm -s factory:implement ${itemId}` || t === `pnpm factory:implement ${itemId}`
 }
 
 function parseMs(value: string | undefined, fallbackMs: number) {
@@ -113,9 +122,12 @@ async function runCmd(args: {
 }
 
 async function runBash(args: { bashCommand: string; cwd?: string; env?: NodeJS.ProcessEnv; logPath: string; fallbackCwd: string }) {
+  // `bash -lc` runs a login shell and can reset PATH (macOS), so `pnpm`/`tsx` from Homebrew/nvm
+  // disappear even though `pnpm install` just succeeded. Default to `-c` to inherit the runner's PATH.
+  const loginShell = parseBool(process.env.FACTORY_BASH_LOGIN)
   return await runCmd({
     cmd: "bash",
-    argv: ["-lc", args.bashCommand],
+    argv: [loginShell ? "-lc" : "-c", args.bashCommand],
     cwd: args.cwd ?? args.fallbackCwd,
     env: args.env,
     logPath: args.logPath,
@@ -131,16 +143,26 @@ function slugBranchTitle(input: string) {
     .slice(0, 48)
 }
 
-function markItem(queue: AgentFactoryQueue, itemId: string, patch: Partial<AgentFactoryQueueItem>) {
-  const nextItems = queue.items.map((item: AgentFactoryQueueItem) => {
-    const next = item.id !== itemId ? item : { ...item, ...patch, updated_at: nowIso() }
-    return {
+function gitPorcelainPaths(statusOut: string): string[] {
+  return statusOut
+    .split("\n")
+    .map((line) => line.slice(3).trim())
+    .filter(Boolean)
+    .map((p) => (p.includes(" -> ") ? p.split(" -> ").pop()!.trim() : p))
+}
+
+function markItem(queue: unknown, itemId: string, patch: Partial<AgentFactoryQueueItem>): AgentFactoryQueue {
+  const parsedQueue = AgentFactoryQueueSchema.parse(queue)
+  const nextItems = parsedQueue.items.map((item: AgentFactoryQueueItem) => {
+    if (item.id !== itemId) return item
+    const next = { ...item, ...patch, updated_at: nowIso() }
+    return AgentFactoryQueueItemSchema.parse({
       ...next,
       claimed_by: typeof next.claimed_by === "string" ? next.claimed_by : null,
       claimed_at: typeof next.claimed_at === "string" ? next.claimed_at : null,
-    }
+    })
   })
-  return { ...queue, items: nextItems } satisfies AgentFactoryQueue
+  return AgentFactoryQueueSchema.parse({ ...parsedQueue, items: nextItems })
 }
 
 async function claimNextItem(args: { queuePath: string; workerId: string }) {
@@ -157,7 +179,7 @@ async function claimNextItem(args: { queuePath: string; workerId: string }) {
         claimed_by: args.workerId,
         claimed_at: nowIso(),
       })
-      await writeJsonFile(args.queuePath, AgentFactoryQueueSchema.parse(claimedQueue))
+      await writeJsonFile(args.queuePath, claimedQueue)
       return nextItem
     },
   })
@@ -396,6 +418,7 @@ async function mergeAndPushToMain(args: {
 async function main() {
   const startCwd = process.cwd()
   const repoRoot = await resolveRepoRoot(startCwd)
+  await assertFactoryPreflight(repoRoot)
   const queuePath = path.join(repoRoot, "agents", "factory-queue.json")
   const runsPath = path.join(repoRoot, "agents", "factory-runs.json")
   const workerId = (process.env.FACTORY_WORKER_ID ?? "").trim() || `worker_${process.pid}`
@@ -462,27 +485,53 @@ async function main() {
     if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
 
     const itemSpec = parseFactoryItemSpec(nextItem.spec)
+    const cursorDelegatedImplement = ["cursor", "none", "skip"].includes(
+      (process.env.FACTORY_IMPLEMENT_BACKEND ?? "claude").trim().toLowerCase(),
+    )
     if (itemSpec.command) {
-      const cmdExit = await runBash({
-        bashCommand: itemSpec.command,
-        cwd: worktreePath,
-        env: { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot },
-        fallbackCwd: repoRoot,
-        logPath,
-      })
-      if (cmdExit !== 0) throw new Error(`spec.command failed (exit ${cmdExit})`)
+      const specEnv = { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot }
+      const cmdExit = isDefaultPnpmFactoryImplementCommand(itemSpec.command, nextItem.id)
+        ? await runCmd({
+            cmd: "pnpm",
+            argv: ["-s", "factory:implement", nextItem.id],
+            cwd: worktreePath,
+            env: specEnv,
+            logPath,
+          })
+        : await runBash({
+            bashCommand: itemSpec.command,
+            cwd: worktreePath,
+            env: specEnv,
+            fallbackCwd: repoRoot,
+            logPath,
+          })
+      if (cmdExit !== 0) {
+        let tail = ""
+        try {
+          const { readFile: rf } = await import("node:fs/promises")
+          const raw = await rf(logPath, "utf8")
+          const lines = raw.split("\n").filter(Boolean)
+          tail = lines.slice(-25).join("\n")
+        } catch {
+          // ignore
+        }
+        const hint =
+          cmdExit === 254
+            ? " (exit 254: see log above for pnpm/tsx stderr. Worktrees use committed HEAD — uncommitted factory fixes on main are not inside the worktree. Non-default `spec.command` uses bash; set FACTORY_BASH_LOGIN=1 if nvm needs a login shell.)"
+            : ""
+        throw new Error(
+          `spec.command failed (exit ${cmdExit})${hint}${tail ? `\n--- last log lines (${logPath}) ---\n${tail}` : ""}`,
+        )
+      }
     } else {
       console.log("factory: no spec.command provided; skipping task execution")
     }
 
-    const tsc = await runCmd({ cmd: "pnpm", argv: ["-s", "tsc"], cwd: worktreePath, logPath })
-    if (tsc !== 0) throw new Error(`pnpm tsc failed (exit ${tsc})`)
-
-    const lint = await runCmd({ cmd: "pnpm", argv: ["-s", "lint"], cwd: worktreePath, logPath })
-    if (lint !== 0) throw new Error(`pnpm lint failed (exit ${lint})`)
-
-    const build = await runCmd({ cmd: "pnpm", argv: ["-s", "build"], cwd: worktreePath, logPath })
-    if (build !== 0) throw new Error(`pnpm build failed (exit ${build})`)
+    // Same gate as human pre-merge: package.json `verify` (tsc + lint + audit + build + e2e:smoke + e2e:goal-smoke + e2e:proof).
+    // See docs/factory/FACTORY_VERIFY_GATE.md for policy and documented exceptions.
+    console.log("factory: running pnpm verify (full merge bar: tsc, lint, audit, build, e2e smoke, goal-smoke, proof)")
+    const verifyExit = await runCmd({ cmd: "pnpm", argv: ["-s", "verify"], cwd: worktreePath, logPath })
+    if (verifyExit !== 0) throw new Error(`pnpm verify failed (exit ${verifyExit})`)
 
     const statusOut = await new Promise<string>((resolve, reject) => {
       const child = spawn("git", ["status", "--porcelain"], { cwd: worktreePath, shell: false })
@@ -492,9 +541,26 @@ async function main() {
       child.on("close", (code) => (code === 0 ? resolve(out) : reject(new Error("git status failed"))))
     })
 
-    const hasChanges = statusOut.trim().length > 0
+    const changedPaths = gitPorcelainPaths(statusOut)
+    const hasChanges = changedPaths.length > 0
+
     if (itemSpec.requireDiff && itemSpec.command && !hasChanges) {
-      throw new Error("require_diff: spec.command ran but git status is clean (no changes to commit)")
+      if (cursorDelegatedImplement) {
+        console.warn(
+          "factory: require_diff skipped (FACTORY_IMPLEMENT_BACKEND=cursor|none|skip): worktree has no local diff; verify still runs — commit your Cursor changes on the branch this worktree was created from (typically main) before run-once so verify passes.",
+        )
+      } else {
+        throw new Error("require_diff: spec.command ran but git status is clean (no changes to commit)")
+      }
+    }
+    if (itemSpec.requireDiff && itemSpec.command && hasChanges) {
+      const isNonShipping = (p: string) =>
+        p === "backlog.md" || p.startsWith("agents/") || p === "README.md" || p.startsWith("docs/")
+      if (changedPaths.length > 0 && changedPaths.every(isNonShipping)) {
+        throw new Error(
+          `require_diff: spec.command produced only non-shipping changes (${changedPaths.length} file(s): ${changedPaths.slice(0, 5).join(", ")}); refusing to commit`,
+        )
+      }
     }
 
     const acceptanceEnv = { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot }
@@ -555,6 +621,7 @@ async function main() {
     }
     finishedError = err instanceof Error ? err.message : String(err)
     finishedStatus = "failed"
+    console.error(`factory: run-once failed for ${nextItem.id}: ${finishedError}`)
   } finally {
     const finishedAt = nowIso()
     const statusForItem: AgentFactoryQueueItem["status"] = finishedStatus === "succeeded" ? "done" : "failed"
@@ -588,7 +655,7 @@ async function main() {
       workerId,
       fn: async () => {
         const finalQueue = await readJsonFile(queuePath, AgentFactoryQueueSchema)
-        await writeJsonFile(queuePath, AgentFactoryQueueSchema.parse(markItem(finalQueue, nextItem.id, { status: statusForItem })))
+        await writeJsonFile(queuePath, markItem(finalQueue, nextItem.id, { status: statusForItem }))
       },
     })
 
