@@ -133,6 +133,8 @@ export async function runGoalLlmResearchAppend(
     roadmapItems,
     queueItems: queue.items.map((i) => ({ id: i.id })),
   })
+  const existingIdArray: string[] = []
+  existingIds.forEach((id) => existingIdArray.push(id))
 
   const maxTasks = (() => {
     const n = Number(process.env.FACTORY_RESEARCH_MAX_TASKS ?? "8")
@@ -143,7 +145,7 @@ export async function runGoalLlmResearchAppend(
     goalMarkdown: goalMd,
     goalStatement: spec.statement,
     roadmapSummary: roadmapItems.map((r) => `${r.id} — ${r.title}`).join("\n"),
-    existingIds: [...existingIds],
+    existingIds: existingIdArray,
     maxTasks,
     improvementPass,
   })
@@ -151,7 +153,7 @@ export async function runGoalLlmResearchAppend(
   const ai = await openAiChat({ prompt })
   if (!ai.ok) return { appended: 0, error: ai.error }
 
-  const dupSet = new Set<string>(existingIds)
+  const dupSet = new Set<string>(existingIdArray)
   const warns: string[] = []
   const blocks = parseResearchBlocksFromLlm(ai.text, dupSet, (m) => warns.push(m))
   if (warns.length) for (const w of warns) console.warn(w)
