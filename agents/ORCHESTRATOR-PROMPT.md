@@ -15,7 +15,8 @@ Read:
 3) agents/governance/GOVERNANCE-AGENT.md
 4) agents/governance/REPORT-TEMPLATE.md
 5) agents/governance/REVIEW-CHECKLIST.md
-6) backlog.md
+6) backlog.md (see `## Factory research intake` + `agents/FACTORY-RESEARCH-AGENT.md`)
+7) agents/FACTORY_GOAL.md (north star + factory behavior)
 
 Goal:
 - Pick the top batch of work that can run in parallel (prefer Batch A first).

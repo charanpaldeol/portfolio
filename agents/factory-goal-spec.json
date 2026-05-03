@@ -1,6 +1,53 @@
 {
   "version": 1,
-  "statement": "Describe the outcome you want in plain language. Merge concrete roadmap rows via `pnpm factory:plan-from-goal` after filling `roadmap_items`.",
+  "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+  "statement": "Factory verification: ship /calculator, a JSON weather API route plus /weather page that uses it, and Calculator + Weather links in the top navbar (desktop and mobile).",
   "goal_acceptance": null,
-  "roadmap_items": []
+  "roadmap_items": [
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "priority": 1000,
+      "traces_goal": "ship /calculator with basic arithmetic on the public site",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
+        "definition_of_done": [
+          "Route GET /calculator renders a client or server page on cpdeol.com layout (Portfolio shell / existing layout).",
+          "User can enter numbers and operators (or buttons) and see a correct basic arithmetic result.",
+          "Uses design-system tokens / theme classes only (no hardcoded hex); passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
+      "priority": 990,
+      "traces_goal": "JSON weather API route plus /weather page that uses it",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V1",
+        "definition_of_done": [
+          "A Next.js Route Handler under app/api (e.g. app/api/weather/route.ts) returns JSON with weather fields from a free no-key HTTP API (e.g. Open-Meteo), or documents minimal mock only if fetch is blocked in dev.",
+          "Route GET /weather displays current weather by calling the internal API (fetch relative /api/weather or equivalent) and shows human-readable output.",
+          "No secrets in client bundle; passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "priority": 980,
+      "traces_goal": "Calculator + Weather links in the top navbar (desktop and mobile)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_NAVBAR_V1",
+        "definition_of_done": [
+          "Desktop top nav includes links labeled Calculator and Weather to /calculator and /weather.",
+          "Mobile nav sheet includes the same two links with the same labels and hrefs.",
+          "Uses existing Navbar / config/navigation patterns; passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
+      }
+    }
+  ]
 }

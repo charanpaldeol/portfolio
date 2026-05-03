@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "appended_total": 0,
+  "at": "2026-05-03T22:42:32.642Z",
+  "llm_appended": 0,
+  "calc_weather_appended": 0,
+  "llm_skipped_reason": "no OPENAI_API_KEY",
+  "llm_error": null,
+  "goal_status": "blocked",
+  "improvement_pass": false
+}

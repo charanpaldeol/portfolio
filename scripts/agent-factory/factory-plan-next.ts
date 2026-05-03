@@ -6,6 +6,7 @@ import process from "node:process"
 import { z } from "zod"
 
 import { FactoryGoalStateSchema } from "@/lib/agent-factory/goal-spec"
+import { readGoalRevisionFromRoot } from "@/lib/agent-factory/goal-io"
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, type AgentFactoryQueueItem } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 import { FactoryMetricsSchema, computeGoalProgress } from "@/lib/agent-factory/goals"
@@ -41,7 +42,7 @@ async function writeJson(filePath: string, value: unknown) {
   await writeJsonFile(filePath, value)
 }
 
-function toQueueItem(input: z.output<typeof RoadmapItemSchema>): AgentFactoryQueueItem {
+function toQueueItem(input: z.output<typeof RoadmapItemSchema>, goalRevision: string): AgentFactoryQueueItem {
   const ts = nowIso()
   return AgentFactoryQueueItemSchema.parse({
     id: input.id,
@@ -53,6 +54,8 @@ function toQueueItem(input: z.output<typeof RoadmapItemSchema>): AgentFactoryQue
     updated_at: ts,
     claimed_by: null,
     claimed_at: null,
+    goal_revision: goalRevision,
+    cancel_reason: null,
   })
 }
 
@@ -97,18 +100,26 @@ async function main() {
 
   const targetSize = Number(process.env.FACTORY_QUEUE_TARGET_SIZE ?? String(100))
 
-  const attemptEnqueue = async (): Promise<{ enqueued: number; skippedFull: boolean; noRoadmapItems: boolean }> => {
+  const attemptEnqueue = async (): Promise<{
+    enqueued: number
+    skippedFull: boolean
+    /** Roadmap file has zero rows — safe to run market pipeline refresh. */
+    roadmapEmpty: boolean
+    /** Roadmap has rows but every id already has a non-cancelled queue row — do not refresh. */
+    allRoadmapAlreadyOnQueue: boolean
+  }> => {
     return await withFileLock({
       lockPath: `${queuePath}.lock`,
       workerId,
       fn: async () => {
+        const goalRevision = await readGoalRevisionFromRoot(root)
         const queue = await readJsonFile(queuePath, AgentFactoryQueueSchema)
         const existingById = new Map(queue.items.map((i) => [i.id, i] as const))
         const queuedCount = queue.items.filter((i) => i.status === "queued").length
         const capacity = Math.max(0, targetSize - queuedCount)
         if (capacity === 0) {
           console.log(`factory: plan-next: queue already at target (queued=${queuedCount}, target=${targetSize})`)
-          return { enqueued: 0, skippedFull: true, noRoadmapItems: false }
+          return { enqueued: 0, skippedFull: true, roadmapEmpty: false, allRoadmapAlreadyOnQueue: false }
         }
 
         const roadmap = RoadmapSchema.parse(await readJson(roadmapPath))
@@ -119,10 +130,18 @@ async function main() {
         })
 
         const revenueFirst = candidates.slice().sort((a, b) => b.priority - a.priority).slice(0, capacity)
-        const toEnqueue = revenueFirst.map(toQueueItem)
+        const toEnqueue = revenueFirst.map((item) => toQueueItem(item, goalRevision))
         if (!toEnqueue.length) {
-          console.log("factory: plan-next: no roadmap items to enqueue")
-          return { enqueued: 0, skippedFull: false, noRoadmapItems: true }
+          const roadmapEmpty = roadmap.items.length === 0
+          const allRoadmapAlreadyOnQueue = !roadmapEmpty && candidates.length === 0
+          if (allRoadmapAlreadyOnQueue) {
+            console.log(
+              `factory: plan-next: all ${roadmap.items.length} roadmap row(s) already on queue — not refreshing roadmap`,
+            )
+          } else {
+            console.log("factory: plan-next: no roadmap items to enqueue (empty roadmap)")
+          }
+          return { enqueued: 0, skippedFull: false, roadmapEmpty, allRoadmapAlreadyOnQueue }
         }
 
         const nextQueue = AgentFactoryQueueSchema.parse({
@@ -132,7 +151,7 @@ async function main() {
 
         await writeJson(queuePath, nextQueue)
         console.log(`factory: plan-next: enqueued ${toEnqueue.length} item(s) (queued=${queuedCount} → ${queuedCount + toEnqueue.length})`)
-        return { enqueued: toEnqueue.length, skippedFull: false, noRoadmapItems: false }
+        return { enqueued: toEnqueue.length, skippedFull: false, roadmapEmpty: false, allRoadmapAlreadyOnQueue: false }
       },
     })
   }
@@ -140,13 +159,15 @@ async function main() {
   const first = await attemptEnqueue()
   if (first.skippedFull) return
 
-  if (first.noRoadmapItems) {
+  if (first.allRoadmapAlreadyOnQueue) return
+
+  if (first.roadmapEmpty) {
     console.log("factory: plan-next: triggering roadmap refresh (market → candidates → select → generate)")
     const code = await runRoadmapRefresh(root)
     if (code !== 0) console.warn(`factory: plan-next: factory:roadmap:refresh exited ${code}`)
     const second = await attemptEnqueue()
-    if (second.noRoadmapItems && !second.skippedFull) {
-      console.warn("factory: plan-next: still no roadmap items after refresh")
+    if (second.roadmapEmpty && !second.skippedFull && !second.allRoadmapAlreadyOnQueue) {
+      console.warn("factory: plan-next: roadmap still empty after refresh")
     }
   }
 }

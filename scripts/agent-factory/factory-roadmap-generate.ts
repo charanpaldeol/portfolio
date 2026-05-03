@@ -46,8 +46,9 @@ async function main() {
     title: t.title,
     priority: t.priority,
     spec: {
-      command: `pnpm -s factory:roadmap:expand ${t.id}`,
+      command: `pnpm -s factory:implement ${t.id}`,
       definition_of_done: t.definition_of_done,
+      require_diff: true,
     },
   }))
 

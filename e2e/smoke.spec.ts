@@ -9,6 +9,8 @@ const routes = [
   "/blog",
   "/work-with-me",
   "/contact",
+  "/calculator",
+  "/weather",
 ]
 
 test.describe("Smoke: key routes render", () => {

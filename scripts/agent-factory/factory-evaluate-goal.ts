@@ -14,9 +14,9 @@ import {
 } from "@/lib/agent-factory/goal-spec"
 import { writeJsonFile } from "@/lib/agent-factory/storage"
 
-const RoadmapIdsSchema = z.object({
+const RoadmapItemsSchema = z.object({
   version: z.literal(1),
-  items: z.array(z.object({ id: z.string().min(1) })),
+  items: z.array(z.object({ id: z.string().min(1), title: z.string().min(1) })),
 })
 
 function nowIso() {
@@ -51,6 +51,7 @@ async function main() {
       statement: "",
       evaluated_at: nowIso(),
       summary: "Missing or invalid agents/factory-goal-spec.json",
+      roadmap_not_done: [],
       roadmap_item_count: 0,
       queue_done: 0,
       queue_failed: 0,
@@ -63,15 +64,15 @@ async function main() {
   }
 
   const roadmapRaw = await readFile(roadmapPath, "utf8")
-  const roadmap = RoadmapIdsSchema.parse(JSON.parse(roadmapRaw) as unknown)
-  const roadmapItemIds = roadmap.items.map((i) => i.id)
+  const roadmap = RoadmapItemsSchema.parse(JSON.parse(roadmapRaw) as unknown)
+  const roadmapItems = roadmap.items.map((i) => ({ id: i.id, title: i.title.trim() || i.id }))
 
   const queue = AgentFactoryQueueSchema.parse(JSON.parse(await readFile(queuePath, "utf8")) as unknown)
   const byId = new Map(queue.items.map((i) => [i.id, { status: i.status }] as const))
 
   const progress = evaluateFactoryGoalStatus({
     statement: goal.statement,
-    roadmapItemIds,
+    roadmapItems,
     queue: { byId },
   })
 
@@ -96,13 +97,16 @@ async function main() {
     if (status === "met") goalAcceptanceOk = true
   }
 
+  const roadmapNotDoneForState = goalAcceptanceOk === false ? [] : progress.roadmap_not_done
+
   const state = FactoryGoalStateSchema.parse({
     version: 1,
     status,
     statement: goal.statement,
     evaluated_at: nowIso(),
     summary,
-    roadmap_item_count: roadmapItemIds.length,
+    roadmap_not_done: roadmapNotDoneForState.length ? roadmapNotDoneForState : undefined,
+    roadmap_item_count: roadmapItems.length,
     queue_done: progress.queue_done,
     queue_failed: progress.queue_failed,
     queue_inflight: progress.queue_inflight,
@@ -110,7 +114,14 @@ async function main() {
   })
 
   await writeJsonFile(statePath, state)
-  console.log(`factory: evaluate-goal: status=${status} (${summary})`)
+  console.log(`factory: evaluate-goal: status=${status}`)
+  console.log(`  summary: ${summary}`)
+  if (roadmapNotDoneForState.length) {
+    console.log("  roadmap not done (id — title [queue]):")
+    for (const row of roadmapNotDoneForState) {
+      console.log(`    - ${row.id} — ${row.title} [${row.queue_status}]`)
+    }
+  }
 }
 
 main().catch((err) => {

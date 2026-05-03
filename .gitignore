@@ -33,3 +33,5 @@ agents/governance/screenshots/
 # Agent factory generated artifacts (local)
 .agent-worktrees/
 agents/factory-logs/
+factory-graph-corpus/
+agents/factory-pivot-log.jsonl

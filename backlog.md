@@ -1,50 +1,32 @@
-## EvidencePack — manual ops checklist (do later)
+# Backlog — cpdeol.com
 
-### Billing (Stripe)
-- [ ] Create Stripe Product + recurring Price; set `STRIPE_PRICE_ID`
-- [ ] Set `STRIPE_SECRET_KEY` in Vercel env
-- [ ] Create Stripe webhook endpoint → `POST /api/evidencepack/billing/webhook`
-- [ ] Set `STRIPE_WEBHOOK_SECRET` in Vercel env
-- [ ] Set `SITE_URL` (e.g. `https://cpdeol.com`)
+**Factory:** Running a **verification goal** (calculator + weather + navbar). Source of truth: **`agents/FACTORY_GOAL.md`** and **`agents/factory-roadmap.json`**.
 
-### Auth (magic link)
-- [ ] Set `EVIDENCEPACK_AUTH_SECRET` (random 32+ chars) in Vercel env
-- [ ] Set Resend vars: `RESEND_API_KEY`, `RESEND_FROM_EMAIL` (for magic links)
+## Factory research intake
 
-### Storage (Vercel Blob)
-- [ ] Create Blob token; set `BLOB_READ_WRITE_TOKEN` in Vercel env
+Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARCH-AGENT.md`** (`### ID — title`, `- Priority:`, optional `- Command:`). **`pnpm factory:loop`** (when the queue is below the low watermark) runs optional **`FACTORY_RESEARCH_HOOK`** → **`factory:research:calc-weather-once`** (code signals) → **`factory:backlog:intake`** → **`factory:plan-next`**. Disable the built-in signals with **`FACTORY_RESEARCH_CALC_WEATHER=0`**.
 
-### Database (Neon)
-- [ ] Ensure `DATABASE_URL` is set in Vercel env
-- [ ] Run migrations:
-  - [ ] `db/evidencepack_waitlist.sql`
-  - [ ] `db/evidencepack_invites.sql`
-  - [ ] `db/evidencepack_files.sql`
-  - [ ] `db/evidencepack_questionnaires.sql`
-  - [ ] `db/evidencepack_billing.sql`
+### FACTORY_R_CALC_ROUTE_METADATA_V1 — Calculator: route metadata (title/description) for /calculator
+- Priority: 620
+- Command: pnpm -s factory:implement FACTORY_R_CALC_ROUTE_METADATA_V1
+- Notes: Research signal — page is client-only; add `app/calculator/layout.tsx` with `export const metadata` (tokens only).
 
-### QA / smoke
-- [ ] Hit `GET /api/evidencepack/health` to confirm config readiness
-- [ ] Run a full flow in prod:
-  - [ ] Login magic link → `/evidencepack/app`
-  - [ ] Upload PDF + CSV
-  - [ ] Save questionnaire → list → export CSV
-  - [ ] Billing page → checkout session creation
+### FACTORY_R_CALC_KEYBOARD_A11Y_V1 — Calculator: keyboard support and visible focus for controls
+- Priority: 580
+- Command: pnpm -s factory:implement FACTORY_R_CALC_KEYBOARD_A11Y_V1
+- Notes: Research signal — add digits/operators via keyboard where reasonable (DS tokens, a11y).
 
-## Agent Factory — manual ops checklist (do later)
+### FACTORY_R_WEATHER_API_LOCATION_V1 — Weather API: accept location (lat/lon or city) instead of fixed coordinates
+- Priority: 640
+- Command: pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V1
+- Notes: Research signal — Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults.
 
-### Git / CI credentials
-- [ ] Ensure CI (or local) has Git push credentials for `git push -u origin <branch>` used by `pnpm factory:run-once`
-- [ ] Decide branch naming + protection rules for `agent/*` branches in the remote
+### FACTORY_R_WEATHER_ERROR_STATE_V1 — Weather page: user-visible error when /api/weather fails or returns an error field
+- Priority: 570
+- Command: pnpm -s factory:implement FACTORY_R_WEATHER_ERROR_STATE_V1
+- Notes: Research signal — branch on `{ error: ... }` from `loadWeatherJson` with clear error UI (DS tokens).
 
-### Running the factory indefinitely
-- **Start**: `pnpm factory:loop`
-- **Stop**: `Ctrl+C` (or set `FACTORY_MAX_RUNS` to a finite number)
-- **Key env vars**:
-  - **`FACTORY_MAX_RUNS`**: If set, stops after N runs (otherwise runs forever)
-  - **`FACTORY_INTERVAL_MS`**: Sleep between runs (default `60000`)
-  - **`FACTORY_QUEUE_LOW_WATERMARK`**: When queued work is below this, the loop calls `factory:plan-next` (default `20`)
-  - **`FACTORY_QUEUE_TARGET_SIZE`**: Planner tries to enqueue up to this many queued items when refilling (default `100`)
+## Manual / later
 
 ### Planner inputs
 - **Roadmap**: `agents/factory-roadmap.json` (curated, deterministic list of tasks)

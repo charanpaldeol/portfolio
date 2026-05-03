@@ -1,22 +1,28 @@
 {
   "version": 1,
-  "product_id": "evidencepack",
-  "name": "EvidencePack",
+  "product_id": "contract_redline_copilot",
+  "name": "Contract redline copilot",
   "icp": "B2B teams buying security/compliance software with recurring procurement cycles (refine after customer interviews).",
   "pricing_hypothesis": "Usage-based or per-seat monthly subscription with annual option; start with a single paid tier.",
-  "chosen_at": "2026-04-30T03:13:24.430Z",
+  "chosen_at": "2026-05-03T22:10:10.921Z",
   "score": {
-    "tam": 7.675,
-    "urgency": 8.9,
-    "competition": 4.775,
-    "founder_fit": 8.45,
-    "build_time": 5.55,
-    "pricing_power": 7.675,
-    "weighted_total": 7.2825,
-    "evidence_hits": 3
+    "tam": 9.5,
+    "urgency": 9,
+    "competition": 3.5,
+    "founder_fit": 6,
+    "build_time": 4,
+    "pricing_power": 8.5,
+    "weighted_total": 7,
+    "evidence_hits": 15
   },
   "evidence_snippet_ids": [
-    "d77a9ef96aa9eb24754f2b3d88a701e0",
-    "dc600b5a6b67b5313600ab4712d3e3e1"
+    "f9c3985ff9ebea6516b08fe110ba5416",
+    "925ac2c0afd17d796666700599fea3d6",
+    "157a46fbc0bafdf609f0a420efbe23ef",
+    "dc600b5a6b67b5313600ab4712d3e3e1",
+    "b7be6dac63fd73057626805afacc83db",
+    "c2d54aca8d4ebbdb704ab393eafbf117",
+    "6704c8a5fe5e8b0e0db5a4336924868d",
+    "52261eca34d5f29414472941d5689c6b"
   ]
 }

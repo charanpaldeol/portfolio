@@ -13,6 +13,8 @@ export const AgentFactoryQueueItemSchema = z.object({
   updated_at: z.string().datetime(),
   claimed_by: z.preprocess((v) => (v === undefined ? null : v), z.string().min(1).nullable()) as z.ZodType<string | null>,
   claimed_at: z.preprocess((v) => (v === undefined ? null : v), z.string().datetime().nullable()) as z.ZodType<string | null>,
+  goal_revision: z.preprocess((v) => (v === undefined || v === null || v === "" ? null : v), z.string().min(1).nullable()),
+  cancel_reason: z.preprocess((v) => (v === undefined || v === null || v === "" ? null : v), z.string().nullable()),
 })
 export type AgentFactoryQueueItem = z.output<typeof AgentFactoryQueueItemSchema>
 

@@ -3,12 +3,20 @@ import { chmod, mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
+import { appendFactoryResearchIntakeBlock } from "@/lib/agent-factory/backlog-intake"
+import { readGoalRevisionFromRoot } from "@/lib/agent-factory/goal-io"
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, type AgentFactoryQueueItem } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
 function envTruthy(key: string) {
   const v = (process.env[key] ?? "").trim().toLowerCase()
   return v === "1" || v === "true" || v === "yes"
+}
+
+/** When enabled (default), each new heal job is also appended under `## Factory research intake` in backlog.md for `factory:backlog:intake`. Disable with FACTORY_ISSUE_SWARM_LOG_BACKLOG_INTAKE=0. */
+function backlogIntakeLogEnabled() {
+  const v = (process.env.FACTORY_ISSUE_SWARM_LOG_BACKLOG_INTAKE ?? "1").trim().toLowerCase()
+  return v !== "0" && v !== "false" && v !== "no" && v !== "off"
 }
 
 type Incident = {
@@ -242,7 +250,7 @@ function classifyIncident(args: { incidentPath: string; incident: Incident; logT
   }
 }
 
-function toQueueItem(input: { id: string; title: string; priority: number; spec: unknown }): AgentFactoryQueueItem {
+function toQueueItem(input: { id: string; title: string; priority: number; spec: unknown }, goalRevision: string): AgentFactoryQueueItem {
   const ts = nowIso()
   return AgentFactoryQueueItemSchema.parse({
     id: input.id,
@@ -254,6 +262,8 @@ function toQueueItem(input: { id: string; title: string; priority: number; spec:
     updated_at: ts,
     claimed_by: null,
     claimed_at: null,
+    goal_revision: goalRevision,
+    cancel_reason: null,
   })
 }
 
@@ -264,10 +274,11 @@ async function enqueueHealJob(args: {
   priority: number
   spec: unknown
   maxQueuedAutoHeal: number
-}) {
+}): Promise<boolean> {
   const { root, id, title, priority, spec, maxQueuedAutoHeal } = args
   const queuePath = path.join(root, "agents", "factory-queue.json")
 
+  let enqueued = false
   await withFileLock({
     lockPath: `${queuePath}.lock`,
     workerId: "issue-swarm",
@@ -276,7 +287,9 @@ async function enqueueHealJob(args: {
       const existing = queue.items.find((i) => i.id === id)
       if (existing && existing.status !== "cancelled") return
 
-      const item = toQueueItem({ id, title, priority, spec })
+      enqueued = true
+      const goalRevision = await readGoalRevisionFromRoot(root)
+      const item = toQueueItem({ id, title, priority, spec }, goalRevision)
       let nextItems = [item, ...queue.items]
 
       // Cap queued auto-heal items to avoid incident storms starving real work.
@@ -299,6 +312,47 @@ async function enqueueHealJob(args: {
       await writeJsonFile(queuePath, nextQueue)
     },
   })
+  return enqueued
+}
+
+async function logHealJobToFactoryResearchBacklog(args: {
+  root: string
+  id: string
+  title: string
+  priority: number
+  command: string
+  extraLines?: string[]
+}) {
+  if (!backlogIntakeLogEnabled()) return
+  const backlogPath = path.join(args.root, "backlog.md")
+  const lockPath = `${backlogPath}.lock`
+  try {
+    await withFileLock({
+      lockPath,
+      workerId: "issue-swarm-backlog",
+      fn: async () => {
+        const raw = await readFile(backlogPath, "utf8")
+        const { markdown, appended, reason } = appendFactoryResearchIntakeBlock({
+          markdown: raw,
+          id: args.id,
+          title: args.title,
+          priority: args.priority,
+          command: args.command,
+          extraLines: [`Source: issue-swarm`, ...(args.extraLines ?? [])],
+        })
+        if (!appended) {
+          console.warn(`factory:issue-swarm: backlog intake skip (${reason})`)
+          return
+        }
+        await writeFile(backlogPath, markdown, "utf8")
+        console.warn(
+          `factory:issue-swarm: logged heal job to backlog.md (${args.id}) — run pnpm factory:backlog:intake if you want it on factory-roadmap.json`,
+        )
+      },
+    })
+  } catch (err) {
+    console.warn(`factory:issue-swarm: backlog append failed: ${(err as Error).message}`)
+  }
 }
 
 async function main() {
@@ -387,9 +441,20 @@ async function main() {
       if (tripped && canStabilize) {
         const id = safeId(`FACTORY_STABILIZE_${nowIso()}`)
         const title = `Factory stabilize (circuit breaker: ${recentCount} incidents/${Math.round(circuitWindowMs / 1000)}s)`
-        const spec = { kind: "auto_heal", class_key: "circuit_breaker", command: "pnpm -s factory:stabilize", window_ms: circuitWindowMs, incident_count: recentCount }
+        const stabilizeCmd = "pnpm -s factory:stabilize"
+        const spec = { kind: "auto_heal", class_key: "circuit_breaker", command: stabilizeCmd, window_ms: circuitWindowMs, incident_count: recentCount }
         console.warn(`factory:issue-swarm: circuit breaker tripped (${recentCount} incidents) -> enqueuing factory:stabilize`)
-        await enqueueHealJob({ root, id, title, priority: 1100, spec, maxQueuedAutoHeal })
+        const enqueued = await enqueueHealJob({ root, id, title, priority: 1100, spec, maxQueuedAutoHeal })
+        if (enqueued) {
+          await logHealJobToFactoryResearchBacklog({
+            root,
+            id,
+            title,
+            priority: 1100,
+            command: stabilizeCmd,
+            extraLines: [`Class: circuit_breaker`, `Incidents in window: ${recentCount}`],
+          })
+        }
         state.last_stabilize_at = nowIso()
         state.last_class_heal_at["circuit_breaker"] = nowIso()
         await writeJson(statePath, state)
@@ -411,7 +476,17 @@ async function main() {
         }
 
         console.warn(`factory:issue-swarm: new incident -> enqueue heal (${cls.classKey}): ${path.basename(last.path)}`)
-        await enqueueHealJob({ root, id, title: cls.title, priority: cls.priority, spec, maxQueuedAutoHeal })
+        const enqueuedHeal = await enqueueHealJob({ root, id, title: cls.title, priority: cls.priority, spec, maxQueuedAutoHeal })
+        if (enqueuedHeal) {
+          await logHealJobToFactoryResearchBacklog({
+            root,
+            id,
+            title: cls.title,
+            priority: cls.priority,
+            command: cls.command,
+            extraLines: [`Class: ${cls.classKey}`, `Incident: ${path.basename(last.path)}`],
+          })
+        }
         state.last_class_heal_at[cls.classKey] = nowIso()
         await writeJson(statePath, state)
       } else {
@@ -488,16 +563,27 @@ async function main() {
           if (state.last_vercel_error_deployment_id !== latest.uid) {
             const id = safeId(`VERCEL_DEPLOY_ERROR_${latest.uid}`)
             const title = `Vercel deployment ERROR for ${vercelGitRef} (${latest.uid})`
+            const vercelHealCmd = `pnpm -s factory:stabilize && DEPLOY_URL=${JSON.stringify(deploySmokeUrl)} pnpm -s deploy:smoke`
             const spec = {
               kind: "auto_heal",
               class_key: "vercel_deploy_error",
               deployment_id: latest.uid,
               deployment_url: latest.url,
               git_ref: vercelGitRef,
-              command: `pnpm -s factory:stabilize && DEPLOY_URL=${JSON.stringify(deploySmokeUrl)} pnpm -s deploy:smoke`,
+              command: vercelHealCmd,
             }
             console.warn(`factory:issue-swarm: vercel deployment ERROR -> enqueuing backlog item (${latest.uid})`)
-            await enqueueHealJob({ root, id, title, priority: 1000, spec, maxQueuedAutoHeal })
+            const enqueuedVercel = await enqueueHealJob({ root, id, title, priority: 1000, spec, maxQueuedAutoHeal })
+            if (enqueuedVercel) {
+              await logHealJobToFactoryResearchBacklog({
+                root,
+                id,
+                title,
+                priority: 1000,
+                command: vercelHealCmd,
+                extraLines: [`Class: vercel_deploy_error`, `Deployment: ${latest.uid}`, `URL: ${latest.url}`],
+              })
+            }
             state.last_vercel_error_deployment_id = latest.uid
           }
         }

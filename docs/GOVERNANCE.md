@@ -164,6 +164,18 @@ Combined with branch protection → **PRs cannot merge with violations**.
 
 ---
 
+## Agent factory — merge policy and preflight
+
+Autonomous **`pnpm factory:run-once`** / **`factory:loop`** workers use documented env for merge vs PR, money-moving defaults, optional post-merge deploy smoke, and preflight checks. **New user-visible** factory work should default to **`lib/feature-flags.ts`** + **`FF_*`** unless the task waives flags.
+
+| Doc | Purpose |
+|-----|---------|
+| **`docs/factory/FACTORY_MERGE_POLICY.md`** | `FACTORY_MERGE_STRATEGY`, `FACTORY_MONEY_MOVING_PROD`, PR vs direct, UAT env, **`FF_*`** norm for shipped UI |
+| **`docs/factory/FACTORY_VERIFY_GATE.md`** | `pnpm verify` in the worktree + preflight pointer |
+| **`pnpm factory:preflight`** | Fail-fast worker checks (also run at the start of each `factory:run-once`) |
+
+---
+
 ## File Map
 
 ```

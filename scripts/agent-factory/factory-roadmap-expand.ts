@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises"
+import { mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
@@ -60,7 +60,7 @@ async function main() {
 
   const root = process.cwd()
   const roadmapPath = path.join(root, "agents", "factory-roadmap.json")
-  const backlogPath = path.join(root, "backlog.md")
+  const entryPath = path.join(root, "backlog", `${itemId}.md`)
 
   const roadmapRaw = await readFile(roadmapPath, "utf8")
   const roadmap = RoadmapSchema.parse(JSON.parse(roadmapRaw) as unknown)
@@ -74,21 +74,10 @@ async function main() {
   const spec = asRecord(item.spec) ?? {}
   const definitionOfDone = readStringArray(spec["definition_of_done"])
 
-  const backlog = await readFile(backlogPath, "utf8")
-  if (backlog.includes(`### ${item.id} — `)) {
-    console.log(`factory:roadmap:expand: already expanded (${item.id})`)
-    return
-  }
-
-  const header = "## EvidencePack — build roadmap expansions"
-  const nextBacklog = backlog.includes(header)
-    ? backlog + renderBacklogBlock({ id: item.id, title: item.title, priority: item.priority, definitionOfDone })
-    : backlog +
-      `\n\n${header}\n` +
-      renderBacklogBlock({ id: item.id, title: item.title, priority: item.priority, definitionOfDone })
-
-  await writeFile(backlogPath, nextBacklog, "utf8")
-  console.log(`factory:roadmap:expand: wrote backlog entry for ${item.id}`)
+  await mkdir(path.dirname(entryPath), { recursive: true })
+  const block = renderBacklogBlock({ id: item.id, title: item.title, priority: item.priority, definitionOfDone })
+  await writeFile(entryPath, block.trimStart() + "\n", "utf8")
+  console.log(`factory:roadmap:expand: wrote backlog/${item.id}.md`)
 }
 
 main().catch((err) => {

@@ -1,12 +1,49 @@
 {
   "version": 1,
   "status": "blocked",
-  "statement": "Describe the outcome you want in plain language. Merge concrete roadmap rows via `pnpm factory:plan-from-goal` after filling `roadmap_items`.",
-  "evaluated_at": "2026-04-30T03:17:41.015Z",
-  "summary": "1 roadmap-linked queue item(s) failed; replan or fix, then re-queue.",
-  "roadmap_item_count": 12,
+  "statement": "Factory verification: ship /calculator, a JSON weather API route plus /weather page that uses it, and Calculator + Weather links in the top navbar (desktop and mobile).",
+  "evaluated_at": "2026-05-03T22:42:32.207Z",
+  "summary": "4 roadmap-linked queue item(s) failed; replan or fix, then re-queue. Not done: FACTORY_VERIFY_CALCULATOR_V1: Verification: calculator page at /calculator [failed]; FACTORY_VERIFY_WEATHER_V1: Verification: weather API + /weather page [failed]; FACTORY_VERIFY_NAVBAR_V1: Verification: Calculator and Weather in Navbar [failed]; FACTORY_R_WEATHER_API_LOCATION_V1: Weather API: accept location (lat/lon or city) instead of fixed coordinates [failed]; FACTORY_R_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title/description) for /calculator [queued]; FACTORY_R_WEATHER_ERROR_STATE_V1: Weather page: user-visible error when /api/weather fails or returns an error field [queued]; FACTORY_R_CALC_KEYBOARD_A11Y_V1: Calculator: keyboard support and visible focus for controls [queued].",
+  "roadmap_not_done": [
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V1",
+      "title": "Weather API: accept location (lat/lon or city) instead of fixed coordinates",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title/description) for /calculator",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_ERROR_STATE_V1",
+      "title": "Weather page: user-visible error when /api/weather fails or returns an error field",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+      "title": "Calculator: keyboard support and visible focus for controls",
+      "queue_status": "queued"
+    }
+  ],
+  "roadmap_item_count": 7,
   "queue_done": 0,
-  "queue_failed": 1,
-  "queue_inflight": 11,
+  "queue_failed": 4,
+  "queue_inflight": 3,
   "goal_acceptance_ok": null
 }

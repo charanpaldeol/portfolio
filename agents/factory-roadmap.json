@@ -2,159 +2,85 @@
   "version": 1,
   "items": [
     {
-      "id": "EVIDENCEPACK_R24_REVENUE_PRICING_PAGE_V1",
-      "title": "EvidencePack: pricing page v1",
+      "id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
       "priority": 1000,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_REVENUE_PRICING_PAGE_V1",
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
         "definition_of_done": [
-          "Pricing page exists with one clear plan and CTA",
-          "CTA leads to login/signup entrypoint",
-          "No placeholder links or dead ends"
-        ]
+          "Route GET /calculator renders a client or server page on cpdeol.com layout (Portfolio shell / existing layout).",
+          "User can enter numbers and operators (or buttons) and see a correct basic arithmetic result.",
+          "Uses design-system tokens / theme classes only (no hardcoded hex); passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_REVENUE_AUTH_MAGIC_LINK_V1",
-      "title": "EvidencePack: magic-link auth v1",
+      "id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
       "priority": 990,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_REVENUE_AUTH_MAGIC_LINK_V1",
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V1",
         "definition_of_done": [
-          "User can request a magic link and establish a session cookie",
-          "After login, user is redirected into the app",
-          "Auth failure states are handled"
-        ]
+          "A Next.js Route Handler under app/api (e.g. app/api/weather/route.ts) returns JSON with weather fields from a free no-key HTTP API (e.g. Open-Meteo), or documents minimal mock only if fetch is blocked in dev.",
+          "Route GET /weather displays current weather by calling the internal API (fetch relative /api/weather or equivalent) and shows human-readable output.",
+          "No secrets in client bundle; passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_REVENUE_STRIPE_CHECKOUT_V1",
-      "title": "EvidencePack: Stripe Checkout session creation v1",
+      "id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
       "priority": 980,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_REVENUE_STRIPE_CHECKOUT_V1",
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_NAVBAR_V1",
         "definition_of_done": [
-          "Authenticated user can start checkout from inside the app",
-          "Checkout success/cancel URLs are correct",
-          "No secrets leak to the client"
-        ]
+          "Desktop top nav includes links labeled Calculator and Weather to /calculator and /weather.",
+          "Mobile nav sheet includes the same two links with the same labels and hrefs.",
+          "Uses existing Navbar / config/navigation patterns; passes pnpm tsc and pnpm lint."
+        ],
+        "require_diff": true
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_REVENUE_STRIPE_WEBHOOKS_V1",
-      "title": "EvidencePack: Stripe webhooks → subscription record v1",
-      "priority": 970,
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V1",
+      "title": "Weather API: accept location (lat/lon or city) instead of fixed coordinates",
+      "priority": 640,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_REVENUE_STRIPE_WEBHOOKS_V1",
-        "definition_of_done": [
-          "Webhook endpoint verifies signature and records subscription status",
-          "DB subscription state updates on relevant Stripe events",
-          "Handles replay/idempotency safely"
-        ]
+        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V1 (priority 640)"
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_REVENUE_ACCESS_GATING_V1",
-      "title": "EvidencePack: paid access gating v1",
-      "priority": 960,
+      "id": "FACTORY_R_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title/description) for /calculator",
+      "priority": 620,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_REVENUE_ACCESS_GATING_V1",
-        "definition_of_done": [
-          "App gates paid features behind subscription/invite access",
-          "Gating uses a single source of truth for access checks",
-          "Locked states explain what to do next"
-        ]
+        "command": "pnpm -s factory:implement FACTORY_R_CALC_ROUTE_METADATA_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_ROUTE_METADATA_V1 (priority 620)"
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_CORE_UPLOAD_PDF_V1",
-      "title": "EvidencePack: upload PDF v1 (store file + metadata)",
-      "priority": 900,
+      "id": "FACTORY_R_WEATHER_ERROR_STATE_V1",
+      "title": "Weather page: user-visible error when /api/weather fails or returns an error field",
+      "priority": 570,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_CORE_UPLOAD_PDF_V1",
-        "definition_of_done": [
-          "Upload PDF stores blob and writes document metadata row",
-          "Upload UI shows success + lists recent uploads",
-          "Large file and type errors are handled"
-        ]
+        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_ERROR_STATE_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_ERROR_STATE_V1 (priority 570)"
       }
     },
     {
-      "id": "EVIDENCEPACK_R24_CORE_PDF_INGEST_PIPELINE_V1",
-      "title": "EvidencePack: PDF ingest pipeline v1 (chunks in DB)",
-      "priority": 890,
+      "id": "FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+      "title": "Calculator: keyboard support and visible focus for controls",
+      "priority": 580,
       "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_CORE_PDF_INGEST_PIPELINE_V1",
-        "definition_of_done": [
-          "Uploaded PDFs are ingested into chunk rows",
-          "Chunks are queryable for drafting and citations",
-          "Ingest can be retried safely"
-        ]
-      }
-    },
-    {
-      "id": "EVIDENCEPACK_R24_CORE_QUESTIONNAIRES_MODEL_V1",
-      "title": "EvidencePack: questionnaires model v1 (persist + list + open)",
-      "priority": 880,
-      "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_CORE_QUESTIONNAIRES_MODEL_V1",
-        "definition_of_done": [
-          "Questionnaire entity can be saved and re-opened",
-          "List view shows questionnaires for current user",
-          "DB schema + types are defined"
-        ]
-      }
-    },
-    {
-      "id": "EVIDENCEPACK_R24_CORE_DRAFT_WITH_CITATIONS_V1",
-      "title": "EvidencePack: draft answers with citations v1 (flagged)",
-      "priority": 870,
-      "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_CORE_DRAFT_WITH_CITATIONS_V1",
-        "definition_of_done": [
-          "Draft answers can be generated referencing chunks",
-          "Citations are stored per question",
-          "UI is gated behind a feature flag"
-        ]
-      }
-    },
-    {
-      "id": "EVIDENCEPACK_R24_EXPORT_CSV_V1",
-      "title": "EvidencePack: questionnaire CSV export v1",
-      "priority": 800,
-      "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_EXPORT_CSV_V1",
-        "definition_of_done": [
-          "Export CSV for a saved questionnaire",
-          "Export includes answers + citation references",
-          "Download works from the app UI"
-        ]
-      }
-    },
-    {
-      "id": "EVIDENCEPACK_R24_EXPORT_EVIDENCE_ZIP_V1",
-      "title": "EvidencePack: evidence pack ZIP export v1",
-      "priority": 790,
-      "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_EXPORT_EVIDENCE_ZIP_V1",
-        "definition_of_done": [
-          "Export zip contains questionnaire CSV + evidence snippets",
-          "Export has a manifest for traceability",
-          "Works for a saved questionnaire"
-        ]
-      }
-    },
-    {
-      "id": "EVIDENCEPACK_R24_RELIABILITY_EVENT_LOG_V1",
-      "title": "EvidencePack: event log v1 (minimal audit trail)",
-      "priority": 700,
-      "spec": {
-        "command": "pnpm -s factory:roadmap:expand EVIDENCEPACK_R24_RELIABILITY_EVENT_LOG_V1",
-        "definition_of_done": [
-          "Key actions emit events with request id + user identifier",
-          "Events are queryable for support/debug",
-          "No PII leakage beyond what is required"
-        ]
+        "command": "pnpm -s factory:implement FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_KEYBOARD_A11Y_V1 (priority 580)"
       }
     }
   ]

@@ -16,6 +16,8 @@ function parseFlagValue(value: string | undefined) {
  *
  * Env:
  *   FF_NEW_TESTIMONIALS=1
+ *
+ * Factory default for new user-visible UI: `docs/factory/FACTORY_MERGE_POLICY.md`
  */
 export function featureFlag(flag: string) {
   const key = normalizeFlagEnvKey(flag)

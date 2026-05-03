@@ -3,6 +3,7 @@ import type { z } from "zod"
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
+import { readGoalRevisionFromRoot } from "@/lib/agent-factory/goal-io"
 import { AgentFactoryQueueItemSchema, AgentFactoryQueueSchema, AgentFactoryRunSchema, AgentFactoryRunsFileSchema } from "@/lib/agent-factory/queue"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
@@ -61,6 +62,7 @@ export async function addFactoryTask(input: { title: string; spec?: unknown; pri
     fn: async () => {
       const queue = await readJsonFile(filePath, AgentFactoryQueueSchema)
       const ts = nowIso()
+      const goalRevision = await readGoalRevisionFromRoot(process.cwd())
       const item = AgentFactoryQueueItemSchema.parse({
         id: makeId("task"),
         title: input.title,
@@ -69,6 +71,8 @@ export async function addFactoryTask(input: { title: string; spec?: unknown; pri
         priority: input.priority,
         created_at: ts,
         updated_at: ts,
+        goal_revision: goalRevision,
+        cancel_reason: null,
       })
       const next = { ...queue, items: [item, ...queue.items] }
       await writeJsonFile(filePath, AgentFactoryQueueSchema.parse(next))

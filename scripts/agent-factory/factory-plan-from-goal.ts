@@ -4,7 +4,11 @@ import process from "node:process"
 
 import { z } from "zod"
 
-import { FactoryGoalSpecSchema, FactoryRoadmapItemShapeSchema } from "@/lib/agent-factory/goal-spec"
+import {
+  FactoryGoalSpecSchema,
+  FactoryRoadmapItemShapeSchema,
+  validateRoadmapItemsTraceToGoal,
+} from "@/lib/agent-factory/goal-spec"
 import { withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
 const RoadmapFileSchema = z.object({
@@ -22,6 +26,13 @@ async function main() {
   const goal = FactoryGoalSpecSchema.parse(JSON.parse(await readFile(goalPath, "utf8")) as unknown)
   if (!goal.roadmap_items.length) {
     console.log("factory: plan-from-goal: roadmap_items is empty; add items to agents/factory-goal-spec.json then re-run")
+    return
+  }
+
+  const trace = validateRoadmapItemsTraceToGoal({ statement: goal.statement, items: goal.roadmap_items })
+  if (!trace.ok) {
+    for (const err of trace.errors) console.error(`factory: plan-from-goal: ${err}`)
+    process.exitCode = 1
     return
   }
 

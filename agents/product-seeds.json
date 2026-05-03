@@ -2,26 +2,6 @@
   "version": 1,
   "items": [
     {
-      "id": "evidencepack",
-      "name": "EvidencePack",
-      "keywords": [
-        "security questionnaire",
-        "vendor assessment",
-        "compliance",
-        "SOC 2",
-        "questionnaire",
-        "security review"
-      ],
-      "priors": {
-        "tam": 7,
-        "urgency": 8,
-        "competition": 5,
-        "founder_fit": 8,
-        "build_time": 6,
-        "pricing_power": 7
-      }
-    },
-    {
       "id": "contract_redline_copilot",
       "name": "Contract redline copilot",
       "keywords": [
