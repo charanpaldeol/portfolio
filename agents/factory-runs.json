@@ -2,6 +2,19 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_54e39a01-f6a5-4960-bb3a-324c777c4bc0",
+      "item_id": "FACTORY_CALC_A11Y_KEYBOARD_V1",
+      "title": "Calculator: keyboard entry and visible focus for controls",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_81240",
+      "status": "failed",
+      "started_at": "2026-05-04T22:37:30.864Z",
+      "finished_at": "2026-05-04T22:37:30.906Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_d12686d2-9618-4505-b928-99596794175d",
       "item_id": "FACTORY_VERIFY_NAVBAR_V1",
       "title": "Verification: Calculator and Weather in Navbar",
