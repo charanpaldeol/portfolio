@@ -168,3 +168,29 @@ To re-enable research proposals, either:
   - Keyboard shortcuts for scientific functions
   - pnpm verify passes
 
+
+## Factory research intake
+
+### FACTORY_WEATHER_LOCATION_PERSIST_V1 — Weather: persist user location choice
+- Priority: 920
+- Command: pnpm -s factory:implement FACTORY_WEATHER_LOCATION_PERSIST_V1
+
+### FACTORY_CALC_HISTORY_V1 — Calculator: show calculation history
+- Priority: 910
+- Command: pnpm -s factory:implement FACTORY_CALC_HISTORY_V1
+
+### FACTORY_WEATHER_FORECAST_V1 — Weather: show 3-day forecast
+- Priority: 900
+- Command: pnpm -s factory:implement FACTORY_WEATHER_FORECAST_V1
+
+### FACTORY_CALC_MEMORY_V1 — Calculator: M+, M-, MR (memory buttons)
+- Priority: 890
+- Command: pnpm -s factory:implement FACTORY_CALC_MEMORY_V1
+
+### FACTORY_WEATHER_WIDGET_V1 — Weather: embeddable weather widget
+- Priority: 880
+- Command: pnpm -s factory:implement FACTORY_WEATHER_WIDGET_V1
+
+### FACTORY_CALC_SCIENTIFIC_V1 — Calculator: scientific mode (sin, cos, log, sqrt)
+- Priority: 870
+- Command: pnpm -s factory:implement FACTORY_CALC_SCIENTIFIC_V1
