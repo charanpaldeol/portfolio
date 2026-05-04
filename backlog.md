@@ -6,30 +6,19 @@ Rows below marked *historical* belong to the earlier verification sprint; the **
 
 ## Factory research intake
 
-Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARCH-AGENT.md`** (`### ID — title`, `- Priority:`, optional `- Command:`). **`pnpm factory:loop`** (when the queue is below the low watermark) runs optional **`FACTORY_RESEARCH_HOOK`** → **`factory:research:calc-weather-once`** (code signals) → **`factory:backlog:intake`** → **`factory:plan-next`**. Disable the built-in signals with **`FACTORY_RESEARCH_CALC_WEATHER=0`**.
+ARCHIVED: All research intake items removed on 2026-05-04. The factory is focused on executing the 7 roadmap items in `agents/factory-roadmap.json`:
+- FACTORY_WEATHER_LOCATION_SEARCH_V1 (done)
+- FACTORY_WEATHER_ERROR_UX_V1 (queued)
+- FACTORY_CALC_UI_POLISH_V1 (queued)
+- FACTORY_CALC_A11Y_KEYBOARD_V1 (queued)
+- FACTORY_WEATHER_API_QUERY_V1 (queued)
+- FACTORY_CALC_ROUTE_METADATA_V1 (queued)
+- FACTORY_NAV_CALC_WEATHER_DISCOVER_V1 (queued)
 
-### FACTORY_R_CALC_ROUTE_METADATA_V1 — Calculator: route metadata (title/description) for /calculator
-- Priority: 620
-- Command: pnpm -s factory:implement FACTORY_R_CALC_ROUTE_METADATA_V1
-- Notes: Research signal — page is client-only; add `app/calculator/layout.tsx` with `export const metadata` (tokens only).
-
-### FACTORY_R_CALC_KEYBOARD_A11Y_V1 — Calculator: keyboard support and visible focus for controls
-- Priority: 580
-- Command: pnpm -s factory:implement FACTORY_R_CALC_KEYBOARD_A11Y_V1
-- Notes: Research signal — add digits/operators via keyboard where reasonable (DS tokens, a11y).
-
-### FACTORY_R_WEATHER_API_LOCATION_V1 — Weather API: accept location (lat/lon or city) instead of fixed coordinates
-- Priority: 640
-- Command: pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V1
-- Notes: Research signal — Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults.
-
-### FACTORY_R_WEATHER_ERROR_STATE_V1 — Weather page: user-visible error when /api/weather fails or returns an error field
-- Priority: 570
-- Command: pnpm -s factory:implement FACTORY_R_WEATHER_ERROR_STATE_V1
-- Notes: Research signal — branch on `{ error: ... }` from `loadWeatherJson` with clear error UI (DS tokens).
-
-<!-- ARCHIVED STALE RESEARCH: Verification tasks V1-V13 were deprecated on 2026-05-04. See historical-backlog.md for reference. -->
-<!-- These items failed due to unclear specs and were replaced by the live roadmap in factory-roadmap.json -->
+To re-enable research proposals, either:
+1. Set env var `FACTORY_RESEARCH_CALC_WEATHER=1` before running `factory:research:once`
+2. Ensure Ollama is running locally (preferred over Claude/OpenAI for cost/speed)
+3. Or set `OPENAI_API_KEY` for cloud LLM fallback
 
 ## Manual / later
 
