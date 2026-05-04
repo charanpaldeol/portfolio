@@ -36,3 +36,4 @@ agents/factory-logs/
 factory-graph-corpus/
 agents/factory-pivot-log.jsonl
 .aider*
+.env.factory
