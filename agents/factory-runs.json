@@ -2,6 +2,19 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_3547a5d9-0cab-4eca-b0be-95df8d2b46dc",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V13",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v13-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V13",
+      "worker_id": "worker_21352",
+      "status": "failed",
+      "started_at": "2026-05-04T04:36:03.268Z",
+      "finished_at": "2026-05-04T04:41:59.848Z",
+      "commit_sha": null,
+      "error": "pnpm verify failed (exit 1)"
+    },
+    {
       "run_id": "run_aedd6c26-5c65-4534-89f8-28cae9a54be7",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V10",
       "title": "Fix calculator page at /calculator",

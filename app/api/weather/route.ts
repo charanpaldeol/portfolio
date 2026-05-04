@@ -82,6 +82,9 @@ export async function GET(request: Request) {
     const code = current?.weather_code
     return NextResponse.json({
       source: "open-meteo",
+      lat,
+      lon,
+      city: parsed.data.city ?? parsed.data.q ?? "",
       temperatureC: typeof t === "number" && Number.isFinite(t) ? t : 0,
       weatherCode: typeof code === "number" && Number.isFinite(code) ? code : 0,
       current: {
@@ -92,6 +95,9 @@ export async function GET(request: Request) {
   } catch {
     return NextResponse.json({
       source: "mock",
+      lat,
+      lon,
+      city: parsed.data.city ?? parsed.data.q ?? "",
       temperatureC: 18,
       weatherCode: 0,
       current: { temperature_2m: 18, weather_code: 0 },

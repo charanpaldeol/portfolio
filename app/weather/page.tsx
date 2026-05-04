@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
 import { headers } from "next/headers"
+import { Suspense } from "react"
 
 import { PageShell } from "@/components/layout/PageShell"
+import { WeatherSearch } from "@/components/weather/WeatherSearch"
+import { featureFlag } from "@/lib/feature-flags"
 
 export const metadata: Metadata = {
   title: "Weather",
@@ -23,7 +26,7 @@ async function loadWeatherJson(apiQuery: string): Promise<Record<string, unknown
   const host = h.get("x-forwarded-host") ?? h.get("host") ?? "127.0.0.1:3000"
   const proto = h.get("x-forwarded-proto") ?? "http"
   const res = await fetch(`${proto}://${host}/api/weather${apiQuery}`, {
-    next: { revalidate: 300 },
+    cache: "no-store", // Ensure we get fresh data when search params change
   })
   if (!res.ok) {
     const text = await res.text().catch(() => "")
@@ -41,12 +44,20 @@ export default async function WeatherPage({ searchParams }: PageProps) {
   const sp = await searchParams
   const apiQuery = buildSearchString(sp)
   const data = await loadWeatherJson(apiQuery)
+  const showSearch = featureFlag("weather-location-search")
 
   if (typeof data.error === "string" && data.error.trim() !== "") {
     return (
       <PageShell>
-        <main className="max-w-xl space-y-4">
+        <main className="max-w-xl space-y-8">
           <h1 className="font-display text-3xl font-semibold text-foreground">Weather</h1>
+          
+          {showSearch && (
+            <Suspense fallback={<div className="h-48 animate-pulse rounded-2xl bg-surface-container-low" />}>
+              <WeatherSearch />
+            </Suspense>
+          )}
+
           <div role="alert" className="rounded-lg bg-destructive/10 p-4 text-foreground">
             <p className="font-medium text-foreground">Could not load weather.</p>
             <p className="mt-2 text-sm text-muted-foreground">{data.error}</p>
@@ -71,20 +82,50 @@ export default async function WeatherPage({ searchParams }: PageProps) {
         ? String((data.current as { weather_code: number }).weather_code)
         : "—"
   const source = typeof data.source === "string" ? data.source : "unknown"
+  const city = typeof data.city === "string" ? data.city : ""
+  const lat = typeof data.lat === "number" ? data.lat.toFixed(4) : null
+  const lon = typeof data.lon === "number" ? data.lon.toFixed(4) : null
 
   return (
     <PageShell>
-      <main className="max-w-xl space-y-4">
+      <main className="max-w-xl space-y-8">
         <h1 className="font-display text-3xl font-semibold text-foreground">Weather</h1>
-        <p className="text-muted-foreground">
-          Data from the internal <code className="text-foreground">/api/weather</code> route.
-        </p>
-        <p className="text-foreground">
-          <strong>Temperature:</strong> {temp} (weather code {code})
-        </p>
-        <p className="text-foreground">
-          <strong>Source:</strong> {source}
-        </p>
+        
+        {showSearch && (
+          <Suspense fallback={<div className="h-48 animate-pulse rounded-2xl bg-surface-container-low" />}>
+            <WeatherSearch />
+          </Suspense>
+        )}
+
+        <div className="space-y-4 rounded-2xl bg-surface-container-low p-6">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-xl font-medium text-on-surface">
+              {city ? `Weather in ${city}` : "Current Weather"}
+            </h2>
+            {lat && lon && (
+              <span className="text-xs text-on-surface-variant font-mono">
+                {lat}, {lon}
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-6">
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold tracking-wide text-on-surface-variant uppercase">Temperature:</span>
+              <div className="text-4xl font-bold text-on-surface">{temp}</div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold tracking-wide text-on-surface-variant uppercase">Condition</span>
+              <div className="text-on-surface-variant">
+                Weather code: <span className="font-mono">{code}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2 text-xs text-on-surface-variant opacity-70">
+            Source: <span className="font-medium text-on-surface">{source}</span> via <code>/api/weather</code>
+          </div>
+        </div>
       </main>
     </PageShell>
   )

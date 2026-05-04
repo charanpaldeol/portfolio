@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { chooseDedupeKeepers, idVersionSuffix, queuedItemDedupeKey } from "./queue-dedupe"
 import type { AgentFactoryQueueItem } from "./queue"
+import { chooseDedupeKeepers, idVersionSuffix, queuedItemDedupeKey } from "./queue-dedupe"
 
 function qItem(partial: Partial<AgentFactoryQueueItem> & Pick<AgentFactoryQueueItem, "id" | "title">): AgentFactoryQueueItem {
   const now = "2026-05-04T12:00:00.000Z"
