@@ -478,7 +478,7 @@ async function main() {
 
     const install = await runCmd({
       cmd: "pnpm",
-      argv: ["-s", "install", "--frozen-lockfile", "--prefer-offline"],
+      argv: ["install", "--prefer-offline"],
       cwd: worktreePath,
       logPath,
     })
