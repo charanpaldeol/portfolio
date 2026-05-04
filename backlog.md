@@ -20,11 +20,6 @@ To re-enable research proposals, either:
 2. Ensure Ollama is running locally (preferred over Claude/OpenAI for cost/speed)
 3. Or set `OPENAI_API_KEY` for cloud LLM fallback
 
-### FACTORY_R_NEWLOCATION_V1 — Search or enter location (city text or lat/lon) and load forecast
-- Priority: 850
-- Command: pnpm -s factory:implement FACTORY_R_NEWLOCATION_V1
-- Notes: LLM research (remediation (goal evaluation + repo signals))
-
 ## Manual / later
 
 ### Planner inputs
@@ -172,30 +167,3 @@ To re-enable research proposals, either:
   - Scientific mode adds: sin, cos, tan, log, ln, sqrt, power, factorial, pi
   - Keyboard shortcuts for scientific functions
   - pnpm verify passes
-
-
-## Factory research intake
-
-### FACTORY_WEATHER_LOCATION_PERSIST_V1 — Weather: persist user location choice
-- Priority: 920
-- Command: pnpm -s factory:implement FACTORY_WEATHER_LOCATION_PERSIST_V1
-
-### FACTORY_CALC_HISTORY_V1 — Calculator: show calculation history
-- Priority: 910
-- Command: pnpm -s factory:implement FACTORY_CALC_HISTORY_V1
-
-### FACTORY_WEATHER_FORECAST_V1 — Weather: show 3-day forecast
-- Priority: 900
-- Command: pnpm -s factory:implement FACTORY_WEATHER_FORECAST_V1
-
-### FACTORY_CALC_MEMORY_V1 — Calculator: M+, M-, MR (memory buttons)
-- Priority: 890
-- Command: pnpm -s factory:implement FACTORY_CALC_MEMORY_V1
-
-### FACTORY_WEATHER_WIDGET_V1 — Weather: embeddable weather widget
-- Priority: 880
-- Command: pnpm -s factory:implement FACTORY_WEATHER_WIDGET_V1
-
-### FACTORY_CALC_SCIENTIFIC_V1 — Calculator: scientific mode (sin, cos, log, sqrt)
-- Priority: 870
-- Command: pnpm -s factory:implement FACTORY_CALC_SCIENTIFIC_V1
