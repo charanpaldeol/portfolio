@@ -26,14 +26,14 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V12 (priority 850)"
       },
-      "status": "queued",
+      "status": "cancelled",
       "priority": 850,
       "created_at": "2026-05-04T03:45:25.829Z",
-      "updated_at": "2026-05-04T03:45:26.873Z",
+      "updated_at": "2026-05-04T04:33:34.012Z",
       "claimed_by": null,
       "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
+      "cancel_reason": "deduped: duplicate queued task (same title + goal_revision; kept highest _V##)"
     },
     {
       "id": "FACTORY_VERIFY_CALCULATOR_V11",
@@ -43,14 +43,14 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V11 (priority 850)"
       },
-      "status": "queued",
+      "status": "cancelled",
       "priority": 850,
       "created_at": "2026-05-04T03:44:16.565Z",
-      "updated_at": "2026-05-04T04:27:08.292Z",
+      "updated_at": "2026-05-04T04:33:34.012Z",
       "claimed_by": null,
       "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
+      "cancel_reason": "deduped: duplicate queued task (same title + goal_revision; kept highest _V##)"
     },
     {
       "id": "FACTORY_VERIFY_CALCULATOR_V10",
