@@ -78,6 +78,11 @@ export function parseIntakeItems(sectionLines: string[], warn: (msg: string) => 
       warn(`factory:backlog:intake: skip ${it.id} — invalid or missing Priority (use "- Priority: <int>")`)
       continue
     }
+    // Reject VERIFY_* and remediation tasks — these are stale research artifacts
+    if (it.id.startsWith("FACTORY_VERIFY_") || it.id.startsWith("FACTORY_R_")) {
+      warn(`factory:backlog:intake: skip ${it.id} — verification/remediation tasks are not enqueue-able (skip stale research artifacts)`)
+      continue
+    }
     ready.push({ ...it, priority: p })
   }
   return ready
