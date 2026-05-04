@@ -36,7 +36,7 @@
         ],
         "require_diff": true
       },
-      "status": "failed",
+      "status": "queued",
       "priority": 910,
       "created_at": "2026-05-04T05:01:19.870Z",
       "updated_at": "2026-05-04T21:17:59.008Z",
@@ -58,7 +58,7 @@
         ],
         "require_diff": true
       },
-      "status": "failed",
+      "status": "queued",
       "priority": 895,
       "created_at": "2026-05-04T05:01:19.870Z",
       "updated_at": "2026-05-04T21:20:01.346Z",
@@ -80,7 +80,7 @@
         ],
         "require_diff": true
       },
-      "status": "failed",
+      "status": "queued",
       "priority": 880,
       "created_at": "2026-05-04T05:01:19.870Z",
       "updated_at": "2026-05-04T22:37:30.910Z",
@@ -122,7 +122,7 @@
         ],
         "require_diff": true
       },
-      "status": "failed",
+      "status": "queued",
       "priority": 860,
       "created_at": "2026-05-04T05:01:19.870Z",
       "updated_at": "2026-05-04T22:37:40.882Z",
@@ -146,9 +146,9 @@
       "status": "queued",
       "priority": 850,
       "created_at": "2026-05-04T05:01:19.870Z",
-      "updated_at": "2026-05-04T20:52:16.969Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:37:49.625Z",
+      "claimed_by": "worker_81764",
+      "claimed_at": "2026-05-04T22:37:49.567Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     }
