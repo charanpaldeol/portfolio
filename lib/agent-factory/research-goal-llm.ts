@@ -89,17 +89,39 @@ export function parseResearchBlocksFromLlm(
   return { blocks, duplicateSkips, invalidSkips }
 }
 
+export type GoalResearchPromptMode = "milestone" | "improvement_when_met" | "remediation_failed"
+
+function instructionForMode(mode: GoalResearchPromptMode): string {
+  if (mode === "improvement_when_met") {
+    return "All roadmap work in the last evaluation is DONE (or cancelled). Propose ONLY incremental improvements: polish, accessibility, tests, error handling, performance, copy—no greenfield rewrites. If there is nothing concrete left, output exactly one line: FACTORY_RESEARCH_DONE"
+  }
+  if (mode === "remediation_failed") {
+    return "The latest factory goal evaluation (above) shows blocked work and/or failed queue items tied to the roadmap. Read it together with any repo code signals. Propose NEW small tasks (each `pnpm -s factory:implement <ID>`) that address real gaps, root causes, or missing UX—use NEW ids only; never reuse any id under Existing ids or repeat the same scope under a duplicate id. Prefer 2–6 concrete follow-ups (e.g. fix verify failures, error states, a11y, tests). If the evaluation + signals leave nothing actionable beyond re-running existing queue rows as-is, output exactly one line: FACTORY_RESEARCH_DONE"
+  }
+  return "Propose concrete, small vertical-slice tasks (each runnable as `pnpm -s factory:implement <ID>` in a git worktree). Prefer 3–8 tasks for the first milestone. Each task must be independently shippable with a clear Definition of Done implied by the title."
+}
+
 export function buildGoalResearchPrompt(args: {
   goalMarkdown: string
   goalStatement: string
   roadmapSummary: string
   existingIds: string[]
   maxTasks: number
-  improvementPass: boolean
+  mode: GoalResearchPromptMode
+  goalEvaluationSection?: string
+  repoSignalsSection?: string
 }): string {
-  const mode = args.improvementPass
-    ? "All roadmap work in the last evaluation is DONE (or cancelled). Propose ONLY incremental improvements: polish, accessibility, tests, error handling, performance, copy—no greenfield rewrites. If there is nothing concrete left, output exactly one line: FACTORY_RESEARCH_DONE"
-    : "Propose concrete, small vertical-slice tasks (each runnable as `pnpm -s factory:implement <ID>` in a git worktree). Prefer 3–8 tasks for the first milestone. Each task must be independently shippable with a clear Definition of Done implied by the title."
+  const modeLine = instructionForMode(args.mode)
+
+  const evalBlock =
+    args.goalEvaluationSection && args.goalEvaluationSection.trim().length > 0
+      ? ["## Latest factory goal evaluation (agents/factory-goal-state.json)", args.goalEvaluationSection.trim(), ""]
+      : []
+
+  const signalsBlock =
+    args.repoSignalsSection && args.repoSignalsSection.trim().length > 0
+      ? ["## Repo code signals (deterministic scan; hints only)", args.repoSignalsSection.trim(), ""]
+      : []
 
   return [
     "You are the Factory research agent for a Next.js 15 (App Router) + TypeScript + pnpm repo.",
@@ -110,15 +132,17 @@ export function buildGoalResearchPrompt(args: {
     "## Extended goal (FACTORY_GOAL.md excerpt)",
     args.goalMarkdown.slice(0, 14_000),
     "",
+    ...evalBlock,
     "## Current roadmap rows (id — title)",
     args.roadmapSummary || "(none)",
     "",
+    ...signalsBlock,
     "## Existing ids — do NOT reuse",
     args.existingIds.length ? args.existingIds.sort().join(", ") : "(none)",
     "Never emit a `###` heading for any id listed above; use new unique ALL_CAPS ids only (e.g. FACTORY_R_NEWTHING_V1).",
     "",
     "## Instructions",
-    `- ${mode}`,
+    `- ${modeLine}`,
     `- Output ONLY task blocks in this exact shape (repeat for each task, up to ${args.maxTasks} tasks):`,
     "### YOUR_ID_V1 — Short imperative title",
     "- Priority: <integer 500–950, higher = sooner>",

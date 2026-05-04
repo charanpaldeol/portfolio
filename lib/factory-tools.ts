@@ -114,7 +114,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-research-once",
     title: "Research: goal LLM + optional hook + calc/weather signals",
     purpose:
-      "Runs autonomous research for the current `factory-goal-spec.json` / `FACTORY_GOAL.md`: calls an OpenAI-compatible chat API when `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY` is set (improvement-only mode when `factory-goal-state.json` status is `met`), runs optional `FACTORY_RESEARCH_HOOK`, then optional calculator/weather code-signal append. Writes `agents/factory-research-last.json` with `appended_total` for the loop stall counter.",
+      "Runs autonomous research for the current `factory-goal-spec.json` / `FACTORY_GOAL.md`: builds the LLM prompt from goal state (`agents/factory-goal-state.json` summary + per-item queue status when present), roadmap rows, optional deterministic calculator/weather **repo signal** hints, and existing ids. Uses **remediation** instructions when state is `blocked` or `queue_failed` > 0 (disable with `FACTORY_RESEARCH_REMEDIATION_PROMPT=0`), **improvement** when status is `met` and `FACTORY_RESEARCH_IMPROVEMENT_WHEN_MET` is on, otherwise milestone planning. Calls an OpenAI-compatible API when keys are set; runs optional `FACTORY_RESEARCH_HOOK`, then optional calc/weather backlog append. Writes `agents/factory-research-last.json` including `research_prompt_mode` and `appended_total`.",
     howToUse: [
       "No keys: Ollama auto-detect + goal-spec `roadmap_items` → backlog intake. With keys: `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY`; optional `FACTORY_RESEARCH_MODEL` and `FACTORY_RESEARCH_OPENAI_BASE` (e.g. Groq).",
       "Use `FACTORY_RESEARCH_HOOK` for a custom bash snippet that edits `backlog.md` before the built-in steps.",
@@ -123,7 +123,10 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     relatedFiles: [
       "scripts/agent-factory/factory-research-once.ts",
       "lib/agent-factory/run-goal-llm-research-append.ts",
+      "lib/agent-factory/research-goal-context.ts",
+      "lib/agent-factory/research-goal-llm.ts",
       "lib/agent-factory/run-calc-weather-research-append.ts",
+      "agents/factory-goal-state.json",
       "agents/factory-research-last.json",
     ],
   },

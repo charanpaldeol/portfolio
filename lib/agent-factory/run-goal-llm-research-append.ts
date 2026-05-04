@@ -6,7 +6,13 @@ import { z } from "zod"
 import { appendFactoryResearchIntakeBlock, extractResearchIntakeSection, parseIntakeItems } from "@/lib/agent-factory/backlog-intake"
 import { FactoryGoalSpecSchema, type FactoryGoalSpec } from "@/lib/agent-factory/goal-spec"
 import { AgentFactoryQueueSchema } from "@/lib/agent-factory/queue"
-import { buildGoalResearchPrompt, isExplicitResearchDone, parseResearchBlocksFromLlm } from "@/lib/agent-factory/research-goal-llm"
+import {
+  buildCalcWeatherRepoSignalsSection,
+  formatGoalEvaluationForResearchPrompt,
+  readFactoryGoalStateForResearch,
+  resolveResearchPromptMode,
+} from "@/lib/agent-factory/research-goal-context"
+import { buildGoalResearchPrompt, isExplicitResearchDone, parseResearchBlocksFromLlm, type GoalResearchPromptMode } from "@/lib/agent-factory/research-goal-llm"
 import { readJsonFile } from "@/lib/agent-factory/storage"
 
 const RoadmapLiteSchema = z.object({
@@ -189,11 +195,17 @@ async function appendGoalSpecRoadmapToResearchIntake(args: {
   return appended
 }
 
+function llmResearchNoteTag(mode: GoalResearchPromptMode): string {
+  if (mode === "improvement_when_met") return "improvement pass"
+  if (mode === "remediation_failed") return "remediation (goal evaluation + repo signals)"
+  return "initial plan"
+}
+
 async function applyLlmTextToBacklog(args: {
   backlogPath: string
   backlogMd: string
   text: string
-  improvementPass: boolean
+  mode: GoalResearchPromptMode
   existingIdArray: string[]
 }): Promise<{ appended: number; skippedReason?: string }> {
   const dupSet = new Set<string>(args.existingIdArray)
@@ -218,7 +230,7 @@ async function applyLlmTextToBacklog(args: {
 
   let md = args.backlogMd
   let appended = 0
-  const noteTag = args.improvementPass ? "improvement pass" : "initial plan"
+  const noteTag = llmResearchNoteTag(args.mode)
   for (const b of blocks) {
     const r = appendFactoryResearchIntakeBlock({
       markdown: md,
@@ -244,13 +256,15 @@ export type GoalResearchAppendResult = {
   error?: string
   /** Populated when `appended > 0` from this module (cloud API, local Ollama, or goal-spec sync). */
   via?: "api" | "ollama" | "goal_spec"
+  /** Prompt mode used for this run (goal-state + env driven). */
+  researchMode?: GoalResearchPromptMode
 }
 
 /**
  * Goal research: OpenAI-compatible API when keys are set; else local Ollama (`FACTORY_RESEARCH_TRY_OLLAMA`, default on);
  * else syncs `factory-goal-spec.json` `roadmap_items` into backlog research intake when `FACTORY_RESEARCH_GOAL_SPEC_FALLBACK` is on (default).
  */
-export async function runGoalLlmResearchAppend(repoRoot: string, improvementPass: boolean): Promise<GoalResearchAppendResult> {
+export async function runGoalLlmResearchAppend(repoRoot: string): Promise<GoalResearchAppendResult> {
   const goalPath = path.join(repoRoot, "agents", "FACTORY_GOAL.md")
   const specPath = path.join(repoRoot, "agents", "factory-goal-spec.json")
   const roadmapPath = path.join(repoRoot, "agents", "factory-roadmap.json")
@@ -267,15 +281,20 @@ export async function runGoalLlmResearchAppend(repoRoot: string, improvementPass
       readFile(backlogPath, "utf8"),
     ])
   } catch (e) {
-    return { appended: 0, error: e instanceof Error ? e.message : String(e) }
+    return { appended: 0, error: e instanceof Error ? e.message : String(e), researchMode: "milestone" }
   }
 
   let spec: ReturnType<typeof FactoryGoalSpecSchema.parse>
   try {
     spec = FactoryGoalSpecSchema.parse(JSON.parse(specRaw) as unknown)
   } catch (e) {
-    return { appended: 0, error: `invalid factory-goal-spec.json: ${e instanceof Error ? e.message : String(e)}` }
+    return { appended: 0, error: `invalid factory-goal-spec.json: ${e instanceof Error ? e.message : String(e)}`, researchMode: "milestone" }
   }
+
+  const goalState = await readFactoryGoalStateForResearch(repoRoot)
+  const researchMode = resolveResearchPromptMode(goalState)
+  const goalEvaluationSection = formatGoalEvaluationForResearchPrompt(goalState)
+  const repoSignalsSection = await buildCalcWeatherRepoSignalsSection(repoRoot, spec.statement)
 
   const roadmapRaw = await readFile(roadmapPath, "utf8").catch(() => "{\"version\":1,\"items\":[]}")
   const roadmapParsed = RoadmapLiteSchema.safeParse(JSON.parse(roadmapRaw) as unknown)
@@ -301,21 +320,23 @@ export async function runGoalLlmResearchAppend(repoRoot: string, improvementPass
     roadmapSummary: roadmapItems.map((r) => `${r.id} — ${r.title}`).join("\n"),
     existingIds: existingIdArray,
     maxTasks,
-    improvementPass,
+    mode: researchMode,
+    goalEvaluationSection,
+    repoSignalsSection,
   })
 
   const apiKey = resolveFactoryResearchApiKey()
   if (apiKey) {
     const ai = await openAiChat({ prompt })
-    if (!ai.ok) return { appended: 0, error: ai.error }
+    if (!ai.ok) return { appended: 0, error: ai.error, researchMode }
     const out = await applyLlmTextToBacklog({
       backlogPath,
       backlogMd,
       text: ai.text,
-      improvementPass,
+      mode: researchMode,
       existingIdArray,
     })
-    return out.appended > 0 ? { ...out, via: "api" } : out
+    return out.appended > 0 ? { ...out, via: "api", researchMode } : { ...out, researchMode }
   }
 
   const ollama = await tryOllamaResearchChat({ prompt })
@@ -324,17 +345,17 @@ export async function runGoalLlmResearchAppend(repoRoot: string, improvementPass
       backlogPath,
       backlogMd,
       text: ollama.text,
-      improvementPass,
+      mode: researchMode,
       existingIdArray,
     })
-    return out.appended > 0 ? { ...out, via: "ollama" } : out
+    return out.appended > 0 ? { ...out, via: "ollama", researchMode } : { ...out, researchMode }
   }
 
-  if (!envFlag(process.env.FACTORY_RESEARCH_GOAL_SPEC_FALLBACK, true) || improvementPass) {
-    if (improvementPass) {
-      return { appended: 0, skippedReason: "no_llm_credentials_improvement_pass" }
+  if (!envFlag(process.env.FACTORY_RESEARCH_GOAL_SPEC_FALLBACK, true) || researchMode === "improvement_when_met") {
+    if (researchMode === "improvement_when_met") {
+      return { appended: 0, skippedReason: "no_llm_credentials_improvement_pass", researchMode }
     }
-    return { appended: 0, skippedReason: "no_llm_credentials" }
+    return { appended: 0, skippedReason: "no_llm_credentials", researchMode }
   }
 
   const fb = await appendGoalSpecRoadmapToResearchIntake({
@@ -342,9 +363,10 @@ export async function runGoalLlmResearchAppend(repoRoot: string, improvementPass
     backlogMd,
     spec,
   })
-  if (fb > 0) return { appended: fb, via: "goal_spec" }
+  if (fb > 0) return { appended: fb, via: "goal_spec", researchMode }
   return {
     appended: 0,
+    researchMode,
     skippedReason:
       ollama.ok === false && ollama.reason !== "ollama_unreachable"
         ? `ollama_failed_then_goal_spec_empty (${ollama.reason})`

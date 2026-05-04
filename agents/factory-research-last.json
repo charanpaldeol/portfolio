@@ -1,10 +1,10 @@
 {
   "version": 1,
   "appended_total": 0,
-  "at": "2026-05-04T00:34:05.015Z",
+  "at": "2026-05-04T00:37:15.645Z",
   "llm_appended": 0,
   "calc_weather_appended": 0,
-  "llm_skipped_reason": "llm_no_parseable_blocks",
+  "llm_skipped_reason": "ollama_failed_then_goal_spec_empty (LLM HTTP 404: {\"error\":{\"message\":\"model 'llama3.1:8b' not found\",\"type\":\"not_found_error\",\"param\":null,\"code\":null}}\n)",
   "llm_error": null,
   "llm_via": null,
   "goal_status": "blocked",

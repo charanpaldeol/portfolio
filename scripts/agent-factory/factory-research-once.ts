@@ -40,7 +40,8 @@ async function main() {
   const goalStatus = await readGoalStateStatus(root)
   const improvementPass = improvementWhenMet && goalStatus === "met"
 
-  const llm = await runGoalLlmResearchAppend(root, improvementPass)
+  const llm = await runGoalLlmResearchAppend(root)
+  if (llm.researchMode) console.log(`factory:research: prompt_mode=${llm.researchMode}`)
   if (llm.appended > 0) {
     const label =
       llm.via === "goal_spec" ? "goal-spec sync (no API key)" : llm.via === "ollama" ? "Ollama" : "LLM"
@@ -75,6 +76,7 @@ async function main() {
     llm_skipped_reason: llm.skippedReason ?? null,
     llm_error: llm.error ?? null,
     llm_via: llm.via ?? null,
+    research_prompt_mode: llm.researchMode ?? null,
     goal_status: goalStatus,
     improvement_pass: improvementPass,
   }
