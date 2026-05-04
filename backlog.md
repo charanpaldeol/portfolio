@@ -104,3 +104,67 @@ To re-enable research proposals, either:
 **Implementation notes**
 - [ ] (Agent) Break into smaller PR-sized tasks
 - [ ] (Agent) Identify required env vars / manual setup and record here
+
+## Factory research intake
+
+### FACTORY_WEATHER_LOCATION_PERSIST_V1 — Weather: persist user location choice
+- Priority: 920
+- Command: pnpm -s factory:implement FACTORY_WEATHER_LOCATION_PERSIST_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Persist last queried location to localStorage
+  - Load it on page visit
+  - Allow quick re-query of last location
+  - pnpm verify passes
+
+### FACTORY_CALC_HISTORY_V1 — Calculator: show calculation history
+- Priority: 910
+- Command: pnpm -s factory:implement FACTORY_CALC_HISTORY_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Display last 5 calculations in a collapsible history panel
+  - Click history item to restore it to calculator
+  - Clear history button
+  - Responsive on mobile/desktop
+  - pnpm verify passes
+
+### FACTORY_WEATHER_FORECAST_V1 — Weather: show 3-day forecast
+- Priority: 900
+- Command: pnpm -s factory:implement FACTORY_WEATHER_FORECAST_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Extend /api/weather to return forecast for 3 days (or get from API)
+  - Display daily forecast with temperature, condition, precipitation
+  - Use weather icons/visual indicators
+  - pnpm verify passes
+
+### FACTORY_CALC_MEMORY_V1 — Calculator: M+, M-, MR (memory buttons)
+- Priority: 890
+- Command: pnpm -s factory:implement FACTORY_CALC_MEMORY_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Add Memory+ (M+), Memory- (M-), Memory Recall (MR), Memory Clear (MC) buttons
+  - Display current memory value on calculator
+  - Keyboard shortcuts for memory functions
+  - pnpm verify passes
+
+### FACTORY_WEATHER_WIDGET_V1 — Weather: embeddable weather widget
+- Priority: 880
+- Command: pnpm -s factory:implement FACTORY_WEATHER_WIDGET_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Create compact weather widget component (e.g. for homepage sidebar)
+  - Show current location, temp, condition, quick location toggle
+  - Responsive and accessible
+  - pnpm verify passes
+
+### FACTORY_CALC_SCIENTIFIC_V1 — Calculator: scientific mode (sin, cos, log, sqrt)
+- Priority: 870
+- Command: pnpm -s factory:implement FACTORY_CALC_SCIENTIFIC_V1
+- Notes: LLM research (Claude) — enhancement proposal
+- Definition of Done:
+  - Toggle between standard and scientific calculator modes
+  - Scientific mode adds: sin, cos, tan, log, ln, sqrt, power, factorial, pi
+  - Keyboard shortcuts for scientific functions
+  - pnpm verify passes
+
