@@ -122,12 +122,12 @@
         ],
         "require_diff": true
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 860,
       "created_at": "2026-05-04T05:01:19.870Z",
-      "updated_at": "2026-05-04T21:06:53.417Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:37:40.882Z",
+      "claimed_by": "worker_81523",
+      "claimed_at": "2026-05-04T22:37:40.835Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },

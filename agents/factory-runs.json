@@ -2,6 +2,19 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_644aea50-35b6-4898-971b-fda760032bbd",
+      "item_id": "FACTORY_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title and description) for /calculator",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_81523",
+      "status": "failed",
+      "started_at": "2026-05-04T22:37:40.837Z",
+      "finished_at": "2026-05-04T22:37:40.878Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_54e39a01-f6a5-4960-bb3a-324c777c4bc0",
       "item_id": "FACTORY_CALC_A11Y_KEYBOARD_V1",
       "title": "Calculator: keyboard entry and visible focus for controls",
@@ -99,11 +112,11 @@
       "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
       "worker_id": "worker_22380",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:52:59.061Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T22:37:38.361Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_aff50954-e582-4f55-954b-ff54b5a29ecd",
@@ -112,11 +125,11 @@
       "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
       "worker_id": "worker_16130",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:46:39.814Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T22:37:38.361Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_ef9b21b3-4e13-42e8-b271-6b0085331304",
@@ -138,11 +151,11 @@
       "branch": "agent/factory_calc_route_metadata_v1-calculator-route-metadata-title-and-description-",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_CALC_ROUTE_METADATA_V1",
       "worker_id": "worker_97568",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:32:38.249Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T22:37:38.361Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_f687cdc4-cbc2-4310-bed7-08b05bd30261",
@@ -177,11 +190,11 @@
       "branch": "agent/factory_verify_weather_v1-verification-weather-api-weather-page",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V1",
       "worker_id": "worker_85454",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:23:45.913Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T22:37:38.361Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_e4486180-2e49-426a-854c-fd7d4edae93c",
@@ -268,11 +281,11 @@
       "branch": "agent/factory_weather_error_ux_v1-weather-visible-error-and-retry-friendly-state-w",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_WEATHER_ERROR_UX_V1",
       "worker_id": "worker_59471",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:06:24.717Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T22:37:38.361Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_08a72136-5ae4-47b9-8384-3e35fd264b11",
