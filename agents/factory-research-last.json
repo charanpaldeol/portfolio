@@ -1,10 +1,10 @@
 {
   "version": 1,
   "appended_total": 0,
-  "at": "2026-05-04T04:04:30.572Z",
+  "at": "2026-05-04T04:15:21.163Z",
   "llm_appended": 0,
   "calc_weather_appended": 0,
-  "llm_skipped_reason": "llm_invalid_blocks",
+  "llm_skipped_reason": "llm_all_duplicate_ids",
   "llm_error": null,
   "llm_via": null,
   "research_prompt_mode": "remediation_failed",

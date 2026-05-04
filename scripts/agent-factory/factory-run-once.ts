@@ -4,17 +4,22 @@ import { mkdir, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 import process from "node:process"
 
-import {
-  AgentFactoryQueueItemSchema,
-  AgentFactoryQueueSchema,
-  AgentFactoryRunsFileSchema,
-  pickNextFactoryItem,
-  type AgentFactoryQueue,
-  type AgentFactoryQueueItem,
-  type AgentFactoryRunsFile,
-} from "@/lib/agent-factory/queue"
 import { assertFactoryPreflight } from "@/lib/agent-factory/factory-preflight"
 import { parseFactoryItemSpec } from "@/lib/agent-factory/item-spec"
+import {
+  type AgentFactoryQueue,
+  type AgentFactoryQueueItem,
+  AgentFactoryQueueItemSchema,
+  AgentFactoryQueueSchema,
+  type AgentFactoryRunsFile,
+  AgentFactoryRunsFileSchema,
+  pickNextFactoryItem,
+} from "@/lib/agent-factory/queue"
+import {
+  hasMeaningfulShippingPath,
+  meaningfulPathPrefixes,
+  onlyNonShippingChanges,
+} from "@/lib/agent-factory/require-diff-guards"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
 function nowIso() {
@@ -216,7 +221,7 @@ async function ghAvailable(repoRoot: string) {
 
 async function waitForDeploySmoke(args: { repoRoot: string; deployUrl: string; logPath: string; timeoutMs: number; intervalMs: number }) {
   const deadline = Date.now() + args.timeoutMs
-  // eslint-disable-next-line no-constant-condition
+   
   while (true) {
     const code = await runCmd({
       cmd: "pnpm",
@@ -381,7 +386,7 @@ async function mergeAndPushToMain(args: {
           const pollMs = parseMs(process.env.FACTORY_PR_MERGE_POLL_MS, 15 * 1000)
           const deadline = Date.now() + timeoutMs
 
-          // eslint-disable-next-line no-constant-condition
+           
           while (true) {
             const view = await spawnCapture("gh", ["pr", "view", String(prNumber), "--json", "state,mergedAt,url"], mergeWorktreePath)
             if (view.code !== 0) throw new Error(`gh pr view failed (exit ${view.code}): ${view.stderr || view.stdout}`.trim())
@@ -554,13 +559,32 @@ async function main() {
       }
     }
     if (itemSpec.requireDiff && itemSpec.command && hasChanges) {
-      const isNonShipping = (p: string) =>
-        p === "backlog.md" || p.startsWith("agents/") || p === "README.md" || p.startsWith("docs/")
-      if (changedPaths.length > 0 && changedPaths.every(isNonShipping)) {
+      if (onlyNonShippingChanges(changedPaths)) {
         throw new Error(
           `require_diff: spec.command produced only non-shipping changes (${changedPaths.length} file(s): ${changedPaths.slice(0, 5).join(", ")}); refusing to commit`,
         )
       }
+    }
+
+    const requireMeaningfulPaths = parseBool(process.env.FACTORY_REQUIRE_MEANINGFUL_PATHS ?? "1")
+    const meaningfulPrefixes = meaningfulPathPrefixes()
+    if (
+      requireMeaningfulPaths &&
+      itemSpec.requireDiff &&
+      itemSpec.command &&
+      hasChanges &&
+      !cursorDelegatedImplement &&
+      isDefaultPnpmFactoryImplementCommand(itemSpec.command, nextItem.id) &&
+      !hasMeaningfulShippingPath(changedPaths, meaningfulPrefixes)
+    ) {
+      throw new Error(
+        [
+          "require_diff: factory:implement produced no changes under meaningful product roots",
+          `(need at least one of: ${meaningfulPrefixes.join(", ")};`,
+          `set FACTORY_MEANINGFUL_PATH_PREFIXES=comma/extra/prefix/ to allow more).`,
+          `Changed (${changedPaths.length}): ${changedPaths.slice(0, 12).join(", ")}`,
+        ].join(" "),
+      )
     }
 
     const acceptanceEnv = { ...process.env, FACTORY_ITEM_ID: nextItem.id, FACTORY_ROOT: repoRoot }

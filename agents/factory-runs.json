@@ -2,6 +2,45 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_aa7d951b-a327-4810-84d8-2df88c5f2095",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V11",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v11-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V11",
+      "worker_id": "worker_533",
+      "status": "started",
+      "started_at": "2026-05-04T04:19:03.349Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_d2eeb24e-7d03-4267-be51-8012c9d98042",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V10",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v10-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V10",
+      "worker_id": "worker_96455",
+      "status": "started",
+      "started_at": "2026-05-04T04:15:22.200Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_4e76d93b-fb04-43fc-a502-fadd002f395b",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V9",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v9-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V9",
+      "worker_id": "worker_91133",
+      "status": "succeeded",
+      "started_at": "2026-05-04T04:11:18.077Z",
+      "finished_at": "2026-05-04T04:13:54.380Z",
+      "commit_sha": "e27c393af39916e7a6caf0048b6700f2d8bd8e22",
+      "error": null
+    },
+    {
       "run_id": "run_fad0bb4c-1108-42e7-992e-70711dcbd5c0",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V8",
       "title": "Fix calculator page at /calculator",
