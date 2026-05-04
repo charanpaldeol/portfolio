@@ -151,7 +151,13 @@ async function main() {
     return
   }
 
-  const claudeBin = (process.env.FACTORY_CLAUDE_BIN || "claude").trim()
+  let claudeBin = (process.env.FACTORY_CLAUDE_BIN || "claude").trim()
+
+  // Resolve relative paths from repo root
+  if (claudeBin.startsWith("./") || claudeBin.startsWith("../")) {
+    claudeBin = path.resolve(repoRoot, claudeBin)
+  }
+
   const allowedTools =
     process.env.FACTORY_IMPLEMENT_ALLOWED_TOOLS || "Read Edit Write Glob Grep Bash"
   const implementModel = (process.env.FACTORY_IMPLEMENT_MODEL || "").trim()
