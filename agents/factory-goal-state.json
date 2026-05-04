@@ -2,14 +2,9 @@
   "version": 1,
   "status": "active",
   "statement": "Incremental improvements to the public calculator and weather experience on cpdeol.com: location lookup on the weather page, dependable error feedback, API query flexibility for weather, clearer calculator layout and keyboard accessibility, route metadata for the calculator, and navbar discoverability for Calculator and Weather.",
-  "evaluated_at": "2026-05-04T05:01:28.085Z",
-  "summary": "7 roadmap-linked item(s) still queued or in progress. Not done: FACTORY_WEATHER_LOCATION_SEARCH_V1: Weather page: search or enter location (city text or lat/lon) and load forecast [queued]; FACTORY_WEATHER_ERROR_UX_V1: Weather: visible error and retry-friendly state when the API fails or returns an error [queued]; FACTORY_CALC_UI_POLISH_V1: Calculator: clearer layout, spacing, and control grouping on /calculator [queued]; FACTORY_CALC_A11Y_KEYBOARD_V1: Calculator: keyboard entry and visible focus for controls [queued]; FACTORY_WEATHER_API_QUERY_V1: Weather API: optional location query params with safe defaults (Open-Meteo or current provider) [queued]; FACTORY_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title and description) for /calculator [queued]; FACTORY_NAV_CALC_WEATHER_DISCOVER_V1: Navbar: Calculator and Weather links remain obvious on desktop and mobile [queued].",
+  "evaluated_at": "2026-05-04T19:28:39.114Z",
+  "summary": "6 roadmap-linked item(s) still queued or in progress. Not done: FACTORY_WEATHER_ERROR_UX_V1: Weather: visible error and retry-friendly state when the API fails or returns an error [queued]; FACTORY_CALC_UI_POLISH_V1: Calculator: clearer layout, spacing, and control grouping on /calculator [queued]; FACTORY_CALC_A11Y_KEYBOARD_V1: Calculator: keyboard entry and visible focus for controls [queued]; FACTORY_WEATHER_API_QUERY_V1: Weather API: optional location query params with safe defaults (Open-Meteo or current provider) [queued]; FACTORY_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title and description) for /calculator [queued]; FACTORY_NAV_CALC_WEATHER_DISCOVER_V1: Navbar: Calculator and Weather links remain obvious on desktop and mobile [queued].",
   "roadmap_not_done": [
-    {
-      "id": "FACTORY_WEATHER_LOCATION_SEARCH_V1",
-      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
-      "queue_status": "queued"
-    },
     {
       "id": "FACTORY_WEATHER_ERROR_UX_V1",
       "title": "Weather: visible error and retry-friendly state when the API fails or returns an error",
@@ -42,8 +37,8 @@
     }
   ],
   "roadmap_item_count": 7,
-  "queue_done": 0,
+  "queue_done": 1,
   "queue_failed": 0,
-  "queue_inflight": 7,
+  "queue_inflight": 6,
   "goal_acceptance_ok": null
 }

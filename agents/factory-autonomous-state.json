@@ -1,7 +1,7 @@
 {
   "version": 1,
   "stall_loops": 0,
-  "last_goal_revision": "factory-verify-calc-weather-nav-2026-05",
-  "last_statement_fp": "da5cbde0f46bc65b",
-  "updated_at": "2026-05-04T04:51:32.501Z"
+  "last_goal_revision": "factory-calc-weather-incremental-2026-05",
+  "last_statement_fp": "93a8c2b3a2204d92",
+  "updated_at": "2026-05-04T19:28:54.847Z"
 }

@@ -329,6 +329,20 @@ export async function runGoalLlmResearchAppend(repoRoot: string): Promise<GoalRe
     repoSignalsSection,
   })
 
+  // Try Ollama first (preferred: local, free, fast)
+  const ollama = await tryOllamaResearchChat({ prompt })
+  if (ollama.ok) {
+    const out = await applyLlmTextToBacklog({
+      backlogPath,
+      backlogMd,
+      text: ollama.text,
+      mode: researchMode,
+      existingIdArray,
+    })
+    return out.appended > 0 ? { ...out, via: "ollama", researchMode } : { ...out, researchMode }
+  }
+
+  // Fall back to Claude/OpenAI API if Ollama unavailable or unreachable
   const apiKey = resolveFactoryResearchApiKey()
   if (apiKey) {
     const ai = await openAiChat({ prompt })
@@ -341,18 +355,6 @@ export async function runGoalLlmResearchAppend(repoRoot: string): Promise<GoalRe
       existingIdArray,
     })
     return out.appended > 0 ? { ...out, via: "api", researchMode } : { ...out, researchMode }
-  }
-
-  const ollama = await tryOllamaResearchChat({ prompt })
-  if (ollama.ok) {
-    const out = await applyLlmTextToBacklog({
-      backlogPath,
-      backlogMd,
-      text: ollama.text,
-      mode: researchMode,
-      existingIdArray,
-    })
-    return out.appended > 0 ? { ...out, via: "ollama", researchMode } : { ...out, researchMode }
   }
 
   if (!envFlag(process.env.FACTORY_RESEARCH_GOAL_SPEC_FALLBACK, true) || researchMode === "improvement_when_met") {

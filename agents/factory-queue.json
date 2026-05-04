@@ -14,10 +14,10 @@
         ],
         "require_diff": true
       },
-      "status": "in_progress",
+      "status": "done",
       "priority": 930,
       "created_at": "2026-05-04T05:01:19.870Z",
-      "updated_at": "2026-05-04T05:02:20.537Z",
+      "updated_at": "2026-05-04T05:12:44.659Z",
       "claimed_by": "worker_44142",
       "claimed_at": "2026-05-04T05:02:20.537Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
