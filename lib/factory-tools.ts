@@ -13,11 +13,11 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-loop",
     title: "Factory loop",
     purpose:
-      "Continuously runs `factory:reclaim`, `factory:evaluate-goal`, then (when queued count is below `FACTORY_QUEUE_LOW_WATERMARK`, default 20) `factory:research-once` (OpenAI goal research + optional hook + optional calc/weather code signals), `factory:backlog:intake`, and `factory:plan-next`. Every iteration ends with `factory:run-once` (stops the loop on non-zero exit). Optional `FACTORY_AUTONOMOUS_STALL_LOOPS` exits when the goal is `met`, the queue is empty, and research repeatedly adds nothing.",
+      "Continuously runs `factory:reclaim`, `factory:evaluate-goal`, then (when queued count is below `FACTORY_QUEUE_LOW_WATERMARK`, default 20) `factory:research-once` (OpenAI-compatible goal LLM + optional hook + optional calc/weather code signals), `factory:backlog:intake`, and `factory:plan-next`. Every iteration ends with `factory:run-once` (stops the loop on non-zero exit). Optional `FACTORY_AUTONOMOUS_STALL_LOOPS` exits when the goal is `met`, the queue is empty, and research repeatedly adds nothing.",
     howToUse: [
       "Use when you want one worker running continuously.",
       "Stops if `factory:run-once` returns non-zero.",
-      "Set `OPENAI_API_KEY` for autonomous goal/improvement research; set `FACTORY_RESEARCH_HOOK` for a bash snippet that appends `## Factory research intake` rows before the built-in research.",
+      "Without API keys: tries local Ollama (`FACTORY_RESEARCH_OLLAMA_URL`, default `http://127.0.0.1:11434`; disable probe with `FACTORY_RESEARCH_TRY_OLLAMA=0`), then syncs `factory-goal-spec.json` `roadmap_items` into backlog intake (`FACTORY_RESEARCH_GOAL_SPEC_FALLBACK=0` to disable). With keys: set `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY`, optional `FACTORY_RESEARCH_OPENAI_BASE` + `FACTORY_RESEARCH_MODEL`. Set `FACTORY_RESEARCH_HOOK` for a bash snippet before built-in research.",
     ],
     commands: ["pnpm factory:loop", "FACTORY_RESEARCH_PIPELINE=0 pnpm factory:loop"],
     relatedFiles: [
@@ -114,9 +114,9 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-research-once",
     title: "Research: goal LLM + optional hook + calc/weather signals",
     purpose:
-      "Runs autonomous research for the current `factory-goal-spec.json` / `FACTORY_GOAL.md`: calls OpenAI when `OPENAI_API_KEY` is set (improvement-only mode when `factory-goal-state.json` status is `met`), runs optional `FACTORY_RESEARCH_HOOK`, then optional calculator/weather code-signal append. Writes `agents/factory-research-last.json` with `appended_total` for the loop stall counter.",
+      "Runs autonomous research for the current `factory-goal-spec.json` / `FACTORY_GOAL.md`: calls an OpenAI-compatible chat API when `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY` is set (improvement-only mode when `factory-goal-state.json` status is `met`), runs optional `FACTORY_RESEARCH_HOOK`, then optional calculator/weather code-signal append. Writes `agents/factory-research-last.json` with `appended_total` for the loop stall counter.",
     howToUse: [
-      "Set `OPENAI_API_KEY` (and optionally `FACTORY_RESEARCH_MODEL`, `FACTORY_RESEARCH_OPENAI_BASE`).",
+      "No keys: Ollama auto-detect + goal-spec `roadmap_items` → backlog intake. With keys: `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY`; optional `FACTORY_RESEARCH_MODEL` and `FACTORY_RESEARCH_OPENAI_BASE` (e.g. Groq).",
       "Use `FACTORY_RESEARCH_HOOK` for a custom bash snippet that edits `backlog.md` before the built-in steps.",
     ],
     commands: ["pnpm factory:research-once"],

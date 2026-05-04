@@ -41,8 +41,11 @@ async function main() {
   const improvementPass = improvementWhenMet && goalStatus === "met"
 
   const llm = await runGoalLlmResearchAppend(root, improvementPass)
-  if (llm.appended > 0) console.log(`factory:research: llm appended ${llm.appended} block(s) to backlog.md`)
-  else if (llm.skippedReason) console.log(`factory:research: llm skipped (${llm.skippedReason})`)
+  if (llm.appended > 0) {
+    const label =
+      llm.via === "goal_spec" ? "goal-spec sync (no API key)" : llm.via === "ollama" ? "Ollama" : "LLM"
+    console.log(`factory:research: ${label} appended ${llm.appended} block(s) to backlog.md`)
+  } else if (llm.skippedReason) console.log(`factory:research: llm skipped (${llm.skippedReason})`)
   else if (llm.error) console.warn(`factory:research: llm: ${llm.error}`)
 
   const hook = (process.env.FACTORY_RESEARCH_HOOK ?? "").trim()
@@ -71,6 +74,7 @@ async function main() {
     calc_weather_appended: cw,
     llm_skipped_reason: llm.skippedReason ?? null,
     llm_error: llm.error ?? null,
+    llm_via: llm.via ?? null,
     goal_status: goalStatus,
     improvement_pass: improvementPass,
   }

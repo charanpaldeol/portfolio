@@ -26,7 +26,9 @@ describe("parseResearchBlocksFromLlm", () => {
     ].join("\n")
     const warns: string[] = []
     const out = parseResearchBlocksFromLlm(md, existing, (m) => warns.push(m))
-    expect(out.map((b) => b.id)).toEqual(["CHAT_UI_V1"])
+    expect(out.blocks.map((b) => b.id)).toEqual(["CHAT_UI_V1"])
+    expect(out.duplicateSkips).toBe(1)
+    expect(out.invalidSkips).toBe(0)
     expect(warns.some((w) => w.includes("OLD_V1"))).toBe(true)
   })
 })

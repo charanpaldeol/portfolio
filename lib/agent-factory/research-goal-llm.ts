@@ -7,6 +7,12 @@ export type ParsedResearchBlock = {
   command: string
 }
 
+export type ParseResearchBlocksFromLlmResult = {
+  blocks: ParsedResearchBlock[]
+  duplicateSkips: number
+  invalidSkips: number
+}
+
 /** True when the model explicitly signals no further factory tasks. */
 export function isExplicitResearchDone(content: string): boolean {
   const t = content.trim()
@@ -19,11 +25,17 @@ export function isExplicitResearchDone(content: string): boolean {
  * Parse LLM output: only `### ID — title` blocks with `- Priority:` and `- Command:` (same rules as backlog intake).
  * Skips IDs that already exist in `existingIds`.
  */
-export function parseResearchBlocksFromLlm(content: string, existingIds: Set<string>, warn: (m: string) => void): ParsedResearchBlock[] {
-  if (isExplicitResearchDone(content)) return []
+export function parseResearchBlocksFromLlm(
+  content: string,
+  existingIds: Set<string>,
+  warn: (m: string) => void,
+): ParseResearchBlocksFromLlmResult {
+  if (isExplicitResearchDone(content)) return { blocks: [], duplicateSkips: 0, invalidSkips: 0 }
 
   const lines = content.replace(/\r\n/g, "\n").split("\n")
   const blocks: ParsedResearchBlock[] = []
+  let duplicateSkips = 0
+  let invalidSkips = 0
   let cur: { id: string; title: string; priority?: number; command?: string } | null = null
 
   const flush = () => {
@@ -31,16 +43,19 @@ export function parseResearchBlocksFromLlm(content: string, existingIds: Set<str
     const p = cur.priority
     const cmd = cur.command?.trim()
     if (p === undefined || !Number.isFinite(p) || p < 0) {
+      invalidSkips += 1
       warn(`factory:research:llm: skip ${cur.id} — missing or invalid Priority`)
       cur = null
       return
     }
     if (!cmd) {
+      invalidSkips += 1
       warn(`factory:research:llm: skip ${cur.id} — missing Command`)
       cur = null
       return
     }
     if (existingIds.has(cur.id)) {
+      duplicateSkips += 1
       warn(`factory:research:llm: skip ${cur.id} — already exists`)
       cur = null
       return
@@ -71,7 +86,7 @@ export function parseResearchBlocksFromLlm(content: string, existingIds: Set<str
     }
   }
   flush()
-  return blocks
+  return { blocks, duplicateSkips, invalidSkips }
 }
 
 export function buildGoalResearchPrompt(args: {
@@ -100,6 +115,7 @@ export function buildGoalResearchPrompt(args: {
     "",
     "## Existing ids — do NOT reuse",
     args.existingIds.length ? args.existingIds.sort().join(", ") : "(none)",
+    "Never emit a `###` heading for any id listed above; use new unique ALL_CAPS ids only (e.g. FACTORY_R_NEWTHING_V1).",
     "",
     "## Instructions",
     `- ${mode}`,
