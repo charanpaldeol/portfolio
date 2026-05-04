@@ -67,10 +67,10 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "Use for debugging a single iteration.",
       "Use with a single queued item when you want one pass then exit.",
       "Per-item checks: set `spec.acceptance` to a command or string array; set `spec.require_diff: true` to fail no-op commands.",
-      "Cursor-only implement: set `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/FACTORY_GOAL.md`).",
+      "Cursor-only implement: `pnpm factory:run-once:cursor` or `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/FACTORY_GOAL.md`).",
       "Default `pnpm -s factory:implement <id>` runs `pnpm` directly (no shell). Other `spec.command` values and acceptance checks use `bash -c` (inherits `PATH`). Set `FACTORY_BASH_LOGIN=1` for `bash -lc` if nvm needs a login profile.",
     ],
-    commands: ["pnpm factory:run-once", "FACTORY_IMPLEMENT_BACKEND=cursor pnpm factory:run-once"],
+    commands: ["pnpm factory:run-once", "pnpm factory:run-once:cursor", "FACTORY_IMPLEMENT_BACKEND=cursor pnpm factory:run-once"],
     relatedFiles: [
       "scripts/agent-factory/factory-run-once.ts",
       "lib/agent-factory/factory-preflight.ts",
@@ -309,10 +309,11 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     howToUse: [
       "Typically invoked as `pnpm -s factory:implement <ITEM_ID>` from a queue item `spec.command`.",
       "Set `FACTORY_ROOT` when the worktree cwd is not the repo root.",
-      "Cursor-only: `FACTORY_IMPLEMENT_BACKEND=cursor pnpm -s factory:implement <ITEM_ID>` (see `agents/FACTORY_GOAL.md`).",
+      "Cursor-only: `pnpm factory:implement:cursor -- <ITEM_ID>` or `FACTORY_IMPLEMENT_BACKEND=cursor pnpm -s factory:implement <ITEM_ID>` (see `agents/FACTORY_GOAL.md`).",
     ],
     commands: [
       "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
+      "pnpm factory:implement:cursor -- FACTORY_VERIFY_CALCULATOR_V1",
       "FACTORY_IMPLEMENT_BACKEND=cursor pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
     ],
     relatedFiles: [
