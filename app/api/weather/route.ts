@@ -56,9 +56,21 @@ function buildForecastUrl(lat: number, lon: number): string {
 }
 
 /**
- * Open-Meteo: free, no API key. Optional query: latitude, longitude (or lat, lon), or city (or q).
- * Unknown params are ignored. Invalid coordinates fall back to NYC defaults.
- * If upstream fetch fails, return a tiny mock payload for factory verification (see FACTORY_GOAL.md).
+ * Weather API handler with optional location query parameters.
+ *
+ * Query parameters (all optional):
+ *   - `latitude` | `lat`: latitude value (-90 to 90); defaults to 40.7128 (NYC)
+ *   - `longitude` | `lon`: longitude value (-180 to 180); defaults to -74.006 (NYC)
+ *   - `city` | `q`: city name for geocoding via Open-Meteo; falls back to lat/lon defaults
+ *
+ * Behavior:
+ *   - Unknown query params are ignored (forward-proxy safe).
+ *   - Invalid coordinates clamp to valid ranges or fallback to NYC defaults.
+ *   - City lookup uses Open-Meteo geocoding API (free, no credentials needed).
+ *   - Provider: Open-Meteo (free, no API key required).
+ *   - If upstream fetch fails, returns a mock payload for local dev/factory verification.
+ *
+ * Example: /api/weather?city=London or /api/weather?lat=51.5074&lon=-0.1278
  */
 export async function GET(request: Request) {
   const urlObj = new URL(request.url)
