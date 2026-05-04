@@ -397,5 +397,22 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "agents/factory-logs/",
     ],
   },
+  {
+    id: "claude-ollama-wrapper",
+    title: "Ollama adapter for factory-implement",
+    purpose:
+      "Shell wrapper that translates `claude` CLI stdin/stdout protocol to Ollama API calls. Allows `factory:implement` to use local Ollama (e.g., llama3.2) instead of Claude API when `FACTORY_CLAUDE_BIN` points to this script.",
+    howToUse: [
+      "Set `FACTORY_CLAUDE_BIN='./scripts/agent-factory/claude-ollama-wrapper.sh'` before running `factory:run-once`.",
+      "Reads prompt from stdin, sends to Ollama API (default `http://127.0.0.1:11434`; override with `FACTORY_RESEARCH_OLLAMA_URL`).",
+      "Uses `FACTORY_RESEARCH_MODEL` (default `llama3.2`) as the Ollama model.",
+    ],
+    commands: ["FACTORY_CLAUDE_BIN='./scripts/agent-factory/claude-ollama-wrapper.sh' pnpm factory:run-once"],
+    relatedFiles: [
+      "scripts/agent-factory/claude-ollama-wrapper.sh",
+      "scripts/agent-factory/factory-implement.ts",
+      "docs/factory/FACTORY_OPERATIONS.md",
+    ],
+  },
 ]
 
