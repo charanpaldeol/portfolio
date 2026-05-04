@@ -1,10 +1,13 @@
 "use client"
 
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 import { PageShell } from "@/components/layout/PageShell"
 
 type Op = "+" | "-" | "*" | "/"
+
+const BTN_PAD =
+  "rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
 
 function applyOp(a: number, b: number, op: Op): number {
   switch (op) {
@@ -81,6 +84,57 @@ export default function CalculatorPage() {
     setFresh(true)
   }, [])
 
+  const backspace = useCallback(() => {
+    setDisplay((prev) => {
+      if (prev === "Error" || prev.length <= 1) return "0"
+      const next = prev.slice(0, -1)
+      return next === "" || next === "-" ? "0" : next
+    })
+    setFresh(false)
+  }, [])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      const el = e.target as HTMLElement | null
+      if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return
+
+      const k = e.key
+      if (/^[0-9]$/.test(k)) {
+        e.preventDefault()
+        pushDigit(k)
+        return
+      }
+      if (k === ".") {
+        e.preventDefault()
+        pushDigit(".")
+        return
+      }
+      if (k === "+" || k === "-" || k === "*" || k === "/") {
+        e.preventDefault()
+        commitOp(k as Op)
+        return
+      }
+      if (k === "Enter" || k === "=") {
+        e.preventDefault()
+        equals()
+        return
+      }
+      if (k === "Escape") {
+        e.preventDefault()
+        clear()
+        return
+      }
+      if (k === "Backspace") {
+        e.preventDefault()
+        backspace()
+      }
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [pushDigit, commitOp, equals, clear, backspace])
+
   return (
     <PageShell>
       <main className="mx-auto max-w-md space-y-6">
@@ -93,67 +147,51 @@ export default function CalculatorPage() {
           {display}
         </div>
         <div className="grid grid-cols-4 gap-2">
-          {(["7", "8", "9", "/"] as const).map((k) => (
+          {(["7", "8", "9", "/"] as const).map((key) => (
             <button
-              key={k}
+              key={key}
               type="button"
-              className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-              onClick={() => (k === "/" ? commitOp("/") : pushDigit(k))}
+              className={BTN_PAD}
+              onClick={() => (key === "/" ? commitOp("/") : pushDigit(key))}
             >
-              {k}
+              {key}
             </button>
           ))}
-          {(["4", "5", "6", "*"] as const).map((k) => (
+          {(["4", "5", "6", "*"] as const).map((key) => (
             <button
-              key={k}
+              key={key}
               type="button"
-              className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-              onClick={() => (k === "*" ? commitOp("*") : pushDigit(k))}
+              className={BTN_PAD}
+              onClick={() => (key === "*" ? commitOp("*") : pushDigit(key))}
             >
-              {k}
+              {key}
             </button>
           ))}
-          {(["1", "2", "3", "-"] as const).map((k) => (
+          {(["1", "2", "3", "-"] as const).map((key) => (
             <button
-              key={k}
+              key={key}
               type="button"
-              className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-              onClick={() => (k === "-" ? commitOp("-") : pushDigit(k))}
+              className={BTN_PAD}
+              onClick={() => (key === "-" ? commitOp("-") : pushDigit(key))}
             >
-              {k}
+              {key}
             </button>
           ))}
-          <button
-            type="button"
-            className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-            onClick={clear}
-          >
+          <button type="button" className={BTN_PAD} onClick={clear}>
             C
           </button>
-          <button
-            type="button"
-            className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-            onClick={() => pushDigit("0")}
-          >
+          <button type="button" className={BTN_PAD} onClick={() => pushDigit("0")}>
             0
           </button>
-          <button
-            type="button"
-            className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-            onClick={() => pushDigit(".")}
-          >
+          <button type="button" className={BTN_PAD} onClick={() => pushDigit(".")}>
             .
           </button>
-          <button
-            type="button"
-            className="rounded-md bg-surface-container-high p-3 text-foreground hover:bg-surface-container-highest"
-            onClick={() => commitOp("+")}
-          >
+          <button type="button" className={BTN_PAD} onClick={() => commitOp("+")}>
             +
           </button>
           <button
             type="button"
-            className="col-span-4 rounded-md bg-primary p-3 font-medium text-on-primary hover:opacity-90"
+            className={`col-span-4 rounded-md bg-primary p-3 font-medium text-on-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface hover:opacity-90`}
             onClick={equals}
           >
             =
