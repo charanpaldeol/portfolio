@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_aff50954-e582-4f55-954b-ff54b5a29ecd",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
+      "worker_id": "worker_16130",
+      "status": "started",
+      "started_at": "2026-05-04T20:46:39.814Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_ef9b21b3-4e13-42e8-b271-6b0085331304",
+      "item_id": "FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+      "title": "Navbar: Calculator and Weather links remain obvious on desktop and mobile",
+      "branch": "agent/factory_nav_calc_weather_discover_v1-navbar-calculator-and-weather-links-remain-obvio",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+      "worker_id": "worker_14966",
+      "status": "started",
+      "started_at": "2026-05-04T20:44:53.120Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
       "run_id": "run_315500f2-bfc4-4e23-9dc7-13fe40064db8",
       "item_id": "FACTORY_CALC_ROUTE_METADATA_V1",
       "title": "Calculator: route metadata (title and description) for /calculator",
@@ -190,11 +216,11 @@
       "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
       "worker_id": "worker_32130",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T19:37:32.287Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T20:45:50.919Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_853f4eb3-8a9b-4a78-abfe-31282f952e5b",
@@ -203,11 +229,11 @@
       "branch": "agent/factory_weather_error_ux_v1-weather-visible-error-and-retry-friendly-state-w",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_WEATHER_ERROR_UX_V1",
       "worker_id": "worker_31488",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T19:37:12.467Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T20:45:50.919Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 3600s"
     },
     {
       "run_id": "run_e8b8c0cd-9ba9-46be-8de6-297c6c9061f9",
