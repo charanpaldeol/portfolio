@@ -2,8 +2,8 @@ import { access, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import { appendFactoryResearchIntakeBlock, extractResearchIntakeSection, parseIntakeItems } from "@/lib/agent-factory/backlog-intake"
-import { collectCalcWeatherSignals } from "@/lib/agent-factory/research-calc-weather-signals"
 import { AgentFactoryQueueSchema } from "@/lib/agent-factory/queue"
+import { collectCalcWeatherSignals } from "@/lib/agent-factory/research-calc-weather-signals"
 import { readJsonFile } from "@/lib/agent-factory/storage"
 
 async function fileExists(filePath: string) {

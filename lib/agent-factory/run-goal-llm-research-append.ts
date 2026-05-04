@@ -1,10 +1,9 @@
+import { z } from "zod"
 import { readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
-import { z } from "zod"
-
 import { appendFactoryResearchIntakeBlock, extractResearchIntakeSection, parseIntakeItems } from "@/lib/agent-factory/backlog-intake"
-import { FactoryGoalSpecSchema, type FactoryGoalSpec } from "@/lib/agent-factory/goal-spec"
+import { type FactoryGoalSpec, FactoryGoalSpecSchema } from "@/lib/agent-factory/goal-spec"
 import { AgentFactoryQueueSchema } from "@/lib/agent-factory/queue"
 import {
   buildCalcWeatherRepoSignalsSection,
@@ -12,7 +11,12 @@ import {
   readFactoryGoalStateForResearch,
   resolveResearchPromptMode,
 } from "@/lib/agent-factory/research-goal-context"
-import { buildGoalResearchPrompt, isExplicitResearchDone, parseResearchBlocksFromLlm, type GoalResearchPromptMode } from "@/lib/agent-factory/research-goal-llm"
+import {
+  buildGoalResearchPrompt,
+  type GoalResearchPromptMode,
+  isExplicitResearchDone,
+  parseResearchBlocksFromLlm,
+} from "@/lib/agent-factory/research-goal-llm"
 import { readJsonFile } from "@/lib/agent-factory/storage"
 
 const RoadmapLiteSchema = z.object({

@@ -131,6 +131,23 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     ],
   },
   {
+    id: "factory-research-calc-weather-once",
+    title: "Research: calculator / weather code signals only",
+    purpose:
+      "Runs deterministic scan of `app/calculator/page.tsx`, optional calculator layout, weather page, and weather API sources; appends suggested backlog intake rows to `backlog.md` when signals match (e.g. missing route metadata, keyboard a11y). Does not call an LLM — use after `factory:research-once` when you want calc/weather hints only.",
+    howToUse: [
+      "Run `pnpm factory:research:calc-weather-once` from repo root; then `pnpm factory:backlog:intake` and `pnpm factory:plan-next` if new rows were appended.",
+      "Forced from research pipeline when `FACTORY_RESEARCH_CALC_WEATHER=force`; skipped when set to `0`.",
+    ],
+    commands: ["pnpm factory:research:calc-weather-once"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-research-calc-weather-once.ts",
+      "lib/agent-factory/run-calc-weather-research-append.ts",
+      "lib/agent-factory/research-calc-weather-signals.ts",
+      "backlog.md",
+    ],
+  },
+  {
     id: "factory-backlog-intake",
     title: "Planner: merge research backlog into roadmap",
     purpose:
