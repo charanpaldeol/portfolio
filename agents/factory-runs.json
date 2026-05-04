@@ -2,6 +2,45 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_315500f2-bfc4-4e23-9dc7-13fe40064db8",
+      "item_id": "FACTORY_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title and description) for /calculator",
+      "branch": "agent/factory_calc_route_metadata_v1-calculator-route-metadata-title-and-description-",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_CALC_ROUTE_METADATA_V1",
+      "worker_id": "worker_97568",
+      "status": "started",
+      "started_at": "2026-05-04T20:32:38.249Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_f687cdc4-cbc2-4310-bed7-08b05bd30261",
+      "item_id": "FACTORY_VERIFY_WEATHER_V2",
+      "title": "Fix weather API + /weather page",
+      "branch": "agent/factory_verify_weather_v2-fix-weather-api-weather-page",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2",
+      "worker_id": "worker_95609",
+      "status": "failed",
+      "started_at": "2026-05-04T20:28:04.718Z",
+      "finished_at": "2026-05-04T20:30:05.769Z",
+      "commit_sha": null,
+      "error": "pnpm verify failed (exit 137)"
+    },
+    {
+      "run_id": "run_62f21822-c9bc-45c0-9422-96b7ce512bdb",
+      "item_id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "branch": "agent/factory_verify_navbar_v1-verification-calculator-and-weather-in-navbar",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1",
+      "worker_id": "worker_90714",
+      "status": "failed",
+      "started_at": "2026-05-04T20:26:48.232Z",
+      "finished_at": "2026-05-04T20:27:41.996Z",
+      "commit_sha": null,
+      "error": "spec.command failed (exit 1)\n--- last log lines (/Users/al/Projects AI/Portfolio/agents/factory-logs/run_62f21822-c9bc-45c0-9422-96b7ce512bdb.worker_90714.log) ---\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] \n> portfolio@0.0.0 postinstall /Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1\n> npx patch-package -y\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] npm warn Unknown env config \"npm-globalconfig\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] npm warn Unknown env config \"verify-deps-before-run\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] npm warn Unknown env config \"_jsr-registry\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"store-dir\". This will stop working in the next major version of npm.\nnpm warn Unknown project config \"store-dir\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] patch-package 8.0.1\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] Applying patches...\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] No patch files found\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] ╭ Warning ─────────────────────────────────────────────────────────────────────╮\n│                                                                              │\n│   Ignored build scripts: @swc/core@1.15.32, core-js-pure@3.49.0,             │\n│   core-js@3.49.0, esbuild@0.25.12, esbuild@0.27.7,                           │\n│   postinstall-postinstall@2.1.0, sharp@0.33.5, sharp@0.34.5,                 │\n│   unrs-resolver@1.11.1.                                                      │\n│   Run \"pnpm approve-builds\" to pick which dependencies should be allowed     │\n│   to run scripts.                                                            │\n│                                                                              │\n╰──────────────────────────────────────────────────────────────────────────────╯\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] Done in 48.9s using pnpm v10.33.2\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] factory:implement: invoking claude for FACTORY_VERIFY_NAVBAR_V1 (timeout 900000ms)\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] Failed to authenticate. API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"Invalid authentication credentials\"},\"request_id\":\"req_011CaiAAgwomHNzheczsUeek\"}\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_NAVBAR_V1] factory:implement: claude exited with code 1"
+    },
+    {
       "run_id": "run_b8ad7a6b-d8f3-414a-8d43-bdbf431c847d",
       "item_id": "FACTORY_VERIFY_WEATHER_V1",
       "title": "Verification: weather API + /weather page",
