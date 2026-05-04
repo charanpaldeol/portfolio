@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# aider-bridge.sh — factory-compatible wrapper around aider
+#
+# The factory calls the implementer binary like this:
+#   echo "<prompt>" | <binary> -p --dangerously-skip-permissions ...
+#   echo "<prompt>" | <binary> --prompt "" --yolo ...
+#
+# This wrapper ignores all CLI args (they are claude/gemini-specific),
+# reads the full task prompt from stdin, and delegates to aider.
+#
+# Usage:
+#   export FACTORY_CLAUDE_BIN="/Users/al/Projects AI/Portfolio/scripts/agent-factory/aider-bridge.sh"
+#   export AIDER_MODEL="groq/llama-3.3-70b-versatile"   # default
+#
+# Supported AIDER_MODEL values (set whichever you have a key for):
+#   groq/llama-3.3-70b-versatile        free tier, 14,400 req/day (GROQ_API_KEY)
+#   groq/deepseek-r1-distill-llama-70b  free tier, strong coder  (GROQ_API_KEY)
+#   ollama/qwen2.5-coder:7b             local, unlimited, free   (no key needed)
+#   ollama/deepseek-coder:6.7b          local, unlimited, free   (no key needed)
+#   deepseek/deepseek-chat              ~$0.01/task              (DEEPSEEK_API_KEY)
+#   gemini/gemini-2.0-flash-exp         free tier                (GEMINI_API_KEY)
+#   openrouter/meta-llama/llama-3.3-70b free tier on openrouter  (OPENROUTER_API_KEY)
+
+set -euo pipefail
+
+MODEL="${AIDER_MODEL:-groq/llama-3.3-70b-versatile}"
+
+# Read the full prompt from stdin (factory sends it this way)
+PROMPT=$(cat -)
+
+if [[ -z "$PROMPT" ]]; then
+  echo "aider-bridge: no prompt received on stdin" >&2
+  exit 1
+fi
+
+# Prepend a short system note so aider ignores claude/gemini-specific
+# tool names (Read/Edit/Write/Glob) and just implements the task directly.
+FULL_PROMPT="You are an autonomous coding agent working in the current git worktree.
+Implement the task below by directly reading and editing files in this directory.
+Do not reference tool names like Read/Edit/Write/Glob — just make the changes.
+
+---
+${PROMPT}"
+
+echo "aider-bridge: using model ${MODEL}" >&2
+
+# Run aider in non-interactive mode:
+#   --yes-always     auto-approve all file adds and edits (equiv. to --yolo)
+#   --no-auto-commits  factory handles git commits itself
+#   --no-show-model-warnings  suppress non-fatal warnings
+#   --message        the task prompt (non-interactive trigger)
+exec aider \
+  --model "$MODEL" \
+  --yes-always \
+  --no-auto-commits \
+  --no-show-model-warnings \
+  --message "$FULL_PROMPT"
