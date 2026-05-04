@@ -13,6 +13,8 @@
       "priority": 850,
       "created_at": "2026-05-04T03:45:25.829Z",
       "updated_at": "2026-05-04T03:45:26.873Z",
+      "claimed_by": null,
+      "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -28,6 +30,8 @@
       "priority": 850,
       "created_at": "2026-05-04T03:44:16.565Z",
       "updated_at": "2026-05-04T03:44:17.375Z",
+      "claimed_by": null,
+      "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -43,6 +47,8 @@
       "priority": 850,
       "created_at": "2026-05-04T03:43:07.680Z",
       "updated_at": "2026-05-04T03:43:08.528Z",
+      "claimed_by": null,
+      "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -58,6 +64,8 @@
       "priority": 850,
       "created_at": "2026-05-04T03:41:58.328Z",
       "updated_at": "2026-05-04T03:41:59.284Z",
+      "claimed_by": null,
+      "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -69,10 +77,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V8 (priority 850)"
       },
-      "status": "queued",
+      "status": "done",
       "priority": 850,
       "created_at": "2026-05-04T03:37:38.837Z",
-      "updated_at": "2026-05-04T03:37:39.653Z",
+      "updated_at": "2026-05-04T04:07:30.843Z",
+      "claimed_by": "worker_82073",
+      "claimed_at": "2026-05-04T04:04:32.005Z",
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -84,10 +94,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V7 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T03:36:30.298Z",
-      "updated_at": "2026-05-04T03:36:31.161Z",
+      "updated_at": "2026-05-04T03:57:57.365Z",
+      "claimed_by": "worker_69643",
+      "claimed_at": "2026-05-04T03:54:24.206Z",
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
