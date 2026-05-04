@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_95ae23f5-927d-407a-a3f9-30791148fa0c",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_82237",
+      "status": "failed",
+      "started_at": "2026-05-04T22:38:22.425Z",
+      "finished_at": "2026-05-04T22:38:22.489Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
+      "run_id": "run_2b1dcb34-9b9c-481c-9583-a6a380d2583c",
+      "item_id": "FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+      "title": "Navbar: Calculator and Weather links remain obvious on desktop and mobile",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_81764",
+      "status": "failed",
+      "started_at": "2026-05-04T22:37:49.569Z",
+      "finished_at": "2026-05-04T22:37:49.620Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_644aea50-35b6-4898-971b-fda760032bbd",
       "item_id": "FACTORY_CALC_ROUTE_METADATA_V1",
       "title": "Calculator: route metadata (title and description) for /calculator",
