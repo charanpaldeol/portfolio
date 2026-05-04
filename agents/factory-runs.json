@@ -2,17 +2,43 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_3a6f7bee-0bb2-47ec-a445-3fce1d83577b",
+      "item_id": "FACTORY_VERIFY_WEATHER_V2",
+      "title": "Fix weather API + /weather page",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_34522",
+      "status": "failed",
+      "started_at": "2026-05-04T20:57:39.109Z",
+      "finished_at": "2026-05-04T20:57:39.175Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
+      "run_id": "run_300b6b57-d064-4cf0-b9cb-76b866f2eaaa",
+      "item_id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_33699",
+      "status": "failed",
+      "started_at": "2026-05-04T20:56:37.596Z",
+      "finished_at": "2026-05-04T20:56:37.638Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_08f1d0be-c88f-4a12-9140-030ef1caba95",
       "item_id": "FACTORY_VERIFY_WEATHER_V1",
       "title": "Verification: weather API + /weather page",
       "branch": "agent/factory_verify_weather_v1-verification-weather-api-weather-page",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V1",
       "worker_id": "worker_27063",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T20:53:50.731Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T20:55:31.871Z",
       "commit_sha": null,
-      "error": null
+      "error": "require_diff: spec.command ran but git status is clean (no changes to commit)"
     },
     {
       "run_id": "run_4ff5091e-dcbf-4c9e-98a3-975b47f01d03",
