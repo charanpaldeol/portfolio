@@ -81,6 +81,36 @@ Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARC
 - Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V6
 - Notes: LLM research (remediation (goal evaluation + repo signals))
 
+### FACTORY_VERIFY_CALCULATOR_V7 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V7
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V8 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V8
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V9 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V9
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V10 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V10
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V11 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V11
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V12 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V12
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
 ## Manual / later
 
 ### Planner inputs

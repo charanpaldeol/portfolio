@@ -150,6 +150,66 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V6 (priority 850)"
       }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V7",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V7 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V8",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V8 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V9",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V9 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V10",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V10 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V11",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V11 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V12",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V12 (priority 850)"
+      }
     }
   ]
 }

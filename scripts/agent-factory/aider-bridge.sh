@@ -10,22 +10,22 @@
 #
 # Usage:
 #   export FACTORY_CLAUDE_BIN="/Users/al/Projects AI/Portfolio/scripts/agent-factory/aider-bridge.sh"
-#   export AIDER_MODEL="groq/llama-3.3-70b-versatile"   # default
+#   export GEMINI_API_KEY=...   # required for default model below (or override AIDER_MODEL + matching key)
 #
 # Supported AIDER_MODEL values (set whichever you have a key for):
-#   groq/llama-3.1-8b-instant           free tier, 20k TPM (GROQ_API_KEY)  ← default
+#   gemini/gemini-2.0-flash-exp         free tier                (GEMINI_API_KEY)  ← default
+#   groq/llama-3.1-8b-instant           free tier, 20k TPM (GROQ_API_KEY)
 #   groq/llama-3.3-70b-versatile        free tier, 12k TPM — too small for large contexts
 #   groq/deepseek-r1-distill-llama-70b  free tier, strong coder  (GROQ_API_KEY)
 #   ollama/qwen2.5-coder:7b             local, unlimited, free   (no key needed)
 #   ollama/deepseek-coder:6.7b          local, unlimited, free   (no key needed)
 #   deepseek/deepseek-chat              ~$0.01/task              (DEEPSEEK_API_KEY)
-#   gemini/gemini-2.0-flash-exp         free tier                (GEMINI_API_KEY)
 #   openrouter/meta-llama/llama-3.3-70b free tier on openrouter  (OPENROUTER_API_KEY)
 
 set -euo pipefail
 
-# llama-3.1-8b-instant has 20k TPM on free tier (vs 12k for 70b) — fits factory context
-MODEL="${AIDER_MODEL:-groq/llama-3.1-8b-instant}"
+# Default: Gemini Flash (override with AIDER_MODEL if you use another provider)
+MODEL="${AIDER_MODEL:-gemini/gemini-2.0-flash-exp}"
 
 # Read the full prompt from stdin (factory sends it this way)
 PROMPT=$(cat -)
@@ -50,9 +50,8 @@ echo "aider-bridge: using model ${MODEL}" >&2
 #   --yes-always       auto-approve all file adds and edits (equiv. to --yolo)
 #   --no-auto-commits  factory handles git commits itself
 #   --no-show-model-warnings  suppress non-fatal warnings
-#   --map-tokens 0     disable repo-map scan — prevents 40k+ token context blowup
-#                      on Groq free tier (12–20k TPM limit). Aider still reads
-#                      files it needs; the repo-map is just the auto-discovery index.
+#   --map-tokens 0     disable repo-map scan — keeps context small on strict TPM tiers
+#                      (e.g. Groq free). Aider still reads files it needs.
 #   --message          the task prompt (non-interactive trigger)
 exec aider \
   --model "$MODEL" \
