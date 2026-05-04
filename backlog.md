@@ -20,6 +20,11 @@ To re-enable research proposals, either:
 2. Ensure Ollama is running locally (preferred over Claude/OpenAI for cost/speed)
 3. Or set `OPENAI_API_KEY` for cloud LLM fallback
 
+### FACTORY_R_NEWLOCATION_V1 — Search or enter location (city text or lat/lon) and load forecast
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_R_NEWLOCATION_V1
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
 ## Manual / later
 
 ### Planner inputs

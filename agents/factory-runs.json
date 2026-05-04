@@ -2,6 +2,19 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_1516bc2a-1f38-4528-abf6-1bce495eb45f",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_38634",
+      "status": "failed",
+      "started_at": "2026-05-04T20:58:47.044Z",
+      "finished_at": "2026-05-04T20:58:47.092Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_3a6f7bee-0bb2-47ec-a445-3fce1d83577b",
       "item_id": "FACTORY_VERIFY_WEATHER_V2",
       "title": "Fix weather API + /weather page",
