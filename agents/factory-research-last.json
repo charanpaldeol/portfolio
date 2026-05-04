@@ -1,13 +1,13 @@
 {
   "version": 1,
   "appended_total": 0,
-  "at": "2026-05-04T19:37:29.219Z",
+  "at": "2026-05-04T20:19:57.047Z",
   "llm_appended": 0,
   "calc_weather_appended": 0,
   "llm_skipped_reason": "llm_invalid_blocks",
   "llm_error": null,
   "llm_via": null,
-  "research_prompt_mode": "milestone",
-  "goal_status": "active",
+  "research_prompt_mode": "remediation_failed",
+  "goal_status": "blocked",
   "improvement_pass": false
 }

@@ -2,6 +2,45 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_b8ad7a6b-d8f3-414a-8d43-bdbf431c847d",
+      "item_id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
+      "branch": "agent/factory_verify_weather_v1-verification-weather-api-weather-page",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V1",
+      "worker_id": "worker_85454",
+      "status": "started",
+      "started_at": "2026-05-04T20:23:45.913Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_e4486180-2e49-426a-854c-fd7d4edae93c",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
+      "worker_id": "worker_76830",
+      "status": "failed",
+      "started_at": "2026-05-04T20:19:58.170Z",
+      "finished_at": "2026-05-04T20:22:22.569Z",
+      "commit_sha": null,
+      "error": "pnpm verify failed (exit 137)"
+    },
+    {
+      "run_id": "run_d37143b0-dc98-4e47-80b1-8a9b199a539d",
+      "item_id": "FACTORY_WEATHER_API_QUERY_V1",
+      "title": "Weather API: optional location query params with safe defaults (Open-Meteo or current provider)",
+      "branch": "agent/factory_weather_api_query_v1-weather-api-optional-location-query-params-with-",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_WEATHER_API_QUERY_V1",
+      "worker_id": "worker_73916",
+      "status": "failed",
+      "started_at": "2026-05-04T20:17:31.213Z",
+      "finished_at": "2026-05-04T20:19:18.607Z",
+      "commit_sha": null,
+      "error": "require_diff: spec.command ran but git status is clean (no changes to commit)"
+    },
+    {
       "run_id": "run_24ad2afe-a8bc-46a5-a1ce-20a3f4ffe10a",
       "item_id": "FACTORY_CALC_A11Y_KEYBOARD_V1",
       "title": "Calculator: keyboard entry and visible focus for controls",

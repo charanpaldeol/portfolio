@@ -3,9 +3,9 @@
 # Claude CLI wrapper that uses Ollama instead
 # Reads prompt from stdin, calls Ollama API, outputs response
 
-OLLAMA_URL="${FACTORY_RESEARCH_OLLAMA_URL:-http://127.0.0.1:11434}"
+OLLAMA_URL="${FACTORY_OLLAMA_URL:-http://127.0.0.1:11434}"
 OLLAMA_URL="${OLLAMA_URL%/}"  # Remove trailing slash
-MODEL="${FACTORY_RESEARCH_MODEL:-llama3.2}"
+MODEL="${FACTORY_OLLAMA_MODEL:-deepseek-coder}"
 
 >&2 echo "[ollama-wrapper] Using model: $MODEL"
 >&2 echo "[ollama-wrapper] Ollama URL: $OLLAMA_URL"
