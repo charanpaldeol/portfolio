@@ -9,10 +9,10 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V13 (priority 850)"
       },
-      "status": "queued",
+      "status": "done",
       "priority": 850,
       "created_at": "2026-05-04T04:27:24.344Z",
-      "updated_at": "2026-05-04T04:27:24.344Z",
+      "updated_at": "2026-05-04T12:50:00.000Z",
       "claimed_by": null,
       "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
@@ -60,14 +60,14 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V10 (priority 850)"
       },
-      "status": "in_progress",
+      "status": "cancelled",
       "priority": 850,
       "created_at": "2026-05-04T03:43:07.680Z",
-      "updated_at": "2026-05-04T04:27:24.852Z",
-      "claimed_by": "worker_8984",
-      "claimed_at": "2026-05-04T04:27:24.852Z",
+      "updated_at": "2026-05-04T12:50:00.000Z",
+      "claimed_by": null,
+      "claimed_at": null,
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
+      "cancel_reason": "superseded: V13 done on main with calculator unit tests (manual close)"
     },
     {
       "id": "FACTORY_VERIFY_CALCULATOR_V9",
