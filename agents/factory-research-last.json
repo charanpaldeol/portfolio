@@ -1,12 +1,13 @@
 {
   "version": 1,
-  "appended_total": 0,
-  "at": "2026-05-04T00:37:15.645Z",
-  "llm_appended": 0,
+  "appended_total": 3,
+  "at": "2026-05-04T00:42:50.283Z",
+  "llm_appended": 3,
   "calc_weather_appended": 0,
-  "llm_skipped_reason": "ollama_failed_then_goal_spec_empty (LLM HTTP 404: {\"error\":{\"message\":\"model 'llama3.1:8b' not found\",\"type\":\"not_found_error\",\"param\":null,\"code\":null}}\n)",
+  "llm_skipped_reason": null,
   "llm_error": null,
-  "llm_via": null,
+  "llm_via": "ollama",
+  "research_prompt_mode": "remediation_failed",
   "goal_status": "blocked",
   "improvement_pass": false
 }

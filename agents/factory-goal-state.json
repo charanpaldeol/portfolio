@@ -2,7 +2,7 @@
   "version": 1,
   "status": "blocked",
   "statement": "Factory verification: ship /calculator, a JSON weather API route plus /weather page that uses it, and Calculator + Weather links in the top navbar (desktop and mobile).",
-  "evaluated_at": "2026-05-03T23:08:21.428Z",
+  "evaluated_at": "2026-05-04T00:42:37.764Z",
   "summary": "7 roadmap-linked queue item(s) failed; replan or fix, then re-queue. Not done: FACTORY_VERIFY_CALCULATOR_V1: Verification: calculator page at /calculator [failed]; FACTORY_VERIFY_WEATHER_V1: Verification: weather API + /weather page [failed]; FACTORY_VERIFY_NAVBAR_V1: Verification: Calculator and Weather in Navbar [failed]; FACTORY_R_WEATHER_API_LOCATION_V1: Weather API: accept location (lat/lon or city) instead of fixed coordinates [failed]; FACTORY_R_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title/description) for /calculator [failed]; FACTORY_R_WEATHER_ERROR_STATE_V1: Weather page: user-visible error when /api/weather fails or returns an error field [failed]; FACTORY_R_CALC_KEYBOARD_A11Y_V1: Calculator: keyboard support and visible focus for controls [failed].",
   "roadmap_not_done": [
     {

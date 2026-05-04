@@ -41,6 +41,21 @@ Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARC
 - Command: pnpm -s factory:implement FACTORY_VERIFY_NAVBAR_V1
 - Notes: goal-spec fallback (no cloud LLM API key; install Ollama or set keys for richer proposals)
 
+### FACTORY_VERIFY_CALCULATOR_V2 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V2
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_R_WEATHER_API_LOCATION_V2 — Wire optional query params with safe defaults for Open-Meteo URL
+- Priority: 820
+- Command: pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V2
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_WEATHER_V2 — Fix weather API + /weather page
+- Priority: 900
+- Command: pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V2
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
 ## Manual / later
 
 ### Planner inputs
