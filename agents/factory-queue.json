@@ -36,12 +36,12 @@
         ],
         "require_diff": true
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 910,
       "created_at": "2026-05-04T05:01:19.870Z",
-      "updated_at": "2026-05-04T20:10:04.608Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T21:17:59.008Z",
+      "claimed_by": "worker_59981",
+      "claimed_at": "2026-05-04T21:17:58.960Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -58,12 +58,12 @@
         ],
         "require_diff": true
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 895,
       "created_at": "2026-05-04T05:01:19.870Z",
-      "updated_at": "2026-05-04T20:12:33.169Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T21:20:01.346Z",
+      "claimed_by": "worker_60522",
+      "claimed_at": "2026-05-04T21:20:01.300Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
