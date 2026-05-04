@@ -100,6 +100,26 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_WEATHER_V2 (priority 900)"
       }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V3",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V3 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V3",
+      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
+      "priority": 820,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V3 (priority 820)"
+      }
     }
   ]
 }

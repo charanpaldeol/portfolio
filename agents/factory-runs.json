@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_5db65a0c-4d88-4d67-ba53-af987cce90f6",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V2",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v2-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2",
+      "worker_id": "worker_35536",
+      "status": "failed",
+      "started_at": "2026-05-04T00:46:05.549Z",
+      "finished_at": "2026-05-04T00:46:34.065Z",
+      "commit_sha": null,
+      "error": "spec.command failed (exit 1)\n--- last log lines (/Users/al/Projects AI/Portfolio/agents/factory-logs/run_5db65a0c-4d88-4d67-ba53-af987cce90f6.worker_35536.log) ---\n[/Users/al/Projects AI/Portfolio] fatal: '/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2' is not a working tree\n[/Users/al/Projects AI/Portfolio] error: branch 'agent/factory_verify_calculator_v2-fix-calculator-page-at-calculator' not found.\n[/Users/al/Projects AI/Portfolio] Preparing worktree (new branch 'agent/factory_verify_calculator_v2-fix-calculator-page-at-calculator')\n[/Users/al/Projects AI/Portfolio] HEAD is now at a291c51 fix(factory): repair FACTORY_VERIFY_WEATHER_V2 spec.command typo\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] \n> portfolio@0.0.0 postinstall /Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2\n> npx patch-package -y\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] npm warn Unknown env config \"reporter\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] npm warn Unknown env config \"npm-globalconfig\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"verify-deps-before-run\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"_jsr-registry\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"store-dir\". This will stop working in the next major version of npm.\nnpm warn Unknown project config \"store-dir\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] patch-package 8.0.1\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] Applying patches...\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] No patch files found\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] factory:implement: invoking claude for FACTORY_VERIFY_CALCULATOR_V2 (timeout 900000ms)\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] Failed to authenticate. API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"Invalid authentication credentials\"},\"request_id\":\"req_011Cagc6idAvVhzta47xHzNE\"}\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V2] factory:implement: claude exited with code 1"
+    },
+    {
+      "run_id": "run_896f9de6-1094-48c9-84b2-27d5dc2245de",
+      "item_id": "FACTORY_VERIFY_WEATHER_V2",
+      "title": "Fix weather API + /weather page",
+      "branch": "agent/factory_verify_weather_v2-fix-weather-api-weather-page",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2",
+      "worker_id": "worker_33200",
+      "status": "failed",
+      "started_at": "2026-05-04T00:44:49.105Z",
+      "finished_at": "2026-05-04T00:45:19.916Z",
+      "commit_sha": null,
+      "error": "spec.command failed (exit 1)\n--- last log lines (/Users/al/Projects AI/Portfolio/agents/factory-logs/run_896f9de6-1094-48c9-84b2-27d5dc2245de.worker_33200.log) ---\n[/Users/al/Projects AI/Portfolio] fatal: '/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2' is not a working tree\n[/Users/al/Projects AI/Portfolio] Deleted branch agent/factory_verify_weather_v2-fix-weather-api-weather-page (was f6521a7).\n[/Users/al/Projects AI/Portfolio] Preparing worktree (new branch 'agent/factory_verify_weather_v2-fix-weather-api-weather-page')\n[/Users/al/Projects AI/Portfolio] HEAD is now at a291c51 fix(factory): repair FACTORY_VERIFY_WEATHER_V2 spec.command typo\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] \n> portfolio@0.0.0 postinstall /Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2\n> npx patch-package -y\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] npm warn Unknown env config \"reporter\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] npm warn Unknown env config \"npm-globalconfig\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"verify-deps-before-run\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] npm warn Unknown env config \"_jsr-registry\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"store-dir\". This will stop working in the next major version of npm.\nnpm warn Unknown project config \"store-dir\". This will stop working in the next major version of npm.\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] Applying patches...\nNo patch files found\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] patch-package 8.0.1\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] factory:implement: invoking claude for FACTORY_VERIFY_WEATHER_V2 (timeout 900000ms)\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] Failed to authenticate. API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"Invalid authentication credentials\"},\"request_id\":\"req_011Cagc1EcJKeDkFGa7Zu2NG\"}\n[/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_WEATHER_V2] factory:implement: claude exited with code 1"
+    },
+    {
       "run_id": "run_edffc714-7f8e-4286-bd02-3c769972c163",
       "item_id": "FACTORY_VERIFY_WEATHER_V2",
       "title": "Fix weather API + /weather page",
