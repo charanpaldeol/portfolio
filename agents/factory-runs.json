@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_d04ca485-adcc-4580-bffd-c9e977bc79c8",
+      "item_id": "FACTORY_WEATHER_LOCATION_SEARCH_V1",
+      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
+      "branch": "agent/factory_weather_location_search_v1-weather-page-search-or-enter-location-city-text-",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_WEATHER_LOCATION_SEARCH_V1",
+      "worker_id": "worker_44142",
+      "status": "started",
+      "started_at": "2026-05-04T05:02:20.537Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_2fc5e388-8cc4-43a2-a9cf-db6cf26057ce",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V10",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v10-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V10",
+      "worker_id": "worker_35509",
+      "status": "started",
+      "started_at": "2026-05-04T04:51:33.024Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
       "run_id": "run_3547a5d9-0cab-4eca-b0be-95df8d2b46dc",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V13",
       "title": "Fix calculator page at /calculator",

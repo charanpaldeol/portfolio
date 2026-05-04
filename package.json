@@ -19,6 +19,7 @@
     "factory:doctor": "tsx scripts/agent-factory/factory-doctor.ts",
     "factory:queue:dedupe": "tsx scripts/agent-factory/factory-queue-dedupe.ts",
     "factory:run-once": "tsx scripts/agent-factory/factory-run-once.ts",
+    "factory:run-once:main": "cross-env FACTORY_IMPLEMENT_ON_MAIN=1 tsx scripts/agent-factory/factory-run-once.ts",
     "factory:loop": "tsx scripts/agent-factory/factory-loop.ts",
     "factory:swarm": "tsx scripts/agent-factory/factory-swarm.ts",
     "factory:issue-swarm": "tsx scripts/agent-factory/factory-issue-swarm.ts",

@@ -225,6 +225,32 @@ async function ensureWorktreesDir(root: string) {
   return dir
 }
 
+async function assertImplementOnMainReady(args: { repoRoot: string; startCwd: string }) {
+  const { repoRoot, startCwd } = args
+  if (path.resolve(startCwd) !== path.resolve(repoRoot)) {
+    throw new Error(
+      "FACTORY_IMPLEMENT_ON_MAIN=1 requires cwd to equal repo root (FACTORY_ROOT or `git rev-parse --show-toplevel`); run from the repository top-level",
+    )
+  }
+  const head = await readGitOutput({ cwd: repoRoot, argv: ["rev-parse", "--abbrev-ref", "HEAD"] })
+  if (head !== "main") {
+    throw new Error(`FACTORY_IMPLEMENT_ON_MAIN=1 requires branch main (current: ${head})`)
+  }
+  const moneyMoving = parseBool(process.env.FACTORY_MONEY_MOVING_PROD)
+  const mergeStrategy = (process.env.FACTORY_MERGE_STRATEGY ?? (moneyMoving ? "pr" : "direct")).trim().toLowerCase()
+  if (mergeStrategy !== "direct") {
+    throw new Error(
+      "FACTORY_IMPLEMENT_ON_MAIN=1 requires FACTORY_MERGE_STRATEGY=direct (PR mode expects an agent branch worktree, not commits on main)",
+    )
+  }
+  const status = await readGitOutput({ cwd: repoRoot, argv: ["status", "--porcelain"] })
+  if (status.trim()) {
+    throw new Error(
+      "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)",
+    )
+  }
+}
+
 async function ensureCleanWorktree(args: { repoRoot: string; branch: string; worktreePath: string; logPath: string }) {
   const { repoRoot, branch, worktreePath, logPath } = args
 
@@ -465,9 +491,12 @@ async function main() {
 
   const runId = `run_${randomUUID()}`
   const startedAt = nowIso()
-  const branch = `agent/${nextItem.id.toLowerCase()}-${slugBranchTitle(nextItem.title) || "work"}`
-  const worktreesDir = await ensureWorktreesDir(repoRoot)
-  const worktreePath = path.join(worktreesDir, nextItem.id)
+  const implementOnMain = parseBool(process.env.FACTORY_IMPLEMENT_ON_MAIN)
+  const branch = implementOnMain
+    ? "main"
+    : `agent/${nextItem.id.toLowerCase()}-${slugBranchTitle(nextItem.title) || "work"}`
+  const worktreesDir = implementOnMain ? "" : await ensureWorktreesDir(repoRoot)
+  const worktreePath = implementOnMain ? repoRoot : path.join(worktreesDir, nextItem.id)
   const logPath = path.join(repoRoot, "agents", "factory-logs", `${runId}.${workerId}.log`)
 
   await withFileLock({
@@ -505,13 +534,29 @@ async function main() {
   let mergedToMain = false
 
   try {
-    await ensureCleanWorktree({ repoRoot, branch, worktreePath, logPath })
+    if (implementOnMain) {
+      console.log("factory: FACTORY_IMPLEMENT_ON_MAIN=1 — implement and verify run in repo root on main (no agent worktree)")
+      await assertImplementOnMainReady({ repoRoot, startCwd })
+      console.log("factory: syncing local main with origin/main before implement")
+      const fetchMain = await runCmd({ cmd: "git", argv: ["fetch", "origin", "main"], cwd: repoRoot, logPath })
+      if (fetchMain !== 0) throw new Error(`git fetch origin main failed (exit ${fetchMain})`)
+      const mergeMain = await runCmd({ cmd: "git", argv: ["merge", "--no-edit", "origin/main"], cwd: repoRoot, logPath })
+      if (mergeMain !== 0) {
+        throw new Error(`git merge origin/main failed (exit ${mergeMain}); resolve conflicts on main before re-running`)
+      }
+      if (parseBool(process.env.FACTORY_IMPLEMENT_ON_MAIN_INSTALL)) {
+        const installMain = await pnpmInstallWorktree({ cwd: repoRoot, logPath })
+        if (installMain !== 0) throw new Error(`pnpm install failed (exit ${installMain})`)
+      }
+    } else {
+      await ensureCleanWorktree({ repoRoot, branch, worktreePath, logPath })
 
-    const addWorktree = await runCmd({ cmd: "git", argv: ["worktree", "add", "-B", branch, worktreePath], cwd: repoRoot, logPath })
-    if (addWorktree !== 0) throw new Error(`git worktree add failed (exit ${addWorktree})`)
+      const addWorktree = await runCmd({ cmd: "git", argv: ["worktree", "add", "-B", branch, worktreePath], cwd: repoRoot, logPath })
+      if (addWorktree !== 0) throw new Error(`git worktree add failed (exit ${addWorktree})`)
 
-    const install = await pnpmInstallWorktree({ cwd: worktreePath, logPath })
-    if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
+      const install = await pnpmInstallWorktree({ cwd: worktreePath, logPath })
+      if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
+    }
 
     const itemSpec = parseFactoryItemSpec(nextItem.spec)
     const cursorDelegatedImplement = ["cursor", "none", "skip"].includes(
@@ -546,7 +591,9 @@ async function main() {
         }
         const hint =
           cmdExit === 254
-            ? " (exit 254: see log above for pnpm/tsx stderr. Worktrees use committed HEAD — uncommitted factory fixes on main are not inside the worktree. Non-default `spec.command` uses bash; set FACTORY_BASH_LOGIN=1 if nvm needs a login shell.)"
+            ? implementOnMain
+              ? " (exit 254: see log above for pnpm/tsx stderr. With FACTORY_IMPLEMENT_ON_MAIN=1 the cwd is repo root — check PATH/deps. Non-default `spec.command` uses bash; set FACTORY_BASH_LOGIN=1 if nvm needs a login shell.)"
+              : " (exit 254: see log above for pnpm/tsx stderr. Worktrees use committed HEAD — uncommitted factory fixes on main are not inside the worktree. Non-default `spec.command` uses bash; set FACTORY_BASH_LOGIN=1 if nvm needs a login shell.)"
             : ""
         throw new Error(
           `spec.command failed (exit ${cmdExit})${hint}${tail ? `\n--- last log lines (${logPath}) ---\n${tail}` : ""}`,
@@ -576,7 +623,9 @@ async function main() {
     if (itemSpec.requireDiff && itemSpec.command && !hasChanges) {
       if (cursorDelegatedImplement) {
         console.warn(
-          "factory: require_diff skipped (FACTORY_IMPLEMENT_BACKEND=cursor|none|skip): worktree has no local diff; verify still runs — commit your Cursor changes on the branch this worktree was created from (typically main) before run-once so verify passes.",
+          implementOnMain
+            ? "factory: require_diff skipped (FACTORY_IMPLEMENT_BACKEND=cursor|none|skip): repo has no local diff; verify still runs — commit your Cursor changes on main before run-once so verify passes."
+            : "factory: require_diff skipped (FACTORY_IMPLEMENT_BACKEND=cursor|none|skip): worktree has no local diff; verify still runs — commit your Cursor changes on the branch this worktree was created from (typically main) before run-once so verify passes.",
         )
       } else {
         throw new Error("require_diff: spec.command ran but git status is clean (no changes to commit)")
@@ -638,20 +687,28 @@ async function main() {
 
       commitSha = await readGitOutput({ cwd: worktreePath, argv: ["rev-parse", "HEAD"] })
 
-      const push = await runCmd({ cmd: "git", argv: ["push", "-u", "origin", branch], cwd: worktreePath, logPath })
+      const push = await runCmd({
+        cmd: "git",
+        argv: implementOnMain ? ["push", "origin", "main"] : ["push", "-u", "origin", branch],
+        cwd: worktreePath,
+        logPath,
+      })
       if (push !== 0) throw new Error(`git push failed (exit ${push})`)
       pushedBranch = true
+      mergedToMain = implementOnMain
 
-      const mergeResult = await mergeAndPushToMain({
-        repoRoot,
-        workerId,
-        branch,
-        worktreesDir,
-        logPath,
-        itemId: nextItem.id,
-        itemTitle: nextItem.title,
-      })
-      mergedToMain = mergeResult.mergedToMain
+      if (!implementOnMain) {
+        const mergeResult = await mergeAndPushToMain({
+          repoRoot,
+          workerId,
+          branch,
+          worktreesDir,
+          logPath,
+          itemId: nextItem.id,
+          itemTitle: nextItem.title,
+        })
+        mergedToMain = mergeResult.mergedToMain
+      }
 
       if (parseBool(process.env.FACTORY_POST_MERGE_UAT) && !mergedToMain) {
         console.warn("factory: skipping post-merge UAT because main was not updated (PR not merged yet)")
@@ -664,7 +721,7 @@ async function main() {
 
     finishedStatus = "succeeded"
   } catch (err) {
-    if (pushedBranch) {
+    if (pushedBranch && !implementOnMain && !mergedToMain) {
       console.error(`factory: branch '${branch}' was pushed but merge-to-main failed; manual intervention may be required`)
     }
     finishedError = err instanceof Error ? err.message : String(err)
@@ -707,8 +764,10 @@ async function main() {
       },
     })
 
-    await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", worktreePath], cwd: repoRoot, logPath })
-    await rm(worktreePath, { recursive: true, force: true })
+    if (!implementOnMain) {
+      await runCmd({ cmd: "git", argv: ["worktree", "remove", "--force", worktreePath], cwd: repoRoot, logPath })
+      await rm(worktreePath, { recursive: true, force: true })
+    }
   }
 }
 

@@ -1,12 +1,27 @@
-# Factory goals — verification run (cpdeol.com)
+# Factory goals — calculator & weather increments (cpdeol.com)
 
-**Mode:** Small **factory smoke test**. Replace this file with your long-term product goals when verification is done.
+**Mode:** **Product increments** on top of the shipped `/calculator`, `/weather`, and nav surfaces. North star and machine source of truth: **`agents/factory-goal-spec.json`** (`goal_revision: factory-calc-weather-incremental-2026-05`).
 
-## What must ship (Definition of done for this run)
+## What must ship (this phase)
 
-1. **Calculator** — A page on the public site where a visitor can do basic arithmetic (e.g. add/subtract/multiply) with a minimal UI. Route: **`/calculator`**.
-2. **Weather** — A **weather service** the site can use: a **Route Handler** under **`/api/...`** that returns JSON weather data (e.g. current conditions for a query or a default city) using a **free, no API-key** provider such as [Open-Meteo](https://open-meteo.com/) unless impossible—then document the fallback in code comments only. A public page (e.g. **`/weather`**) must **call that API** and display the result.
-3. **Navbar** — **`Calculator`** and **`Weather`** appear as **labeled links** in the **top navigation** on **desktop and mobile** (same labels, routes `/calculator` and `/weather`).
+1. **Weather — location** — Visitors can **choose a location** on **`/weather`** (search / text / lat-lon) and see results; API supports **query flexibility** with safe defaults.
+2. **Weather — trust** — **Clear errors and non-silent failures** when the API misbehaves; optional retry.
+3. **Calculator — clarity** — **Layout and grouping** that make the keypad easy to use; **keyboard + visible focus** for accessibility.
+4. **Calculator — metadata** — Sensible **title/description** for the `/calculator` route.
+5. **Nav — discoverability** — **Calculator** and **Weather** stay obvious on **desktop and mobile** nav.
+
+## Happy path after you change the goal or roadmap
+
+From repo root, in order:
+
+1. Edit **`agents/factory-goal-spec.json`** (`statement`, `roadmap_items`, bump **`goal_revision`** when the north star changes).
+2. **`pnpm factory:goal-pivot`** — cancels **queued / in_progress / blocked** rows tied to the **previous** `goal_revision`.
+3. **`pnpm factory:plan-from-goal`** — merges validated `roadmap_items` into **`agents/factory-roadmap.json`** (or edit the roadmap file directly when replacing the whole tranche).
+4. **`pnpm factory:plan-next`** — enqueues missing roadmap ids onto **`agents/factory-queue.json`**.
+5. **`pnpm factory:evaluate-goal`** — refreshes **`agents/factory-goal-state.json`**.
+6. **Optional:** **`pnpm factory:research-once`** → **`pnpm factory:backlog:intake`** when you want LLM/Ollama proposals in **`backlog.md`**, then plan-next again.
+
+**Default execution:** **`pnpm factory:run-once`** (isolated worktree). Use **`pnpm factory:run-once:main`** only when you intentionally want commits on `main` (see **`docs/factory/FACTORY_OPERATIONS.md`**).
 
 ## Constraints for implementers
 
@@ -53,7 +68,7 @@ Run these from the **repository root** unless a script says otherwise.
 - **After you change the north star** (`agents/factory-goal-spec.json`): edit **`statement` / `roadmap_items`** and bump **`goal_revision`**, then run **`pnpm factory:goal-pivot`** (cancels stale queue rows), **`pnpm factory:plan-from-goal`** — which **refuses to merge** until every `roadmap_items` row **traces** the current `statement` (`traces_goal` or first `definition_of_done` bullet with keyword overlap) — then **`pnpm factory:plan-next`** so new work matches the revised goal. (Roadmap regen via market pipeline is an alternative to `plan-from-goal` when that fits your workflow.) Optional later: **`factory:doctor`** if meta / roadmap / queue revisions drift.
 - **Execution roadmap (Eric / goal-truth, phases A–E):** **`docs/CODE-FACTORY-PLAN.md`** — verification gate, traceability to the goal, safe autonomy, env harness, learning loop.
 - **Merge policy, preflight, default `FF_*` for new UI:** **`docs/factory/FACTORY_MERGE_POLICY.md`**; run **`pnpm factory:preflight`** on workers before loops (also runs at the start of each **`factory:run-once`**). **`factory:run-once`** runs `spec.command` / acceptance with **`bash -c`** (inherits the same **`PATH`** as the `pnpm factory:loop` process). If a command needs nvm loaded from a login shell, set **`FACTORY_BASH_LOGIN=1`** to use **`bash -lc`** instead.
-- **Roadmap** is the source of truth: three items in **`agents/factory-roadmap.json`** (see **`agents/factory-goal-spec.json`**). Run tasks with **`pnpm factory:implement <ID>`** inside **`factory:run-once`**, or your agent loop.
+- **Roadmap** is the source of truth: **`agents/factory-roadmap.json`** (kept in sync with **`agents/factory-goal-spec.json` `roadmap_items`** via **`pnpm factory:plan-from-goal`** or manual edits). Run tasks with **`pnpm factory:implement <ID>`** inside **`factory:run-once`**, or your agent loop.
 - **Cursor-only (no Claude Code CLI):** set **`FACTORY_IMPLEMENT_BACKEND=cursor`** (or **`none`** / **`skip`**) for the process, or use **`pnpm factory:implement:cursor`** / **`pnpm factory:run-once:cursor`**. Then **`pnpm factory:implement <ID>`** only writes **`agents/factory-logs/cursor-task-<ID>.md`** and does not call **`claude`**. For **`pnpm factory:run-once`**: implement your changes **in Cursor on `main`**, **`pnpm verify`**, **commit** locally so the new worktree includes them, then run **`pnpm factory:run-once:cursor`** (or **`FACTORY_IMPLEMENT_BACKEND=cursor pnpm factory:run-once`**) — it still runs **`pnpm verify`** in the worktree and updates queue/runs; **`require_diff`** is relaxed when that env is set so a clean worktree does not fail before verify.
 - **Meaningful diffs / reclaim / install retries / queue dedupe**: **`docs/factory/FACTORY_MEANINGFUL_WORK.md`** and **`docs/factory/FACTORY_OPERATIONS.md`**. Quick check: **`pnpm factory:doctor`**.
 - **While verifying:** avoid **`factory:roadmap:refresh`** / market pipeline overwriting the roadmap—e.g. set **`FACTORY_MARKET_REFRESH_INTERVAL_MS=0`** for **`factory:swarm`**, or run **`factory:loop`** without refresh.
@@ -62,4 +77,4 @@ Run these from the **repository root** unless a script says otherwise.
 
 ## §6 Active research bet
 
-- **Bet:** *None — factory verification only (calculator + weather + navbar).*
+- **Bet:** *Incremental cpdeol.com calculator + weather UX (location search, errors, layout/a11y, API params, metadata, nav)—see `factory-goal-spec.json` roadmap rows.*

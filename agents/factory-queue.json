@@ -2,389 +2,154 @@
   "version": 1,
   "items": [
     {
-      "id": "FACTORY_VERIFY_CALCULATOR_V13",
-      "title": "Fix calculator page at /calculator",
+      "id": "FACTORY_WEATHER_LOCATION_SEARCH_V1",
+      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
       "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V13",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V13 (priority 850)"
-      },
-      "status": "done",
-      "priority": 850,
-      "created_at": "2026-05-04T04:27:24.344Z",
-      "updated_at": "2026-05-04T12:50:00.000Z",
-      "claimed_by": null,
-      "claimed_at": null,
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V12",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V12",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V12 (priority 850)"
-      },
-      "status": "cancelled",
-      "priority": 850,
-      "created_at": "2026-05-04T03:45:25.829Z",
-      "updated_at": "2026-05-04T04:33:34.012Z",
-      "claimed_by": null,
-      "claimed_at": null,
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": "deduped: duplicate queued task (same title + goal_revision; kept highest _V##)"
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V11",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V11",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V11 (priority 850)"
-      },
-      "status": "cancelled",
-      "priority": 850,
-      "created_at": "2026-05-04T03:44:16.565Z",
-      "updated_at": "2026-05-04T04:33:34.012Z",
-      "claimed_by": null,
-      "claimed_at": null,
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": "deduped: duplicate queued task (same title + goal_revision; kept highest _V##)"
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V10",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V10",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V10 (priority 850)"
-      },
-      "status": "cancelled",
-      "priority": 850,
-      "created_at": "2026-05-04T03:43:07.680Z",
-      "updated_at": "2026-05-04T12:50:00.000Z",
-      "claimed_by": null,
-      "claimed_at": null,
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": "superseded: V13 done on main with calculator unit tests (manual close)"
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V9",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V9",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V9 (priority 850)"
-      },
-      "status": "done",
-      "priority": 850,
-      "created_at": "2026-05-04T03:41:58.328Z",
-      "updated_at": "2026-05-04T04:13:54.384Z",
-      "claimed_by": "worker_91133",
-      "claimed_at": "2026-05-04T04:11:18.075Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V8",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V8",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V8 (priority 850)"
-      },
-      "status": "done",
-      "priority": 850,
-      "created_at": "2026-05-04T03:37:38.837Z",
-      "updated_at": "2026-05-04T04:07:30.843Z",
-      "claimed_by": "worker_82073",
-      "claimed_at": "2026-05-04T04:04:32.005Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V7",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V7",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V7 (priority 850)"
-      },
-      "status": "failed",
-      "priority": 850,
-      "created_at": "2026-05-04T03:36:30.298Z",
-      "updated_at": "2026-05-04T03:57:57.365Z",
-      "claimed_by": "worker_69643",
-      "claimed_at": "2026-05-04T03:54:24.206Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V6",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V6",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V6 (priority 850)"
-      },
-      "status": "failed",
-      "priority": 850,
-      "created_at": "2026-05-04T01:07:44.887Z",
-      "updated_at": "2026-05-04T03:20:47.980Z",
-      "claimed_by": "worker_31217",
-      "claimed_at": "2026-05-04T03:20:18.092Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V5",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V5",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V5 (priority 850)"
-      },
-      "status": "done",
-      "priority": 850,
-      "created_at": "2026-05-04T01:04:49.398Z",
-      "updated_at": "2026-05-04T01:09:13.698Z",
-      "claimed_by": "worker_62720",
-      "claimed_at": "2026-05-04T01:07:45.513Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V4",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V4",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V4 (priority 850)"
-      },
-      "status": "done",
-      "priority": 850,
-      "created_at": "2026-05-04T01:02:46.281Z",
-      "updated_at": "2026-05-04T01:06:14.631Z",
-      "claimed_by": "worker_56962",
-      "claimed_at": "2026-05-04T01:04:49.782Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V3",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V3",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V3 (priority 850)"
-      },
-      "status": "failed",
-      "priority": 850,
-      "created_at": "2026-05-04T00:44:48.725Z",
-      "updated_at": "2026-05-04T01:03:28.681Z",
-      "claimed_by": "worker_53380",
-      "claimed_at": "2026-05-04T01:02:46.763Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_WEATHER_API_LOCATION_V3",
-      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V3",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V3 (priority 820)"
-      },
-      "status": "failed",
-      "priority": 820,
-      "created_at": "2026-05-04T00:44:48.725Z",
-      "updated_at": "2026-05-04T03:30:49.468Z",
-      "claimed_by": "worker_38037",
-      "claimed_at": "2026-05-04T03:25:00.344Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_WEATHER_V2",
-      "title": "Fix weather API + /weather page",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V2",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_WEATHER_V2 (priority 900)"
-      },
-      "status": "failed",
-      "priority": 900,
-      "created_at": "2026-05-04T00:42:51.101Z",
-      "updated_at": "2026-05-04T00:45:19.918Z",
-      "claimed_by": "worker_33200",
-      "claimed_at": "2026-05-04T00:44:49.100Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V2",
-      "title": "Fix calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V2",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V2 (priority 850)"
-      },
-      "status": "failed",
-      "priority": 850,
-      "created_at": "2026-05-04T00:42:51.101Z",
-      "updated_at": "2026-05-04T00:46:34.069Z",
-      "claimed_by": "worker_35536",
-      "claimed_at": "2026-05-04T00:46:05.548Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_WEATHER_API_LOCATION_V2",
-      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V2",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V2 (priority 820)"
-      },
-      "status": "failed",
-      "priority": 820,
-      "created_at": "2026-05-04T00:42:51.101Z",
-      "updated_at": "2026-05-04T03:24:12.307Z",
-      "claimed_by": "worker_34598",
-      "claimed_at": "2026-05-04T03:23:44.209Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_WEATHER_API_LOCATION_V1",
-      "title": "Weather API: accept location (lat/lon or city) instead of fixed coordinates",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V1",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V1 (priority 640)"
-      },
-      "status": "failed",
-      "priority": 640,
-      "created_at": "2026-05-03T22:36:53.052Z",
-      "updated_at": "2026-05-03T22:42:17.184Z",
-      "claimed_by": "worker_49976",
-      "claimed_at": "2026-05-03T22:41:51.348Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_CALC_ROUTE_METADATA_V1",
-      "title": "Calculator: route metadata (title/description) for /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_CALC_ROUTE_METADATA_V1",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_ROUTE_METADATA_V1 (priority 620)"
-      },
-      "status": "failed",
-      "priority": 620,
-      "created_at": "2026-05-03T22:36:53.052Z",
-      "updated_at": "2026-05-03T22:42:52.441Z",
-      "claimed_by": "worker_51231",
-      "claimed_at": "2026-05-03T22:42:33.920Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_CALC_KEYBOARD_A11Y_V1",
-      "title": "Calculator: keyboard support and visible focus for controls",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_CALC_KEYBOARD_A11Y_V1",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_KEYBOARD_A11Y_V1 (priority 580)"
-      },
-      "status": "failed",
-      "priority": 580,
-      "created_at": "2026-05-03T22:36:53.052Z",
-      "updated_at": "2026-05-03T22:46:35.594Z",
-      "claimed_by": "worker_57574",
-      "claimed_at": "2026-05-03T22:46:03.736Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_R_WEATHER_ERROR_STATE_V1",
-      "title": "Weather page: user-visible error when /api/weather fails or returns an error field",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_R_WEATHER_ERROR_STATE_V1",
-        "require_diff": true,
-        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_ERROR_STATE_V1 (priority 570)"
-      },
-      "status": "failed",
-      "priority": 570,
-      "created_at": "2026-05-03T22:36:53.052Z",
-      "updated_at": "2026-05-03T22:48:25.251Z",
-      "claimed_by": "worker_61561",
-      "claimed_at": "2026-05-03T22:47:54.689Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
-      "cancel_reason": null
-    },
-    {
-      "id": "FACTORY_VERIFY_CALCULATOR_V1",
-      "title": "Verification: calculator page at /calculator",
-      "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_LOCATION_SEARCH_V1",
         "definition_of_done": [
-          "Route GET /calculator renders a client or server page on cpdeol.com layout (Portfolio shell / existing layout).",
-          "User can enter numbers and operators (or buttons) and see a correct basic arithmetic result.",
-          "Uses design-system tokens / theme classes only (no hardcoded hex); passes pnpm tsc and pnpm lint."
+          "/weather includes a clear control (search field and/or structured lat/lon) to choose location; requests /api/weather (or equivalent) with that input.",
+          "Loading and success states are obvious; design-system tokens only; no hardcoded hex.",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
         ],
         "require_diff": true
       },
-      "status": "failed",
-      "priority": 1000,
-      "created_at": "2026-05-03T23:00:00.000Z",
-      "updated_at": "2026-05-03T22:37:22.022Z",
-      "claimed_by": "worker_42913",
-      "claimed_at": "2026-05-03T22:36:53.461Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "status": "in_progress",
+      "priority": 930,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:02:20.537Z",
+      "claimed_by": "worker_44142",
+      "claimed_at": "2026-05-04T05:02:20.537Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
     {
-      "id": "FACTORY_VERIFY_WEATHER_V1",
-      "title": "Verification: weather API + /weather page",
+      "id": "FACTORY_WEATHER_ERROR_UX_V1",
+      "title": "Weather: visible error and retry-friendly state when the API fails or returns an error",
       "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V1",
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_ERROR_UX_V1",
         "definition_of_done": [
-          "A Next.js Route Handler under app/api (e.g. app/api/weather/route.ts) returns JSON with weather fields from a free no-key HTTP API (e.g. Open-Meteo), or documents minimal mock only if fetch is blocked in dev.",
-          "Route GET /weather displays current weather by calling the internal API (fetch relative /api/weather or equivalent) and shows human-readable output.",
-          "No secrets in client bundle; passes pnpm tsc and pnpm lint."
+          "When /api/weather fails or returns an error field, /weather shows a clear message (and optional retry) using DS tokens.",
+          "No silent blank screen on failure.",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
         ],
         "require_diff": true
       },
-      "status": "failed",
-      "priority": 990,
-      "created_at": "2026-05-03T23:00:00.000Z",
-      "updated_at": "2026-05-03T22:39:08.184Z",
-      "claimed_by": "worker_44915",
-      "claimed_at": "2026-05-03T22:38:37.136Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "status": "queued",
+      "priority": 910,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
     {
-      "id": "FACTORY_VERIFY_NAVBAR_V1",
-      "title": "Verification: Calculator and Weather in Navbar",
+      "id": "FACTORY_CALC_UI_POLISH_V1",
+      "title": "Calculator: clearer layout, spacing, and control grouping on /calculator",
       "spec": {
-        "command": "pnpm -s factory:implement FACTORY_VERIFY_NAVBAR_V1",
+        "command": "pnpm -s factory:implement FACTORY_CALC_UI_POLISH_V1",
         "definition_of_done": [
-          "Desktop top nav includes links labeled Calculator and Weather to /calculator and /weather.",
-          "Mobile nav sheet includes the same two links with the same labels and hrefs.",
-          "Uses existing Navbar / config/navigation patterns; passes pnpm tsc and pnpm lint."
+          "/calculator is easier to scan: grouped keys, readable display, consistent spacing using existing DS patterns.",
+          "No change to frozen layout shell files unless a human prompt permits; prefer calculator route components.",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
         ],
         "require_diff": true
       },
-      "status": "failed",
-      "priority": 980,
-      "created_at": "2026-05-03T23:00:00.000Z",
-      "updated_at": "2026-05-03T22:41:02.763Z",
-      "claimed_by": "worker_47228",
-      "claimed_at": "2026-05-03T22:40:24.636Z",
-      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "status": "queued",
+      "priority": 895,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V1",
+      "title": "Calculator: keyboard entry and visible focus for controls",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V1",
+        "definition_of_done": [
+          "Digits and primary operations usable via keyboard where reasonable; focus states visible (token-based).",
+          "Matches repo a11y conventions; no new arbitrary colors.",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
+        ],
+        "require_diff": true
+      },
+      "status": "queued",
+      "priority": 880,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V1",
+      "title": "Weather API: optional location query params with safe defaults (Open-Meteo or current provider)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V1",
+        "definition_of_done": [
+          "Route handler accepts optional location-derived query parameters with documented defaults; no secrets in client bundle.",
+          "Behavior remains safe when params are omitted (sensible default location).",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
+        ],
+        "require_diff": true
+      },
+      "status": "queued",
+      "priority": 870,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title and description) for /calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_ROUTE_METADATA_V1",
+        "definition_of_done": [
+          "app/calculator has appropriate metadata (title/description) via App Router patterns; tokens only for any styled preview if applicable.",
+          "pnpm verify passes."
+        ],
+        "require_diff": true
+      },
+      "status": "queued",
+      "priority": 860,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+      "title": "Navbar: Calculator and Weather links remain obvious on desktop and mobile",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+        "definition_of_done": [
+          "Desktop and mobile nav include labeled Calculator and Weather links to /calculator and /weather using Navbar + config/navigation patterns.",
+          "User-visible behavior is gated with lib/feature-flags.ts + an FF_* env unless the implementing prompt waives flags.",
+          "pnpm verify passes."
+        ],
+        "require_diff": true
+      },
+      "status": "queued",
+      "priority": 850,
+      "created_at": "2026-05-04T05:01:19.870Z",
+      "updated_at": "2026-05-04T05:01:19.870Z",
+      "claimed_by": null,
+      "claimed_at": null,
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     }
   ]

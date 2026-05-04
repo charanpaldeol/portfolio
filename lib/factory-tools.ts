@@ -62,16 +62,23 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-run-once",
     title: "Run one factory item",
     purpose:
-      "Preflight (git origin, optional `gh`, optional deploy URL for post-merge UAT), then claims one queued item, runs its `spec.command` in a clean worktree, runs `pnpm verify` (same bar as human pre-merge: tsc, lint, audit, build, e2e smoke, e2e:goal-smoke, e2e:proof), optional `spec.acceptance` shell checks, optional `spec.require_diff`, then commits/pushes/merges when there are changes.",
+      "Preflight (git origin, optional `gh`, optional deploy URL for post-merge UAT), then claims one queued item, runs its `spec.command` in a clean worktree (or on `main` when `FACTORY_IMPLEMENT_ON_MAIN=1`), runs `pnpm verify` (same bar as human pre-merge: tsc, lint, audit, build, e2e smoke, e2e:goal-smoke, e2e:proof), optional `spec.acceptance` shell checks, optional `spec.require_diff`, then commits/pushes/merges when there are changes.",
     howToUse: [
       "Use for debugging a single iteration.",
       "Use with a single queued item when you want one pass then exit.",
       "Per-item checks: set `spec.acceptance` to a command or string array; set `spec.require_diff: true` to fail no-op commands.",
       "Meaningful diffs: stock `pnpm -s factory:implement <id>` must touch roots under `app/`, `components/`, `lib/`, `config/`, `scripts/`, `e2e/`, or `public/`; `.gitignore`-only diffs fail. Disable with `FACTORY_REQUIRE_MEANINGFUL_PATHS=0`; extend with `FACTORY_MEANINGFUL_PATH_PREFIXES`. See `docs/factory/FACTORY_MEANINGFUL_WORK.md` and `docs/factory/FACTORY_OPERATIONS.md` (install retries, reclaim).",
+      "Commit on current `main` (no agent worktree): `pnpm factory:run-once:main` or `FACTORY_IMPLEMENT_ON_MAIN=1 pnpm factory:run-once`. Requires cwd at repo root, checkout on `main`, clean tree, `FACTORY_MERGE_STRATEGY=direct`, merge `origin/main` before implement. Optional `FACTORY_IMPLEMENT_ON_MAIN_INSTALL=1` runs `pnpm install` in the root.",
       "Cursor-only implement: `pnpm factory:run-once:cursor` or `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/FACTORY_GOAL.md`).",
       "Default `pnpm -s factory:implement <id>` runs `pnpm` directly (no shell). Other `spec.command` values and acceptance checks use `bash -c` (inherits `PATH`). Set `FACTORY_BASH_LOGIN=1` for `bash -lc` if nvm needs a login profile.",
     ],
-    commands: ["pnpm factory:run-once", "pnpm factory:run-once:cursor", "FACTORY_IMPLEMENT_BACKEND=cursor pnpm factory:run-once"],
+    commands: [
+      "pnpm factory:run-once",
+      "pnpm factory:run-once:main",
+      "FACTORY_IMPLEMENT_ON_MAIN=1 pnpm factory:run-once",
+      "pnpm factory:run-once:cursor",
+      "FACTORY_IMPLEMENT_BACKEND=cursor pnpm factory:run-once",
+    ],
     relatedFiles: [
       "scripts/agent-factory/factory-run-once.ts",
       "lib/agent-factory/factory-preflight.ts",

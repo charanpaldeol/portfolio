@@ -47,6 +47,9 @@ async function main() {
   const implementBackend = (process.env.FACTORY_IMPLEMENT_BACKEND ?? "claude").trim()
   console.log(`factory:doctor: FACTORY_IMPLEMENT_BACKEND=${implementBackend || "claude"}`)
 
+  const implementOnMain = (process.env.FACTORY_IMPLEMENT_ON_MAIN ?? "").trim()
+  console.log(`factory:doctor: FACTORY_IMPLEMENT_ON_MAIN=${implementOnMain || "(unset)"}`)
+
   const claudeBin = (process.env.FACTORY_CLAUDE_BIN ?? "claude").trim()
   console.log(`factory:doctor: FACTORY_CLAUDE_BIN=${claudeBin}`)
 

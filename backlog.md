@@ -1,6 +1,8 @@
 # Backlog — cpdeol.com
 
-**Factory:** Running a **verification goal** (calculator + weather + navbar). Source of truth: **`agents/FACTORY_GOAL.md`** and **`agents/factory-roadmap.json`**.
+**Factory:** **Incremental product work** on calculator + weather + nav (`goal_revision` **`factory-calc-weather-incremental-2026-05`**). Source of truth: **`agents/factory-goal-spec.json`**, **`agents/factory-roadmap.json`**, and **`agents/FACTORY_GOAL.md`**.
+
+Rows below marked *historical* belong to the earlier verification sprint; the **live queue** follows the seven roadmap IDs in `factory-roadmap.json` (weather location search, error UX, calc polish, a11y/keyboard, API query params, calc metadata, nav discoverability).
 
 ## Factory research intake
 

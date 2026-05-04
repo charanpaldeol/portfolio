@@ -24,9 +24,23 @@ Env (blanks and **`0`** fall back to defaults; values are **floored** so instant
 
 If you saw **`Reclaimed stale run after 0s`**, an empty or zero env was treated as **0 ms**. That is fixed: use unset, or set an explicit positive value.
 
+## Implement on `main` (no agent worktree)
+
+Set **`FACTORY_IMPLEMENT_ON_MAIN=1`** (or run **`pnpm factory:run-once:main`**) so **`spec.command`**, **`pnpm verify`**, **`git commit`**, and **`git push origin main`** run in the **repository root** on branch **`main`**, instead of creating **`.agent-worktrees/<ITEM_ID>/`**.
+
+Requirements:
+
+- Process **cwd** must be the repo top-level (same as **`FACTORY_ROOT`** / `git rev-parse --show-toplevel`).
+- Current branch must be **`main`**; working tree **clean** before the run (no uncommitted changes).
+- **`FACTORY_MERGE_STRATEGY=direct`** (or default when not money-moving). PR mode is incompatible because there is no agent branch.
+- Before implement, the script **`git fetch origin main`** and **`git merge origin/main`** so local `main` is up to date.
+- **`pnpm install`** in the root is **skipped** by default (your dev tree already has `node_modules`). Set **`FACTORY_IMPLEMENT_ON_MAIN_INSTALL=1`** to run the same retried install as worktree mode.
+
+Risk: a failed verify still leaves **local** edits on `main`; you revert or fix before the next run. Prefer the default worktree flow for isolation unless you explicitly want commits directly on `main`.
+
 ## Worktree install retries
 
-`factory:run-once` runs **`pnpm install`** with retries:
+`factory:run-once` runs **`pnpm install`** with retries (worktree path only, unless **`FACTORY_IMPLEMENT_ON_MAIN_INSTALL=1`**):
 
 | Variable | Default |
 |----------|---------|
