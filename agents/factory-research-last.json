@@ -1,10 +1,10 @@
 {
   "version": 1,
   "appended_total": 0,
-  "at": "2026-05-04T19:28:54.058Z",
+  "at": "2026-05-04T19:37:29.219Z",
   "llm_appended": 0,
   "calc_weather_appended": 0,
-  "llm_skipped_reason": "llm_no_parseable_blocks",
+  "llm_skipped_reason": "llm_invalid_blocks",
   "llm_error": null,
   "llm_via": null,
   "research_prompt_mode": "milestone",

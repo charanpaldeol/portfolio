@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_3dcce8cd-0afe-42e4-bb74-3d7dd50280c1",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v1-verification-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V1",
+      "worker_id": "worker_32130",
+      "status": "started",
+      "started_at": "2026-05-04T19:37:32.287Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
+      "run_id": "run_853f4eb3-8a9b-4a78-abfe-31282f952e5b",
+      "item_id": "FACTORY_WEATHER_ERROR_UX_V1",
+      "title": "Weather: visible error and retry-friendly state when the API fails or returns an error",
+      "branch": "agent/factory_weather_error_ux_v1-weather-visible-error-and-retry-friendly-state-w",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_WEATHER_ERROR_UX_V1",
+      "worker_id": "worker_31488",
+      "status": "started",
+      "started_at": "2026-05-04T19:37:12.467Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
       "run_id": "run_e8b8c0cd-9ba9-46be-8de6-297c6c9061f9",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
       "title": "Verification: calculator page at /calculator",
