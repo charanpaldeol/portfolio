@@ -2,6 +2,57 @@
   "version": 1,
   "items": [
     {
+      "id": "FACTORY_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V6 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-04T01:07:44.887Z",
+      "updated_at": "2026-05-04T03:20:47.980Z",
+      "claimed_by": "worker_31217",
+      "claimed_at": "2026-05-04T03:20:18.092Z",
+      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V5",
+      "title": "Fix calculator page at /calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V5 (priority 850)"
+      },
+      "status": "done",
+      "priority": 850,
+      "created_at": "2026-05-04T01:04:49.398Z",
+      "updated_at": "2026-05-04T01:09:13.698Z",
+      "claimed_by": "worker_62720",
+      "claimed_at": "2026-05-04T01:07:45.513Z",
+      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V4",
+      "title": "Fix calculator page at /calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V4 (priority 850)"
+      },
+      "status": "done",
+      "priority": 850,
+      "created_at": "2026-05-04T01:02:46.281Z",
+      "updated_at": "2026-05-04T01:06:14.631Z",
+      "claimed_by": "worker_56962",
+      "claimed_at": "2026-05-04T01:04:49.782Z",
+      "goal_revision": "factory-verify-calc-weather-nav-2026-05",
+      "cancel_reason": null
+    },
+    {
       "id": "FACTORY_VERIFY_CALCULATOR_V3",
       "title": "Fix calculator page at /calculator",
       "spec": {
@@ -9,12 +60,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V3 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T00:44:48.725Z",
-      "updated_at": "2026-05-04T00:44:48.725Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T01:03:28.681Z",
+      "claimed_by": "worker_53380",
+      "claimed_at": "2026-05-04T01:02:46.763Z",
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },
@@ -77,12 +128,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V2 (priority 820)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 820,
       "created_at": "2026-05-04T00:42:51.101Z",
-      "updated_at": "2026-05-04T00:42:51.101Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T03:24:12.307Z",
+      "claimed_by": "worker_34598",
+      "claimed_at": "2026-05-04T03:23:44.209Z",
       "goal_revision": "factory-verify-calc-weather-nav-2026-05",
       "cancel_reason": null
     },

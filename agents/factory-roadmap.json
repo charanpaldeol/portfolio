@@ -120,6 +120,36 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V3 (priority 820)"
       }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V4",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V4 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V5",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V5 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V6 (priority 850)"
+      }
     }
   ]
 }

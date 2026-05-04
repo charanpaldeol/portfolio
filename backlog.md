@@ -66,6 +66,21 @@ Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARC
 - Command: pnpm -s factory:implement FACTORY_R_WEATHER_API_LOCATION_V3
 - Notes: LLM research (remediation (goal evaluation + repo signals))
 
+### FACTORY_VERIFY_CALCULATOR_V4 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V4
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V5 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V5
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
+### FACTORY_VERIFY_CALCULATOR_V6 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V6
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
 ## Manual / later
 
 ### Planner inputs

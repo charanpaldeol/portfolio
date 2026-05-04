@@ -2,8 +2,8 @@
   "version": 1,
   "status": "blocked",
   "statement": "Factory verification: ship /calculator, a JSON weather API route plus /weather page that uses it, and Calculator + Weather links in the top navbar (desktop and mobile).",
-  "evaluated_at": "2026-05-04T00:44:41.947Z",
-  "summary": "7 roadmap-linked queue item(s) failed; replan or fix, then re-queue. Not done: FACTORY_VERIFY_CALCULATOR_V1: Verification: calculator page at /calculator [failed]; FACTORY_VERIFY_WEATHER_V1: Verification: weather API + /weather page [failed]; FACTORY_VERIFY_NAVBAR_V1: Verification: Calculator and Weather in Navbar [failed]; FACTORY_R_WEATHER_API_LOCATION_V1: Weather API: accept location (lat/lon or city) instead of fixed coordinates [failed]; FACTORY_R_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title/description) for /calculator [failed]; FACTORY_R_WEATHER_ERROR_STATE_V1: Weather page: user-visible error when /api/weather fails or returns an error field [failed]; FACTORY_R_CALC_KEYBOARD_A11Y_V1: Calculator: keyboard support and visible focus for controls [failed]; FACTORY_VERIFY_CALCULATOR_V2: Fix calculator page at /calculator [queued]; FACTORY_R_WEATHER_API_LOCATION_V2: Wire optional query params with safe defaults for Open-Meteo URL [queued]; FACTORY_VERIFY_WEATHER_V2: Fix weather API + /weather page [queued].",
+  "evaluated_at": "2026-05-04T01:07:33.596Z",
+  "summary": "10 roadmap-linked queue item(s) failed; replan or fix, then re-queue. Not done: FACTORY_VERIFY_CALCULATOR_V1: Verification: calculator page at /calculator [failed]; FACTORY_VERIFY_WEATHER_V1: Verification: weather API + /weather page [failed]; FACTORY_VERIFY_NAVBAR_V1: Verification: Calculator and Weather in Navbar [failed]; FACTORY_R_WEATHER_API_LOCATION_V1: Weather API: accept location (lat/lon or city) instead of fixed coordinates [failed]; FACTORY_R_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title/description) for /calculator [failed]; FACTORY_R_WEATHER_ERROR_STATE_V1: Weather page: user-visible error when /api/weather fails or returns an error field [failed]; FACTORY_R_CALC_KEYBOARD_A11Y_V1: Calculator: keyboard support and visible focus for controls [failed]; FACTORY_VERIFY_CALCULATOR_V2: Fix calculator page at /calculator [failed]; FACTORY_R_WEATHER_API_LOCATION_V2: Wire optional query params with safe defaults for Open-Meteo URL [queued]; FACTORY_VERIFY_WEATHER_V2: Fix weather API + /weather page [failed]; FACTORY_VERIFY_CALCULATOR_V3: Fix calculator page at /calculator [failed]; FACTORY_R_WEATHER_API_LOCATION_V3: Wire optional query params with safe defaults for Open-Meteo URL [queued]; FACTORY_VERIFY_CALCULATOR_V5: Fix calculator page at /calculator [queued].",
   "roadmap_not_done": [
     {
       "id": "FACTORY_VERIFY_CALCULATOR_V1",
@@ -43,7 +43,7 @@
     {
       "id": "FACTORY_VERIFY_CALCULATOR_V2",
       "title": "Fix calculator page at /calculator",
-      "queue_status": "queued"
+      "queue_status": "failed"
     },
     {
       "id": "FACTORY_R_WEATHER_API_LOCATION_V2",
@@ -53,12 +53,27 @@
     {
       "id": "FACTORY_VERIFY_WEATHER_V2",
       "title": "Fix weather API + /weather page",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V3",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V3",
+      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V5",
+      "title": "Fix calculator page at /calculator",
       "queue_status": "queued"
     }
   ],
-  "roadmap_item_count": 10,
-  "queue_done": 0,
-  "queue_failed": 7,
+  "roadmap_item_count": 14,
+  "queue_done": 1,
+  "queue_failed": 10,
   "queue_inflight": 3,
   "goal_acceptance_ok": null
 }

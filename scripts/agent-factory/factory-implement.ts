@@ -72,6 +72,11 @@ function isCursorDelegatedBackend(mode: string) {
   return mode === "cursor" || mode === "none" || mode === "skip"
 }
 
+function isGeminiBin(bin: string): boolean {
+  const base = bin.split("/").pop() ?? bin
+  return base === "gemini" || base === "gemini-cli"
+}
+
 async function main() {
   const itemId = getItemId()
   const worktree = process.cwd()
@@ -149,9 +154,24 @@ async function main() {
   const claudeBin = (process.env.FACTORY_CLAUDE_BIN || "claude").trim()
   const allowedTools =
     process.env.FACTORY_IMPLEMENT_ALLOWED_TOOLS || "Read Edit Write Glob Grep Bash"
+  const implementModel = (process.env.FACTORY_IMPLEMENT_MODEL || "").trim()
 
-  // `-p` / print mode: Claude Code 2.x requires the task on stdin (or a dedicated prompt flag), not a trailing argv.
-  const args = ["-p", "--dangerously-skip-permissions", "--allowedTools", allowedTools]
+  // Build CLI args based on which binary is being used.
+  // Gemini CLI: --prompt requires a value; stdin carries the task; --yolo auto-approves all edits.
+  // Claude Code: -p is a mode flag (no value); --dangerously-skip-permissions; --allowedTools.
+  // FACTORY_IMPLEMENT_MODEL selects the model for either backend.
+  const args: string[] = isGeminiBin(claudeBin)
+    ? [
+        "--prompt", "",          // headless mode; actual prompt arrives via stdin
+        "--yolo",                // auto-approve all tool calls (equiv. to --dangerously-skip-permissions)
+        ...(implementModel ? ["-m", implementModel] : []),
+      ]
+    : [
+        "-p",
+        "--dangerously-skip-permissions",
+        "--allowedTools", allowedTools,
+        ...(implementModel ? ["--model", implementModel] : []),
+      ]
 
   const timeoutMs = (() => {
     const raw = Number(process.env.FACTORY_IMPLEMENT_TIMEOUT_MS ?? String(15 * 60_000))
