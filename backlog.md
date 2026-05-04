@@ -26,6 +26,21 @@ Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARC
 - Command: pnpm -s factory:implement FACTORY_R_WEATHER_ERROR_STATE_V1
 - Notes: Research signal — branch on `{ error: ... }` from `loadWeatherJson` with clear error UI (DS tokens).
 
+### FACTORY_VERIFY_CALCULATOR_V1 — Verification: calculator page at /calculator
+- Priority: 1000
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1
+- Notes: goal-spec fallback (no cloud LLM API key; install Ollama or set keys for richer proposals)
+
+### FACTORY_VERIFY_WEATHER_V1 — Verification: weather API + /weather page
+- Priority: 990
+- Command: pnpm -s factory:implement FACTORY_VERIFY_WEATHER_V1
+- Notes: goal-spec fallback (no cloud LLM API key; install Ollama or set keys for richer proposals)
+
+### FACTORY_VERIFY_NAVBAR_V1 — Verification: Calculator and Weather in Navbar
+- Priority: 980
+- Command: pnpm -s factory:implement FACTORY_VERIFY_NAVBAR_V1
+- Notes: goal-spec fallback (no cloud LLM API key; install Ollama or set keys for richer proposals)
+
 ## Manual / later
 
 ### Planner inputs

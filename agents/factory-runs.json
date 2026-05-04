@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_57813278-40de-4ae4-a8ce-9dd9cbeb5902",
+      "item_id": "FACTORY_R_WEATHER_ERROR_STATE_V1",
+      "title": "Weather page: user-visible error when /api/weather fails or returns an error field",
+      "branch": "agent/factory_r_weather_error_state_v1-weather-page-user-visible-error-when-api-weather",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_R_WEATHER_ERROR_STATE_V1",
+      "worker_id": "worker_61561",
+      "status": "failed",
+      "started_at": "2026-05-03T22:47:54.690Z",
+      "finished_at": "2026-05-03T22:48:25.248Z",
+      "commit_sha": null,
+      "error": "pnpm verify failed (exit 2)"
+    },
+    {
+      "run_id": "run_668e7d43-ecce-4f24-b116-8f4f29e9167a",
+      "item_id": "FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+      "title": "Calculator: keyboard support and visible focus for controls",
+      "branch": "agent/factory_r_calc_keyboard_a11y_v1-calculator-keyboard-support-and-visible-focus-fo",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+      "worker_id": "worker_57574",
+      "status": "failed",
+      "started_at": "2026-05-03T22:46:03.737Z",
+      "finished_at": "2026-05-03T22:46:35.591Z",
+      "commit_sha": null,
+      "error": "pnpm verify failed (exit 2)"
+    },
+    {
       "run_id": "run_c10589cb-0626-4fdc-8725-c79d4aabd0e3",
       "item_id": "FACTORY_R_CALC_ROUTE_METADATA_V1",
       "title": "Calculator: route metadata (title/description) for /calculator",
