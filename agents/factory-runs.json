@@ -2,6 +2,32 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_d12686d2-9618-4505-b928-99596794175d",
+      "item_id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_39708",
+      "status": "failed",
+      "started_at": "2026-05-04T20:59:48.502Z",
+      "finished_at": "2026-05-04T20:59:48.551Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
+      "run_id": "run_2cd1cf26-c3b4-440c-8ba5-07ee44884534",
+      "item_id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
+      "branch": "main",
+      "worktree_path": "/Users/al/Projects AI/Portfolio",
+      "worker_id": "worker_39513",
+      "status": "failed",
+      "started_at": "2026-05-04T20:59:40.330Z",
+      "finished_at": "2026-05-04T20:59:40.398Z",
+      "commit_sha": null,
+      "error": "FACTORY_IMPLEMENT_ON_MAIN=1 requires a clean working tree before the run (commit, stash, or discard local changes)"
+    },
+    {
       "run_id": "run_1516bc2a-1f38-4528-abf6-1bce495eb45f",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V1",
       "title": "Verification: calculator page at /calculator",
