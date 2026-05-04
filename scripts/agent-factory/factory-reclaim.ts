@@ -2,6 +2,7 @@ import path from "node:path"
 import process from "node:process"
 
 import { AgentFactoryQueueSchema, AgentFactoryRunsFileSchema } from "@/lib/agent-factory/queue"
+import { resolveStaleThresholdMs } from "@/lib/agent-factory/reclaim-thresholds"
 import { readJsonFile, withFileLock, writeJsonFile } from "@/lib/agent-factory/storage"
 
 function nowIso() {
@@ -12,11 +13,6 @@ function ageMs(iso: string) {
   const t = new Date(iso).getTime()
   if (!Number.isFinite(t)) return Number.POSITIVE_INFINITY
   return Date.now() - t
-}
-
-function parseMs(value: string | undefined, fallbackMs: number) {
-  const n = Number(value ?? "")
-  return Number.isFinite(n) && n >= 0 ? n : fallbackMs
 }
 
 async function reclaimQueue(args: { root: string; workerId: string; staleClaimMs: number }) {
@@ -80,8 +76,16 @@ async function main() {
   const root = process.cwd()
   const workerId = (process.env.FACTORY_WORKER_ID ?? "").trim() || `reclaimer_${process.pid}`
 
-  const staleClaimMs = parseMs(process.env.FACTORY_STALE_CLAIM_MS, 15 * 60 * 1000)
-  const staleRunMs = parseMs(process.env.FACTORY_STALE_RUN_MS, 60 * 60 * 1000)
+  const staleClaimMs = resolveStaleThresholdMs({
+    envValue: process.env.FACTORY_STALE_CLAIM_MS,
+    fallbackMs: 15 * 60 * 1000,
+    minMs: 2 * 60 * 1000,
+  })
+  const staleRunMs = resolveStaleThresholdMs({
+    envValue: process.env.FACTORY_STALE_RUN_MS,
+    fallbackMs: 60 * 60 * 1000,
+    minMs: 5 * 60 * 1000,
+  })
 
   const [queueResult, runsResult] = await Promise.all([
     reclaimQueue({ root, workerId, staleClaimMs }),
@@ -92,7 +96,7 @@ async function main() {
   if (total > 0) {
     console.log(
       `factory:reclaim: reclaimed queue=${queueResult.reclaimedCount}, runs=${runsResult.updatedCount} (staleClaim=${Math.round(
-        staleClaimMs / 1000
+        staleClaimMs / 1000,
       )}s, staleRun=${Math.round(staleRunMs / 1000)}s)`
     )
   } else {
@@ -104,4 +108,3 @@ main().catch((err) => {
   console.error("factory:reclaim failed:", err)
   process.exitCode = 1
 })
-

@@ -111,6 +111,11 @@ Optional follow-ups for the factory: use the format in **`agents/FACTORY-RESEARC
 - Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V12
 - Notes: LLM research (remediation (goal evaluation + repo signals))
 
+### FACTORY_VERIFY_CALCULATOR_V13 — Fix calculator page at /calculator
+- Priority: 850
+- Command: pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V13
+- Notes: LLM research (remediation (goal evaluation + repo signals))
+
 ## Manual / later
 
 ### Planner inputs

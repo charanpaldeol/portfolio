@@ -39,12 +39,41 @@ function isDefaultPnpmFactoryImplementCommand(command: string | null, itemId: st
 }
 
 function parseMs(value: string | undefined, fallbackMs: number) {
-  const n = Number(value ?? "")
+  const t = (value ?? "").trim()
+  if (!t) return fallbackMs
+  const n = Number(t)
   return Number.isFinite(n) && n >= 0 ? n : fallbackMs
 }
 
 async function sleep(ms: number) {
   await new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function parsePositiveInt(value: string | undefined, fallback: number, max: number) {
+  const n = Number((value ?? "").trim())
+  if (!Number.isFinite(n) || n < 1) return fallback
+  return Math.min(max, Math.floor(n))
+}
+
+async function pnpmInstallWorktree(args: { cwd: string; logPath: string }): Promise<number> {
+  const retries = parsePositiveInt(process.env.FACTORY_INSTALL_RETRIES, 2, 5)
+  const delayMs = parseMs(process.env.FACTORY_INSTALL_RETRY_DELAY_MS, 8_000)
+  const retryNoOffline = parseBool(process.env.FACTORY_INSTALL_RETRY_NO_OFFLINE ?? "1")
+
+  let last = 1
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const usePreferOffline = attempt === 1 || !retryNoOffline
+    const argv = usePreferOffline ? (["install", "--prefer-offline"] as const) : (["install"] as const)
+    last = await runCmd({ cmd: "pnpm", argv: [...argv], cwd: args.cwd, logPath: args.logPath })
+    if (last === 0) return 0
+    await writeFile(
+      args.logPath,
+      `\nfactory: pnpm install attempt ${attempt}/${retries} exit ${last}${attempt < retries ? `; retry in ${delayMs}ms\n` : "\n"}`,
+      { flag: "a" },
+    )
+    if (attempt < retries) await sleep(delayMs)
+  }
+  return last
 }
 
 async function spawnCapture(cmd: string, argv: string[], cwd: string) {
@@ -481,12 +510,7 @@ async function main() {
     const addWorktree = await runCmd({ cmd: "git", argv: ["worktree", "add", "-B", branch, worktreePath], cwd: repoRoot, logPath })
     if (addWorktree !== 0) throw new Error(`git worktree add failed (exit ${addWorktree})`)
 
-    const install = await runCmd({
-      cmd: "pnpm",
-      argv: ["install", "--prefer-offline"],
-      cwd: worktreePath,
-      logPath,
-    })
+    const install = await pnpmInstallWorktree({ cwd: worktreePath, logPath })
     if (install !== 0) throw new Error(`pnpm install failed (exit ${install})`)
 
     const itemSpec = parseFactoryItemSpec(nextItem.spec)

@@ -67,7 +67,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "Use for debugging a single iteration.",
       "Use with a single queued item when you want one pass then exit.",
       "Per-item checks: set `spec.acceptance` to a command or string array; set `spec.require_diff: true` to fail no-op commands.",
-      "Meaningful diffs: stock `pnpm -s factory:implement <id>` must touch roots under `app/`, `components/`, `lib/`, `config/`, `scripts/`, `e2e/`, or `public/`; `.gitignore`-only diffs fail. Disable with `FACTORY_REQUIRE_MEANINGFUL_PATHS=0`; extend with `FACTORY_MEANINGFUL_PATH_PREFIXES`. See `docs/factory/FACTORY_MEANINGFUL_WORK.md`.",
+      "Meaningful diffs: stock `pnpm -s factory:implement <id>` must touch roots under `app/`, `components/`, `lib/`, `config/`, `scripts/`, `e2e/`, or `public/`; `.gitignore`-only diffs fail. Disable with `FACTORY_REQUIRE_MEANINGFUL_PATHS=0`; extend with `FACTORY_MEANINGFUL_PATH_PREFIXES`. See `docs/factory/FACTORY_MEANINGFUL_WORK.md` and `docs/factory/FACTORY_OPERATIONS.md` (install retries, reclaim).",
       "Cursor-only implement: `pnpm factory:run-once:cursor` or `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/FACTORY_GOAL.md`).",
       "Default `pnpm -s factory:implement <id>` runs `pnpm` directly (no shell). Other `spec.command` values and acceptance checks use `bash -c` (inherits `PATH`). Set `FACTORY_BASH_LOGIN=1` for `bash -lc` if nvm needs a login profile.",
     ],
@@ -208,9 +208,42 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-reclaim",
     title: "Reclaim stale claims/runs",
     purpose: "Repairs the queue/runs ledger after crashes by reclaiming stale work and keeping the dashboard consistent.",
-    howToUse: ["Use when a worker crashed and items look stuck in `in_progress`."],
+    howToUse: [
+      "Use when a worker crashed and items look stuck in `in_progress`.",
+      "`FACTORY_STALE_CLAIM_MS` / `FACTORY_STALE_RUN_MS` — see `docs/factory/FACTORY_OPERATIONS.md` (blank/0 safe fallbacks + floors).",
+    ],
     commands: ["pnpm factory:reclaim"],
-    relatedFiles: ["scripts/agent-factory/factory-reclaim.ts", "agents/factory-queue.json", "agents/factory-runs.json"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-reclaim.ts",
+      "lib/agent-factory/reclaim-thresholds.ts",
+      "agents/factory-queue.json",
+      "agents/factory-runs.json",
+    ],
+  },
+  {
+    id: "factory-doctor",
+    title: "Factory doctor (worker smoke)",
+    purpose:
+      "Read-only check: Node/pnpm versions, `pnpm-lock.yaml`, effective reclaim thresholds, implementer env hints (`FACTORY_CLAUDE_BIN`, aider/Gemini).",
+    howToUse: ["Run on a worker host before starting `factory:loop` or `factory:swarm`."],
+    commands: ["pnpm factory:doctor"],
+    relatedFiles: ["scripts/agent-factory/factory-doctor.ts", "docs/factory/FACTORY_OPERATIONS.md"],
+  },
+  {
+    id: "factory-queue-dedupe",
+    title: "Queue dedupe (same title + goal)",
+    purpose:
+      "Cancels duplicate `queued` rows that share the same title and `goal_revision`, keeping the highest `_V##` suffix in the item id. Dry-run with `FACTORY_QUEUE_DEDUPE_DRY_RUN=1`.",
+    howToUse: [
+      "Use after research/intake created many calculator-fix clones (V10…V13).",
+      "Preview: `FACTORY_QUEUE_DEDUPE_DRY_RUN=1 pnpm factory:queue:dedupe`.",
+    ],
+    commands: ["pnpm factory:queue:dedupe", "FACTORY_QUEUE_DEDUPE_DRY_RUN=1 pnpm factory:queue:dedupe"],
+    relatedFiles: [
+      "scripts/agent-factory/factory-queue-dedupe.ts",
+      "lib/agent-factory/queue-dedupe.ts",
+      "agents/factory-queue.json",
+    ],
   },
   {
     id: "factory-stabilize",

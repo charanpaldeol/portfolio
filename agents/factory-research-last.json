@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "appended_total": 0,
-  "at": "2026-05-04T04:15:21.163Z",
-  "llm_appended": 0,
+  "appended_total": 1,
+  "at": "2026-05-04T04:27:23.562Z",
+  "llm_appended": 1,
   "calc_weather_appended": 0,
-  "llm_skipped_reason": "llm_all_duplicate_ids",
+  "llm_skipped_reason": null,
   "llm_error": null,
-  "llm_via": null,
+  "llm_via": "ollama",
   "research_prompt_mode": "remediation_failed",
   "goal_status": "blocked",
   "improvement_pass": false

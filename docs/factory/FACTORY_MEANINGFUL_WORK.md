@@ -1,5 +1,7 @@
 # Factory: meaningful product work
 
+Operational tuning (reclaim, install retries, dedupe, doctor): **`docs/factory/FACTORY_OPERATIONS.md`**.
+
 This document describes how **`factory:run-once`** rejects no-op or meta-only commits, and what to implement next so the loop reliably improves **UI, APIs, and tooling**.
 
 ## What shipped in code

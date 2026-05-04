@@ -2,17 +2,30 @@
   "version": 1,
   "runs": [
     {
+      "run_id": "run_aedd6c26-5c65-4534-89f8-28cae9a54be7",
+      "item_id": "FACTORY_VERIFY_CALCULATOR_V10",
+      "title": "Fix calculator page at /calculator",
+      "branch": "agent/factory_verify_calculator_v10-fix-calculator-page-at-calculator",
+      "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V10",
+      "worker_id": "worker_8984",
+      "status": "started",
+      "started_at": "2026-05-04T04:27:24.855Z",
+      "finished_at": null,
+      "commit_sha": null,
+      "error": null
+    },
+    {
       "run_id": "run_aa7d951b-a327-4810-84d8-2df88c5f2095",
       "item_id": "FACTORY_VERIFY_CALCULATOR_V11",
       "title": "Fix calculator page at /calculator",
       "branch": "agent/factory_verify_calculator_v11-fix-calculator-page-at-calculator",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V11",
       "worker_id": "worker_533",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T04:19:03.349Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T04:27:08.292Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 0s"
     },
     {
       "run_id": "run_d2eeb24e-7d03-4267-be51-8012c9d98042",
@@ -21,11 +34,11 @@
       "branch": "agent/factory_verify_calculator_v10-fix-calculator-page-at-calculator",
       "worktree_path": "/Users/al/Projects AI/Portfolio/.agent-worktrees/FACTORY_VERIFY_CALCULATOR_V10",
       "worker_id": "worker_96455",
-      "status": "started",
+      "status": "failed",
       "started_at": "2026-05-04T04:15:22.200Z",
-      "finished_at": null,
+      "finished_at": "2026-05-04T04:27:08.292Z",
       "commit_sha": null,
-      "error": null
+      "error": "Reclaimed stale run after 0s"
     },
     {
       "run_id": "run_4e76d93b-fb04-43fc-a502-fadd002f395b",
