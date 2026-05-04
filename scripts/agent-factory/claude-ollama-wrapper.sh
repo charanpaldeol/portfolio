@@ -19,14 +19,15 @@ if [ -z "$PROMPT" ]; then
 fi
 
 # Call Ollama API
+# Build JSON payload more carefully to avoid quoting issues
+JSON_PAYLOAD=$(jq -n \
+    --arg model "$MODEL" \
+    --arg content "$PROMPT" \
+    '{model: $model, messages: [{role: "user", content: $content}], stream: false, temperature: 0.3}')
+
 RESPONSE=$(curl -s -X POST "$OLLAMA_URL/api/chat" \
     -H "Content-Type: application/json" \
-    -d "{
-        \"model\": \"$MODEL\",
-        \"messages\": [{\"role\": \"user\", \"content\": $(echo "$PROMPT" | jq -R .)}],
-        \"stream\": false,
-        \"temperature\": 0.3
-    }")
+    -d "$JSON_PAYLOAD")
 
 # Check if response is valid JSON
 if ! echo "$RESPONSE" | jq . > /dev/null 2>&1; then
