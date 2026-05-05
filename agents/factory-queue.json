@@ -2,6 +2,1859 @@
   "version": 1,
   "items": [
     {
+      "id": "A11Y_WEATHER_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states in weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V7 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T23:18:02.472Z",
+      "updated_at": "2026-05-05T23:18:02.935Z",
+      "claimed_by": "worker_92972",
+      "claimed_at": "2026-05-05T23:18:02.874Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states in weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V6 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T23:16:44.248Z",
+      "updated_at": "2026-05-05T23:16:44.772Z",
+      "claimed_by": "worker_92640",
+      "claimed_at": "2026-05-05T23:16:44.699Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states in weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V5 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T23:12:48.528Z",
+      "updated_at": "2026-05-05T23:12:49.085Z",
+      "claimed_by": "worker_91302",
+      "claimed_at": "2026-05-05T23:12:49.027Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V2",
+      "title": "Wire safe default query parameters for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_SAFE_DEFAULTS_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_SAFE_DEFAULTS_V2 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T23:12:48.528Z",
+      "updated_at": "2026-05-05T23:14:06.302Z",
+      "claimed_by": "worker_91631",
+      "claimed_at": "2026-05-05T23:14:06.244Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states in weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V4 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T20:49:51.567Z",
+      "updated_at": "2026-05-05T20:49:52.754Z",
+      "claimed_by": "worker_89089",
+      "claimed_at": "2026-05-05T20:49:52.641Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V1",
+      "title": "Wire safe default query parameters for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_SAFE_DEFAULTS_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_SAFE_DEFAULTS_V1 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T20:49:51.567Z",
+      "updated_at": "2026-05-05T20:51:53.946Z",
+      "claimed_by": "worker_89359",
+      "claimed_at": "2026-05-05T20:51:53.862Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V8",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V8 (priority 910)"
+      },
+      "status": "failed",
+      "priority": 910,
+      "created_at": "2026-05-05T20:25:27.771Z",
+      "updated_at": "2026-05-05T20:25:28.209Z",
+      "claimed_by": "worker_84913",
+      "claimed_at": "2026-05-05T20:25:28.155Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V5",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V5 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:25:27.771Z",
+      "updated_at": "2026-05-05T20:26:44.943Z",
+      "claimed_by": "worker_85162",
+      "claimed_at": "2026-05-05T20:26:44.892Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V15",
+      "title": "Improve accessibility for error states in weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V15",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V15 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T20:25:27.771Z",
+      "updated_at": "2026-05-05T20:28:08.239Z",
+      "claimed_by": "worker_85438",
+      "claimed_at": "2026-05-05T20:28:08.189Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V6",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix root cause of failed queue items for weather API location input",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V6 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T20:25:27.771Z",
+      "updated_at": "2026-05-05T20:29:29.258Z",
+      "claimed_by": "worker_85705",
+      "claimed_at": "2026-05-05T20:29:29.208Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V7",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix root cause of failed queue items for weather API location input",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V7 (priority 620)"
+      },
+      "status": "failed",
+      "priority": 620,
+      "created_at": "2026-05-05T20:25:27.771Z",
+      "updated_at": "2026-05-05T20:30:49.313Z",
+      "claimed_by": "worker_85960",
+      "claimed_at": "2026-05-05T20:30:49.264Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V4",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V4 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:11:19.205Z",
+      "updated_at": "2026-05-05T20:11:19.638Z",
+      "claimed_by": "worker_82333",
+      "claimed_at": "2026-05-05T20:11:19.582Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V3",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V3 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:06:06.078Z",
+      "updated_at": "2026-05-05T20:10:05.181Z",
+      "claimed_by": "worker_82073",
+      "claimed_at": "2026-05-05T20:10:05.132Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V2",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V2 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:04:51.686Z",
+      "updated_at": "2026-05-05T20:08:51.543Z",
+      "claimed_by": "worker_81802",
+      "claimed_at": "2026-05-05T20:08:51.490Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V21",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V21",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V21 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T20:03:37.297Z",
+      "updated_at": "2026-05-05T20:03:37.745Z",
+      "claimed_by": "worker_80743",
+      "claimed_at": "2026-05-05T20:03:37.687Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V22",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_calculator_errors_v2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V22 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T20:03:37.297Z",
+      "updated_at": "2026-05-05T20:04:52.160Z",
+      "claimed_by": "worker_81018",
+      "claimed_at": "2026-05-05T20:04:52.097Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V14",
+      "title": "Improve error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_calculator_errors_v1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V14 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:03:37.297Z",
+      "updated_at": "2026-05-05T20:06:06.524Z",
+      "claimed_by": "worker_81275",
+      "claimed_at": "2026-05-05T20:06:06.468Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V23",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_v3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V23 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T20:03:37.297Z",
+      "updated_at": "2026-05-05T20:07:29.947Z",
+      "claimed_by": "worker_81537",
+      "claimed_at": "2026-05-05T20:07:29.901Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V20",
+      "title": "Fix verify failures",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V20",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V20 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:54:02.406Z",
+      "updated_at": "2026-05-05T19:55:25.303Z",
+      "claimed_by": "worker_79310",
+      "claimed_at": "2026-05-05T19:55:25.244Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V13",
+      "title": "Improve error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_RESEARCH_DONE",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V13 (priority 500)"
+      },
+      "status": "failed",
+      "priority": 500,
+      "created_at": "2026-05-05T19:54:02.406Z",
+      "updated_at": "2026-05-05T19:56:39.819Z",
+      "claimed_by": "worker_79557",
+      "claimed_at": "2026-05-05T19:56:39.766Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V19",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V19",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V19 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:51:16.529Z",
+      "updated_at": "2026-05-05T19:54:02.850Z",
+      "claimed_by": "worker_79024",
+      "claimed_at": "2026-05-05T19:54:02.792Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V12",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_weather_api_v1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V12 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:50:00.066Z",
+      "updated_at": "2026-05-05T19:50:00.504Z",
+      "claimed_by": "worker_78242",
+      "claimed_at": "2026-05-05T19:50:00.450Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V9",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_calculator_v3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V9 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:50:00.066Z",
+      "updated_at": "2026-05-05T19:51:16.956Z",
+      "claimed_by": "worker_78503",
+      "claimed_at": "2026-05-05T19:51:16.904Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V8",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_calculator_v2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V8 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:50:00.066Z",
+      "updated_at": "2026-05-05T19:52:41.195Z",
+      "claimed_by": "worker_78776",
+      "claimed_at": "2026-05-05T19:52:41.141Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "NEW_TASK_V1",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V1 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T19:48:35.545Z",
+      "updated_at": "2026-05-05T19:48:35.972Z",
+      "claimed_by": "worker_77980",
+      "claimed_at": "2026-05-05T19:48:35.922Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V11",
+      "title": "Improve Accessibility for Error States in Weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V11 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:42:13.554Z",
+      "updated_at": "2026-05-05T19:42:13.988Z",
+      "claimed_by": "worker_76646",
+      "claimed_at": "2026-05-05T19:42:13.935Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V17",
+      "title": "Fix Verify Calculator Failures in New Tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V17",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V17 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T19:42:13.554Z",
+      "updated_at": "2026-05-05T19:43:27.487Z",
+      "claimed_by": "worker_76910",
+      "claimed_at": "2026-05-05T19:43:27.436Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V18",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V18",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V18 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T19:42:13.554Z",
+      "updated_at": "2026-05-05T19:44:43.903Z",
+      "claimed_by": "worker_77172",
+      "claimed_at": "2026-05-05T19:44:43.855Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V17",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V17",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V17 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T19:42:13.554Z",
+      "updated_at": "2026-05-05T19:46:06.973Z",
+      "claimed_by": "worker_77448",
+      "claimed_at": "2026-05-05T19:46:06.920Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V6",
+      "title": "Enhance Calculator UI Polish (Specific Edge Case)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_UI_POLISH_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V6 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T19:42:13.554Z",
+      "updated_at": "2026-05-05T19:47:21.467Z",
+      "claimed_by": "worker_77723",
+      "claimed_at": "2026-05-05T19:47:21.415Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V16",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V16",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V16 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:35:35.889Z",
+      "updated_at": "2026-05-05T19:35:36.333Z",
+      "claimed_by": "worker_75447",
+      "claimed_at": "2026-05-05T19:35:36.281Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V15",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V15",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V15 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:31:50.794Z",
+      "updated_at": "2026-05-05T19:31:51.231Z",
+      "claimed_by": "worker_74676",
+      "claimed_at": "2026-05-05T19:31:51.178Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V14",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V14",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V14 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:31:50.794Z",
+      "updated_at": "2026-05-05T19:33:06.321Z",
+      "claimed_by": "worker_74931",
+      "claimed_at": "2026-05-05T19:33:06.274Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V10",
+      "title": "Improve error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V10 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T19:31:50.794Z",
+      "updated_at": "2026-05-05T19:34:21.124Z",
+      "claimed_by": "worker_75196",
+      "claimed_at": "2026-05-05T19:34:21.078Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V16",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V16",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V16 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T19:31:50.794Z",
+      "updated_at": "2026-05-05T19:36:58.607Z",
+      "claimed_by": "worker_75697",
+      "claimed_at": "2026-05-05T19:36:58.559Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V13",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V13",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V13 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:22:07.784Z",
+      "updated_at": "2026-05-05T19:22:08.218Z",
+      "claimed_by": "worker_72929",
+      "claimed_at": "2026-05-05T19:22:08.171Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V9",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V9 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:22:07.784Z",
+      "updated_at": "2026-05-05T19:23:35.747Z",
+      "claimed_by": "worker_73194",
+      "claimed_at": "2026-05-05T19:23:35.698Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V5",
+      "title": "Enhance calculator UI for better user experience (polish)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix_verify_failure_V14",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V5 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:14:07.284Z",
+      "updated_at": "2026-05-05T19:14:07.755Z",
+      "claimed_by": "worker_71353",
+      "claimed_at": "2026-05-05T19:14:07.660Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V12",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V12 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:14:07.284Z",
+      "updated_at": "2026-05-05T19:15:33.027Z",
+      "claimed_by": "worker_71628",
+      "claimed_at": "2026-05-05T19:15:32.979Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V8",
+      "title": "Improve error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V8 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T19:14:07.284Z",
+      "updated_at": "2026-05-05T19:16:49.258Z",
+      "claimed_by": "worker_71912",
+      "claimed_at": "2026-05-05T19:16:49.204Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V13",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V13",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V13 (priority 550)"
+      },
+      "status": "failed",
+      "priority": 550,
+      "created_at": "2026-05-05T19:14:07.284Z",
+      "updated_at": "2026-05-05T19:18:06.268Z",
+      "claimed_by": "worker_72178",
+      "claimed_at": "2026-05-05T19:18:06.220Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V7 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T19:06:21.401Z",
+      "updated_at": "2026-05-05T19:06:21.846Z",
+      "claimed_by": "worker_69808",
+      "claimed_at": "2026-05-05T19:06:21.788Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V10",
+      "title": "Fix verify failures",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V10 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:06:21.401Z",
+      "updated_at": "2026-05-05T19:07:46.140Z",
+      "claimed_by": "worker_70093",
+      "claimed_at": "2026-05-05T19:07:46.086Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10",
+      "title": "Enhance weather location search accessibility",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T19:06:21.401Z",
+      "updated_at": "2026-05-05T19:09:01.966Z",
+      "claimed_by": "worker_70351",
+      "claimed_at": "2026-05-05T19:09:01.919Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V12",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V12 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T19:06:21.401Z",
+      "updated_at": "2026-05-05T19:10:15.605Z",
+      "claimed_by": "worker_70626",
+      "claimed_at": "2026-05-05T19:10:15.550Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V11",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V11 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T18:52:17.507Z",
+      "updated_at": "2026-05-05T18:52:17.944Z",
+      "claimed_by": "worker_67074",
+      "claimed_at": "2026-05-05T18:52:17.885Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V6 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T18:52:17.507Z",
+      "updated_at": "2026-05-05T18:53:33.057Z",
+      "claimed_by": "worker_67357",
+      "claimed_at": "2026-05-05T18:53:33.006Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEWUX_V4",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V4 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T18:52:17.507Z",
+      "updated_at": "2026-05-05T18:54:49.506Z",
+      "claimed_by": "worker_67624",
+      "claimed_at": "2026-05-05T18:54:49.456Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V12",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V12 (priority 550)"
+      },
+      "status": "failed",
+      "priority": 550,
+      "created_at": "2026-05-05T18:52:17.507Z",
+      "updated_at": "2026-05-05T18:56:04.697Z",
+      "claimed_by": "worker_67893",
+      "claimed_at": "2026-05-05T18:56:04.647Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9",
+      "title": "Enhance weather location search accessibility",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T18:43:24.109Z",
+      "updated_at": "2026-05-05T18:47:10.454Z",
+      "claimed_by": "worker_66126",
+      "claimed_at": "2026-05-05T18:47:10.406Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V9",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V9 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:39:37.694Z",
+      "updated_at": "2026-05-05T18:39:38.136Z",
+      "claimed_by": "worker_64516",
+      "claimed_at": "2026-05-05T18:39:38.082Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V10",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V10 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T18:39:37.694Z",
+      "updated_at": "2026-05-05T18:40:54.471Z",
+      "claimed_by": "worker_64773",
+      "claimed_at": "2026-05-05T18:40:54.420Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V5 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T18:39:37.695Z",
+      "updated_at": "2026-05-05T18:42:09.401Z",
+      "claimed_by": "worker_65039",
+      "claimed_at": "2026-05-05T18:42:09.350Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V3",
+      "title": "Enhance calculator UI for better user experience",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_UI_POLISH_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V3 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T18:39:37.695Z",
+      "updated_at": "2026-05-05T18:43:24.538Z",
+      "claimed_by": "worker_65305",
+      "claimed_at": "2026-05-05T18:43:24.485Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8",
+      "title": "Enhance accessibility for weather location search",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T18:39:37.695Z",
+      "updated_at": "2026-05-05T18:44:39.924Z",
+      "claimed_by": "worker_65573",
+      "claimed_at": "2026-05-05T18:44:39.870Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V11",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V11 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T18:39:37.695Z",
+      "updated_at": "2026-05-05T18:45:55.056Z",
+      "claimed_by": "worker_65849",
+      "claimed_at": "2026-05-05T18:45:55.003Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7",
+      "title": "Enhance weather location search accessibility",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7 (priority 620)"
+      },
+      "status": "failed",
+      "priority": 620,
+      "created_at": "2026-05-05T18:38:15.080Z",
+      "updated_at": "2026-05-05T18:38:15.498Z",
+      "claimed_by": "worker_64238",
+      "claimed_at": "2026-05-05T18:38:15.450Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V10",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V10 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T18:36:59.638Z",
+      "updated_at": "2026-05-05T18:37:00.076Z",
+      "claimed_by": "worker_63984",
+      "claimed_at": "2026-05-05T18:37:00.020Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V8",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V8 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:33:14.566Z",
+      "updated_at": "2026-05-05T18:33:15.010Z",
+      "claimed_by": "worker_63171",
+      "claimed_at": "2026-05-05T18:33:14.959Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V9",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V9 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T18:33:14.566Z",
+      "updated_at": "2026-05-05T18:34:29.184Z",
+      "claimed_by": "worker_63452",
+      "claimed_at": "2026-05-05T18:34:29.134Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6",
+      "title": "Enhance weather location search accessibility",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T18:33:14.566Z",
+      "updated_at": "2026-05-05T18:35:44.486Z",
+      "claimed_by": "worker_63709",
+      "claimed_at": "2026-05-05T18:35:44.437Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V6",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V6 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T18:29:18.700Z",
+      "updated_at": "2026-05-05T18:29:19.139Z",
+      "claimed_by": "worker_62373",
+      "claimed_at": "2026-05-05T18:29:19.094Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5",
+      "title": "Enhance weather location search accessibility",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:29:18.700Z",
+      "updated_at": "2026-05-05T18:30:34.228Z",
+      "claimed_by": "worker_62639",
+      "claimed_at": "2026-05-05T18:30:34.175Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V7",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V7 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:29:18.700Z",
+      "updated_at": "2026-05-05T18:31:53.708Z",
+      "claimed_by": "worker_62896",
+      "claimed_at": "2026-05-05T18:31:53.662Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEWUX_V3",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V3 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:20:29.289Z",
+      "updated_at": "2026-05-05T18:20:29.707Z",
+      "claimed_by": "worker_60615",
+      "claimed_at": "2026-05-05T18:20:29.661Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V6 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T18:20:29.289Z",
+      "updated_at": "2026-05-05T18:21:45.367Z",
+      "claimed_by": "worker_60897",
+      "claimed_at": "2026-05-05T18:21:45.321Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V3",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V3 (priority 550)"
+      },
+      "status": "failed",
+      "priority": 550,
+      "created_at": "2026-05-05T18:20:29.289Z",
+      "updated_at": "2026-05-05T18:23:01.711Z",
+      "claimed_by": "worker_61150",
+      "claimed_at": "2026-05-05T18:23:01.668Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V8",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V8 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T18:16:29.692Z",
+      "updated_at": "2026-05-05T18:16:30.117Z",
+      "claimed_by": "worker_59891",
+      "claimed_at": "2026-05-05T18:16:30.072Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V7",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V7 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T18:05:04.584Z",
+      "updated_at": "2026-05-05T18:05:05.018Z",
+      "claimed_by": "worker_57553",
+      "claimed_at": "2026-05-05T18:05:04.971Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V4 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T18:05:04.584Z",
+      "updated_at": "2026-05-05T18:06:19.413Z",
+      "claimed_by": "worker_57831",
+      "claimed_at": "2026-05-05T18:06:19.365Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V2",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V2 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T18:05:04.584Z",
+      "updated_at": "2026-05-05T18:07:33.035Z",
+      "claimed_by": "worker_58092",
+      "claimed_at": "2026-05-05T18:07:32.988Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V10",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V10 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T18:05:04.584Z",
+      "updated_at": "2026-05-05T18:08:48.541Z",
+      "claimed_by": "worker_58377",
+      "claimed_at": "2026-05-05T18:08:48.491Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY",
+      "title": "fix_verify_failure_V3 — Fix verify failures in weather API and calculator implementations",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_fix_verify_failure_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T18:05:04.584Z",
+      "updated_at": "2026-05-05T18:10:02.134Z",
+      "claimed_by": "worker_58661",
+      "claimed_at": "2026-05-05T18:10:02.076Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V1",
+      "title": "Improve accessibility of error states for weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORYImproveA11yForErrorStatesV3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V1 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T17:54:32.216Z",
+      "updated_at": "2026-05-05T17:54:32.642Z",
+      "claimed_by": "worker_55624",
+      "claimed_at": "2026-05-05T17:54:32.593Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V1",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V1 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T17:54:32.216Z",
+      "updated_at": "2026-05-05T17:55:46.408Z",
+      "claimed_by": "worker_55898",
+      "claimed_at": "2026-05-05T17:55:46.360Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4",
+      "title": "Improve accessibility for weather location search",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T17:35:34.566Z",
+      "updated_at": "2026-05-05T17:36:48.652Z",
+      "claimed_by": "worker_52296",
+      "claimed_at": "2026-05-05T17:36:48.607Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3",
+      "title": "Improve accessibility for weather location search",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T17:34:19.091Z",
+      "updated_at": "2026-05-05T17:34:19.520Z",
+      "claimed_by": "worker_51754",
+      "claimed_at": "2026-05-05T17:34:19.469Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_LOCATION_SEARCH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_LOCATION_SEARCH_V2 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T17:34:19.091Z",
+      "updated_at": "2026-05-05T17:35:34.994Z",
+      "claimed_by": "worker_52021",
+      "claimed_at": "2026-05-05T17:35:34.948Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V4",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V4 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T17:26:44.243Z",
+      "updated_at": "2026-05-05T17:26:44.667Z",
+      "claimed_by": "worker_50244",
+      "claimed_at": "2026-05-05T17:26:44.619Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V3",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V3 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T17:24:12.407Z",
+      "updated_at": "2026-05-05T17:24:12.833Z",
+      "claimed_by": "worker_49700",
+      "claimed_at": "2026-05-05T17:24:12.779Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Improve accessibility for weather location search",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T17:24:12.407Z",
+      "updated_at": "2026-05-05T17:25:28.241Z",
+      "claimed_by": "worker_49986",
+      "claimed_at": "2026-05-05T17:25:28.197Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V2",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V2 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T17:22:57.108Z",
+      "updated_at": "2026-05-05T17:22:57.533Z",
+      "claimed_by": "worker_49426",
+      "claimed_at": "2026-05-05T17:22:57.483Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V5",
+      "title": "Fix verify calculator failures in new tasks",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FixVerificationFailuresInNewTasks",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V5 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T17:22:57.108Z",
+      "updated_at": "2026-05-05T17:28:00.360Z",
+      "claimed_by": "worker_50522",
+      "claimed_at": "2026-05-05T17:28:00.317Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1",
+      "title": "Improve accessibility for weather location search",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T17:22:57.108Z",
+      "updated_at": "2026-05-05T17:29:16.094Z",
+      "claimed_by": "worker_50797",
+      "claimed_at": "2026-05-05T17:29:16.055Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V4 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T16:46:23.446Z",
+      "updated_at": "2026-05-05T16:46:23.872Z",
+      "claimed_by": "worker_42614",
+      "claimed_at": "2026-05-05T16:46:23.828Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V2",
+      "title": "Fix route metadata verification",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEW_ROUTE_METADATA_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEW_ROUTE_METADATA_V2 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T16:38:25.338Z",
+      "updated_at": "2026-05-05T16:38:25.772Z",
+      "claimed_by": "worker_41039",
+      "claimed_at": "2026-05-05T16:38:25.717Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V9",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V9 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T16:38:25.338Z",
+      "updated_at": "2026-05-05T16:39:41.794Z",
+      "claimed_by": "worker_41316",
+      "claimed_at": "2026-05-05T16:39:41.750Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V2",
+      "title": "Calculator: clearer layout, spacing, and control grouping on /calculator",
+      "spec": {
+        "command": "pnm -s factory:implement FACTORY_CALC_UI_POLISH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V2 (priority 580)"
+      },
+      "status": "failed",
+      "priority": 580,
+      "created_at": "2026-05-05T16:38:25.339Z",
+      "updated_at": "2026-05-05T16:41:00.737Z",
+      "claimed_by": "worker_41595",
+      "claimed_at": "2026-05-05T16:41:00.685Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V6",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V6 (priority 550)"
+      },
+      "status": "failed",
+      "priority": 550,
+      "created_at": "2026-05-05T16:38:25.339Z",
+      "updated_at": "2026-05-05T16:42:16.542Z",
+      "claimed_by": "worker_41873",
+      "claimed_at": "2026-05-05T16:42:16.495Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V8",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V8 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T16:37:02.992Z",
+      "updated_at": "2026-05-05T16:37:03.415Z",
+      "claimed_by": "worker_40767",
+      "claimed_at": "2026-05-05T16:37:03.365Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V7",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V7 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T16:33:08.151Z",
+      "updated_at": "2026-05-05T16:33:08.569Z",
+      "claimed_by": "worker_40011",
+      "claimed_at": "2026-05-05T16:33:08.522Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V5",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V5 (priority 950)"
+      },
+      "status": "failed",
+      "priority": 950,
+      "created_at": "2026-05-05T16:29:22.939Z",
+      "updated_at": "2026-05-05T16:29:23.381Z",
+      "claimed_by": "worker_39196",
+      "claimed_at": "2026-05-05T16:29:23.328Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEWUX_V2",
+      "title": "New UX Task",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V2 (priority 800)"
+      },
+      "status": "failed",
+      "priority": 800,
+      "created_at": "2026-05-05T16:29:22.939Z",
+      "updated_at": "2026-05-05T16:30:37.616Z",
+      "claimed_by": "worker_39469",
+      "claimed_at": "2026-05-05T16:30:37.573Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V6",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V6 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T16:29:22.939Z",
+      "updated_at": "2026-05-05T16:31:53.140Z",
+      "claimed_by": "worker_39756",
+      "claimed_at": "2026-05-05T16:31:53.098Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V4 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T16:00:35.201Z",
+      "updated_at": "2026-05-05T16:00:35.617Z",
+      "claimed_by": "worker_34144",
+      "claimed_at": "2026-05-05T16:00:35.573Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V5",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V5 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T16:00:35.201Z",
+      "updated_at": "2026-05-05T16:01:55.316Z",
+      "claimed_by": "worker_34421",
+      "claimed_at": "2026-05-05T16:01:55.252Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "YOUR_ID_V3",
+      "title": "Short imperative title",
+      "spec": {
+        "command": "pnm -s factory:implement YOUR_ID_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V3 (priority 580)"
+      },
+      "status": "failed",
+      "priority": 580,
+      "created_at": "2026-05-05T16:00:35.201Z",
+      "updated_at": "2026-05-05T16:03:15.085Z",
+      "claimed_by": "worker_34687",
+      "claimed_at": "2026-05-05T16:03:15.040Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEWUX_V1",
+      "title": "New UX Task",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V1 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T15:49:54.306Z",
+      "updated_at": "2026-05-05T15:49:54.725Z",
+      "claimed_by": "worker_32237",
+      "claimed_at": "2026-05-05T15:49:54.679Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V1",
+      "title": "Fix route metadata verification",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEW_ROUTE_METADATA_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEW_ROUTE_METADATA_V1 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T15:32:11.985Z",
+      "updated_at": "2026-05-05T15:32:12.406Z",
+      "claimed_by": "worker_29367",
+      "claimed_at": "2026-05-05T15:32:12.360Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_NEWTHING_V1",
+      "title": "Search or enter location (city text or lat/lon) and load forecast",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWTHING_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWTHING_V1 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T15:19:38.033Z",
+      "updated_at": "2026-05-05T15:19:38.457Z",
+      "claimed_by": "worker_27224",
+      "claimed_at": "2026-05-05T15:19:38.411Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V3 (priority 900)"
+      },
+      "status": "failed",
+      "priority": 900,
+      "created_at": "2026-05-05T13:47:51.477Z",
+      "updated_at": "2026-05-05T13:47:51.895Z",
+      "claimed_by": "worker_11916",
+      "claimed_at": "2026-05-05T13:47:51.857Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V4",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V4 (priority 750)"
+      },
+      "status": "failed",
+      "priority": 750,
+      "created_at": "2026-05-05T13:47:51.477Z",
+      "updated_at": "2026-05-05T13:49:44.210Z",
+      "claimed_by": "worker_12181",
+      "claimed_at": "2026-05-05T13:49:44.166Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V2 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T13:40:33.983Z",
+      "updated_at": "2026-05-05T13:40:34.402Z",
+      "claimed_by": "worker_10480",
+      "claimed_at": "2026-05-05T13:40:34.356Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V3 (priority 700)"
+      },
+      "status": "failed",
+      "priority": 700,
+      "created_at": "2026-05-05T13:40:33.983Z",
+      "updated_at": "2026-05-05T13:42:15.865Z",
+      "claimed_by": "worker_10771",
+      "claimed_at": "2026-05-05T13:42:15.814Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V3",
+      "title": "Improve keyboard support for calculator",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V3 (priority 600)"
+      },
+      "status": "failed",
+      "priority": 600,
+      "created_at": "2026-05-05T13:40:33.983Z",
+      "updated_at": "2026-05-05T13:43:36.931Z",
+      "claimed_by": "worker_11064",
+      "claimed_at": "2026-05-05T13:43:36.885Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "YOUR_ID_V2",
+      "title": "Short imperative title",
+      "spec": {
+        "command": "pnpm -s factory:implement YOUR_ID_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V2 (priority 500)"
+      },
+      "status": "failed",
+      "priority": 500,
+      "created_at": "2026-05-05T13:40:33.983Z",
+      "updated_at": "2026-05-05T13:45:01.544Z",
+      "claimed_by": "worker_11349",
+      "claimed_at": "2026-05-05T13:45:01.497Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V2",
+      "title": "Improve keyboard support",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V2 (priority 650)"
+      },
+      "status": "failed",
+      "priority": 650,
+      "created_at": "2026-05-05T11:26:55.006Z",
+      "updated_at": "2026-05-05T11:26:55.447Z",
+      "claimed_by": "worker_6470",
+      "claimed_at": "2026-05-05T11:26:55.406Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "YOUR_ID_V1",
+      "title": "Short imperative title",
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFYFAILURESV2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V1 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-05T00:27:20.940Z",
+      "updated_at": "2026-05-05T00:27:21.364Z",
+      "claimed_by": "worker_95129",
+      "claimed_at": "2026-05-05T00:27:21.319Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
+      "id": "WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V2 (priority 850)"
+      },
+      "status": "failed",
+      "priority": 850,
+      "created_at": "2026-05-04T23:08:24.474Z",
+      "updated_at": "2026-05-04T23:12:44.853Z",
+      "claimed_by": "worker_87354",
+      "claimed_at": "2026-05-04T23:12:44.808Z",
+      "goal_revision": "factory-calc-weather-incremental-2026-05",
+      "cancel_reason": null
+    },
+    {
       "id": "FACTORY_VERIFY_CALCULATOR_V1",
       "title": "Verification: calculator page at /calculator",
       "spec": {
@@ -26,12 +1879,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_WEATHER_V1 (priority 990)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 990,
       "created_at": "2026-05-04T22:38:21.810Z",
-      "updated_at": "2026-05-04T22:38:21.810Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:39:05.343Z",
+      "claimed_by": "worker_82490",
+      "claimed_at": "2026-05-04T22:38:36.104Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -43,12 +1896,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_NAVBAR_V1 (priority 980)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 980,
       "created_at": "2026-05-04T22:38:21.810Z",
-      "updated_at": "2026-05-04T22:38:21.810Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:39:23.666Z",
+      "claimed_by": "worker_83661",
+      "claimed_at": "2026-05-04T22:39:23.619Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -60,12 +1913,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_WEATHER_V2 (priority 900)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 900,
       "created_at": "2026-05-04T22:38:21.810Z",
-      "updated_at": "2026-05-04T22:38:21.810Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:54:58.911Z",
+      "claimed_by": "worker_83888",
+      "claimed_at": "2026-05-04T22:54:58.777Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -77,12 +1930,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V2 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.810Z",
-      "updated_at": "2026-05-04T22:38:21.810Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:56:00.082Z",
+      "claimed_by": "worker_84135",
+      "claimed_at": "2026-05-04T22:56:00.036Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -94,12 +1947,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V3 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.810Z",
-      "updated_at": "2026-05-04T22:38:21.810Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:57:01.237Z",
+      "claimed_by": "worker_84306",
+      "claimed_at": "2026-05-04T22:57:01.194Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -111,12 +1964,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V4 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:58:02.370Z",
+      "claimed_by": "worker_84479",
+      "claimed_at": "2026-05-04T22:58:02.325Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -128,12 +1981,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V5 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T22:59:03.489Z",
+      "claimed_by": "worker_84663",
+      "claimed_at": "2026-05-04T22:59:03.444Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -145,12 +1998,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V6 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:00:04.594Z",
+      "claimed_by": "worker_84877",
+      "claimed_at": "2026-05-04T23:00:04.554Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -162,12 +2015,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V7 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:01:28.759Z",
+      "claimed_by": "worker_85173",
+      "claimed_at": "2026-05-04T23:01:28.704Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -179,12 +2032,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V8 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:02:52.790Z",
+      "claimed_by": "worker_85451",
+      "claimed_at": "2026-05-04T23:02:52.756Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -196,12 +2049,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V9 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:04:15.136Z",
+      "claimed_by": "worker_85719",
+      "claimed_at": "2026-05-04T23:04:15.090Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -213,12 +2066,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V10 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:05:34.442Z",
+      "claimed_by": "worker_85992",
+      "claimed_at": "2026-05-04T23:05:34.386Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -230,12 +2083,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V11 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:06:59.174Z",
+      "claimed_by": "worker_86275",
+      "claimed_at": "2026-05-04T23:06:59.130Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -247,12 +2100,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V12 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:08:24.893Z",
+      "claimed_by": "worker_86555",
+      "claimed_at": "2026-05-04T23:08:24.850Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -264,12 +2117,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_VERIFY_CALCULATOR_V13 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:09:47.204Z",
+      "claimed_by": "worker_86809",
+      "claimed_at": "2026-05-04T23:09:47.158Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -281,12 +2134,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_NEWLOCATION_V1 (priority 850)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 850,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:11:10.565Z",
+      "claimed_by": "worker_87081",
+      "claimed_at": "2026-05-04T23:11:10.523Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -298,12 +2151,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V2 (priority 820)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 820,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:14:05.168Z",
+      "claimed_by": "worker_87598",
+      "claimed_at": "2026-05-04T23:14:05.124Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -315,12 +2168,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V3 (priority 820)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 820,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:15:25.649Z",
+      "claimed_by": "worker_87867",
+      "claimed_at": "2026-05-04T23:15:25.606Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -332,12 +2185,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_API_LOCATION_V1 (priority 640)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 640,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:17:08.093Z",
+      "claimed_by": "worker_88126",
+      "claimed_at": "2026-05-04T23:17:08.043Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -349,12 +2202,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_ROUTE_METADATA_V1 (priority 620)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 620,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:18:39.645Z",
+      "claimed_by": "worker_88388",
+      "claimed_at": "2026-05-04T23:18:39.603Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -366,12 +2219,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_CALC_KEYBOARD_A11Y_V1 (priority 580)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 580,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:20:02.305Z",
+      "claimed_by": "worker_88639",
+      "claimed_at": "2026-05-04T23:20:02.265Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },
@@ -383,12 +2236,12 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_WEATHER_ERROR_STATE_V1 (priority 570)"
       },
-      "status": "queued",
+      "status": "failed",
       "priority": 570,
       "created_at": "2026-05-04T22:38:21.811Z",
-      "updated_at": "2026-05-04T22:38:21.811Z",
-      "claimed_by": null,
-      "claimed_at": null,
+      "updated_at": "2026-05-04T23:21:30.898Z",
+      "claimed_by": "worker_88919",
+      "claimed_at": "2026-05-04T23:21:30.849Z",
       "goal_revision": "factory-calc-weather-incremental-2026-05",
       "cancel_reason": null
     },

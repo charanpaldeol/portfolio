@@ -1,0 +1,699 @@
+{
+  "version": 1,
+  "status": "blocked",
+  "statement": "Incremental improvements to the public calculator and weather experience on cpdeol.com: location lookup on the weather page, dependable error feedback, API query flexibility for weather, clearer calculator layout and keyboard accessibility, route metadata for the calculator, and navbar discoverability for Calculator and Weather.",
+  "evaluated_at": "2026-05-05T23:23:04.913Z",
+  "summary": "132 roadmap-linked queue item(s) failed; replan or fix, then re-queue. Not done: FACTORY_WEATHER_ERROR_UX_V1: Weather: visible error and retry-friendly state when the API fails or returns an error [queued]; FACTORY_CALC_UI_POLISH_V1: Calculator: clearer layout, spacing, and control grouping on /calculator [queued]; FACTORY_CALC_A11Y_KEYBOARD_V1: Calculator: keyboard entry and visible focus for controls [queued]; FACTORY_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title and description) for /calculator [queued]; FACTORY_NAV_CALC_WEATHER_DISCOVER_V1: Navbar: Calculator and Weather links remain obvious on desktop and mobile [queued]; FACTORY_R_CALC_ROUTE_METADATA_V1: Calculator: route metadata (title/description) for /calculator [failed]; FACTORY_R_CALC_KEYBOARD_A11Y_V1: Calculator: keyboard support and visible focus for controls [failed]; FACTORY_R_WEATHER_API_LOCATION_V1: Weather API: accept location (lat/lon or city) instead of fixed coordinates [failed]; FACTORY_R_WEATHER_ERROR_STATE_V1: Weather page: user-visible error when /api/weather fails or returns an error field [failed]; FACTORY_VERIFY_CALCULATOR_V1: Verification: calculator page at /calculator [failed]; FACTORY_VERIFY_WEATHER_V1: Verification: weather API + /weather page [failed]; FACTORY_VERIFY_NAVBAR_V1: Verification: Calculator and Weather in Navbar [failed]; FACTORY_VERIFY_CALCULATOR_V2: Fix calculator page at /calculator [failed]; FACTORY_R_WEATHER_API_LOCATION_V2: Wire optional query params with safe defaults for Open-Meteo URL [failed]; FACTORY_VERIFY_WEATHER_V2: Fix weather API + /weather page [failed]; FACTORY_VERIFY_CALCULATOR_V3: Fix calculator page at /calculator [failed]; FACTORY_R_WEATHER_API_LOCATION_V3: Wire optional query params with safe defaults for Open-Meteo URL [failed]; FACTORY_VERIFY_CALCULATOR_V4: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V5: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V6: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V7: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V8: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V9: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V10: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V11: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V12: Fix calculator page at /calculator [failed]; FACTORY_VERIFY_CALCULATOR_V13: Fix calculator page at /calculator [failed]; FACTORY_R_NEWLOCATION_V1: Search or enter location (city text or lat/lon) and load forecast [failed]; WEATHER_API_QUERY_V2: Add optional query params to weather API [failed]; YOUR_ID_V1: Short imperative title [failed]; FACTORY_CALC_A11Y_KEYBOARD_V2: Improve keyboard support [failed]; FACTORY_WEATHER_API_QUERY_V2: Add optional query params to weather API [failed]; FACTORY_CALC_A11Y_KEYBOARD_V3: Improve keyboard support for calculator [failed]; WEATHER_API_QUERY_V3: Add optional query params to weather API with Open-Meteo URL [failed]; YOUR_ID_V2: Short imperative title [failed]; FACTORY_WEATHER_API_QUERY_V3: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_CALC_A11Y_KEYBOARD_V4: Improve keyboard support for calculator [failed]; FACTORY_NEWTHING_V1: Search or enter location (city text or lat/lon) and load forecast [failed]; FACTORY_NEW_ROUTE_METADATA_V1: Fix route metadata verification [failed]; FACTORY_NEWUX_V1: New UX Task [failed]; FACTORY_CALC_A11Y_KEYBOARD_V5: Improve keyboard support for calculator [failed]; WEATHER_API_QUERY_V4: Add optional query params to weather API with Open-Meteo URL [failed]; YOUR_ID_V3: Short imperative title [failed]; FACTORY_CALC_A11Y_KEYBOARD_V6: Improve keyboard support for calculator [failed]; FACTORY_WEATHER_API_QUERY_V5: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_NEWUX_V2: New UX Task [failed]; FACTORY_CALC_A11Y_KEYBOARD_V7: Improve keyboard support for calculator [failed]; FACTORY_CALC_A11Y_KEYBOARD_V8: Improve keyboard support for calculator [failed]; FACTORY_CALC_A11Y_KEYBOARD_V9: Improve keyboard support for calculator [failed]; FACTORY_WEATHER_API_QUERY_V6: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_NEW_ROUTE_METADATA_V2: Fix route metadata verification [failed]; FACTORY_CALC_UI_POLISH_V2: Calculator: clearer layout, spacing, and control grouping on /calculator [failed]; FACTORY_WEATHER_API_QUERY_V4: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1: Improve accessibility for weather location search [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V2: Fix verify calculator failures in new tasks [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V5: Fix verify calculator failures in new tasks [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2: Improve accessibility for weather location search [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V3: Fix verify calculator failures in new tasks [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V4: Fix verify calculator failures in new tasks [failed]; FACTORY_WEATHER_LOCATION_SEARCH_V2: Weather page: search or enter location (city text or lat/lon) and load forecast [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3: Improve accessibility for weather location search [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4: Improve accessibility for weather location search [failed]; FACTORY_FIX_VERIFY_FAILURES_V1: Fix verify failures in weather API and calculator implementations [failed]; FACTORY_A11Y_ERROR_STATE_V1: Improve accessibility of error states for weather API [failed]; FACTORY_A11Y_ERROR_STATE_V4: Improve accessibility of error states for weather API [failed]; FACTORY_CALC_A11Y_KEYBOARD_V10: Improve keyboard support for calculator [failed]; FACTORY_WEATHER_API_QUERY_V7: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_FIX_VERIFY_FAILURES_V2: Fix verify failures in weather API and calculator implementations [failed]; FACTORY: fix_verify_failure_V3 — Fix verify failures in weather API and calculator implementations [failed]; FACTORY_WEATHER_API_QUERY_V8: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V6: Fix calculator page at /calculator (specific edge case) [failed]; FACTORY_FIX_VERIFY_FAILURES_V3: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_NEWUX_V3: New UX Task: Enhance calculator UI for better user experience [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5: Enhance weather location search accessibility [failed]; FACTORY_FIX_VERIFY_FAILURES_V6: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V7: Fix calculator page at /calculator (specific edge case) [failed]; FACTORY_FIX_VERIFY_FAILURES_V8: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_WEATHER_API_QUERY_V9: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6: Enhance weather location search accessibility [failed]; FACTORY_WEATHER_API_QUERY_V10: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7: Enhance weather location search accessibility [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8: Enhance accessibility for weather location search [failed]; FACTORY_FIX_VERIFY_FAILURES_V9: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_CALC_UI_POLISH_V3: Enhance calculator UI for better user experience [failed]; FACTORY_A11Y_ERROR_STATE_V5: Improve accessibility of error states for weather API [failed]; FACTORY_WEATHER_API_QUERY_V11: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V10: Fix verify calculator failures in new tasks [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9: Enhance weather location search accessibility [failed]; FACTORY_WEATHER_API_QUERY_V12: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_NEWUX_V4: New UX Task: Enhance calculator UI for better user experience [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V11: Fix verify calculator failures in new tasks [failed]; FACTORY_A11Y_ERROR_STATE_V6: Improve accessibility of error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V10: Fix verify failures [failed]; FACTORY_A11Y_ERROR_STATE_V7: Improve accessibility of error states [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V12: Fix verify calculator failures in new tasks [failed]; FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10: Enhance weather location search accessibility [failed]; FACTORY_A11Y_ERROR_STATE_V8: Improve error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V12: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_CALC_UI_POLISH_V5: Enhance calculator UI for better user experience (polish) [failed]; FACTORY_WEATHER_API_QUERY_V13: Add optional query params to weather API with Open-Meteo URL [failed]; FACTORY_A11Y_ERROR_STATE_V9: Improve accessibility of error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V13: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_FAILURES_V14: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_A11Y_ERROR_STATE_V10: Improve error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V15: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V16: Fix verify calculator failures in new tasks [failed]; FACTORY_FIX_VERIFY_FAILURES_V16: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_FAILURES_V17: Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue) [failed]; FACTORY_A11Y_ERROR_STATE_V11: Improve Accessibility for Error States in Weather API [failed]; FACTORY_CALC_UI_POLISH_V6: Enhance Calculator UI Polish (Specific Edge Case) [failed]; FACTORY_FIX_VERIFY_FAILURES_V18: Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue) [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V17: Fix Verify Calculator Failures in New Tasks [failed]; NEW_TASK_V1: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; FACTORY_A11Y_ERROR_STATE_V12: Improve accessibility of error states for weather API [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V8: Fix verify calculator failures in new tasks [failed]; FACTORY_FIX_VERIFY_CALCULATOR_V9: Fix verify calculator failures in new tasks [failed]; FACTORY_FIX_VERIFY_FAILURES_V19: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_FAILURES_V20: Fix verify failures [failed]; FACTORY_A11Y_ERROR_STATE_V13: Improve error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V21: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_A11Y_ERROR_STATE_V14: Improve error states for weather API [failed]; FACTORY_FIX_VERIFY_FAILURES_V22: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; FACTORY_FIX_VERIFY_FAILURES_V23: Fix verify failures in weather API and calculator implementations (specific issue) [failed]; NEW_TASK_V2: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; NEW_TASK_V3: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; NEW_TASK_V4: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; NEW_TASK_V5: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; FACTORY_A11Y_ERROR_STATE_V15: Improve accessibility for error states in weather API [failed]; NEW_TASK_V6: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; NEW_TASK_V7: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; NEW_TASK_V8: Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults [failed]; WEATHER_API_QUERY_SAFE_DEFAULTS_V1: Wire safe default query parameters for weather API [failed]; A11Y_WEATHER_ERROR_STATE_V4: Improve accessibility of error states in weather API [failed]; WEATHER_API_QUERY_SAFE_DEFAULTS_V2: Wire safe default query parameters for weather API [failed]; A11Y_WEATHER_ERROR_STATE_V5: Improve accessibility of error states in weather API [failed]; A11Y_WEATHER_ERROR_STATE_V6: Improve accessibility of error states in weather API [failed]; A11Y_WEATHER_ERROR_STATE_V7: Improve accessibility of error states in weather API [failed].",
+  "roadmap_not_done": [
+    {
+      "id": "FACTORY_WEATHER_ERROR_UX_V1",
+      "title": "Weather: visible error and retry-friendly state when the API fails or returns an error",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V1",
+      "title": "Calculator: clearer layout, spacing, and control grouping on /calculator",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V1",
+      "title": "Calculator: keyboard entry and visible focus for controls",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title and description) for /calculator",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_NAV_CALC_WEATHER_DISCOVER_V1",
+      "title": "Navbar: Calculator and Weather links remain obvious on desktop and mobile",
+      "queue_status": "queued"
+    },
+    {
+      "id": "FACTORY_R_CALC_ROUTE_METADATA_V1",
+      "title": "Calculator: route metadata (title/description) for /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_CALC_KEYBOARD_A11Y_V1",
+      "title": "Calculator: keyboard support and visible focus for controls",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V1",
+      "title": "Weather API: accept location (lat/lon or city) instead of fixed coordinates",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_ERROR_STATE_V1",
+      "title": "Weather page: user-visible error when /api/weather fails or returns an error field",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V1",
+      "title": "Verification: calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_WEATHER_V1",
+      "title": "Verification: weather API + /weather page",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_NAVBAR_V1",
+      "title": "Verification: Calculator and Weather in Navbar",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V2",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V2",
+      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_WEATHER_V2",
+      "title": "Fix weather API + /weather page",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V3",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_WEATHER_API_LOCATION_V3",
+      "title": "Wire optional query params with safe defaults for Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V4",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V5",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V7",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V8",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V9",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V10",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V11",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V12",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_VERIFY_CALCULATOR_V13",
+      "title": "Fix calculator page at /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_R_NEWLOCATION_V1",
+      "title": "Search or enter location (city text or lat/lon) and load forecast",
+      "queue_status": "failed"
+    },
+    {
+      "id": "WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "YOUR_ID_V1",
+      "title": "Short imperative title",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V2",
+      "title": "Improve keyboard support",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V3",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "YOUR_ID_V2",
+      "title": "Short imperative title",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V4",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEWTHING_V1",
+      "title": "Search or enter location (city text or lat/lon) and load forecast",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V1",
+      "title": "Fix route metadata verification",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEWUX_V1",
+      "title": "New UX Task",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V5",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "YOUR_ID_V3",
+      "title": "Short imperative title",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V6",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V5",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEWUX_V2",
+      "title": "New UX Task",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V7",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V8",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V9",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V6",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V2",
+      "title": "Fix route metadata verification",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V2",
+      "title": "Calculator: clearer layout, spacing, and control grouping on /calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1",
+      "title": "Improve accessibility for weather location search",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V2",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V5",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Improve accessibility for weather location search",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V3",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V4",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3",
+      "title": "Improve accessibility for weather location search",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4",
+      "title": "Improve accessibility for weather location search",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V1",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V1",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V10",
+      "title": "Improve keyboard support for calculator",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V7",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V2",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY",
+      "title": "fix_verify_failure_V3 — Fix verify failures in weather API and calculator implementations",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V8",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V3",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEWUX_V3",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5",
+      "title": "Enhance weather location search accessibility",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V6",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V7",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V8",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V9",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6",
+      "title": "Enhance weather location search accessibility",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V10",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7",
+      "title": "Enhance weather location search accessibility",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8",
+      "title": "Enhance accessibility for weather location search",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V9",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V3",
+      "title": "Enhance calculator UI for better user experience",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V11",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V10",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9",
+      "title": "Enhance weather location search accessibility",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V12",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_NEWUX_V4",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V11",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V10",
+      "title": "Fix verify failures",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V12",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10",
+      "title": "Enhance weather location search accessibility",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V8",
+      "title": "Improve error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V12",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V5",
+      "title": "Enhance calculator UI for better user experience (polish)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V13",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V9",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V13",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V14",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V10",
+      "title": "Improve error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V15",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V16",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V16",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V17",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V11",
+      "title": "Improve Accessibility for Error States in Weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V6",
+      "title": "Enhance Calculator UI Polish (Specific Edge Case)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V18",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V17",
+      "title": "Fix Verify Calculator Failures in New Tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V1",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V12",
+      "title": "Improve accessibility of error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V8",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V9",
+      "title": "Fix verify calculator failures in new tasks",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V19",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V20",
+      "title": "Fix verify failures",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V13",
+      "title": "Improve error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V21",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V14",
+      "title": "Improve error states for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V22",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V23",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V2",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V3",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V4",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V5",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V15",
+      "title": "Improve accessibility for error states in weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V6",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V7",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "NEW_TASK_V8",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "queue_status": "failed"
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V1",
+      "title": "Wire safe default query parameters for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states in weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V2",
+      "title": "Wire safe default query parameters for weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states in weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states in weather API",
+      "queue_status": "failed"
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states in weather API",
+      "queue_status": "failed"
+    }
+  ],
+  "roadmap_item_count": 139,
+  "queue_done": 2,
+  "queue_failed": 132,
+  "queue_inflight": 5,
+  "goal_acceptance_ok": null
+}

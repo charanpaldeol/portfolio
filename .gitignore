@@ -14,6 +14,7 @@ docs/C Deol OH.docx
 
 # Local-only agent settings
 .claude/settings.local.json
+.claude/worktrees/
 
 # Generated knowledge-graph inputs/outputs (kept out of git)
 graphify-content/

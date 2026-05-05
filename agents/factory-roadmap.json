@@ -332,6 +332,1096 @@
         "require_diff": true,
         "definition_of_done": "See backlog.md (Factory research intake): FACTORY_R_NEWLOCATION_V1 (priority 850)"
       }
+    },
+    {
+      "id": "WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V2 (priority 850)"
+      }
+    },
+    {
+      "id": "YOUR_ID_V1",
+      "title": "Short imperative title",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFYFAILURESV2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V1 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V2",
+      "title": "Improve keyboard support",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V2 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V2",
+      "title": "Add optional query params to weather API",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V2 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V3",
+      "title": "Improve keyboard support for calculator",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V3 (priority 600)"
+      }
+    },
+    {
+      "id": "WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V3 (priority 700)"
+      }
+    },
+    {
+      "id": "YOUR_ID_V2",
+      "title": "Short imperative title",
+      "priority": 500,
+      "spec": {
+        "command": "pnpm -s factory:implement YOUR_ID_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V2 (priority 500)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V3",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V3 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V4",
+      "title": "Improve keyboard support for calculator",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V4 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_NEWTHING_V1",
+      "title": "Search or enter location (city text or lat/lon) and load forecast",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWTHING_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWTHING_V1 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V1",
+      "title": "Fix route metadata verification",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEW_ROUTE_METADATA_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEW_ROUTE_METADATA_V1 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_NEWUX_V1",
+      "title": "New UX Task",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V1 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V5",
+      "title": "Improve keyboard support for calculator",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V5 (priority 650)"
+      }
+    },
+    {
+      "id": "WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_V4 (priority 750)"
+      }
+    },
+    {
+      "id": "YOUR_ID_V3",
+      "title": "Short imperative title",
+      "priority": 580,
+      "spec": {
+        "command": "pnm -s factory:implement YOUR_ID_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): YOUR_ID_V3 (priority 580)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V6",
+      "title": "Improve keyboard support for calculator",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V6 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V5",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V5 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_NEWUX_V2",
+      "title": "New UX Task",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V2 (priority 800)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V7",
+      "title": "Improve keyboard support for calculator",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V7 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V8",
+      "title": "Improve keyboard support for calculator",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V8 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V9",
+      "title": "Improve keyboard support for calculator",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V9 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V6",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 550,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V6 (priority 550)"
+      }
+    },
+    {
+      "id": "FACTORY_NEW_ROUTE_METADATA_V2",
+      "title": "Fix route metadata verification",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEW_ROUTE_METADATA_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEW_ROUTE_METADATA_V2 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V2",
+      "title": "Calculator: clearer layout, spacing, and control grouping on /calculator",
+      "priority": 580,
+      "spec": {
+        "command": "pnm -s factory:implement FACTORY_CALC_UI_POLISH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V2 (priority 580)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V4",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V4 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1",
+      "title": "Improve accessibility for weather location search",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V1 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V2",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V2 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V5",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FixVerificationFailuresInNewTasks",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V5 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Improve accessibility for weather location search",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V2 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V3",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V3 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V4",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V4 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_LOCATION_SEARCH_V2",
+      "title": "Weather page: search or enter location (city text or lat/lon) and load forecast",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_LOCATION_SEARCH_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_LOCATION_SEARCH_V2 (priority 800)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3",
+      "title": "Improve accessibility for weather location search",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V3 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4",
+      "title": "Improve accessibility for weather location search",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V4 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V1",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V1 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V1",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORYImproveA11yForErrorStatesV3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V1 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V4 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_A11Y_KEYBOARD_V10",
+      "title": "Improve keyboard support for calculator",
+      "priority": 700,
+      "spec": {
+        "command": "pnm -s factory:implement FACTORY_CALC_A11Y_KEYBOARD_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_A11Y_KEYBOARD_V10 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V7",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V7 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V2",
+      "title": "Fix verify failures in weather API and calculator implementations",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V2 (priority 800)"
+      }
+    },
+    {
+      "id": "FACTORY",
+      "title": "fix_verify_failure_V3 — Fix verify failures in weather API and calculator implementations",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_fix_verify_failure_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V8",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V8 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V6",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V6 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V3",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 550,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V3 (priority 550)"
+      }
+    },
+    {
+      "id": "FACTORY_NEWUX_V3",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V3 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5",
+      "title": "Enhance weather location search accessibility",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V5 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V6",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V6 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V7",
+      "title": "Fix calculator page at /calculator (specific edge case)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V7 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V8",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V8 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V9",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V9 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6",
+      "title": "Enhance weather location search accessibility",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V6 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V10",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V10 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7",
+      "title": "Enhance weather location search accessibility",
+      "priority": 620,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V7 (priority 620)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8",
+      "title": "Enhance accessibility for weather location search",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V8 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V9",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V9 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V3",
+      "title": "Enhance calculator UI for better user experience",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_UI_POLISH_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V3 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V5 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V11",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V11 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V10",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V10 (priority 800)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9",
+      "title": "Enhance weather location search accessibility",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V9 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V12",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 550,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V12 (priority 550)"
+      }
+    },
+    {
+      "id": "FACTORY_NEWUX_V4",
+      "title": "New UX Task: Enhance calculator UI for better user experience",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_NEWUX_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_NEWUX_V4 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V11",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V11 (priority 800)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V6 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V10",
+      "title": "Fix verify failures",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V10 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V7 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V12",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V12 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10",
+      "title": "Enhance weather location search accessibility",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_WEATHER_LOCATION_SEARCH_V10 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V8",
+      "title": "Improve error states for weather API",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V8 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V12",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V12",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V12 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V5",
+      "title": "Enhance calculator UI for better user experience (polish)",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix_verify_failure_V14",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V5 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_WEATHER_API_QUERY_V13",
+      "title": "Add optional query params to weather API with Open-Meteo URL",
+      "priority": 550,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_WEATHER_API_QUERY_V13",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_WEATHER_API_QUERY_V13 (priority 550)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V9",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V9",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V9 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V13",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V13",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V13 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V14",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V14",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V14 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V10",
+      "title": "Improve error states for weather API",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V10 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V15",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_FAILURES_V15",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V15 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V16",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIXVERIFY_CALCULATOR_V16",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V16 (priority 600)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V16",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V16",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V16 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V17",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V17",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V17 (priority 700)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V11",
+      "title": "Improve Accessibility for Error States in Weather API",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V11",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V11 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_CALC_UI_POLISH_V6",
+      "title": "Enhance Calculator UI Polish (Specific Edge Case)",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_CALC_UI_POLISH_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_CALC_UI_POLISH_V6 (priority 650)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V18",
+      "title": "Fix Verify Failures in Weather API and Calculator Implementations (Specific Issue)",
+      "priority": 750,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V18",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V18 (priority 750)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V17",
+      "title": "Fix Verify Calculator Failures in New Tasks",
+      "priority": 800,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_CALCULATOR_V17",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V17 (priority 800)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V1",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V1 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V12",
+      "title": "Improve accessibility of error states for weather API",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_weather_api_v1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V12 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V8",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_calculator_v2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V8 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_CALCULATOR_V9",
+      "title": "Fix verify calculator failures in new tasks",
+      "priority": 950,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_in_calculator_v3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_CALCULATOR_V9 (priority 950)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V19",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V19",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V19 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V20",
+      "title": "Fix verify failures",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V20",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V20 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V13",
+      "title": "Improve error states for weather API",
+      "priority": 500,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_RESEARCH_DONE",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V13 (priority 500)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V21",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_FIX_VERIFY_FAILURES_V21",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V21 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V14",
+      "title": "Improve error states for weather API",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_calculator_errors_v1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V14 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V22",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_calculator_errors_v2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V22 (priority 900)"
+      }
+    },
+    {
+      "id": "FACTORY_FIX_VERIFY_FAILURES_V23",
+      "title": "Fix verify failures in weather API and calculator implementations (specific issue)",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_Fix_verify_failure_v3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_FIX_VERIFY_FAILURES_V23 (priority 850)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V2",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V2 (priority 850)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V3",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V3",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V3 (priority 850)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V4",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V4 (priority 850)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V5",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V5 (priority 850)"
+      }
+    },
+    {
+      "id": "FACTORY_A11Y_ERROR_STATE_V15",
+      "title": "Improve accessibility for error states in weather API",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY_A11Y_ERROR_STATE_V15",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): FACTORY_A11Y_ERROR_STATE_V15 (priority 700)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V6",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 650,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix root cause of failed queue items for weather API location input",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V6 (priority 650)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V7",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 620,
+      "spec": {
+        "command": "pnpm -s factory:implement FACTORY Fix root cause of failed queue items for weather API location input",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V7 (priority 620)"
+      }
+    },
+    {
+      "id": "NEW_TASK_V8",
+      "title": "Research signal: Open-Meteo URL uses fixed NYC coordinates; wire optional query params with safe defaults",
+      "priority": 910,
+      "spec": {
+        "command": "pnpm -s factory:implement NEW_TASK_V8",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): NEW_TASK_V8 (priority 910)"
+      }
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V1",
+      "title": "Wire safe default query parameters for weather API",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_SAFE_DEFAULTS_V1",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_SAFE_DEFAULTS_V1 (priority 600)"
+      }
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V4",
+      "title": "Improve accessibility of error states in weather API",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V4",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V4 (priority 700)"
+      }
+    },
+    {
+      "id": "WEATHER_API_QUERY_SAFE_DEFAULTS_V2",
+      "title": "Wire safe default query parameters for weather API",
+      "priority": 850,
+      "spec": {
+        "command": "pnpm -s factory:implement WEATHER_API_QUERY_SAFE_DEFAULTS_V2",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): WEATHER_API_QUERY_SAFE_DEFAULTS_V2 (priority 850)"
+      }
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V5",
+      "title": "Improve accessibility of error states in weather API",
+      "priority": 900,
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V5",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V5 (priority 900)"
+      }
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V6",
+      "title": "Improve accessibility of error states in weather API",
+      "priority": 700,
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V6",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V6 (priority 700)"
+      }
+    },
+    {
+      "id": "A11Y_WEATHER_ERROR_STATE_V7",
+      "title": "Improve accessibility of error states in weather API",
+      "priority": 600,
+      "spec": {
+        "command": "pnpm -s factory:implement A11Y_WEATHER_ERROR_STATE_V7",
+        "require_diff": true,
+        "definition_of_done": "See backlog.md (Factory research intake): A11Y_WEATHER_ERROR_STATE_V7 (priority 600)"
+      }
     }
   ]
 }
