@@ -3,8 +3,8 @@ import path from "node:path"
 
 import {
   type FactoryGoalSpec,
-  type FactoryGoalSpecV2,
   FactoryGoalSpecSchema,
+  type FactoryGoalSpecV2,
   FactoryGoalSpecV2Schema,
   flattenV2StoriesToRoadmapItems,
   resolveGoalRevision,
