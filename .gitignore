@@ -36,5 +36,8 @@ agents/governance/screenshots/
 agents/factory-logs/
 factory-graph-corpus/
 agents/factory-pivot-log.jsonl
+agents/factory-*.json
+!agents/factory-goal-spec.json
+!agents/factory-roadmap.json
 .aider*
 .env.factory

@@ -294,7 +294,7 @@ Each PR should pass: `pnpm lint && pnpm tsc --noEmit && pnpm test && pnpm build`
 
 **Status:** 9.5/10 action items completed (85% overall)
 
-A comprehensive audit has been conducted to verify all items marked as "Done" against the actual codebase. See `docs/AUDIT_VERIFICATION.md` for detailed findings.
+A comprehensive audit has been conducted to verify all items marked as "Done" against the actual codebase.
 
 ### What's Verified Complete ✅
 - All 4 security fixes (Zod validation, error hiding, HTML escaping, env validation)
@@ -318,4 +318,4 @@ A comprehensive audit has been conducted to verify all items marked as "Done" ag
 
 ---
 
-*Review conducted via static analysis of the full codebase. Verification audit completed April 10, 2026. See `docs/AUDIT_VERIFICATION.md` for comprehensive findings.*
+*Review conducted via static analysis of the full codebase. Verification audit completed April 10, 2026.*
