@@ -1,6 +1,150 @@
 import { z } from "zod"
 import { createHash } from "node:crypto"
 
+// ─── v2 schemas ──────────────────────────────────────────────────────────────
+
+export const AcceptanceCriteriaGWTSchema = z.object({
+  given: z.string().min(1),
+  when: z.string().min(1),
+  then: z.string().min(1),
+})
+
+export type AcceptanceCriteriaGWT = z.output<typeof AcceptanceCriteriaGWTSchema>
+
+export const ImpactMetricsSchema = z.object({
+  user_value: z.enum(["critical", "high", "medium", "low"]),
+  revenue_impact: z.number().int().min(0).optional(),
+  user_count: z.number().int().min(0).optional(),
+  strategic_importance: z.enum(["core", "important", "nice-to-have"]).optional(),
+})
+
+export type ImpactMetrics = z.output<typeof ImpactMetricsSchema>
+
+export const StorySchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1).max(120),
+  user_story: z.string().min(1),
+  description: z.string().optional(),
+  acceptance_criteria: z.array(AcceptanceCriteriaGWTSchema).min(1),
+  priority: z.number().int().min(0).optional(),
+  impact: ImpactMetricsSchema.optional(),
+  spec: z.unknown().optional(),
+})
+
+export type Story = z.output<typeof StorySchema>
+
+export const GoalSchema = z.object({
+  id: z.string().min(1),
+  user_story: z.string().min(1),
+  acceptance_criteria: z.array(AcceptanceCriteriaGWTSchema).min(1),
+  priority: z.number().int().min(0).optional(),
+  impact: ImpactMetricsSchema.optional(),
+  stories: z.array(StorySchema).min(1),
+})
+
+export type Goal = z.output<typeof GoalSchema>
+
+export const RoadmapItemV2Schema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  goals: z.array(GoalSchema).min(1),
+})
+
+export type RoadmapItemV2 = z.output<typeof RoadmapItemV2Schema>
+
+export const FactoryGoalSpecV2Schema = z.object({
+  version: z.literal(2),
+  statement: z.string(),
+  goal_revision: z.string().min(1).optional(),
+  goal_acceptance: z.union([z.string(), z.array(z.string())]).nullable().optional(),
+  roadmap_items: z.array(RoadmapItemV2Schema).default([]),
+})
+
+export type FactoryGoalSpecV2 = z.output<typeof FactoryGoalSpecV2Schema>
+
+/** Returns 0–1500 priority from impact metrics. Explicit `priority` field overrides this. */
+export function calculatePriorityFromImpact(impact: ImpactMetrics): number {
+  const base = { critical: 1000, high: 700, medium: 400, low: 100 }[impact.user_value]
+  const revenueFactor = Math.min(200, Math.floor((impact.revenue_impact ?? 0) / 500))
+  const userFactor = Math.min(100, Math.floor((impact.user_count ?? 0) / 1000))
+  const strategicBonus = { core: 200, important: 100, "nice-to-have": 0 }[impact.strategic_importance ?? "important"]
+  return base + revenueFactor + userFactor + strategicBonus
+}
+
+/** Flatten all stories from a v2 spec into roadmap item shape, suitable for factory-roadmap.json. */
+export function flattenV2StoriesToRoadmapItems(spec: FactoryGoalSpecV2): z.output<typeof FactoryRoadmapItemShapeSchema>[] {
+  const items: z.output<typeof FactoryRoadmapItemShapeSchema>[] = []
+  for (const roadmapItem of spec.roadmap_items) {
+    for (const goal of roadmapItem.goals) {
+      for (const story of goal.stories) {
+        const priority =
+          story.priority ??
+          (story.impact ? calculatePriorityFromImpact(story.impact) :
+            goal.priority ??
+            (goal.impact ? calculatePriorityFromImpact(goal.impact) : 500))
+        items.push({
+          id: story.id,
+          title: story.title,
+          priority,
+          traces_goal: story.user_story,
+          spec: {
+            ...(story.spec != null && typeof story.spec === "object" ? (story.spec as Record<string, unknown>) : {}),
+            parent_goal_id: goal.id,
+            parent_roadmap_id: roadmapItem.id,
+            user_story: story.user_story,
+            acceptance_criteria: story.acceptance_criteria,
+          },
+        })
+      }
+    }
+  }
+  return items
+}
+
+/** Validates that every user_story in a v2 spec follows "As a X, I want Y so that Z" pattern. */
+export function validateUserStoryFormat(text: string): boolean {
+  const lower = text.toLowerCase().trimStart()
+  return lower.startsWith("as a") && lower.includes("i want") && lower.includes("so that")
+}
+
+export type V2ValidationResult = { ok: true } | { ok: false; errors: string[] }
+
+/** Full validation of a v2 spec: user story format, GWT completeness, INVEST basics. */
+export function validateGoalSpecV2(spec: FactoryGoalSpecV2): V2ValidationResult {
+  const errors: string[] = []
+
+  for (const ri of spec.roadmap_items) {
+    for (const goal of ri.goals) {
+      if (!validateUserStoryFormat(goal.user_story)) {
+        errors.push(`Goal ${goal.id}: user_story must follow "As a X, I want Y so that Z" format.`)
+      }
+      for (const ac of goal.acceptance_criteria) {
+        if (!ac.given.trim() || !ac.when.trim() || !ac.then.trim()) {
+          errors.push(`Goal ${goal.id}: acceptance_criteria entry is missing given/when/then text.`)
+        }
+      }
+      for (const story of goal.stories) {
+        if (!validateUserStoryFormat(story.user_story)) {
+          errors.push(`Story ${story.id}: user_story must follow "As a X, I want Y so that Z" format.`)
+        }
+        if (story.title.length > 120) {
+          errors.push(`Story ${story.id}: title exceeds 120 chars (INVEST: keep stories Small and concise).`)
+        }
+        for (const ac of story.acceptance_criteria) {
+          if (!ac.given.trim() || !ac.when.trim() || !ac.then.trim()) {
+            errors.push(`Story ${story.id}: acceptance_criteria entry is missing given/when/then text.`)
+          }
+        }
+      }
+    }
+  }
+
+  return errors.length ? { ok: false, errors } : { ok: true }
+}
+
+// ─── v1 schemas (unchanged) ───────────────────────────────────────────────────
+
 export const FactoryRoadmapItemShapeSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
