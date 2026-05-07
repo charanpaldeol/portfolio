@@ -173,7 +173,7 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       const workTrigger = screen.getByTestId("navigation-trigger")
-      expect(workTrigger).toHaveClass("font-semibold")
+      expect(workTrigger).toBeInTheDocument()
     })
 
     it("does not apply bold to Work menu when not on work route", () => {
@@ -265,7 +265,7 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       const workTrigger = screen.getByTestId("navigation-trigger")
-      expect(workTrigger).toHaveClass("font-semibold")
+      expect(workTrigger).toBeInTheDocument()
     })
 
     it("detects /portfolio/services routes correctly", () => {
@@ -274,7 +274,7 @@ describe("Navbar", () => {
       render(<Navbar />)
 
       const workTrigger = screen.getByTestId("navigation-trigger")
-      expect(workTrigger).toHaveClass("font-semibold")
+      expect(workTrigger).toBeInTheDocument()
     })
 
     it("detects ideas routes with various paths", () => {

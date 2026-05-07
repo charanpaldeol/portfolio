@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { beforeEach, describe, expect, it, vi } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 
 import WhatIBring from "./WhatIBring"
 
@@ -7,284 +7,76 @@ import WhatIBring from "./WhatIBring"
 vi.mock("@/lib/what-i-bring-cards", () => ({
   whatIBringCards: [
     {
+      slug: "problem-framing",
+      badge: "Discovery",
+      badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
       title: "Problem Framing",
-      description: "Turn ambiguity into clarity. Break products into constituent parts.",
+      body: "Turn ambiguity into clarity. Break products into constituent parts.",
+      sections: [],
     },
     {
+      slug: "solution-design",
+      badge: "Design",
+      badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
       title: "Solution Design",
-      description: "Craft polished, defensible approaches before writing code.",
+      body: "Craft polished, defensible approaches before writing code.",
+      sections: [],
     },
     {
+      slug: "ai-native-delivery",
+      badge: "Delivery",
+      badgeClass: "bg-primary-fixed text-on-primary-fixed",
       title: "AI-Native Delivery",
-      description: "Ship with Claude, not against it. Strategic tool use, always.",
+      body: "Ship with Claude, not against it. Strategic tool use, always.",
+      sections: [],
     },
     {
+      slug: "engineering-depth",
+      badge: "Engineering",
+      badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed",
       title: "Engineering Depth",
-      description: "TypeScript, React, Next.js, Postgres, Tailwind — the full stack.",
+      body: "TypeScript, React, Next.js, Postgres, Tailwind — the full stack.",
+      sections: [],
     },
     {
+      slug: "value-realization",
+      badge: "Adoption",
+      badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
       title: "Value Realization",
-      description: "Turn ships into destinations. Measure what matters.",
+      body: "Turn ships into destinations. Measure what matters.",
+      sections: [],
     },
   ],
 }))
 
 describe("WhatIBring", () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+  it("renders the section shell", () => {
+    const { container } = render(<WhatIBring />)
+    expect(container.querySelector("section#what-i-bring")).toBeInTheDocument()
+    expect(screen.getByText(/what i bring/i)).toBeInTheDocument()
   })
 
-  describe("Rendering", () => {
-    it("renders the section header", () => {
-      render(<WhatIBring />)
-
-      expect(screen.getByText(/what i bring/i)).toBeInTheDocument()
-    })
-
-    it("renders all five capability cards", () => {
-      render(<WhatIBring />)
-
-      expect(screen.getByText(/problem framing/i)).toBeInTheDocument()
-      expect(screen.getByText(/solution design/i)).toBeInTheDocument()
-      expect(screen.getByText(/ai-native delivery/i)).toBeInTheDocument()
-      expect(screen.getByText(/engineering depth/i)).toBeInTheDocument()
-      expect(screen.getByText(/value realization/i)).toBeInTheDocument()
-    })
-
-    it("renders all card descriptions", () => {
-      render(<WhatIBring />)
-
-      expect(screen.getByText(/turn ambiguity into clarity/i)).toBeInTheDocument()
-      expect(screen.getByText(/craft polished, defensible approaches/i)).toBeInTheDocument()
-      expect(screen.getByText(/ship with claude/i)).toBeInTheDocument()
-      expect(screen.getByText(/typescript, react, next\.js/i)).toBeInTheDocument()
-      expect(screen.getByText(/turn ships into destinations/i)).toBeInTheDocument()
-    })
-
-    it("renders SVG icons for each capability", () => {
-      const { container } = render(<WhatIBring />)
-
-      const svgs = container.querySelectorAll("svg")
-      expect(svgs.length).toBeGreaterThanOrEqual(5)
-    })
+  it("renders exactly five link cards", () => {
+    render(<WhatIBring />)
+    const cards = screen.getAllByRole("link", { name: /^read:/i })
+    expect(cards).toHaveLength(5)
   })
 
-  describe("Layout structure", () => {
-    it("renders section element", () => {
-      const { container } = render(<WhatIBring />)
-
-      expect(container.querySelector("section")).toBeInTheDocument()
-    })
-
-    it("renders header with proper typography", () => {
-      const { container } = render(<WhatIBring />)
-
-      const header = Array.from(container.querySelectorAll("div")).find(
-        (div) => div.textContent?.toLowerCase().includes("what i bring")
-      )
-
-      expect(header).toHaveClass("text-xs", "font-medium", "tracking-widest", "uppercase")
-    })
-
-    it("renders flex container for card rows", () => {
-      const { container } = render(<WhatIBring />)
-
-      const flexContainer = container.querySelector("div[class*='gap-3']")
-      expect(flexContainer).toHaveClass("flex", "flex-col")
-    })
+  it("renders each card title as an accessible link name", () => {
+    render(<WhatIBring />)
+    expect(screen.getByRole("link", { name: /read: problem framing/i })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /read: solution design/i })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /read: ai-native delivery/i })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /read: engineering depth/i })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /read: value realization/i })).toBeInTheDocument()
   })
 
-  describe("Card arrangement", () => {
-    it("arranges cards in proper row layout", () => {
-      const { container } = render(<WhatIBring />)
-
-      // Should have 3 rows of cards
-      const rows = Array.from(container.querySelectorAll("div[class*='flex-col']")).filter(
-        (div) => div.className?.includes("md:flex-row")
-      )
-
-      expect(rows.length).toBeGreaterThanOrEqual(3)
-    })
-
-    it("applies responsive widths to cards", () => {
-      const { container } = render(<WhatIBring />)
-
-      const cards = container.querySelectorAll("div[class*='md:w']")
-      expect(cards.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe("Visual styling", () => {
-    it("renders cards with background colors", () => {
-      const { container } = render(<WhatIBring />)
-
-      const coloredDivs = container.querySelectorAll("[class*='bg-']")
-      expect(coloredDivs.length).toBeGreaterThan(0)
-    })
-
-    it("applies shadow hover effects", () => {
-      const { container } = render(<WhatIBring />)
-
-      const shadowElements = container.querySelectorAll("[class*='shadow']")
-      expect(shadowElements.length).toBeGreaterThan(0)
-    })
-
-    it("applies rounded corners to cards", () => {
-      const { container } = render(<WhatIBring />)
-
-      const roundedElements = container.querySelectorAll("[class*='rounded']")
-      expect(roundedElements.length).toBeGreaterThan(0)
-    })
-
-    it("applies padding to cards", () => {
-      const { container } = render(<WhatIBring />)
-
-      const paddedElements = container.querySelectorAll("[class*='p-']")
-      expect(paddedElements.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe("Icon styling", () => {
-    it("applies icon background colors", () => {
-      const { container } = render(<WhatIBring />)
-
-      // Since we're mocking, check for background color classes
-      const bgElements = container.querySelectorAll("[class*='bg-']")
-      expect(bgElements.length).toBeGreaterThan(0)
-    })
-
-    it("applies icon text colors", () => {
-      const { container } = render(<WhatIBring />)
-
-      const iconColors = container.querySelectorAll("[class*='text-']")
-      expect(iconColors.length).toBeGreaterThan(0)
-    })
-
-    it("renders icons with proper SVG structure", () => {
-      const { container } = render(<WhatIBring />)
-
-      const svgs = container.querySelectorAll("svg")
-      svgs.forEach((svg) => {
-        expect(svg).toHaveAttribute("viewBox")
-      })
-    })
-  })
-
-  describe("Typography", () => {
-    it("renders titles with appropriate styling", () => {
-      render(<WhatIBring />)
-
-      const titles = [
-        "Problem Framing",
-        "Solution Design",
-        "AI-Native Delivery",
-        "Engineering Depth",
-        "Value Realization",
-      ]
-
-      titles.forEach((title) => {
-        expect(screen.getByText(new RegExp(title, "i"))).toBeInTheDocument()
-      })
-    })
-
-    it("renders descriptions with muted color", () => {
-      const { container } = render(<WhatIBring />)
-
-      const descriptions = container.querySelectorAll("[class*='text-on-surface-variant']")
-      expect(descriptions.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe("Responsive behavior", () => {
-    it("stacks cards vertically on mobile", () => {
-      const { container } = render(<WhatIBring />)
-
-      const flexCol = container.querySelectorAll("div[class*='flex-col']")
-      expect(flexCol.length).toBeGreaterThan(0)
-    })
-
-    it("arranges cards in rows on desktop", () => {
-      const { container } = render(<WhatIBring />)
-
-      const rows = Array.from(container.querySelectorAll("div")).filter(
-        (div) => div.className?.includes("md:flex-row")
-      )
-
-      expect(rows.length).toBeGreaterThanOrEqual(3)
-    })
-
-    it("applies responsive gap spacing", () => {
-      const { container } = render(<WhatIBring />)
-
-      const gappedElements = container.querySelectorAll("[class*='gap-']")
-      expect(gappedElements.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe("Content integrity", () => {
-    it("ensures each card has a title", () => {
-      render(<WhatIBring />)
-
-      const titles = [
-        "Problem Framing",
-        "Solution Design",
-        "AI-Native Delivery",
-        "Engineering Depth",
-        "Value Realization",
-      ]
-
-      titles.forEach((title) => {
-        expect(screen.getByText(new RegExp(title, "i"))).toBeInTheDocument()
-      })
-    })
-
-    it("ensures each card has a description", () => {
-      render(<WhatIBring />)
-
-      const cards = screen.getAllByRole("link", { name: /Read:/i })
-      expect(cards.length).toBe(5)
-
-      for (const card of cards) {
-        const p = card.querySelector("p")
-        expect(p).toBeTruthy()
-        expect(p?.textContent?.trim().length).toBeGreaterThan(0)
-      }
-    })
-  })
-
-  describe("Accessibility", () => {
-    it("uses semantic section element", () => {
-      const { container } = render(<WhatIBring />)
-
-      expect(container.querySelector("section")).toBeInTheDocument()
-    })
-
-    it("renders text with proper contrast", () => {
-      render(<WhatIBring />)
-
-      // Verify that text elements are not hidden
-      expect(screen.getByText(/what i bring/i)).toBeVisible()
-      expect(screen.getByText(/problem framing/i)).toBeVisible()
-    })
-
-    it("uses proper heading hierarchy", () => {
-      render(<WhatIBring />)
-      expect(screen.getByText(/what i bring/i)).toBeInTheDocument()
-    })
-  })
-
-  describe("Performance considerations", () => {
-    it("renders a reasonable number of elements", () => {
-      const { container } = render(<WhatIBring />)
-
-      // Should not create excessive DOM nodes
-      expect(container.querySelectorAll("*").length).toBeLessThan(200)
-    })
-
-    it("uses key props for list items", () => {
-      // This is documented implicitly by React not throwing warnings
-      render(<WhatIBring />)
-      expect(true).toBe(true) // If no warnings, test passes
-    })
+  it("renders at least one SVG icon per card", () => {
+    const { container } = render(<WhatIBring />)
+    const cards = container.querySelectorAll("a[aria-label^='Read:']")
+    expect(cards.length).toBe(5)
+    for (const card of Array.from(cards)) {
+      expect(card.querySelector("svg")).toBeTruthy()
+    }
   })
 })
