@@ -40,7 +40,7 @@ Then notify the governance agent: "Governance review requested for PLAN-[XX]. Re
 ## Feature flags (required when new user-visible UI ships from the factory)
 - **Flag slug** (for `featureFlag("…")` in `lib/feature-flags.ts`): `[e.g. new-widget]`
 - **Env key**: `FF_[SLUG]` — e.g. `FF_NEW_WIDGET=1` (document in Vercel/host env when enabling)
-- **If always-on by explicit prompt:** state the exact prompt line that waived flags (otherwise default is ship-off / toggle-on per `docs/factory/FACTORY_MERGE_POLICY.md`)
+- **If always-on by explicit prompt:** state the exact prompt line that waived flags (otherwise default is ship-off / toggle-on per `docs/GOVERNANCE.md`)
 
 ## Plan acceptance criteria — self-check
 [Copy the "Success criteria" section from your plan and mark each:]

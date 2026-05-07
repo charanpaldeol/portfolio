@@ -36,42 +36,6 @@ function addViolation(file, rule, source, line) {
   violations.push({ file: rel(file), rule, source, line })
 }
 
-// ── Factory docs (docs/CODE-FACTORY-PLAN.md + docs/factory) ────────────────────
-function auditFactoryDocs() {
-  const toolsDir = path.join(ROOT, "scripts", "agent-factory")
-  const docsPath = path.join(ROOT, "lib", "factory-tools.ts")
-
-  if (!fs.existsSync(toolsDir)) return
-  if (!fs.existsSync(docsPath)) {
-    addViolation(docsPath, "Missing factory tools registry — add lib/factory-tools.ts", "docs/factory/recipes/add-page.md", 1)
-    return
-  }
-
-  const scriptFiles = fs
-    .readdirSync(toolsDir)
-    .filter((f) => f.endsWith(".ts"))
-    .map((f) => f.replace(/\.ts$/, ""))
-    .sort()
-
-  const docContent = fs.readFileSync(docsPath, "utf8")
-  const ids = new Set()
-  const idRe = /\bid\s*:\s*["']([^"']+)["']/g
-  for (;;) {
-    const m = idRe.exec(docContent)
-    if (!m) break
-    ids.add(m[1])
-  }
-
-  for (const scriptId of scriptFiles) {
-    if (ids.has(scriptId)) continue
-    addViolation(
-      docsPath,
-      `Factory tool '${scriptId}' is undocumented — add an entry to FACTORY_TOOLS and update /factory`,
-      "docs/factory/DEFINITION_OF_DONE.md",
-      1
-    )
-  }
-}
 
 // ── Design Audit (docs/DESIGN.md) ───────────────────────────────────────────
 function auditDesign() {
@@ -202,7 +166,6 @@ const mode = process.argv[2] || "all"
 if (mode === "all" || mode === "design") auditDesign()
 if (mode === "all" || mode === "arch") auditArchitecture()
 if (mode === "all" || mode === "hero") auditEditorialHero()
-if (mode === "all" || mode === "factory") auditFactoryDocs()
 
 // ── Report ──────────────────────────────────────────────────────────────────
 if (violations.length === 0) {

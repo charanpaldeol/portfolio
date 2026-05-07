@@ -53,10 +53,10 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "Validates git `origin`, merge-strategy env (`FACTORY_MERGE_STRATEGY`, `FACTORY_MONEY_MOVING_PROD`), GitHub CLI auth when PR mode, and deploy URL env when `FACTORY_POST_MERGE_UAT=1` — before `factory:run-once` claims work. The same checks run automatically at the start of each `factory:run-once` (skip with `FACTORY_SKIP_PREFLIGHT=1` for local debugging only).",
     howToUse: [
       "Run in CI or on a worker host before starting `factory:loop` or scheduled `factory:run-once`.",
-      "Read `docs/factory/FACTORY_MERGE_POLICY.md` for merge vs PR vs money-moving defaults.",
+      "Read `docs/GOVERNANCE.md` for merge vs PR vs money-moving defaults.",
     ],
     commands: ["pnpm factory:preflight"],
-    relatedFiles: ["scripts/agent-factory/factory-preflight.ts", "lib/agent-factory/factory-preflight.ts", "docs/factory/FACTORY_MERGE_POLICY.md"],
+    relatedFiles: ["scripts/agent-factory/factory-preflight.ts", "lib/agent-factory/factory-preflight.ts", "docs/GOVERNANCE.md"],
   },
   {
     id: "factory-run-once",
@@ -67,9 +67,9 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "Use for debugging a single iteration.",
       "Use with a single queued item when you want one pass then exit.",
       "Per-item checks: set `spec.acceptance` to a command or string array; set `spec.require_diff: true` to fail no-op commands.",
-      "Meaningful diffs: stock `pnpm -s factory:implement <id>` must touch roots under `app/`, `components/`, `lib/`, `config/`, `scripts/`, `e2e/`, or `public/`; `.gitignore`-only diffs fail. Disable with `FACTORY_REQUIRE_MEANINGFUL_PATHS=0`; extend with `FACTORY_MEANINGFUL_PATH_PREFIXES`. See `docs/factory/FACTORY_MEANINGFUL_WORK.md` and `docs/factory/FACTORY_OPERATIONS.md` (install retries, reclaim).",
+      "Meaningful diffs: stock `pnpm -s factory:implement <id>` must touch roots under `app/`, `components/`, `lib/`, `config/`, `scripts/`, `e2e/`, or `public/`; `.gitignore`-only diffs fail. Disable with `FACTORY_REQUIRE_MEANINGFUL_PATHS=0`; extend with `FACTORY_MEANINGFUL_PATH_PREFIXES`. See `docs/GOVERNANCE.md` and factory env for install retries and reclaim.",
       "Commit on current `main` (no agent worktree): `pnpm factory:run-once:main` or `FACTORY_IMPLEMENT_ON_MAIN=1 pnpm factory:run-once`. Requires cwd at repo root, checkout on `main`, clean tree, `FACTORY_MERGE_STRATEGY=direct`, merge `origin/main` before implement. Optional `FACTORY_IMPLEMENT_ON_MAIN_INSTALL=1` runs `pnpm install` in the root.",
-      "Cursor-only implement: `pnpm factory:run-once:cursor` or `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/FACTORY_GOAL.md`).",
+      "Cursor-only implement: `pnpm factory:run-once:cursor` or `FACTORY_IMPLEMENT_BACKEND=cursor` (see `agents/factory-goal-spec.json` and optional goal prose in `agents/`).",
       "Default `pnpm -s factory:implement <id>` runs `pnpm` directly (no shell). Other `spec.command` values and acceptance checks use `bash -c` (inherits `PATH`). Set `FACTORY_BASH_LOGIN=1` for `bash -lc` if nvm needs a login profile.",
     ],
     commands: [
@@ -84,7 +84,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "lib/agent-factory/factory-preflight.ts",
       "lib/agent-factory/item-spec.ts",
       "lib/agent-factory/require-diff-guards.ts",
-      "docs/factory/FACTORY_MEANINGFUL_WORK.md",
+      "docs/GOVERNANCE.md",
       "agents/factory-queue.json",
       "agents/factory-runs.json",
     ],
@@ -124,7 +124,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-research-once",
     title: "Research: goal LLM + optional hook + calc/weather signals",
     purpose:
-      "Runs autonomous research for the current `factory-goal-spec.json` / `FACTORY_GOAL.md`: builds the LLM prompt from goal state (`agents/factory-goal-state.json` summary + per-item queue status when present), roadmap rows, optional deterministic calculator/weather **repo signal** hints, and existing ids. Uses **remediation** instructions when state is `blocked` or `queue_failed` > 0 (disable with `FACTORY_RESEARCH_REMEDIATION_PROMPT=0`), **improvement** when status is `met` and `FACTORY_RESEARCH_IMPROVEMENT_WHEN_MET` is on, otherwise milestone planning. Calls an OpenAI-compatible API when keys are set; runs optional `FACTORY_RESEARCH_HOOK`, then optional calc/weather backlog append. Writes `agents/factory-research-last.json` including `research_prompt_mode` and `appended_total`.",
+      "Runs autonomous research for the current `factory-goal-spec.json`: builds the LLM prompt from goal state (`agents/factory-goal-state.json` summary + per-item queue status when present), roadmap rows, optional deterministic calculator/weather **repo signal** hints, and existing ids. Uses **remediation** instructions when state is `blocked` or `queue_failed` > 0 (disable with `FACTORY_RESEARCH_REMEDIATION_PROMPT=0`), **improvement** when status is `met` and `FACTORY_RESEARCH_IMPROVEMENT_WHEN_MET` is on, otherwise milestone planning. Calls an OpenAI-compatible API when keys are set; runs optional `FACTORY_RESEARCH_HOOK`, then optional calc/weather backlog append. Writes `agents/factory-research-last.json` including `research_prompt_mode` and `appended_total`.",
     howToUse: [
       "No keys: Ollama auto-detect + goal-spec `roadmap_items` → backlog intake. With keys: `FACTORY_RESEARCH_API_KEY` or `OPENAI_API_KEY`; optional `FACTORY_RESEARCH_MODEL` and `FACTORY_RESEARCH_OPENAI_BASE` (e.g. Groq).",
       "Use `FACTORY_RESEARCH_HOOK` for a custom bash snippet that edits `backlog.md` before the built-in steps.",
@@ -217,7 +217,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     purpose: "Repairs the queue/runs ledger after crashes by reclaiming stale work and keeping the dashboard consistent.",
     howToUse: [
       "Use when a worker crashed and items look stuck in `in_progress`.",
-      "`FACTORY_STALE_CLAIM_MS` / `FACTORY_STALE_RUN_MS` — see `docs/factory/FACTORY_OPERATIONS.md` (blank/0 safe fallbacks + floors).",
+      "`FACTORY_STALE_CLAIM_MS` / `FACTORY_STALE_RUN_MS` — see `docs/GOVERNANCE.md` (factory env / script defaults).",
     ],
     commands: ["pnpm factory:reclaim"],
     relatedFiles: [
@@ -234,7 +234,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
       "Read-only check: Node/pnpm versions, `pnpm-lock.yaml`, effective reclaim thresholds, implementer env hints (`FACTORY_CLAUDE_BIN`, aider/Gemini).",
     howToUse: ["Run on a worker host before starting `factory:loop` or `factory:swarm`."],
     commands: ["pnpm factory:doctor"],
-    relatedFiles: ["scripts/agent-factory/factory-doctor.ts", "docs/factory/FACTORY_OPERATIONS.md"],
+    relatedFiles: ["scripts/agent-factory/factory-doctor.ts", "docs/GOVERNANCE.md"],
   },
   {
     id: "factory-queue-dedupe",
@@ -309,7 +309,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     purpose: "Turns roadmap items into actionable `backlog.md` entries so the factory can keep shipping incremental planning work.",
     howToUse: ["Use when you want to expand a roadmap item into a structured backlog entry."],
     commands: ["pnpm factory:roadmap:expand <ITEM_ID>"],
-    relatedFiles: ["scripts/agent-factory/factory-roadmap-expand.ts", "agents/factory-roadmap.json", "backlog.md"],
+    relatedFiles: ["scripts/agent-factory/factory-roadmap-expand.ts", "agents/factory-roadmap.json"],
   },
   {
     id: "factory-market-scan",
@@ -365,11 +365,11 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     id: "factory-implement",
     title: "Developer agent: implement roadmap item",
     purpose:
-      "Builds a prompt from `agents/FACTORY_GOAL.md`, the roadmap row DoD, and `agents/SKILL-developer.md`, then spawns the configured implementer (default `claude` via stdin for `-p` mode) in the current worktree — unless `FACTORY_IMPLEMENT_BACKEND` is `cursor`, `none`, or `skip`, in which case it only writes `agents/factory-logs/cursor-task-<ID>.md` for Cursor/manual work. Does not install, build, or commit; `factory:run-once` runs `pnpm verify` afterward (including `e2e:goal-smoke` for goal-truth UI/API checks per `agents/factory-goal-spec.json`).",
+      "Builds a prompt from ``agents/factory-goal-spec.json` and optional goal prose in repo`, the roadmap row DoD, and `agents/SKILL-developer.md`, then spawns the configured implementer (default `claude` via stdin for `-p` mode) in the current worktree — unless `FACTORY_IMPLEMENT_BACKEND` is `cursor`, `none`, or `skip`, in which case it only writes `agents/factory-logs/cursor-task-<ID>.md` for Cursor/manual work. Does not install, build, or commit; `factory:run-once` runs `pnpm verify` afterward (including `e2e:goal-smoke` for goal-truth UI/API checks per `agents/factory-goal-spec.json`).",
     howToUse: [
       "Typically invoked as `pnpm -s factory:implement <ITEM_ID>` from a queue item `spec.command`.",
       "Set `FACTORY_ROOT` when the worktree cwd is not the repo root.",
-      "Cursor-only: `pnpm factory:implement:cursor -- <ITEM_ID>` or `FACTORY_IMPLEMENT_BACKEND=cursor pnpm -s factory:implement <ITEM_ID>` (see `agents/FACTORY_GOAL.md`).",
+      "Cursor-only: `pnpm factory:implement:cursor -- <ITEM_ID>` or `FACTORY_IMPLEMENT_BACKEND=cursor pnpm -s factory:implement <ITEM_ID>` (see ``agents/factory-goal-spec.json` and optional goal prose in repo`).",
     ],
     commands: [
       "pnpm -s factory:implement FACTORY_VERIFY_CALCULATOR_V1",
@@ -379,7 +379,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     relatedFiles: [
       "scripts/agent-factory/factory-implement.ts",
       "agents/factory-roadmap.json",
-      "agents/FACTORY_GOAL.md",
+      "`agents/factory-goal-spec.json` and optional goal prose in repo",
       "e2e/goal-smoke.spec.ts",
     ],
   },
@@ -411,7 +411,7 @@ export const FACTORY_TOOLS: FactoryToolDoc[] = [
     relatedFiles: [
       "scripts/agent-factory/claude-ollama-wrapper.sh",
       "scripts/agent-factory/factory-implement.ts",
-      "docs/factory/FACTORY_OPERATIONS.md",
+      "docs/GOVERNANCE.md",
     ],
   },
 ]

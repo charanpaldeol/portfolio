@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import { FactoryBpmn } from "@/components/factory/FactoryBpmn"
 import { FACTORY_TOOLS } from "@/lib/factory-tools"
 
@@ -18,11 +16,10 @@ export function FactoryContent() {
         <h2 className="font-sans text-lg font-semibold tracking-normal text-on-surface">How to use</h2>
         <div className="mt-4 flex flex-col gap-3 font-sans text-sm font-normal leading-[1.7] text-on-surface-variant md:text-base md:leading-[1.75]">
           <p>
-            Observe runs and queue state in{" "}
-            <Link href="/evidencepack/app/factory" className="font-semibold text-on-surface underline underline-offset-4">
-              EvidencePack Factory
-            </Link>
-            .
+            Observe runs and queue state in the checked-in files under{" "}
+            <span className="font-mono text-xs text-on-surface">agents/</span> (for example{" "}
+            <span className="font-mono text-xs text-on-surface">factory-queue.json</span> and{" "}
+            <span className="font-mono text-xs text-on-surface">factory-runs.json</span>).
           </p>
           <p>Run one iteration locally with <span className="font-mono text-xs text-on-surface">pnpm factory:run-once</span>.</p>
           <p>

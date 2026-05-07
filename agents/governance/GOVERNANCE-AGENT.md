@@ -86,7 +86,7 @@ Read every file listed in the report. Do not trust claims — verify them.
 | No lorem ipsum | All content is real or clearly marked TODO |
 | All new lib files export typed interfaces | TypeScript types exported alongside data |
 | Visual proof provided (UI changes) | Screenshots exist under `agents/governance/screenshots/[PLAN_ID]/desktop` and `.../mobile` |
-| New user-visible factory UI | Behind `lib/feature-flags.ts` + `FF_*` **or** report cites the prompt that waived flags (`docs/factory/FACTORY_MERGE_POLICY.md`) |
+| New user-visible factory UI | Behind `lib/feature-flags.ts` + `FF_*` **or** report cites the prompt that waived flags (see `docs/GOVERNANCE.md`) |
 
 #### D. Plan-Specific Checks
 

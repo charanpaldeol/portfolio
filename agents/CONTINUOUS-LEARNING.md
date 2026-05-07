@@ -11,10 +11,9 @@ The only sustainable way to scale agent throughput is to make every failure impr
    - `.cursorrules` updates (behavioral constraints)
    - `scripts/audit.js` improvements (hard enforcement)
    - tests (Playwright/Vitest) to prevent regressions
-   - recipes/spec templates under `docs/factory/recipes/` or `agents/SPEC-TEMPLATE.md`
+   - `agents/SPEC-TEMPLATE.md` for repeatable plan specs
 
 ## Automation helpers
 
 - `pnpm extract-rules` reads `agents/governance/reports/*` and prints candidate guardrails.
-- `agents/governance/WEEKLY-FACTORY-REVIEW.md` is the manager cadence.
 
