@@ -2,7 +2,7 @@ import fs from "node:fs/promises"
 import path from "node:path"
 
 const ROOT = process.cwd()
-const REPORTS_DIR = path.join(ROOT, "agents", "governance", "reports")
+const REPORTS_DIR = path.join(ROOT, "docs", "governance", "reports")
 
 function isMarkdownHeading(line) {
   return /^##\s+/.test(line)
@@ -13,11 +13,15 @@ function stripListPrefix(line) {
 }
 
 async function listReportFiles() {
-  const entries = await fs.readdir(REPORTS_DIR, { withFileTypes: true })
-  return entries
-    .filter((e) => e.isFile() && e.name.endsWith(".md"))
-    .map((e) => path.join(REPORTS_DIR, e.name))
-    .sort()
+  try {
+    const entries = await fs.readdir(REPORTS_DIR, { withFileTypes: true })
+    return entries
+      .filter((e) => e.isFile() && e.name.endsWith(".md"))
+      .map((e) => path.join(REPORTS_DIR, e.name))
+      .sort()
+  } catch {
+    return []
+  }
 }
 
 function extractSectionBullets(markdown, header) {
@@ -66,7 +70,7 @@ async function main() {
   console.log("\n# Candidate rule / guardrail updates\n")
   console.log(
     "These are extracted from worker completion reports. Convert high-signal items into:\n" +
-      "- a `.cursorrules` entry (behavioral guardrail)\n" +
+      "- a `.claude/rules/` entry (behavioral guardrail)\n" +
       "- an ESLint rule / audit check (hard enforcement)\n" +
       "- a test (verifiable contract)\n",
   )
@@ -81,4 +85,3 @@ main().catch((err) => {
   console.error(err)
   process.exit(1)
 })
-

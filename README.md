@@ -9,56 +9,46 @@ pnpm install
 pnpm agent:start
 ```
 
-## Factory commands (agent-friendly)
+## Agent setup (Claude Code)
+
+| Path | Purpose |
+|------|---------|
+| `CLAUDE.md` | Always-on project context |
+| `.claude/rules/` | Project rules (markdown) |
+| `.claude/skills/` | Task skills (`/skill-name` or auto-invoked) |
+| `.claude/agents/` | Subagent prompts (`verify-app`, `pr-review`) |
+| `.claude/hooks/` | Optional shell scripts |
+
+Legacy `.cursorrules` is deprecated; use `CLAUDE.md` and `.claude/`.
+
+**Cursor users:** enable “Include third-party Plugins, Skills and other configs” to load `.claude/skills/` and `CLAUDE.md`.
+
+## Verify before commit
 
 ```bash
-pnpm verify            # tsc + lint + audit + build + e2e (includes screenshot proof)
+pnpm verify            # tsc + lint + audit + build + e2e
 pnpm verify:full       # verify + unit tests
-pnpm e2e:smoke         # fast chromium-only route sanity (<60s target)
-pnpm e2e:headless      # full Playwright suite (all configured browsers/projects)
-pnpm extract-rules     # extract guardrail candidates from governance reports
-DEPLOY_URL=https://cpdeol.com pnpm deploy:smoke
+pnpm e2e:smoke         # fast chromium route sanity
+pnpm e2e:headless      # full Playwright suite
+pnpm extract-rules     # guardrail candidates from docs/governance/reports
+pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 ```
-
-### Visual proof screenshots
-
-For UI-affecting work, run:
-
-```bash
-PLAN_ID=PLAN-04 pnpm verify
-```
-
-Screenshots are written to:
-- `agents/governance/screenshots/PLAN-04/desktop/*.png`
-- `agents/governance/screenshots/PLAN-04/mobile/*.png`
-
-## Agent entrypoints
-
-- `agents/START_HERE.md`
-- `agents/CURSOR-START.md`
-- `agents/plans/_LAUNCH.md`
-- `agents/plans/_PROJECT_CONTEXT.md`
 
 ## Standards
 
-| Document | What It Covers |
-|----------|---------------|
+| Document | What it covers |
+|----------|----------------|
 | `docs/DESIGN.md` | Editorial Expert design system |
 | `docs/code-architecture-review.md` | Architecture grades + action items |
-| `docs/GOVERNANCE.md` | Enforcement rules + AI-agent development (includes **canonical editorial hero** — `EditorialPageHero` + `/what-i-bring`) |
-| `.cursorrules` § 2.5 | Editorial page hero — must use shared component; default reference is `/what-i-bring` |
-| `.cursorrules` § 8 | AI-agent rules (read automatically) |
+| `docs/GOVERNANCE.md` | Agent verification, hero, feature flags |
+| `.claude/rules/` | Enforced agent behavior |
 
 ## Enforcement
 
-Rules are enforced by code, not documentation:
+- **ESLint** — `lib/eslint-rules/` (custom rules)
+- **Audit** — `node scripts/audit.js` (`hero` for hero-only)
+- **Pre-commit** — `.husky/pre-commit` → `pnpm verify`
 
-- **ESLint rules** — `lib/eslint-rules/` (6 custom rules)
-- **Audit script** — `node scripts/audit.js` (design + architecture + editorial hero scanner; `hero` for hero-only)
-- **Pre-commit hook** — `.husky/pre-commit` (blocks bad commits)
-
-Run `node scripts/audit.js` to check compliance.
-
-## Data Architecture
+## Data architecture
 
 All feature data lives in `/lib/[feature]-data.ts`. Components accept props, never fetch.

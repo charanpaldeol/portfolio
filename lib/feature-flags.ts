@@ -17,7 +17,7 @@ function parseFlagValue(value: string | undefined) {
  * Env:
  *   FF_NEW_TESTIMONIALS=1
  *
- * Default for new user-visible factory UI in this repo: behind `lib/feature-flags.ts` + `FF_*` (see `docs/GOVERNANCE.md`).
+ * Default for new user-visible UI: behind `lib/feature-flags.ts` + `FF_*` (see `docs/GOVERNANCE.md`).
  */
 export function featureFlag(flag: string) {
   const key = normalizeFlagEnvKey(flag)

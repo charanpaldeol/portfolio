@@ -28,16 +28,9 @@ tsconfig.tsbuildinfo
 playwright-report/
 test-results/
 
-# Governance proof artifacts (generated)
-agents/governance/screenshots/
+# Governance reports (optional local notes; structure kept in git)
+docs/governance/reports/*.md
+!docs/governance/reports/.gitkeep
 
-# Agent factory generated artifacts (local)
-.agent-worktrees/
-agents/factory-logs/
-factory-graph-corpus/
-agents/factory-pivot-log.jsonl
-agents/factory-*.json
-!agents/factory-goal-spec.json
-!agents/factory-roadmap.json
 .aider*
 .env.factory

@@ -78,20 +78,6 @@ export const portfolioNavLinks: NavLink[] = [
       </svg>
     ),
   },
-  {
-    href: '/factory',
-    label: 'Factory',
-    description: 'Tools, purpose, and usage',
-    icon: (
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-        <path d="M2 13.5V6.5l3 2 3-2 3 2 3-2v7" />
-        <path d="M2 13.5h12" />
-        <path d="M4.5 13.5v-3h2v3" />
-        <path d="M9.5 13.5v-3h2v3" />
-        <path d="M2 6.5V3.5h3l1 1h3l1-1h3v3" />
-      </svg>
-    ),
-  },
 ]
 
 // ─── Work links ───────────────────────────────────────────────────────────────

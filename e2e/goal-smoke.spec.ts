@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
 
 /**
- * Goal-critical DOM and API checks aligned with `agents/factory-goal-spec.json`
+ * Goal-critical DOM and API checks (calculator, weather API + page, navbar).
  * roadmap ids FACTORY_VERIFY_* (calculator, weather API + page, navbar).
  * Run via `pnpm e2e:goal-smoke`; included in `pnpm verify` (Phase A2–A3).
  */

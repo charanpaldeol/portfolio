@@ -37,6 +37,8 @@
     "verify": "pnpm tsc --noEmit && pnpm lint && node scripts/audit.js && pnpm build && ([ \"$FACTORY_SKIP_E2E\" = \"1\" ] && echo 'e2e tests skipped (factory mode)' || (pnpm dev:free3000 && pnpm e2e:smoke && pnpm dev:free3000 && pnpm e2e:proof))",
     "verify:full": "pnpm verify && pnpm test --run",
     "extract-rules": "node scripts/extract-rules.mjs",
+    "clean": "node scripts/clean.mjs",
+    "clean:all": "node scripts/clean.mjs --next",
     "self-review": "node scripts/self-review.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "npx patch-package -y",
