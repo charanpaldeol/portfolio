@@ -11,8 +11,8 @@ import { Testimonials } from "@/components/home/Testimonials"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
 import { GITHUB_URL, LINKEDIN_URL } from "@/config/navigation"
-import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 import { SITE_URL } from "@/lib/site"
+import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 import { testimonials } from "@/lib/testimonials-data"
 
 export const metadata: Metadata = pageMetadata({

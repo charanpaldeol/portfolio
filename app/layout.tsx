@@ -6,13 +6,13 @@ import "@/styles/tailwind.css"
 import { Footer } from "@/components/layout/Footer"
 import GlobalChrome from "@/components/layout/GlobalChrome"
 import PortfolioShell from "@/components/layout/PortfolioShell"
-import {
-  OG_IMAGE_PATH,
-  SITE_DEFAULT_DESCRIPTION,
-  absoluteUrl,
-  ogImageMetadata,
-} from "@/lib/site-metadata"
 import { SITE_URL } from "@/lib/site"
+import {
+  absoluteUrl,
+  OG_IMAGE_PATH,
+  ogImageMetadata,
+  SITE_DEFAULT_DESCRIPTION,
+} from "@/lib/site-metadata"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

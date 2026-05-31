@@ -15,10 +15,9 @@ import Link from "next/link"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { standaloneArticles } from "@/lib/blog-articles-data"
+import { pageMetadata } from "@/lib/site-metadata"
 import { cn } from "@/lib/utils"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
-
-import { pageMetadata } from "@/lib/site-metadata"
 
 export const metadata: Metadata = pageMetadata({
   title: "Blog",

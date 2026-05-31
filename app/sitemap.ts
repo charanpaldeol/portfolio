@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next"
 import { allBlogArticles } from "@/lib/all-blog-articles"
 import { projects } from "@/lib/projects-data"
 import {
-  SEO_CONTENT_DATES,
   blogPublishedDate,
   projectLastModified,
+  SEO_CONTENT_DATES,
 } from "@/lib/seo-content-dates"
 import { SITE_URL } from "@/lib/site"
 

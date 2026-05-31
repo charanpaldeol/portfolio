@@ -12,8 +12,8 @@ import {
   resolveServices,
 } from "@/lib/content-lookups"
 import { blogPublishedDate } from "@/lib/seo-content-dates"
-import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 import { SITE_URL } from "@/lib/site"
+import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 
 function articleDescription(body: string): string {
   if (body.length <= 160) return body
