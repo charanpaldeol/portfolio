@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Knowledge graph · Charan Pal Deol",
+import { pageMetadata } from "@/lib/site-metadata"
+
+export const metadata: Metadata = pageMetadata({
+  title: "Knowledge Graph",
   description:
     "Interactive knowledge graph of this portfolio, generated and rendered by graphify (safishamsi/graphify) — nodes, edges, and Leiden communities as-is.",
-}
+  path: "/knowledge-graph",
+})
 
 export default function KnowledgeGraphPage() {
   return (

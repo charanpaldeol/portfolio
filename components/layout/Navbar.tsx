@@ -52,7 +52,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
-        <div className="hidden flex-1 items-center justify-center md:flex">
+        <div className="hidden flex-1 items-center justify-center lg:flex">
           <NavigationMenu>
             <NavigationMenuList>
 
@@ -98,7 +98,7 @@ export function Navbar() {
         <SocialLinks />
 
         {/* Mobile menu — Sheet drawer */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center lg:hidden">
           <Sheet>
             <SheetTrigger aria-label="Open navigation menu">
               <svg aria-hidden="true" className="h-5 w-5 text-foreground" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -11,28 +11,16 @@ import { Testimonials } from "@/components/home/Testimonials"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
 import { GITHUB_URL, LINKEDIN_URL } from "@/config/navigation"
+import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 import { SITE_URL } from "@/lib/site"
 import { testimonials } from "@/lib/testimonials-data"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Charan Deol — Product Engineer & Consultant",
   description:
     "Independent consultant bridging business and engineering. Product strategy, full-stack development, design systems, and technical leadership.",
-  alternates: { canonical: "https://cpdeol.com" },
-  openGraph: {
-    title: "Charan Deol — Product Engineer & Consultant",
-    description:
-      "Independent consultant bridging business and engineering. Product strategy, full-stack development, design systems, and technical leadership.",
-    url: "https://cpdeol.com",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Charan Deol — Product Engineer & Consultant",
-    description:
-      "Independent consultant bridging business and engineering. Product strategy, full-stack development, design systems, and technical leadership.",
-  },
-}
+  path: "/",
+})
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -56,7 +44,8 @@ const personSchema = {
     addressLocality: "Toronto",
     addressCountry: "CA",
   },
-  sameAs: [SITE_URL, GITHUB_URL, LINKEDIN_URL],
+  image: absoluteUrl("/og-default.jpg"),
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
 }
 
 export default function Home() {

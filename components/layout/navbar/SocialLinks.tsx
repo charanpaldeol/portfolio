@@ -5,7 +5,7 @@ import { RainbowButton } from '@/registry/magicui/rainbow-button'
 // LinkedIn hover uses --color-external-linkedin (tailwind.css).
 export function SocialLinks() {
   return (
-    <div className="hidden items-center gap-4 md:flex">
+    <div className="hidden items-center gap-4 lg:flex">
       <a
         href={GITHUB_URL}
         target="_blank"

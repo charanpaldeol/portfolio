@@ -4,25 +4,16 @@ import Link from "next/link"
 import { PageShell } from "@/components/layout/PageShell"
 import { EditorialPageHero } from "@/components/portfolio/EditorialPageHero"
 import { projects } from "@/lib/projects-data"
+import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Selected case studies by Charan Deol — AI/ML, real-time systems, compliance, cloud architecture, and measurable engineering outcomes.",
-  alternates: { canonical: "https://cpdeol.com/projects" },
-  openGraph: {
-    title: "Projects — Charan Deol",
+  ...pageMetadata({
+    title: "Projects",
     description:
-      "Selected case studies — AI/ML, real-time systems, compliance, and cloud-native architecture with quantified results.",
-    url: "https://cpdeol.com/projects",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Projects — Charan Deol",
-    description:
-      "Selected case studies — AI/ML, real-time systems, compliance, and cloud-native architecture with quantified results.",
-  },
+      "Selected case studies by Charan Deol — AI/ML, real-time systems, compliance, cloud architecture, and measurable engineering outcomes.",
+    path: "/projects",
+  }),
+  alternates: { canonical: absoluteUrl("/portfolio/projects") },
 }
 
 export default function ProjectsPage() {

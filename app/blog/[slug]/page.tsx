@@ -11,6 +11,8 @@ import {
   resolveProjects,
   resolveServices,
 } from "@/lib/content-lookups"
+import { blogPublishedDate } from "@/lib/seo-content-dates"
+import { absoluteUrl, pageMetadata } from "@/lib/site-metadata"
 import { SITE_URL } from "@/lib/site"
 
 function articleDescription(body: string): string {
@@ -31,23 +33,13 @@ function getArticleOrNotFound(slug: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const card = getArticleOrNotFound(slug)
-  const canonical = `${SITE_URL}/blog/${slug}`
-  return {
+  const description = articleDescription(card.body)
+  return pageMetadata({
     title: card.title,
-    description: card.body,
-    alternates: { canonical },
-    openGraph: {
-      title: card.title,
-      description: card.body,
-      url: canonical,
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: card.title,
-      description: card.body,
-    },
-  }
+    description,
+    path: `/blog/${slug}`,
+    ogType: "article",
+  })
 }
 
 export function generateStaticParams() {
@@ -58,12 +50,17 @@ export default async function BlogSlugPage({ params }: Props) {
   const { slug } = await params
   const card = getArticleOrNotFound(slug)
   const canonical = `${SITE_URL}/blog/${slug}`
+  const published = blogPublishedDate(slug)
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: card.title,
     description: articleDescription(card.body),
     url: canonical,
+    mainEntityOfPage: canonical,
+    datePublished: published.toISOString(),
+    dateModified: published.toISOString(),
+    image: absoluteUrl("/og-default.jpg"),
     author: {
       "@type": "Person",
       name: "Charan Deol",

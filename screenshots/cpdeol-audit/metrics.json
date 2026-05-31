@@ -1,0 +1,270 @@
+{
+  "desktop": {
+    "cls": 0.0034,
+    "lcp_element": "H2",
+    "h1_text": "Charan Deol",
+    "h1_rect": {
+      "x": 352,
+      "y": 224.5,
+      "width": 672,
+      "height": 75.59375,
+      "top": 224.5,
+      "right": 1024,
+      "bottom": 300.09375,
+      "left": 352
+    },
+    "cta_buttons": [
+      {
+        "text": "Work",
+        "rect": {
+          "x": 613.140625,
+          "y": 14,
+          "width": 82.28125,
+          "height": 36,
+          "top": 14,
+          "right": 695.421875,
+          "bottom": 50,
+          "left": 613.140625
+        }
+      },
+      {
+        "text": "See my work \u2192",
+        "rect": {
+          "x": 352,
+          "y": 749.59375,
+          "width": 168.3125,
+          "height": 52,
+          "top": 749.59375,
+          "right": 520.3125,
+          "bottom": 801.59375,
+          "left": 352
+        }
+      },
+      {
+        "text": "Get in touch \u2192",
+        "rect": {
+          "x": 536.3125,
+          "y": 749.59375,
+          "width": 163.84375,
+          "height": 52,
+          "top": 749.59375,
+          "right": 700.15625,
+          "bottom": 801.59375,
+          "left": 536.3125
+        }
+      }
+    ],
+    "nav": {
+      "visible": true,
+      "height": 36
+    },
+    "imgs_missing_dims": [],
+    "body_font_size": "16px",
+    "horizontal_scroll": false,
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    }
+  },
+  "laptop": {
+    "cls": 0.0094,
+    "lcp_element": "H2",
+    "h1_text": "Charan Deol",
+    "h1_rect": {
+      "x": 75,
+      "y": 224.5,
+      "width": 672,
+      "height": 75.59375,
+      "top": 224.5,
+      "right": 747,
+      "bottom": 300.09375,
+      "left": 75
+    },
+    "cta_buttons": [
+      {
+        "text": "Work",
+        "rect": {
+          "x": 336.140625,
+          "y": 14,
+          "width": 82.28125,
+          "height": 36,
+          "top": 14,
+          "right": 418.421875,
+          "bottom": 50,
+          "left": 336.140625
+        }
+      },
+      {
+        "text": "See my work \u2192",
+        "rect": {
+          "x": 75,
+          "y": 749.59375,
+          "width": 168.3125,
+          "height": 52,
+          "top": 749.59375,
+          "right": 243.3125,
+          "bottom": 801.59375,
+          "left": 75
+        }
+      },
+      {
+        "text": "Get in touch \u2192",
+        "rect": {
+          "x": 259.3125,
+          "y": 749.59375,
+          "width": 163.84375,
+          "height": 52,
+          "top": 749.59375,
+          "right": 423.15625,
+          "bottom": 801.59375,
+          "left": 259.3125
+        }
+      }
+    ],
+    "nav": {
+      "visible": true,
+      "height": 36
+    },
+    "imgs_missing_dims": [],
+    "body_font_size": "16px",
+    "horizontal_scroll": false,
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    }
+  },
+  "tablet": {
+    "cls": 0.0061,
+    "lcp_element": "BLOCKQUOTE",
+    "h1_text": "Charan Deol",
+    "h1_rect": {
+      "x": 56,
+      "y": 228.5,
+      "width": 624,
+      "height": 63,
+      "top": 228.5,
+      "right": 680,
+      "bottom": 291.5,
+      "left": 56
+    },
+    "cta_buttons": [
+      {
+        "text": "Work",
+        "rect": {
+          "x": 197.96875,
+          "y": 24,
+          "width": 82.28125,
+          "height": 36,
+          "top": 24,
+          "right": 280.25,
+          "bottom": 60,
+          "left": 197.96875
+        }
+      },
+      {
+        "text": "See my work \u2192",
+        "rect": {
+          "x": 56,
+          "y": 793.5,
+          "width": 168.3125,
+          "height": 52,
+          "top": 793.5,
+          "right": 224.3125,
+          "bottom": 845.5,
+          "left": 56
+        }
+      },
+      {
+        "text": "Get in touch \u2192",
+        "rect": {
+          "x": 240.3125,
+          "y": 793.5,
+          "width": 163.84375,
+          "height": 52,
+          "top": 793.5,
+          "right": 404.15625,
+          "bottom": 845.5,
+          "left": 240.3125
+        }
+      }
+    ],
+    "nav": {
+      "visible": true,
+      "height": 36
+    },
+    "imgs_missing_dims": [],
+    "body_font_size": "16px",
+    "horizontal_scroll": true,
+    "viewport": {
+      "w": 768,
+      "h": 1024
+    }
+  },
+  "mobile": {
+    "cls": 0.0011,
+    "lcp_element": "BLOCKQUOTE",
+    "h1_text": "Charan Deol",
+    "h1_rect": {
+      "x": 40,
+      "y": 210,
+      "width": 279,
+      "height": 50.390625,
+      "top": 210,
+      "right": 319,
+      "bottom": 260.390625,
+      "left": 40
+    },
+    "cta_buttons": [
+      {
+        "text": "Work",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "See my work \u2192",
+        "rect": {
+          "x": 40,
+          "y": 1149.890625,
+          "width": 168.3125,
+          "height": 52,
+          "top": 1149.890625,
+          "right": 208.3125,
+          "bottom": 1201.890625,
+          "left": 40
+        }
+      },
+      {
+        "text": "Get in touch \u2192",
+        "rect": {
+          "x": 40,
+          "y": 1217.890625,
+          "width": 163.84375,
+          "height": 52,
+          "top": 1217.890625,
+          "right": 203.84375,
+          "bottom": 1269.890625,
+          "left": 40
+        }
+      }
+    ],
+    "nav": {
+      "visible": true,
+      "height": 0
+    },
+    "imgs_missing_dims": [],
+    "body_font_size": "16px",
+    "horizontal_scroll": false,
+    "viewport": {
+      "w": 375,
+      "h": 812
+    }
+  }
+}

@@ -2,112 +2,57 @@ import type { MetadataRoute } from "next"
 
 import { allBlogArticles } from "@/lib/all-blog-articles"
 import { projects } from "@/lib/projects-data"
+import {
+  SEO_CONTENT_DATES,
+  blogPublishedDate,
+  projectLastModified,
+} from "@/lib/seo-content-dates"
 import { SITE_URL } from "@/lib/site"
+
+export const dynamic = "force-static"
+
+function dateFromIso(iso: string): Date {
+  return new Date(iso)
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_URL
+  const portfolioCore = projectLastModified()
+  const workPages = dateFromIso(SEO_CONTENT_DATES.workPages)
+  const blogIndex = dateFromIso(SEO_CONTENT_DATES.blogIndex)
+  const contact = dateFromIso(SEO_CONTENT_DATES.contact)
+  const internetOwned = dateFromIso(SEO_CONTENT_DATES.internetOwned)
+  const eyeBreak = dateFromIso(SEO_CONTENT_DATES.eyeBreak)
+  const knowledgeGraph = dateFromIso(SEO_CONTENT_DATES.knowledgeGraph)
+  const home = dateFromIso(SEO_CONTENT_DATES.siteLaunch)
 
   const blogPosts = allBlogArticles.map((article) => ({
     url: `${base}/blog/${article.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    lastModified: blogPublishedDate(article.slug),
   }))
 
   const projectPages = projects.map((project) => ({
     url: `${base}/portfolio/projects/${project.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+    lastModified: portfolioCore,
   }))
 
   return [
-    { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    {
-      url: `${base}/portfolio/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${base}/portfolio/experience`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/portfolio/services`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/portfolio/projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/what-i-bring`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/how-i-work`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/how-i-think`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/how-i-use-ai`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/tools-and-methods`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/work-with-me`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${base}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: `${base}/internet-owned`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.4,
-    },
-    {
-      url: `${base}/eye-break`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.4,
-    },
+    { url: base, lastModified: home },
+    { url: `${base}/blog`, lastModified: blogIndex },
+    { url: `${base}/portfolio/about`, lastModified: portfolioCore },
+    { url: `${base}/portfolio/experience`, lastModified: portfolioCore },
+    { url: `${base}/portfolio/services`, lastModified: portfolioCore },
+    { url: `${base}/portfolio/projects`, lastModified: portfolioCore },
+    { url: `${base}/what-i-bring`, lastModified: workPages },
+    { url: `${base}/how-i-work`, lastModified: workPages },
+    { url: `${base}/how-i-think`, lastModified: workPages },
+    { url: `${base}/how-i-use-ai`, lastModified: workPages },
+    { url: `${base}/tools-and-methods`, lastModified: workPages },
+    { url: `${base}/work-with-me`, lastModified: workPages },
+    { url: `${base}/contact`, lastModified: contact },
+    { url: `${base}/knowledge-graph`, lastModified: knowledgeGraph },
+    { url: `${base}/internet-owned`, lastModified: internetOwned },
+    { url: `${base}/eye-break`, lastModified: eyeBreak },
     ...blogPosts,
     ...projectPages,
   ]

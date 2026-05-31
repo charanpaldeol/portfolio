@@ -1,0 +1,143 @@
+{
+  "has_https": true,
+  "social_links": [
+    {
+      "text": "",
+      "href": "https://github.com/charanpaldeol"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/in/cdeol"
+    },
+    {
+      "text": "LinkedIn",
+      "href": "https://www.linkedin.com/in/cdeol"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/in/cdeol"
+    },
+    {
+      "text": "",
+      "href": "https://github.com/charanpaldeol"
+    }
+  ],
+  "total_images": 0,
+  "images_with_loading_lazy": 0,
+  "images_with_explicit_dims": 0,
+  "images_with_alt": 0,
+  "font_families": [],
+  "h1_atf": true,
+  "h2_texts": [
+    "Finance, banking, and compliance",
+    "Enterprise SaaS and internal platforms",
+    "Supply chain visibility and fulfilment operations"
+  ],
+  "cta_elements": [
+    {
+      "tag": "A",
+      "text": "Let's talk",
+      "href": "https://www.cpdeol.com/contact",
+      "atf": true,
+      "rect": {
+        "x": 1403.734375,
+        "y": 12,
+        "width": 108.265625,
+        "height": 40,
+        "top": 12,
+        "right": 1512,
+        "bottom": 52,
+        "left": 1403.734375
+      }
+    },
+    {
+      "tag": "A",
+      "text": "Get in touch \u2192",
+      "href": "https://www.cpdeol.com/contact?from=home-hero&intent=scope",
+      "atf": true,
+      "rect": {
+        "x": 536.3125,
+        "y": 749.59375,
+        "width": 163.84375,
+        "height": 52,
+        "top": 749.59375,
+        "right": 700.15625,
+        "bottom": 801.59375,
+        "left": 536.3125
+      }
+    },
+    {
+      "tag": "A",
+      "text": "CONTACT",
+      "href": "https://www.cpdeol.com/#contact-cta",
+      "atf": true,
+      "rect": {
+        "x": 922.78125,
+        "y": 860.59375,
+        "width": 84.828125,
+        "height": 28,
+        "top": 860.59375,
+        "right": 1007.609375,
+        "bottom": 888.59375,
+        "left": 922.78125
+      }
+    },
+    {
+      "tag": "A",
+      "text": "Let's discuss your problem \u2192",
+      "href": "https://www.cpdeol.com/contact?from=proof-metrics&intent=scope",
+      "atf": false,
+      "rect": {
+        "x": 1342.171875,
+        "y": 4302.34375,
+        "width": 193.828125,
+        "height": 20,
+        "top": 4302.34375,
+        "right": 1536,
+        "bottom": 4322.34375,
+        "left": 1342.171875
+      }
+    },
+    {
+      "tag": "A",
+      "text": "Scope your milestone",
+      "href": "https://www.cpdeol.com/contact?from=home-cta&intent=scope",
+      "atf": false,
+      "rect": {
+        "x": 692.65625,
+        "y": 6841.84375,
+        "width": 247.1875,
+        "height": 64,
+        "top": 6841.84375,
+        "right": 939.84375,
+        "bottom": 6905.84375,
+        "left": 692.65625
+      }
+    },
+    {
+      "tag": "A",
+      "text": "Contact form",
+      "href": "https://www.cpdeol.com/contact",
+      "atf": false,
+      "rect": {
+        "x": 1304,
+        "y": 7182.84375,
+        "width": 85.15625,
+        "height": 17,
+        "top": 7182.84375,
+        "right": 1389.15625,
+        "bottom": 7199.84375,
+        "left": 1304
+      }
+    }
+  ],
+  "hero_bg": "rgba(0, 0, 0, 0)",
+  "schema_scripts": [
+    "Person"
+  ],
+  "preload_links": 1,
+  "preconnect_links": 0,
+  "meta_desc": "Independent consultant bridging business and engineering. Product strategy, full-stack development, design systems, and technical leadership.",
+  "og_image": null,
+  "canonical": "https://cpdeol.com/"
+}

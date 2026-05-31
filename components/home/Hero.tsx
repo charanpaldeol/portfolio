@@ -53,7 +53,7 @@ export default function Hero() {
   return (
     <section
       id="page-top"
-      className="relative flex w-full flex-col gap-8 overflow-hidden pt-6 scroll-mt-28 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:pt-10"
+      className="relative flex w-full flex-col gap-8 overflow-hidden pt-4 scroll-mt-28 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:pt-6"
     >
       {/* Background orb — no border, depth through gradient blur */}
       <div
@@ -69,14 +69,19 @@ export default function Hero() {
           {homeHeroAvailability}
         </div>
 
-        {/* H1 — Display scale: Manrope ExtraBold via base styles */}
-        <TypingAnimation
-          as="h1"
-          className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground md:text-6xl lg:text-7xl"
-          duration={70}
-        >
-          {homeHeroName}
-        </TypingAnimation>
+        {/* H1 — static text for crawlers; typing animation is decorative */}
+        <h1 className="mt-5 text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground md:text-6xl lg:text-7xl">
+          <span className="sr-only">{homeHeroName}</span>
+          <span aria-hidden className="inline-block">
+          <TypingAnimation
+            as="span"
+            className="text-5xl font-extrabold leading-[1.05] tracking-tighter text-foreground md:text-6xl lg:text-7xl"
+            duration={70}
+          >
+            {homeHeroName}
+          </TypingAnimation>
+          </span>
+        </h1>
 
         {/* Sub-headline — Manrope Bold, italic primary accent */}
         <p className="mt-4 text-xl font-bold leading-snug tracking-tight text-foreground md:text-2xl">

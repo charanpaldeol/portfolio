@@ -18,25 +18,14 @@ import { standaloneArticles } from "@/lib/blog-articles-data"
 import { cn } from "@/lib/utils"
 import { whatIBringCards } from "@/lib/what-i-bring-cards"
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/site-metadata"
+
+export const metadata: Metadata = pageMetadata({
   title: "Blog",
   description:
     "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
-  alternates: { canonical: "https://cpdeol.com/blog" },
-  openGraph: {
-    title: "Blog — Charan Deol",
-    description:
-      "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
-    url: "https://cpdeol.com/blog",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog — Charan Deol",
-    description:
-      "Ideas, frameworks, and practical thinking on problem framing, solution design, AI-native delivery, engineering depth, and value realization.",
-  },
-}
+  path: "/blog",
+})
 
 /** Thumbnail accent config per slug — tonal surface shifts, no borders */
 const thumbConfig: Record<string, { bg: string; text: string; icon: LucideIcon }> = {

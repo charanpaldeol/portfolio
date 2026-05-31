@@ -6,10 +6,14 @@ import { PageShell } from "@/components/layout/PageShell"
 import { WeatherSearch } from "@/components/weather/WeatherSearch"
 import { featureFlag } from "@/lib/feature-flags"
 
-export const metadata: Metadata = {
+import { NOINDEX_ROBOTS, pageMetadata } from "@/lib/site-metadata"
+
+export const metadata: Metadata = pageMetadata({
   title: "Weather",
   description: "Current conditions via the site weather API.",
-}
+  path: "/weather",
+  robots: NOINDEX_ROBOTS,
+})
 
 function buildSearchString(sp: Record<string, string | string[] | undefined>): string {
   const qs = new URLSearchParams()
