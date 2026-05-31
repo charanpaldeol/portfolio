@@ -3,7 +3,6 @@
 ## Scope discipline
 
 - Only change files explicitly listed under “Files to edit” in the prompt.
-- Do not refactor, reorganize, or rename things outside the requested change.
 - If a required change touches a frozen file, stop and ask for explicit approval.
 
 ## Copy discipline
@@ -12,9 +11,7 @@
 
 ## Verification bar (before committing)
 
-- Run `pnpm build` with zero TypeScript errors.
-- Run `pnpm lint`.
-- Follow repo audit requirements (see `scripts/audit.js`).
+- Run `pnpm verify` and ensure it passes (see CLAUDE.md → Verify for what it covers).
 
 ## Agent-safe development defaults
 
