@@ -1,76 +1,218 @@
+// Purpose: Open-Meteo weather API — current conditions, 7-day forecast, and air quality.
 import { NextResponse } from "next/server"
 import { z } from "zod"
+
+import { geocodeCity, reverseGeocodeCity, type GeoPlace } from "@/lib/weather-geocode"
+import { weatherConditionFromCode } from "@/lib/weather-code"
+import { buildDailyForecast, parseAirQuality } from "@/lib/weather-response"
+import type { AirQualitySnapshot, DailyForecastDay } from "@/lib/weather-types"
+
+const WeatherQuerySchema = z.object({
+  lat: z.string().optional(),
+  lon: z.string().optional(),
+  latitude: z.string().optional(),
+  longitude: z.string().optional(),
+  city: z.string().optional(),
+  q: z.string().optional(),
+  approx: z.string().optional(),
+})
 
 const DEFAULT_LAT = 40.7128
 const DEFAULT_LON = -74.006
 
-/** Accept known query keys only; extra params ignored (safe for forward proxies). */
-const WeatherQuerySchema = z.object({
-  latitude: z.string().optional(),
-  longitude: z.string().optional(),
-  lat: z.string().optional(),
-  lon: z.string().optional(),
-  city: z.string().optional(),
-  q: z.string().optional(),
-})
-
-function parseCoord(raw: string | undefined, min: number, max: number, fallback: number): number {
-  if (raw == null || raw.trim() === "") return fallback
-  const n = Number.parseFloat(raw)
-  if (!Number.isFinite(n) || n < min || n > max) return fallback
-  return n
-}
-
-async function resolveLatLon(parsed: z.infer<typeof WeatherQuerySchema>): Promise<{ lat: number; lon: number }> {
-  const city = (parsed.city ?? parsed.q ?? "").trim()
-  if (city) {
-    try {
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`
-      const geoRes = await fetch(geoUrl, { next: { revalidate: 3600 } })
-      if (geoRes.ok) {
-        const geo = (await geoRes.json()) as { results?: Array<{ latitude: number; longitude: number }> }
-        const first = geo.results?.[0]
-        if (first && typeof first.latitude === "number" && typeof first.longitude === "number") {
-          return { lat: first.latitude, lon: first.longitude }
-        }
-      }
-    } catch {
-      // fall through to safe defaults
-    }
-    return { lat: DEFAULT_LAT, lon: DEFAULT_LON }
+type ForecastBody = {
+  timezone?: string
+  timezone_abbreviation?: string
+  elevation?: number
+  current?: {
+    time?: string
+    temperature_2m?: number
+    apparent_temperature?: number
+    relative_humidity_2m?: number
+    weather_code?: number
+    wind_speed_10m?: number
+    wind_direction_10m?: number
+    precipitation?: number
+    cloud_cover?: number
+    pressure_msl?: number
+    visibility?: number
+    is_day?: number
   }
-
-  const lat = parseCoord(parsed.latitude ?? parsed.lat, -90, 90, DEFAULT_LAT)
-  const lon = parseCoord(parsed.longitude ?? parsed.lon, -180, 180, DEFAULT_LON)
-  return { lat, lon }
+  daily?: {
+    time?: string[]
+    temperature_2m_max?: number[]
+    temperature_2m_min?: number[]
+    weather_code?: number[]
+    precipitation_sum?: number[]
+    uv_index_max?: number[]
+    sunrise?: string[]
+    sunset?: string[]
+  }
 }
 
 function buildForecastUrl(lat: number, lon: number): string {
   const params = new URLSearchParams({
     latitude: String(lat),
     longitude: String(lon),
-    current: "temperature_2m,weather_code",
+    current:
+      "temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,precipitation,cloud_cover,pressure_msl,visibility,is_day",
+    daily:
+      "weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,uv_index_max,sunrise,sunset",
     timezone: "auto",
+    forecast_days: "7",
   })
   return `https://api.open-meteo.com/v1/forecast?${params.toString()}`
 }
 
+function buildAirQualityUrl(lat: number, lon: number): string {
+  const params = new URLSearchParams({
+    latitude: String(lat),
+    longitude: String(lon),
+    current: "us_aqi,pm2_5",
+    timezone: "auto",
+  })
+  return `https://air-quality-api.open-meteo.com/v1/air-quality?${params.toString()}`
+}
+
+function parseCoord(raw: string | undefined): number | null {
+  if (!raw) return null
+  const n = Number.parseFloat(raw)
+  return Number.isFinite(n) ? n : null
+}
+
+async function resolveLocation(
+  latRaw: string | undefined,
+  lonRaw: string | undefined,
+  cityRaw: string | undefined
+): Promise<{ lat: number; lon: number; city: string; meta: GeoPlace | null } | { error: string }> {
+  const latParam = parseCoord(latRaw)
+  const lonParam = parseCoord(lonRaw)
+  const cityQuery = (cityRaw ?? "").trim()
+
+  if (latParam != null && lonParam != null) {
+    const city = (await reverseGeocodeCity(latParam, lonParam)) || "Current location"
+    return { lat: latParam, lon: lonParam, city, meta: null }
+  }
+
+  if (cityQuery) {
+    const place = await geocodeCity(cityQuery)
+    if (!place) {
+      return { error: `Could not find a location for "${cityQuery}". Try a different spelling.` }
+    }
+    return { lat: place.lat, lon: place.lon, city: place.city, meta: place }
+  }
+
+  const city = (await reverseGeocodeCity(DEFAULT_LAT, DEFAULT_LON)) || "New York"
+  return { lat: DEFAULT_LAT, lon: DEFAULT_LON, city, meta: null }
+}
+
+function buildWeatherPayload(
+  lat: number,
+  lon: number,
+  city: string,
+  body: ForecastBody,
+  airQuality: AirQualitySnapshot,
+  locationMeta: GeoPlace | null,
+  locationSource: "gps" | "network" | null
+) {
+  const current = body.current ?? {}
+  const daily = body.daily ?? {}
+  const weatherCode = current.weather_code ?? 0
+  const dailyForecast: DailyForecastDay[] = buildDailyForecast(daily, 7)
+  const elevationM =
+    typeof body.elevation === "number" && Number.isFinite(body.elevation)
+      ? body.elevation
+      : (locationMeta?.elevationM ?? null)
+
+  return {
+    lat,
+    lon,
+    city,
+    temperatureC: current.temperature_2m ?? null,
+    feelsLikeC: current.apparent_temperature ?? null,
+    humidityPercent: current.relative_humidity_2m ?? null,
+    weatherCode,
+    condition: weatherConditionFromCode(weatherCode),
+    windSpeedKmh: current.wind_speed_10m ?? null,
+    windDirectionDeg: current.wind_direction_10m ?? null,
+    precipitationMm: current.precipitation ?? null,
+    precipitationSumTodayMm: daily.precipitation_sum?.[0] ?? null,
+    cloudCoverPercent: current.cloud_cover ?? null,
+    pressureHpa: current.pressure_msl ?? null,
+    visibilityM: current.visibility ?? null,
+    isDay: current.is_day === 1,
+    todayHighC: daily.temperature_2m_max?.[0] ?? null,
+    todayLowC: daily.temperature_2m_min?.[0] ?? null,
+    uvIndexMax: daily.uv_index_max?.[0] ?? null,
+    sunrise: daily.sunrise?.[0] ?? null,
+    sunset: daily.sunset?.[0] ?? null,
+    observedAt: current.time ?? null,
+    timezone: body.timezone ?? null,
+    timezoneAbbreviation: body.timezone_abbreviation ?? null,
+    elevationM,
+    population: locationMeta?.population ?? null,
+    locationSource,
+    airQuality,
+    dailyForecast,
+    source: "open-meteo" as const,
+    current,
+    daily,
+  }
+}
+
+function mockPayload(lat: number, lon: number, city: string) {
+  const body: ForecastBody = {
+    timezone: "America/New_York",
+    timezone_abbreviation: "EDT",
+    elevation: 10,
+    current: {
+      time: "2026-06-02T14:30",
+      temperature_2m: 22,
+      apparent_temperature: 21,
+      relative_humidity_2m: 55,
+      weather_code: 1,
+      wind_speed_10m: 8,
+      wind_direction_10m: 180,
+      precipitation: 0,
+      cloud_cover: 25,
+      pressure_msl: 1015,
+      visibility: 20000,
+      is_day: 1,
+    },
+    daily: {
+      time: ["2026-06-02", "2026-06-03", "2026-06-04", "2026-06-05", "2026-06-06", "2026-06-07", "2026-06-08"],
+      weather_code: [1, 2, 3, 61, 2, 1, 0],
+      temperature_2m_max: [24, 26, 23, 22, 25, 27, 28],
+      temperature_2m_min: [15, 16, 14, 13, 15, 17, 18],
+      precipitation_sum: [0, 0.2, 1.5, 4, 0, 0, 0],
+      uv_index_max: [6, 7, 5, 4, 6, 8, 8],
+      sunrise: [
+        "2026-06-02T05:45",
+        "2026-06-03T05:45",
+        "2026-06-04T05:44",
+        "2026-06-05T05:44",
+        "2026-06-06T05:44",
+        "2026-06-07T05:43",
+        "2026-06-08T05:43",
+      ],
+      sunset: [
+        "2026-06-02T20:15",
+        "2026-06-03T20:16",
+        "2026-06-04T20:16",
+        "2026-06-05T20:17",
+        "2026-06-06T20:17",
+        "2026-06-07T20:18",
+        "2026-06-08T20:18",
+      ],
+    },
+  }
+
+  return buildWeatherPayload(lat, lon, city, body, { usAqi: 42, pm25: 5.2, label: "Good" }, null, null)
+}
+
 /**
- * Weather API handler with optional location query parameters.
- *
- * Query parameters (all optional):
- *   - `latitude` | `lat`: latitude value (-90 to 90); defaults to 40.7128 (NYC)
- *   - `longitude` | `lon`: longitude value (-180 to 180); defaults to -74.006 (NYC)
- *   - `city` | `q`: city name for geocoding via Open-Meteo; falls back to lat/lon defaults
- *
- * Behavior:
- *   - Unknown query params are ignored (forward-proxy safe).
- *   - Invalid coordinates clamp to valid ranges or fallback to NYC defaults.
- *   - City lookup uses Open-Meteo geocoding API (free, no credentials needed).
- *   - Provider: Open-Meteo (free, no API key required).
- *   - If upstream fetch fails, returns a mock payload for local dev/factory verification.
- *
- * Example: /api/weather?city=London or /api/weather?lat=51.5074&lon=-0.1278
+ * GET /api/weather
+ * Query: lat, lon (or latitude, longitude), city (or q), approx=1 for network location.
  */
 export async function GET(request: Request) {
   const urlObj = new URL(request.url)
@@ -79,40 +221,48 @@ export async function GET(request: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid query parameters" }, { status: 400 })
   }
-  const { lat, lon } = await resolveLatLon(parsed.data)
 
-  const forecastUrl = buildForecastUrl(lat, lon)
+  const latRaw = parsed.data.lat ?? parsed.data.latitude
+  const lonRaw = parsed.data.lon ?? parsed.data.longitude
+  const cityRaw = parsed.data.city ?? parsed.data.q
+  const locationSource =
+    parsed.data.approx === "1" ? ("network" as const) : latRaw && lonRaw ? ("gps" as const) : null
+
+  const resolved = await resolveLocation(latRaw, lonRaw, cityRaw)
+  if ("error" in resolved) {
+    return NextResponse.json({ error: resolved.error }, { status: 404 })
+  }
+
+  const { lat, lon, city, meta } = resolved
+
+  if (process.env.WEATHER_USE_MOCK === "1") {
+    return NextResponse.json({ ...mockPayload(lat, lon, city), source: "mock" })
+  }
 
   try {
-    const upstream = await fetch(forecastUrl, { next: { revalidate: 600 } })
-    if (!upstream.ok) throw new Error(`open-meteo status ${upstream.status}`)
-    const body = (await upstream.json()) as {
-      current?: { temperature_2m?: number; weather_code?: number }
+    const [forecastRes, airQualityRes] = await Promise.all([
+      fetch(buildForecastUrl(lat, lon), { next: { revalidate: 300 } }),
+      fetch(buildAirQualityUrl(lat, lon), { next: { revalidate: 300 } }),
+    ])
+
+    if (!forecastRes.ok) {
+      const text = await forecastRes.text().catch(() => "")
+      return NextResponse.json(
+        { error: `Weather provider error (${forecastRes.status})${text ? `: ${text.slice(0, 120)}` : ""}` },
+        { status: 502 }
+      )
     }
-    const current = body.current
-    const t = current?.temperature_2m
-    const code = current?.weather_code
-    return NextResponse.json({
-      source: "open-meteo",
-      lat,
-      lon,
-      city: parsed.data.city ?? parsed.data.q ?? "",
-      temperatureC: typeof t === "number" && Number.isFinite(t) ? t : 0,
-      weatherCode: typeof code === "number" && Number.isFinite(code) ? code : 0,
-      current: {
-        temperature_2m: current?.temperature_2m ?? null,
-        weather_code: current?.weather_code ?? null,
-      },
-    })
-  } catch {
-    return NextResponse.json({
-      source: "mock",
-      lat,
-      lon,
-      city: parsed.data.city ?? parsed.data.q ?? "",
-      temperatureC: 18,
-      weatherCode: 0,
-      current: { temperature_2m: 18, weather_code: 0 },
-    })
+
+    const body = (await forecastRes.json()) as ForecastBody
+    const airQuality = airQualityRes.ok
+      ? parseAirQuality((await airQualityRes.json()) as { current?: { us_aqi?: number; pm2_5?: number } })
+      : { usAqi: null, pm25: null, label: "—" }
+
+    return NextResponse.json(
+      buildWeatherPayload(lat, lon, city, body, airQuality, meta, locationSource)
+    )
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error"
+    return NextResponse.json({ error: `Failed to fetch weather: ${message}` }, { status: 502 })
   }
 }

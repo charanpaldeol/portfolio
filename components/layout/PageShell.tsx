@@ -14,7 +14,7 @@ export function PageShell({ children, className, containerClassName }: Props) {
   return (
     <div
       className={cn(
-        "flex min-h-0 min-h-screen w-full min-w-0 flex-1 flex-col bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed",
+        "flex min-h-0 w-full min-w-0 flex-1 flex-col bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed",
         className
       )}
     >

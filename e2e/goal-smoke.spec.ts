@@ -30,11 +30,35 @@ test.describe("FACTORY_VERIFY_WEATHER_V1", () => {
     expect(data.source === "open-meteo" || data.source === "mock").toBeTruthy()
   })
 
-  test("/weather shows human-readable weather from API", async ({ page }) => {
+  test("/weather shows search and location details from API", async ({ page }) => {
     await page.goto("/weather")
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
-    await expect(page.getByText("Temperature:", { exact: false })).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByText("Source:", { exact: false })).toBeVisible()
+    await expect(page.getByLabelText(/search location/i)).toBeVisible()
+    await expect(page.getByText("Current weather", { exact: true })).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText("Feels like", { exact: true })).toBeVisible()
+    await expect(page.getByText("Humidity", { exact: true })).toBeVisible()
+    await expect(page.getByText("Wind", { exact: true })).toBeVisible()
+    await expect(page.getByText("7-day forecast", { exact: true })).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText("Air quality", { exact: true })).toBeVisible()
+    await expect(page.getByText(/GMT/i)).toBeVisible()
+    await expect(page.getByText(/\d+\.\d+, -?\d+\.\d+/)).toBeVisible({ timeout: 15_000 })
+  })
+
+  test("/weather compare mode shows dual search", async ({ page }) => {
+    await page.goto("/weather?compare=1")
+    await expect(page.getByText("Compare two places", { exact: true })).toBeVisible()
+    await expect(page.getByLabelText(/^location a$/i)).toBeVisible()
+    await expect(page.getByLabelText(/^location b$/i)).toBeVisible()
+  })
+
+  test("/weather city search updates location", async ({ page }) => {
+    await page.goto("/weather")
+    await page.getByLabelText(/search location/i).fill("Ludhiana")
+    await expect(page.getByRole("option", { name: /ludhiana/i }).first()).toBeVisible({ timeout: 10_000 })
+    await page.getByRole("option", { name: /ludhiana/i }).first().click()
+    await expect(page).toHaveURL(/lat=.*&lon=/)
+    await expect(page.getByText(/ludhiana, punjab/i)).toBeVisible({
+      timeout: 15_000,
+    })
   })
 })
 

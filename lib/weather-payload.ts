@@ -1,0 +1,166 @@
+// Purpose: Parse /api/weather JSON into a typed WeatherSnapshot for page components.
+import { weatherConditionFromCode } from "@/lib/weather-code"
+import type { AirQualitySnapshot, DailyForecastDay, WeatherSnapshot } from "@/lib/weather-types"
+
+function readNumber(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null
+}
+
+function readAirQuality(value: unknown): AirQualitySnapshot {
+  if (!value || typeof value !== "object") {
+    return { usAqi: null, pm25: null, label: "—" }
+  }
+  const record = value as Record<string, unknown>
+  return {
+    usAqi: readNumber(record.usAqi),
+    pm25: readNumber(record.pm25),
+    label: typeof record.label === "string" ? record.label : "—",
+  }
+}
+
+function readDailyForecast(value: unknown): DailyForecastDay[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((day): day is DailyForecastDay => {
+    return (
+      !!day &&
+      typeof day === "object" &&
+      typeof (day as DailyForecastDay).date === "string" &&
+      typeof (day as DailyForecastDay).weekday === "string" &&
+      typeof (day as DailyForecastDay).condition === "object"
+    )
+  })
+}
+
+function readLocationSource(value: unknown): "gps" | "network" | null {
+  return value === "gps" || value === "network" ? value : null
+}
+
+export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnapshot | null {
+  if (typeof data.error === "string" && data.error.trim() !== "") return null
+  if (typeof data.lat !== "number" || typeof data.lon !== "number") return null
+
+  const weatherCode =
+    readNumber(data.weatherCode) ??
+    readNumber((data.current as { weather_code?: number } | undefined)?.weather_code) ??
+    0
+  const conditionFromApi = data.condition as { label?: string; icon?: string } | undefined
+  const condition =
+    typeof conditionFromApi?.label === "string" && typeof conditionFromApi?.icon === "string"
+      ? { label: conditionFromApi.label, icon: conditionFromApi.icon }
+      : weatherConditionFromCode(weatherCode)
+
+  return {
+    city: typeof data.city === "string" ? data.city : "",
+    lat: data.lat,
+    lon: data.lon,
+    temperatureC:
+      readNumber(data.temperatureC) ??
+      readNumber((data.current as { temperature_2m?: number } | undefined)?.temperature_2m),
+    condition,
+    feelsLikeC: readNumber(data.feelsLikeC),
+    humidityPercent: readNumber(data.humidityPercent),
+    windSpeedKmh: readNumber(data.windSpeedKmh),
+    windDirectionDeg: readNumber(data.windDirectionDeg),
+    precipitationMm: readNumber(data.precipitationMm),
+    precipitationSumTodayMm: readNumber(data.precipitationSumTodayMm),
+    cloudCoverPercent: readNumber(data.cloudCoverPercent),
+    pressureHpa: readNumber(data.pressureHpa),
+    visibilityM: readNumber(data.visibilityM),
+    uvIndexMax: readNumber(data.uvIndexMax),
+    sunrise: typeof data.sunrise === "string" ? data.sunrise : null,
+    sunset: typeof data.sunset === "string" ? data.sunset : null,
+    todayHighC: readNumber(data.todayHighC),
+    todayLowC: readNumber(data.todayLowC),
+    elevationM: readNumber(data.elevationM),
+    population: readNumber(data.population),
+    locationSource: readLocationSource(data.locationSource),
+    airQuality: readAirQuality(data.airQuality),
+    dailyForecast: readDailyForecast(data.dailyForecast),
+    observedAt: typeof data.observedAt === "string" ? data.observedAt : null,
+    timezone: typeof data.timezone === "string" ? data.timezone : null,
+    timezoneAbbreviation:
+      typeof data.timezoneAbbreviation === "string" ? data.timezoneAbbreviation : null,
+    source: typeof data.source === "string" ? data.source : "unknown",
+  }
+}
+
+export function buildWeatherApiQuery(sp: Record<string, string | string[] | undefined>): string {
+  const qs = new URLSearchParams()
+  for (const [key, val] of Object.entries(sp)) {
+    if (key === "compare") continue
+    if (typeof val === "string" && val.trim() !== "") qs.set(key, val)
+    else if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") qs.set(key, val[0])
+  }
+  const s = qs.toString()
+  return s ? `?${s}` : ""
+}
+
+export function buildCompareLocationQuery(
+  sp: Record<string, string | string[] | undefined>,
+  slot: "a" | "b"
+): string {
+  const qs = new URLSearchParams()
+  const read = (key: string) => {
+    const val = sp[key]
+    if (typeof val === "string" && val.trim() !== "") return val
+    if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") return val[0]
+    return null
+  }
+
+  if (slot === "a") {
+    const lat = read("lat") ?? read("latitude")
+    const lon = read("lon") ?? read("longitude")
+    const city = read("city") ?? read("q")
+    if (lat) qs.set("lat", lat)
+    if (lon) qs.set("lon", lon)
+    if (city) qs.set("city", city)
+    if (read("approx") === "1") qs.set("approx", "1")
+  } else {
+    const lat = read("lat2") ?? read("latitude2")
+    const lon = read("lon2") ?? read("longitude2")
+    const city = read("city2") ?? read("q2")
+    if (lat) qs.set("lat", lat)
+    if (lon) qs.set("lon", lon)
+    if (city) qs.set("city", city)
+  }
+
+  const s = qs.toString()
+  return s ? `?${s}` : ""
+}
+
+export function isCompareMode(sp: Record<string, string | string[] | undefined>): boolean {
+  if (readParam(sp, "compare") === "1") return true
+  const lat2 = readParam(sp, "lat2") ?? readParam(sp, "latitude2")
+  const lon2 = readParam(sp, "lon2") ?? readParam(sp, "longitude2")
+  const city2 = readParam(sp, "city2") ?? readParam(sp, "q2")
+  return (!!lat2 && !!lon2) || !!city2
+}
+
+function readParam(sp: Record<string, string | string[] | undefined>, key: string): string | null {
+  const val = sp[key]
+  if (typeof val === "string" && val.trim() !== "") return val
+  if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") return val[0]
+  return null
+}
+
+export function hasCompareLocations(sp: Record<string, string | string[] | undefined>): boolean {
+  const aLat = readParam(sp, "lat") ?? readParam(sp, "latitude")
+  const aLon = readParam(sp, "lon") ?? readParam(sp, "longitude")
+  const aCity = readParam(sp, "city") ?? readParam(sp, "q")
+  const bLat = readParam(sp, "lat2") ?? readParam(sp, "latitude2")
+  const bLon = readParam(sp, "lon2") ?? readParam(sp, "longitude2")
+  const bCity = readParam(sp, "city2") ?? readParam(sp, "q2")
+
+  const hasA = (!!aLat && !!aLon) || !!aCity
+  const hasB = (!!bLat && !!bLon) || !!bCity
+  return hasA && hasB
+}
+
+export function buildCompareHrefFromSingle(lat: number, lon: number, city?: string): string {
+  const params = new URLSearchParams()
+  params.set("compare", "1")
+  params.set("lat", lat.toFixed(4))
+  params.set("lon", lon.toFixed(4))
+  if (city?.trim()) params.set("city", city.trim())
+  return `/weather?${params.toString()}`
+}
