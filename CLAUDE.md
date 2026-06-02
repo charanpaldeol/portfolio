@@ -26,6 +26,7 @@ Single layout stack: `app/layout.tsx` → `GlobalChrome` → `PortfolioShell` �
 Run `pnpm verify` before committing — there is no automatic pre-commit hook, so nothing else catches a broken build for you.
 
 - `pnpm verify` = `tsc --noEmit` + `lint` + `node scripts/audit.js` + `build` + e2e (`pnpm e2e:smoke`, then `pnpm e2e:proof`). Set `FACTORY_SKIP_E2E=1` to skip e2e (factory/CI only).
+- **Before push:** at minimum run `pnpm lint && pnpm build` — Vercel runs lint inside `next build`; import-order errors have shipped when only unit tests were run.
 - `pnpm e2e:headless` runs the full Playwright suite; it is **not** part of `pnpm verify`.
 - `pnpm verify:full` adds unit tests (Vitest: `pnpm test`).
 - `pnpm build` runs a `prebuild` step that can fail independently of app code: `build:content` (regenerates content data) + `sync:graph` (rebuilds the content graph). If `build` fails, check whether it's the app or prebuild before debugging components.
