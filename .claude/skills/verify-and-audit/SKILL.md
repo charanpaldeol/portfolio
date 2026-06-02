@@ -5,6 +5,8 @@ description: Run portfolio verification (tsc, lint, audit, build, e2e) and triag
 
 # Verify and audit
 
+> **Purpose:** Run and triage `pnpm verify` and `scripts/audit.js` failures before commit or PR.
+
 ## When to use
 
 - Before committing or opening a PR

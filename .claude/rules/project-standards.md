@@ -1,5 +1,26 @@
 # Project standards (always apply)
 
+> **Purpose:** Always-on agent policy for scope, copy, verification, file metadata, and production guardrails on cpdeol.com.
+
+## File purpose (all file types)
+
+When you **create** or **materially edit** any project file, add or update a one-line purpose at the top. State the file’s **role in the project**, not line-by-line behavior. Keep it current when the file’s role changes.
+
+| File kind | Where to put it |
+|-----------|-----------------|
+| `.ts`, `.tsx`, `.js`, `.mjs`, `.cjs` | `// Purpose: …` (first line, or after initial comments) |
+| `.css`, `.module.css` | `/* Purpose: … */` |
+| `.sh` | `# Purpose: …` (immediately after `#!/usr/bin/env …` if present) |
+| `.md`, `.mdc` | `> **Purpose:** …` (line 1, or immediately after YAML frontmatter) |
+| `.sql` | `-- Purpose: …` |
+| `.html`, `.svg` (when hand-edited) | `<!-- Purpose: … -->` |
+| `.yaml`, `.yml` | `# Purpose: …` |
+| `.json` (e.g. `launch.json`) | `// Purpose: …` on line 1 if the file is JSONC in this repo; otherwise document in the nearest parent `README.md` or `CLAUDE.md` table |
+
+**Skills** (`.claude/skills/*/SKILL.md`): frontmatter `description` satisfies this rule if it states the file’s role; otherwise add `> **Purpose:**` after the frontmatter.
+
+**Binary or generated files** (images, lockfiles, build output): do not add headers; skip unless you own the generator script—then purpose the script.
+
 ## Scope discipline
 
 - Only change files required for the task. If the prompt names specific files, stay within that list.

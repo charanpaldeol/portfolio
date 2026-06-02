@@ -1,5 +1,7 @@
 # Editorial page hero (canonical UI)
 
+> **Purpose:** Require `EditorialPageHero` for editorial marketing pages so hero markup does not drift across routes.
+
 Always apply (imported via `CLAUDE.md`). Especially when editing `app/**/*.tsx` or `components/portfolio/**/*.tsx`.
 
 ## Source of truth

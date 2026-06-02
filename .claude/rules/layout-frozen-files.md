@@ -1,5 +1,7 @@
 # Frozen files (do not modify unless explicitly named)
 
+> **Purpose:** List layout, design-system, and test paths agents must not edit without explicit user approval.
+
 ## Layout (frozen)
 
 - `app/layout.tsx` (RootLayout) — must have exactly ONE `export default`

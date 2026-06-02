@@ -1,6 +1,8 @@
 # Governance — AI-agent development
 
-Enforcement for autonomous work on this portfolio. **Policy lives in** `CLAUDE.md` and `.claude/rules/`; **workflows** in `.claude/skills/`.
+> **Purpose:** Human-readable agent enforcement summary — hero, verify, feature flags, data layout, and governance reports.
+
+Enforcement for autonomous work on this portfolio. **Policy lives in** `CLAUDE.md` and `.claude/rules/`; **workflows** in `.claude/skills/`. **File purpose headers** (all file types): see `.claude/rules/project-standards.md` § File purpose.
 
 ## Editorial page hero (canonical UI)
 

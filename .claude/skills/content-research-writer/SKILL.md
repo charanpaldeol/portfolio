@@ -5,6 +5,8 @@ description: Writing partner for off-repo drafts (blog posts, articles, newslett
 
 # Content Research Writer
 
+> **Purpose:** Collaborative writing for off-repo drafts; site copy in `lib/*-data.ts` needs exact user-supplied text.
+
 This skill acts as your writing partner, helping you research, outline, draft, and refine content while maintaining your unique voice and style.
 
 ## Portfolio site guardrails (cpdeol.com)

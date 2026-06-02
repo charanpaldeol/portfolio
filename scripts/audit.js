@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Purpose: CI audit for design tokens, architecture rules, and editorial hero compliance (see docs/DESIGN.md, GOVERNANCE.md).
 /**
  * Unified audit script — design.md + code-architecture-review.md + editorial hero (GOVERNANCE).
  *

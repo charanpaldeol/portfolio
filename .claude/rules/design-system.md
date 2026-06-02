@@ -1,5 +1,7 @@
 # Design system enforcement
 
+> **Purpose:** Enforce design tokens and Magic UI opt-in rules in app/component code; full strategy lives in `docs/DESIGN.md`.
+
 Always apply (imported via `CLAUDE.md`). Also relevant when editing `app/**` or `components/**` source files.
 
 ## Tokens (never hardcode)

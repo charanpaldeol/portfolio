@@ -1,5 +1,7 @@
 # portfolio
 
+> **Purpose:** Human-facing repo overview — quickstart, agent layout, verify commands, and doc index for cpdeol.com.
+
 Personal portfolio — cpdeol.com
 
 ## Quickstart

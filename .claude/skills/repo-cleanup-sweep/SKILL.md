@@ -5,6 +5,8 @@ description: Find and remove stale references, align docs with .claude/ layout, 
 
 # Repo cleanup sweep
 
+> **Purpose:** Hygiene pass for stale paths, `.claude/` layout, and safe cleanup scripts.
+
 ## When to use
 
 - After removing legacy tooling or routes
@@ -38,6 +40,8 @@ description: Find and remove stale references, align docs with .claude/ layout, 
    - `README.md` — agent entrypoints and verify commands
    - `docs/GOVERNANCE.md`
    - `scripts/extract-rules.mjs` — reports under `docs/governance/reports/`
+
+5. When touching any file, add or update its purpose header per `project-standards.md` § File purpose.
 
 ## Do not
 

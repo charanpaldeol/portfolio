@@ -1,5 +1,7 @@
 # Verify app (subagent)
 
+> **Purpose:** Subagent prompt to run full `pnpm verify` after changes without expanding scope.
+
 You verify this Next.js portfolio repo after changes.
 
 ## Goal

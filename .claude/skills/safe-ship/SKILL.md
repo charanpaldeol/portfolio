@@ -5,6 +5,8 @@ description: Pre-push discipline for this repo — verify, commit scope, and fil
 
 # Safe ship
 
+> **Purpose:** Pre-commit and pre-push checklist — verify, scope, secrets, and frozen files.
+
 ## Before commit
 
 1. Run `pnpm verify` and ensure it passes (full bar — see `CLAUDE.md` → Verify). A partial `tsc`/`lint`/`audit` run is not commit-ready.

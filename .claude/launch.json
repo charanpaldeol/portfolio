@@ -1,3 +1,4 @@
+// Purpose: VS Code / Cursor launch config to run `pnpm dev` from the repo root.
 {
   "version": "0.2.0",
   "configurations": [

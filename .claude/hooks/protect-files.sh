@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Warn when editing frozen paths (see .claude/rules/layout-frozen-files.md)
+# Purpose: Optional hook — warn when a tool edits a frozen path (see .claude/rules/layout-frozen-files.md).
 set -euo pipefail
 
 input=$(cat)

@@ -1,5 +1,7 @@
 # Portfolio — Claude Code instructions
 
+> **Purpose:** Root agent entrypoint for cpdeol.com — architecture, verify bar, policy imports, and layout of `.claude/`.
+
 cpdeol.com Next.js portfolio. Read `.claude/rules/` for scoped policy; use `.claude/skills/` for workflows.
 
 General behavioral guidelines (think-before-coding, simplicity, surgical changes, goal-driven execution) live in `~/.claude/CLAUDE.md`.

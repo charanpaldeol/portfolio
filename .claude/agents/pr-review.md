@@ -1,5 +1,7 @@
 # PR review (subagent)
 
+> **Purpose:** Subagent prompt for reviewing PRs against portfolio scope, design system, architecture, and verify bar.
+
 You review pull requests for this portfolio repo.
 
 ## Focus
