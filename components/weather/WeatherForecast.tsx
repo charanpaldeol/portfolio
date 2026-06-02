@@ -1,6 +1,6 @@
 // Purpose: Compact 7-day forecast strip for the weather page.
-import type { DailyForecastDay } from "@/lib/weather-types"
 import { formatPrecipitation, formatTemperature } from "@/lib/weather-format"
+import type { DailyForecastDay } from "@/lib/weather-types"
 
 type WeatherForecastProps = {
   days: DailyForecastDay[]

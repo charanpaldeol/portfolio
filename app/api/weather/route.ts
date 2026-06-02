@@ -2,9 +2,9 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
-import { geocodeCity, reverseGeocodeCity, type GeoPlace } from "@/lib/weather-geocode"
 import { weatherConditionFromCode } from "@/lib/weather-code"
 import { buildClimateArchiveUrl, parseClimateExtremes } from "@/lib/weather-climate"
+import { type GeoPlace, geocodeCity, reverseGeocodeCity } from "@/lib/weather-geocode"
 import { buildDailyForecast, parseAirQuality } from "@/lib/weather-response"
 import type { AirQualitySnapshot, ClimateExtremes, DailyForecastDay } from "@/lib/weather-types"
 

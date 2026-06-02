@@ -7,8 +7,8 @@ import { FormEvent, useState } from "react"
 
 import {
   LocationSearchField,
-  selectedLocationFromParams,
   type SelectedLocation,
+  selectedLocationFromParams,
 } from "@/components/weather/LocationSearchField"
 import { geolocationUnsupportedMessage, resolveCurrentLocation } from "@/lib/geolocation-client"
 import type { LocationSuggestion } from "@/lib/weather-geocode"

@@ -9,6 +9,7 @@ import { WeatherCompare } from "@/components/weather/WeatherCompare"
 import { WeatherCompareSearch } from "@/components/weather/WeatherCompareSearch"
 import { WeatherConditions } from "@/components/weather/WeatherConditions"
 import { WeatherSearch } from "@/components/weather/WeatherSearch"
+import { NOINDEX_ROBOTS, pageMetadata } from "@/lib/site-metadata"
 import {
   buildCompareHrefFromSingle,
   buildCompareLocationQuery,
@@ -17,8 +18,6 @@ import {
   isCompareMode,
   parseWeatherPayload,
 } from "@/lib/weather-payload"
-
-import { NOINDEX_ROBOTS, pageMetadata } from "@/lib/site-metadata"
 
 export const metadata: Metadata = pageMetadata({
   title: "Weather",
