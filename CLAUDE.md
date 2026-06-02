@@ -21,6 +21,32 @@ The policy files below are scope, copy, verification, design tokens, hero UI, an
 
 Single layout stack: `app/layout.tsx` → `GlobalChrome` → `PortfolioShell` → page content. Homepage sections: `components/home/*`.
 
+## Local dev (`pnpm dev`)
+
+**Symptom:** localhost returns HTML but the site looks unstyled or dead — browser console / terminal shows **`404` on `/_next/static/chunks/*` or `/_next/static/css/*`**.
+
+**Cause:** `pnpm build` (or deleting `.next`) while **`pnpm dev` is still running** leaves the dev server serving HTML that points at chunk URLs that no longer exist.
+
+**Recovery (stop dev → clear cache → restart):**
+
+```bash
+lsof -ti :3000 | xargs kill -9 2>/dev/null || true
+rm -rf .next
+pnpm dev
+```
+
+**Prevention:**
+
+- Do **not** run `pnpm build` in the same terminal session while `pnpm dev` is active. Stop dev first, or run build in a separate checkout/worktree.
+- After `pnpm build`, always **restart** `pnpm dev` before manual browser testing — do not assume dev self-heals.
+- Smoke-check after restart: open `/` and confirm a chunk URL from page source returns **200** (not 404).
+
+## Server data loading (App Router)
+
+**Do not** have Server Components or `page.tsx` **HTTP-fetch this app's own Route Handlers** (e.g. `fetch(\`http://${host}/api/weather\`)`). Nested self-requests in dev drop fields, time out, or race — weather once rendered without `climateNormals` / “Typical year” while `/api/weather` worked in curl.
+
+**Do** put shared loader logic in `lib/*-service.ts` (see `lib/weather-service.ts`) and call it from both the Route Handler and the page. Reserve `fetch('/api/…')` for **client components** and external callers only.
+
 ## Verify
 
 Run `pnpm verify` before committing — there is no automatic pre-commit hook, so nothing else catches a broken build for you.

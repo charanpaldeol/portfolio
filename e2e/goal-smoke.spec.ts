@@ -39,7 +39,7 @@ test.describe("FACTORY_VERIFY_WEATHER_V1", () => {
     await expect(page.getByText("Wind", { exact: true })).toBeVisible()
     await expect(page.getByText("7-day forecast", { exact: true })).toBeVisible({ timeout: 15_000 })
     await expect(page.getByText("Air quality", { exact: true })).toBeVisible()
-    await expect(page.getByText("Hottest month", { exact: true })).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText("Typical year", { exact: true })).toBeVisible({ timeout: 15_000 })
     await expect(page.getByText(/GMT/i)).toBeVisible()
     await expect(page.getByText(/\d+\.\d+, -?\d+\.\d+/)).toBeVisible({ timeout: 15_000 })
   })

@@ -72,6 +72,10 @@ Same for `valid[0]`, `items.at(n)`, etc. — assign, then `if (!x) return` / `co
 
 **Server vs client:** pure helpers used by Route Handlers or Server Components live in `lib/`, not in `"use client"` files — never import server callers from client modules.
 
+**Server pages vs API routes:** Server Components and `app/**/page.tsx` must **not** `fetch` their own Route Handlers over HTTP. Share logic via `lib/*-service.ts` and import from both the handler and the page (`lib/weather-service.ts` is the reference). Self-fetch caused missing weather climate data and flaky local dev.
+
+**Local dev 404 on `_next/static/*`:** stale `.next` after `pnpm build` while `pnpm dev` runs — stop dev, `rm -rf .next`, restart dev (see CLAUDE.md → Local dev).
+
 **Types files:** read and merge `lib/*-types.ts`; never self-import; grep exporters after edits.
 
 **Colocated tests:** `lib/*.test.ts` imports sibling modules with `./foo`, not `@/lib/foo`, unless an existing test in that folder uses `@/`.

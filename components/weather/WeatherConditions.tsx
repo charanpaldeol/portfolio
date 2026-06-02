@@ -107,16 +107,28 @@ export function WeatherConditions({ snapshot }: WeatherConditionsProps) {
 
   return (
     <section aria-label="Current weather conditions" className="space-y-4">
-      <div className="space-y-1">
-        <h1 className="font-display text-2xl font-semibold text-on-surface md:text-3xl">
-          {city ? city : "Current location"}
-        </h1>
-        <p className="font-mono text-xs text-on-surface-variant sm:text-sm">
-          {latLabel}, {lonLabel}
-        </p>
-        {locationMeta ? <p className="text-xs text-on-surface-variant">{locationMeta}</p> : null}
-        {locationSourceLabel ? (
-          <p className="text-xs text-on-surface-variant/80">{locationSourceLabel}</p>
+      <div
+        className={
+          climateNormals
+            ? "grid gap-4 sm:grid-cols-2 sm:items-start lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
+            : undefined
+        }
+      >
+        <div className="min-w-0 space-y-1">
+          <h1 className="font-display text-2xl font-semibold text-on-surface md:text-3xl">
+            {city ? city : "Current location"}
+          </h1>
+          <p className="font-mono text-xs text-on-surface-variant sm:text-sm">
+            {latLabel}, {lonLabel}
+          </p>
+          {locationMeta ? <p className="text-xs text-on-surface-variant">{locationMeta}</p> : null}
+          {locationSourceLabel ? (
+            <p className="text-xs text-on-surface-variant/80">{locationSourceLabel}</p>
+          ) : null}
+        </div>
+
+        {climateNormals ? (
+          <WeatherClimateNormals climate={climateNormals} layout="header" />
         ) : null}
       </div>
 
@@ -183,8 +195,6 @@ export function WeatherConditions({ snapshot }: WeatherConditionsProps) {
       </div>
 
       <WeatherForecast days={dailyForecast} />
-
-      {climateNormals ? <WeatherClimateNormals climate={climateNormals} /> : null}
 
       <p className="pt-1 text-[11px] text-on-surface-variant/75">
         Data from {source} via <code>/api/weather</code>

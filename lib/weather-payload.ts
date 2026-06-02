@@ -118,34 +118,46 @@ export function buildWeatherApiQuery(sp: Record<string, string | string[] | unde
   return s ? `?${s}` : ""
 }
 
+function readSearchParamValue(
+  sp: Record<string, string | string[] | undefined>,
+  key: string
+): string | null {
+  const val = sp[key]
+  if (typeof val === "string" && val.trim() !== "") return val
+  if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") return val[0]
+  return null
+}
+
+export function compareWeatherQueryFromSearchParams(
+  sp: Record<string, string | string[] | undefined>,
+  slot: "a" | "b"
+) {
+  if (slot === "a") {
+    return {
+      lat: readSearchParamValue(sp, "lat") ?? readSearchParamValue(sp, "latitude") ?? undefined,
+      lon: readSearchParamValue(sp, "lon") ?? readSearchParamValue(sp, "longitude") ?? undefined,
+      city: readSearchParamValue(sp, "city") ?? readSearchParamValue(sp, "q") ?? undefined,
+      approx: readSearchParamValue(sp, "approx") ?? undefined,
+    }
+  }
+
+  return {
+    lat: readSearchParamValue(sp, "lat2") ?? readSearchParamValue(sp, "latitude2") ?? undefined,
+    lon: readSearchParamValue(sp, "lon2") ?? readSearchParamValue(sp, "longitude2") ?? undefined,
+    city: readSearchParamValue(sp, "city2") ?? readSearchParamValue(sp, "q2") ?? undefined,
+  }
+}
+
 export function buildCompareLocationQuery(
   sp: Record<string, string | string[] | undefined>,
   slot: "a" | "b"
 ): string {
   const qs = new URLSearchParams()
-  const read = (key: string) => {
-    const val = sp[key]
-    if (typeof val === "string" && val.trim() !== "") return val
-    if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") return val[0]
-    return null
-  }
-
-  if (slot === "a") {
-    const lat = read("lat") ?? read("latitude")
-    const lon = read("lon") ?? read("longitude")
-    const city = read("city") ?? read("q")
-    if (lat) qs.set("lat", lat)
-    if (lon) qs.set("lon", lon)
-    if (city) qs.set("city", city)
-    if (read("approx") === "1") qs.set("approx", "1")
-  } else {
-    const lat = read("lat2") ?? read("latitude2")
-    const lon = read("lon2") ?? read("longitude2")
-    const city = read("city2") ?? read("q2")
-    if (lat) qs.set("lat", lat)
-    if (lon) qs.set("lon", lon)
-    if (city) qs.set("city", city)
-  }
+  const query = compareWeatherQueryFromSearchParams(sp, slot)
+  if (query.lat) qs.set("lat", query.lat)
+  if (query.lon) qs.set("lon", query.lon)
+  if (query.city) qs.set("city", query.city)
+  if (slot === "a" && query.approx === "1") qs.set("approx", "1")
 
   const s = qs.toString()
   return s ? `?${s}` : ""
@@ -160,10 +172,7 @@ export function isCompareMode(sp: Record<string, string | string[] | undefined>)
 }
 
 function readParam(sp: Record<string, string | string[] | undefined>, key: string): string | null {
-  const val = sp[key]
-  if (typeof val === "string" && val.trim() !== "") return val
-  if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") return val[0]
-  return null
+  return readSearchParamValue(sp, key)
 }
 
 export function hasCompareLocations(sp: Record<string, string | string[] | undefined>): boolean {

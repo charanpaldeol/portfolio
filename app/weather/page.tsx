@@ -1,6 +1,5 @@
 // Purpose: Weather page — single location or MSN-style readout, or side-by-side compare.
 import type { Metadata } from "next"
-import { headers } from "next/headers"
 import Link from "next/link"
 import { Suspense } from "react"
 
@@ -12,12 +11,13 @@ import { WeatherSearch } from "@/components/weather/WeatherSearch"
 import { NOINDEX_ROBOTS, pageMetadata } from "@/lib/site-metadata"
 import {
   buildCompareHrefFromSingle,
-  buildCompareLocationQuery,
-  buildWeatherApiQuery,
+  compareWeatherQueryFromSearchParams,
   hasCompareLocations,
   isCompareMode,
   parseWeatherPayload,
 } from "@/lib/weather-payload"
+import { getWeatherData, weatherQueryFromSearchParams } from "@/lib/weather-service"
+import type { WeatherQueryParams } from "@/lib/weather-service"
 
 export const metadata: Metadata = pageMetadata({
   title: "Weather",
@@ -26,18 +26,13 @@ export const metadata: Metadata = pageMetadata({
   robots: NOINDEX_ROBOTS,
 })
 
-async function loadWeatherJson(apiQuery: string): Promise<Record<string, unknown>> {
-  const h = await headers()
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "127.0.0.1:3000"
-  const proto = h.get("x-forwarded-proto") ?? "http"
-  const res = await fetch(`${proto}://${host}/api/weather${apiQuery}`, {
-    cache: "no-store",
-  })
-  if (!res.ok) {
-    const text = await res.text().catch(() => "")
-    return { error: `Request failed (${res.status})${text ? `: ${text.slice(0, 200)}` : ""}` }
+async function loadWeatherJson(query: WeatherQueryParams): Promise<Record<string, unknown>> {
+  const result = await getWeatherData(query)
+  if (result.status !== 200) {
+    const message = typeof result.data.error === "string" ? result.data.error : "Request failed"
+    return { error: message }
   }
-  return (await res.json()) as Record<string, unknown>
+  return result.data
 }
 
 type PageProps = {
@@ -71,8 +66,8 @@ export default async function WeatherPage({ searchParams }: PageProps) {
 
   if (compareMode && hasCompareLocations(sp)) {
     const [dataA, dataB] = await Promise.all([
-      loadWeatherJson(buildCompareLocationQuery(sp, "a")),
-      loadWeatherJson(buildCompareLocationQuery(sp, "b")),
+      loadWeatherJson(compareWeatherQueryFromSearchParams(sp, "a")),
+      loadWeatherJson(compareWeatherQueryFromSearchParams(sp, "b")),
     ])
     const locationA = parseWeatherPayload(dataA)
     const locationB = parseWeatherPayload(dataB)
@@ -111,8 +106,7 @@ export default async function WeatherPage({ searchParams }: PageProps) {
     )
   }
 
-  const apiQuery = buildWeatherApiQuery(sp)
-  const data = await loadWeatherJson(apiQuery)
+  const data = await loadWeatherJson(weatherQueryFromSearchParams(sp))
   const snapshot = parseWeatherPayload(data)
   const compareHref =
     snapshot != null ? buildCompareHrefFromSingle(snapshot.lat, snapshot.lon, snapshot.city) : "/weather?compare=1"
