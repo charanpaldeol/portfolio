@@ -242,7 +242,7 @@ Each PR should pass: `pnpm lint && pnpm tsc --noEmit && pnpm test && pnpm build`
 ## 9. Documentation
 
 ### 9.1 What Exists
-- `.cursorrules` — comprehensive AI development guidelines with architecture diagram and frozen-file list. Excellent. **§ 2.5** documents the canonical editorial page hero (`EditorialPageHero` + default reference `/what-i-bring`).
+- `CLAUDE.md` + `.claude/rules/` — agent policy (scope, copy, verify, frozen files, design tokens, editorial hero). Canonical editorial page hero: `EditorialPageHero` + default reference `/what-i-bring` (see `editorial-hero.md`, `docs/GOVERNANCE.md`). Legacy `.cursorrules` is deprecated.
 - `docs/DESIGN.md` — ✅ Added April 10, 2026. Full design system strategy: Editorial Expert north star, color/surface philosophy, typography scale, elevation rules, component guidelines, and do/don'ts.
 - `docs/GOVERNANCE.md` — **§ Editorial page hero (canonical UI)** — single implementation (`components/portfolio/EditorialPageHero.tsx`), proof page (`app/what-i-bring/page.tsx`), call-site list, and PR-review rules so marketing heroes do not drift across routes.
 - `docs/` — directory structure for ADRs, specs, stories, and research (mostly empty placeholders).

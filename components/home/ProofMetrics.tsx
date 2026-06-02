@@ -85,7 +85,7 @@ export default function ProofMetrics() {
             What execution produced
           </h2>
           <p className="mt-3 max-w-xl text-base font-light leading-relaxed text-muted-foreground">
-            After principles and execution, this is the result layer: anonymized engagement outcomes with clear measurement notes.
+            Representative outcomes from recent engagements, with baseline context and clear measurement notes.
           </p>
         </header>
 

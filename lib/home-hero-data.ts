@@ -11,8 +11,8 @@ export const homeHeroName = "Charan Deol"
 
 /** Rendered as the H2 subhead under the name. */
 export const homeHeroSubhead = {
-  prefix: "Product Management & Business Systems.",
-  accent: "AI-Native Delivery.",
+  prefix: "I help regulated and enterprise teams turn ambiguous initiatives into shipped systems",
+  accent: "with measurable adoption.",
 } as const
 
 /**
@@ -21,9 +21,9 @@ export const homeHeroSubhead = {
  * them with inline emphasis around `accent`.
  */
 export const homeHeroBody = {
-  before: "Most teams think in features or requirements. I think in",
-  accent: "systems, outcomes,",
-  after: "and what it takes to ship — from discovery to value.",
+  before: "From discovery to rollout, I align",
+  accent: "product, engineering, and compliance",
+  after: "so high-stakes work lands faster with fewer reversals.",
 } as const
 
 export const homeHeroIndustries = ["Finance & Banking", "Insurance", "Tech & SaaS"] as const
@@ -40,21 +40,21 @@ export const homeDomainNarratives: readonly HomeDomainNarrative[] = [
     recurringProblems:
       "Regulatory ambiguity, fragmented workflows, and slow onboarding or risk response cycles.",
     visitorValue:
-      "I align compliance, product, and engineering around explicit controls and measurable delivery outcomes.",
+      "I align compliance, product, and engineering around clear controls that reduce decision delays and improve audit readiness.",
   },
   {
     domain: "Enterprise SaaS and internal platforms",
     recurringProblems:
       "Disconnected systems, inconsistent reporting, and stakeholder misalignment on what success means.",
     visitorValue:
-      "I translate operating complexity into a clear roadmap, implementation artifacts, and KPI ownership.",
+      "I turn operating complexity into a shared roadmap, clear ownership, and KPI-backed delivery that shortens reporting and decision cycles.",
   },
   {
     domain: "Supply chain visibility and fulfilment operations",
     recurringProblems:
       "Inventory truth gaps, partner handoff failures, overselling, and reconciliation-heavy workflows.",
     visitorValue:
-      "I map warehouse-to-dispatch reality, define integration requirements, and drive adoption to value realization.",
+      "I map warehouse-to-dispatch reality, define integration contracts, and improve fulfilment throughput with fewer reconciliation errors.",
   },
 ]
 

@@ -33,7 +33,7 @@ export const metrics = [
     numericValue: 60,
     statSuffix: "%",
     label:
-      "Reduced manual reporting effort by 60% over two quarters after leading BI tool selection, KPI definition, and implementation for a 200-person enterprise operations team. Baseline came from weekly analyst time logs; post-launch measurement used dashboard telemetry and monthly finance ops reviews.",
+      "Cut manual reporting effort by 60% in two quarters for a 200-person operations team by leading BI tool selection, KPI definition, and rollout. Measured using analyst time logs, dashboard telemetry, and monthly finance operations reviews.",
     tag: "SaaS implementation",
     tagColor: "emerald",
     relatedProjectSlugs: ["real-time-analytics-dashboard", "distributed-order-fulfillment"],
@@ -48,7 +48,7 @@ export const metrics = [
     numericValue: null,
     statDisplay: "4 → 1",
     label:
-      "Consolidated four disconnected enterprise systems into one operational platform, cutting partner onboarding from three weeks to four days across 100+ locations. Measurement compared pre-migration onboarding lead time and error tickets against the first 90 days after cutover.",
+      "Consolidated four disconnected systems into one operational platform, reducing partner onboarding from three weeks to four days across 100+ locations. Measured against pre-migration cycle time and error-ticket volume during the first 90 days post-cutover.",
     tag: "Platform consolidation",
     tagColor: "violet",
     relatedProjectSlugs: ["payment-settlement-platform", "event-streaming-pipeline", "hr-management-system"],
@@ -63,7 +63,7 @@ export const metrics = [
     numericValue: 83,
     statSuffix: "%",
     label:
-      "Reached 83% user adoption within 60 days of go-live at a major Canadian bank, versus a pre-launch forecast of 40%, through role-based enablement and structured PROSCI change routines. Adoption was tracked via active workflow completion, supervisor usage audits, and weekly operating reviews.",
+      "Achieved 83% user adoption within 60 days at a major Canadian bank versus a 40% pre-launch forecast through role-based enablement and structured PROSCI change routines. Measured via workflow completion, supervisor usage audits, and weekly operating reviews.",
     tag: "Change management",
     tagColor: "amber",
     relatedProjectSlugs: ["ai-customer-onboarding-agent", "cloud-security-compliance-automation", "hr-management-system"],

@@ -21,8 +21,9 @@ export default function CTABand() {
             <span className="italic text-primary-fixed">hard problem?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-background/70 md:text-lg">
-            If the challenge is high-stakes, I can help shape the approach, lead execution, and stay through adoption.
-            Explore case studies first, or book a scope call when you are ready to move.
+            If you&apos;re navigating a high-stakes product or platform milestone, I can help de-risk the path,
+            lead execution, and stay through adoption. Explore case studies first, or book a scope call when
+            you&apos;re ready to move.
           </p>
 
           <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2">

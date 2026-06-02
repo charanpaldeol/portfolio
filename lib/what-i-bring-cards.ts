@@ -25,7 +25,7 @@ export const whatIBringCards = [
     badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Problem Framing",
     body:
-      "The most expensive decision in any tech program is choosing the wrong problem. Strong teams slow down just enough to define the decision, the constraints, and the measurable business outcome before writing a single line of code.",
+      "The most expensive decision in any tech program is choosing the wrong problem. I help teams define the decision, constraints, and measurable business target before build starts.",
     sections: [
       {
         heading: "Start with the decision, not the feature",
@@ -74,7 +74,7 @@ export const whatIBringCards = [
     badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Solution Design",
     body:
-      "Solution design is capital allocation in technical form. Great design choices reduce future cost, increase speed of change, and keep strategic options open as the business evolves.",
+      "Solution design is capital allocation in technical form. I structure build-buy-blend choices to lower future cost, increase change speed, and keep strategic options open.",
     sections: [
       {
         heading: "Evaluate build, buy, and blend options rigorously",
@@ -118,7 +118,7 @@ export const whatIBringCards = [
     badgeClass: "bg-primary-fixed text-on-primary-fixed",
     title: "AI-Native Delivery",
     body:
-      "AI-native delivery is not a faster sprint cadence. It is a different operating model: shorter feedback loops, stricter risk controls, and measurable value at each release boundary.",
+      "AI-native delivery is a different operating model, not just faster sprints. I design shorter feedback loops with explicit controls so each release proves measurable value.",
     sections: [
       {
         heading: "Run delivery as a portfolio of hypotheses",
@@ -166,7 +166,7 @@ export const whatIBringCards = [
     badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed",
     title: "Engineering Depth",
     body:
-      "Executive decisions become expensive when technical consequences are invisible. Engineering depth at leadership level turns architecture choices into clear business trade-offs.",
+      "Executive decisions get expensive when technical consequences are invisible. I translate architecture choices into clear business trade-offs across cost, speed, and risk.",
     sections: [
       {
         heading: "Translate architecture into financial impact",
@@ -214,7 +214,7 @@ export const whatIBringCards = [
     badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
     title: "Value Realization",
     body:
-      "Deployment is a milestone, not the outcome. Value realization is the discipline of turning shipped capability into measurable business performance and sustained adoption.",
+      "Deployment is a milestone, not the outcome. I turn shipped capability into measurable business performance through adoption discipline and decision-ready reporting.",
     sections: [
       {
         heading: "Define value architecture before execution",

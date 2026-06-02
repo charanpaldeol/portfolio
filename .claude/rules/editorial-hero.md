@@ -1,6 +1,6 @@
 # Editorial page hero (canonical UI)
 
-Applies when editing `app/**/*.tsx` or `components/portfolio/**/*.tsx`.
+Always apply (imported via `CLAUDE.md`). Especially when editing `app/**/*.tsx` or `components/portfolio/**/*.tsx`.
 
 ## Source of truth
 

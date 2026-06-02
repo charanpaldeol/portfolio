@@ -109,7 +109,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
         <div className="relative mx-auto max-w-6xl">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
-              Our customers
+              Client perspective
             </p>
           <h2
             id="testimonials-heading"

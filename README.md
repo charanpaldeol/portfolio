@@ -26,10 +26,11 @@ Legacy `.cursorrules` is deprecated; use `CLAUDE.md` and `.claude/`.
 ## Verify before commit
 
 ```bash
-pnpm verify            # tsc + lint + audit + build + e2e
+pnpm verify            # tsc + lint + audit + build + e2e smoke + visual proof
 pnpm verify:full       # verify + unit tests
 pnpm e2e:smoke         # fast chromium route sanity
-pnpm e2e:headless      # full Playwright suite
+pnpm e2e:proof         # visual proof (part of verify)
+pnpm e2e:headless      # full Playwright suite (not run by verify)
 pnpm extract-rules     # guardrail candidates from docs/governance/reports
 pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 ```
@@ -47,7 +48,7 @@ pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 
 - **ESLint** — `lib/eslint-rules/` (custom rules)
 - **Audit** — `node scripts/audit.js` (`hero` for hero-only)
-- **Pre-commit** — `.husky/pre-commit` → `pnpm verify`
+- **Before commit** — run `pnpm verify` manually (no Husky pre-commit hook in this repo)
 
 ## Data architecture
 

@@ -7,7 +7,7 @@ description: Pre-push discipline for this repo — verify, commit scope, and fil
 
 ## Before commit
 
-1. Run `pnpm verify` (or at minimum `pnpm tsc --noEmit && pnpm lint && node scripts/audit.js`).
+1. Run `pnpm verify` and ensure it passes (full bar — see `CLAUDE.md` → Verify). A partial `tsc`/`lint`/`audit` run is not commit-ready.
 2. Confirm only intended files changed (`git status`, `git diff`).
 3. Never commit: `.env`, `.env.local`, `.env*.local`, `.env.factory`, secrets, or `docs/C Deol OH.docx`.
 
@@ -19,9 +19,8 @@ description: Pre-push discipline for this repo — verify, commit scope, and fil
 ## Before push
 
 - Ensure branch is up to date with `origin/main` if merging to main
-- Do not use `--no-verify` unless the user explicitly requests it
 
 ## Scope
 
-- Only edit files named in the task prompt
-- Stop and ask if a frozen file must change
+- Only change files required for the task; if the prompt names specific files, stay within that list
+- Stop and ask if a frozen file must change (see `.claude/rules/layout-frozen-files.md`)

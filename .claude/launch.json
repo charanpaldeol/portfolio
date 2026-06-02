@@ -2,22 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "portfolio (cwd = workspace)",
+      "name": "portfolio (dev)",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["run", "dev"],
       "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "name": "portfolio (cwd = workspace/portfolio)",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["run", "dev"],
-      "cwd": "${workspaceFolder}/portfolio",
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"]
     }

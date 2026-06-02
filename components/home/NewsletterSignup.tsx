@@ -105,7 +105,7 @@ export function NewsletterSignup({ variant = "inline" }: Props) {
         Get new articles when they drop
       </h2>
       <p className="mt-3 max-w-2xl font-sans text-sm leading-relaxed text-on-surface-variant md:text-base">
-        Product design, AI workflows, and systems thinking — roughly once a month. No noise.
+        Product design, AI workflows, and systems thinking - one practical note a month.
       </p>
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3 md:flex-row md:items-stretch">
         <label className="sr-only" htmlFor="newsletter-email-inline">
@@ -143,7 +143,7 @@ export function NewsletterSignup({ variant = "inline" }: Props) {
           Something went wrong — try again
         </p>
       ) : null}
-      <p className="mt-2 font-sans text-xs text-on-surface-variant">No spam. Unsubscribe any time.</p>
+      <p className="mt-2 font-sans text-xs text-on-surface-variant">Unsubscribe any time.</p>
     </section>
   )
 }

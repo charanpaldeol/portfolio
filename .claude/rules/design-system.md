@@ -1,6 +1,6 @@
 # Design system enforcement
 
-Applies when editing `app/**` or `components/**` source files.
+Always apply (imported via `CLAUDE.md`). Also relevant when editing `app/**` or `components/**` source files.
 
 ## Tokens (never hardcode)
 

@@ -16,6 +16,8 @@ frozen_patterns=(
   'components/layout/PortfolioShell.tsx'
   'components/layout/Navbar.tsx'
   'components/layout/Footer.tsx'
+  'components/home/Navbar.tsx'
+  'components/home/Footer.tsx'
   'design-system.ts'
   'styles/tailwind.css'
   'playwright.config.ts'
@@ -29,5 +31,10 @@ for pattern in "${frozen_patterns[@]}"; do
     exit 0
   fi
 done
+
+if [[ "$file_path" == *"/e2e/"* ]] || [[ "$file_path" == e2e/* ]]; then
+  echo "Warning: editing frozen path $file_path — confirm this was explicitly requested." >&2
+  exit 0
+fi
 
 exit 0
