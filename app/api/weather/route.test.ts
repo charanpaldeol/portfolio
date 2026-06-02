@@ -98,6 +98,31 @@ describe("GET /api/weather", () => {
           return jsonResponse(airQualityBody)
         }
 
+        if (url.includes("archive-api.open-meteo.com")) {
+          const times: string[] = []
+          const mean: number[] = []
+          const high: number[] = []
+          const low: number[] = []
+          for (let year = 1991; year <= 2020; year += 1) {
+            for (let month = 1; month <= 12; month += 1) {
+              for (let day = 1; day <= 28; day += 1) {
+                times.push(`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`)
+                mean.push(month === 7 ? 26 : month === 1 ? -4 : 10)
+                high.push(month === 7 ? 31 : month === 1 ? 0 : 15)
+                low.push(month === 7 ? 20 : month === 1 ? -8 : 5)
+              }
+            }
+          }
+          return jsonResponse({
+            daily: {
+              time: times,
+              temperature_2m_mean: mean,
+              temperature_2m_max: high,
+              temperature_2m_min: low,
+            },
+          })
+        }
+
         if (url.includes("api.open-meteo.com/v1/forecast")) {
           return jsonResponse(forecastBody)
         }
@@ -135,6 +160,9 @@ describe("GET /api/weather", () => {
     expect(data.airQuality.usAqi).toBe(55)
     expect(data.dailyForecast).toHaveLength(7)
     expect(data.dailyForecast[0].highC).toBe(16)
+    expect(data.climateNormals?.hottest.monthName).toBe("July")
+    expect(data.climateNormals?.coldest.monthName).toBe("January")
+    expect(data.climateNormals?.hottest.meanC).toBe(26)
   })
 
   it("resolves city search to coordinates and a formatted place name", async () => {

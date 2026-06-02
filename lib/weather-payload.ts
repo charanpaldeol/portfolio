@@ -1,6 +1,6 @@
 // Purpose: Parse /api/weather JSON into a typed WeatherSnapshot for page components.
 import { weatherConditionFromCode } from "@/lib/weather-code"
-import type { AirQualitySnapshot, DailyForecastDay, WeatherSnapshot } from "@/lib/weather-types"
+import type { AirQualitySnapshot, ClimateExtremes, DailyForecastDay, WeatherSnapshot } from "@/lib/weather-types"
 
 function readNumber(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null
@@ -33,6 +33,28 @@ function readDailyForecast(value: unknown): DailyForecastDay[] {
 
 function readLocationSource(value: unknown): "gps" | "network" | null {
   return value === "gps" || value === "network" ? value : null
+}
+
+function readClimateNormals(value: unknown): ClimateExtremes | null {
+  if (!value || typeof value !== "object") return null
+  const record = value as Record<string, unknown>
+  const hottest = record.hottest
+  const coldest = record.coldest
+  if (!hottest || !coldest || typeof hottest !== "object" || typeof coldest !== "object") return null
+
+  const readMonth = (month: Record<string, unknown>) => ({
+    month: readNumber(month.month) ?? 0,
+    monthName: typeof month.monthName === "string" ? month.monthName : "—",
+    meanC: readNumber(month.meanC) ?? 0,
+    highC: readNumber(month.highC) ?? 0,
+    lowC: readNumber(month.lowC) ?? 0,
+  })
+
+  return {
+    periodLabel: typeof record.periodLabel === "string" ? record.periodLabel : "1991–2020",
+    hottest: readMonth(hottest as Record<string, unknown>),
+    coldest: readMonth(coldest as Record<string, unknown>),
+  }
 }
 
 export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnapshot | null {
@@ -81,6 +103,7 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     timezoneAbbreviation:
       typeof data.timezoneAbbreviation === "string" ? data.timezoneAbbreviation : null,
     source: typeof data.source === "string" ? data.source : "unknown",
+    climateNormals: readClimateNormals(data.climateNormals),
   }
 }
 

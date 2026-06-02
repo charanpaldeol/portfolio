@@ -24,6 +24,20 @@ export type LocationMeta = {
   timezone: string | null
 }
 
+export type MonthlyClimateNormal = {
+  month: number
+  monthName: string
+  meanC: number
+  highC: number
+  lowC: number
+}
+
+export type ClimateExtremes = {
+  periodLabel: string
+  hottest: MonthlyClimateNormal
+  coldest: MonthlyClimateNormal
+}
+
 export type WeatherSnapshot = {
   city: string
   lat: number
@@ -53,6 +67,7 @@ export type WeatherSnapshot = {
   timezone: string | null
   timezoneAbbreviation: string | null
   source: string
+  climateNormals: ClimateExtremes | null
 }
 
 export type CompareMetric = {

@@ -34,6 +34,7 @@ function snapshot(overrides: Partial<WeatherSnapshot>): WeatherSnapshot {
     timezone: "America/Toronto",
     timezoneAbbreviation: "EDT",
     source: "open-meteo",
+    climateNormals: null,
     ...overrides,
   }
 }

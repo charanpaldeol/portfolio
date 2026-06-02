@@ -1,4 +1,5 @@
 // Purpose: MSN-style weather readout — location header, hero temp, detail tiles, and forecast.
+import { WeatherClimateNormals } from "@/components/weather/WeatherClimateNormals"
 import { WeatherForecast } from "@/components/weather/WeatherForecast"
 import {
   aqiLabel,
@@ -57,6 +58,7 @@ export function WeatherConditions({ snapshot }: WeatherConditionsProps) {
     timezone,
     timezoneAbbreviation,
     source,
+    climateNormals,
   } = snapshot
 
   const latLabel = lat.toFixed(4)
@@ -181,6 +183,8 @@ export function WeatherConditions({ snapshot }: WeatherConditionsProps) {
       </div>
 
       <WeatherForecast days={dailyForecast} />
+
+      {climateNormals ? <WeatherClimateNormals climate={climateNormals} /> : null}
 
       <p className="pt-1 text-[11px] text-on-surface-variant/75">
         Data from {source} via <code>/api/weather</code>

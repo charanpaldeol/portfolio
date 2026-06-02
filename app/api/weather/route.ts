@@ -4,8 +4,9 @@ import { z } from "zod"
 
 import { geocodeCity, reverseGeocodeCity, type GeoPlace } from "@/lib/weather-geocode"
 import { weatherConditionFromCode } from "@/lib/weather-code"
+import { buildClimateArchiveUrl, parseClimateExtremes } from "@/lib/weather-climate"
 import { buildDailyForecast, parseAirQuality } from "@/lib/weather-response"
-import type { AirQualitySnapshot, DailyForecastDay } from "@/lib/weather-types"
+import type { AirQualitySnapshot, ClimateExtremes, DailyForecastDay } from "@/lib/weather-types"
 
 const WeatherQuerySchema = z.object({
   lat: z.string().optional(),
@@ -113,7 +114,8 @@ function buildWeatherPayload(
   body: ForecastBody,
   airQuality: AirQualitySnapshot,
   locationMeta: GeoPlace | null,
-  locationSource: "gps" | "network" | null
+  locationSource: "gps" | "network" | null,
+  climateNormals: ClimateExtremes | null
 ) {
   const current = body.current ?? {}
   const daily = body.daily ?? {}
@@ -154,6 +156,7 @@ function buildWeatherPayload(
     locationSource,
     airQuality,
     dailyForecast,
+    climateNormals,
     source: "open-meteo" as const,
     current,
     daily,
@@ -207,7 +210,20 @@ function mockPayload(lat: number, lon: number, city: string) {
     },
   }
 
-  return buildWeatherPayload(lat, lon, city, body, { usAqi: 42, pm25: 5.2, label: "Good" }, null, null)
+  return buildWeatherPayload(
+    lat,
+    lon,
+    city,
+    body,
+    { usAqi: 42, pm25: 5.2, label: "Good" },
+    null,
+    null,
+    {
+      periodLabel: "1991–2020",
+      hottest: { month: 7, monthName: "July", meanC: 24.5, highC: 29.8, lowC: 19.2 },
+      coldest: { month: 1, monthName: "January", meanC: 1.2, highC: 4.8, lowC: -2.1 },
+    }
+  )
 }
 
 /**
@@ -240,9 +256,10 @@ export async function GET(request: Request) {
   }
 
   try {
-    const [forecastRes, airQualityRes] = await Promise.all([
+    const [forecastRes, airQualityRes, climateRes] = await Promise.all([
       fetch(buildForecastUrl(lat, lon), { next: { revalidate: 300 } }),
       fetch(buildAirQualityUrl(lat, lon), { next: { revalidate: 300 } }),
+      fetch(buildClimateArchiveUrl(lat, lon), { next: { revalidate: 86_400 } }),
     ])
 
     if (!forecastRes.ok) {
@@ -257,9 +274,12 @@ export async function GET(request: Request) {
     const airQuality = airQualityRes.ok
       ? parseAirQuality((await airQualityRes.json()) as { current?: { us_aqi?: number; pm2_5?: number } })
       : { usAqi: null, pm25: null, label: "—" }
+    const climateNormals = climateRes.ok
+      ? parseClimateExtremes((await climateRes.json()) as { daily?: Record<string, unknown> })
+      : null
 
     return NextResponse.json(
-      buildWeatherPayload(lat, lon, city, body, airQuality, meta, locationSource)
+      buildWeatherPayload(lat, lon, city, body, airQuality, meta, locationSource, climateNormals)
     )
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error"

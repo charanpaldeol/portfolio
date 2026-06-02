@@ -1,4 +1,5 @@
 // Purpose: Build comparison rows and temperature deltas for two weather snapshots.
+import { formatClimateMonthSummary } from "@/lib/weather-climate"
 import {
   formatClockTime,
   formatObservedAt,
@@ -168,6 +169,22 @@ export function buildCompareMetrics(a: WeatherSnapshot, b: WeatherSnapshot): Com
       valueB: airB.value,
       detailA: airA.detail,
       detailB: airB.detail,
+    },
+    {
+      key: "hottestMonth",
+      label: "Hottest month",
+      valueA: a.climateNormals?.hottest.monthName ?? "—",
+      valueB: b.climateNormals?.hottest.monthName ?? "—",
+      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.hottest) : undefined,
+      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.hottest) : undefined,
+    },
+    {
+      key: "coldestMonth",
+      label: "Coldest month",
+      valueA: a.climateNormals?.coldest.monthName ?? "—",
+      valueB: b.climateNormals?.coldest.monthName ?? "—",
+      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.coldest) : undefined,
+      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.coldest) : undefined,
     },
   ]
 }
