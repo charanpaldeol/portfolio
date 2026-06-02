@@ -33,7 +33,23 @@ When you **create** or **materially edit** any project file, add or update a one
 ## Verification bar (before committing)
 
 - Run `pnpm verify` and ensure it passes (see CLAUDE.md → Verify for what it covers).
-- **Before push**, at minimum run `pnpm lint` on touched files (or `pnpm build`). Vercel runs ESLint inside `next build`; unit tests alone do not catch import lint.
+- **Before push**, at minimum run **`pnpm build`** (or `pnpm lint && pnpm exec tsc --noEmit`). Vercel runs **ESLint and TypeScript** inside `next build`. Targeted eslint/vitest on touched files is not enough — weather shipped with green unit tests but failed on import lint, then on strict `tsc`.
+
+## TypeScript strict indexing (Vercel type-check gate)
+
+With `strict` / `noUncheckedIndexedAccess`, **`arr[i]` is `T | undefined`.** A prior guard on `i` (e.g. `month >= 1 && month <= 12`) does **not** narrow the array element — Vercel failed on `bucket.mean.push` in `lib/weather-climate.ts`.
+
+**Pattern — always narrow after index access:**
+
+```ts
+const bucket = buckets[month - 1]
+if (!bucket) continue
+bucket.mean.push(mean)
+```
+
+Same for `valid[0]`, `items.at(n)`, etc. — assign, then `if (!x) return` / `continue` before use.
+
+**After editing `lib/` or API routes**, run `pnpm exec tsc --noEmit` or full `pnpm build` before push, not only Vitest.
 
 ## ESLint imports (Vercel build gate)
 
