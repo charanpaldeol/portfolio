@@ -68,6 +68,8 @@ export function computeMonthlyNormals(daily: ArchiveDaily): MonthlyClimateNormal
     const high = highs[index]
     const low = lows[index]
     const bucket = buckets[month - 1]
+    if (!bucket) continue
+
     if (typeof mean === "number" && Number.isFinite(mean)) bucket.mean.push(mean)
     if (typeof high === "number" && Number.isFinite(high)) bucket.high.push(high)
     if (typeof low === "number" && Number.isFinite(low)) bucket.low.push(low)
@@ -93,8 +95,11 @@ export function findClimateExtremes(months: MonthlyClimateNormal[]): ClimateExtr
   )
   if (valid.length === 0) return null
 
-  let hottest = valid[0]
-  let coldest = valid[0]
+  const first = valid[0]
+  if (!first) return null
+
+  let hottest = first
+  let coldest = first
 
   for (const month of valid.slice(1)) {
     if (month.meanC > hottest.meanC) hottest = month

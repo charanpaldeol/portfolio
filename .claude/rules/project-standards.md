@@ -33,6 +33,32 @@ When you **create** or **materially edit** any project file, add or update a one
 ## Verification bar (before committing)
 
 - Run `pnpm verify` and ensure it passes (see CLAUDE.md → Verify for what it covers).
+- **Before push**, at minimum run `pnpm lint` on touched files (or `pnpm build`). Vercel runs ESLint inside `next build`; unit tests alone do not catch import lint.
+
+## ESLint imports (Vercel build gate)
+
+`eslint.config.mjs` enables **`sort-imports` (error)** and **`import/order` (warn)**. Next.js runs both during `next build`. Weather work shipped twice with green unit tests but failed deploy on these rules.
+
+**Do this on every new/edited import block:**
+
+1. **Never mix `type` and value in one import.** Use separate lines (same module is fine):
+   ```ts
+   import { geocodeCity, reverseGeocodeCity } from "@/lib/weather-geocode"
+   import type { GeoPlace } from "@/lib/weather-geocode"
+   ```
+   Not `{ type GeoPlace, geocodeCity, … }` — `sort-imports` sorts **members** alphabetically (`GeoPlace` before `geocodeCity` breaks value order).
+
+2. **Alphabetize `@/lib/*` paths** (`import/order`): e.g. `weather-climate` before `weather-code` before `weather-geocode`.
+
+3. **Alphabetize named members** within `{ … }` when multiple values share one import.
+
+4. **After editing imports**, run `pnpm exec eslint <touched-files>` before commit/push.
+
+**Server vs client:** pure helpers used by Route Handlers or Server Components live in `lib/`, not in `"use client"` files — never import server callers from client modules.
+
+**Types files:** read and merge `lib/*-types.ts`; never self-import; grep exporters after edits.
+
+**Colocated tests:** `lib/*.test.ts` imports sibling modules with `./foo`, not `@/lib/foo`, unless an existing test in that folder uses `@/`.
 
 ## Agent-safe development defaults
 
