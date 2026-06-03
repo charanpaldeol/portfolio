@@ -57,7 +57,7 @@ For “SEO audit” requests: start with `node scripts/audit.js`, repo metadata/
 
 ## Workflow
 
-When you make a mistake the user cares about, end with: **Update `CLAUDE.md` or `.claude/rules/` so this does not repeat.**
+When you make a mistake the user cares about **and** you believe a rule or checklist could have prevented it, end with: **Update `CLAUDE.md` or `.claude/rules/` so this does not repeat.** Do not document one-offs, environment flukes, or issues outside repo control.
 
 ## Agent layout
 

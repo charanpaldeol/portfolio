@@ -6,7 +6,7 @@ App Router pitfalls (dev cache, self-fetch, RSC): see `nextjs-pitfalls.md` (impo
 
 ## Workflow (mistakes)
 
-When you make a mistake the user cares about, end with: **Update `CLAUDE.md` or `.claude/rules/` so this does not repeat.** (Also in `CLAUDE.md` → Workflow.)
+When you make a mistake the user cares about **and** you believe a rule or checklist could have prevented it, end with: **Update `CLAUDE.md` or `.claude/rules/` so this does not repeat.** Skip one-offs, environment flukes, and issues outside repo control. (Also in `CLAUDE.md` → Workflow.)
 
 ## File purpose (all file types)
 
