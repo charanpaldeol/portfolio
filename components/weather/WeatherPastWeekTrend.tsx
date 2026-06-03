@@ -4,7 +4,7 @@
 import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { formatPrecipitation } from "@/lib/weather-format"
 import type { PastWeekDay } from "@/lib/weather-types"
-import { formatTempValue } from "@/lib/weather-units"
+import { formatTempValue, WEATHER_TEMP_DIGITS } from "@/lib/weather-units"
 
 type WeatherPastWeekTrendProps = {
   days: PastWeekDay[]
@@ -22,13 +22,17 @@ export function WeatherPastWeekTrend({ days }: WeatherPastWeekTrendProps) {
           {days.map((day) => (
             <li
               key={day.date}
-              className="flex w-[4.5rem] shrink-0 flex-col items-center rounded-xl bg-surface-container-lowest/90 px-2 py-3 text-center ring-1 ring-outline-variant/10"
+              className="flex w-[4.75rem] shrink-0 flex-col items-center rounded-xl bg-surface-container-lowest/90 px-2 py-3 text-center ring-1 ring-outline-variant/10"
             >
               <span className="text-[10px] font-semibold text-on-surface-variant">{day.weekday}</span>
               <span className="mt-2 text-sm font-semibold text-on-surface">
-                {formatTempValue(day.highC, units, 0)}
+                <span className="sr-only">High </span>
+                {formatTempValue(day.highC, units, WEATHER_TEMP_DIGITS)}
               </span>
-              <span className="text-xs text-on-surface-variant">{formatTempValue(day.lowC, units, 0)}</span>
+              <span className="text-xs text-on-surface-variant">
+                <span className="sr-only">Low </span>
+                {formatTempValue(day.lowC, units, WEATHER_TEMP_DIGITS)}
+              </span>
               {day.precipitationMm != null && day.precipitationMm > 0 ? (
                 <span className="mt-1 text-[10px] text-primary">{formatPrecipitation(day.precipitationMm)}</span>
               ) : null}

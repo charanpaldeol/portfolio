@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
 
 import { WeatherClimateClient } from "@/components/weather/WeatherClimateClient"
+import { WeatherClimateProvider } from "@/components/weather/WeatherClimateProvider"
 import { WeatherConditions } from "@/components/weather/WeatherConditions"
 import { WeatherPageToolbar } from "@/components/weather/WeatherPageToolbar"
 import { parseWeatherPayload } from "@/lib/weather-payload"
@@ -112,18 +113,17 @@ export function WeatherLocationBody({ initialSnapshot, initialQueryKey }: Weathe
           <p className="mt-1 text-sm text-muted-foreground">{error}</p>
         </div>
       ) : null}
-      <WeatherConditions
-        snapshot={snapshot}
-        loading={loading}
-        climateSlot={
-          <WeatherClimateClient
-            lat={snapshot.lat}
-            lon={snapshot.lon}
-            temperatureC={snapshot.temperatureC}
-            layout="header"
-          />
-        }
-      />
+      <WeatherClimateProvider
+        lat={snapshot.lat}
+        lon={snapshot.lon}
+        temperatureC={snapshot.temperatureC}
+      >
+        <WeatherConditions
+          snapshot={snapshot}
+          loading={loading}
+          climateSlot={<WeatherClimateClient layout="header" />}
+        />
+      </WeatherClimateProvider>
     </>
   )
 }

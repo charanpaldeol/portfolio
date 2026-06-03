@@ -73,6 +73,7 @@ Pure helpers for Route Handlers / Server Components live in `lib/`, not `"use cl
 
 - New user-visible features behind `lib/feature-flags.ts` when appropriate.
 - Feature data in `/lib/[feature]-data.ts`; components receive props (no internal fetch).
+- Weather location autocomplete: shared hook + `LocationSearchField`; bar-specific rules in `weather-search.md`.
 
 ## Redirect and canonical safety (production guardrail)
 

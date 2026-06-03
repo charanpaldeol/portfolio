@@ -1,8 +1,7 @@
 "use client"
 
-// Purpose: Toolbar row — units toggle, copy link, recent locations, refresh.
+// Purpose: Toolbar row — units toggle, copy link, refresh.
 import { CopyWeatherLink } from "@/components/weather/CopyWeatherLink"
-import { WeatherRecentLocations } from "@/components/weather/WeatherRecentLocations"
 import { WeatherUnitsToggle } from "@/components/weather/WeatherUnitsProvider"
 
 type WeatherPageToolbarProps = {
@@ -12,8 +11,7 @@ type WeatherPageToolbarProps = {
 
 export function WeatherPageToolbar({ onRefresh, refreshing = false }: WeatherPageToolbarProps) {
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-      <WeatherRecentLocations />
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
       <div className="flex flex-wrap items-center gap-3 sm:justify-end">
         {onRefresh ? (
           <button

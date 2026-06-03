@@ -1,19 +1,23 @@
 // Purpose: Autocomplete location field for weather search and compare flows.
 "use client"
 
-import { KeyboardEvent, useEffect, useId, useRef, useState } from "react"
+import { Loader2, Search } from "lucide-react"
+import { KeyboardEvent, useEffect, useId, useMemo, useRef, useState } from "react"
 
+import { useLocationSuggestions } from "@/components/weather/use-location-suggestions"
+import {
+  locationListboxOptionCount,
+  resolveLocationListboxOption,
+  WeatherSearchSuggestions,
+} from "@/components/weather/WeatherSearchSuggestions"
 import { cn } from "@/lib/utils"
-import { formatPopulation } from "@/lib/weather-format"
 import type { LocationSuggestion } from "@/lib/weather-geocode"
-
-type LocationsResponse = {
-  results?: LocationSuggestion[]
-}
+import { recentForLocationDropdown, type RecentLocation } from "@/lib/weather-recent"
 
 type LocationSearchFieldProps = {
   id: string
   label: string
+  labelClassName?: string
   value: string
   onValueChange: (value: string) => void
   onSelect: (suggestion: LocationSuggestion) => void
@@ -22,22 +26,18 @@ type LocationSearchFieldProps = {
   showCurrentLocation?: boolean
   onUseCurrentLocation?: () => void
   isLocating?: boolean
-}
-
-function suggestionMeta(suggestion: LocationSuggestion): string | null {
-  const parts: string[] = []
-  if (typeof suggestion.elevationM === "number" && Number.isFinite(suggestion.elevationM)) {
-    parts.push(`${Math.round(suggestion.elevationM)} m`)
-  }
-  const population = formatPopulation(suggestion.population)
-  if (population) parts.push(population)
-  if (suggestion.timezone) parts.push(suggestion.timezone)
-  return parts.length > 0 ? parts.join(" · ") : null
+  recentLocations?: RecentLocation[]
+  onSelectRecent?: (location: RecentLocation) => void
+  /** City-only fallback when Enter is pressed with no matching suggestion. */
+  onCommitSearch?: () => void
+  className?: string
+  showLeadingIcon?: boolean
 }
 
 export function LocationSearchField({
   id,
   label,
+  labelClassName = "mb-1 block text-xs font-semibold tracking-wide text-on-surface-variant uppercase",
   value,
   onValueChange,
   onSelect,
@@ -46,54 +46,59 @@ export function LocationSearchField({
   showCurrentLocation = false,
   onUseCurrentLocation,
   isLocating = false,
+  recentLocations = [],
+  onSelectRecent,
+  onCommitSearch,
+  className,
+  showLeadingIcon = false,
 }: LocationSearchFieldProps) {
   const listboxId = useId()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([])
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
+  const { suggestions, isLoading, fetchError, setFetchError } = useLocationSuggestions(value, true)
+  const dropdownRecent = useMemo(
+    () => recentForLocationDropdown(recentLocations, value),
+    [recentLocations, value]
+  )
 
   useEffect(() => {
-    if (value.trim().length < 2) {
-      setSuggestions([])
-      setIsLoading(false)
-      return
-    }
+    setActiveIndex(-1)
+  }, [dropdownRecent.length, value.trim()])
 
-    const controller = new AbortController()
-    const timeout = window.setTimeout(async () => {
-      setIsLoading(true)
-      try {
-        const params = new URLSearchParams({ q: value.trim() })
-        const res = await fetch(`/api/weather/locations?${params.toString()}`, {
-          signal: controller.signal,
-        })
-        if (!res.ok) {
-          setSuggestions([])
-          return
-        }
-        const data = (await res.json()) as LocationsResponse
-        setSuggestions(data.results ?? [])
-        setActiveIndex(-1)
-      } catch (error) {
-        if (error instanceof DOMException && error.name === "AbortError") return
-        setSuggestions([])
-      } finally {
-        if (!controller.signal.aborted) setIsLoading(false)
-      }
-    }, 300)
+  const optionCount = useMemo(
+    () =>
+      locationListboxOptionCount({
+        showCurrentLocation: !!showCurrentLocation,
+        recentCount: dropdownRecent.length,
+        suggestionCount: suggestions.length,
+      }),
+    [dropdownRecent.length, showCurrentLocation, suggestions.length]
+  )
 
-    return () => {
-      controller.abort()
-      window.clearTimeout(timeout)
+  const canOpenDropdown =
+    !!showCurrentLocation || dropdownRecent.length > 0 || value.trim().length >= 2
+
+  const activeDescendantId = useMemo(() => {
+    if (activeIndex < 0) return undefined
+    const option = resolveLocationListboxOption(activeIndex, {
+      showCurrentLocation: !!showCurrentLocation,
+      recent: dropdownRecent,
+      suggestions,
+    })
+    if (!option) return undefined
+    if (option.type === "current") return "weather-location-option-current-geo"
+    if (option.type === "recent") {
+      return `weather-location-option-recent-${option.location.lat}-${option.location.lon}`
     }
-  }, [value])
+    return `weather-location-option-suggestion-${option.suggestion.id}`
+  }, [activeIndex, dropdownRecent, showCurrentLocation, suggestions])
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
       if (!containerRef.current?.contains(event.target as Node)) {
         setIsOpen(false)
+        setActiveIndex(-1)
       }
     }
 
@@ -101,127 +106,170 @@ export function LocationSearchField({
     return () => document.removeEventListener("mousedown", handlePointerDown)
   }, [])
 
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
-    if (!isOpen) return
-    const optionCount = suggestions.length + (showCurrentLocation ? 1 : 0)
-    if (optionCount === 0) return
-
-    if (event.key === "ArrowDown") {
-      event.preventDefault()
-      setActiveIndex((index) => (index + 1) % optionCount)
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault()
-      setActiveIndex((index) => (index <= 0 ? optionCount - 1 : index - 1))
-    } else if (event.key === "Escape") {
+  function applyListboxOption(option: ReturnType<typeof resolveLocationListboxOption>) {
+    if (!option) return
+    if (option.type === "current") {
+      onUseCurrentLocation?.()
+      return
+    }
+    if (option.type === "recent") {
+      onSelectRecent?.(option.location)
       setIsOpen(false)
       setActiveIndex(-1)
-    } else if (event.key === "Enter" && activeIndex >= 0) {
+      return
+    }
+    onSelect(option.suggestion)
+    setIsOpen(false)
+    setActiveIndex(-1)
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Escape") {
+      setIsOpen(false)
+      setActiveIndex(-1)
+      return
+    }
+
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      if (!isOpen || optionCount === 0) return
       event.preventDefault()
-      if (showCurrentLocation && activeIndex === 0) {
-        onUseCurrentLocation?.()
+      if (event.key === "ArrowDown") {
+        setActiveIndex((index) => (index + 1) % optionCount)
+      } else {
+        setActiveIndex((index) => (index <= 0 ? optionCount - 1 : index - 1))
+      }
+      return
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault()
+      setIsOpen(false)
+      setActiveIndex(-1)
+
+      if (isOpen && activeIndex >= 0 && optionCount > 0) {
+        applyListboxOption(
+          resolveLocationListboxOption(activeIndex, {
+            showCurrentLocation: !!showCurrentLocation,
+            recent: dropdownRecent,
+            suggestions,
+          })
+        )
         return
       }
-      const suggestionIndex = showCurrentLocation ? activeIndex - 1 : activeIndex
-      const suggestion = suggestions[suggestionIndex]
-      if (suggestion) {
-        onSelect(suggestion)
-        setIsOpen(false)
-        setSuggestions([])
+
+      const firstSuggestion = suggestions[0]
+      if (firstSuggestion) {
+        onSelect(firstSuggestion)
+        return
       }
+
+      onCommitSearch?.()
     }
   }
 
-  const showDropdown = isOpen
+  const showDropdown = isOpen && canOpenDropdown
 
   return (
-    <div ref={containerRef} className="relative min-w-0 flex-1">
-      <label htmlFor={id} className="mb-1 block text-xs font-semibold tracking-wide text-on-surface-variant uppercase">
+    <div ref={containerRef} className={cn("relative min-w-0 flex-1", className)}>
+      <label htmlFor={id} className={labelClassName}>
         {label}
       </label>
-      <input
-        id={id}
-        type="search"
-        role="combobox"
-        aria-expanded={showDropdown}
-        aria-controls={listboxId}
-        aria-autocomplete="list"
-        autoComplete="off"
-        value={value}
-        onChange={(event) => {
-          onValueChange(event.target.value)
-          setIsOpen(true)
-          if (event.target.value.trim().length >= 2) setIsLoading(true)
-        }}
-        onFocus={() => setIsOpen(true)}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        className={inputClassName}
-      />
+      {showLeadingIcon ? (
+        <div className="flex min-w-0 flex-1 items-center gap-2.5 pl-3 pr-1">
+          {isLoading || isLocating ? (
+            <Loader2 className="size-[18px] shrink-0 animate-spin text-primary" aria-hidden />
+          ) : (
+            <Search className="size-[18px] shrink-0 text-on-surface-variant/60" aria-hidden />
+          )}
+          <input
+            id={id}
+            type="text"
+            inputMode="search"
+            enterKeyHint="search"
+            role="combobox"
+            aria-expanded={showDropdown}
+            aria-controls={listboxId}
+            aria-autocomplete="list"
+            aria-activedescendant={showDropdown ? activeDescendantId : undefined}
+            aria-busy={isLoading || isLocating}
+            autoComplete="off"
+            value={value}
+            onChange={(event) => {
+              onValueChange(event.target.value)
+              setFetchError("")
+              if (
+                event.target.value.trim().length >= 2 ||
+                recentForLocationDropdown(recentLocations, event.target.value).length > 0 ||
+                showCurrentLocation
+              ) {
+                setIsOpen(true)
+              }
+            }}
+            onFocus={() => {
+              if (canOpenDropdown) setIsOpen(true)
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder={placeholder}
+            className={inputClassName}
+          />
+        </div>
+      ) : (
+        <input
+          id={id}
+          type="text"
+          inputMode="search"
+          enterKeyHint="search"
+          role="combobox"
+          aria-expanded={showDropdown}
+          aria-controls={listboxId}
+          aria-autocomplete="list"
+          aria-activedescendant={showDropdown ? activeDescendantId : undefined}
+          aria-busy={isLoading || isLocating}
+          autoComplete="off"
+          value={value}
+          onChange={(event) => {
+            onValueChange(event.target.value)
+            setFetchError("")
+            if (
+              event.target.value.trim().length >= 2 ||
+              recentForLocationDropdown(recentLocations, event.target.value).length > 0 ||
+              showCurrentLocation
+            ) {
+              setIsOpen(true)
+            }
+          }}
+          onFocus={() => {
+            if (canOpenDropdown) setIsOpen(true)
+          }}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          className={inputClassName}
+        />
+      )}
 
       {showDropdown ? (
-        <ul
-          id={listboxId}
-          role="listbox"
-          aria-label={`${label} suggestions`}
-          className="absolute top-full z-30 mt-1 max-h-56 w-full overflow-y-auto rounded-xl border border-outline-variant/20 bg-surface-container-lowest py-1 shadow-lg"
-        >
-          {showCurrentLocation ? (
-            <li role="presentation">
-              <button
-                type="button"
-                role="option"
-                aria-selected={activeIndex === 0}
-                onMouseDown={(event) => event.preventDefault()}
-                onClick={() => onUseCurrentLocation?.()}
-                disabled={isLocating}
-                className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-primary transition-colors hover:bg-surface-container-low disabled:opacity-60"
-              >
-                <span aria-hidden="true">📍</span>
-                {isLocating ? "Getting your location…" : "Use my current location"}
-              </button>
-            </li>
-          ) : null}
-
-          {isLoading && value.trim().length >= 2 ? (
-            <li className="px-4 py-2 text-sm text-on-surface-variant">Searching locations…</li>
-          ) : null}
-
-          {!isLoading && value.trim().length >= 2 && suggestions.length === 0 ? (
-            <li className="px-4 py-2 text-sm text-on-surface-variant">No locations found.</li>
-          ) : null}
-
-          {suggestions.map((suggestion, index) => {
-            const optionIndex = showCurrentLocation ? index + 1 : index
-            const meta = suggestionMeta(suggestion)
-            return (
-              <li key={suggestion.id} role="presentation">
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={activeIndex === optionIndex}
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => {
-                    onSelect(suggestion)
-                    setIsOpen(false)
-                    setSuggestions([])
-                  }}
-                  className={cn(
-                    "w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-surface-container-low",
-                    activeIndex === optionIndex
-                      ? "bg-surface-container-low text-on-surface"
-                      : "text-on-surface-variant"
-                  )}
-                >
-                  <span className="block font-medium text-on-surface">{suggestion.label}</span>
-                  <span className="mt-0.5 block font-mono text-xs text-on-surface-variant/80">
-                    {suggestion.lat.toFixed(4)}, {suggestion.lon.toFixed(4)}
-                  </span>
-                  {meta ? <span className="mt-0.5 block text-xs text-on-surface-variant/70">{meta}</span> : null}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+        <WeatherSearchSuggestions
+          listboxId={listboxId}
+          city={value}
+          suggestions={suggestions}
+          recent={dropdownRecent}
+          activeIndex={activeIndex}
+          isLoading={isLoading}
+          isLocating={isLocating}
+          fetchError={fetchError}
+          showCurrentLocation={showCurrentLocation}
+          onUseCurrentLocation={() => onUseCurrentLocation?.()}
+          onSelect={(suggestion) => {
+            onSelect(suggestion)
+            setIsOpen(false)
+            setActiveIndex(-1)
+          }}
+          onSelectRecent={(location) => {
+            onSelectRecent?.(location)
+            setIsOpen(false)
+            setActiveIndex(-1)
+          }}
+        />
       ) : null}
     </div>
   )

@@ -387,17 +387,48 @@ export function buildCompareHrefFromSearchParams(sp: URLSearchParams, fallback =
   return fallback
 }
 
+export type NavigateToWeatherOptions = {
+  approximate?: boolean
+  city?: string
+}
+
 export function navigateToWeatherCoords(
   router: { push: (href: string) => void },
   lat: number,
   lon: number,
-  options?: { approximate?: boolean }
+  options?: NavigateToWeatherOptions
 ): void {
   const params = new URLSearchParams()
   params.set("lat", lat.toFixed(4))
   params.set("lon", lon.toFixed(4))
+  const city = options?.city?.trim()
+  if (city) params.set("city", city)
   if (options?.approximate) params.set("approx", "1")
   router.push(`/weather?${params.toString()}`)
+}
+
+export function parseWeatherCoords(
+  latRaw: string,
+  lonRaw: string
+): { lat: number; lon: number } | { error: string } {
+  const lat = Number.parseFloat(latRaw.trim())
+  const lon = Number.parseFloat(lonRaw.trim())
+  if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+    return { error: "Latitude must be a number between -90 and 90." }
+  }
+  if (!Number.isFinite(lon) || lon < -180 || lon > 180) {
+    return { error: "Longitude must be a number between -180 and 180." }
+  }
+  return { lat, lon }
+}
+
+export function weatherSearchParamsKey(sp: URLSearchParams): string {
+  const params = new URLSearchParams()
+  for (const key of ["city", "q", "lat", "lon", "latitude", "longitude"]) {
+    const value = sp.get(key)
+    if (value) params.set(key, value)
+  }
+  return params.toString()
 }
 
 export function weatherPageTitle(snapshot: WeatherSnapshot | null): string {

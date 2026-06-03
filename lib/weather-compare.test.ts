@@ -15,6 +15,10 @@ describe("formatTemperatureDelta", () => {
   it("returns null when values missing", () => {
     expect(formatTemperatureDelta(null, 25, "Tokyo")).toBeNull()
   })
+
+  it("uses Fahrenheit suffix when units are f", () => {
+    expect(formatTemperatureDelta(18, 25, "Tokyo", "f")).toBe("13°F warmer in Tokyo")
+  })
 })
 
 describe("buildCompareMetrics", () => {

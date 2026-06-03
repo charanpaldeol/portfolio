@@ -8,6 +8,18 @@ export type RecentLocation = {
 
 export const WEATHER_RECENT_STORAGE_KEY = "weather-recent-locations"
 const MAX_RECENT = 5
+/** Max recent rows in the search dropdown (chips under the bar may show up to MAX_RECENT). */
+export const MAX_RECENT_IN_DROPDOWN = 3
+
+/** Recents for the combobox list — hidden while typing so API results stay visible. */
+export function recentForLocationDropdown(
+  recent: RecentLocation[],
+  query: string,
+  limit = MAX_RECENT_IN_DROPDOWN
+): RecentLocation[] {
+  if (query.trim().length > 0) return []
+  return recent.slice(0, limit)
+}
 
 export function loadRecentLocations(): RecentLocation[] {
   if (typeof window === "undefined") return []

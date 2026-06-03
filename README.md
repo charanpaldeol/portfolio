@@ -4,6 +4,8 @@
 
 Personal portfolio — cpdeol.com
 
+**Features:** Marketing pages, blog, contact form, **[weather](/weather)** (location search, 16-day forecast, compare two places), and more — see `docs/features/weather.md` for the weather tool.
+
 ## Quickstart
 
 ```bash
@@ -46,9 +48,10 @@ pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 | Document | What it covers |
 |----------|----------------|
 | `docs/DESIGN.md` | Editorial Expert design system |
+| `docs/features/weather.md` | `/weather` routes, APIs, search UX, tests |
 | `docs/code-architecture-review.md` | Architecture grades + action items |
 | `docs/GOVERNANCE.md` | Agent verification, hero, feature flags |
-| `.claude/rules/` | Enforced agent behavior |
+| `.claude/rules/` | Enforced agent behavior (`.cursor/rules/` mirrors for Cursor) |
 
 ## Enforcement
 

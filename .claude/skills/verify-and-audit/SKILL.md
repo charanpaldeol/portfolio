@@ -33,6 +33,14 @@ description: Run portfolio verification (ship-check, full verify, audit) and tri
    node scripts/audit.js hero
    ```
 
+4. **Weather search only** (after bar / autocomplete / URL sync changes):
+
+   ```bash
+   pnpm exec vitest run components/weather/WeatherSearch.test.tsx lib/weather-recent.test.ts lib/weather-payload.test.ts
+   ```
+
+   Policy: `.claude/rules/weather-search.md`. E2E: `e2e/goal-smoke.spec.ts` (runs inside `pnpm verify`).
+
 ## If ship-check or verify fails
 
 - **tsc / lint**: fix in changed files only (scope discipline). Run `pnpm exec eslint <files>` after import edits.

@@ -39,6 +39,7 @@ Error: Functions are not valid as a child of Client Components.
 - Keep **`page.tsx` as a Server Component**; interactivity in leaf **`"use client"`** components.
 - Pass **serializable props** or **server-rendered slots** (`climateSlot={<ServerChild />}`) — never functions.
 - **`useSearchParams()`** must sit inside **`<Suspense>`** (see `WeatherClientShell`, `WeatherSearch`).
+- **Controlled inputs + `useSearchParams`:** sync bar text from the URL in `useEffect` keyed on a **stable query string** (e.g. `weatherSearchParamsKey(searchParams)`), not on the `searchParams` object — otherwise every render resets what the user typed. See `.claude/rules/weather-search.md`.
 - After RSC splits: **`curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/<route>`** must be **200** — `pnpm build` alone does not catch serialization errors.
 
 **Reference:** `WeatherLiveConditions` + `WeatherClimateClient` — not render-prop wrappers from `page.tsx`.

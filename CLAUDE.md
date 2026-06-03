@@ -19,6 +19,7 @@ If you do not see the rule files below, stop and read them before proceeding.
 | When | Read |
 |------|------|
 | Editing `app/**` or `components/**` UI | `.claude/rules/design-system.md` |
+| Weather search bar or `/weather` lookup UX | `.claude/rules/weather-search.md` |
 | Editorial / marketing page heroes | `.claude/rules/editorial-hero.md` |
 | Committing or pushing | `.claude/skills/safe-ship/SKILL.md` |
 | User asks to verify | `.claude/skills/verify-and-audit/SKILL.md` |
@@ -70,4 +71,4 @@ When you make a mistake the user cares about **and** you believe a rule or check
 
 `.claude/` is the source of truth. In Cursor, enable "Include third-party Plugins, Skills and other configs". Any `.cursor/` config mirrors `.claude/`, not a separate source.
 
-See `docs/GOVERNANCE.md`, `docs/DESIGN.md`, `docs/code-architecture-review.md`.
+See `docs/GOVERNANCE.md`, `docs/DESIGN.md`, `docs/features/weather.md`, `docs/code-architecture-review.md`.

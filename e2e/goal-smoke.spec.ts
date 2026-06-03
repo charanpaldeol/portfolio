@@ -33,8 +33,8 @@ test.describe("FACTORY_VERIFY_WEATHER_V1", () => {
   test("/weather shows search and location details from API", async ({ page }) => {
     await page.goto("/weather")
     await expect(page.getByLabel(/search location/i)).toBeVisible()
-    await expect(page.getByText(/Current weather|Tonight/, { exact: true })).toBeVisible({ timeout: 15_000 })
-    await expect(page.getByLabel("Comfort").getByText("Feels like", { exact: true })).toBeVisible()
+    await expect(page.getByText(/Right now|Current conditions/, { exact: true })).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/Feels/i).first()).toBeVisible()
     await expect(page.getByLabel("Comfort").getByText("Humidity", { exact: true })).toBeVisible()
     await expect(page.getByLabel("Current weather conditions").getByText("Wind", { exact: true })).toBeVisible()
     await expect(page.getByText("16-day forecast", { exact: true })).toBeVisible({ timeout: 15_000 })
@@ -72,10 +72,12 @@ test.describe("FACTORY_VERIFY_WEATHER_V1", () => {
     await expect(page.getByRole("link", { name: "Open-Meteo" })).toBeVisible()
   })
 
-  test("/weather shows refresh and my location controls", async ({ page }) => {
+  test("/weather shows refresh and current location in search", async ({ page }) => {
     await page.goto("/weather")
     await expect(page.getByRole("button", { name: "Refresh", exact: true })).toBeVisible()
-    await expect(page.getByRole("button", { name: "My location", exact: true })).toBeVisible()
+    const search = page.getByLabel(/search location/i)
+    await search.focus()
+    await expect(page.getByRole("option", { name: /use my current location/i })).toBeVisible()
   })
 
   test("/weather city search updates location", async ({ page }) => {

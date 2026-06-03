@@ -4,6 +4,7 @@ import {
   buildCompareLocationQuery,
   hasCompareLocations,
   isCompareMode,
+  parseWeatherCoords,
   parseWeatherPayload,
 } from "./weather-payload"
 
@@ -43,5 +44,23 @@ describe("compare query helpers", () => {
     expect(buildCompareLocationQuery(sp, "a")).toBe("?lat=43.7000&lon=-79.4000&city=Toronto")
     expect(buildCompareLocationQuery(sp, "b")).toBe("?lat=30.9000&lon=75.8500&city=Ludhiana")
     expect(hasCompareLocations(sp)).toBe(true)
+  })
+})
+
+describe("parseWeatherCoords", () => {
+  it("accepts valid coordinates", () => {
+    expect(parseWeatherCoords("43.65", "-79.38")).toEqual({ lat: 43.65, lon: -79.38 })
+  })
+
+  it("rejects out-of-range latitude", () => {
+    expect(parseWeatherCoords("95", "10")).toEqual({
+      error: "Latitude must be a number between -90 and 90.",
+    })
+  })
+
+  it("rejects out-of-range longitude", () => {
+    expect(parseWeatherCoords("10", "200")).toEqual({
+      error: "Longitude must be a number between -180 and 180.",
+    })
   })
 })

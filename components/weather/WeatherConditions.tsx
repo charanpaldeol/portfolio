@@ -7,35 +7,19 @@ import { WeatherComfortSection } from "@/components/weather/WeatherComfortSectio
 import { WeatherContextSection } from "@/components/weather/WeatherContextSection"
 import { WeatherDetailSection } from "@/components/weather/WeatherDetailSection"
 import { WeatherForecast } from "@/components/weather/WeatherForecast"
+import { WeatherHeroPanel } from "@/components/weather/WeatherHeroPanel"
 import { WeatherHourlyForecast } from "@/components/weather/WeatherHourlyForecast"
 import { WeatherMetaSection } from "@/components/weather/WeatherMetaSection"
 import { WeatherSafetySection } from "@/components/weather/WeatherSafetySection"
 import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
-import { WindCompass } from "@/components/weather/WindCompass"
-import { cn } from "@/lib/utils"
-import {
-  formatObservedAt,
-  formatPopulation,
-  formatPrecipitation,
-  formatTemperatureAnomaly,
-} from "@/lib/weather-format"
+import { formatObservedAt, formatPopulation, formatPrecipitation } from "@/lib/weather-format"
 import type { WeatherSnapshot } from "@/lib/weather-types"
-import { formatTempValue, formatWindGust, formatWindSpeed } from "@/lib/weather-units"
+import { formatWindGust, formatWindSpeed, shouldShowFeelsLike } from "@/lib/weather-units"
 
 type WeatherConditionsProps = {
   snapshot: WeatherSnapshot
   loading?: boolean
   climateSlot?: ReactNode
-}
-
-function NowTile({ label, value, detail }: { label: string; value: string; detail?: string }) {
-  return (
-    <article className="rounded-xl bg-surface-container-lowest/90 px-4 py-3 ring-1 ring-outline-variant/10">
-      <h3 className="text-[10px] font-semibold tracking-wide text-on-surface-variant uppercase">{label}</h3>
-      <p className="mt-1 text-lg font-semibold text-on-surface">{value}</p>
-      {detail ? <p className="mt-0.5 text-xs text-on-surface-variant">{detail}</p> : null}
-    </article>
-  )
 }
 
 export function WeatherConditions({ snapshot, loading = false, climateSlot }: WeatherConditionsProps) {
@@ -45,6 +29,7 @@ export function WeatherConditions({ snapshot, loading = false, climateSlot }: We
     lat,
     lon,
     temperatureC,
+    feelsLikeC,
     condition,
     windSpeedKmh,
     windDirectionDeg,
@@ -61,14 +46,15 @@ export function WeatherConditions({ snapshot, loading = false, climateSlot }: We
     timezone,
     timezoneAbbreviation,
     isDay,
-    temperatureAnomalyC,
+    sunrise,
+    sunset,
     isDefaultLocation,
     alerts,
     safetyNotices,
     pastWeek,
+    hourlyForecast,
   } = snapshot
 
-  const heroNight = isDay === false
   const updatedLabel = formatObservedAt(observedAt, timezone, timezoneAbbreviation)?.replace(/^Updated /, "")
   const windSpeed = formatWindSpeed(windSpeedKmh, units)
   const windGust = formatWindGust(windGustKmh, units)
@@ -80,18 +66,14 @@ export function WeatherConditions({ snapshot, loading = false, climateSlot }: We
       : dailyForecast.find((day) => !day.isPast)?.precipitationProbabilityPercent != null
         ? `${dailyForecast.find((day) => !day.isPast)?.precipitationProbabilityPercent}% chance today`
         : "Today total"
-  const anomalyLabel = formatTemperatureAnomaly(
-    temperatureAnomalyC,
-    units,
-    snapshot.climateNormals?.currentMonth?.monthName ?? "this month"
-  )
   const elevationLabel =
     typeof elevationM === "number" && Number.isFinite(elevationM) ? `${Math.round(elevationM)} m elevation` : null
   const populationLabel = formatPopulation(population)
   const locationMeta = [elevationLabel, populationLabel].filter(Boolean).join(" · ")
+  const showFeelsLikeInHero = shouldShowFeelsLike(temperatureC, feelsLikeC)
 
   return (
-    <div className={cn("space-y-4 transition-opacity", loading && "opacity-60")} aria-busy={loading}>
+    <div className="space-y-4" aria-busy={loading}>
       <WeatherSafetySection alerts={alerts} safetyNotices={safetyNotices} />
 
       <section aria-label="Current weather conditions" className="space-y-4">
@@ -120,53 +102,37 @@ export function WeatherConditions({ snapshot, loading = false, climateSlot }: We
             ) : locationSource === "network" ? (
               <p className="text-xs text-on-surface-variant/80">Approximate network location</p>
             ) : null}
-            {anomalyLabel ? <p className="text-sm text-primary">{anomalyLabel}</p> : null}
           </div>
           {climateSlot}
         </div>
 
-        <div className="flex items-center justify-between gap-3 text-sm text-on-surface-variant">
-          <span className="font-medium uppercase tracking-wide">{heroNight ? "Tonight" : "Now"}</span>
-          {updatedLabel ? <span>{updatedLabel}</span> : null}
-        </div>
-
-        <div
-          className={cn(
-            "rounded-2xl p-4 ring-1 ring-outline-variant/10 sm:p-5",
-            heroNight ? "bg-surface-container-high/80" : "bg-surface-container-low"
-          )}
-        >
-          <div className="flex flex-wrap items-end gap-4">
-            <span className="text-5xl leading-none md:text-6xl" aria-hidden="true">
-              {condition.icon}
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-5xl font-semibold leading-none text-on-surface md:text-6xl">
-                {formatTempValue(temperatureC, units, 1)}
-              </p>
-              <p className="mt-2 text-lg font-medium text-on-surface md:text-xl">{condition.label}</p>
-            </div>
-            <WindCompass degrees={windDirectionDeg} className="h-12 w-12 shrink-0" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
-          <NowTile label="High today" value={todayHighC != null ? formatTempValue(todayHighC, units, 0) : "—"} />
-          <NowTile label="Low today" value={todayLowC != null ? formatTempValue(todayLowC, units, 0) : "—"} />
-          <NowTile label="Wind" value={windSpeed} detail={windGust ?? undefined} />
-          <NowTile label="Precipitation" value={precipToday} detail={precipDetail} />
-        </div>
+        <WeatherHeroPanel
+          conditionIcon={condition.icon}
+          conditionLabel={condition.label}
+          temperatureC={temperatureC}
+          feelsLikeC={feelsLikeC}
+          todayHighC={todayHighC}
+          todayLowC={todayLowC}
+          hourlyForecast={hourlyForecast}
+          windDirectionDeg={windDirectionDeg}
+          windSpeed={windSpeed}
+          windGust={windGust}
+          precipValue={precipToday}
+          precipDetail={precipDetail}
+          isDay={isDay}
+          observedAt={observedAt}
+          sunrise={sunrise}
+          sunset={sunset}
+          updatedLabel={updatedLabel}
+          units={units}
+          refreshing={loading}
+        />
       </section>
 
       <WeatherHourlyForecast hours={snapshot.hourlyForecast} />
       <WeatherForecast days={snapshot.dailyForecast} />
-      <WeatherComfortSection snapshot={snapshot} />
-      <WeatherContextSection
-        lat={snapshot.lat}
-        lon={snapshot.lon}
-        temperatureC={snapshot.temperatureC}
-        pastWeek={pastWeek}
-      />
+      <WeatherComfortSection snapshot={snapshot} showFeelsLike={!showFeelsLikeInHero} />
+      <WeatherContextSection pastWeek={pastWeek} />
       <WeatherDetailSection
         pressureHpa={snapshot.pressureHpa}
         visibilityM={snapshot.visibilityM}

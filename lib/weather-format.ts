@@ -1,4 +1,5 @@
 // Purpose: Format wind, time, and temperature strings for the weather page.
+import type { LocationSuggestion } from "@/lib/weather-geocode"
 import { formatAnomalyMessage, type WeatherUnits } from "@/lib/weather-units"
 
 const COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"] as const
@@ -7,11 +8,6 @@ export function windDirectionLabel(degrees: number): string {
   if (!Number.isFinite(degrees)) return "—"
   const index = Math.round(((degrees % 360) + 360) % 360 / 22.5) % 16
   return COMPASS[index] ?? "—"
-}
-
-export function formatTemperature(celsius: number | null | undefined, digits = 0): string {
-  if (typeof celsius !== "number" || !Number.isFinite(celsius)) return "—"
-  return `${celsius.toFixed(digits)}°C`
 }
 
 export function formatClockTime(isoLocal: string | null | undefined): string | null {
@@ -47,6 +43,17 @@ export function formatPopulation(count: number | null | undefined): string | nul
   if (count >= 1_000_000) return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, "")}M people`
   if (count >= 1_000) return `${Math.round(count / 1_000)}k people`
   return `${count.toLocaleString("en-US")} people`
+}
+
+export function locationSuggestionMeta(suggestion: LocationSuggestion): string | null {
+  const parts: string[] = []
+  if (typeof suggestion.elevationM === "number" && Number.isFinite(suggestion.elevationM)) {
+    parts.push(`${Math.round(suggestion.elevationM)} m`)
+  }
+  const population = formatPopulation(suggestion.population)
+  if (population) parts.push(population)
+  if (suggestion.timezone) parts.push(suggestion.timezone)
+  return parts.length > 0 ? parts.join(" · ") : null
 }
 
 export function aqiLabel(usAqi: number): string {

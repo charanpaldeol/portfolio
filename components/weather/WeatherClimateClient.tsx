@@ -1,63 +1,15 @@
 "use client"
 
-// Purpose: Client-fetched climate normals slot for live weather navigation.
-import { useEffect, useState } from "react"
-
+// Purpose: Header climate normals slot — reads shared climate fetch from WeatherClimateProvider.
 import { WeatherClimateNormals } from "@/components/weather/WeatherClimateNormals"
-import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
-import type { ClimateExtremes } from "@/lib/weather-types"
-import { formatAnomalyMessage } from "@/lib/weather-units"
+import { useWeatherClimate } from "@/components/weather/WeatherClimateProvider"
 
 type WeatherClimateClientProps = {
-  lat: number
-  lon: number
-  temperatureC: number | null
   layout?: "default" | "header"
 }
 
-type ClimateResponse = {
-  climateNormals: ClimateExtremes | null
-  temperatureAnomalyC: number | null
-}
-
-export function WeatherClimateClient({
-  lat,
-  lon,
-  temperatureC,
-  layout = "header",
-}: WeatherClimateClientProps) {
-  const { units } = useWeatherUnits()
-  const [climate, setClimate] = useState<ClimateExtremes | null>(null)
-  const [anomalyC, setAnomalyC] = useState<number | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const controller = new AbortController()
-    setLoading(true)
-
-    const params = new URLSearchParams({
-      lat: String(lat),
-      lon: String(lon),
-    })
-    if (temperatureC != null) params.set("temperatureC", String(temperatureC))
-
-    void fetch(`/api/weather/climate?${params.toString()}`, { signal: controller.signal })
-      .then(async (res) => {
-        const data = (await res.json()) as ClimateResponse
-        setClimate(data.climateNormals ?? null)
-        setAnomalyC(data.temperatureAnomalyC ?? null)
-      })
-      .catch((error) => {
-        if (error instanceof DOMException && error.name === "AbortError") return
-        setClimate(null)
-        setAnomalyC(null)
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setLoading(false)
-      })
-
-    return () => controller.abort()
-  }, [lat, lon, temperatureC])
+export function WeatherClimateClient({ layout = "header" }: WeatherClimateClientProps) {
+  const { climate, loading } = useWeatherClimate()
 
   if (loading) {
     return (
@@ -74,12 +26,7 @@ export function WeatherClimateClient({
   if (!climate) return <div className="min-h-[8.5rem]" aria-hidden="true" />
 
   return (
-    <div className="min-h-[8.5rem] space-y-2">
-      {anomalyC != null && Math.abs(anomalyC) >= 0.5 ? (
-        <p className="text-sm text-primary">
-          {formatAnomalyMessage(anomalyC, climate.currentMonth?.monthName ?? "this month", units)}
-        </p>
-      ) : null}
+    <div className="min-h-[8.5rem]">
       <WeatherClimateNormals climate={climate} layout={layout} />
     </div>
   )

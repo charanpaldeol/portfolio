@@ -37,6 +37,14 @@ New user-visible features ship behind server-side flags:
 - Components accept props — no internal fetch in `/components`
 - API routes: Zod validation (`safeParse` on POST bodies)
 
+## Weather (`/weather`)
+
+- **Overview:** `docs/features/weather.md` (routes, APIs, UX, tests).
+- Server load: `lib/weather-service.ts` (not self-fetch from `page.tsx`).
+- Agent policy: `.claude/rules/weather-search.md` (compound bar, Enter-to-go, recents, URL sync).
+- Cursor mirror: `.cursor/rules/weather-search.mdc` → same policy.
+- E2E smoke: `e2e/goal-smoke.spec.ts` weather tests.
+
 ## Governance reports (optional)
 
 Worker completion reports for rule extraction:

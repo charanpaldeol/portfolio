@@ -22,7 +22,8 @@ export function formatTemperatureDelta(
   const diff = valueB - valueA
   if (Math.abs(diff) < 0.5) return "About the same"
   const rounded = units === "f" ? Math.abs(Math.round(diff * (9 / 5))) : Math.abs(Math.round(diff))
-  return diff > 0 ? `${rounded}° warmer in ${placeBLabel}` : `${rounded}° cooler in ${placeBLabel}`
+  const suffix = units === "f" ? "°F" : "°"
+  return diff > 0 ? `${rounded}${suffix} warmer in ${placeBLabel}` : `${rounded}${suffix} cooler in ${placeBLabel}`
 }
 
 function formatPercent(value: number | null): string {

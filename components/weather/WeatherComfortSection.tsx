@@ -5,13 +5,15 @@ import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { cn } from "@/lib/utils"
 import { uvSeverity } from "@/lib/weather-format"
 import type { WeatherSnapshot } from "@/lib/weather-types"
-import { formatTempValue } from "@/lib/weather-units"
+import { formatTempValue, WEATHER_TEMP_DIGITS } from "@/lib/weather-units"
 
 type WeatherComfortSectionProps = {
   snapshot: Pick<
     WeatherSnapshot,
     "feelsLikeC" | "humidityPercent" | "dewPointC" | "wetBulbC" | "uvIndexMax"
   >
+  /** Hide feels-like tile when the hero already shows it. */
+  showFeelsLike?: boolean
 }
 
 function ComfortTile({
@@ -41,7 +43,7 @@ function ComfortTile({
   )
 }
 
-export function WeatherComfortSection({ snapshot }: WeatherComfortSectionProps) {
+export function WeatherComfortSection({ snapshot, showFeelsLike = true }: WeatherComfortSectionProps) {
   const { units } = useWeatherUnits()
   const humidity =
     typeof snapshot.humidityPercent === "number" && Number.isFinite(snapshot.humidityPercent)
@@ -58,16 +60,23 @@ export function WeatherComfortSection({ snapshot }: WeatherComfortSectionProps) 
   return (
     <section aria-label="Comfort" className="space-y-2">
       <h2 className="text-sm font-medium uppercase tracking-wide text-on-surface-variant">Comfort</h2>
-      <div className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
-        <ComfortTile
-          label="Feels like"
-          value={formatTempValue(snapshot.feelsLikeC, units, 1)}
-          detail="Apparent temperature"
-        />
+      <div
+        className={cn(
+          "grid gap-2.5",
+          showFeelsLike ? "grid-cols-2 md:grid-cols-4" : "grid-cols-2 md:grid-cols-3"
+        )}
+      >
+        {showFeelsLike ? (
+          <ComfortTile
+            label="Feels like"
+            value={formatTempValue(snapshot.feelsLikeC, units, WEATHER_TEMP_DIGITS)}
+            detail="Apparent temperature"
+          />
+        ) : null}
         <ComfortTile label="Humidity" value={humidity} detail={dewPoint} />
         <ComfortTile
           label="Wet-bulb"
-          value={formatTempValue(snapshot.wetBulbC, units, 1)}
+          value={formatTempValue(snapshot.wetBulbC, units, WEATHER_TEMP_DIGITS)}
           detail="Heat stress indicator"
         />
         <ComfortTile

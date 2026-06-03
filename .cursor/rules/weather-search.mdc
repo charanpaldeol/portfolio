@@ -1,0 +1,11 @@
+---
+description: Weather search bar and /weather lookup UX (mirror of .claude/rules)
+globs: components/weather/**/*Search*,components/weather/LocationSearchField.tsx,components/weather/use-location-suggestions.ts,components/weather/weather-search-ui.ts,app/weather/**
+alwaysApply: false
+---
+
+# Weather search
+
+**Source of truth:** `.claude/rules/weather-search.md` — read and follow that file before editing the search bar, compare search, or `/weather` client lookup.
+
+**Human overview:** `docs/features/weather.md`
