@@ -2,7 +2,7 @@
 
 > **Purpose:** Enforce design tokens and Magic UI opt-in rules in app/component code; full strategy lives in `docs/DESIGN.md`.
 
-Always apply (imported via `CLAUDE.md`). Also relevant when editing `app/**` or `components/**` source files.
+Read when editing `app/**` or `components/**` (see `CLAUDE.md` policy table). Not always imported — open this file before UI changes.
 
 ## Tokens (never hardcode)
 

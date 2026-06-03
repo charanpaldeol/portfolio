@@ -2,7 +2,7 @@
 
 > **Purpose:** Require `EditorialPageHero` for editorial marketing pages so hero markup does not drift across routes.
 
-Always apply (imported via `CLAUDE.md`). Especially when editing `app/**/*.tsx` or `components/portfolio/**/*.tsx`.
+Read when adding or editing editorial marketing pages (`app/**/*.tsx`, `components/portfolio/**`). See `CLAUDE.md` policy table.
 
 ## Source of truth
 

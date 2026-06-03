@@ -1,46 +1,47 @@
 ---
 name: verify-and-audit
-description: Run portfolio verification (tsc, lint, audit, build, e2e) and triage failures. Use before committing or when asked to verify the app.
+description: Run portfolio verification (ship-check, full verify, audit) and triage failures. Use when asked to verify or before commit/ship.
 ---
 
 # Verify and audit
 
-> **Purpose:** Run and triage `pnpm verify` and `scripts/audit.js` failures before commit or PR.
+> **Purpose:** Run and triage `pnpm ship-check`, `pnpm verify`, and `scripts/audit.js` failures.
 
 ## When to use
 
-- Before committing or opening a PR
+- User asked to verify, commit, or push
 - After UI or routing changes
-- When `pnpm verify` or audit failures are reported
+- When verify or audit failures are reported
 
 ## Steps
 
-1. From repo root, run:
+1. **Default (push / quick gate):**
+
+   ```bash
+   pnpm ship-check
+   ```
+
+2. **Full bar (user asked to commit or merge):**
 
    ```bash
    pnpm verify
    ```
 
-2. For hero-only compliance:
+3. Hero-only:
 
    ```bash
    node scripts/audit.js hero
    ```
 
-3. For full design + architecture audit:
+## If ship-check or verify fails
 
-   ```bash
-   node scripts/audit.js
-   ```
-
-## If verify fails
-
-- **tsc / lint**: fix TypeScript and ESLint issues in changed files only (scope discipline).
-- **audit.js**: read violation source (`docs/DESIGN.md`, `docs/code-architecture-review.md`, `docs/GOVERNANCE.md`).
-- **build**: check `pnpm build` output for missing imports or Next.js errors.
-- **e2e**: run `pnpm e2e:smoke` then `pnpm e2e:proof` separately; ensure dev server is not blocking port 3000.
+- **tsc / lint**: fix in changed files only (scope discipline). Run `pnpm exec eslint <files>` after import edits.
+- **audit.js**: read violation source (`docs/DESIGN.md`, `docs/GOVERNANCE.md`).
+- **build**: check prebuild (`build:content`, `sync:graph`) then Next.js errors.
+- **e2e** (verify only): `pnpm e2e:smoke` then `pnpm e2e:proof`; free port 3000 first (`pnpm dev:free3000`).
 
 ## Definition of done
 
-- `pnpm verify` exits 0
+- `pnpm ship-check` exits 0 before push
+- `pnpm verify` exits 0 before commit when user requested commit
 - No new hardcoded hex colors or frozen-file edits unless explicitly requested

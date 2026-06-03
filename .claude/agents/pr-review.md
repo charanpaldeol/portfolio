@@ -17,7 +17,7 @@ You review pull requests for this portfolio repo.
 1. **Summary** — what the PR does (2–3 sentences)
 2. **Blockers** — must fix before merge
 3. **Suggestions** — optional improvements (keep short)
-4. **Verify** — whether `pnpm verify` was run or should be run
+4. **Verify** — whether `pnpm ship-check` (push) or `pnpm verify` (merge) was run or should be run
 
 ## Do not
 

@@ -17,7 +17,7 @@ pnpm agent:start
 |------|---------|
 | `CLAUDE.md` | Always-on project context |
 | `.claude/rules/` | Project rules (markdown) |
-| `.claude/skills/` | Task skills (`/skill-name` or auto-invoked) |
+| `.claude/skills/` | Task skills (on demand) |
 | `.claude/agents/` | Subagent prompts (`verify-app`, `pr-review`) |
 | `.claude/hooks/` | Optional shell scripts |
 
@@ -25,14 +25,18 @@ Legacy `.cursorrules` is deprecated; use `CLAUDE.md` and `.claude/`.
 
 **Cursor users:** enable “Include third-party Plugins, Skills and other configs” to load `.claude/skills/` and `CLAUDE.md`.
 
-## Verify before commit
+## Verify
+
+| Command | When |
+|---------|------|
+| `pnpm ship-check` | Before **push** — tsc, lint, audit, build (no e2e) |
+| `pnpm verify` | Before **commit** / merge — ship-check + e2e smoke + visual proof |
+| `pnpm verify:full` | verify + unit tests |
+| `pnpm e2e:headless` | Full Playwright (not in verify) |
+
+`FACTORY_SKIP_E2E=1` skips e2e inside `pnpm verify` (CI/factory only).
 
 ```bash
-pnpm verify            # tsc + lint + audit + build + e2e smoke + visual proof
-pnpm verify:full       # verify + unit tests
-pnpm e2e:smoke         # fast chromium route sanity
-pnpm e2e:proof         # visual proof (part of verify)
-pnpm e2e:headless      # full Playwright suite (not run by verify)
 pnpm extract-rules     # guardrail candidates from docs/governance/reports
 pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 ```
@@ -48,9 +52,9 @@ pnpm clean             # remove local generated dirs (graphify, .next, etc.)
 
 ## Enforcement
 
-- **ESLint** — `lib/eslint-rules/` (custom rules)
+- **ESLint** — `eslint.config.mjs` (+ `lib/eslint-rules/` where referenced)
 - **Audit** — `node scripts/audit.js` (`hero` for hero-only)
-- **Before commit** — run `pnpm verify` manually (no Husky pre-commit hook in this repo)
+- **Before push** — `pnpm ship-check`; **before commit** — `pnpm verify` (manual; no Husky hook)
 
 ## Data architecture
 
