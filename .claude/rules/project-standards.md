@@ -74,6 +74,8 @@ Same for `valid[0]`, `items.at(n)`, etc. — assign, then `if (!x) return` / `co
 
 **Server pages vs API routes:** Server Components and `app/**/page.tsx` must **not** `fetch` their own Route Handlers over HTTP. Share logic via `lib/*-service.ts` and import from both the handler and the page (`lib/weather-service.ts` is the reference). Self-fetch caused missing weather climate data and flaky local dev.
 
+**Server / client boundaries:** Never pass **functions** (render props, callbacks) from Server Components to Client Components — causes **“Application error: a server-side exception has occurred”** / `Functions are not valid as a child of Client Components`. Use serializable props and client leaf components instead (`WeatherLiveConditions` is the reference). Wrap **`useSearchParams()`** usage in `<Suspense>`. Smoke **`curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/<route>`** after RSC changes.
+
 **Local dev 404 on `_next/static/*`:** stale `.next` after `pnpm build` while `pnpm dev` runs — stop dev, `rm -rf .next`, restart dev (see CLAUDE.md → Local dev).
 
 **Types files:** read and merge `lib/*-types.ts`; never self-import; grep exporters after edits.

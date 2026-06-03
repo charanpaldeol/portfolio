@@ -1,7 +1,11 @@
 // Purpose: Open-Meteo weather API — current conditions, 7-day forecast, and air quality.
 import { NextResponse } from "next/server"
+import { z } from "zod"
 
 import { getWeatherData, WeatherQuerySchema } from "@/lib/weather-service"
+
+type WeatherQuery = z.infer<typeof WeatherQuerySchema>
+void (null as WeatherQuery | null)
 
 /**
  * GET /api/weather

@@ -1,11 +1,20 @@
 // Purpose: Side-by-side weather comparison for two locations.
-import { WeatherForecast } from "@/components/weather/WeatherForecast"
+"use client"
+
+import Link from "next/link"
+
+import { TripPackingHints } from "@/components/weather/TripPackingHints"
+import { WeatherCompareForecastTable } from "@/components/weather/WeatherCompareForecastTable"
+import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { buildCompareMetrics, compareSummaryLine, locationSubtitle } from "@/lib/weather-compare"
+import { formatLocalTime } from "@/lib/weather-format"
 import type { CompareMetric, WeatherSnapshot } from "@/lib/weather-types"
+import { formatTempValue } from "@/lib/weather-units"
 
 type WeatherCompareProps = {
   locationA: WeatherSnapshot
   locationB: WeatherSnapshot
+  swapHref: string
 }
 
 function CompareRow({ metric }: { metric: CompareMetric }) {
@@ -23,7 +32,7 @@ function CompareRow({ metric }: { metric: CompareMetric }) {
         {metric.detailB ? <p className="mt-0.5 text-xs font-normal text-on-surface-variant">{metric.detailB}</p> : null}
       </td>
       {metric.delta ? (
-        <td className="hidden py-2.5 pl-3 text-xs text-primary align-top md:table-cell sm:py-3">{metric.delta}</td>
+        <td className="py-2.5 pl-3 text-xs text-primary align-top md:table-cell sm:py-3">{metric.delta}</td>
       ) : (
         <td className="hidden py-2.5 pl-3 align-top md:table-cell sm:py-3" />
       )}
@@ -35,17 +44,33 @@ function placeHeading(snapshot: WeatherSnapshot, fallback: string) {
   return snapshot.city.trim() || fallback
 }
 
-export function WeatherCompare({ locationA, locationB }: WeatherCompareProps) {
-  const metrics = buildCompareMetrics(locationA, locationB)
-  const summary = compareSummaryLine(locationA, locationB)
+export function WeatherCompare({ locationA, locationB, swapHref }: WeatherCompareProps) {
+  const { units } = useWeatherUnits()
+  const metrics = buildCompareMetrics(locationA, locationB, units)
+  const summary = compareSummaryLine(locationA, locationB, units)
   const labelA = placeHeading(locationA, "Location A")
   const labelB = placeHeading(locationB, "Location B")
+  const localTimeA = formatLocalTime(locationA.observedAt, locationA.timezoneAbbreviation)
+  const localTimeB = formatLocalTime(locationB.observedAt, locationB.timezoneAbbreviation)
 
   return (
     <section aria-label="Weather comparison" className="space-y-4">
-      <div className="space-y-1">
-        <h1 className="font-display text-2xl font-semibold text-on-surface md:text-3xl">Compare weather</h1>
-        {summary ? <p className="text-sm text-primary">{summary}</p> : null}
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h1 className="font-display text-2xl font-semibold text-on-surface md:text-3xl">Compare weather</h1>
+          {summary ? <p className="text-sm text-primary">{summary}</p> : null}
+          {localTimeA && localTimeB ? (
+            <p className="text-sm text-on-surface-variant">
+              Local time — {labelA}: {localTimeA} · {labelB}: {localTimeB}
+            </p>
+          ) : null}
+        </div>
+        <Link
+          href={swapHref}
+          className="text-xs font-semibold tracking-wide text-primary uppercase hover:underline"
+        >
+          Swap places
+        </Link>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
@@ -57,7 +82,7 @@ export function WeatherCompare({ locationA, locationB }: WeatherCompareProps) {
               {locationA.condition.icon}
             </span>
             <p className="text-4xl font-semibold leading-none text-on-surface">
-              {locationA.temperatureC != null ? `${locationA.temperatureC.toFixed(1)}°C` : "—"}
+              {formatTempValue(locationA.temperatureC, units, 1)}
             </p>
           </div>
           <p className="mt-2 text-sm text-on-surface-variant">{locationA.condition.label}</p>
@@ -71,12 +96,14 @@ export function WeatherCompare({ locationA, locationB }: WeatherCompareProps) {
               {locationB.condition.icon}
             </span>
             <p className="text-4xl font-semibold leading-none text-on-surface">
-              {locationB.temperatureC != null ? `${locationB.temperatureC.toFixed(1)}°C` : "—"}
+              {formatTempValue(locationB.temperatureC, units, 1)}
             </p>
           </div>
           <p className="mt-2 text-sm text-on-surface-variant">{locationB.condition.label}</p>
         </article>
       </div>
+
+      <TripPackingHints locationA={locationA} locationB={locationB} />
 
       <div className="overflow-x-auto rounded-2xl bg-surface-container-lowest ring-1 ring-outline-variant/10">
         <table className="min-w-full border-collapse px-1">
@@ -107,16 +134,7 @@ export function WeatherCompare({ locationA, locationB }: WeatherCompareProps) {
         </table>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium text-on-surface">{labelA} — 7-day forecast</h3>
-          <WeatherForecast days={locationA.dailyForecast} />
-        </div>
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium text-on-surface">{labelB} — 7-day forecast</h3>
-          <WeatherForecast days={locationB.dailyForecast} />
-        </div>
-      </div>
+      <WeatherCompareForecastTable labelA={labelA} labelB={labelB} daysA={locationA.dailyForecast} daysB={locationB.dailyForecast} />
 
       <p className="pt-1 text-[11px] text-on-surface-variant/75">
         Data from {locationA.source} via <code>/api/weather</code>

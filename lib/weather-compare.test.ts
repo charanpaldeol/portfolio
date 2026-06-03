@@ -30,11 +30,17 @@ function snapshot(overrides: Partial<WeatherSnapshot>): WeatherSnapshot {
     locationSource: null,
     airQuality: { usAqi: 40, pm25: 4, label: "Good" },
     dailyForecast: [],
+    hourlyForecast: [],
     observedAt: "2026-06-02T14:00",
     timezone: "America/Toronto",
     timezoneAbbreviation: "EDT",
     source: "open-meteo",
     climateNormals: null,
+    isDay: true,
+    windGustKmh: null,
+    dewPointC: null,
+    temperatureAnomalyC: null,
+    isDefaultLocation: false,
     ...overrides,
   }
 }

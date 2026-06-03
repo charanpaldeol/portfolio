@@ -1,7 +1,7 @@
 // Purpose: Parse Open-Meteo forecast and air-quality responses into app types.
 import { weatherConditionFromCode } from "@/lib/weather-code"
 import { aqiLabel } from "@/lib/weather-format"
-import type { AirQualitySnapshot, DailyForecastDay } from "@/lib/weather-types"
+import type { AirQualitySnapshot, DailyForecastDay, HourlyForecastHour } from "@/lib/weather-types"
 
 type ForecastDaily = {
   time?: string[]
@@ -9,12 +9,29 @@ type ForecastDaily = {
   temperature_2m_max?: number[]
   temperature_2m_min?: number[]
   precipitation_sum?: number[]
+  precipitation_probability_max?: number[]
   uv_index_max?: number[]
   sunrise?: string[]
   sunset?: string[]
 }
 
-export function buildDailyForecast(daily: ForecastDaily | undefined, days = 7): DailyForecastDay[] {
+type ForecastHourly = {
+  time?: string[]
+  temperature_2m?: number[]
+  apparent_temperature?: number[]
+  weather_code?: number[]
+  precipitation_probability?: number[]
+  precipitation?: number[]
+  wind_speed_10m?: number[]
+  wind_direction_10m?: number[]
+  is_day?: number[]
+}
+
+function readFiniteNumber(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null
+}
+
+export function buildDailyForecast(daily: ForecastDaily | undefined, days = 16): DailyForecastDay[] {
   const times = daily?.time ?? []
   const count = Math.min(days, times.length)
 
@@ -29,6 +46,7 @@ export function buildDailyForecast(daily: ForecastDaily | undefined, days = 7): 
     const high = daily?.temperature_2m_max?.[index]
     const low = daily?.temperature_2m_min?.[index]
     const precip = daily?.precipitation_sum?.[index]
+    const precipProb = daily?.precipitation_probability_max?.[index]
     const uv = daily?.uv_index_max?.[index]
 
     return {
@@ -38,8 +56,33 @@ export function buildDailyForecast(daily: ForecastDaily | undefined, days = 7): 
       condition: weatherConditionFromCode(code),
       highC: typeof high === "number" && Number.isFinite(high) ? high : 0,
       lowC: typeof low === "number" && Number.isFinite(low) ? low : 0,
-      precipitationMm: typeof precip === "number" && Number.isFinite(precip) ? precip : null,
-      uvIndexMax: typeof uv === "number" && Number.isFinite(uv) ? uv : null,
+      precipitationMm: readFiniteNumber(precip),
+      precipitationProbabilityPercent: readFiniteNumber(precipProb),
+      uvIndexMax: readFiniteNumber(uv),
+    }
+  })
+}
+
+export function buildHourlyForecast(hourly: ForecastHourly | undefined, hours = 48): HourlyForecastHour[] {
+  const times = hourly?.time ?? []
+  const count = Math.min(hours, times.length)
+
+  return Array.from({ length: count }, (_, index) => {
+    const time = times[index] ?? ""
+    const code = hourly?.weather_code?.[index] ?? 0
+    const isDay = hourly?.is_day?.[index] === 1
+
+    return {
+      time,
+      temperatureC: readFiniteNumber(hourly?.temperature_2m?.[index]),
+      feelsLikeC: readFiniteNumber(hourly?.apparent_temperature?.[index]),
+      weatherCode: code,
+      condition: weatherConditionFromCode(code),
+      precipitationProbabilityPercent: readFiniteNumber(hourly?.precipitation_probability?.[index]),
+      precipitationMm: readFiniteNumber(hourly?.precipitation?.[index]),
+      windSpeedKmh: readFiniteNumber(hourly?.wind_speed_10m?.[index]),
+      windDirectionDeg: readFiniteNumber(hourly?.wind_direction_10m?.[index]),
+      isDay,
     }
   })
 }

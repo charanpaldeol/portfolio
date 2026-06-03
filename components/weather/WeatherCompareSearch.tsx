@@ -55,6 +55,7 @@ export function WeatherCompareSearch() {
   const [locationError, setLocationError] = useState("")
   const [locationNotice, setLocationNotice] = useState("")
   const [isLocatingA, setIsLocatingA] = useState(false)
+  const [isLocatingB, setIsLocatingB] = useState(false)
 
   const inputClass =
     "h-11 w-full rounded-xl bg-surface-container-low px-4 text-sm text-on-surface placeholder:text-on-surface-variant/50 outline-none ring-1 ring-outline-variant/15 transition-shadow focus:ring-2 focus:ring-primary"
@@ -96,6 +97,34 @@ export function WeatherCompareSearch() {
       })
       .finally(() => {
         setIsLocatingA(false)
+      })
+  }
+
+  function handleUseCurrentLocationForB() {
+    const unsupported = geolocationUnsupportedMessage()
+    if (unsupported) {
+      setLocationError(unsupported)
+      return
+    }
+
+    setIsLocatingB(true)
+    setLocationError("")
+    setLocationNotice("")
+
+    void resolveCurrentLocation()
+      .then(({ lat, lon, approximate }) => {
+        const next = { label: "Current location", lat, lon, approximate }
+        setLocationB(next)
+        setCityB("Current location")
+        if (approximate) {
+          setLocationNotice("Location B uses approximate network location (GPS unavailable).")
+        }
+      })
+      .catch(() => {
+        setLocationError("Could not determine your location for Location B.")
+      })
+      .finally(() => {
+        setIsLocatingB(false)
       })
   }
 
@@ -150,6 +179,9 @@ export function WeatherCompareSearch() {
             onSelect={selectB}
             placeholder="Destination — e.g. Ludhiana, Tokyo"
             inputClassName={inputClass}
+            showCurrentLocation
+            onUseCurrentLocation={handleUseCurrentLocationForB}
+            isLocating={isLocatingB}
           />
         </div>
 

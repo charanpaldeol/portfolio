@@ -110,7 +110,22 @@ export function findClimateExtremes(months: MonthlyClimateNormal[]): ClimateExtr
     periodLabel: CLIMATE_NORMALS_PERIOD,
     hottest,
     coldest,
+    currentMonth: getCurrentMonthNormal(months),
   }
+}
+
+export function getCurrentMonthNormal(months: MonthlyClimateNormal[], date = new Date()): MonthlyClimateNormal | null {
+  const monthIndex = date.getUTCMonth()
+  const match = months.find((month) => month.month === monthIndex + 1)
+  return match ?? null
+}
+
+export function computeTemperatureAnomaly(
+  temperatureC: number | null,
+  currentMonth: MonthlyClimateNormal | null
+): number | null {
+  if (temperatureC == null || currentMonth == null) return null
+  return Math.round((temperatureC - currentMonth.meanC) * 10) / 10
 }
 
 export function parseClimateExtremes(body: { daily?: ArchiveDaily }): ClimateExtremes | null {

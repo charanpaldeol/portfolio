@@ -22,11 +22,24 @@ const forecastBody = {
     weather_code: 3,
     wind_speed_10m: 12.5,
     wind_direction_10m: 225,
+    wind_gusts_10m: 20,
     precipitation: 0.2,
     cloud_cover: 88,
     pressure_msl: 1018,
     visibility: 15000,
+    dew_point_2m: 8,
     is_day: 1,
+  },
+  hourly: {
+    time: ["2026-06-02T14:00", "2026-06-02T15:00"],
+    temperature_2m: [12, 13],
+    apparent_temperature: [11, 12],
+    weather_code: [3, 3],
+    precipitation_probability: [20, 30],
+    precipitation: [0, 0],
+    wind_speed_10m: [12.5, 11],
+    wind_direction_10m: [225, 230],
+    is_day: [1, 1],
   },
   daily: {
     time: ["2026-06-02", "2026-06-03", "2026-06-04", "2026-06-05", "2026-06-06", "2026-06-07", "2026-06-08"],
@@ -34,6 +47,7 @@ const forecastBody = {
     temperature_2m_max: [16, 18, 15, 17, 19, 21, 20],
     temperature_2m_min: [9, 10, 8, 9, 11, 12, 11],
     precipitation_sum: [1.2, 0, 3.5, 0, 0, 0, 0.4],
+    precipitation_probability_max: [60, 10, 80, 5, 0, 0, 20],
     uv_index_max: [4, 5, 3, 6, 7, 8, 6],
     sunrise: [
       "2026-06-02T04:45",
@@ -160,7 +174,14 @@ describe("GET /api/weather", () => {
     expect(data.airQuality.usAqi).toBe(55)
     expect(data.dailyForecast).toHaveLength(7)
     expect(data.dailyForecast[0].highC).toBe(16)
+    expect(data.dailyForecast[0].precipitationProbabilityPercent).toBe(60)
+    expect(data.hourlyForecast).toHaveLength(2)
+    expect(data.isDay).toBe(true)
+    expect(data.dewPointC).toBe(8)
+    expect(data.windGustKmh).toBe(20)
+    expect(data.isDefaultLocation).toBe(true)
     expect(data.climateNormals?.hottest.monthName).toBe("July")
+    expect(data.climateNormals?.currentMonth).toBeTruthy()
     expect(data.climateNormals?.coldest.monthName).toBe("January")
     expect(data.climateNormals?.hottest.meanC).toBe(26)
   })
@@ -183,6 +204,15 @@ describe("GET /api/weather", () => {
     expect(res.ok).toBe(true)
     expect(data.city).toBe("New York, New York, United States")
     expect(data.locationSource).toBe("gps")
+  })
+
+  it("skips climate archive when includeClimate=0", async () => {
+    const res = await GET(new Request("http://localhost/api/weather?includeClimate=0"))
+    const data = await res.json()
+
+    expect(res.ok).toBe(true)
+    expect(data.climateNormals).toBeNull()
+    expect(data.hourlyForecast).toHaveLength(2)
   })
 
   it("marks network location when approx=1", async () => {

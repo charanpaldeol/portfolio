@@ -5,25 +5,16 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from "react"
 
+import { WeatherSearchCoords } from "@/components/weather/WeatherSearchCoords"
+import { WeatherSearchSuggestions } from "@/components/weather/WeatherSearchSuggestions"
 import { geolocationUnsupportedMessage, resolveCurrentLocation } from "@/lib/geolocation-client"
 import { cn } from "@/lib/utils"
-import { formatPopulation } from "@/lib/weather-format"
 import type { LocationSuggestion } from "@/lib/weather-geocode"
+import { saveRecentLocation } from "@/lib/weather-recent"
 import { RainbowButton } from "@/registry/magicui/rainbow-button"
 
 type LocationsResponse = {
   results?: LocationSuggestion[]
-}
-
-function suggestionMeta(suggestion: LocationSuggestion): string | null {
-  const parts: string[] = []
-  if (typeof suggestion.elevationM === "number" && Number.isFinite(suggestion.elevationM)) {
-    parts.push(`${Math.round(suggestion.elevationM)} m`)
-  }
-  const population = formatPopulation(suggestion.population)
-  if (population) parts.push(population)
-  if (suggestion.timezone) parts.push(suggestion.timezone)
-  return parts.length > 0 ? parts.join(" · ") : null
 }
 
 function navigateToCoords(
@@ -39,7 +30,7 @@ function navigateToCoords(
   router.push(`/weather?${params.toString()}`)
 }
 
-export function WeatherSearch() {
+export function WeatherSearch({ compareHref }: { compareHref?: string }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const listboxId = useId()
@@ -109,6 +100,7 @@ export function WeatherSearch() {
     setCity(suggestion.label)
     setIsOpen(false)
     setSuggestions([])
+    saveRecentLocation({ label: suggestion.label, lat: suggestion.lat, lon: suggestion.lon })
     navigateToCoords(router, suggestion.lat, suggestion.lon)
   }
 
@@ -130,6 +122,7 @@ export function WeatherSearch() {
         if (approximate) {
           setLocationNotice("Using approximate network location (GPS unavailable on this device).")
         }
+        saveRecentLocation({ label: "Current location", lat, lon })
         navigateToCoords(router, lat, lon, { approximate })
       })
       .catch(() => {
@@ -188,25 +181,27 @@ export function WeatherSearch() {
 
   const showDropdown = !showCoords && isOpen
 
-  const compareHref = (() => {
-    const params = new URLSearchParams()
-    params.set("compare", "1")
-    const currentLat = searchParams.get("lat") ?? searchParams.get("latitude")
-    const currentLon = searchParams.get("lon") ?? searchParams.get("longitude")
-    const currentCity = searchParams.get("city") ?? searchParams.get("q")
-    if (currentLat && currentLon) {
-      params.set("lat", currentLat)
-      params.set("lon", currentLon)
-      if (currentCity) params.set("city", currentCity)
-    }
-    return `/weather?${params.toString()}`
-  })()
+  const resolvedCompareHref =
+    compareHref ??
+    (() => {
+      const params = new URLSearchParams()
+      params.set("compare", "1")
+      const currentLat = searchParams.get("lat") ?? searchParams.get("latitude")
+      const currentLon = searchParams.get("lon") ?? searchParams.get("longitude")
+      const currentCity = searchParams.get("city") ?? searchParams.get("q")
+      if (currentLat && currentLon) {
+        params.set("lat", currentLat)
+        params.set("lon", currentLon)
+        if (currentCity) params.set("city", currentCity)
+      }
+      return `/weather?${params.toString()}`
+    })()
 
   return (
     <header className="rounded-2xl bg-surface-container-lowest p-3 shadow-sm ring-1 ring-outline-variant/10 sm:p-4">
       <div className="mb-2 flex justify-end">
         <Link
-          href={compareHref}
+          href={resolvedCompareHref}
           className="text-xs font-semibold tracking-wide text-primary uppercase hover:underline"
         >
           Compare two places
@@ -242,95 +237,26 @@ export function WeatherSearch() {
                 />
 
                 {showDropdown ? (
-                  <ul
-                    id={listboxId}
-                    role="listbox"
-                    aria-label="Location suggestions"
-                    className="absolute top-full z-30 mt-1 max-h-64 w-full overflow-y-auto rounded-xl border border-outline-variant/20 bg-surface-container-lowest py-1 shadow-lg"
-                  >
-                    <li role="presentation">
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={false}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={handleUseCurrentLocation}
-                        disabled={isLocating}
-                        className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-primary transition-colors hover:bg-surface-container-low disabled:opacity-60"
-                      >
-                        <span aria-hidden="true">📍</span>
-                        {isLocating ? "Getting your location…" : "Use my current location"}
-                      </button>
-                    </li>
-
-                    {isLoading && city.trim().length >= 2 ? (
-                      <li className="px-4 py-2 text-sm text-on-surface-variant">Searching locations…</li>
-                    ) : null}
-
-                    {!isLoading && city.trim().length >= 2 && suggestions.length === 0 ? (
-                      <li className="px-4 py-2 text-sm text-on-surface-variant">No locations found.</li>
-                    ) : null}
-
-                    {suggestions.map((suggestion, index) => {
-                      const meta = suggestionMeta(suggestion)
-                      return (
-                      <li key={suggestion.id} role="presentation">
-                        <button
-                          type="button"
-                          role="option"
-                          aria-selected={activeIndex === index}
-                          onMouseDown={(event) => event.preventDefault()}
-                          onClick={() => selectSuggestion(suggestion)}
-                          className={cn(
-                            "w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-surface-container-low",
-                            activeIndex === index
-                              ? "bg-surface-container-low text-on-surface"
-                              : "text-on-surface-variant"
-                          )}
-                        >
-                          <span className="block font-medium text-on-surface">{suggestion.label}</span>
-                          <span className="mt-0.5 block font-mono text-xs text-on-surface-variant/80">
-                            {suggestion.lat.toFixed(4)}, {suggestion.lon.toFixed(4)}
-                          </span>
-                          {meta ? (
-                            <span className="mt-0.5 block text-xs text-on-surface-variant/70">{meta}</span>
-                          ) : null}
-                        </button>
-                      </li>
-                      )
-                    })}
-                  </ul>
+                  <WeatherSearchSuggestions
+                    listboxId={listboxId}
+                    city={city}
+                    suggestions={suggestions}
+                    activeIndex={activeIndex}
+                    isLoading={isLoading}
+                    isLocating={isLocating}
+                    onUseCurrentLocation={handleUseCurrentLocation}
+                    onSelect={selectSuggestion}
+                  />
                 ) : null}
               </>
             ) : (
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label htmlFor="lat" className="sr-only">
-                    Latitude
-                  </label>
-                  <input
-                    id="lat"
-                    type="text"
-                    value={lat}
-                    onChange={(e) => setLat(e.target.value)}
-                    placeholder="Latitude"
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lon" className="sr-only">
-                    Longitude
-                  </label>
-                  <input
-                    id="lon"
-                    type="text"
-                    value={lon}
-                    onChange={(e) => setLon(e.target.value)}
-                    placeholder="Longitude"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
+              <WeatherSearchCoords
+                lat={lat}
+                lon={lon}
+                inputClass={inputClass}
+                onLatChange={setLat}
+                onLonChange={setLon}
+              />
             )}
           </div>
 

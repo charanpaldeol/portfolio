@@ -70,3 +70,45 @@ export function formatObservedAt(
 
   return zone ? `Updated ${time} ${zone}` : `Updated ${time}`
 }
+
+export function formatLocalTime(
+  observedAt: string | null | undefined,
+  timezoneAbbreviation: string | null | undefined
+): string | null {
+  const time = formatClockTime(observedAt)
+  if (!time) return null
+  const zone = timezoneAbbreviation?.trim()
+  return zone ? `${time} ${zone}` : time
+}
+
+export function formatTemperatureAnomaly(anomalyC: number | null | undefined): string | null {
+  if (typeof anomalyC !== "number" || !Number.isFinite(anomalyC)) return null
+  if (Math.abs(anomalyC) < 0.5) return "Near typical for this month"
+  const rounded = Math.abs(Math.round(anomalyC * 10) / 10)
+  return anomalyC > 0 ? `${rounded}° above typical for this month` : `${rounded}° below typical for this month`
+}
+
+export type SeverityStyle = {
+  label: string
+  badgeClass: string
+  textClass: string
+}
+
+export function uvSeverity(uv: number | null | undefined): SeverityStyle | null {
+  if (typeof uv !== "number" || !Number.isFinite(uv)) return null
+  if (uv <= 2) return { label: "Low", badgeClass: "bg-primary/15 text-primary", textClass: "text-primary" }
+  if (uv <= 5) return { label: "Moderate", badgeClass: "bg-secondary-fixed text-on-secondary-fixed", textClass: "text-on-surface" }
+  if (uv <= 7) return { label: "High", badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed", textClass: "text-on-surface" }
+  if (uv <= 10) return { label: "Very high", badgeClass: "bg-destructive/15 text-destructive", textClass: "text-destructive" }
+  return { label: "Extreme", badgeClass: "bg-destructive/20 text-destructive", textClass: "text-destructive" }
+}
+
+export function aqiSeverity(usAqi: number | null | undefined): SeverityStyle | null {
+  if (typeof usAqi !== "number" || !Number.isFinite(usAqi)) return null
+  if (usAqi <= 50) return { label: "Good", badgeClass: "bg-primary/15 text-primary", textClass: "text-primary" }
+  if (usAqi <= 100) return { label: "Moderate", badgeClass: "bg-secondary-fixed text-on-secondary-fixed", textClass: "text-on-surface" }
+  if (usAqi <= 150) return { label: "Sensitive", badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed", textClass: "text-on-surface" }
+  if (usAqi <= 200) return { label: "Unhealthy", badgeClass: "bg-destructive/15 text-destructive", textClass: "text-destructive" }
+  if (usAqi <= 300) return { label: "Very unhealthy", badgeClass: "bg-destructive/20 text-destructive", textClass: "text-destructive" }
+  return { label: "Hazardous", badgeClass: "bg-destructive/25 text-destructive", textClass: "text-destructive" }
+}

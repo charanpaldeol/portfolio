@@ -8,6 +8,7 @@ import HowIThink from "@/components/home/HowIThink"
 import { NewsletterSignup } from "@/components/home/NewsletterSignup"
 import ProofMetrics from "@/components/home/ProofMetrics"
 import { Testimonials } from "@/components/home/Testimonials"
+import { WeatherTeaser } from "@/components/home/WeatherTeaser"
 import WhatIBring from "@/components/home/WhatIBring"
 import { PageShell } from "@/components/layout/PageShell"
 import { GITHUB_URL, LINKEDIN_URL } from "@/config/navigation"
@@ -62,6 +63,7 @@ export default function Home() {
             <HomeJumpNav />
           </div>
           <WhatIBring />
+          <WeatherTeaser />
           <HowIThink />
           <HomeHowIWorkTeaser />
           <ProofMetrics />

@@ -4,6 +4,7 @@ import {
   computeMonthlyNormals,
   findClimateExtremes,
   formatClimateMonthSummary,
+  getCurrentMonthNormal,
 } from "./weather-climate"
 
 function buildSyntheticArchive() {
@@ -57,6 +58,16 @@ describe("findClimateExtremes", () => {
     const extremes = findClimateExtremes(computeMonthlyNormals(buildSyntheticArchive()))
     expect(extremes?.hottest.monthName).toBe("July")
     expect(extremes?.coldest.monthName).toBe("January")
+    expect(extremes?.currentMonth?.monthName).toBeTruthy()
+  })
+})
+
+describe("getCurrentMonthNormal", () => {
+  it("returns the month matching the provided date", () => {
+    const months = computeMonthlyNormals(buildSyntheticArchive())
+    const july = getCurrentMonthNormal(months, new Date("2026-07-15T12:00:00Z"))
+    expect(july?.monthName).toBe("July")
+    expect(july?.meanC).toBe(26)
   })
 })
 

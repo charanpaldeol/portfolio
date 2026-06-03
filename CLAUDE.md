@@ -47,6 +47,25 @@ pnpm dev
 
 **Do** put shared loader logic in `lib/*-service.ts` (see `lib/weather-service.ts`) and call it from both the Route Handler and the page. Reserve `fetch('/api/…')` for **client components** and external callers only.
 
+## Server / client boundaries (App Router)
+
+**Symptom:** browser shows **“Application error: a server-side exception has occurred”** (often on `/weather` or after adding `"use client"` wrappers). Terminal shows:
+
+```text
+Error: Functions are not valid as a child of Client Components.
+```
+
+**Cause:** A **Server Component** (`page.tsx`, layouts) passed a **function** to a Client Component — render props (`children={(x) => …}`), callbacks, or any non-serializable prop. Only plain data, elements, and `ReactNode` slots composed on the server are allowed.
+
+**Do instead:**
+
+- Keep **`page.tsx` as a Server Component**; put interactivity in leaf **`"use client"`** components.
+- Pass **serializable props** (`string`, `number`, typed snapshots) or **server-rendered slots** (`climateSlot={<ServerChild />}`) — never functions.
+- Components using **`useSearchParams()`** must sit inside a **`<Suspense>`** boundary (see `WeatherClientShell`, `WeatherLiveConditions`, `WeatherSearch`).
+- After editing server/client splits, **`curl -I http://localhost:3000/<route>`** must be **200** — `pnpm build` alone does not catch runtime RSC serialization errors.
+
+Reference pattern: `WeatherLiveConditions` (client refresh + conditions) + `WeatherClimateClient` (client fetch for deferred data) — not render-prop wrappers from `page.tsx`.
+
 ## Verify
 
 Run `pnpm verify` before committing — there is no automatic pre-commit hook, so nothing else catches a broken build for you.

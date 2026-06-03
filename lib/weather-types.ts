@@ -1,6 +1,19 @@
 // Purpose: Shared weather API and UI types for forecast, air quality, and compare views.
 import type { WeatherCondition } from "@/lib/weather-code"
 
+export type HourlyForecastHour = {
+  time: string
+  temperatureC: number | null
+  feelsLikeC: number | null
+  weatherCode: number
+  condition: WeatherCondition
+  precipitationProbabilityPercent: number | null
+  precipitationMm: number | null
+  windSpeedKmh: number | null
+  windDirectionDeg: number | null
+  isDay: boolean
+}
+
 export type DailyForecastDay = {
   date: string
   weekday: string
@@ -9,6 +22,7 @@ export type DailyForecastDay = {
   highC: number
   lowC: number
   precipitationMm: number | null
+  precipitationProbabilityPercent: number | null
   uvIndexMax: number | null
 }
 
@@ -36,6 +50,7 @@ export type ClimateExtremes = {
   periodLabel: string
   hottest: MonthlyClimateNormal
   coldest: MonthlyClimateNormal
+  currentMonth: MonthlyClimateNormal | null
 }
 
 export type WeatherSnapshot = {
@@ -48,6 +63,8 @@ export type WeatherSnapshot = {
   humidityPercent: number | null
   windSpeedKmh: number | null
   windDirectionDeg: number | null
+  windGustKmh: number | null
+  dewPointC: number | null
   precipitationMm: number | null
   precipitationSumTodayMm: number | null
   cloudCoverPercent: number | null
@@ -63,11 +80,15 @@ export type WeatherSnapshot = {
   locationSource: "gps" | "network" | null
   airQuality: AirQualitySnapshot
   dailyForecast: DailyForecastDay[]
+  hourlyForecast: HourlyForecastHour[]
   observedAt: string | null
   timezone: string | null
   timezoneAbbreviation: string | null
   source: string
   climateNormals: ClimateExtremes | null
+  isDay: boolean | null
+  temperatureAnomalyC: number | null
+  isDefaultLocation: boolean
 }
 
 export type CompareMetric = {

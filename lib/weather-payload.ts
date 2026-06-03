@@ -1,9 +1,19 @@
 // Purpose: Parse /api/weather JSON into a typed WeatherSnapshot for page components.
 import { weatherConditionFromCode } from "@/lib/weather-code"
-import type { AirQualitySnapshot, ClimateExtremes, DailyForecastDay, WeatherSnapshot } from "@/lib/weather-types"
+import type {
+  AirQualitySnapshot,
+  ClimateExtremes,
+  DailyForecastDay,
+  HourlyForecastHour,
+  WeatherSnapshot,
+} from "@/lib/weather-types"
 
 function readNumber(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null
+}
+
+function readBoolean(value: unknown): boolean | null {
+  return typeof value === "boolean" ? value : null
 }
 
 function readAirQuality(value: unknown): AirQualitySnapshot {
@@ -31,6 +41,18 @@ function readDailyForecast(value: unknown): DailyForecastDay[] {
   })
 }
 
+function readHourlyForecast(value: unknown): HourlyForecastHour[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((hour): hour is HourlyForecastHour => {
+    return (
+      !!hour &&
+      typeof hour === "object" &&
+      typeof (hour as HourlyForecastHour).time === "string" &&
+      typeof (hour as HourlyForecastHour).condition === "object"
+    )
+  })
+}
+
 function readLocationSource(value: unknown): "gps" | "network" | null {
   return value === "gps" || value === "network" ? value : null
 }
@@ -50,10 +72,17 @@ function readClimateNormals(value: unknown): ClimateExtremes | null {
     lowC: readNumber(month.lowC) ?? 0,
   })
 
+  const currentMonthRaw = record.currentMonth
+  const currentMonth =
+    currentMonthRaw && typeof currentMonthRaw === "object"
+      ? readMonth(currentMonthRaw as Record<string, unknown>)
+      : null
+
   return {
     periodLabel: typeof record.periodLabel === "string" ? record.periodLabel : "1991–2020",
     hottest: readMonth(hottest as Record<string, unknown>),
     coldest: readMonth(coldest as Record<string, unknown>),
+    currentMonth,
   }
 }
 
@@ -71,6 +100,14 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
       ? { label: conditionFromApi.label, icon: conditionFromApi.icon }
       : weatherConditionFromCode(weatherCode)
 
+  const isDay = readBoolean(data.isDay)
+  const nightCondition =
+    isDay === false && condition.icon === "☀️"
+      ? { label: "Clear night", icon: "🌙" }
+      : isDay === false && condition.icon === "🌤️"
+        ? { label: "Mainly clear", icon: "🌙" }
+        : condition
+
   return {
     city: typeof data.city === "string" ? data.city : "",
     lat: data.lat,
@@ -78,11 +115,13 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     temperatureC:
       readNumber(data.temperatureC) ??
       readNumber((data.current as { temperature_2m?: number } | undefined)?.temperature_2m),
-    condition,
+    condition: nightCondition,
     feelsLikeC: readNumber(data.feelsLikeC),
     humidityPercent: readNumber(data.humidityPercent),
     windSpeedKmh: readNumber(data.windSpeedKmh),
     windDirectionDeg: readNumber(data.windDirectionDeg),
+    windGustKmh: readNumber(data.windGustKmh),
+    dewPointC: readNumber(data.dewPointC),
     precipitationMm: readNumber(data.precipitationMm),
     precipitationSumTodayMm: readNumber(data.precipitationSumTodayMm),
     cloudCoverPercent: readNumber(data.cloudCoverPercent),
@@ -98,19 +137,35 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     locationSource: readLocationSource(data.locationSource),
     airQuality: readAirQuality(data.airQuality),
     dailyForecast: readDailyForecast(data.dailyForecast),
+    hourlyForecast: readHourlyForecast(data.hourlyForecast),
     observedAt: typeof data.observedAt === "string" ? data.observedAt : null,
     timezone: typeof data.timezone === "string" ? data.timezone : null,
     timezoneAbbreviation:
       typeof data.timezoneAbbreviation === "string" ? data.timezoneAbbreviation : null,
     source: typeof data.source === "string" ? data.source : "unknown",
     climateNormals: readClimateNormals(data.climateNormals),
+    isDay,
+    temperatureAnomalyC: readNumber(data.temperatureAnomalyC),
+    isDefaultLocation: data.isDefaultLocation === true,
+  }
+}
+
+export function mergeClimateIntoSnapshot(
+  snapshot: WeatherSnapshot,
+  climateNormals: ClimateExtremes | null,
+  temperatureAnomalyC: number | null
+): WeatherSnapshot {
+  return {
+    ...snapshot,
+    climateNormals,
+    temperatureAnomalyC,
   }
 }
 
 export function buildWeatherApiQuery(sp: Record<string, string | string[] | undefined>): string {
   const qs = new URLSearchParams()
   for (const [key, val] of Object.entries(sp)) {
-    if (key === "compare") continue
+    if (key === "compare" || key === "units") continue
     if (typeof val === "string" && val.trim() !== "") qs.set(key, val)
     else if (Array.isArray(val) && typeof val[0] === "string" && val[0].trim() !== "") qs.set(key, val[0])
   }
@@ -163,6 +218,29 @@ export function buildCompareLocationQuery(
   return s ? `?${s}` : ""
 }
 
+export function buildCompareSwapHref(sp: Record<string, string | string[] | undefined>): string {
+  const params = new URLSearchParams()
+  params.set("compare", "1")
+
+  const latA = readSearchParamValue(sp, "lat") ?? readSearchParamValue(sp, "latitude")
+  const lonA = readSearchParamValue(sp, "lon") ?? readSearchParamValue(sp, "longitude")
+  const cityA = readSearchParamValue(sp, "city") ?? readSearchParamValue(sp, "q")
+  const latB = readSearchParamValue(sp, "lat2") ?? readSearchParamValue(sp, "latitude2")
+  const lonB = readSearchParamValue(sp, "lon2") ?? readSearchParamValue(sp, "longitude2")
+  const cityB = readSearchParamValue(sp, "city2") ?? readSearchParamValue(sp, "q2")
+  const approx = readSearchParamValue(sp, "approx")
+
+  if (latB) params.set("lat", latB)
+  if (lonB) params.set("lon", lonB)
+  if (cityB) params.set("city", cityB)
+  if (latA) params.set("lat2", latA)
+  if (lonA) params.set("lon2", lonA)
+  if (cityA) params.set("city2", cityA)
+  if (approx === "1") params.set("approx", "1")
+
+  return `/weather?${params.toString()}`
+}
+
 export function isCompareMode(sp: Record<string, string | string[] | undefined>): boolean {
   if (readParam(sp, "compare") === "1") return true
   const lat2 = readParam(sp, "lat2") ?? readParam(sp, "latitude2")
@@ -195,4 +273,14 @@ export function buildCompareHrefFromSingle(lat: number, lon: number, city?: stri
   params.set("lon", lon.toFixed(4))
   if (city?.trim()) params.set("city", city.trim())
   return `/weather?${params.toString()}`
+}
+
+export function weatherPageTitle(snapshot: WeatherSnapshot | null): string {
+  if (!snapshot?.city.trim()) return "Weather"
+  const temp =
+    typeof snapshot.temperatureC === "number" && Number.isFinite(snapshot.temperatureC)
+      ? `${Math.round(snapshot.temperatureC)}°C`
+      : null
+  const city = snapshot.city.split(",")[0]?.trim() || snapshot.city
+  return temp ? `${city} — ${temp}` : city
 }

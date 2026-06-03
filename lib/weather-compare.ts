@@ -2,24 +2,26 @@
 import { formatClimateMonthSummary } from "@/lib/weather-climate"
 import {
   formatClockTime,
+  formatLocalTime,
   formatObservedAt,
   formatPrecipitation,
   formatPressure,
-  formatTemperature,
   formatVisibility,
   windDirectionLabel,
 } from "@/lib/weather-format"
 import type { CompareMetric, WeatherSnapshot } from "@/lib/weather-types"
+import { formatTempValue, type WeatherUnits } from "@/lib/weather-units"
 
 export function formatTemperatureDelta(
   valueA: number | null,
   valueB: number | null,
-  placeBLabel: string
+  placeBLabel: string,
+  units: WeatherUnits = "c"
 ): string | null {
   if (valueA == null || valueB == null) return null
   const diff = valueB - valueA
   if (Math.abs(diff) < 0.5) return "About the same"
-  const rounded = Math.abs(Math.round(diff))
+  const rounded = units === "f" ? Math.abs(Math.round(diff * (9 / 5))) : Math.abs(Math.round(diff))
   return diff > 0 ? `${rounded}° warmer in ${placeBLabel}` : `${rounded}° cooler in ${placeBLabel}`
 }
 
@@ -32,11 +34,16 @@ function formatWind(snapshot: WeatherSnapshot): { value: string; detail?: string
     typeof snapshot.windSpeedKmh === "number" && Number.isFinite(snapshot.windSpeedKmh)
       ? `${Math.round(snapshot.windSpeedKmh)} km/h`
       : "—"
+  const gust =
+    typeof snapshot.windGustKmh === "number" && Number.isFinite(snapshot.windGustKmh)
+      ? `${Math.round(snapshot.windGustKmh)} km/h gusts`
+      : null
   const direction =
     typeof snapshot.windDirectionDeg === "number" && Number.isFinite(snapshot.windDirectionDeg)
       ? windDirectionLabel(snapshot.windDirectionDeg)
       : null
-  return { value: speed, detail: direction ? `From the ${direction}` : undefined }
+  const detail = [direction ? `From the ${direction}` : null, gust].filter(Boolean).join(" · ") || undefined
+  return { value: speed, detail }
 }
 
 function formatSun(snapshot: WeatherSnapshot): { value: string; detail?: string } {
@@ -57,11 +64,11 @@ function formatAirQuality(snapshot: WeatherSnapshot): { value: string; detail?: 
   return { value, detail }
 }
 
-function formatHighLow(snapshot: WeatherSnapshot): string {
+function formatHighLow(snapshot: WeatherSnapshot, units: WeatherUnits): string {
   const high =
-    snapshot.todayHighC != null ? formatTemperature(snapshot.todayHighC, 0).replace("°C", "°") : "—"
+    snapshot.todayHighC != null ? formatTempValue(snapshot.todayHighC, units, 0) : "—"
   const low =
-    snapshot.todayLowC != null ? formatTemperature(snapshot.todayLowC, 0).replace("°C", "°") : "—"
+    snapshot.todayLowC != null ? formatTempValue(snapshot.todayLowC, units, 0) : "—"
   return `${high} / ${low}`
 }
 
@@ -72,7 +79,11 @@ function shortPlaceLabel(city: string, fallback: string): string {
   return first || fallback
 }
 
-export function buildCompareMetrics(a: WeatherSnapshot, b: WeatherSnapshot): CompareMetric[] {
+export function buildCompareMetrics(
+  a: WeatherSnapshot,
+  b: WeatherSnapshot,
+  units: WeatherUnits = "c"
+): CompareMetric[] {
   const labelB = shortPlaceLabel(b.city, "Location B")
   const windA = formatWind(a)
   const windB = formatWind(b)
@@ -83,11 +94,17 @@ export function buildCompareMetrics(a: WeatherSnapshot, b: WeatherSnapshot): Com
 
   return [
     {
+      key: "localTime",
+      label: "Local time",
+      valueA: formatLocalTime(a.observedAt, a.timezoneAbbreviation) ?? "—",
+      valueB: formatLocalTime(b.observedAt, b.timezoneAbbreviation) ?? "—",
+    },
+    {
       key: "temperature",
       label: "Current temp",
-      valueA: formatTemperature(a.temperatureC, 1),
-      valueB: formatTemperature(b.temperatureC, 1),
-      delta: formatTemperatureDelta(a.temperatureC, b.temperatureC, labelB),
+      valueA: formatTempValue(a.temperatureC, units, 1),
+      valueB: formatTempValue(b.temperatureC, units, 1),
+      delta: formatTemperatureDelta(a.temperatureC, b.temperatureC, labelB, units),
     },
     {
       key: "condition",
@@ -98,21 +115,27 @@ export function buildCompareMetrics(a: WeatherSnapshot, b: WeatherSnapshot): Com
     {
       key: "feelsLike",
       label: "Feels like",
-      valueA: formatTemperature(a.feelsLikeC, 1),
-      valueB: formatTemperature(b.feelsLikeC, 1),
-      delta: formatTemperatureDelta(a.feelsLikeC, b.feelsLikeC, labelB),
+      valueA: formatTempValue(a.feelsLikeC, units, 1),
+      valueB: formatTempValue(b.feelsLikeC, units, 1),
+      delta: formatTemperatureDelta(a.feelsLikeC, b.feelsLikeC, labelB, units),
     },
     {
       key: "highLow",
       label: "High / low today",
-      valueA: formatHighLow(a),
-      valueB: formatHighLow(b),
+      valueA: formatHighLow(a, units),
+      valueB: formatHighLow(b, units),
     },
     {
       key: "humidity",
       label: "Humidity",
       valueA: formatPercent(a.humidityPercent),
       valueB: formatPercent(b.humidityPercent),
+    },
+    {
+      key: "dewPoint",
+      label: "Dew point",
+      valueA: formatTempValue(a.dewPointC, units, 1),
+      valueB: formatTempValue(b.dewPointC, units, 1),
     },
     {
       key: "wind",
@@ -189,8 +212,12 @@ export function buildCompareMetrics(a: WeatherSnapshot, b: WeatherSnapshot): Com
   ]
 }
 
-export function compareSummaryLine(a: WeatherSnapshot, b: WeatherSnapshot): string | null {
-  return formatTemperatureDelta(a.temperatureC, b.temperatureC, shortPlaceLabel(b.city, "Location B"))
+export function compareSummaryLine(
+  a: WeatherSnapshot,
+  b: WeatherSnapshot,
+  units: WeatherUnits = "c"
+): string | null {
+  return formatTemperatureDelta(a.temperatureC, b.temperatureC, shortPlaceLabel(b.city, "Location B"), units)
 }
 
 export function locationSubtitle(snapshot: WeatherSnapshot): string {
