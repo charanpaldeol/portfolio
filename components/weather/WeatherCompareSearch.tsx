@@ -12,6 +12,7 @@ import {
 } from "@/components/weather/LocationSearchField"
 import { geolocationUnsupportedMessage, resolveCurrentLocation } from "@/lib/geolocation-client"
 import type { LocationSuggestion } from "@/lib/weather-geocode"
+import { saveRecentLocation } from "@/lib/weather-recent"
 import { RainbowButton } from "@/registry/magicui/rainbow-button"
 
 function navigateToCompare(
@@ -134,6 +135,8 @@ export function WeatherCompareSearch() {
       setLocationError("Pick both locations from the suggestions before comparing.")
       return
     }
+    saveRecentLocation(locationA)
+    saveRecentLocation(locationB)
     navigateToCompare(router, locationA, locationB)
   }
 

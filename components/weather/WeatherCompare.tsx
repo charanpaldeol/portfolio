@@ -4,7 +4,10 @@
 import Link from "next/link"
 
 import { TripPackingHints } from "@/components/weather/TripPackingHints"
+import { WeatherAttribution } from "@/components/weather/WeatherAttribution"
 import { WeatherCompareForecastTable } from "@/components/weather/WeatherCompareForecastTable"
+import { WeatherCompareHourlyForecast } from "@/components/weather/WeatherCompareHourlyForecast"
+import { WeatherSafetySection } from "@/components/weather/WeatherSafetySection"
 import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { buildCompareMetrics, compareSummaryLine, locationSubtitle } from "@/lib/weather-compare"
 import { formatLocalTime } from "@/lib/weather-format"
@@ -48,6 +51,8 @@ export function WeatherCompare({ locationA, locationB, swapHref }: WeatherCompar
   const { units } = useWeatherUnits()
   const metrics = buildCompareMetrics(locationA, locationB, units)
   const summary = compareSummaryLine(locationA, locationB, units)
+  const combinedAlerts = [...locationA.alerts, ...locationB.alerts]
+  const combinedNotices = Array.from(new Set([...locationA.safetyNotices, ...locationB.safetyNotices]))
   const labelA = placeHeading(locationA, "Location A")
   const labelB = placeHeading(locationB, "Location B")
   const localTimeA = formatLocalTime(locationA.observedAt, locationA.timezoneAbbreviation)
@@ -55,6 +60,7 @@ export function WeatherCompare({ locationA, locationB, swapHref }: WeatherCompar
 
   return (
     <section aria-label="Weather comparison" className="space-y-4">
+      <WeatherSafetySection alerts={combinedAlerts} safetyNotices={combinedNotices} />
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
           <h1 className="font-display text-2xl font-semibold text-on-surface md:text-3xl">Compare weather</h1>
@@ -134,11 +140,16 @@ export function WeatherCompare({ locationA, locationB, swapHref }: WeatherCompar
         </table>
       </div>
 
+      <WeatherCompareHourlyForecast
+        labelA={labelA}
+        labelB={labelB}
+        hoursA={locationA.hourlyForecast}
+        hoursB={locationB.hourlyForecast}
+      />
+
       <WeatherCompareForecastTable labelA={labelA} labelB={labelB} daysA={locationA.dailyForecast} daysB={locationB.dailyForecast} />
 
-      <p className="pt-1 text-[11px] text-on-surface-variant/75">
-        Data from {locationA.source} via <code>/api/weather</code>
-      </p>
+      <WeatherAttribution />
     </section>
   )
 }

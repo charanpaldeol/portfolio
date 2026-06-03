@@ -10,24 +10,12 @@ import { WeatherSearchSuggestions } from "@/components/weather/WeatherSearchSugg
 import { geolocationUnsupportedMessage, resolveCurrentLocation } from "@/lib/geolocation-client"
 import { cn } from "@/lib/utils"
 import type { LocationSuggestion } from "@/lib/weather-geocode"
+import { buildCompareHrefFromSearchParams, navigateToWeatherCoords } from "@/lib/weather-payload"
 import { saveRecentLocation } from "@/lib/weather-recent"
 import { RainbowButton } from "@/registry/magicui/rainbow-button"
 
 type LocationsResponse = {
   results?: LocationSuggestion[]
-}
-
-function navigateToCoords(
-  router: ReturnType<typeof useRouter>,
-  lat: number,
-  lon: number,
-   options?: { approximate?: boolean }
-) {
-  const params = new URLSearchParams()
-  params.set("lat", lat.toFixed(4))
-  params.set("lon", lon.toFixed(4))
-  if (options?.approximate) params.set("approx", "1")
-  router.push(`/weather?${params.toString()}`)
 }
 
 export function WeatherSearch({ compareHref }: { compareHref?: string }) {
@@ -101,7 +89,7 @@ export function WeatherSearch({ compareHref }: { compareHref?: string }) {
     setIsOpen(false)
     setSuggestions([])
     saveRecentLocation({ label: suggestion.label, lat: suggestion.lat, lon: suggestion.lon })
-    navigateToCoords(router, suggestion.lat, suggestion.lon)
+    navigateToWeatherCoords(router, suggestion.lat, suggestion.lon)
   }
 
   function handleUseCurrentLocation() {
@@ -123,7 +111,7 @@ export function WeatherSearch({ compareHref }: { compareHref?: string }) {
           setLocationNotice("Using approximate network location (GPS unavailable on this device).")
         }
         saveRecentLocation({ label: "Current location", lat, lon })
-        navigateToCoords(router, lat, lon, { approximate })
+        navigateToWeatherCoords(router, lat, lon, { approximate })
       })
       .catch(() => {
         setLocationError(
@@ -181,21 +169,7 @@ export function WeatherSearch({ compareHref }: { compareHref?: string }) {
 
   const showDropdown = !showCoords && isOpen
 
-  const resolvedCompareHref =
-    compareHref ??
-    (() => {
-      const params = new URLSearchParams()
-      params.set("compare", "1")
-      const currentLat = searchParams.get("lat") ?? searchParams.get("latitude")
-      const currentLon = searchParams.get("lon") ?? searchParams.get("longitude")
-      const currentCity = searchParams.get("city") ?? searchParams.get("q")
-      if (currentLat && currentLon) {
-        params.set("lat", currentLat)
-        params.set("lon", currentLon)
-        if (currentCity) params.set("city", currentCity)
-      }
-      return `/weather?${params.toString()}`
-    })()
+  const resolvedCompareHref = compareHref ?? buildCompareHrefFromSearchParams(searchParams)
 
   return (
     <header className="rounded-2xl bg-surface-container-lowest p-3 shadow-sm ring-1 ring-outline-variant/10 sm:p-4">
@@ -260,7 +234,17 @@ export function WeatherSearch({ compareHref }: { compareHref?: string }) {
             )}
           </div>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            {!showCoords ? (
+              <button
+                type="button"
+                onClick={handleUseCurrentLocation}
+                disabled={isLocating}
+                className="h-11 rounded-xl px-3 text-xs font-semibold tracking-wide text-primary uppercase ring-1 ring-outline-variant/15 hover:bg-surface-container-low disabled:opacity-60"
+              >
+                {isLocating ? "Locating…" : "My location"}
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={() => setShowCoords((value) => !value)}

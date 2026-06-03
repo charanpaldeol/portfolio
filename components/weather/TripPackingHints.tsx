@@ -1,4 +1,7 @@
 // Purpose: Trip-planning hints derived from weather comparison metrics.
+"use client"
+
+import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { buildPackingHints } from "@/lib/weather-packing"
 import type { WeatherSnapshot } from "@/lib/weather-types"
 
@@ -8,7 +11,8 @@ type TripPackingHintsProps = {
 }
 
 export function TripPackingHints({ locationA, locationB }: TripPackingHintsProps) {
-  const hints = buildPackingHints(locationA, locationB)
+  const { units } = useWeatherUnits()
+  const hints = buildPackingHints(locationA, locationB, units)
 
   return (
     <section aria-label="Trip planning hints" className="rounded-xl bg-surface-container-low p-4 ring-1 ring-outline-variant/10">

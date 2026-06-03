@@ -7,6 +7,9 @@ export const SITE_DEFAULT_DESCRIPTION =
 
 export const OG_IMAGE_PATH = "/og-default.jpg"
 
+/** Browser chrome / PWA theme color (matches inverse-surface tone). */
+export const BROWSER_THEME_COLOR = "#1a1c1e"
+
 export function absoluteUrl(path: string): string {
   if (path.startsWith("http")) return path
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`

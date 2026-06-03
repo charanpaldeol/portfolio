@@ -1,4 +1,5 @@
 // Purpose: Format wind, time, and temperature strings for the weather page.
+import { formatAnomalyMessage, type WeatherUnits } from "@/lib/weather-units"
 
 const COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"] as const
 
@@ -81,11 +82,46 @@ export function formatLocalTime(
   return zone ? `${time} ${zone}` : time
 }
 
-export function formatTemperatureAnomaly(anomalyC: number | null | undefined): string | null {
+export function formatTemperatureAnomaly(
+  anomalyC: number | null | undefined,
+  units: WeatherUnits = "c",
+  monthName = "this month"
+): string | null {
   if (typeof anomalyC !== "number" || !Number.isFinite(anomalyC)) return null
   if (Math.abs(anomalyC) < 0.5) return "Near typical for this month"
-  const rounded = Math.abs(Math.round(anomalyC * 10) / 10)
-  return anomalyC > 0 ? `${rounded}° above typical for this month` : `${rounded}° below typical for this month`
+  return formatAnomalyMessage(anomalyC, monthName, units)
+}
+
+export function formatDuration(seconds: number | null | undefined): string {
+  if (typeof seconds !== "number" || !Number.isFinite(seconds)) return "—"
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.round((seconds % 3600) / 60)
+  if (hours <= 0) return `${minutes}m`
+  return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`
+}
+
+export function formatSnowfall(cm: number | null | undefined): string {
+  if (typeof cm !== "number" || !Number.isFinite(cm)) return "—"
+  if (cm === 0) return "0 cm"
+  return `${cm.toFixed(cm < 10 ? 1 : 0)} cm`
+}
+
+export function formatHourlyTimeLabel(
+  time: string,
+  options?: { previousTime?: string; index?: number }
+): string {
+  if (options?.index === 0) return "Now"
+  const clock = formatClockTime(time)
+  if (!clock) return time.slice(11, 16)
+
+  const date = time.slice(0, 10)
+  const prevDate = options?.previousTime?.slice(0, 10)
+  if (prevDate && date !== prevDate) {
+    const weekday = new Date(`${date}T12:00:00`).toLocaleDateString("en-US", { weekday: "short" })
+    return `${weekday} ${clock}`
+  }
+
+  return clock
 }
 
 export type SeverityStyle = {

@@ -1,6 +1,7 @@
 // Purpose: Derive trip-packing hints from a weather comparison.
 import { formatTemperatureDelta } from "@/lib/weather-compare"
 import type { WeatherSnapshot } from "@/lib/weather-types"
+import type { WeatherUnits } from "@/lib/weather-units"
 
 function shortPlace(city: string, fallback: string): string {
   const trimmed = city.trim()
@@ -12,16 +13,20 @@ function rainyDays(snapshot: WeatherSnapshot): number {
   return snapshot.dailyForecast.filter((day) => (day.precipitationMm ?? 0) >= 1).length
 }
 
-export function buildPackingHints(locationA: WeatherSnapshot, locationB: WeatherSnapshot): string[] {
+export function buildPackingHints(
+  locationA: WeatherSnapshot,
+  locationB: WeatherSnapshot,
+  units: WeatherUnits = "c"
+): string[] {
   const hints: string[] = []
   const labelB = shortPlace(locationB.city, "destination")
 
-  const tempDelta = formatTemperatureDelta(locationA.temperatureC, locationB.temperatureC, labelB)
+  const tempDelta = formatTemperatureDelta(locationA.temperatureC, locationB.temperatureC, labelB, units)
   if (tempDelta && tempDelta !== "About the same") {
     if (tempDelta.includes("cooler")) {
-      hints.push(`Bring a layer — ${tempDelta.toLowerCase()}.`)
+      hints.push(`Bring a layer — ${tempDelta}.`)
     } else if (tempDelta.includes("warmer")) {
-      hints.push(`Pack lighter — ${tempDelta.toLowerCase()}.`)
+      hints.push(`Pack lighter — ${tempDelta}.`)
     }
   }
 

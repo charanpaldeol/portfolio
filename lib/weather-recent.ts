@@ -49,6 +49,32 @@ export function saveRecentLocation(location: RecentLocation): void {
 
   try {
     window.localStorage.setItem(WEATHER_RECENT_STORAGE_KEY, JSON.stringify(merged))
+    window.dispatchEvent(new Event("weather-recent-changed"))
+  } catch {
+    // ignore quota errors
+  }
+}
+
+export function removeRecentLocation(lat: number, lon: number): void {
+  if (typeof window === "undefined") return
+  const next = loadRecentLocations().filter(
+    (item) => item.lat.toFixed(4) !== lat.toFixed(4) || item.lon.toFixed(4) !== lon.toFixed(4)
+  )
+  try {
+    if (next.length === 0) {
+      window.localStorage.removeItem(WEATHER_RECENT_STORAGE_KEY)
+    } else {
+      window.localStorage.setItem(WEATHER_RECENT_STORAGE_KEY, JSON.stringify(next))
+    }
+  } catch {
+    // ignore quota errors
+  }
+}
+
+export function clearRecentLocations(): void {
+  if (typeof window === "undefined") return
+  try {
+    window.localStorage.removeItem(WEATHER_RECENT_STORAGE_KEY)
   } catch {
     // ignore quota errors
   }

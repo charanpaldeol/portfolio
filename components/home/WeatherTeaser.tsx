@@ -1,6 +1,7 @@
 // Purpose: Homepage teaser — compact current-conditions card linking to /weather.
 import Link from "next/link"
 
+import { WeatherTeaserTemp } from "@/components/home/WeatherTeaserTemp"
 import { weatherConditionFromCode } from "@/lib/weather-code"
 import { getWeatherData } from "@/lib/weather-service"
 
@@ -22,7 +23,6 @@ export async function WeatherTeaser() {
       : "/weather"
 
   const cityShort = city.split(",")[0]?.trim() || city
-  const tempLabel = temperatureC != null ? `${Math.round(temperatureC)}°C` : "—"
 
   return (
     <section aria-label="Weather teaser" className="rounded-2xl bg-surface-container-low p-4 ring-1 ring-outline-variant/10 md:p-5">
@@ -34,7 +34,7 @@ export async function WeatherTeaser() {
           <div>
             <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">Live weather</p>
             <p className="mt-1 text-lg font-semibold text-on-surface">
-              {cityShort} · {tempLabel}
+              {cityShort} · {temperatureC != null ? <WeatherTeaserTemp temperatureC={temperatureC} /> : "—"}
             </p>
             <p className="text-sm text-on-surface-variant">{condition.label}</p>
           </div>

@@ -1,4 +1,7 @@
 // Purpose: Show hottest and coldest months from 1991–2020 climate normals.
+"use client"
+
+import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
 import { formatClimateMonthSummary } from "@/lib/weather-climate"
 import type { ClimateExtremes } from "@/lib/weather-types"
 
@@ -36,6 +39,7 @@ function MonthTile({
 }
 
 export function WeatherClimateNormals({ climate, layout = "default" }: WeatherClimateNormalsProps) {
+  const { units } = useWeatherUnits()
   const compact = layout === "header"
 
   if (compact) {
@@ -49,13 +53,13 @@ export function WeatherClimateNormals({ climate, layout = "default" }: WeatherCl
           <MonthTile
             title="Hottest"
             monthName={climate.hottest.monthName}
-            summary={formatClimateMonthSummary(climate.hottest)}
+            summary={formatClimateMonthSummary(climate.hottest, units)}
             compact
           />
           <MonthTile
             title="Coldest"
             monthName={climate.coldest.monthName}
-            summary={formatClimateMonthSummary(climate.coldest)}
+            summary={formatClimateMonthSummary(climate.coldest, units)}
             compact
           />
         </div>

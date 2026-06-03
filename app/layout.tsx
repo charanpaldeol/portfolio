@@ -9,6 +9,7 @@ import PortfolioShell from "@/components/layout/PortfolioShell"
 import { SITE_URL } from "@/lib/site"
 import {
   absoluteUrl,
+  BROWSER_THEME_COLOR,
   OG_IMAGE_PATH,
   ogImageMetadata,
   SITE_DEFAULT_DESCRIPTION,
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [absoluteUrl(OG_IMAGE_PATH)],
   },
-  themeColor: "#1a1c1e",
+  themeColor: BROWSER_THEME_COLOR,
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

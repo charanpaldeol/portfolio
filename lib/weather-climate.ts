@@ -1,5 +1,6 @@
 // Purpose: Derive 1991–2020 monthly climate normals from Open-Meteo archive daily data.
-import type { ClimateExtremes, MonthlyClimateNormal } from "@/lib/weather-types"
+import type { ClimateExtremes, MonthlyClimateNormal, OnThisDayNormal } from "@/lib/weather-types"
+import { formatTempValue, type WeatherUnits } from "./weather-units"
 
 export const CLIMATE_NORMALS_PERIOD = "1991–2020"
 
@@ -23,6 +24,7 @@ type ArchiveDaily = {
   temperature_2m_mean?: number[]
   temperature_2m_max?: number[]
   temperature_2m_min?: number[]
+  precipitation_sum?: number[]
 }
 
 function average(values: number[]): number | null {
@@ -41,7 +43,7 @@ export function buildClimateArchiveUrl(lat: number, lon: number): string {
     longitude: String(lon),
     start_date: "1991-01-01",
     end_date: "2020-12-31",
-    daily: "temperature_2m_mean,temperature_2m_max,temperature_2m_min",
+    daily: "temperature_2m_mean,temperature_2m_max,temperature_2m_min,precipitation_sum",
     timezone: "auto",
   })
   return `https://archive-api.open-meteo.com/v1/archive?${params.toString()}`
@@ -89,7 +91,43 @@ export function computeMonthlyNormals(daily: ArchiveDaily): MonthlyClimateNormal
   })
 }
 
-export function findClimateExtremes(months: MonthlyClimateNormal[]): ClimateExtremes | null {
+export function computeOnThisDayNormals(daily: ArchiveDaily, date = new Date()): OnThisDayNormal | null {
+  const times = daily.time ?? []
+  const highs = daily.temperature_2m_max ?? []
+  const lows = daily.temperature_2m_min ?? []
+  const precips = daily.precipitation_sum ?? []
+  const target = `${String(date.getUTCMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`
+
+  const highValues: number[] = []
+  const lowValues: number[] = []
+  const precipValues: number[] = []
+
+  for (let index = 0; index < times.length; index += 1) {
+    const stamp = times[index]
+    if (!stamp || stamp.slice(5) !== target) continue
+    const high = highs[index]
+    const low = lows[index]
+    const precip = precips[index]
+    if (typeof high === "number" && Number.isFinite(high)) highValues.push(high)
+    if (typeof low === "number" && Number.isFinite(low)) lowValues.push(low)
+    if (typeof precip === "number" && Number.isFinite(precip)) precipValues.push(precip)
+  }
+
+  if (highValues.length === 0 && lowValues.length === 0) return null
+
+  const monthName = MONTH_NAMES[date.getUTCMonth()] ?? "Today"
+  const day = date.getUTCDate()
+
+  return {
+    monthDayLabel: `${monthName} ${day}`,
+    avgHighC: round1(average(highValues) ?? 0),
+    avgLowC: round1(average(lowValues) ?? 0),
+    avgPrecipMm: round1(average(precipValues) ?? 0),
+    sampleYears: Math.max(highValues.length, lowValues.length),
+  }
+}
+
+export function findClimateExtremes(months: MonthlyClimateNormal[], onThisDay: OnThisDayNormal | null = null): ClimateExtremes | null {
   const valid = months.filter(
     (month) => Number.isFinite(month.meanC) && Number.isFinite(month.highC) && Number.isFinite(month.lowC)
   )
@@ -111,6 +149,8 @@ export function findClimateExtremes(months: MonthlyClimateNormal[]): ClimateExtr
     hottest,
     coldest,
     currentMonth: getCurrentMonthNormal(months),
+    monthlyNormals: months,
+    onThisDay,
   }
 }
 
@@ -128,12 +168,14 @@ export function computeTemperatureAnomaly(
   return Math.round((temperatureC - currentMonth.meanC) * 10) / 10
 }
 
-export function parseClimateExtremes(body: { daily?: ArchiveDaily }): ClimateExtremes | null {
+export function parseClimateExtremes(body: { daily?: ArchiveDaily }, referenceDate = new Date()): ClimateExtremes | null {
   const daily = body.daily
   if (!daily?.time?.length) return null
-  return findClimateExtremes(computeMonthlyNormals(daily))
+  const months = computeMonthlyNormals(daily)
+  const onThisDay = computeOnThisDayNormals(daily, referenceDate)
+  return findClimateExtremes(months, onThisDay)
 }
 
-export function formatClimateMonthSummary(month: MonthlyClimateNormal): string {
-  return `${month.meanC.toFixed(1)}° avg · high ${month.highC.toFixed(1)}° · low ${month.lowC.toFixed(1)}°`
+export function formatClimateMonthSummary(month: MonthlyClimateNormal, units: WeatherUnits = "c"): string {
+  return `${formatTempValue(month.meanC, units, 1)} avg · high ${formatTempValue(month.highC, units, 1)} · low ${formatTempValue(month.lowC, units, 1)}`
 }

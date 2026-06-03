@@ -55,10 +55,12 @@ describe("computeMonthlyNormals", () => {
 
 describe("findClimateExtremes", () => {
   it("picks hottest and coldest months by mean temperature", () => {
-    const extremes = findClimateExtremes(computeMonthlyNormals(buildSyntheticArchive()))
+    const months = computeMonthlyNormals(buildSyntheticArchive())
+    const extremes = findClimateExtremes(months)
     expect(extremes?.hottest.monthName).toBe("July")
     expect(extremes?.coldest.monthName).toBe("January")
     expect(extremes?.currentMonth?.monthName).toBeTruthy()
+    expect(extremes?.monthlyNormals).toHaveLength(12)
   })
 })
 
@@ -74,7 +76,7 @@ describe("getCurrentMonthNormal", () => {
 describe("formatClimateMonthSummary", () => {
   it("formats mean high and low", () => {
     expect(formatClimateMonthSummary({ month: 7, monthName: "July", meanC: 26, highC: 31, lowC: 20 })).toBe(
-      "26.0° avg · high 31.0° · low 20.0°"
+      "26.0°C avg · high 31.0°C · low 20.0°C"
     )
   })
 })

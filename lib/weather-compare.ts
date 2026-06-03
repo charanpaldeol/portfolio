@@ -10,7 +10,7 @@ import {
   windDirectionLabel,
 } from "@/lib/weather-format"
 import type { CompareMetric, WeatherSnapshot } from "@/lib/weather-types"
-import { formatTempValue, type WeatherUnits } from "@/lib/weather-units"
+import { formatTempValue, formatWindGust, formatWindSpeed, type WeatherUnits } from "@/lib/weather-units"
 
 export function formatTemperatureDelta(
   valueA: number | null,
@@ -29,15 +29,9 @@ function formatPercent(value: number | null): string {
   return typeof value === "number" && Number.isFinite(value) ? `${Math.round(value)}%` : "—"
 }
 
-function formatWind(snapshot: WeatherSnapshot): { value: string; detail?: string } {
-  const speed =
-    typeof snapshot.windSpeedKmh === "number" && Number.isFinite(snapshot.windSpeedKmh)
-      ? `${Math.round(snapshot.windSpeedKmh)} km/h`
-      : "—"
-  const gust =
-    typeof snapshot.windGustKmh === "number" && Number.isFinite(snapshot.windGustKmh)
-      ? `${Math.round(snapshot.windGustKmh)} km/h gusts`
-      : null
+function formatWind(snapshot: WeatherSnapshot, units: WeatherUnits): { value: string; detail?: string } {
+  const speed = formatWindSpeed(snapshot.windSpeedKmh, units)
+  const gust = formatWindGust(snapshot.windGustKmh, units)
   const direction =
     typeof snapshot.windDirectionDeg === "number" && Number.isFinite(snapshot.windDirectionDeg)
       ? windDirectionLabel(snapshot.windDirectionDeg)
@@ -85,8 +79,8 @@ export function buildCompareMetrics(
   units: WeatherUnits = "c"
 ): CompareMetric[] {
   const labelB = shortPlaceLabel(b.city, "Location B")
-  const windA = formatWind(a)
-  const windB = formatWind(b)
+  const windA = formatWind(a, units)
+  const windB = formatWind(b, units)
   const sunA = formatSun(a)
   const sunB = formatSun(b)
   const airA = formatAirQuality(a)
@@ -118,6 +112,12 @@ export function buildCompareMetrics(
       valueA: formatTempValue(a.feelsLikeC, units, 1),
       valueB: formatTempValue(b.feelsLikeC, units, 1),
       delta: formatTemperatureDelta(a.feelsLikeC, b.feelsLikeC, labelB, units),
+    },
+    {
+      key: "wetBulb",
+      label: "Wet-bulb",
+      valueA: formatTempValue(a.wetBulbC, units, 1),
+      valueB: formatTempValue(b.wetBulbC, units, 1),
     },
     {
       key: "highLow",
@@ -198,16 +198,16 @@ export function buildCompareMetrics(
       label: "Hottest month",
       valueA: a.climateNormals?.hottest.monthName ?? "—",
       valueB: b.climateNormals?.hottest.monthName ?? "—",
-      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.hottest) : undefined,
-      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.hottest) : undefined,
+      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.hottest, units) : undefined,
+      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.hottest, units) : undefined,
     },
     {
       key: "coldestMonth",
       label: "Coldest month",
       valueA: a.climateNormals?.coldest.monthName ?? "—",
       valueB: b.climateNormals?.coldest.monthName ?? "—",
-      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.coldest) : undefined,
-      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.coldest) : undefined,
+      detailA: a.climateNormals ? formatClimateMonthSummary(a.climateNormals.coldest, units) : undefined,
+      detailB: b.climateNormals ? formatClimateMonthSummary(b.climateNormals.coldest, units) : undefined,
     },
   ]
 }

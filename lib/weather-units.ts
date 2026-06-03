@@ -32,3 +32,34 @@ export function formatTempDelta(celsiusDelta: number, units: WeatherUnits): stri
   const suffix = units === "f" ? "°F" : "°"
   return `${sign}${value}${suffix}`
 }
+
+function kmhToMph(kmh: number): number {
+  return kmh * 0.621371
+}
+
+export function formatWindSpeed(kmh: number | null | undefined, units: WeatherUnits): string {
+  if (typeof kmh !== "number" || !Number.isFinite(kmh)) return "—"
+  if (units === "f") return `${Math.round(kmhToMph(kmh))} mph`
+  return `${Math.round(kmh)} km/h`
+}
+
+export function formatWindGust(kmh: number | null | undefined, units: WeatherUnits): string | null {
+  if (typeof kmh !== "number" || !Number.isFinite(kmh)) return null
+  if (units === "f") return `${Math.round(kmhToMph(kmh))} mph gusts`
+  return `${Math.round(kmh)} km/h gusts`
+}
+
+export function formatAnomalyMessage(
+  anomalyC: number,
+  monthName: string,
+  units: WeatherUnits = "c"
+): string {
+  const magnitude =
+    units === "f"
+      ? Math.abs(celsiusToFahrenheit(anomalyC) - celsiusToFahrenheit(0)).toFixed(1)
+      : Math.abs(anomalyC).toFixed(1)
+  const suffix = units === "f" ? "°F" : "°"
+  return anomalyC > 0
+    ? `${magnitude}${suffix} warmer than typical for ${monthName}`
+    : `${magnitude}${suffix} cooler than typical for ${monthName}`
+}

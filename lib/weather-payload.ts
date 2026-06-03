@@ -5,6 +5,10 @@ import type {
   ClimateExtremes,
   DailyForecastDay,
   HourlyForecastHour,
+  MarineSnapshot,
+  MoonInfo,
+  PastWeekDay,
+  WeatherAlert,
   WeatherSnapshot,
 } from "@/lib/weather-types"
 
@@ -18,12 +22,28 @@ function readBoolean(value: unknown): boolean | null {
 
 function readAirQuality(value: unknown): AirQualitySnapshot {
   if (!value || typeof value !== "object") {
-    return { usAqi: null, pm25: null, label: "—" }
+    return {
+      usAqi: null,
+      europeanAqi: null,
+      pm25: null,
+      pm10: null,
+      ozone: null,
+      nitrogenDioxide: null,
+      carbonMonoxide: null,
+      sulphurDioxide: null,
+      label: "—",
+    }
   }
   const record = value as Record<string, unknown>
   return {
     usAqi: readNumber(record.usAqi),
+    europeanAqi: readNumber(record.europeanAqi),
     pm25: readNumber(record.pm25),
+    pm10: readNumber(record.pm10),
+    ozone: readNumber(record.ozone),
+    nitrogenDioxide: readNumber(record.nitrogenDioxide),
+    carbonMonoxide: readNumber(record.carbonMonoxide),
+    sulphurDioxide: readNumber(record.sulphurDioxide),
     label: typeof record.label === "string" ? record.label : "—",
   }
 }
@@ -72,6 +92,26 @@ function readClimateNormals(value: unknown): ClimateExtremes | null {
     lowC: readNumber(month.lowC) ?? 0,
   })
 
+  const monthlyNormals = Array.isArray(record.monthlyNormals)
+    ? record.monthlyNormals
+        .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+        .map(readMonth)
+    : []
+
+  const onThisDayRaw = record.onThisDay
+  const onThisDay =
+    onThisDayRaw && typeof onThisDayRaw === "object"
+      ? {
+          monthDayLabel: typeof (onThisDayRaw as Record<string, unknown>).monthDayLabel === "string"
+            ? ((onThisDayRaw as Record<string, unknown>).monthDayLabel as string)
+            : "Today",
+          avgHighC: readNumber((onThisDayRaw as Record<string, unknown>).avgHighC) ?? 0,
+          avgLowC: readNumber((onThisDayRaw as Record<string, unknown>).avgLowC) ?? 0,
+          avgPrecipMm: readNumber((onThisDayRaw as Record<string, unknown>).avgPrecipMm) ?? 0,
+          sampleYears: readNumber((onThisDayRaw as Record<string, unknown>).sampleYears) ?? 0,
+        }
+      : null
+
   const currentMonthRaw = record.currentMonth
   const currentMonth =
     currentMonthRaw && typeof currentMonthRaw === "object"
@@ -83,6 +123,54 @@ function readClimateNormals(value: unknown): ClimateExtremes | null {
     hottest: readMonth(hottest as Record<string, unknown>),
     coldest: readMonth(coldest as Record<string, unknown>),
     currentMonth,
+    monthlyNormals,
+    onThisDay,
+  }
+}
+
+function readAlerts(value: unknown): WeatherAlert[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((item): item is WeatherAlert => {
+    return (
+      !!item &&
+      typeof item === "object" &&
+      typeof (item as WeatherAlert).id === "string" &&
+      typeof (item as WeatherAlert).event === "string"
+    )
+  })
+}
+
+function readStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((item): item is string => typeof item === "string")
+}
+
+function readPastWeek(value: unknown): PastWeekDay[] {
+  if (!Array.isArray(value)) return []
+  return value.filter((item): item is PastWeekDay => {
+    return !!item && typeof item === "object" && typeof (item as PastWeekDay).date === "string"
+  })
+}
+
+function readMarine(value: unknown): MarineSnapshot | null {
+  if (!value || typeof value !== "object") return null
+  const record = value as Record<string, unknown>
+  return {
+    waveHeightM: readNumber(record.waveHeightM),
+    wavePeriodSec: readNumber(record.wavePeriodSec),
+    waveDirectionDeg: readNumber(record.waveDirectionDeg),
+    seaSurfaceTempC: readNumber(record.seaSurfaceTempC),
+  }
+}
+
+function readMoon(value: unknown): MoonInfo | null {
+  if (!value || typeof value !== "object") return null
+  const record = value as Record<string, unknown>
+  if (typeof record.phaseLabel !== "string" || typeof record.icon !== "string") return null
+  return {
+    phaseLabel: record.phaseLabel,
+    icon: record.icon,
+    illuminationPercent: readNumber(record.illuminationPercent) ?? 0,
   }
 }
 
@@ -115,8 +203,10 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     temperatureC:
       readNumber(data.temperatureC) ??
       readNumber((data.current as { temperature_2m?: number } | undefined)?.temperature_2m),
+    weatherCode,
     condition: nightCondition,
     feelsLikeC: readNumber(data.feelsLikeC),
+    wetBulbC: readNumber(data.wetBulbC),
     humidityPercent: readNumber(data.humidityPercent),
     windSpeedKmh: readNumber(data.windSpeedKmh),
     windDirectionDeg: readNumber(data.windDirectionDeg),
@@ -128,6 +218,8 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     pressureHpa: readNumber(data.pressureHpa),
     visibilityM: readNumber(data.visibilityM),
     uvIndexMax: readNumber(data.uvIndexMax),
+    sunshineDurationSec: readNumber(data.sunshineDurationSec),
+    daylightDurationSec: readNumber(data.daylightDurationSec),
     sunrise: typeof data.sunrise === "string" ? data.sunrise : null,
     sunset: typeof data.sunset === "string" ? data.sunset : null,
     todayHighC: readNumber(data.todayHighC),
@@ -138,6 +230,11 @@ export function parseWeatherPayload(data: Record<string, unknown>): WeatherSnaps
     airQuality: readAirQuality(data.airQuality),
     dailyForecast: readDailyForecast(data.dailyForecast),
     hourlyForecast: readHourlyForecast(data.hourlyForecast),
+    pastWeek: readPastWeek(data.pastWeek),
+    alerts: readAlerts(data.alerts),
+    safetyNotices: readStringArray(data.safetyNotices),
+    marine: readMarine(data.marine),
+    moon: readMoon(data.moon),
     observedAt: typeof data.observedAt === "string" ? data.observedAt : null,
     timezone: typeof data.timezone === "string" ? data.timezone : null,
     timezoneAbbreviation:
@@ -273,6 +370,34 @@ export function buildCompareHrefFromSingle(lat: number, lon: number, city?: stri
   params.set("lon", lon.toFixed(4))
   if (city?.trim()) params.set("city", city.trim())
   return `/weather?${params.toString()}`
+}
+
+export function buildCompareHrefFromSearchParams(sp: URLSearchParams, fallback = "/weather?compare=1"): string {
+  const params = new URLSearchParams()
+  params.set("compare", "1")
+  const lat = sp.get("lat") ?? sp.get("latitude")
+  const lon = sp.get("lon") ?? sp.get("longitude")
+  const city = sp.get("city") ?? sp.get("q")
+  if (lat && lon) {
+    params.set("lat", lat)
+    params.set("lon", lon)
+    if (city) params.set("city", city)
+    return `/weather?${params.toString()}`
+  }
+  return fallback
+}
+
+export function navigateToWeatherCoords(
+  router: { push: (href: string) => void },
+  lat: number,
+  lon: number,
+  options?: { approximate?: boolean }
+): void {
+  const params = new URLSearchParams()
+  params.set("lat", lat.toFixed(4))
+  params.set("lon", lon.toFixed(4))
+  if (options?.approximate) params.set("approx", "1")
+  router.push(`/weather?${params.toString()}`)
 }
 
 export function weatherPageTitle(snapshot: WeatherSnapshot | null): string {

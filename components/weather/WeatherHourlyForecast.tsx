@@ -2,9 +2,9 @@
 
 // Purpose: 48-hour scrollable hourly forecast timeline.
 import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
-import { formatClockTime, formatPrecipitation } from "@/lib/weather-format"
+import { formatHourlyTimeLabel, formatPrecipitation } from "@/lib/weather-format"
 import type { HourlyForecastHour } from "@/lib/weather-types"
-import { formatTempValue } from "@/lib/weather-units"
+import { formatTempValue, formatWindGust } from "@/lib/weather-units"
 
 type WeatherHourlyForecastProps = {
   hours: HourlyForecastHour[]
@@ -20,18 +20,19 @@ export function WeatherHourlyForecast({ hours }: WeatherHourlyForecastProps) {
       <div className="overflow-x-auto pb-1">
         <ol className="flex min-w-max gap-2">
           {hours.map((hour, index) => {
-            const label =
-              index === 0
-                ? "Now"
-                : formatClockTime(hour.time)?.replace(/ AM| PM/, "") ?? hour.time.slice(11, 16)
+            const label = formatHourlyTimeLabel(hour.time, {
+              index,
+              previousTime: hours[index - 1]?.time,
+            })
             const icon = !hour.isDay && hour.condition.icon === "☀️" ? "🌙" : hour.condition.icon
+            const gustLabel = formatWindGust(hour.windGustKmh, units)
 
             return (
               <li
                 key={hour.time}
-                className="flex w-[4.5rem] shrink-0 flex-col items-center rounded-xl bg-surface-container-lowest/90 px-2 py-3 text-center ring-1 ring-outline-variant/10"
+                className="flex w-[4.75rem] shrink-0 flex-col items-center rounded-xl bg-surface-container-lowest/90 px-2 py-3 text-center ring-1 ring-outline-variant/10"
               >
-                <span className="text-[11px] font-semibold text-on-surface-variant">{label}</span>
+                <span className="text-[11px] font-semibold leading-tight text-on-surface-variant">{label}</span>
                 <span className="mt-1 text-2xl leading-none" aria-hidden="true">
                   {icon}
                 </span>
@@ -43,6 +44,9 @@ export function WeatherHourlyForecast({ hours }: WeatherHourlyForecastProps) {
                   <span className="mt-1 text-[10px] text-primary">{hour.precipitationProbabilityPercent}%</span>
                 ) : hour.precipitationMm != null && hour.precipitationMm > 0 ? (
                   <span className="mt-1 text-[10px] text-primary">{formatPrecipitation(hour.precipitationMm)}</span>
+                ) : null}
+                {hour.windGustKmh != null && hour.windGustKmh >= 30 && gustLabel ? (
+                  <span className="mt-1 text-[10px] text-on-surface-variant">{gustLabel}</span>
                 ) : null}
               </li>
             )

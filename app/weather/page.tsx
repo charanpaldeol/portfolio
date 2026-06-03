@@ -6,7 +6,7 @@ import { PageShell } from "@/components/layout/PageShell"
 import { WeatherClientShell } from "@/components/weather/WeatherClientShell"
 import { WeatherCompare } from "@/components/weather/WeatherCompare"
 import { WeatherCompareSearch } from "@/components/weather/WeatherCompareSearch"
-import { WeatherLiveConditions } from "@/components/weather/WeatherLiveConditions"
+import { WeatherLocationBody } from "@/components/weather/WeatherLocationBody"
 import { WeatherPageToolbar } from "@/components/weather/WeatherPageToolbar"
 import { WeatherSearch } from "@/components/weather/WeatherSearch"
 import { NOINDEX_ROBOTS, pageMetadata } from "@/lib/site-metadata"
@@ -163,6 +163,7 @@ export default async function WeatherPage({ searchParams }: PageProps) {
         <WeatherClientShell>
           <div className="mx-auto w-full max-w-5xl space-y-4">
             <CompareSetupBody />
+            <WeatherPageToolbar />
           </div>
         </WeatherClientShell>
       </PageShell>
@@ -195,10 +196,9 @@ export default async function WeatherPage({ searchParams }: PageProps) {
               <Suspense fallback={<WeatherSearchFallback />}>
                 <WeatherSearch compareHref={compareHref} />
               </Suspense>
-              <WeatherPageToolbar />
 
               <Suspense fallback={<ConditionsFallback />}>
-                <WeatherLiveConditions initialSnapshot={snapshot} initialQueryKey={initialQueryKey} />
+                <WeatherLocationBody initialSnapshot={snapshot} initialQueryKey={initialQueryKey} />
               </Suspense>
             </>
           ) : (

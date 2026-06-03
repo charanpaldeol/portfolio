@@ -26,6 +26,7 @@ export function CopyWeatherLink() {
       type="button"
       onClick={() => void handleCopy()}
       className="text-xs font-semibold tracking-wide text-primary uppercase hover:underline"
+      title="Copy this weather page URL"
     >
       {copied ? "Link copied" : "Copy link"}
     </button>

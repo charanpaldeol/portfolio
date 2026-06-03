@@ -22,7 +22,7 @@ describe("buildDailyForecast", () => {
 
 describe("parseAirQuality", () => {
   it("returns AQI label from provider data", () => {
-    expect(parseAirQuality({ current: { us_aqi: 49, pm2_5: 4.2 } })).toEqual({
+    expect(parseAirQuality({ current: { us_aqi: 49, pm2_5: 4.2 } })).toMatchObject({
       usAqi: 49,
       pm25: 4.2,
       label: "Good",

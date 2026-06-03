@@ -1,8 +1,9 @@
 "use client"
 
-// Purpose: Compact 16-day forecast strip for the weather page.
+// Purpose: Compact 16-day forecast strip — future days only, rain/snow indicators.
 import { useWeatherUnits } from "@/components/weather/WeatherUnitsProvider"
-import { formatPrecipitation, uvSeverity } from "@/lib/weather-format"
+import { formatPrecipitation, formatSnowfall, uvSeverity } from "@/lib/weather-format"
+import { futureDailyForecast } from "@/lib/weather-response"
 import type { DailyForecastDay } from "@/lib/weather-types"
 import { formatTempValue } from "@/lib/weather-units"
 
@@ -12,14 +13,24 @@ type WeatherForecastProps = {
 
 export function WeatherForecast({ days }: WeatherForecastProps) {
   const { units } = useWeatherUnits()
-  if (days.length === 0) return null
+  const futureDays = futureDailyForecast(days)
+  if (futureDays.length === 0) return null
+
+  const rainDays = futureDays.filter((day) => (day.precipitationMm ?? 0) >= 1).length
+  const snowDays = futureDays.filter((day) => (day.snowfallCm ?? 0) >= 1).length
 
   return (
     <section aria-label="16-day forecast" className="space-y-2">
-      <h2 className="text-sm font-medium uppercase tracking-wide text-on-surface-variant">16-day forecast</h2>
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-on-surface-variant">16-day forecast</h2>
+        <p className="text-xs text-on-surface-variant">
+          {rainDays > 0 ? `${rainDays} rainy days` : "Mostly dry"}
+          {snowDays > 0 ? ` · ${snowDays} snowy days` : ""}
+        </p>
+      </div>
       <div className="overflow-x-auto pb-1">
         <ol className="flex min-w-max gap-2">
-          {days.map((day, index) => {
+          {futureDays.map((day, index) => {
             const uvBadge = uvSeverity(day.uvIndexMax)
             return (
               <li
@@ -37,7 +48,9 @@ export function WeatherForecast({ days }: WeatherForecastProps) {
                   {formatTempValue(day.highC, units, 0)}
                 </span>
                 <span className="text-xs text-on-surface-variant">{formatTempValue(day.lowC, units, 0)}</span>
-                {day.precipitationProbabilityPercent != null && day.precipitationProbabilityPercent > 0 ? (
+                {day.snowfallCm != null && day.snowfallCm >= 1 ? (
+                  <span className="mt-1 text-[10px] text-primary">{formatSnowfall(day.snowfallCm)}</span>
+                ) : day.precipitationProbabilityPercent != null && day.precipitationProbabilityPercent > 0 ? (
                   <span className="mt-1 text-[10px] text-primary">{day.precipitationProbabilityPercent}%</span>
                 ) : day.precipitationMm != null && day.precipitationMm > 0 ? (
                   <span className="mt-1 text-[10px] text-primary">{formatPrecipitation(day.precipitationMm)}</span>

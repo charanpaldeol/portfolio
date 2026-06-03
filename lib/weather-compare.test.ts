@@ -1,48 +1,10 @@
 import { describe, expect, it } from "vitest"
 
-import { weatherConditionFromCode } from "./weather-code"
 import { buildCompareMetrics, formatTemperatureDelta } from "./weather-compare"
-import type { WeatherSnapshot } from "./weather-types"
+import { testWeatherSnapshot } from "./weather-test-fixtures"
 
-function snapshot(overrides: Partial<WeatherSnapshot>): WeatherSnapshot {
-  return {
-    city: "Place A",
-    lat: 43.7,
-    lon: -79.4,
-    temperatureC: 20,
-    condition: weatherConditionFromCode(0),
-    feelsLikeC: 19,
-    humidityPercent: 50,
-    windSpeedKmh: 10,
-    windDirectionDeg: 180,
-    precipitationMm: 0,
-    precipitationSumTodayMm: 0,
-    cloudCoverPercent: 10,
-    pressureHpa: 1015,
-    visibilityM: 20000,
-    uvIndexMax: 5,
-    sunrise: "2026-06-02T06:00",
-    sunset: "2026-06-02T20:00",
-    todayHighC: 24,
-    todayLowC: 14,
-    elevationM: 200,
-    population: null,
-    locationSource: null,
-    airQuality: { usAqi: 40, pm25: 4, label: "Good" },
-    dailyForecast: [],
-    hourlyForecast: [],
-    observedAt: "2026-06-02T14:00",
-    timezone: "America/Toronto",
-    timezoneAbbreviation: "EDT",
-    source: "open-meteo",
-    climateNormals: null,
-    isDay: true,
-    windGustKmh: null,
-    dewPointC: null,
-    temperatureAnomalyC: null,
-    isDefaultLocation: false,
-    ...overrides,
-  }
+function snapshot(overrides: Parameters<typeof testWeatherSnapshot>[0]) {
+  return testWeatherSnapshot(overrides)
 }
 
 describe("formatTemperatureDelta", () => {
